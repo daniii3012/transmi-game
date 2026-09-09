@@ -29,7 +29,6 @@ Controles: **1** vista general; **2/3/4** estaciones; **WASD o flechas** mover; 
 - [Continuidad y pendientes](CONTINUAR.md)
 - [Resumen de datos procesados](data/processed/summary.json)
 - [Vista general del primer render](docs/preview_general.png)
-- [Vista de Av. Boyacá del primer render](docs/preview_boyaca.png)
 
 Las capturas son del prototipo, no del aspecto final del simulador. Consultar CONTINUAR.md para el estado de la última revisión visual.
 

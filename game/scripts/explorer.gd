@@ -194,12 +194,15 @@ func _process(delta: float) -> void:
 	seconds += delta
 	metrics.text = "Altura de cámara: %.0f m   ·   %d FPS" % [camera.position.y, Engine.get_frames_per_second()]
 	if snapshot_mode and seconds > 3 and captures == 0:
-		captures = 1
+		captures = -1
 		await RenderingServer.frame_post_draw
 		get_viewport().get_texture().get_image().save_png(ProjectSettings.globalize_path("res://../docs/preview_general.png"))
 		view_station(1)
-	if snapshot_mode and seconds > 6 and captures == 1:
-		captures = 2
+		seconds = 0
+		captures = 1
+		return
+	if snapshot_mode and seconds > 3 and captures == 1:
+		captures = -2
 		await RenderingServer.frame_post_draw
 		get_viewport().get_texture().get_image().save_png(ProjectSettings.globalize_path("res://../docs/preview_boyaca.png"))
 		print("CAPTURE_COMPLETE")

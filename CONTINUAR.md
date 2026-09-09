@@ -35,7 +35,9 @@ Referencias aportadas: Mapas Bogotá 2D/3D, mapa digital de TransMilenio, dos pu
 
 ## Revisión visual pendiente al guardar
 
-El primer render mostró superficies demasiado claras y el pie de controles fuera de pantalla. Se corrigió explorer.gd: iluminación más baja, ACES, especular a cero, encuadre general más amplio y posición del pie. Se lanzó una segunda captura. **Comprobar su finalización y revisar ambos PNG antes de considerar aprobada esta última revisión visual**. El último log leído tenía PILOT_READY, pero todavía no CAPTURE_COMPLETE. Los PNG pueden estar siendo reemplazados durante la captura.
+El primer render mostró superficies demasiado claras y el pie de controles fuera de pantalla. Se corrigió explorer.gd: iluminación más baja, ACES, especular a cero, encuadre general más amplio y posición del pie. La segunda ejecución terminó con CAPTURE_COMPLETE y se revisó la vista general corregida: el recorte completo y los controles son visibles.
+
+Se detectó que las dos capturas podían representar el mismo fotograma por concurrencia de las esperas de renderizado. Se corrigió el estado de captura para bloquear una segunda captura mientras se espera la primera, y reiniciar el tiempo al cambiar de cámara. **Falta verificar gráficamente este último ajuste y regenerar la vista cercana de Av. Boyacá.** La vista general es válida como prueba geográfica; la segunda imagen no debe presentarse como una vista distinta hasta regenerarla.
 
 La captura usa la opción `-- --capture`, espera varias imágenes, guarda docs/preview_general.png y docs/preview_boyaca.png, y sale. El lanzador de prueba está en `work/preview.command`.
 
@@ -70,3 +72,7 @@ work/tools/Godot.app/Contents/MacOS/Godot --headless --path outputs/BogotaTransm
 ```
 
 No hace falta volver a investigar todo: consultar docs/FUENTES.md, los metadatos guardados y docs/PLAN_DEL_PROYECTO.md. No hay despliegue, cuenta externa, compra ni automatización del proyecto.
+
+## Punto de recuperación
+
+Repositorio Git local creado. Primer commit: `9578128` (plan, datos y prototipo). Hay un checkpoint posterior con el estado final de la sesión. Ver `git log -2 --oneline`. No hay remoto ni publicación.

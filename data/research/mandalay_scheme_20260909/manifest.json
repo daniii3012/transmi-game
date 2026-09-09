@@ -1,0 +1,13 @@
+{
+  "retrieved_at_utc": "2026-09-09T19:25:33.310816+00:00",
+  "source_url": "https://gis.transmilenio.gov.co/arcgis/rest/services/Troncal/consulta_esquemas_estaciones/FeatureServer/0/query?where=estacion%3D%27Mandalay%27&outFields=objectid%2Cestacion%2Ctipo%2Cnombre%2Csecciontipo%2Cid_vagon%2Cid_conexion%2Cid_entrada%2Carea_m2%2CShape__Area%2CShape__Length&returnGeometry=true&outSR=4326&f=geojson",
+  "layer_url": "https://gis.transmilenio.gov.co/arcgis/rest/services/Troncal/consulta_esquemas_estaciones/FeatureServer/0",
+  "license_status": "Not established for this service. Do not inherit CC BY from the separate geographic catalog.",
+  "copyright": "TransMilenio S.A.",
+  "features": 9,
+  "sha256": {
+    "scheme.geojson": "591b061e1c650d77124a73394d9c6c1928d1628770ac62aa4462631467c4711f",
+    "layer.metadata.json": "a930b0c9473425e338f4e152a33a8d62ea168555d42a27eeb93f2df3f2c65b40"
+  },
+  "note": "Polygon scheme; not a construction survey or proof of current operation. Conflicting tipo/nombre fields retained."
+}

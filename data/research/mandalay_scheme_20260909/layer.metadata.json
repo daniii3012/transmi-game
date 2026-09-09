@@ -1,0 +1,465 @@
+{
+ "currentVersion": 10.91,
+ "cimVersion": "2.9.0",
+ "id": 0,
+ "name": "ESQUEMAS ESTACIONES",
+ "type": "Feature Layer",
+ "parentLayer": null,
+ "defaultVisibility": true,
+ "minScale": 0,
+ "maxScale": 0,
+ "canScaleSymbols": false,
+ "geometryType": "esriGeometryPolygon",
+ "description": "",
+ "copyrightText": "",
+ "editFieldsInfo": {
+  "creationDateField": "created_date",
+  "creatorField": "created_user",
+  "editDateField": "last_edited_date",
+  "editorField": "last_edited_user"
+ },
+ "ownershipBasedAccessControlForFeatures": null,
+ "syncCanReturnChanges": true,
+ "relationships": [],
+ "isDataVersioned": true,
+ "isDataArchived": false,
+ "infoInEstimates": [
+  "extent"
+ ],
+ "isDataBranchVersioned": false,
+ "isDataReplicaTracked": false,
+ "isCoGoEnabled": false,
+ "supportsRollbackOnFailureParameter": false,
+ "archivingInfo": {
+  "supportsQueryWithHistoricMoment": false,
+  "startArchivingMoment": -1
+ },
+ "supportsStatistics": true,
+ "supportsExceedsLimitStatistics": true,
+ "supportsAdvancedQueries": true,
+ "supportsValidateSQL": true,
+ "supportsCoordinatesQuantization": true,
+ "supportsQuantizationEditMode": true,
+ "supportsCalculate": true,
+ "supportsASyncCalculate": true,
+ "supportsDatumTransformation": true,
+ "advancedQueryCapabilities": {
+  "supportsPagination": true,
+  "supportsTrueCurve": true,
+  "supportsQueryWithDistance": true,
+  "supportsReturningQueryExtent": true,
+  "supportsStatistics": true,
+  "supportsPercentileStatistics": true,
+  "supportsHavingClause": true,
+  "supportsOrderBy": true,
+  "supportsDistinct": true,
+  "supportsCountDistinct": true,
+  "supportsQueryWithResultType": true,
+  "supportsReturningGeometryCentroid": true,
+  "supportsSqlExpression": true,
+  "supportsQueryWithDatumTransformation": true,
+  "supportsLod": false,
+  "supportsQueryWithLodSR": false,
+  "supportsQueryAnalytic": true
+ },
+ "advancedQueryAnalyticCapabilities": {
+  "supportsLinearRegression": true,
+  "supportsAsync": false,
+  "supportsPercentileAnalytic": false
+ },
+ "advancedEditingCapabilities": {
+  "supportedSqlFormatsInCalculate": [
+   "standard"
+  ],
+  "supportsAsyncApplyEdits": true
+ },
+ "hasGeometryProperties": true,
+ "geometryProperties": {
+  "shapeAreaFieldName": "Shape__Area",
+  "shapeLengthFieldName": "Shape__Length",
+  "units": "esriMeters"
+ },
+ "hasMetadata": true,
+ "extent": {
+  "xmin": 985660.807,
+  "ymin": 992764.4135999996,
+  "xmax": 1003797.7312000003,
+  "ymax": 1019112.6109999996,
+  "spatialReference": {
+   "wkid": 3116,
+   "latestWkid": 3116,
+   "xyTolerance": 0.001,
+   "zTolerance": 0.001,
+   "mTolerance": 0.001,
+   "falseX": -4623200,
+   "falseY": -9510300,
+   "xyUnits": 4.5026540700157917E8,
+   "falseZ": -100000,
+   "zUnits": 10000,
+   "falseM": -100000,
+   "mUnits": 10000
+  }
+ },
+ "sourceSpatialReference": {
+  "wkid": 3116,
+  "latestWkid": 3116,
+  "xyTolerance": 0.001,
+  "zTolerance": 0.001,
+  "mTolerance": 0.001,
+  "falseX": -4623200,
+  "falseY": -9510300,
+  "xyUnits": 10000,
+  "falseZ": -100000,
+  "zUnits": 10000,
+  "falseM": -100000,
+  "mUnits": 10000
+ },
+ "drawingInfo": {
+  "renderer": {
+   "type": "simple",
+   "symbol": {
+    "type": "esriSFS",
+    "style": "esriSFSSolid",
+    "color": [
+     237,
+     8,
+     36,
+     255
+    ],
+    "outline": {
+     "type": "esriSLS",
+     "style": "esriSLSSolid",
+     "color": [
+      0,
+      0,
+      0,
+      255
+     ],
+     "width": 0.4
+    }
+   }
+  },
+  "scaleSymbols": false,
+  "transparency": 0,
+  "labelingInfo": null
+ },
+ "hasM": false,
+ "hasZ": false,
+ "allowGeometryUpdates": false,
+ "allowTrueCurvesUpdates": true,
+ "onlyAllowTrueCurveUpdatesByTrueCurveClients": true,
+ "hasAttachments": false,
+ "supportsApplyEditsWithGlobalIds": false,
+ "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+ "objectIdField": "objectid",
+ "globalIdField": "globalid",
+ "displayField": "troncal",
+ "typeIdField": "",
+ "subtypeField": "",
+ "fields": [
+  {
+   "name": "objectid",
+   "type": "esriFieldTypeOID",
+   "alias": "OBJECTID",
+   "domain": null,
+   "editable": false,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "objectid"
+  },
+  {
+   "name": "id",
+   "type": "esriFieldTypeInteger",
+   "alias": "id",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "id"
+  },
+  {
+   "name": "tipo",
+   "type": "esriFieldTypeString",
+   "alias": "tipo",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "length": 50,
+   "defaultValue": null,
+   "modelName": "tipo"
+  },
+  {
+   "name": "troncal",
+   "type": "esriFieldTypeString",
+   "alias": "troncal",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "length": 50,
+   "defaultValue": null,
+   "modelName": "troncal"
+  },
+  {
+   "name": "estacion",
+   "type": "esriFieldTypeString",
+   "alias": "estacion",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "length": 50,
+   "defaultValue": null,
+   "modelName": "estacion"
+  },
+  {
+   "name": "secciontipo",
+   "type": "esriFieldTypeString",
+   "alias": "secciontip",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "length": 50,
+   "defaultValue": null,
+   "modelName": "secciontipo"
+  },
+  {
+   "name": "idestacion",
+   "type": "esriFieldTypeInteger",
+   "alias": "idestacion",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "idestacion"
+  },
+  {
+   "name": "id_seccion",
+   "type": "esriFieldTypeDouble",
+   "alias": "id_seccion",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "id_seccion"
+  },
+  {
+   "name": "nombre",
+   "type": "esriFieldTypeString",
+   "alias": "nombre",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "length": 254,
+   "defaultValue": null,
+   "modelName": "nombre"
+  },
+  {
+   "name": "externa",
+   "type": "esriFieldTypeString",
+   "alias": "externa",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "length": 5,
+   "defaultValue": null,
+   "modelName": "externa"
+  },
+  {
+   "name": "id_edificion",
+   "type": "esriFieldTypeInteger",
+   "alias": "id_edifici",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "id_edificion"
+  },
+  {
+   "name": "id_vagon",
+   "type": "esriFieldTypeInteger",
+   "alias": "id_vagon",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "id_vagon"
+  },
+  {
+   "name": "id_conexa",
+   "type": "esriFieldTypeInteger",
+   "alias": "id_conexa",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "id_conexa"
+  },
+  {
+   "name": "id_transicion",
+   "type": "esriFieldTypeInteger",
+   "alias": "id_transic",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "id_transicion"
+  },
+  {
+   "name": "id_conexion",
+   "type": "esriFieldTypeInteger",
+   "alias": "id_conexio",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "id_conexion"
+  },
+  {
+   "name": "id_plataforma",
+   "type": "esriFieldTypeDouble",
+   "alias": "id_platafo",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "id_plataforma"
+  },
+  {
+   "name": "id_entrada",
+   "type": "esriFieldTypeDouble",
+   "alias": "id_entrada",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "id_entrada"
+  },
+  {
+   "name": "id_encuesta",
+   "type": "esriFieldTypeDouble",
+   "alias": "id_encuest",
+   "domain": null,
+   "editable": true,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "id_encuesta"
+  },
+  {
+   "name": "globalid",
+   "type": "esriFieldTypeGlobalID",
+   "alias": "globalid",
+   "domain": null,
+   "editable": false,
+   "nullable": false,
+   "length": 38,
+   "defaultValue": null,
+   "modelName": "globalid"
+  },
+  {
+   "name": "Shape__Area",
+   "type": "esriFieldTypeDouble",
+   "alias": "st_area(shape)",
+   "domain": null,
+   "editable": false,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "st_area(shape)"
+  },
+  {
+   "name": "Shape__Length",
+   "type": "esriFieldTypeDouble",
+   "alias": "st_length(shape)",
+   "domain": null,
+   "editable": false,
+   "nullable": false,
+   "defaultValue": null,
+   "modelName": "st_length(shape)"
+  },
+  {
+   "name": "area_m2",
+   "type": "esriFieldTypeDouble",
+   "alias": "area m2",
+   "domain": null,
+   "editable": true,
+   "nullable": true,
+   "defaultValue": null,
+   "modelName": "area_m2"
+  }
+ ],
+ "geometryField": {
+  "name": "shape",
+  "type": "esriFieldTypeGeometry",
+  "alias": "shape",
+  "domain": null,
+  "editable": false,
+  "nullable": true,
+  "defaultValue": null,
+  "modelName": "shape"
+ },
+ "indexes": [
+  {
+   "name": "r131_sde_rowid_uk",
+   "fields": "objectid",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  },
+  {
+   "name": "uuid_131",
+   "fields": "globalid",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  },
+  {
+   "name": "uuid_oid_131",
+   "fields": "globalid,objectid",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  },
+  {
+   "name": "a109_ix1",
+   "fields": "shape",
+   "isAscending": true,
+   "isUnique": true,
+   "description": ""
+  }
+ ],
+ "datesInUnknownTimezone": false,
+ "dateFieldsTimeReference": {
+  "timeZone": "UTC",
+  "respectsDaylightSaving": false
+ },
+ "preferredTimeReference": null,
+ "types": [],
+ "templates": [
+  {
+   "name": "ESQUEMAS ESTACIONES",
+   "description": "",
+   "prototype": {
+    "attributes": {}
+   },
+   "drawingTool": "esriFeatureEditToolPolygon"
+  }
+ ],
+ "maxRecordCount": 2000,
+ "supportedQueryFormats": "JSON, geoJSON, PBF",
+ "supportedExportFormats": "sqlite,filegdb",
+ "capabilities": "Query,Extract",
+ "useStandardizedQueries": true,
+ "supportedSpatialRelationships": [
+  "esriSpatialRelIntersects",
+  "esriSpatialRelContains",
+  "esriSpatialRelCrosses",
+  "esriSpatialRelEnvelopeIntersects",
+  "esriSpatialRelIndexIntersects",
+  "esriSpatialRelOverlaps",
+  "esriSpatialRelTouches",
+  "esriSpatialRelWithin",
+  "esriSpatialRelRelation"
+ ],
+ "standardMaxRecordCount": 4000,
+ "tileMaxRecordCount": 4000,
+ "standardMaxRecordCountNoGeometry": 32000,
+ "maxRecordCountFactor": 1
+}

@@ -84,9 +84,15 @@ docs/ESTACION_MANDALAY.md registra num_est 05101, punto oficial, longitud public
 - Capturas actualizadas tras los ajustes visuales en work/cozy_capture.log, PRACTICE_CAPTURE_COMPLETE. Las pruebas no constituyen aún validación de conducción por puentes reales ni ensayos largos de rendimiento. La próxima revisión de Daniel se reservará para un hito integrado.
 - Compresión: **8 pruebas Python aprobadas**, 6 nuevas de intervalos, inversión, geometría protegida, límites y piloto real; las 2 geográficas previas siguen pasando. Integración Godot del estudio aprobada: ambas instancias del articulado mantienen dimensiones con diferencia inferior a 1 mm, escala y anclaje. Capturas nativas de comparación y detalle revisadas; work/scale_study_capture.log terminó en SCALE_STUDY_CAPTURE_COMPLETE.
 
+## Checkpoint adicional: investigación de Mandalay guardada
+
+Se obtuvo una fuente oficial nueva con nueve polígonos de las secciones de Mandalay. Fuente, respuesta y hashes están en data/research/mandalay_scheme_20260909/; descargador tools/fetch_mandalay_scheme.py. La revisión del agente fue contrastada y corregida: cuatro Vagon, una Externa, una Conexa, una Conexion, una Transicion y una Entrada. tipo/nombre/id_vagon tienen discrepancias, no inferir A/B ni operación. Licencia de este servicio aún no establecida, independiente de las capas CC BY previas.
+
+Se inspeccionó una ortofoto SIMUR nominal 2021: dos franjas de plataforma/cubierta, zona central amplia y puente peatonal al este. Referencia local work/mandalay/ortofoto_2021.png, petición con hash junto a ella; no es textura ni prueba de vigencia de 2026. Ver docs/MANDALAY_REFERENCIAS_ADICIONALES.md para evidencia y límites. El nuevo modelo conducible todavía no está implementado en este checkpoint.
+
 ## Próximo trabajo concreto
 
-1. Continuar desde docs/ESTACION_MANDALAY.md: obtener cotas y referencias actuales para interpretar andén, vagones, puertas y carriles. Los enlaces concretos de imágenes del visor fallaron; investigar otras fuentes oficiales o referencias de calle. No repetir a ciegas el catálogo ni inventar A/B o compatibilidad. Revisar cruces/accesos que obliguen a ampliar reservas del estudio de escala.
+1. Continuar desde docs/MANDALAY_REFERENCIAS_ADICIONALES.md: usar la nueva fuente poligonal para la sección conducible, con dos sentidos y ciclo de parada. Alturas y puertas siguen pendientes de cota; registrar estimaciones. No extruir Externa 287 como obstáculo ni interpretar nombre como clasificación fiable. Mantener estación y puente peatonal en zona sin compresión.
 2. Construir la primera sección BRT con medidas locales coherentes y su correspondencia a la fuente geográfica; conectar el bus a ella. La disposición condensada es una base de diseño, no carriles ya validados. No habilitar Boyacá hasta revisar puente, rampas, niveles y continuidad.
 3. Introducir datos configurables de vehículo y anclajes, antes de multiplicar variantes. El prototipo tiene constantes de ensayo en motion y service; al usar una variante real deben migrar a una especificación compartida.
 4. Integrar un pequeño recorrido entre paradas del piloto, con selector de práctica, próxima parada y guardado. Patrón real solo cuando se compruebe toda la cobertura necesaria.

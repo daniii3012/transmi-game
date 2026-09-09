@@ -20,11 +20,20 @@ El JSON de mallas facilita inspeccionar y validar esta prueba. Para ampliar el m
 
 Esta cinemática plana no resuelve alturas ni suspensión. El mundo real continúa separado de la pista para no presentar la cartografía plana como carriles ya transitables.
 
+## Disposición condensada implementada como estudio
+
+`data/design/americas_scale_study.json` fija instantánea, estaciones, factor candidato y reservas. `tools/build_scale_study.py` extrae un único componente continuo del eje oficial, lo recorta y aplica `CorridorLayout`. El resultado independiente `game/data/scale_study.json` conserva geometría fuente, correspondencias de distancia, intervalos, IDs y dos disposiciones. `data/processed/scale_study_summary.json` guarda medidas y hashes.
+
+`game/scripts/scale_study.gd` presenta la comparación 3D con anchos de ensayo, módulos de entorno y el mismo modelo de bus en ambos ejes. La escena no habilita conducción ni representa niveles o estaciones detalladas. Los módulos se colocan con sus dimensiones originales en menos posiciones; no se comprimen sus vértices.
+
+`CorridorLayout` integra desplazamientos por intervalos: factor 1 en zonas protegidas y 0,5 en candidatos. Inserta los límites de protección y los vértices fuente antes de transformar; así conserva los vectores internos de zonas protegidas y permite convertir distancia fuente ↔ jugable sin ambigüedad sobre ese eje. El generador rechaza componentes desconectados y ejes resultantes que se autointersecten. No resuelve una red completa: aplicar cada corredor por separado podría separar un cruce compartido o cerrar incorrectamente un ciclo.
+
 ## Sistemas propuestos y ampliaciones
 
 | Sistema | Responsabilidad |
 |---|---|
 | WorldStreamer | Cargar sectores cercanos, retirar los lejanos, administrar niveles de detalle y origen local. |
+| NetworkLayout | Resolver posición jugable común de nodos, corredores y zonas protegidas, con correspondencia a geografía fuente y versión de disposición. El estudio actual solo resuelve un eje. |
 | RoadNetwork | Carriles dirigidos, niveles, conexiones permitidas, superficies y colisiones. |
 | VehicleController | Estado de conducción, velocidad, dirección, frenos, marcha y contacto con el suelo. |
 | ArticulationController | Trayectoria de remolques, límites de ángulo, maniobras de reversa y colisiones de todos los cuerpos. |
@@ -40,16 +49,18 @@ Todos los objetos deben tener identificador estable, fuente, fecha, unidad y est
 
 ```text
 WorldTile:
-  id, bounds, origin, geometry_version, source_snapshot,
+  id, bounds, origin, geometry_version, layout_revision, source_snapshot,
   mesh_resources, collision_resources, lods, reviewed_at
 
 Lane:
   id, centerline_m, width_m, direction, level_id,
+  source_geometry_id, source_chainage_span, length_source_m, length_game_m, layout_revision,
   allowed_vehicle_types, speed_design_kmh, next_lane_ids,
   valid_from, valid_to, evidence
 
 Station:
-  id, name, location, modules[], platforms[], access_points[], evidence
+  id, name, source_location, game_location, layout_revision,
+  modules[], platforms[], access_points[], evidence
 
 StopAnchor:
   id, station_id, module_label, lane_id, position_m, heading,
@@ -63,7 +74,7 @@ VehicleSpec:
 
 ServicePattern:
   id, source_feed, route_id, direction_id, stop_sequence[],
-  calendar_id, lane_path_ids[], variant, verified
+  calendar_id, lane_path_ids[], variant, layout_revision, verified
 
 WorksEvent:
   id, area, scenario_date, valid_from, valid_to,
@@ -77,6 +88,8 @@ Los nombres A/B/C son etiquetas de módulos cuando estén verificados, no identi
 
 Piloto: WGS84 geográfico recibido del servidor → AEQD local en metros, origen -74.136, 4.63027. Mapeo a Godot: X = este, Y = altura relativa al suelo, Z = -norte. Los vértices finales se redondean al milímetro para el archivo; esto no convierte la cartografía original en una medición de precisión milimétrica.
 
+Esta referencia geográfica sigue siendo 1:1. El mundo condensado usa una capa de disposición aparte; una unidad del motor equivale a un metro del juego. Las distancias de conducción, navegación y frenado se calculan sobre carriles jugables. Coordenadas, longitudes y horarios de la fuente se conservan separados y rotulados. No usar un factor global para convertir velocidades, horarios o aceleraciones. Un guardado identifica servicio y segmento además de distancia jugable y versión de disposición; una migración puede usar la correspondencia fuente para recuperar un punto seguro de la versión nueva.
+
 Para la expansión, conservar coordenadas geográficas/proyectadas con doble precisión fuera de las físicas. Cada sector usa un origen local; desplazar el origen de la simulación si lo exige la extensión. Construir bordes coincidentes y comprobar que las colisiones no dejan escalones entre sectores.
 
 ## Recursos y regeneración
@@ -88,9 +101,10 @@ Reutilizar módulos de estación y mobiliario, con variantes por sitio. Usar ins
 ## Comprobaciones por fase
 
 - Geografía: origen, escala, orientación, polígonos con huecos, duplicados, unidades y continuidad entre sectores.
+- Disposición: IDs conservados, correspondencia reversible, intervalos protegidos sin encogimiento, nodos compartidos coincidentes, distancias reales/jugables rotuladas y recursos del vehículo sin escala heredada.
 - Conducción: aceleración/frenado, curva cerrada, cambio de carril, reversa y pendiente; observar toda la envolvente del bus.
 - Paradas: aproximación en ambos sentidos, lado de puertas, alineación y bloqueo de movimiento con puertas abiertas.
 - Obras: no existe conexión transitable a estructuras incompletas; desvíos y paradas temporales corresponden a la fecha elegida.
 - Rendimiento: recorrido reproducible con memoria y tiempos de cuadro, además de FPS. Medir con bus, estaciones y tráfico antes de extrapolar desde el explorador.
 
-El primer objetivo técnico después de esta prueba es un bus articulado manejable sobre una pista métrica y luego una estación completa. La expansión de kilómetros se hace cuando esos sistemas permiten recorrer el piloto sin bloqueos.
+La pista articulada y el estudio de disposición ya existen. El siguiente objetivo técnico es una sección BRT con estación, carriles y niveles contrastados que integre el bus. La expansión se hace cuando esos sistemas permiten recorrer el piloto sin bloqueos.

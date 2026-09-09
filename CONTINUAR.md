@@ -4,10 +4,10 @@ Leer este archivo, README.md y docs/PLAN_DEL_PROYECTO.md antes de continuar. Dan
 
 ## Decisiones vigentes
 
-- **Meta final: un Bus Simulator de Bogotá centrado en todo el sistema BRT de TransMilenio**, con distancias espaciales 1:1. Prioridad: escala, red, conducción y operación antes que gráficos complejos.
+- **Meta final: un Bus Simulator de Bogotá centrado en todo el sistema BRT de TransMilenio**, con ciudad cozy y condensada. Daniel reconsideró la obligación de distancias jugables 1:1 y autorizó continuar con compresión selectiva. Fuente geográfica intacta; un metro del motor sigue siendo un metro jugable. Se acortan intervalos intermedios candidatos, conservando dimensiones coherentes de buses, plataformas, carriles y maniobras. No se fija un 1:2 global: factor 0,5 solo como hipótesis local.
 - Américas es el piloto; zona inicial Mandalay–Av. Américas/Av. Boyacá–Marsella. Después ampliar Américas, Calle 13/centro, NQS/Carrera 30, Calle 26 y Séptima; continuar al resto del sistema. No reducir la meta a esos corredores.
 - Ciudad actual con obras y desvíos. Fecha inicial del escenario: 8–9 de septiembre de 2026; evidencia y vigencia por zona. Carrera 50–Américas–Calle 13–Calle 6 y la futura actualización de 68–Américas son nodos expresamente pedidos. No habilitar diseños finales antes de comprobar apertura.
-- **Dirección visual cozy confirmada**, basada en over the hill, la maqueta ferroviaria de Nick y el proyecto de Givros. Formas suaves, materiales mate, color contenido y detalle selectivo; se conservan metros reales y proporciones. ETS/Bus Simulator orientan la experiencia de recorrido y operación. Ver docs/DIRECCION_VISUAL.md. No presentar el ensayo ficticio como el acabado urbano final.
+- **Dirección visual cozy confirmada**, basada en over the hill, la maqueta ferroviaria de Nick y el proyecto de Givros. Formas suaves, materiales mate, color contenido y detalle selectivo, con longitudes reales y jugables separadas. ETS/Bus Simulator orientan recorrido y operación. Ver docs/DIRECCION_VISUAL.md y docs/ESCALA_Y_COMPRESION.md. No presentar los ensayos como el acabado urbano final.
 - **Exclusivamente para un jugador.** La meta incluye otros buses haciendo rutas con IA local: carriles, paradas, puertas, colas, reservas y simulación lejana. Plan en docs/IA_DE_BUSES.md; aún no implementado. No introducir multijugador.
 - Conducción accesible, puertas y articulación coherentes; sin obligación de simulación mecánica exhaustiva.
 - Posible publicación futura si alcanza un buen desarrollo. **Push a https://github.com/daniii3012/transmi-game está expresamente autorizado**; no se pidió desplegar una versión del juego.
@@ -51,6 +51,17 @@ Explorador con cámaras, edificios y marcadores. Terreno y puentes planos; no es
 - Primera aplicación cozy en la pista: pintura mate, paleta del entorno, copas agrupadas, variación del suelo y HUD verde oscuro/crema. Se aplica en Godot; los materiales base del archivo Blender siguen siendo los originales del generador.
 - El bus NO está integrado en las calzadas reales. Sin pasajeros visibles, sonido, tráfico, espejos funcionales, selector de rutas oficiales, guardado de partida, pendientes ni streaming.
 
+### Estudio de compresión del piloto
+
+**ABRIR_ESTUDIO_ESCALA.command** abre game/scenes/scale_study.tscn. Escena de comparación 3D, no conducible: 1 muestra los dos ejes con la misma escala de cámara, 2/3 acercan Mandalay en cada versión, clic derecho orbita, rueda acerca, F2 pista y F3 explorador geográfico. Capturas en docs/preview_escala.png y docs/preview_escala_mandalay.png.
+
+- `data/design/americas_scale_study.json`: fuente fijada a 20260909T035301Z, tres IDs de estación, factor 0,5 en intervalos candidatos, 180 m extra por extremo. Las estaciones reservan su longitud publicada más 60 m de aproximación por extremo; Boyacá reserva 220 m a cada lado del punto. Estas reservas son supuestos de diseño pendientes de revisión de calle y de niveles; no equivalen a cotas del puente o plataformas.
+- `tools/corridor_layout.py`: transformación de un único eje por intervalos, mantiene vectores dentro de áreas protegidas y ofrece distancia fuente ↔ jugable reversible. Une reservas solapadas. Factor válido (0,1]; no encoge las mallas de los vehículos.
+- `tools/build_scale_study.py`: recorta el único componente oficial TZ009 que contiene las estaciones, conserva IDs, posiciones y hashes; rechaza desconexión o autointersección resultante. Genera `game/data/scale_study.json` y `data/processed/scale_study_summary.json`. Los datos raw y el pilot.json original permanecen intactos.
+- Eje del estudio: **1.602,47 m → 1.285,94 m**, reducción **19,75 %**. Contiene **969,42 m protegidos** y **633,05 m candidatos**. Mandalay–Boyacá: 789,26 → 563,56 m; Boyacá–Marsella: 453,21 → 410,03 m. Son distancias sobre el eje, no sobre carriles ni itinerarios de servicio.
+- Dos instancias del bus conservan dimensiones. Hay 60 módulos de contexto en referencia y 44 en condensada; son edificios ilustrativos con tamaño propio. Ese conteo no mide ahorro total de modelado. Bandas arena = reserva de diseño; las estaciones son marcadores, sin modelo detallado.
+- El transformador no resuelve redes con ramificaciones/ciclos ni geometría de manzanas. Antes de unir troncales, resolver nodos compartidos, niveles, circulación y entorno mediante una disposición común. No deformar todas las mallas GIS ni dar por transitables las líneas del estudio.
+
 ### Catálogo de rutas
 
 El buscador oficial aportado por Daniel tiene una API pública. `tools/audit_routes.py` conserva candidatos con campos de transporte y hashes, excluyendo metadatos administrativos. Auditoría inicial en `data/research/20260909T090945Z/`: 256 registros/IDs del filtro TransMilenio, seis páginas. **No son 256 rutas troncales distintas.** Hay códigos con guion, un 16 sin troncal asignada y códigos repetidos con destinos diferentes. No clasificar solo por formato, campo tipo o presencia de troncal.
@@ -71,14 +82,15 @@ docs/ESTACION_MANDALAY.md registra num_est 05101, punto oficial, longitud public
 - Integración de escena: PASS. Importa cuerpos y ocho hojas, se aproxima automáticamente a la plataforma usando sus colisiones, atiende la parada y abre las hojas visuales.
 - Carga headless de escena principal: PRACTICE_READY. Captura nativa sobre OpenGL/Metal M3 Pro: PRACTICE_CAPTURE_COMPLETE. Se inspeccionaron docs/preview_practica.png, preview_cabina.png y preview_puertas.png; muestran vistas distintas, el bus completo y puertas abiertas.
 - Capturas actualizadas tras los ajustes visuales en work/cozy_capture.log, PRACTICE_CAPTURE_COMPLETE. Las pruebas no constituyen aún validación de conducción por puentes reales ni ensayos largos de rendimiento. La próxima revisión de Daniel se reservará para un hito integrado.
+- Compresión: **8 pruebas Python aprobadas**, 6 nuevas de intervalos, inversión, geometría protegida, límites y piloto real; las 2 geográficas previas siguen pasando. Integración Godot del estudio aprobada: ambas instancias del articulado mantienen dimensiones con diferencia inferior a 1 mm, escala y anclaje. Capturas nativas de comparación y detalle revisadas; work/scale_study_capture.log terminó en SCALE_STUDY_CAPTURE_COMPLETE.
 
 ## Próximo trabajo concreto
 
-1. Continuar desde docs/ESTACION_MANDALAY.md: obtener cotas y referencias actuales para interpretar andén, vagones, puertas y carriles. Los enlaces concretos de imágenes del visor fallaron; investigar otras fuentes oficiales o referencias de calle. No repetir a ciegas el catálogo ni inventar A/B o compatibilidad.
-2. Construir una primera sección BRT física en metros, con niveles y anchos comprobados, y conectar el bus a ella. No habilitar el cruce de Boyacá hasta revisar puente, rampas y continuidad.
+1. Continuar desde docs/ESTACION_MANDALAY.md: obtener cotas y referencias actuales para interpretar andén, vagones, puertas y carriles. Los enlaces concretos de imágenes del visor fallaron; investigar otras fuentes oficiales o referencias de calle. No repetir a ciegas el catálogo ni inventar A/B o compatibilidad. Revisar cruces/accesos que obliguen a ampliar reservas del estudio de escala.
+2. Construir la primera sección BRT con medidas locales coherentes y su correspondencia a la fuente geográfica; conectar el bus a ella. La disposición condensada es una base de diseño, no carriles ya validados. No habilitar Boyacá hasta revisar puente, rampas, niveles y continuidad.
 3. Introducir datos configurables de vehículo y anclajes, antes de multiplicar variantes. El prototipo tiene constantes de ensayo en motion y service; al usar una variante real deben migrar a una especificación compartida.
 4. Integrar un pequeño recorrido entre paradas del piloto, con selector de práctica, próxima parada y guardado. Patrón real solo cuando se compruebe toda la cobertura necesaria.
-5. Aplicar la dirección cozy a esa sección como un conjunto: materiales, plataforma y fachadas cercanas. Preservar escala y reconocimiento; revisar desde cabina y exterior y medir rendimiento.
+5. Aplicar la dirección cozy a esa sección como un conjunto: materiales, plataforma y fachadas cercanas. Preservar proporciones y reconocimiento; revisar desde cabina y exterior, medir tiempo de recorrido y rendimiento. El diseño del contexto reemplaza repetición por módulos; no aplasta edificios reales.
 6. Con el grafo y los anclajes definidos, introducir un NPC en circuito según docs/IA_DE_BUSES.md antes de extenderlo a servicios reales. Mantener este trabajo como una fase explícita, no declarar tráfico existente.
 
 ## Ejecución y limitaciones del entorno
@@ -89,12 +101,16 @@ Desde la raíz del proyecto, usar Godot absoluto en vez de depender del PATH:
 ../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_driving.gd
 ../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_player_feedback.gd
 ../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_practice_scene.gd -- --keep-running
+../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_scale_study.gd -- --keep-running
+../../work/venv/bin/python tools/build_scale_study.py
 ../../work/venv/bin/python -m unittest discover -s tests -v
 ```
 
 Blender genera el modelo con `Blender -b -t 2 --python tools/build_bus.py`. En un entorno restringido previo, Blender falló al inicializar Metal y Godot gráfico al conectar con WindowServer; sus scripts .command funcionaron desde Finder mediante CUA. Con los permisos actuales, Godot gráfico ya se ejecutó directamente desde comandos y guardó las tres capturas con `-- --capture-practice`. No asumir que aquel fallo sigue vigente. Scripts auxiliares de sesión: work/build_bus.command, work/preview_practice.command y work/preview.command.
 
 No desactivar protecciones. Capturas nativas de CUA fallaron antes; el propio viewport de Godot guarda PNG revisables. No cerrar terminales/aplicaciones del usuario. Los recursos .godot y copias .blend1 no se versionan.
+
+Capturar el estudio: Godot `--path game res://scenes/scale_study.tscn -- --capture-scale-study`. Ejecutar gráficamente; el modo headless normal solo comprueba carga. Las dos vistas se capturan en serie. Los materiales de las bandas usan iluminación uniforme para distinguir reservas en esta vista de diseño; no representan el acabado final del pavimento.
 
 ## Respaldo
 

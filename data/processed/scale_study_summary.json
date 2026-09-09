@@ -1,0 +1,37 @@
+{
+  "layout_revision": "americas-condensed-v1",
+  "source_snapshot": "20260909T035301Z",
+  "source_sha256": {
+    "stations.geojson": "a67cc8837fad901a8dd1cc6c0e8489f57f86ec172cb2fdd1979a9baee3b6e156",
+    "corridors.geojson": "9f8cc9dce3335446db1031c2a693ae33c7053734dc4047c52278c7fda8e2fe69"
+  },
+  "config_sha256": "d244f24bbab9f602cabd42403fd6b020e6cc22acfd433c86155e5b1d6b7f1ecc",
+  "metrics": {
+    "source_axis_m": 1602.4656653818452,
+    "condensed_axis_game_m": 1285.9428326909226,
+    "protected_source_m": 969.4200000000001,
+    "eligible_source_m": 633.0456653818451,
+    "eligible_factor": 0.5,
+    "reduction_percent": 19.752238037218696,
+    "measurement_note": "Longitud sobre eje oficial con 180 m de margen por extremo; no distancia de carril ni horario de servicio.",
+    "between_station_centers": [
+      {
+        "from": "Mandalay",
+        "to": "AV. Américas - AV. Boyacá",
+        "source_axis_m": 789.2605811156113,
+        "condensed_axis_game_m": 563.5565405578056
+      },
+      {
+        "from": "AV. Américas - AV. Boyacá",
+        "to": "Marsella",
+        "source_axis_m": 453.2050842662336,
+        "condensed_axis_game_m": 410.03129213311695
+      }
+    ]
+  },
+  "context_modules": {
+    "reference": 60,
+    "condensed": 44
+  },
+  "context_note": "Módulos ilustrativos del estudio, no edificios reales ni estimación del ahorro total de modelado."
+}

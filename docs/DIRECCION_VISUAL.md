@@ -1,6 +1,6 @@
-# Bogotá cozy a escala real
+# Bogotá cozy y condensada
 
-Dirección acordada con Daniel · 9 de septiembre de 2026. Un Bus Simulator de Bogotá para un solo jugador, con toda la red BRT como meta, cartografía 1:1 y una apariencia cálida, suave y con volumen. La escala y la operación siguen siendo prioritarias.
+Dirección acordada con Daniel · 9 de septiembre de 2026. Un Bus Simulator de Bogotá para un solo jugador, con toda la red BRT como meta, una geografía fuente conservada 1:1 y una apariencia cálida, suave y con volumen. El mundo jugable podrá condensar selectivamente tramos repetitivos; la escala y la operación siguen siendo prioritarias. Ver [escala y compresión](ESCALA_Y_COMPRESION.md).
 
 ## Lectura de las referencias
 
@@ -14,11 +14,11 @@ La dirección siguiente es una propuesta propia basada en lo observado y en las 
 
 ## Escala física y sensación del mundo
 
-**Una unidad del motor seguirá siendo un metro.** Se conservan posiciones, separación entre estaciones, anchura de carriles, radios de giro, tamaño de edificios y proporciones de los buses, según datos verificados o estimaciones identificadas. Recorrer un kilómetro seguirá implicando viajar un kilómetro; a igual velocidad, la estética por sí sola no acorta ese tiempo.
+**Una unidad del motor seguirá siendo un metro jugable.** La geografía fuente mantiene sus posiciones y metadatos 1:1. En el mundo jugable, la separación entre estaciones y la longitud de un tramo podrán diferir solo cuando el estudio de [escala y compresión](ESCALA_Y_COMPRESION.md) lo clasifique como elegible y lo mida después de ensamblarlo. Anchura de carriles, radios de giro, tamaño de edificios, plataformas y proporciones de los buses mantienen medidas coherentes; estaciones, cruces, rampas, obras y conexiones quedan protegidos.
 
-La sensación más íntima se buscará reduciendo ruido visual, agrupando elementos, suavizando siluetas y haciendo legibles los lugares cercanos. El fondo urbano tendrá menos contraste y detalle. No se escalarán edificios o estaciones arbitrariamente para simular una ciudad de juguete. Tampoco se ocultará la distancia necesaria para leer señales, frenar y elegir carril.
+La sensación más íntima se buscará reduciendo ruido visual, agrupando elementos, suavizando siluetas y haciendo legibles los lugares cercanos. El fondo urbano tendrá menos contraste y detalle. No se escalarán edificios o estaciones arbitrariamente. La condensación selectiva no debe ocultar la distancia necesaria para leer señales, frenar, elegir carril o reconocer una conexión.
 
-El mundo se cargará por sectores alrededor del bus. Esto permite conservar la escala de la red sin mantener cada edificio y cada vehículo simultáneamente en memoria. Los presupuestos definitivos dependerán de mediciones en conducción.
+El mundo se cargará por sectores alrededor del bus. Esto permite conservar la cobertura de la red sin mantener cada edificio y cada vehículo simultáneamente en memoria. Los presupuestos definitivos dependerán de mediciones en conducción.
 
 ## Gramática visual de Bogotá
 

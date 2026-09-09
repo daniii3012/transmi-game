@@ -21,6 +21,8 @@ Cada bus NPC mantiene un estado pequeño y observable:
 
 El agente usa el grafo validado y sus restricciones. No inventa conexiones cuando falta geometría o fecha de vigencia. El jugador comparte el mismo espacio y reglas de colisión, pero la simulación de buses lejanos puede reducirse a estados de viaje y tiempos acumulados.
 
+La IA operará sobre la disposición condensada validada: distancia de seguimiento, frenado, colas y reservas se expresan en metros jugables. La referencia geográfica y los horarios oficiales se conservan aparte; no reducir automáticamente todos los tiempos por 0,5. Cada viaje y estado guardado incluye la versión de disposición. Un cambio de compresión exige recalcular su trayectoria y recuperar posiciones seguras antes de continuar. El estudio de escala actual no proporciona aún un grafo de carriles para NPC.
+
 ## Flujo de decisión
 
 En cada actualización de simulación, el bus:

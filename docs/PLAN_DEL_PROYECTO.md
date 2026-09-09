@@ -1,20 +1,21 @@
 # Plan de desarrollo de Bogotá Transmi
 
-Versión 0.3 · 9 de septiembre de 2026 · Proyecto personal de Daniel.
+Versión 0.4 · 9 de septiembre de 2026 · Proyecto personal de Daniel.
 
 ## 1. Experiencia que construiremos
 
-Un simulador arcade en primera y tercera persona donde sea agradable conducir buses reconocibles de TransMilenio por corredores reales de Bogotá. Distancias, anchos y tamaño de los vehículos deben conservar escala métrica. La apariencia deberá hacer reconocible la ciudad desde la cabina: disposición de vías, estaciones, separadores, puentes, fachadas cercanas, señalización y cerros cuando corresponda.
+Un simulador arcade en primera y tercera persona donde sea agradable conducir buses reconocibles de TransMilenio por una Bogotá condensada. Toda la red BRT sigue siendo la meta; las estaciones, conexiones y lugares importantes conservan su identidad. Los tramos intermedios pueden acortarse mediante reglas documentadas. Anchos, vehículos, plataformas y maniobras usan metros jugables coherentes. La apariencia deberá hacer reconocible la ciudad desde la cabina: vías, estaciones, separadores, puentes, fachadas próximas, señalización y cerros cuando corresponda.
 
-La dirección visual confirmada es **Bogotá cozy a escala real**: formas suaves con volumen, materiales mate, paleta contenida, luz cuidada y detalle selectivo. over the hill y las referencias de Nick y Givros orientan ese acabado; su análisis y límites de acceso están en [DIRECCION_VISUAL.md](DIRECCION_VISUAL.md). La fidelidad geométrica y el acabado visual son objetivos diferentes. Conservaremos distancias y proporciones; los edificios cercanos reciben más atención y los del fondo pueden generarse con reglas y niveles de detalle. La sensación íntima se busca con composición y materiales; no se comprimen kilómetros ni tiempos de recorrido a igual velocidad.
+La dirección visual confirmada es **Bogotá cozy y condensada**: formas suaves con volumen, materiales mate, paleta contenida, luz cuidada y detalle selectivo. over the hill y las referencias de Nick y Givros orientan ese acabado; su análisis y límites de acceso están en [DIRECCION_VISUAL.md](DIRECCION_VISUAL.md). Daniel reconsideró el 1:1 global y autorizó continuar con la propuesta de compresión selectiva. La cartografía original permanece intacta; el mundo jugable tendrá su propia disposición y longitudes. La primera hipótesis aplica factor 0,5 únicamente en intervalos elegibles y conserva estaciones y cruces como zonas protegidas. El factor definitivo se decidirá por corredor tras validar las maniobras; no se establece una escala 1:2 universal. Ver [ESCALA_Y_COMPRESION.md](ESCALA_Y_COMPRESION.md).
 
-El objetivo final es un **Bus Simulator centrado en Bogotá y en todo el sistema BRT de TransMilenio**. Prioridad: escala real, amplitud de la red y operación de buses, con un acabado visual agradable y sostenible. El usuario contempla publicarlo en el futuro si alcanza un buen desarrollo; hoy seguimos construyendo el proyecto personal, sin lanzar una distribución. La primera plataforma será su Mac; el diseño conservará la posibilidad de exportar a Windows más adelante. El juego será exclusivamente para un jugador y funcionará sin conexión permanente. Otros buses recorrerán rutas mediante IA local. Multijugador queda fuera del alcance del proyecto; economía de operadores, interiores de toda la ciudad, simulación mecánica exhaustiva y todos los servicios zonales tampoco son requisitos.
+El objetivo final es un **Bus Simulator centrado en Bogotá y en todo el sistema BRT de TransMilenio**. Prioridad: red reconocible, proporciones coherentes y operación de buses, con un acabado visual agradable y sostenible. El usuario contempla publicarlo en el futuro si alcanza un buen desarrollo; hoy seguimos construyendo el proyecto personal, sin lanzar una distribución. La primera plataforma será su Mac; el diseño conservará la posibilidad de exportar a Windows más adelante. El juego será exclusivamente para un jugador y funcionará sin conexión permanente. Otros buses recorrerán rutas mediante IA local. Multijugador queda fuera del alcance del proyecto; economía de operadores, interiores de toda la ciudad, simulación mecánica exhaustiva y todos los servicios zonales tampoco son requisitos.
 
 ## 2. Alcance geográfico acordado
 
 | Orden de expansión propuesto | Zona | Propósito y dificultad |
 |---|---|---|
 | Prueba actual | Américas: Marsella–Av. Boyacá–Mandalay | Validar datos y escala en un recorte. Unos 1,24 km entre centros extremos en línea recta; medir el recorrido de carriles por separado. |
+| Estudio de condensación | Eje del mismo piloto, con 180 m adicionales por extremo | Comparación implementada: 1.602,47 m de eje fuente y 1.285,94 m jugables propuestos; tres estaciones y reservas intactas. No habilita circulación por Boyacá. |
 | Primera zona jugable | El mismo tramo, con una estación detallada y después las tres | Conducir, frenar, aproximarse al andén, abrir puertas y continuar. Revisar el cruce a desnivel de Boyacá antes de habilitarlo. |
 | Expansión 1 | Américas hacia Pradera, Distrito Grafiti y Puente Aranda; después Banderas y Portal Américas | Conectar la base con el nodo de obras señalado por Daniel y ampliar el recorrido. |
 | Expansión 2 | Calle 13 existente hacia el centro | Incorporar el nodo Carrera 50, Ricaurte y conexiones urbanas con una versión fechada de las obras. |
@@ -50,6 +51,8 @@ Blender complementa al motor: genera objetos y animaciones; el motor los convier
 7. **Dividir en sectores.** Objetivo inicial: celdas de aproximadamente 250–500 m, cargadas alrededor del bus. Mantener más detalle cerca y mallas simplificadas a distancia. Usar instancias para elementos repetidos.
 8. **Validar desde la cabina.** Contrastar alineación, ancho, visibilidad de señales, altura del andén y espacio de giro con referencias fechadas. La vista aérea por sí sola no valida una calle para conducir.
 
+Entre reproyección y construcción se añade una **capa de disposición jugable**: identifica zonas protegidas, acorta conectores elegibles y registra distancias reales/jugables por ID. Los edificios se seleccionan o reorganizan como módulos con dimensiones propias; no se aplastan polígonos catastrales. Estaciones y cruces requieren espacio para sus accesos y maniobras. Una red con ramificaciones o ciclos necesitará resolver todos los nodos compartidos en conjunto: el transformador de un solo corredor no resuelve esa tarea. La carga por sectores sigue siendo necesaria aunque el mapa se condense.
+
 El catálogo oficial permite descargar geometría de construcciones. El visor 3D no equivale a un paquete completo de ciudad texturizada listo para un videojuego: la implementación examinada utiliza extrusión de polígonos. Nuestra prueba confirma que podemos reconstruir volumen a partir de datos; aún faltan superficies y detalles que se ven a nivel de calle. [Catastro](https://datosabiertos.bogota.gov.co/dataset/construccion), [visor 3D](https://mapas.bogota.gov.co/3d/).
 
 ## 5. Estaciones, vagones y paradas
@@ -69,6 +72,8 @@ Daniel probó la pista y pidió más margen de alineación. La práctica ya acep
 No necesitamos copiar manualmente toda la red. Diseñaremos un importador GTFS para rutas, viajes, paradas ordenadas, trazados y calendarios. Antes de usar un paquete se verificarán su fecha de servicio, archivos completos, identificadores, horas posteriores a medianoche y variantes por sentido. El paquete probado aún no se pudo descargar y su ficha antigua no garantiza vigencia. [Catálogo GTFS](https://datosabiertos.bogota.gov.co/en/dataset/especificacion-gtfs-general-transport-feed-specification-sitp).
 
 La red física de carriles será independiente de las rutas comerciales. GTFS puede describir un itinerario, pero no sustituye la geometría de puertas, vagones, carriles de adelantamiento o maniobras de acceso. Los datos que falten se guardarán como anotaciones por estación, sin inventarlos.
+
+Conservar longitudes y horarios reales como referencia. Navegación, frenado e IA usarán las distancias jugables; los tiempos objetivo de juego se calibrarán después de construir el recorrido y no se obtienen multiplicando todos los horarios por 0,5. Guardados y viajes incluirán la versión de disposición, para poder migrar cuando cambie la compresión.
 
 El [buscador oficial de rutas](https://buscador-rutas.transmilenio.gov.co/rutas) aportado por Daniel se añade como referencia de consulta y contraste. No clasificar servicios solo con una expresión regular de letra y dos dígitos: distinguir troncales, servicios fáciles, duales y zonales mediante datos oficiales y vigencia. La enumeración actual de rutas fáciles está pendiente de verificar. No tratar toda ruta SITP como parte del alcance jugable.
 
@@ -102,6 +107,7 @@ Separaremos la geometría duradera de la capa de obra: barreras, carriles habili
 |---|---|---|
 | 0. Investigación y base | Este plan, fuentes, datos y explorador | Completado: datos descargados, escala comprobada y vistas general/cercana revisadas. |
 | 1. Conducción de prueba | Bus articulado provisional sobre pista métrica | Implementada, probada por Daniel y ajustada con sus observaciones: roce lateral, cámara orientable y mayor tolerancia. 19 comprobaciones base, 12 de ajustes e integración aprobadas. Las pendientes pertenecen a la integración posterior. Ver PRUEBA_DE_CONDUCCION.md. |
+| 1b. Disposición condensada | Transformación reversible y comparación 3D del eje piloto | Estudio de eje implementado y medido; protege intervalos y conserva IDs. La aceptación como mundo conducible depende de los niveles, accesos y maniobras del hito 2. |
 | 2. Primer tramo | Calzadas transitables y una estación del piloto | Se puede completar aproximación, alineación, apertura, cierre y salida en ambos sentidos; niveles y anchos están verificados. |
 | 3. Recorrido reconocible | Tres estaciones y edificios cercanos del recorte | Se conduce de extremo a extremo sin huecos de colisión ni bloqueos; los accesos y señales corresponden al tramo. Se introduce un NPC en ensayo sobre el pequeño grafo ya validado. |
 | 4. Primer bus definitivo | Carrocería, cabina, materiales y audio | Dimensiones y disposición de puertas/ejes contrastadas con referencias de una variante; manejo aprobado por Daniel. |
@@ -119,7 +125,7 @@ Daniel pidió evitar ciclos constantes de prueba manual y corrección puntual. L
 
 Objetivo provisional: 1080p con al menos 30 FPS sostenidos en conducción y aspiración de 60 FPS. No es un resultado alcanzado: las cifras de una captura estática del explorador no son un benchmark del futuro juego. Medir tiempo de carga, memoria, mínimos de FPS y pausas al cambiar de sector.
 
-Los riesgos principales son datos de épocas distintas, falta de detalle de estaciones, alturas estimadas, cruces a varios niveles, colisiones de buses largos y carga simultánea de demasiada ciudad. Las respuestas son fechas por capa, referencias por objeto, validación geométrica, pruebas de maniobra y carga por sectores. También se necesita separar las correcciones manuales de los modelos generados para no perderlas al importar datos nuevos.
+Los riesgos principales son datos de épocas distintas, falta de detalle de estaciones, alturas estimadas, cruces a varios niveles, colisiones de buses largos y carga simultánea de demasiada ciudad. La condensación añade posibles conflictos entre nodos, pérdida de espacio de frenado o colas y desajustes de horarios. Las respuestas son fuentes fechadas, zonas protegidas, revisión de conexiones, pruebas de maniobra y carga por sectores. También se necesita separar las correcciones manuales de los modelos generados para no perderlas al importar datos nuevos.
 
 ## 11. Reparto de trabajo y continuidad
 
@@ -131,4 +137,4 @@ Al cerrar cada sesión: actualizar CONTINUAR.md con decisiones, resultado compro
 
 ## 12. Diseño ampliado
 
-Ver [SISTEMAS_Y_HOJA_DE_RUTA.md](SISTEMAS_Y_HOJA_DE_RUTA.md) para el ciclo de juego, dependencias y entregas. Ver [DIRECCION_VISUAL.md](DIRECCION_VISUAL.md) para el acabado cozy y presupuesto de detalle. Estas decisiones incorporan las aclaraciones del 9 de septiembre: escala 1:1, experiencia de Bus Simulator, un solo jugador, otros buses con IA local y trabajo por hitos.
+Ver [SISTEMAS_Y_HOJA_DE_RUTA.md](SISTEMAS_Y_HOJA_DE_RUTA.md) para el ciclo de juego, dependencias y entregas. Ver [DIRECCION_VISUAL.md](DIRECCION_VISUAL.md) y [ESCALA_Y_COMPRESION.md](ESCALA_Y_COMPRESION.md) para el acabado y la nueva disposición. Estas decisiones incorporan las aclaraciones del 9 de septiembre: Bogotá condensada, fuente geográfica intacta, Bus Simulator para un solo jugador, otros buses con IA local y trabajo por hitos.

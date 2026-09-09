@@ -1,6 +1,6 @@
 # Simulador de buses de Bogotá: sistemas y entregas
 
-Actualizado el 9 de septiembre de 2026. Dirección confirmada por Daniel: un Bus Simulator del sistema BRT, **exclusivamente para un jugador**, con toda la red troncal como meta final, escala espacial 1:1 y apariencia cozy. La extensión del mundo y la operación tienen prioridad sobre gráficos complejos. Otros buses realizarán rutas mediante IA local. Las etapas iniciales no reducen ese objetivo.
+Actualizado el 9 de septiembre de 2026. Dirección confirmada por Daniel: un Bus Simulator del sistema BRT, **exclusivamente para un jugador**, con toda la red troncal como meta final, geografía fuente 1:1 y apariencia cozy. El mundo jugable estudia una condensación selectiva de tramos repetitivos; estaciones, conexiones y maniobras conservan medidas coherentes. La extensión del mundo y la operación tienen prioridad sobre gráficos complejos. Otros buses realizarán rutas mediante IA local. Ver [escala y compresión](ESCALA_Y_COMPRESION.md); la primera comparación de ejes ya está implementada; la validación de carriles y maniobras sigue pendiente.
 
 ## La experiencia completa
 
@@ -10,7 +10,7 @@ Una troncal es infraestructura; un servicio es una secuencia de paradas que pued
 
 ## Orden de prioridades
 
-1. Metros reales, conexiones correctas, niveles de vías y espacios de maniobra.
+1. Geografía fuente preservada, metros del juego coherentes, conexiones correctas, niveles de vías y espacios de maniobra.
 2. Conducción de un bus largo, puertas, parada y continuidad de un recorrido.
 3. Crecimiento de la red, selección de servicios, actualización de obras y guardado.
 4. Ciudad reconocible desde la cabina, sonido y vida urbana suficiente.
@@ -25,7 +25,7 @@ Una troncal es infraestructura; un servicio es una secuencia de paradas que pued
 | Conducción | Aceleración, freno, reversa, dirección y articulación; colisiones de todos los cuerpos | Pendientes, suspensión visual, ajustes por variante | Superficies y geometría del bus |
 | Cabina e instrumentos | Velocidad, marcha, estado de puertas y cámaras | Espejos, luces, limpiaparabrisas y tablero de la variante | Modelo y rendimiento |
 | Estaciones | Punto de detención, lado de puertas, tolerancias y ciclo de atención | Vagones, puertas de plataforma, accesos y portales especiales | Carriles, medidas y vehículo |
-| Servicios y selector | Servicio de prueba, lista de paradas y sentido | Catálogo oficial, variantes, calendarios y horarios | Importador, carriles y cobertura comprobada |
+| Servicios y selector | Servicio de prueba, lista de paradas y sentido | Catálogo oficial, variantes, calendarios y horarios, habilitados tras comprobar la cobertura jugable | Importador, carriles y cobertura comprobada |
 | Navegación | Próxima parada, distancia y orientación | Mapa de red, instrucciones de desvío y señalización de servicio | Itinerario sobre carriles |
 | Pasajeros | Tiempo de intercambio y conteo sencillo | Personas visibles, colas y demanda por parada | Ciclo de puertas y estación |
 | Buses con IA local | Un NPC que sigue carriles, se detiene y abre puertas en ensayo | Colas, reservas de dársena/intersección, despachos reales y simulación lejana | Grafo dirigido, anclajes, controlador y vigencia |
@@ -60,7 +60,7 @@ Con el pequeño grafo de C disponible, probar primero un NPC en circuito y luego
 ## Criterios que evitan rehacer el proyecto
 
 - Una actualización de obra puede cerrar un carril, habilitar otro o mover una parada; no debe sobrescribir la cartografía original. Mantener fecha, evidencia y escenario anterior.
-- Separar posición geográfica global de coordenadas locales de físicas. No comprimir distancias para que quepan en memoria: cargar sectores alrededor del bus.
+- Separar geografía fuente, metros del juego y longitud real/jugable por tramo. La compresión, si procede, será selectiva y medida según [escala y compresión](ESCALA_Y_COMPRESION.md); cargar sectores alrededor del bus sigue siendo una decisión de memoria independiente.
 - Cada vehículo declara sus puertas, ejes y articulaciones. Las estaciones usan puntos de parada compatibles; no codificar todas las medidas para un solo bus.
 - Un servicio incluye ambos sentidos y variantes cuando existan, con vigencia. El nombre visible no es el identificador del registro.
 - Las partidas guardan versión de mapa y servicio. Si cambia una zona, recuperar en una parada o patio seguro y explicar el ajuste; no reaparecer dentro de una obra.
@@ -72,7 +72,7 @@ Multijugador queda fuera del alcance por decisión explícita de Daniel. Econom�
 
 ## Organización del trabajo
 
-La [dirección visual](DIRECCION_VISUAL.md) fija materiales, siluetas y reparto de detalle conservando metros reales. La [guía de agentes ligeros](TRABAJO_CON_AGENTES.md) define investigación acotada y normalización delegables. El principal integra sus resultados y comprueba física, escenas y datos. Las revisiones de Daniel se concentrarán en hitos completos, incorporando las correcciones puntuales con validación interna.
+La [dirección visual](DIRECCION_VISUAL.md) fija materiales, siluetas y reparto de detalle respetando las magnitudes definidas en [escala y compresión](ESCALA_Y_COMPRESION.md). La [guía de agentes ligeros](TRABAJO_CON_AGENTES.md) define investigación acotada y normalización delegables. El principal integra sus resultados y comprueba física, escenas y datos. Las revisiones de Daniel se concentrarán en hitos completos, incorporando las correcciones puntuales con validación interna.
 
 ## Referencias operativas
 

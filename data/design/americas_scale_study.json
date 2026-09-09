@@ -1,0 +1,25 @@
+{
+  "layout_revision": "americas-condensed-v1",
+  "source_snapshot": "20260909T035301Z",
+  "corridor_id": "TZ009",
+  "station_ids": [
+    "05101",
+    "05102",
+    "05103"
+  ],
+  "eligible_factor": 0.5,
+  "end_margin_source_m": 180.0,
+  "station_approach_allowance_m": 60.0,
+  "protected_nodes": [
+    {
+      "station_id": "05102",
+      "half_length_source_m": 220.0,
+      "reason": "Reserva de diseño para estudiar estación y cruce de Boyacá; no equivale a la longitud medida del puente ni habilita circulación.",
+      "status": "design_allowance_pending_survey"
+    }
+  ],
+  "illustrative_road_width_game_m": 8.0,
+  "illustrative_context_spacing_game_m": 38.0,
+  "note": "Estudio de disposición. No son carriles, cotas de estación ni entorno urbano verificados. Las zonas protegidas se ampliarán si las referencias lo requieren.",
+  "eligibility_status": "design_hypothesis_pending_street_and_junction_review"
+}

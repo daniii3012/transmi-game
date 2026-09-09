@@ -2,7 +2,7 @@
 
 Proyecto personal de simulación de buses de TransMilenio, con Bogotá a escala métrica real y conducción accesible. Primera sesión: 8 de septiembre de 2026, hora de Bogotá.
 
-**El progreso está guardado localmente.** Para continuar, leer primero [CONTINUAR.md](CONTINUAR.md). El documento principal es [PLAN_DEL_PROYECTO.md](docs/PLAN_DEL_PROYECTO.md).
+**Respaldo del proyecto:** [daniii3012/transmi-game](https://github.com/daniii3012/transmi-game). Para continuar, leer primero [CONTINUAR.md](CONTINUAR.md). El documento principal es [PLAN_DEL_PROYECTO.md](docs/PLAN_DEL_PROYECTO.md).
 
 ## Qué existe hoy
 
@@ -23,6 +23,8 @@ Controles: **1** vista general; **2/3/4** estaciones; **WASD o flechas** mover; 
 ## Documentos
 
 - [Plan del proyecto](docs/PLAN_DEL_PROYECTO.md)
+- [Sistemas y hoja de ruta hacia toda la red BRT](docs/SISTEMAS_Y_HOJA_DE_RUTA.md)
+- [Dirección visual y prioridades](docs/DIRECCION_VISUAL.md)
 - [Fuentes y límites de los datos](docs/FUENTES.md)
 - [Buses y referencias visuales](docs/BUSES_Y_REFERENCIAS.md)
 - [Arquitectura propuesta](docs/ARQUITECTURA.md)

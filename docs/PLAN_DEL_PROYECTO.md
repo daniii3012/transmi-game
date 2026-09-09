@@ -1,6 +1,6 @@
 # Plan de desarrollo de Bogotá Transmi
 
-Versión 0.1 · 8 de septiembre de 2026 · Proyecto personal de Daniel.
+Versión 0.2 · 9 de septiembre de 2026 · Proyecto personal de Daniel.
 
 ## 1. Experiencia que construiremos
 
@@ -8,7 +8,7 @@ Un simulador arcade en primera y tercera persona donde sea agradable conducir bu
 
 La fidelidad geométrica y el acabado visual son objetivos diferentes. Mantendremos las distancias reales sin exigir que cada fachada o negocio de toda Bogotá se modele individualmente. Los edificios cercanos al recorrido reciben más atención; los del fondo pueden generarse con reglas y niveles de detalle.
 
-El usuario no quiere publicar el proyecto. La primera plataforma será su Mac; el diseño conservará la posibilidad de exportar a Windows más adelante. La experiencia inicial será para una persona, sin conexión permanente. No incluimos de inicio multijugador, economía de operadores, interior de toda la ciudad, simulación mecánica exhaustiva ni todos los servicios del SITP.
+El objetivo final es un **Bus Simulator centrado en Bogotá y en todo el sistema BRT de TransMilenio**. Prioridad: escala real, amplitud de la red y operación de buses, con un acabado visual agradable y sostenible. El usuario contempla publicarlo en el futuro si alcanza un buen desarrollo; hoy seguimos construyendo el proyecto personal, sin lanzar una distribución. La primera plataforma será su Mac; el diseño conservará la posibilidad de exportar a Windows más adelante. La experiencia inicial será para una persona, sin conexión permanente. No incluimos de inicio multijugador, economía de operadores, interior de toda la ciudad, simulación mecánica exhaustiva ni todos los servicios del SITP.
 
 ## 2. Alcance geográfico acordado
 
@@ -21,7 +21,7 @@ El usuario no quiere publicar el proyecto. La primera plataforma será su Mac; e
 | Expansión 3 | NQS / Carrera 30 y Calle 26 | Conectar corredores; aumenta el trabajo de puentes, rampas, intersecciones y estaciones especiales. |
 | Expansión 4 | Centro y Carrera Séptima | Añadir operación dual, accesos particulares y circulación en tráfico mixto. |
 
-Es una secuencia de construcción, no una reducción del alcance pedido. La selección del recorte inicial es técnica y reversible. La extensión final de cada corredor y las conexiones exactas se fijarán cuando recorramos los datos y el primer tramo jugable. La Nueva Calle 13 en construcción no debe aparecer completa ni operativa por asumir que forma parte de la red futura.
+**Meta final: toda la red troncal**, sus portales, conexiones y servicios pertinentes. Los corredores elegidos son el orden de trabajo inicial, no el límite del juego. La ampliación a los demás corredores se planifica con un inventario de cobertura por sectores y estaciones, sin declarar operativa una zona no comprobada. La selección del recorte inicial es técnica y reversible. La extensión final de cada corredor y las conexiones exactas se fijarán cuando recorramos los datos y el primer tramo jugable. La Nueva Calle 13 en construcción no debe aparecer completa ni operativa por asumir que forma parte de la red futura.
 
 ## 3. Herramientas y decisión inicial
 
@@ -31,7 +31,7 @@ Es una secuencia de construcción, no una reducción del alcance pedido. La sele
 | Blender para Apple Silicon | Modelado de buses, cabinas, estaciones, puentes y materiales; exportación glTF/GLB | Instalar en la fase de modelado. |
 | Python + pyproj + Shapely + Earcut | Descargar, recortar, reproyectar y triangular datos | Entorno ya preparado; versiones fijadas. |
 | QGIS | Inspección visual de datos, medidas y edición geográfica manual cuando aporte valor | Opcional; la descarga y conversión actuales no dependen de instalarlo. |
-| Git local | Versionar código, decisiones y progreso | Guardar puntos de avance; los datos grandes requerirán una política separada al crecer. |
+| Git + GitHub | Versionar código, decisiones y progreso | Repositorio autorizado: daniii3012/transmi-game. Guardar hitos pequeños; separar datos pesados y binarios al crecer. |
 
 Godot es compatible con Apple Silicon y se distribuye como una aplicación independiente. Es una elección inicial adecuada para probar este alcance en el M3 Pro con 18 GB, no una garantía de que cualquier tamaño de ciudad funcionará sin optimización. [Descarga oficial](https://godotengine.org/download/macos/) y [requisitos](https://docs.godotengine.org/en/stable/about/system_requirements.html).
 
@@ -68,6 +68,8 @@ No necesitamos copiar manualmente toda la red. Diseñaremos un importador GTFS p
 
 La red física de carriles será independiente de las rutas comerciales. GTFS puede describir un itinerario, pero no sustituye la geometría de puertas, vagones, carriles de adelantamiento o maniobras de acceso. Los datos que falten se guardarán como anotaciones por estación, sin inventarlos.
 
+El [buscador oficial de rutas](https://buscador-rutas.transmilenio.gov.co/rutas) aportado por Daniel se añade como referencia de consulta y contraste. No clasificar servicios solo con una expresión regular de letra y dos dígitos: distinguir troncales, servicios fáciles, duales y zonales mediante datos oficiales y vigencia. La enumeración actual de rutas fáciles está pendiente de verificar. No tratar toda ruta SITP como parte del alcance jugable.
+
 Primero habrá conducción libre por el tramo; después un servicio de prueba entre las estaciones verificadas. Incorporar un servicio con nombre real exigirá comprobar su secuencia de paradas y vigencia. Los horarios estrictos, despachos y tráfico de buses son ampliaciones posteriores.
 
 ## 7. Vehículos y conducción
@@ -86,6 +88,8 @@ La fecha objetivo inicial es **8 de septiembre de 2026**, con una ficha de vigen
 
 El nodo prioritario señalado por Daniel es Carrera 50–Américas–Calle 13–Calle 6. La noticia del 28 de agosto distingue una glorieta de tráfico mixto, un nivel exclusivo de TransMilenio y dos puentes superiores. Para recrear el momento de obra hacen falta los pasos provisionales, cierres y estructuras efectivamente construidas; los niveles proyectados no se habilitarán por adelantado. [Fuente aportada por Daniel](https://bogota.gov.co/mi-ciudad/movilidad/asi-van-obras-de-puentes-calle-13-con-avenida-las-americas-en-bogota).
 
+La **Avenida 68 y el nodo 68–Américas** deben representar sus obras mientras continúen. La apertura futura del deprimido se incorporará como otra versión del escenario, únicamente después de comprobar habilitación y trazados. Mantener el escenario anterior recuperable; una actualización de obras no debe romper rutas ni partidas.
+
 Separaremos la geometría duradera de la capa de obra: barreras, carriles habilitados, tramos cerrados, paradas temporales, estructuras en construcción y señalización. Cada cambio tendrá fecha de inicio, fecha final si se conoce y evidencia. Consultar PMT y comunicados de SDM/IDU/TransMilenio; referencias de calle aportadas por Daniel pueden ayudar a resolver detalles visuales.
 
 ## 9. Hitos y condiciones de aceptación
@@ -99,7 +103,9 @@ Separaremos la geometría duradera de la capa de obra: barreras, carriles habili
 | 4. Primer bus definitivo | Carrocería, cabina, materiales y audio | Dimensiones y disposición de puertas/ejes contrastadas con referencias de una variante; manejo aprobado por Daniel. |
 | 5. Américas y obras | Extensión hacia el nodo Carrera 50 y Calle 13 | Obras y desvíos documentados; conexiones transitables; carga por sectores sin pausas graves. |
 | 6. Red prioritaria | NQS, Calle 26, centro y Séptima; segundo bus | Continuidad entre corredores y operación dual comprobada en las zonas correspondientes. |
-| 7. Pulido personal | Tráfico ligero, audio, pasajeros y opciones | El recorrido es agradable y estable en el equipo objetivo. |
+| 7. Operación de red | Selección de bus, servicio, sentido y fecha; pasajeros básicos, tráfico y guardado | Se completa un servicio verificado con progreso persistente y sin atravesar sectores pendientes. |
+| 8. Sistema completo | Expansión por paquetes al resto de troncales, portales y conexiones | Inventario de cobertura y rutas comprobado por zona; mundo cargado por sectores, no simultáneamente. |
+| 9. Calidad y posible distribución | Rendimiento, accesibilidad, instaladores y revisión de recursos | Recorridos estables; recursos con procedencia y permisos claros. Publicación sujeta a una decisión posterior del usuario. |
 
 Trabajaremos por resultados comprobables, sin prometer que un corredor detallado cabe en una sesión. La mayor incertidumbre está en referencias actuales, puentes y estaciones especiales; dibujar volumen general a partir de datos es más automatizable. Primero medir tiempo y rendimiento del tramo, después estimar las expansiones con esa experiencia.
 
@@ -114,3 +120,7 @@ Los riesgos principales son datos de épocas distintas, falta de detalle de esta
 El asistente se encarga de investigación, herramientas, código, conversión de datos, modelado, pruebas y documentación. Daniel aporta criterio sobre la experiencia de conducción y el reconocimiento de lugares y buses. No necesita aprender Blender o descargar datos manualmente para empezar. Si aparece un permiso del sistema o un detalle que no pueda verificarse con fuentes disponibles, se pedirá únicamente lo necesario en ese momento.
 
 Al cerrar cada sesión: actualizar CONTINUAR.md con decisiones, resultado comprobado, problemas abiertos, archivos y próxima tarea; conservar una versión recuperable. Las referencias nuevas del usuario se incorporan al alcance existente. El trabajo continúa en sesiones activas; no se ha configurado ejecución automática ni publicación.
+
+## 12. Diseño ampliado
+
+Ver [SISTEMAS_Y_HOJA_DE_RUTA.md](SISTEMAS_Y_HOJA_DE_RUTA.md) para el ciclo de juego, dependencias y entregas. Ver [DIRECCION_VISUAL.md](DIRECCION_VISUAL.md) para el presupuesto de detalle. Estas decisiones incorporan la aclaración del 9 de septiembre: escala y experiencia de Bus Simulator antes que gráficos complejos.

@@ -4,7 +4,7 @@ Guardado el 8 de septiembre de 2026, Bogotá. El usuario pidió preservar el pro
 
 ## Intención y decisiones del usuario
 
-Daniel quiere un videojuego personal de conducción de TransMilenio en Bogotá, escala 1:1 para las distancias, con apariencia reconocible y más detalle que un mapa muy básico. La física debe ser de simulador arcade, con puertas, articulaciones y paradas. No busca publicar ni llevar a producción. Ha autorizado al asistente a encargarse de investigar, instalar herramientas, modelar y desarrollar durante varias sesiones.
+Daniel quiere un videojuego personal de conducción de TransMilenio en Bogotá, escala 1:1 para las distancias, con apariencia reconocible y más detalle que un mapa muy básico. La física debe ser de simulador arcade, con puertas, articulaciones y paradas. Aclaración del 9 de septiembre: podría publicar en el futuro. Ahora autoriza respaldar todo en GitHub, sin desplegar el juego. Ha autorizado al asistente a encargarse de investigar, instalar herramientas, modelar y desarrollar durante varias sesiones.
 
 Corredores prioritarios elegidos: **Américas, Calle 13 y centro, NQS/Carrera 30, Carrera Séptima y Calle 26**. Quiere el **estado actual con obras y desvíos**. NO reemplazar esta decisión por una ciudad sin obras ni escoger Autonorte como alcance aceptado.
 
@@ -75,4 +75,10 @@ No hace falta volver a investigar todo: consultar docs/FUENTES.md, los metadatos
 
 ## Punto de recuperación
 
-Repositorio Git local creado. Primer commit: `9578128` (plan, datos y prototipo). Hay un checkpoint posterior con el estado final de la sesión. Ver `git log -2 --oneline`. No hay remoto ni publicación.
+Repositorio Git local creado. Primer commit: `9578128` (plan, datos y prototipo). Hay un checkpoint posterior con el estado final de la sesión. Ver `git log -2 --oneline`. Remoto solicitado y comprobado vacío: https://github.com/daniii3012/transmi-game. Consultar git remote y git log para comprobar el último respaldo.
+
+## Actualización en curso — 9 de septiembre
+
+La meta final es todo el sistema BRT. Prioridad: Bus Simulator, escala, rutas y operación antes que gráficos complejos. Ver docs/SISTEMAS_Y_HOJA_DE_RUTA.md y docs/DIRECCION_VISUAL.md. Incorporar la 68 en obras y actualizar cuando se verifique su apertura. El buscador oficial de rutas está añadido a las referencias.
+
+Se está construyendo el controlador de bus articulado y una pista de práctica. No darlo por terminado hasta pruebas. Daniel acaba de indicar que instaló Blender; comprobar la aplicación disponible antes de descargar de nuevo. El instalador oficial ya se había descargado y montado en /Volumes/Blender.

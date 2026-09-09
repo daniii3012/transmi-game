@@ -1,0 +1,1023 @@
+{
+  "currentVersion": 10.91,
+  "cimVersion": "2.9.0",
+  "id": 5,
+  "name": "Trazado troncal",
+  "type": "Feature Layer",
+  "parentLayer": null,
+  "defaultVisibility": true,
+  "minScale": 75000,
+  "maxScale": 0,
+  "canScaleSymbols": false,
+  "geometryType": "esriGeometryPolyline",
+  "description": "",
+  "copyrightText": "",
+  "editFieldsInfo": {
+    "creationDateField": "created_date",
+    "creatorField": "created_user",
+    "editDateField": "last_edited_date",
+    "editorField": "last_edited_user"
+  },
+  "ownershipBasedAccessControlForFeatures": null,
+  "syncCanReturnChanges": true,
+  "relationships": [
+    {
+      "id": 6,
+      "name": "conexion_trazado",
+      "relatedTableId": 20,
+      "cardinality": "esriRelCardinalityOneToMany",
+      "role": "esriRelRoleOrigin",
+      "keyField": "id_trazado",
+      "composite": true
+    },
+    {
+      "id": 4,
+      "name": "retorno",
+      "relatedTableId": 3,
+      "cardinality": "esriRelCardinalityOneToMany",
+      "role": "esriRelRoleOrigin",
+      "keyField": "id_trazado",
+      "composite": true
+    },
+    {
+      "id": 3,
+      "name": "estacion_troncal",
+      "relatedTableId": 2,
+      "cardinality": "esriRelCardinalityOneToMany",
+      "role": "esriRelRoleOrigin",
+      "keyField": "id_trazado",
+      "composite": true
+    }
+  ],
+  "isDataVersioned": true,
+  "isDataArchived": true,
+  "infoInEstimates": [
+    "extent"
+  ],
+  "isDataBranchVersioned": false,
+  "isDataReplicaTracked": false,
+  "isCoGoEnabled": false,
+  "supportsRollbackOnFailureParameter": false,
+  "archivingInfo": {
+    "supportsQueryWithHistoricMoment": true,
+    "startArchivingMoment": 1778265833000
+  },
+  "supportsStatistics": true,
+  "supportsExceedsLimitStatistics": true,
+  "supportsAdvancedQueries": true,
+  "supportsValidateSQL": true,
+  "supportsCoordinatesQuantization": true,
+  "supportsQuantizationEditMode": true,
+  "supportsCalculate": true,
+  "supportsASyncCalculate": true,
+  "supportsDatumTransformation": true,
+  "advancedQueryCapabilities": {
+    "supportsPagination": true,
+    "supportsTrueCurve": true,
+    "supportsQueryWithDistance": true,
+    "supportsReturningQueryExtent": true,
+    "supportsStatistics": true,
+    "supportsPercentileStatistics": true,
+    "supportsHavingClause": true,
+    "supportsOrderBy": true,
+    "supportsDistinct": true,
+    "supportsCountDistinct": true,
+    "supportsQueryWithResultType": true,
+    "supportsReturningGeometryCentroid": false,
+    "supportsSqlExpression": true,
+    "supportsQueryWithDatumTransformation": true,
+    "supportsLod": false,
+    "supportsQueryWithLodSR": false,
+    "supportsQueryAnalytic": true
+  },
+  "advancedQueryAnalyticCapabilities": {
+    "supportsLinearRegression": true,
+    "supportsAsync": false,
+    "supportsPercentileAnalytic": false
+  },
+  "advancedEditingCapabilities": {
+    "supportedSqlFormatsInCalculate": [
+      "standard"
+    ],
+    "supportsAsyncApplyEdits": true
+  },
+  "hasGeometryProperties": true,
+  "geometryProperties": {
+    "shapeLengthFieldName": "Shape__Length",
+    "units": "esriMeters"
+  },
+  "hasMetadata": true,
+  "extent": {
+    "xmin": 982286.1226000004,
+    "ymin": 988699.3121000007,
+    "xmax": 1006128.7680000002,
+    "ymax": 1025491.6455000006,
+    "spatialReference": {
+      "wkid": 3116,
+      "latestWkid": 3116,
+      "xyTolerance": 0.001,
+      "zTolerance": 0.001,
+      "mTolerance": 0.001,
+      "falseX": -4623200,
+      "falseY": -9510300,
+      "xyUnits": 10000,
+      "falseZ": -100000,
+      "zUnits": 10000,
+      "falseM": -100000,
+      "mUnits": 10000
+    }
+  },
+  "sourceSpatialReference": {
+    "wkid": 3116,
+    "latestWkid": 3116,
+    "xyTolerance": 0.001,
+    "zTolerance": 0.001,
+    "mTolerance": 0.001,
+    "falseX": -4623200,
+    "falseY": -9510300,
+    "xyUnits": 10000,
+    "falseZ": -100000,
+    "zUnits": 10000,
+    "falseM": -100000,
+    "mUnits": 10000
+  },
+  "drawingInfo": {
+    "renderer": {
+      "type": "uniqueValue",
+      "field1": "esta_oper",
+      "field2": "eta_oper",
+      "field3": "tipo_tra",
+      "uniqueValueInfos": [
+        {
+          "symbol": {
+            "type": "esriSLS",
+            "style": "esriSLSSolid",
+            "color": [
+              168,
+              0,
+              0,
+              255
+            ],
+            "width": 4
+          },
+          "value": "1,1,1",
+          "label": "Existente,En operación,Exclusivo"
+        },
+        {
+          "symbol": {
+            "type": "esriSLS",
+            "style": "esriSLSSolid",
+            "color": [
+              0,
+              0,
+              0,
+              255
+            ],
+            "width": 2.8
+          },
+          "value": "1,1,2",
+          "label": "Existente,En operación,Mixto"
+        },
+        {
+          "symbol": {
+            "type": "esriSLS",
+            "style": "esriSLSSolid",
+            "color": [
+              255,
+              170,
+              0,
+              255
+            ],
+            "width": 3.4
+          },
+          "value": "2,1,1",
+          "label": "Proyectado,Construcción,Exclusivo"
+        },
+        {
+          "symbol": {
+            "type": "esriSLS",
+            "style": "esriSLSSolid",
+            "color": [
+              255,
+              255,
+              115,
+              255
+            ],
+            "width": 3.4
+          },
+          "value": "2,2,1",
+          "label": "Proyectado,Estudios y diseños,Exclusivo"
+        },
+        {
+          "symbol": {
+            "type": "esriSLS",
+            "style": "esriSLSSolid",
+            "color": [
+              225,
+              225,
+              225,
+              255
+            ],
+            "width": 3.4
+          },
+          "value": "2,4,3",
+          "label": "Proyectado,POT,Sin definir"
+        }
+      ],
+      "fieldDelimiter": ",",
+      "authoringInfo": {
+        "colorRamp": {
+          "type": "multipart",
+          "colorRamps": [
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                145,
+                54,
+                74,
+                255
+              ],
+              "toColor": [
+                145,
+                54,
+                74,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                115,
+                232,
+                86,
+                255
+              ],
+              "toColor": [
+                115,
+                232,
+                86,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                132,
+                96,
+                247,
+                255
+              ],
+              "toColor": [
+                132,
+                96,
+                247,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                139,
+                220,
+                240,
+                255
+              ],
+              "toColor": [
+                139,
+                220,
+                240,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                176,
+                153,
+                76,
+                255
+              ],
+              "toColor": [
+                176,
+                153,
+                76,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                58,
+                86,
+                138,
+                255
+              ],
+              "toColor": [
+                58,
+                86,
+                138,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                54,
+                135,
+                93,
+                255
+              ],
+              "toColor": [
+                54,
+                135,
+                93,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                237,
+                97,
+                200,
+                255
+              ],
+              "toColor": [
+                237,
+                97,
+                200,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                135,
+                245,
+                188,
+                255
+              ],
+              "toColor": [
+                135,
+                245,
+                188,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                130,
+                56,
+                125,
+                255
+              ],
+              "toColor": [
+                130,
+                56,
+                125,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                235,
+                237,
+                109,
+                255
+              ],
+              "toColor": [
+                235,
+                237,
+                109,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                148,
+                140,
+                237,
+                255
+              ],
+              "toColor": [
+                148,
+                140,
+                237,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                235,
+                168,
+                148,
+                255
+              ],
+              "toColor": [
+                235,
+                168,
+                148,
+                255
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "scaleSymbols": true,
+    "transparency": 0,
+    "labelingInfo": [
+      {
+        "labelExpressionInfo": {
+          "expression": "$feature.nom_traz",
+          "title": "Custom"
+        },
+        "labelPlacement": "esriServerLinePlacementAboveAlong",
+        "textLayout": "straight",
+        "deconflictionStrategy": "dynamic",
+        "allowOverrun": true,
+        "repeatLabel": false,
+        "lineConnection": "minimizeLabels",
+        "stackLabel": true,
+        "stackRowLength": 24,
+        "stackAlignment": "dynamic",
+        "removeDuplicates": "all",
+        "removeDuplicatesDistance": 0,
+        "where": "ID_TRAZADO NOT IN ('TZ015', 'TZ018', 'TZ001', 'TZ019', 'TZ016')",
+        "useCodedValues": true,
+        "maxScale": 36111.909643,
+        "minScale": 144448,
+        "name": "Class 1",
+        "priority": -1,
+        "symbol": {
+          "type": "esriTS",
+          "color": [
+            168,
+            0,
+            0,
+            255
+          ],
+          "backgroundColor": null,
+          "borderLineColor": null,
+          "borderLineSize": null,
+          "verticalAlignment": "bottom",
+          "horizontalAlignment": "left",
+          "rightToLeft": false,
+          "angle": 0,
+          "xoffset": 0,
+          "yoffset": 0,
+          "kerning": true,
+          "haloColor": null,
+          "haloSize": null,
+          "font": {
+            "family": "Gill Sans MT",
+            "size": 8,
+            "style": "normal",
+            "weight": "normal",
+            "decoration": "none"
+          }
+        }
+      },
+      {
+        "labelExpressionInfo": {
+          "expression": "$feature.nom_traz",
+          "title": "Custom"
+        },
+        "labelPlacement": "esriServerLinePlacementAboveAlong",
+        "textLayout": "straight",
+        "deconflictionStrategy": "dynamic",
+        "allowOverrun": true,
+        "repeatLabel": false,
+        "lineConnection": "minimizeLabels",
+        "stackLabel": true,
+        "stackRowLength": 24,
+        "stackAlignment": "dynamic",
+        "removeDuplicates": "all",
+        "removeDuplicatesDistance": 0,
+        "where": "ID_TRAZADO IN ('TZ015','TZ018','TZ001','TZ019','TZ016')",
+        "useCodedValues": true,
+        "maxScale": 0,
+        "minScale": 36111.909643,
+        "name": "Class 2",
+        "priority": -1,
+        "symbol": {
+          "type": "esriTS",
+          "color": [
+            168,
+            0,
+            0,
+            255
+          ],
+          "backgroundColor": null,
+          "borderLineColor": null,
+          "borderLineSize": null,
+          "verticalAlignment": "bottom",
+          "horizontalAlignment": "left",
+          "rightToLeft": false,
+          "angle": 0,
+          "xoffset": 0,
+          "yoffset": 0,
+          "kerning": true,
+          "haloColor": null,
+          "haloSize": null,
+          "font": {
+            "family": "Gill Sans MT",
+            "size": 8,
+            "style": "normal",
+            "weight": "normal",
+            "decoration": "none"
+          }
+        }
+      }
+    ]
+  },
+  "hasM": true,
+  "hasZ": true,
+  "enableZDefaults": true,
+  "zDefault": 0,
+  "supportsVCSProjection": true,
+  "allowUpdateWithoutMValues": true,
+  "allowGeometryUpdates": true,
+  "allowTrueCurvesUpdates": true,
+  "onlyAllowTrueCurveUpdatesByTrueCurveClients": true,
+  "hasAttachments": false,
+  "supportsApplyEditsWithGlobalIds": false,
+  "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+  "objectIdField": "objectid",
+  "globalIdField": "globalid",
+  "displayField": "ID_TRAZADO",
+  "typeIdField": "esta_oper",
+  "subtypeField": "esta_oper",
+  "defaultSubtypeCode": 2,
+  "fields": [
+    {
+      "name": "objectid",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "domain": null,
+      "editable": false,
+      "nullable": false,
+      "defaultValue": null,
+      "modelName": "objectid"
+    },
+    {
+      "name": "id_trazado",
+      "type": "esriFieldTypeString",
+      "alias": "Id trazado",
+      "domain": null,
+      "editable": true,
+      "nullable": false,
+      "length": 10,
+      "defaultValue": null,
+      "modelName": "id_trazado"
+    },
+    {
+      "name": "long_traz",
+      "type": "esriFieldTypeDouble",
+      "alias": "Longitud del trazado",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "defaultValue": null,
+      "modelName": "long_traz"
+    },
+    {
+      "name": "ori_traz",
+      "type": "esriFieldTypeString",
+      "alias": "Origen del trazado",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 100,
+      "defaultValue": null,
+      "modelName": "ori_traz"
+    },
+    {
+      "name": "fin_traz",
+      "type": "esriFieldTypeString",
+      "alias": "Fin del trazado",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 100,
+      "defaultValue": null,
+      "modelName": "fin_traz"
+    },
+    {
+      "name": "nom_traz",
+      "type": "esriFieldTypeString",
+      "alias": "Nombre del trazado",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 100,
+      "defaultValue": null,
+      "modelName": "nom_traz"
+    },
+    {
+      "name": "le_troncal",
+      "type": "esriFieldTypeString",
+      "alias": "Letra de la troncal",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 10,
+      "defaultValue": null,
+      "modelName": "le_troncal"
+    },
+    {
+      "name": "nom_tronc",
+      "type": "esriFieldTypeString",
+      "alias": "Nombre de la troncal",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 255,
+      "defaultValue": null,
+      "modelName": "nom_tronc"
+    },
+    {
+      "name": "fase_tronc",
+      "type": "esriFieldTypeString",
+      "alias": "Fase de la troncal",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "length": 10,
+      "defaultValue": null,
+      "modelName": "fase_tronc"
+    },
+    {
+      "name": "eta_oper",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "Etapa de operación",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "defaultValue": null,
+      "modelName": "eta_oper"
+    },
+    {
+      "name": "esta_oper",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "Estado de operación",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "defaultValue": 2,
+      "modelName": "esta_oper"
+    },
+    {
+      "name": "tipo_tra",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "Tipo de trazado",
+      "domain": null,
+      "editable": true,
+      "nullable": true,
+      "defaultValue": null,
+      "modelName": "tipo_tra"
+    },
+    {
+      "name": "Shape__Length",
+      "type": "esriFieldTypeDouble",
+      "alias": "Shape_Length",
+      "domain": null,
+      "editable": false,
+      "nullable": false,
+      "defaultValue": null,
+      "modelName": "st_length(shape)"
+    },
+    {
+      "name": "globalid",
+      "type": "esriFieldTypeGlobalID",
+      "alias": "globalid",
+      "domain": null,
+      "editable": false,
+      "nullable": false,
+      "length": 38,
+      "defaultValue": null,
+      "modelName": "globalid"
+    }
+  ],
+  "geometryField": {
+    "name": "shape",
+    "type": "esriFieldTypeGeometry",
+    "alias": "Shape",
+    "domain": null,
+    "editable": true,
+    "nullable": true,
+    "defaultValue": null,
+    "modelName": "shape"
+  },
+  "indexes": [
+    {
+      "name": "i3288id_trazado",
+      "fields": "id_trazado",
+      "isAscending": true,
+      "isUnique": false,
+      "description": ""
+    },
+    {
+      "name": "r226_sde_rowid_uk",
+      "fields": "objectid",
+      "isAscending": true,
+      "isUnique": true,
+      "description": ""
+    },
+    {
+      "name": "a184_ix1",
+      "fields": "shape",
+      "isAscending": true,
+      "isUnique": true,
+      "description": ""
+    }
+  ],
+  "datesInUnknownTimezone": false,
+  "dateFieldsTimeReference": {
+    "timeZone": "UTC",
+    "respectsDaylightSaving": false
+  },
+  "preferredTimeReference": null,
+  "types": [
+    {
+      "id": 1,
+      "name": "EXISTENTE",
+      "domains": {},
+      "templates": [
+        {
+          "name": "1, 1, 1",
+          "description": "",
+          "prototype": {
+            "attributes": {
+              "esta_oper": 1,
+              "tipo_tra": 1,
+              "id_trazado": " ",
+              "long_traz": null,
+              "ori_traz": null,
+              "fin_traz": null,
+              "nom_traz": null,
+              "le_troncal": null,
+              "nom_tronc": null,
+              "fase_tronc": null,
+              "eta_oper": 1
+            }
+          },
+          "drawingTool": "esriFeatureEditToolLine"
+        },
+        {
+          "name": "1, 1, 2",
+          "description": "",
+          "prototype": {
+            "attributes": {
+              "esta_oper": 1,
+              "tipo_tra": 2,
+              "id_trazado": " ",
+              "long_traz": null,
+              "ori_traz": null,
+              "fin_traz": null,
+              "nom_traz": null,
+              "le_troncal": null,
+              "nom_tronc": null,
+              "fase_tronc": null,
+              "eta_oper": 1
+            }
+          },
+          "drawingTool": "esriFeatureEditToolLine"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "PROYECTADO",
+      "domains": {},
+      "templates": [
+        {
+          "name": "2, 1, 1",
+          "description": "",
+          "prototype": {
+            "attributes": {
+              "esta_oper": 2,
+              "tipo_tra": 1,
+              "id_trazado": " ",
+              "long_traz": null,
+              "ori_traz": null,
+              "fin_traz": null,
+              "nom_traz": null,
+              "le_troncal": null,
+              "nom_tronc": null,
+              "fase_tronc": null,
+              "eta_oper": 1
+            }
+          },
+          "drawingTool": "esriFeatureEditToolLine"
+        },
+        {
+          "name": "2, 2, 1",
+          "description": "",
+          "prototype": {
+            "attributes": {
+              "esta_oper": 2,
+              "tipo_tra": 1,
+              "id_trazado": " ",
+              "long_traz": null,
+              "ori_traz": null,
+              "fin_traz": null,
+              "nom_traz": null,
+              "le_troncal": null,
+              "nom_tronc": null,
+              "fase_tronc": null,
+              "eta_oper": 2
+            }
+          },
+          "drawingTool": "esriFeatureEditToolLine"
+        },
+        {
+          "name": "2, 4, 3",
+          "description": "",
+          "prototype": {
+            "attributes": {
+              "esta_oper": 2,
+              "tipo_tra": 3,
+              "id_trazado": " ",
+              "long_traz": null,
+              "ori_traz": null,
+              "fin_traz": null,
+              "nom_traz": null,
+              "le_troncal": null,
+              "nom_tronc": null,
+              "fase_tronc": null,
+              "eta_oper": 4
+            }
+          },
+          "drawingTool": "esriFeatureEditToolLine"
+        }
+      ]
+    }
+  ],
+  "templates": [],
+  "subtypes": [
+    {
+      "code": 2,
+      "name": "PROYECTADO",
+      "defaultValues": {
+        "id_trazado": null,
+        "long_traz": null,
+        "ori_traz": null,
+        "fin_traz": null,
+        "nom_traz": null,
+        "le_troncal": null,
+        "nom_tronc": null,
+        "fase_tronc": null,
+        "esta_oper": 2,
+        "tipo_tra": null,
+        "eta_oper": null,
+        "globalid": null,
+        "st_length(shape)": null
+      },
+      "domains": {
+        "tipo_tra": {
+          "type": "codedValue",
+          "name": "trazado_troncal_tipo_4",
+          "description": "Clasificación del trazado troncal en función del transito en carriles míxtos (compartidos con vehículos particulares) o corredores exclusivos de transporte masivo.",
+          "codedValues": [
+            {
+              "name": "EXCLUSIVO",
+              "code": 1
+            },
+            {
+              "name": "MIXTO",
+              "code": 2
+            },
+            {
+              "name": "SIN DEFINIR",
+              "code": 3
+            }
+          ],
+          "mergePolicy": "esriMPTDefaultValue",
+          "splitPolicy": "esriSPTDuplicate"
+        },
+        "eta_oper": {
+          "type": "codedValue",
+          "name": "infraestructura_proyectado",
+          "description": "Dominios Infraestructura proyectada",
+          "codedValues": [
+            {
+              "name": "CONSTRUCCIÓN",
+              "code": 1
+            },
+            {
+              "name": "ESTUDIOS Y DISEÑOS",
+              "code": 2
+            },
+            {
+              "name": "FACTIBILIDAD",
+              "code": 3
+            },
+            {
+              "name": "POT",
+              "code": 4
+            }
+          ],
+          "mergePolicy": "esriMPTDefaultValue",
+          "splitPolicy": "esriSPTDuplicate"
+        }
+      }
+    },
+    {
+      "code": 1,
+      "name": "EXISTENTE",
+      "defaultValues": {
+        "id_trazado": null,
+        "long_traz": null,
+        "ori_traz": null,
+        "fin_traz": null,
+        "nom_traz": null,
+        "le_troncal": null,
+        "nom_tronc": null,
+        "fase_tronc": null,
+        "esta_oper": 1,
+        "tipo_tra": null,
+        "eta_oper": null,
+        "globalid": null,
+        "st_length(shape)": null
+      },
+      "domains": {
+        "tipo_tra": {
+          "type": "codedValue",
+          "name": "trazado_troncal_tipo_4",
+          "description": "Clasificación del trazado troncal en función del transito en carriles míxtos (compartidos con vehículos particulares) o corredores exclusivos de transporte masivo.",
+          "codedValues": [
+            {
+              "name": "EXCLUSIVO",
+              "code": 1
+            },
+            {
+              "name": "MIXTO",
+              "code": 2
+            },
+            {
+              "name": "SIN DEFINIR",
+              "code": 3
+            }
+          ],
+          "mergePolicy": "esriMPTDefaultValue",
+          "splitPolicy": "esriSPTDuplicate"
+        },
+        "eta_oper": {
+          "type": "codedValue",
+          "name": "infraestructura_existente",
+          "description": "Dominios Infraestructura existente",
+          "codedValues": [
+            {
+              "name": "FUERA DE SERVICIO",
+              "code": 2
+            },
+            {
+              "name": "EN OPERACIÓN",
+              "code": 1
+            }
+          ],
+          "mergePolicy": "esriMPTDefaultValue",
+          "splitPolicy": "esriSPTDuplicate"
+        }
+      }
+    }
+  ],
+  "maxRecordCount": 2000,
+  "supportedQueryFormats": "JSON, geoJSON, PBF",
+  "supportedExportFormats": "sqlite,filegdb",
+  "capabilities": "Query,Extract",
+  "useStandardizedQueries": true,
+  "supportedSpatialRelationships": [
+    "esriSpatialRelIntersects",
+    "esriSpatialRelContains",
+    "esriSpatialRelCrosses",
+    "esriSpatialRelEnvelopeIntersects",
+    "esriSpatialRelIndexIntersects",
+    "esriSpatialRelOverlaps",
+    "esriSpatialRelTouches",
+    "esriSpatialRelWithin",
+    "esriSpatialRelRelation"
+  ],
+  "standardMaxRecordCount": 8000,
+  "tileMaxRecordCount": 4000,
+  "standardMaxRecordCountNoGeometry": 32000,
+  "maxRecordCountFactor": 1
+}

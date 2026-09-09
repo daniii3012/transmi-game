@@ -1,0 +1,242 @@
+{
+  "currentVersion": 11.3,
+  "cimVersion": "3.3.0",
+  "id": 17,
+  "name": "Separador",
+  "type": "Feature Layer",
+  "description": "Franja de una vía dispuesta en forma longitudinal y paralela al eje de la misma que separa y canaliza flujos de circulación y en las cuales se quieran establecer jerarquías en la operación de la vía. Pueden ser centrales y laterales o intermedios.  Adicionalmente pueden presentarse en piso duro o blando (zona verde). (Definición aportada por la Dirección Técnica Estratégica del Instituto de Desarrollo Urbano.)",
+  "geometryType": "esriGeometryPolygon",
+  "sourceSpatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326,
+    "xyTolerance": 8.98315284119521e-09,
+    "zTolerance": 0.001,
+    "mTolerance": 0.001,
+    "falseX": -400,
+    "falseY": -400,
+    "xyUnits": 999999999.9999999,
+    "falseZ": 0,
+    "zUnits": 1,
+    "falseM": 0,
+    "mUnits": 1
+  },
+  "copyrightText": "Instituto De Desarrollo Urbano - IDU",
+  "parentLayer": {
+    "id": 7,
+    "name": "Transporte Terrestre"
+  },
+  "subLayers": [],
+  "minScale": 10000,
+  "maxScale": 0,
+  "drawingInfo": {
+    "renderer": {
+      "type": "simple",
+      "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+          197,
+          227,
+          138,
+          255
+        ],
+        "outline": {
+          "type": "esriSLS",
+          "style": "esriSLSSolid",
+          "color": [
+            130,
+            130,
+            130,
+            255
+          ],
+          "width": 0.10006279199999998
+        }
+      }
+    },
+    "scaleSymbols": false,
+    "transparency": 0,
+    "labelingInfo": null
+  },
+  "defaultVisibility": true,
+  "extent": {
+    "xmin": -74.21178390300001,
+    "ymin": 4.472939880999999,
+    "xmax": -74.022243612,
+    "ymax": 4.8255971070000205,
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326,
+      "xyTolerance": 8.983152841195215e-09,
+      "zTolerance": 0.001,
+      "mTolerance": 0.001,
+      "falseX": -400,
+      "falseY": -400,
+      "xyUnits": 999999999.9999999,
+      "falseZ": -100000,
+      "zUnits": 10000,
+      "falseM": -100000,
+      "mUnits": 10000
+    }
+  },
+  "hasAttachments": false,
+  "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+  "displayField": "SepCodigo",
+  "typeIdField": null,
+  "subtypeFieldName": null,
+  "subtypeField": null,
+  "defaultSubtypeCode": null,
+  "fields": [
+    {
+      "name": "SEPCODIGO",
+      "type": "esriFieldTypeInteger",
+      "alias": "Identificador unico del separador",
+      "domain": null
+    },
+    {
+      "name": "SEPCIV",
+      "type": "esriFieldTypeInteger",
+      "alias": "Codigo de identificacion vial",
+      "domain": null
+    },
+    {
+      "name": "SEPMATERIA",
+      "type": "esriFieldTypeInteger",
+      "alias": "Tipo de material",
+      "domain": {
+        "type": "codedValue",
+        "name": "D_SepMateria",
+        "description": "Dominio de Tipo de material en Separador",
+        "codedValues": [
+          {
+            "name": "No existente",
+            "code": 0
+          },
+          {
+            "name": "Zona dura",
+            "code": 1
+          },
+          {
+            "name": "Jardinería",
+            "code": 3
+          },
+          {
+            "name": "Sin acabados",
+            "code": 4
+          },
+          {
+            "name": "Mixtos",
+            "code": 5
+          },
+          {
+            "name": "Sin material",
+            "code": 6
+          },
+          {
+            "name": "Zona blanda",
+            "code": 2
+          }
+        ],
+        "mergePolicy": "esriMPTDefaultValue",
+        "splitPolicy": "esriSPTDefaultValue"
+      }
+    },
+    {
+      "name": "SHAPE",
+      "type": "esriFieldTypeGeometry",
+      "alias": "SHAPE",
+      "domain": null
+    },
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "domain": null
+    }
+  ],
+  "geometryField": {
+    "name": "SHAPE",
+    "type": "esriFieldTypeGeometry",
+    "alias": "SHAPE"
+  },
+  "indexes": [
+    {
+      "name": "A183_IX1",
+      "fields": "SHAPE",
+      "isAscending": true,
+      "isUnique": true,
+      "description": ""
+    }
+  ],
+  "subtypes": [],
+  "relationships": [],
+  "canModifyLayer": true,
+  "canScaleSymbols": false,
+  "hasLabels": false,
+  "capabilities": "Map,Query,Data",
+  "maxRecordCount": 1000,
+  "supportsStatistics": true,
+  "supportsExceedsLimitStatistics": true,
+  "supportsAdvancedQueries": true,
+  "supportedQueryFormats": "JSON, geoJSON, PBF",
+  "isDataVersioned": false,
+  "ownershipBasedAccessControlForFeatures": {
+    "allowOthersToQuery": true
+  },
+  "useStandardizedQueries": true,
+  "supportedSpatialRelationships": [
+    "esriSpatialRelIntersects",
+    "esriSpatialRelContains",
+    "esriSpatialRelCrosses",
+    "esriSpatialRelEnvelopeIntersects",
+    "esriSpatialRelIndexIntersects",
+    "esriSpatialRelOverlaps",
+    "esriSpatialRelTouches",
+    "esriSpatialRelWithin",
+    "esriSpatialRelRelation"
+  ],
+  "advancedQueryCapabilities": {
+    "useStandardizedQueries": true,
+    "supportsStatistics": true,
+    "supportsPercentileStatistics": true,
+    "supportsHavingClause": true,
+    "supportsOrderBy": true,
+    "supportsDistinct": true,
+    "supportsCountDistinct": true,
+    "supportsAdvancedQueryRelated": true,
+    "supportsQueryRelatedPagination": true,
+    "supportsPagination": true,
+    "supportsLod": false,
+    "supportsQueryWithLodSR": false,
+    "supportsTrueCurve": true,
+    "supportsQueryWithDatumTransformation": true,
+    "supportsReturningQueryExtent": true,
+    "supportsQueryWithDistance": true,
+    "supportsSqlExpression": true,
+    "supportsTimeRelation": true,
+    "supportsSqlFormat": false,
+    "supportsQueryAnalytic": false,
+    "supportsCurrentUserQueries": true
+  },
+  "supportsDatumTransformation": true,
+  "dateFieldsTimeReference": null,
+  "preferredTimeReference": null,
+  "datesInUnknownTimezone": false,
+  "hasGeometryProperties": true,
+  "geometryProperties": {
+    "shapeAreaFieldName": "SHAPE.AREA",
+    "shapeLengthFieldName": "SHAPE.LEN",
+    "units": "esriDecimalDegrees",
+    "mapUnits": {
+      "uwkid": 9102
+    }
+  },
+  "hasMetadata": true,
+  "isDataArchived": false,
+  "archivingInfo": {
+    "supportsQueryWithHistoricMoment": false,
+    "startArchivingMoment": -1
+  },
+  "supportsCoordinatesQuantization": true,
+  "supportsDynamicLegends": true,
+  "serviceItemId": "759da08feb83408b894e55f147c03db4"
+}

@@ -1,0 +1,45 @@
+{
+  "source_snapshot": "20260909T035301Z",
+  "origin_lon_lat": [
+    -74.136,
+    4.63027
+  ],
+  "projection": "+proj=aeqd +lat_0=4.63027 +lon_0=-74.136 +datum=WGS84 +units=m +no_defs +type=crs",
+  "unit_meters": 1.0,
+  "height_policy": "Estimated: CONNPISOS * 3 m; default 2 floors if absent/invalid. Flat ground. CONALTURA/CONELEVACI not interpreted as roof height.",
+  "counts": {
+    "roads": {
+      "source_features": 523,
+      "rendered_polygon_parts": 525
+    },
+    "sidewalks": {
+      "source_features": 797,
+      "rendered_polygon_parts": 801
+    },
+    "medians": {
+      "source_features": 140,
+      "rendered_polygon_parts": 140
+    },
+    "buildings": {
+      "source_features": 9772,
+      "rendered_polygon_parts": 9774
+    }
+  },
+  "invalid_geometries_repaired": 0,
+  "buildings_height_estimated": 9772,
+  "floors_defaulted": 16,
+  "scale_check": {
+    "from": "Mandalay",
+    "to": "Marsella",
+    "geodesic_m": 1242.3958364399812,
+    "scene_m": 1242.395836439499,
+    "difference_m": 4.822595656150952e-10,
+    "note": "Straight-line station-center distance, not driving distance"
+  },
+  "stations": [
+    "Mandalay",
+    "AV. Américas - AV. Boyacá",
+    "Marsella"
+  ],
+  "triangle_count": 300729
+}

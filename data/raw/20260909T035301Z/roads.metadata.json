@@ -1,0 +1,305 @@
+{
+  "currentVersion": 11.3,
+  "cimVersion": "3.3.0",
+  "id": 15,
+  "name": "Calzada",
+  "type": "Feature Layer",
+  "description": "Zona de la vía, destinada a la circulación de vehículos automotores o peatones. Es una franja física y geométricamente definida mediante un eje en planta, una rasante y un ancho total. Su función es soportar la carga para la que fue diseñada y permitir desplazamientos cómodos y seguros. (Definición aportada por la Dirección Técnica Estratégica del Instituto de Desarrollo Urbano.)",
+  "geometryType": "esriGeometryPolygon",
+  "sourceSpatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326,
+    "xyTolerance": 8.98315284119521e-09,
+    "zTolerance": 0.001,
+    "mTolerance": 0.001,
+    "falseX": -400,
+    "falseY": -400,
+    "xyUnits": 999999999.9999999,
+    "falseZ": 0,
+    "zUnits": 1,
+    "falseM": 0,
+    "mUnits": 1
+  },
+  "copyrightText": "Instituto De Desarrollo Urbano - IDU",
+  "parentLayer": {
+    "id": 7,
+    "name": "Transporte Terrestre"
+  },
+  "subLayers": [],
+  "minScale": 10000,
+  "maxScale": 0,
+  "drawingInfo": {
+    "renderer": {
+      "type": "simple",
+      "symbol": {
+        "type": "esriSFS",
+        "style": "esriSFSSolid",
+        "color": [
+          230,
+          230,
+          230,
+          255
+        ],
+        "outline": null
+      }
+    },
+    "scaleSymbols": false,
+    "transparency": 0,
+    "labelingInfo": null
+  },
+  "defaultVisibility": true,
+  "extent": {
+    "xmin": -74.39798234,
+    "ymin": 3.78640061999999,
+    "xmax": -73.99142017,
+    "ymax": 4.832983825999969,
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326,
+      "xyTolerance": 8.983152841195215e-09,
+      "zTolerance": 0.001,
+      "mTolerance": 0.001,
+      "falseX": -400,
+      "falseY": -400,
+      "xyUnits": 999999999.9999999,
+      "falseZ": -100000,
+      "zUnits": 10000,
+      "falseM": -100000,
+      "mUnits": 10000
+    }
+  },
+  "hasAttachments": false,
+  "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+  "displayField": "CalCodigo",
+  "typeIdField": null,
+  "subtypeFieldName": null,
+  "subtypeField": null,
+  "defaultSubtypeCode": null,
+  "fields": [
+    {
+      "name": "CALCODIGO",
+      "type": "esriFieldTypeInteger",
+      "alias": "Identificador unico de la calzada",
+      "domain": null
+    },
+    {
+      "name": "CALCIV",
+      "type": "esriFieldTypeInteger",
+      "alias": "Codigo de identificacion vial",
+      "domain": null
+    },
+    {
+      "name": "CALFUNCION",
+      "type": "esriFieldTypeInteger",
+      "alias": "Funcionalidad",
+      "domain": {
+        "type": "codedValue",
+        "name": "D_CalFuncion",
+        "description": "Dominio de Funcionalidad",
+        "codedValues": [
+          {
+            "name": "No aplica",
+            "code": 0
+          },
+          {
+            "name": "Vehicular",
+            "code": 1
+          },
+          {
+            "name": "Peatonal",
+            "code": 2
+          }
+        ],
+        "mergePolicy": "esriMPTDefaultValue",
+        "splitPolicy": "esriSPTDefaultValue"
+      }
+    },
+    {
+      "name": "CALTSUPERF",
+      "type": "esriFieldTypeInteger",
+      "alias": "Tipo de superficie",
+      "domain": {
+        "type": "codedValue",
+        "name": "D_CalTSuperf",
+        "description": "Dominio de Tipo de superficie",
+        "codedValues": [
+          {
+            "name": "Sin dato",
+            "code": 0
+          },
+          {
+            "name": "Flexible",
+            "code": 2
+          },
+          {
+            "name": "Mixtos",
+            "code": 3
+          },
+          {
+            "name": "Afirmado",
+            "code": 6
+          },
+          {
+            "name": "Tierra",
+            "code": 8
+          },
+          {
+            "name": "Escalera concreto",
+            "code": 9
+          },
+          {
+            "name": "Escalera ladrillo",
+            "code": 10
+          },
+          {
+            "name": "Escalera otros",
+            "code": 11
+          },
+          {
+            "name": "Rigido",
+            "code": 1
+          },
+          {
+            "name": "Adoquin concreto",
+            "code": 4
+          },
+          {
+            "name": "Adoquin arcilla",
+            "code": 5
+          },
+          {
+            "name": "Piedra Laja",
+            "code": 12
+          },
+          {
+            "name": "Placa Huella",
+            "code": 13
+          }
+        ],
+        "mergePolicy": "esriMPTDefaultValue",
+        "splitPolicy": "esriSPTDefaultValue"
+      }
+    },
+    {
+      "name": "CALANCHO",
+      "type": "esriFieldTypeDouble",
+      "alias": "Ancho Calzada",
+      "domain": null
+    },
+    {
+      "name": "CALLONGITU",
+      "type": "esriFieldTypeDouble",
+      "alias": "Longitud Calzada",
+      "domain": null
+    },
+    {
+      "name": "SHAPE",
+      "type": "esriFieldTypeGeometry",
+      "alias": "SHAPE",
+      "domain": null
+    },
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "domain": null
+    }
+  ],
+  "geometryField": {
+    "name": "SHAPE",
+    "type": "esriFieldTypeGeometry",
+    "alias": "SHAPE"
+  },
+  "indexes": [
+    {
+      "name": "A186_IX1",
+      "fields": "SHAPE",
+      "isAscending": true,
+      "isUnique": true,
+      "description": ""
+    }
+  ],
+  "subtypes": [],
+  "relationships": [
+    {
+      "id": 0,
+      "name": "Tiene",
+      "relatedTableId": 54,
+      "role": "esriRelRoleOrigin",
+      "keyField": "CALCODIGO",
+      "cardinality": "esriRelCardinalityOneToOne",
+      "composite": false,
+      "catalogID": "{E99EF7FF-D638-4C4A-A00F-56EFF7EF3C57}"
+    }
+  ],
+  "canModifyLayer": true,
+  "canScaleSymbols": false,
+  "hasLabels": false,
+  "capabilities": "Map,Query,Data",
+  "maxRecordCount": 1000,
+  "supportsStatistics": true,
+  "supportsExceedsLimitStatistics": true,
+  "supportsAdvancedQueries": true,
+  "supportedQueryFormats": "JSON, geoJSON, PBF",
+  "isDataVersioned": false,
+  "ownershipBasedAccessControlForFeatures": {
+    "allowOthersToQuery": true
+  },
+  "useStandardizedQueries": true,
+  "supportedSpatialRelationships": [
+    "esriSpatialRelIntersects",
+    "esriSpatialRelContains",
+    "esriSpatialRelCrosses",
+    "esriSpatialRelEnvelopeIntersects",
+    "esriSpatialRelIndexIntersects",
+    "esriSpatialRelOverlaps",
+    "esriSpatialRelTouches",
+    "esriSpatialRelWithin",
+    "esriSpatialRelRelation"
+  ],
+  "advancedQueryCapabilities": {
+    "useStandardizedQueries": true,
+    "supportsStatistics": true,
+    "supportsPercentileStatistics": true,
+    "supportsHavingClause": true,
+    "supportsOrderBy": true,
+    "supportsDistinct": true,
+    "supportsCountDistinct": true,
+    "supportsAdvancedQueryRelated": true,
+    "supportsQueryRelatedPagination": true,
+    "supportsPagination": true,
+    "supportsLod": false,
+    "supportsQueryWithLodSR": false,
+    "supportsTrueCurve": true,
+    "supportsQueryWithDatumTransformation": true,
+    "supportsReturningQueryExtent": true,
+    "supportsQueryWithDistance": true,
+    "supportsSqlExpression": true,
+    "supportsTimeRelation": true,
+    "supportsSqlFormat": false,
+    "supportsQueryAnalytic": false,
+    "supportsCurrentUserQueries": true
+  },
+  "supportsDatumTransformation": true,
+  "dateFieldsTimeReference": null,
+  "preferredTimeReference": null,
+  "datesInUnknownTimezone": false,
+  "hasGeometryProperties": true,
+  "geometryProperties": {
+    "shapeAreaFieldName": "SHAPE.AREA",
+    "shapeLengthFieldName": "SHAPE.LEN",
+    "units": "esriDecimalDegrees",
+    "mapUnits": {
+      "uwkid": 9102
+    }
+  },
+  "hasMetadata": true,
+  "isDataArchived": false,
+  "archivingInfo": {
+    "supportsQueryWithHistoricMoment": false,
+    "startArchivingMoment": -1
+  },
+  "supportsCoordinatesQuantization": true,
+  "supportsDynamicLegends": true,
+  "serviceItemId": "759da08feb83408b894e55f147c03db4"
+}

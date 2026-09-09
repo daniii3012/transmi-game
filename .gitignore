@@ -1,0 +1,6 @@
+.DS_Store
+game/.godot/
+*.log
+__pycache__/
+*.pyc
+.venv/

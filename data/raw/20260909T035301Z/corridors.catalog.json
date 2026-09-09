@@ -1,0 +1,321 @@
+{
+  "creator_user_id": "981b0968-f59e-4106-be1e-235e199ce222",
+  "date_types": "Última actualización",
+  "dis_organization": "Transmilenio S.A.",
+  "dis_scope": "Conjunto de datos",
+  "id": "2bfd805b-86f2-4b86-89a0-10363bd03382",
+  "ideca_languages": "Espanol",
+  "inf_citation_date": "2026-07-02",
+  "inf_metadata_resp": "Transmilenio S.A.",
+  "inf_metadata_scope": "Conjunto de datos",
+  "isopen": true,
+  "license_id": "CC-BY-4.0",
+  "license_title": "Creative Commons Attribution 4.0",
+  "license_url": "https://creativecommons.org/licenses/by/4.0/",
+  "maintainer": "IDECA datos federados",
+  "maintainer_email": "ideca@catastrobogota.gov.co",
+  "metadata_created": "2026-03-12T19:49:13.332988",
+  "metadata_modified": "2026-07-07T14:25:50.107388",
+  "name": "trazados-troncales-de-transmilenio",
+  "notes": "El contenido del servicio web geográfico disponible corresponde a los diferentes trazados sobre los cuales se clasifican las zonas de operación del componente troncal en el Distrito Capital.\n\nEsta información se actualiza conforme a los cambios presentados a la operación.\n\n**Diccionario de datos:**\n\n* objectid: *Corresponde al identificador propio de cada registro dentro de la capa de información.*\n* id\\_trazado: *Identificador único del trazado.*\n* long\\_traz: *Longitud total del trazado.*\n* ori\\_traz: *Punto de inicio del trazado.*\n* fin\\_traz: *Punto final del trazado.*\n* nom\\_traz: *Denominación del trazado.*\n* le\\_troncal:  *Letra asociada al trazado.*\n* nom\\_tronc: *Nombre de la troncal a la que pertenece el trazado.*\n* fase\\_tronc: *Fase de implementación del trazado.*\n* esta\\_oper: *Situación actual de la operación.*\n* tipo\\_tra: *Clasificación del trazado troncal en función del transito en carriles míxtos (compartidos con vehículos particulares) o corredores exclusivos de transporte masivo, donde: 1. Exclusivo; 2. Mixto; 3. Sin definir.*\n* eta\\_oper: *Etapa de operación o de proyecto del trazado troncal, donde 1: Existente.*\n\nPara más información puede consultarlos datos en el [portal de datos abierto](https://datosabiertos-transmilenio.hub.arcgis.com)\n\n**Fuente:**\n\nDirección de Experencia de Usuario\n\nBogotá D.C., Colombia\n\nwww.transmilenio.gov.co\n\nAvenida El Dorado # 69 - 76 torre 1 piso 7\n\nCódigo Postal: 111071\n\nPBX: 57 (1) 2203000 ext. 1 o 2 | Línea Fija: 4824304\n\nHorario de atención: 7:30 am - 4:30 pm de Lunes a Viernes\n\n**Información de contacto:**\n\nEstablecer previo contacto telefónico o a través de correo electrónico, para realizar la solicitud o fijar una cita en el horario de atención.",
+  "num_resources": 7,
+  "num_tags": 5,
+  "organization": {
+    "id": "00aaae77-b33b-4c1c-9017-ed9d6543f51b",
+    "name": "transmilenio",
+    "title": "Transmilenio S.A.",
+    "type": "organization",
+    "description": "Contiene los datasets pertenecientes a la entidad Transmilenio",
+    "image_url": "2019-04-04-232250.340787transmi2018-12-26-204814.566045.jpg",
+    "created": "2017-09-15T09:40:26.678906",
+    "is_organization": true,
+    "approval_status": "approved",
+    "state": "active"
+  },
+  "owner_org": "00aaae77-b33b-4c1c-9017-ed9d6543f51b",
+  "presentation_types": "Sin forma de presentación",
+  "private": false,
+  "qua_summary": " ",
+  "ref_systems": "Sin sistema de referencia",
+  "responsable_types": "Autor",
+  "spatial": "{\"type\": \"Polygon\", \"coordinates\": [[[-74.267032, 4.514065],[-74.267032, 4.828575],[-73.969597, 4.828575],[-73.969597, 4.514065],[-74.267032, 4.514065]]]}",
+  "spatial_types": "Sin representación espacial",
+  "state": "active",
+  "title": "Trazados Troncales de TRANSMILENIO",
+  "topic_main_categories": "Transporte",
+  "type": "dataset",
+  "update_frequencies": "Según necesidad",
+  "url": "https://datosabiertos-transmilenio.hub.arcgis.com/datasets/Transmilenio::trazados-troncales-de-transmilenio",
+  "extras": [
+    {
+      "key": "dcat_issued",
+      "value": "2019-09-13T14:29:34.000Z"
+    },
+    {
+      "key": "dcat_modified",
+      "value": "2026-07-02T17:30:44.000Z"
+    },
+    {
+      "key": "dcat_publisher_name",
+      "value": "TRANSMILENIO S.A"
+    },
+    {
+      "key": "guid",
+      "value": "https://www.arcgis.com/home/item.html?id=4f5282678c72406bb19f7fbf22886bbf&sublayer=5"
+    },
+    {
+      "key": "language",
+      "value": ""
+    },
+    {
+      "key": "harvest_object_id",
+      "value": "97334a35-7c59-4185-b25b-9e8fb4701f26"
+    },
+    {
+      "key": "harvest_source_id",
+      "value": "d0c4643e-2915-4747-bd7d-78ac9c5d9257"
+    },
+    {
+      "key": "harvest_source_title",
+      "value": "TMSA"
+    }
+  ],
+  "groups": [
+    {
+      "description": "",
+      "display_name": "Transporte",
+      "id": "c567293b-adf2-4fd4-bb7a-0143ec03e60c",
+      "image_display_url": "https://datosabiertos.bogota.gov.co/uploads/group/2018-12-24-002740.284420transporte.png",
+      "name": "transporte",
+      "title": "Transporte"
+    }
+  ],
+  "resources": [
+    {
+      "cache_last_updated": null,
+      "cache_url": null,
+      "created": "2026-03-12T19:49:13.341485",
+      "datastore_active": false,
+      "datastore_contains_all_records_of_source_file": false,
+      "format": "HTML",
+      "hash": "",
+      "id": "ed7621c2-773b-4ae1-b46b-4382e35f0759",
+      "last_modified": null,
+      "metadata_modified": "2026-03-12T19:49:13.312597",
+      "mimetype": null,
+      "mimetype_inner": null,
+      "name": "ArcGIS Hub Dataset",
+      "package_id": "2bfd805b-86f2-4b86-89a0-10363bd03382",
+      "position": 0,
+      "resource_type": null,
+      "size": null,
+      "state": "active",
+      "url": "https://datosabiertos-transmilenio.hub.arcgis.com/datasets/Transmilenio::trazados-troncales-de-transmilenio",
+      "url_type": null,
+      "tracking_summary": {
+        "total": 0,
+        "recent": 0
+      }
+    },
+    {
+      "cache_last_updated": null,
+      "cache_url": null,
+      "created": "2026-05-11T18:16:11.749614",
+      "datastore_active": false,
+      "datastore_contains_all_records_of_source_file": false,
+      "format": "ArcGIS GeoServices REST API",
+      "hash": "",
+      "id": "6b6a0b89-99dd-4bb0-840c-b315e3ed87fc",
+      "last_modified": null,
+      "metadata_modified": "2026-05-11T18:16:11.719906",
+      "mimetype": null,
+      "mimetype_inner": null,
+      "name": "ArcGIS GeoService",
+      "package_id": "2bfd805b-86f2-4b86-89a0-10363bd03382",
+      "position": 1,
+      "resource_type": null,
+      "size": null,
+      "state": "active",
+      "url": "https://gis.transmilenio.gov.co/arcgis/rest/services/ConsultaSubgerenciaPlanificacionSITP/Consulta_Planificacion_SITP/FeatureServer/5",
+      "url_type": null,
+      "tracking_summary": {
+        "total": 0,
+        "recent": 0
+      }
+    },
+    {
+      "cache_last_updated": null,
+      "cache_url": null,
+      "created": "2026-03-12T19:49:13.341493",
+      "datastore_active": false,
+      "datastore_contains_all_records_of_source_file": false,
+      "format": "CSV",
+      "hash": "",
+      "id": "696410fc-0fdb-4cb4-928a-637f3372c683",
+      "last_modified": null,
+      "metadata_modified": "2026-03-12T19:49:13.312903",
+      "mimetype": null,
+      "mimetype_inner": null,
+      "name": "CSV",
+      "package_id": "2bfd805b-86f2-4b86-89a0-10363bd03382",
+      "position": 2,
+      "resource_type": null,
+      "size": null,
+      "state": "active",
+      "url": "https://datosabiertos-transmilenio.hub.arcgis.com/api/download/v1/items/4f5282678c72406bb19f7fbf22886bbf/csv?layers=5",
+      "url_type": null,
+      "tracking_summary": {
+        "total": 1,
+        "recent": 1
+      }
+    },
+    {
+      "cache_last_updated": null,
+      "cache_url": null,
+      "created": "2026-03-12T19:49:13.341495",
+      "datastore_active": false,
+      "datastore_contains_all_records_of_source_file": false,
+      "format": "ZIP",
+      "hash": "",
+      "id": "2001ca3a-39f1-4783-b6af-d70eb15f4fc1",
+      "last_modified": null,
+      "metadata_modified": "2026-03-12T19:49:13.313169",
+      "mimetype": null,
+      "mimetype_inner": null,
+      "name": "Shapefile",
+      "package_id": "2bfd805b-86f2-4b86-89a0-10363bd03382",
+      "position": 3,
+      "resource_type": null,
+      "size": null,
+      "state": "active",
+      "url": "https://datosabiertos-transmilenio.hub.arcgis.com/api/download/v1/items/4f5282678c72406bb19f7fbf22886bbf/shapefile?layers=5",
+      "url_type": null,
+      "tracking_summary": {
+        "total": 6,
+        "recent": 5
+      }
+    },
+    {
+      "cache_last_updated": null,
+      "cache_url": null,
+      "created": "2026-03-12T19:49:13.341497",
+      "datastore_active": false,
+      "datastore_contains_all_records_of_source_file": false,
+      "format": "GeoJSON",
+      "hash": "",
+      "id": "8197cd9d-e681-4d94-8b64-fb1743208cdb",
+      "last_modified": null,
+      "metadata_modified": "2026-03-12T19:49:13.313320",
+      "mimetype": null,
+      "mimetype_inner": null,
+      "name": "GeoJSON",
+      "package_id": "2bfd805b-86f2-4b86-89a0-10363bd03382",
+      "position": 4,
+      "resource_type": null,
+      "size": null,
+      "state": "active",
+      "url": "https://datosabiertos-transmilenio.hub.arcgis.com/api/download/v1/items/4f5282678c72406bb19f7fbf22886bbf/geojson?layers=5",
+      "url_type": null,
+      "tracking_summary": {
+        "total": 1,
+        "recent": 1
+      }
+    },
+    {
+      "cache_last_updated": null,
+      "cache_url": null,
+      "created": "2026-03-12T19:49:13.341498",
+      "datastore_active": false,
+      "datastore_contains_all_records_of_source_file": false,
+      "format": "KML",
+      "hash": "",
+      "id": "a710dafb-fd6b-4883-99d3-bb82e9a2c03c",
+      "last_modified": null,
+      "metadata_modified": "2026-03-12T19:49:13.313443",
+      "mimetype": null,
+      "mimetype_inner": null,
+      "name": "KML",
+      "package_id": "2bfd805b-86f2-4b86-89a0-10363bd03382",
+      "position": 5,
+      "resource_type": null,
+      "size": null,
+      "state": "active",
+      "url": "https://datosabiertos-transmilenio.hub.arcgis.com/api/download/v1/items/4f5282678c72406bb19f7fbf22886bbf/kml?layers=5",
+      "url_type": null,
+      "tracking_summary": {
+        "total": 1,
+        "recent": 1
+      }
+    },
+    {
+      "cache_last_updated": null,
+      "cache_url": null,
+      "created": "2026-05-29T00:21:26.129781",
+      "datastore_active": false,
+      "datastore_contains_all_records_of_source_file": false,
+      "format": "ZIP",
+      "hash": "",
+      "id": "e8f7821c-b7dd-4fe6-b54b-0f4fcb9fcbe8",
+      "last_modified": null,
+      "metadata_modified": "2026-05-29T00:21:26.099361",
+      "mimetype": null,
+      "mimetype_inner": null,
+      "name": "File Geodatabase",
+      "package_id": "2bfd805b-86f2-4b86-89a0-10363bd03382",
+      "position": 6,
+      "resource_type": null,
+      "size": null,
+      "state": "active",
+      "url": "https://datosabiertos-transmilenio.hub.arcgis.com/api/download/v1/items/4f5282678c72406bb19f7fbf22886bbf/filegdb?layers=5",
+      "url_type": null,
+      "tracking_summary": {
+        "total": 0,
+        "recent": 0
+      }
+    }
+  ],
+  "tags": [
+    {
+      "display_name": "SITP",
+      "id": "bbd9bd5e-751c-4082-9537-520ec35ce6a9",
+      "name": "SITP",
+      "state": "active",
+      "vocabulary_id": null
+    },
+    {
+      "display_name": "TransMilenio",
+      "id": "0f7b04c8-5c2f-4048-b42d-6f316209f9df",
+      "name": "TransMilenio",
+      "state": "active",
+      "vocabulary_id": null
+    },
+    {
+      "display_name": "Trazados",
+      "id": "9ca7f8a5-2088-4828-aa0e-f3a8ef123859",
+      "name": "Trazados",
+      "state": "active",
+      "vocabulary_id": null
+    },
+    {
+      "display_name": "Troncales",
+      "id": "2d0e76a3-53d7-4372-9a7f-a977f062a9c7",
+      "name": "Troncales",
+      "state": "active",
+      "vocabulary_id": null
+    },
+    {
+      "display_name": "datos abiertos Bogotá",
+      "id": "f160d83a-7f79-42d5-92f2-3881a915865b",
+      "name": "datos abiertos Bogotá",
+      "state": "active",
+      "vocabulary_id": null
+    }
+  ],
+  "relationships_as_subject": [],
+  "relationships_as_object": [],
+  "tracking_summary": {
+    "total": 326,
+    "recent": 50,
+    "downloads": 9
+  }
+}

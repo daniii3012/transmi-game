@@ -1,0 +1,79 @@
+{
+  "retrieved_at_utc": "2026-09-09T03:53:01.602284+00:00",
+  "target_scenario_date": "2026-09-08",
+  "bbox_wgs84": [
+    -74.144,
+    4.6265,
+    -74.1275,
+    4.6335
+  ],
+  "purpose": "Marsella–Mandalay geographic proof; current works not yet verified",
+  "layers": {
+    "stations": {
+      "endpoint": "https://gis.transmilenio.gov.co/arcgis/rest/services/ConsultaSubgerenciaPlanificacionSITP/Consulta_Planificacion_SITP/FeatureServer/2",
+      "catalog_url": "https://datosabiertos.bogota.gov.co/dataset/estaciones-troncales-de-transmilenio1",
+      "license_id": "CC-BY-4.0",
+      "license_title": "Creative Commons Attribution 4.0",
+      "metadata_modified": "2026-07-07T14:25:49.801689",
+      "count": 153,
+      "sha256": "a67cc8837fad901a8dd1cc6c0e8489f57f86ec172cb2fdd1979a9baee3b6e156",
+      "bounded": false,
+      "output_crs": "EPSG:4326, server transformed"
+    },
+    "corridors": {
+      "endpoint": "https://gis.transmilenio.gov.co/arcgis/rest/services/ConsultaSubgerenciaPlanificacionSITP/Consulta_Planificacion_SITP/FeatureServer/5",
+      "catalog_url": "https://datosabiertos.bogota.gov.co/dataset/trazados-troncales-de-transmilenio",
+      "license_id": "CC-BY-4.0",
+      "license_title": "Creative Commons Attribution 4.0",
+      "metadata_modified": "2026-07-07T14:25:50.107388",
+      "count": 22,
+      "sha256": "9f8cc9dce3335446db1031c2a693ae33c7053734dc4047c52278c7fda8e2fe69",
+      "bounded": false,
+      "output_crs": "EPSG:4326, server transformed"
+    },
+    "buildings": {
+      "endpoint": "https://serviciosgis.catastrobogota.gov.co/arcgis/rest/services/catastro/construccion/MapServer/0",
+      "catalog_url": "https://datosabiertos.bogota.gov.co/dataset/construccion",
+      "license_id": "CC-BY-4.0",
+      "license_title": "Creative Commons Attribution 4.0",
+      "metadata_modified": "2026-09-03T21:24:42.289781",
+      "count": 9772,
+      "sha256": "b81a6b455f55b1b3907a46ca628114a96a14060c9b3c59b91ea8e196ed146676",
+      "bounded": true,
+      "output_crs": "EPSG:4326, server transformed"
+    },
+    "roads": {
+      "endpoint": "https://serviciosgis.catastrobogota.gov.co/arcgis/rest/services/Mapa_Referencia/Mapa_Referencia/MapServer/15",
+      "catalog_url": "https://datosabiertos.bogota.gov.co/dataset/calzada-bogota-d-c",
+      "license_id": "CC-BY-4.0",
+      "license_title": "Creative Commons Attribution 4.0",
+      "metadata_modified": "2026-08-25T04:26:46.696010",
+      "count": 523,
+      "sha256": "5950a8a0c627088a0717f1ba0e70e1c986e898030cebd6a3fd2c4cddc6bdf02a",
+      "bounded": true,
+      "output_crs": "EPSG:4326, server transformed"
+    },
+    "sidewalks": {
+      "endpoint": "https://serviciosgis.catastrobogota.gov.co/arcgis/rest/services/Mapa_Referencia/Mapa_Referencia/MapServer/16",
+      "catalog_url": "https://datosabiertos.bogota.gov.co/dataset/mapa-de-referencia",
+      "license_id": "CC-BY-4.0",
+      "license_title": "Creative Commons Attribution 4.0",
+      "metadata_modified": "2026-08-28T18:19:09.548990",
+      "count": 797,
+      "sha256": "be896cfbe02b2581ec2e2b1fdcc03880d937285fc6d7d51b995092ea80269eed",
+      "bounded": true,
+      "output_crs": "EPSG:4326, server transformed"
+    },
+    "medians": {
+      "endpoint": "https://serviciosgis.catastrobogota.gov.co/arcgis/rest/services/Mapa_Referencia/Mapa_Referencia/MapServer/17",
+      "catalog_url": "https://datosabiertos.bogota.gov.co/dataset/mapa-de-referencia",
+      "license_id": "CC-BY-4.0",
+      "license_title": "Creative Commons Attribution 4.0",
+      "metadata_modified": "2026-08-28T18:19:09.548990",
+      "count": 140,
+      "sha256": "699a2fd49b9b93c09bddff24a40e4d7f96f79bb10bc04a5652fa057970da6d61",
+      "bounded": true,
+      "output_crs": "EPSG:4326, server transformed"
+    }
+  }
+}

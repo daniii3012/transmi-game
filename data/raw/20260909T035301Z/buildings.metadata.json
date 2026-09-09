@@ -1,0 +1,631 @@
+{
+  "currentVersion": 11.3,
+  "cimVersion": "3.3.0",
+  "id": 0,
+  "name": "Construcción",
+  "type": "Feature Layer",
+  "description": "Edificación con cubierta de carácter permanente asociada a un lote destinada a proteger contra la intemperie a personas, animales o bienes.",
+  "geometryType": "esriGeometryPolygon",
+  "sourceSpatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326,
+    "xyTolerance": 8.98315284119521e-09,
+    "zTolerance": 0.001,
+    "mTolerance": 0.001,
+    "falseX": -400,
+    "falseY": -400,
+    "xyUnits": 999999999.9999999,
+    "falseZ": 0,
+    "zUnits": 1,
+    "falseM": 0,
+    "mUnits": 1
+  },
+  "copyrightText": "Unidad Administrativa Especial de Catastro Distrital - UAECD",
+  "parentLayer": null,
+  "subLayers": [],
+  "minScale": 5000,
+  "maxScale": 0,
+  "referenceScale": 0.0,
+  "drawingInfo": {
+    "renderer": {
+      "type": "uniqueValue",
+      "field1": "CONMEJORA",
+      "uniqueValueGroups": [
+        {
+          "heading": "Tiene Mejora",
+          "classes": [
+            {
+              "label": "No",
+              "description": "No",
+              "symbol": {
+                "type": "esriSFS",
+                "style": "esriSFSBackwardDiagonal",
+                "color": [
+                  255,
+                  0,
+                  0,
+                  255
+                ],
+                "outline": {
+                  "type": "esriSLS",
+                  "style": "esriSLSSolid",
+                  "color": [
+                    255,
+                    0,
+                    0,
+                    255
+                  ],
+                  "width": 0.4
+                }
+              },
+              "values": [
+                [
+                  "0"
+                ]
+              ]
+            },
+            {
+              "label": "Si",
+              "description": "Si",
+              "symbol": {
+                "type": "esriSFS",
+                "style": "esriSFSBackwardDiagonal",
+                "color": [
+                  255,
+                  0,
+                  197,
+                  255
+                ],
+                "outline": {
+                  "type": "esriSLS",
+                  "style": "esriSLSSolid",
+                  "color": [
+                    255,
+                    0,
+                    197,
+                    255
+                  ],
+                  "width": 0.4
+                }
+              },
+              "values": [
+                [
+                  "1"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "uniqueValueInfos": [
+        {
+          "symbol": {
+            "type": "esriSFS",
+            "style": "esriSFSBackwardDiagonal",
+            "color": [
+              255,
+              0,
+              0,
+              255
+            ],
+            "outline": {
+              "type": "esriSLS",
+              "style": "esriSLSSolid",
+              "color": [
+                255,
+                0,
+                0,
+                255
+              ],
+              "width": 0.4
+            }
+          },
+          "value": "0",
+          "label": "No"
+        },
+        {
+          "symbol": {
+            "type": "esriSFS",
+            "style": "esriSFSBackwardDiagonal",
+            "color": [
+              255,
+              0,
+              197,
+              255
+            ],
+            "outline": {
+              "type": "esriSLS",
+              "style": "esriSLSSolid",
+              "color": [
+                255,
+                0,
+                197,
+                255
+              ],
+              "width": 0.4
+            }
+          },
+          "value": "1",
+          "label": "Si"
+        }
+      ],
+      "fieldDelimiter": ",",
+      "authoringInfo": {
+        "colorRamp": {
+          "type": "multipart",
+          "colorRamps": [
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                187,
+                197,
+                252,
+                255
+              ],
+              "toColor": [
+                187,
+                197,
+                252,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                180,
+                252,
+                179,
+                255
+              ],
+              "toColor": [
+                180,
+                252,
+                179,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                252,
+                201,
+                182,
+                255
+              ],
+              "toColor": [
+                252,
+                201,
+                182,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                199,
+                252,
+                252,
+                255
+              ],
+              "toColor": [
+                199,
+                252,
+                252,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                252,
+                179,
+                229,
+                255
+              ],
+              "toColor": [
+                252,
+                179,
+                229,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                252,
+                252,
+                199,
+                255
+              ],
+              "toColor": [
+                252,
+                252,
+                199,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                252,
+                212,
+                230,
+                255
+              ],
+              "toColor": [
+                252,
+                212,
+                230,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                207,
+                227,
+                252,
+                255
+              ],
+              "toColor": [
+                207,
+                227,
+                252,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                189,
+                252,
+                219,
+                255
+              ],
+              "toColor": [
+                189,
+                252,
+                219,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                222,
+                179,
+                252,
+                255
+              ],
+              "toColor": [
+                222,
+                179,
+                252,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                243,
+                207,
+                252,
+                255
+              ],
+              "toColor": [
+                243,
+                207,
+                252,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                252,
+                232,
+                210,
+                255
+              ],
+              "toColor": [
+                252,
+                232,
+                210,
+                255
+              ]
+            },
+            {
+              "type": "algorithmic",
+              "algorithm": "esriCIELabAlgorithm",
+              "fromColor": [
+                221,
+                252,
+                189,
+                255
+              ],
+              "toColor": [
+                221,
+                252,
+                189,
+                255
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "scaleSymbols": true,
+    "transparency": 0,
+    "labelingInfo": null
+  },
+  "defaultVisibility": true,
+  "extent": {
+    "xmin": -74.393373372,
+    "ymin": 3.821356756,
+    "xmax": -73.993890064,
+    "ymax": 4.832323396999979,
+    "spatialReference": {
+      "wkid": 4326,
+      "latestWkid": 4326,
+      "xyTolerance": 8.983152841195215e-09,
+      "zTolerance": 0.001,
+      "mTolerance": 0.001,
+      "falseX": -400,
+      "falseY": -400,
+      "xyUnits": 999999999.9999999,
+      "falseZ": -100000,
+      "zUnits": 10000,
+      "falseM": -100000,
+      "mUnits": 10000
+    }
+  },
+  "hasAttachments": false,
+  "htmlPopupType": "esriServerHTMLPopupTypeAsHTMLText",
+  "displayField": "CONCODIGO",
+  "typeIdField": null,
+  "subtypeFieldName": null,
+  "subtypeField": null,
+  "defaultSubtypeCode": null,
+  "fields": [
+    {
+      "name": "OBJECTID",
+      "type": "esriFieldTypeOID",
+      "alias": "OBJECTID",
+      "domain": null
+    },
+    {
+      "name": "CONCODIGO",
+      "type": "esriFieldTypeString",
+      "alias": "Identificador unico de la construccion",
+      "length": 25,
+      "domain": null
+    },
+    {
+      "name": "CONNPISOS",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "Numero de pisos",
+      "domain": null
+    },
+    {
+      "name": "CONTSEMIS",
+      "type": "esriFieldTypeInteger",
+      "alias": "Tiene semisotano",
+      "domain": {
+        "type": "codedValue",
+        "name": "D_ConTSemis",
+        "description": "Dominio de Tiene Semisotano",
+        "codedValues": [
+          {
+            "name": "No",
+            "code": 0
+          },
+          {
+            "name": "Si",
+            "code": 1
+          }
+        ],
+        "mergePolicy": "esriMPTDefaultValue",
+        "splitPolicy": "esriSPTDefaultValue"
+      }
+    },
+    {
+      "name": "CONNSOTANO",
+      "type": "esriFieldTypeSmallInteger",
+      "alias": "Numero de sotanos",
+      "domain": null
+    },
+    {
+      "name": "LOTECODIGO",
+      "type": "esriFieldTypeString",
+      "alias": "Codigo Lote",
+      "length": 12,
+      "domain": null
+    },
+    {
+      "name": "CONMEJORA",
+      "type": "esriFieldTypeInteger",
+      "alias": "Tiene Mejora",
+      "domain": {
+        "type": "codedValue",
+        "name": "D_ConMejora",
+        "description": "Dominio tiene mejora",
+        "codedValues": [
+          {
+            "name": "No",
+            "code": 0
+          },
+          {
+            "name": "Si",
+            "code": 1
+          }
+        ],
+        "mergePolicy": "esriMPTDefaultValue",
+        "splitPolicy": "esriSPTDefaultValue"
+      }
+    },
+    {
+      "name": "CONVOLADIZ",
+      "type": "esriFieldTypeInteger",
+      "alias": "Voladizo",
+      "domain": {
+        "type": "codedValue",
+        "name": "Dom_Voladizo",
+        "description": "Dominio referido a aquellos atributos en donde se clasifica el registro de un objeto en Si o No, de acuerdo a una característica específica.",
+        "codedValues": [
+          {
+            "name": "No",
+            "code": 0
+          },
+          {
+            "name": "Si",
+            "code": 1
+          }
+        ],
+        "mergePolicy": "esriMPTDefaultValue",
+        "splitPolicy": "esriSPTDefaultValue"
+      }
+    },
+    {
+      "name": "CONALTURA",
+      "type": "esriFieldTypeDouble",
+      "alias": "Altura",
+      "domain": null
+    },
+    {
+      "name": "CONELEVACI",
+      "type": "esriFieldTypeInteger",
+      "alias": "Elevación",
+      "domain": null
+    },
+    {
+      "name": "SHAPE",
+      "type": "esriFieldTypeGeometry",
+      "alias": "SHAPE",
+      "domain": null
+    },
+    {
+      "name": "SHAPE.AREA",
+      "type": "esriFieldTypeDouble",
+      "alias": "SHAPE.AREA",
+      "domain": null
+    },
+    {
+      "name": "SHAPE.LEN",
+      "type": "esriFieldTypeDouble",
+      "alias": "SHAPE.LEN",
+      "domain": null
+    }
+  ],
+  "geometryField": {
+    "name": "SHAPE",
+    "type": "esriFieldTypeGeometry",
+    "alias": "SHAPE"
+  },
+  "indexes": [
+    {
+      "name": "G2603LOTECODIGO",
+      "fields": "LOTECODIGO",
+      "isAscending": true,
+      "isUnique": false,
+      "description": ""
+    },
+    {
+      "name": "R913_SDE_ROWID_UK",
+      "fields": "OBJECTID",
+      "isAscending": true,
+      "isUnique": true,
+      "description": ""
+    },
+    {
+      "name": "A827_IX1",
+      "fields": "SHAPE",
+      "isAscending": true,
+      "isUnique": true,
+      "description": ""
+    }
+  ],
+  "subtypes": [],
+  "relationships": [],
+  "canModifyLayer": true,
+  "canScaleSymbols": false,
+  "hasLabels": false,
+  "capabilities": "Map,Query,Data",
+  "maxRecordCount": 2000,
+  "supportsStatistics": true,
+  "supportsExceedsLimitStatistics": true,
+  "supportsAdvancedQueries": true,
+  "supportedQueryFormats": "JSON, geoJSON, PBF",
+  "isDataVersioned": false,
+  "ownershipBasedAccessControlForFeatures": {
+    "allowOthersToQuery": true
+  },
+  "useStandardizedQueries": true,
+  "supportedSpatialRelationships": [
+    "esriSpatialRelIntersects",
+    "esriSpatialRelContains",
+    "esriSpatialRelCrosses",
+    "esriSpatialRelEnvelopeIntersects",
+    "esriSpatialRelIndexIntersects",
+    "esriSpatialRelOverlaps",
+    "esriSpatialRelTouches",
+    "esriSpatialRelWithin",
+    "esriSpatialRelRelation"
+  ],
+  "advancedQueryCapabilities": {
+    "useStandardizedQueries": true,
+    "supportsStatistics": true,
+    "supportsPercentileStatistics": true,
+    "supportsHavingClause": true,
+    "supportsOrderBy": true,
+    "supportsDistinct": true,
+    "supportsCountDistinct": true,
+    "supportsAdvancedQueryRelated": true,
+    "supportsQueryRelatedPagination": true,
+    "supportsPagination": true,
+    "supportsLod": false,
+    "supportsQueryWithLodSR": false,
+    "supportsTrueCurve": true,
+    "supportsQueryWithDatumTransformation": true,
+    "supportsReturningQueryExtent": true,
+    "supportsQueryWithDistance": true,
+    "supportsSqlExpression": true,
+    "supportsTimeRelation": true,
+    "supportsSqlFormat": false,
+    "supportsQueryAnalytic": false,
+    "supportsCurrentUserQueries": true
+  },
+  "supportsDatumTransformation": true,
+  "dateFieldsTimeReference": null,
+  "preferredTimeReference": null,
+  "datesInUnknownTimezone": false,
+  "hasGeometryProperties": true,
+  "geometryProperties": {
+    "shapeAreaFieldName": "SHAPE.AREA",
+    "shapeLengthFieldName": "SHAPE.LEN",
+    "units": "esriDecimalDegrees",
+    "mapUnits": {
+      "uwkid": 9102
+    }
+  },
+  "hasMetadata": true,
+  "isDataArchived": false,
+  "archivingInfo": {
+    "supportsQueryWithHistoricMoment": false,
+    "startArchivingMoment": -1
+  },
+  "supportsCoordinatesQuantization": true,
+  "supportsDynamicLegends": true,
+  "serviceItemId": "aea2b947da5c4751b70bda56175f0c96"
+}

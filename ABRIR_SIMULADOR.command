@@ -8,4 +8,4 @@ if [[ ! -x "$GODOT_BIN" ]]; then
 fi
 # Importar recursos también después de restaurar el repositorio en otro equipo.
 "$GODOT_BIN" --headless --path "$PROJECT_DIR/game" --editor --import --quit
-exec "$GODOT_BIN" --path "$PROJECT_DIR/game" res://scenes/main.tscn
+exec "$GODOT_BIN" --path "$PROJECT_DIR/game" res://scenes/practice.tscn

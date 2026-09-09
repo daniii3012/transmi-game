@@ -14,7 +14,13 @@ game/scripts/explorer.gd
 
 El JSON de mallas facilita inspeccionar y validar esta prueba. Para ampliar el mapa se reemplazará por recursos binarios por sector; no cargar toda Bogotá en un único JSON. Los datos originales permanecerán fuera de la escena y se conservarán como fuente de reconstrucción.
 
-## Sistemas propuestos, todavía no implementados
+## Primera conducción implementada
+
+`tools/build_bus.py` → Blender editable + GLB con cuerpos independientes. `bus_motion.gd` integra el vehículo en el plano; `bus_collision.gd` comprueba sus cuerpos; `bus_visual.gd` aplica poses, ruedas, puertas y fuelle. `practice_service.gd` verifica anclajes de cuatro puertas y el ciclo de parada. `practice_world.gd` construye la pista y sus obstáculos; `practice.gd` enlaza entrada, cámaras y HUD. Las pruebas del motor están en game/tests.
+
+Esta cinemática plana no resuelve alturas ni suspensión. El mundo real continúa separado de la pista para no presentar la cartografía plana como carriles ya transitables.
+
+## Sistemas propuestos y ampliaciones
 
 | Sistema | Responsabilidad |
 |---|---|

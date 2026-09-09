@@ -1,0 +1,65 @@
+{
+  "created_utc": "20260909T090945Z",
+  "source_application": "https://buscador-rutas.transmilenio.gov.co/rutas",
+  "purpose": "research_only_not_playable_routes",
+  "records": 256,
+  "requests": [
+    {
+      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/buscar?page=0&size=50&sort=idCodigo,asc",
+      "body": {
+        "activa": true,
+        "tipo": "TransMilenio"
+      },
+      "sha256_response": "cb0e30fc6c722931bfeb15e1e74d3b7cfc76158d2d5a4143aa13356499ee885a"
+    },
+    {
+      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/buscar?page=1&size=50&sort=idCodigo,asc",
+      "body": {
+        "activa": true,
+        "tipo": "TransMilenio"
+      },
+      "sha256_response": "b9383e75265225a171ab84aab3c30836cfd08c14c7d696d7fb5ef9fa489e74e0"
+    },
+    {
+      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/buscar?page=2&size=50&sort=idCodigo,asc",
+      "body": {
+        "activa": true,
+        "tipo": "TransMilenio"
+      },
+      "sha256_response": "c2874d6a3e72024509ae29518684feee33f6c787026809726cf197b79adf6cc4"
+    },
+    {
+      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/buscar?page=3&size=50&sort=idCodigo,asc",
+      "body": {
+        "activa": true,
+        "tipo": "TransMilenio"
+      },
+      "sha256_response": "fc6d59596135ebb75bf7196045c300af6b6c0829435a1c086dd63a898f5da4e4"
+    },
+    {
+      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/buscar?page=4&size=50&sort=idCodigo,asc",
+      "body": {
+        "activa": true,
+        "tipo": "TransMilenio"
+      },
+      "sha256_response": "9087befc827cbd3532f7c13ca6c9bd555cee61c3b50ef4d78fdd96e438cf8530"
+    },
+    {
+      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/buscar?page=5&size=50&sort=idCodigo,asc",
+      "body": {
+        "activa": true,
+        "tipo": "TransMilenio"
+      },
+      "sha256_response": "32e02a24da4fc68312a85ee89093c4bcb05a74dcaa9f38f251671fb3fa256c5f"
+    }
+  ],
+  "cached_response_input": true,
+  "sha256_candidates": "46c413adc32f0a5a67e9982d49f39cf2e97ed35ebf305867cb96d3e30e8040cc",
+  "license": "Not established for this endpoint. Do not inherit the geographic layers license.",
+  "limitations": [
+    "TransMilenio source bucket is not a validated BRT-only classification.",
+    "Visible route code is not unique; keep record id, destination, direction and dates.",
+    "Date fields are preserved verbatim; service-day boundaries need validation.",
+    "No lane paths, station module assignments or door anchors imported."
+  ]
+}

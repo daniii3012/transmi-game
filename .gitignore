@@ -4,3 +4,7 @@ game/.godot/
 __pycache__/
 *.pyc
 .venv/
+
+# Copias automáticas de Blender; el original .blend sí se versiona.
+*.blend1
+*.blend2

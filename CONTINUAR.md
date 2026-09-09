@@ -1,84 +1,87 @@
-# Continuidad — leer antes de trabajar
+# Continuidad del proyecto — 9 de septiembre de 2026
 
-Guardado el 8 de septiembre de 2026, Bogotá. El usuario pidió preservar el progreso porque se aproxima al límite de uso de cinco horas. No confundir ese límite con una cancelación del proyecto.
+Leer este archivo, README.md y docs/PLAN_DEL_PROYECTO.md antes de continuar. Daniel pidió conservar el progreso entre sesiones por los límites de uso. Eso no cancela el proyecto. Los documentos y el código están en Git; revisar `git log` y `git status` para el último checkpoint.
 
-## Intención y decisiones del usuario
+## Decisiones vigentes
 
-Daniel quiere un videojuego personal de conducción de TransMilenio en Bogotá, escala 1:1 para las distancias, con apariencia reconocible y más detalle que un mapa muy básico. La física debe ser de simulador arcade, con puertas, articulaciones y paradas. Aclaración del 9 de septiembre: podría publicar en el futuro. Ahora autoriza respaldar todo en GitHub, sin desplegar el juego. Ha autorizado al asistente a encargarse de investigar, instalar herramientas, modelar y desarrollar durante varias sesiones.
-
-Corredores prioritarios elegidos: **Américas, Calle 13 y centro, NQS/Carrera 30, Carrera Séptima y Calle 26**. Quiere el **estado actual con obras y desvíos**. NO reemplazar esta decisión por una ciudad sin obras ni escoger Autonorte como alcance aceptado.
-
-Referencias aportadas: Mapas Bogotá 2D/3D, mapa digital de TransMilenio, dos publicaciones de X, Bogotá TM Bus en Roblox, noticia de obras de Carrera 50–Américas–Calle 13–Calle 6 y noticia de 50 articulados eléctricos duales. Están en docs/FUENTES.md. El usuario mencionó extremos grises en duales, una franja amarilla en articulados y dos en biarticulados; revisar variantes y fotografías antes de convertirlo en una regla universal.
+- **Meta final: un Bus Simulator de Bogotá centrado en todo el sistema BRT de TransMilenio**, con distancias espaciales 1:1. Prioridad: escala, red, conducción y operación antes que gráficos complejos.
+- Américas es el piloto; zona inicial Mandalay–Av. Américas/Av. Boyacá–Marsella. Después ampliar Américas, Calle 13/centro, NQS/Carrera 30, Calle 26 y Séptima; continuar al resto del sistema. No reducir la meta a esos corredores.
+- Ciudad actual con obras y desvíos. Fecha inicial del escenario: 8–9 de septiembre de 2026; evidencia y vigencia por zona. Carrera 50–Américas–Calle 13–Calle 6 y la futura actualización de 68–Américas son nodos expresamente pedidos. No habilitar diseños finales antes de comprobar apertura.
+- Apariencia reconocible con materiales y luz cuidados. Referencias del usuario: over the hill, ETS y Bus Simulator; su última aclaración da prioridad a escala y sistemas. No presentar el entorno ficticio de pruebas como el acabado final de Bogotá.
+- Conducción accesible, puertas y articulación coherentes; sin obligación de simulación mecánica exhaustiva.
+- Posible publicación futura si alcanza un buen desarrollo. **Push a https://github.com/daniii3012/transmi-game está expresamente autorizado**; no se pidió desplegar una versión del juego.
+- El asistente tiene autorización para investigar, instalar herramientas y desarrollar/modelar. Daniel confirmó que instaló Blender. No pedir que lo vuelva a instalar.
 
 ## Ubicación y herramientas
 
-- Raíz del proyecto: `/Users/daniel/Documents/Codex/2026-09-08/ho/outputs/BogotaTransmi`.
-- Trabajo temporal y herramientas: `/Users/daniel/Documents/Codex/2026-09-08/ho/work`.
-- Godot: `work/tools/Godot.app/Contents/MacOS/Godot`, relativo a la carpeta `ho`.
-- Versión verificada: `4.7.2.stable.official.ed1daf0bf`.
-- ZIP oficial: SHA-256 `c58a24e31d720be9d62f60cb5627c4e695fb72f21b0cfe1bc9ccaa9a3b3ba63e`.
-- La firma del paquete se verificó con `codesign --verify --deep --strict` antes de ejecutar. No se alteró el paquete.
-- Python preparado: `work/venv/bin/python`, versión base 3.9. Dependencias fijadas en tools/requirements.txt.
-- Blender todavía NO está instalado. Se propone instalarlo para la siguiente fase de modelado, desde su web oficial para Apple Silicon.
-- Máquina: MacBook Pro M3 Pro, GPU de 14 núcleos y 18 GB de memoria unificada. Había aproximadamente 221 GiB disponibles según `df` al iniciar. No se necesita comprar herramientas para esta prueba.
-- Se concedió escritura de sesión en `~/Library/Application Support/Godot` y `~/Library/Caches/Godot` para sus ajustes. El acceso de red se concedió para el turno; comprobar permisos si hace falta en otra sesión.
+- Proyecto: `/Users/daniel/Documents/Codex/2026-09-08/ho/outputs/BogotaTransmi`.
+- Temporales y herramientas portables: `/Users/daniel/Documents/Codex/2026-09-08/ho/work`.
+- Godot: `work/tools/Godot.app/Contents/MacOS/Godot`, versión `4.7.2.stable.official.ed1daf0bf`. ZIP oficial verificado, SHA-256 `c58a24e31d720be9d62f60cb5627c4e695fb72f21b0cfe1bc9ccaa9a3b3ba63e`.
+- **Blender de Daniel: `/Applications/Blender.app/Contents/MacOS/Blender`, 5.2.1 LTS**, usado para generar el bus. También quedó una copia portátil previa en work/tools/Blender.app y el DMG oficial; no se necesita otra descarga.
+- Python: `work/venv/bin/python`, base 3.9, dependencias en tools/requirements.txt.
+- Equipo: M3 Pro, GPU 14 núcleos, 18 GB de RAM. No se ha hecho benchmark de una ciudad completa.
+- Se concedió red y escritura en ajustes/caché de Godot a nivel de sesión. Si el entorno cambia, usar los permisos mínimos del entorno sin pedir nuevamente autorización de alcance.
 
-## Resultado comprobado
+## Qué funciona ahora
 
-1. `tools/fetch_pilot.py` completó la descarga oficial. Instantánea `data/raw/20260909T035301Z` (UTC; aún 8 de septiembre local). Incluye GeoJSON, metadatos de servicios, fichas CKAN y manifest.json.
-2. Capas completas consultadas: 153 registros de estaciones y 22 de trazados. Son registros del servicio; NO afirmar que equivalen al número actual de estaciones operativas o de troncales.
-3. Recorte geográfico: 9.772 registros de construcción, 523 calzadas, 797 andenes y 140 separadores. Los registros de construcción pueden representar partes de edificios.
-4. `tools/build_pilot.py` genera `game/data/pilot.json` (300.729 triángulos) y data/processed/summary.json.
-5. Pruebas Python: **2/2 pasaron**. Verifican distancias de 1 km desde el origen en cuatro direcciones y triangulación de un polígono cóncavo con patio interior.
-6. Godot en modo headless cargó la escena y terminó correctamente: `PILOT_READY triangles=300729.0 stations=3`.
-7. Primera ejecución gráfica nativa completada en OpenGL 4.1 sobre Metal / Apple M3 Pro. Se generaron y visualizaron dos PNG. Log: `work/godot_capture.log`.
+### Base geográfica
 
-## Revisión visual pendiente al guardar
+Instantánea oficial `data/raw/20260909T035301Z`: 153 registros de estaciones, 22 de trazados (no equivalen a conteo operativo); recorte con 9.772 registros de construcción, 523 calzadas, 797 andenes y 140 separadores. Procedencia, fichas y hashes conservados.
 
-El primer render mostró superficies demasiado claras y el pie de controles fuera de pantalla. Se corrigió explorer.gd: iluminación más baja, ACES, especular a cero, encuadre general más amplio y posición del pie. La segunda ejecución terminó con CAPTURE_COMPLETE y se revisó la vista general corregida: el recorte completo y los controles son visibles.
+`tools/build_pilot.py` genera `game/data/pilot.json`: 300.729 triángulos. Origen AEQD WGS84 lon -74.136, lat 4.63027; Godot X este, Y arriba, Z sur. 1 unidad = 1 metro. Las alturas siguen siendo estimaciones CONNPISOS × 3 m, con reserva de 2 pisos para 16 valores inválidos. CONELEVACI NO son metros; CONALTURA requiere interpretación.
 
-Se detectó que las dos capturas podían representar el mismo fotograma por concurrencia de las esperas de renderizado. Se corrigió el estado de captura para bloquear una segunda captura mientras se espera la primera, y reiniciar el tiempo al cambiar de cámara. **Falta verificar gráficamente este último ajuste y regenerar la vista cercana de Av. Boyacá.** La vista general es válida como prueba geográfica; la segunda imagen no debe presentarse como una vista distinta hasta regenerarla.
+Explorador con cámaras, edificios y marcadores. Terreno y puentes planos; no es una carretera validada para conducir. **Se corrigió y verificó la captura de dos vistas distintas**. `docs/preview_general.png` y `docs/preview_boyaca.png` ahora tienen hashes diferentes y muestran encuadres correctos. Último log: work/godot_capture.log, CAPTURE_COMPLETE.
 
-La captura usa la opción `-- --capture`, espera varias imágenes, guarda docs/preview_general.png y docs/preview_boyaca.png, y sale. El lanzador de prueba está en `work/preview.command`.
+### Primera pista conducible
 
-Limitación del entorno: ejecutar la interfaz gráfica directamente con exec_command produjo código 134; el modo headless sí funciona. Se logró lanzar la interfaz abriendo `work/preview.command` desde Finder mediante CUA. La captura de pantalla nativa de CUA falló con ScreenCaptureKit -3811; se usaron PNG generados por el propio viewport de Godot para revisar el resultado. No desactivar protecciones del sistema. No cerrar terminales ni apps ajenas al proyecto.
+`ABRIR_SIMULADOR.command` abre la nueva escena principal. `ABRIR_EXPLORADOR.command` conserva la vista geográfica. F2 cambia entre ambas. La pista y plataforma son ficticias y métricas.
 
-## Próxima tarea concreta
+- Articulado provisional de dos cuerpos, longitud nominal 18 m, carrocería de 2,55 m, tres ejes, cuatro puertas izquierdas (ocho hojas), cabina sencilla y fuelle flexible.
+- Blender editable: assets/source/articulado_prototipo.blend. GLB de juego: game/assets/vehicles/articulado_prototipo.glb. Generador original: tools/build_bus.py. Dimensiones de ensayo, no una réplica verificada de un fabricante.
+- `bus_motion.gd`: cinemática plana con enganche fuera del eje, reversa y límite de articulación de 60°, dirección que se modera con velocidad, freno y resistencia.
+- `bus_collision.gd`: barrido de traslación y solape final por pasos pequeños, cajas de los dos cuerpos y envolvente del fuelle. Obstáculos en capa 1. No hay suspensión ni contacto de ruedas con terreno 3D todavía.
+- `bus_visual.gd`: importación, cuerpos, ruedas, hojas de puertas y fuelle dinámico.
+- `practice_service.gd`: alineación de las cuatro puertas, tiempo de atención 4 s, cierre y salida 15 m.
+- `practice_world.gd` y `practice.gd`: pista, plataforma, controles, cámaras, HUD, pausa y reinicio.
+- Controles: W acelera, S frena, A/D gira, Espacio freno de mano, R avance/reversa estando detenido, P puertas detenido, C cámaras, Retroceso reinicia, Esc pausa, F2 mapa.
+- El bus NO está integrado en las calzadas reales. Sin pasajeros visibles, sonido, tráfico, espejos funcionales, selector de rutas oficiales, guardado de partida, pendientes ni streaming.
 
-1. Terminar la revisión visual indicada arriba y guardar una versión estable del explorador.
-2. Definir una sección física verificable de la calzada BRT entre Marsella, Av. Boyacá y Mandalay: carriles por sentido, separadores, adelantamiento, nivel del cruce de Boyacá, pendiente y suelo con colisiones. El explorador plano NO constituye aún una vía transitable fiel.
-3. Instalar Blender para Apple Silicon; preparar un bus articulado de prueba en metros, de aproximadamente 18 m hasta elegir y verificar la variante definitiva. Desarrollar manejo y articulación antes de texturas y cabina detallada.
-4. Investigar plataformas, vagones, puertas y puntos de detención de una estación del piloto. No inventar nombres de vagones A/B o compatibilidad basándose solo en longitud.
-5. Preparar la ficha de obras del nodo Carrera 50 con fecha, PMT/desvíos vigentes y geometría de avance. La nota del 28 de agosto describe avance y proyecto final; no basta para dibujar las trayectorias provisionales al 8 de septiembre.
+### Catálogo de rutas
 
-## Precauciones técnicas específicas
+El buscador oficial aportado por Daniel tiene una API pública. `tools/audit_routes.py` conserva candidatos con campos de transporte y hashes, excluyendo metadatos administrativos. Auditoría inicial en `data/research/20260909T090945Z/`: 256 registros/IDs del filtro TransMilenio, seis páginas. **No son 256 rutas troncales distintas.** Hay códigos con guion, un 16 sin troncal asignada y códigos repetidos con destinos diferentes. No clasificar solo por formato, campo tipo o presencia de troncal.
 
-- 1 unidad del motor = 1 metro. CRS de trabajo del piloto: proyección local AEQD WGS84 con origen lon -74.136, lat 4.63027. En Godot: X este, Y arriba, Z sur. Consultas al servidor transformadas a EPSG:4326.
-- Todas las alturas del blockout son **estimaciones CONNPISOS × 3 m**, con dos pisos de reserva para 16 valores inválidos. CONELEVACI no es una altura medida en metros. CONALTURA requiere interpretación de niveles de bloques antes de usarlo.
-- El terreno está plano; los puentes también aparecen planos. No deducir conectividad vial por cruces de líneas 2D.
-- Aún NO hay bus, conducción, colisiones, rutas jugables, animación de puertas, tráfico, estaciones modeladas, streaming de sectores ni obras modeladas.
-- GTFS existe en catálogo, pero la ficha antigua dice fecha del dato 2022 y el endpoint probado devolvió HTTP 500. No afirmar que se descargó un GTFS vigente.
-- El visor 3D de Bogotá usa extrusión de polígonos; no se ha localizado un modelo completo de Bogotá listo para importar con fachadas y colisiones.
-- No tomar imágenes generadas, renders promocionales o mapas antiguos como mediciones ni como prueba de obras terminadas.
+Ver docs/RUTAS_INVESTIGACION.md. Falta importar secuencia de paradas y validar variantes, fechas y carriles. No se descargó GTFS vigente: el endpoint antiguo falló. La licencia de la API del buscador no se ha establecido; no heredar la de la cartografía. Ninguno de estos candidatos está ofrecido como servicio jugable.
 
-## Comandos comprobados
+## Comprobaciones completadas
 
-Desde `/Users/daniel/Documents/Codex/2026-09-08/ho`:
+- Python geográfico: 2 pruebas, escala cardinal de 1 km y triangulación cóncava con patio.
+- Godot conducción: **19/19 comprobaciones**. Círculo delantero contrastado con radio teórico y remolque con radio interior independiente, límite/reanudación de articulación, puertas, parada y barreras de 5 cm delante y detrás.
+- Integración de escena: PASS. Importa cuerpos y ocho hojas, se aproxima automáticamente a la plataforma usando sus colisiones, atiende la parada y abre las hojas visuales.
+- Carga headless de escena principal: PRACTICE_READY. Captura nativa sobre OpenGL/Metal M3 Pro: PRACTICE_CAPTURE_COMPLETE. Se inspeccionaron docs/preview_practica.png, preview_cabina.png y preview_puertas.png; muestran vistas distintas, el bus completo y puertas abiertas.
+- Las pruebas no constituyen aún validación de conducción por puentes reales o ensayos largos de rendimiento. Daniel puede probar los controles para ajustar sensación.
+
+## Próximo trabajo concreto
+
+1. Tomar una estación del piloto, preferiblemente Mandalay, y reunir planos/fotografías actuales y medidas de andén, vagones, puertas y carriles. Consultar el enlace de planos de estaciones descubierto en el cliente del buscador. No inventar la etiqueta A/B o su compatibilidad.
+2. Construir una primera sección BRT física en metros, con niveles y anchos comprobados, y conectar el bus a ella. No habilitar el cruce de Boyacá hasta revisar puente, rampas y continuidad.
+3. Introducir datos configurables de vehículo y anclajes, antes de multiplicar variantes. El prototipo tiene constantes de ensayo en motion y service; al usar una variante real deben migrar a una especificación compartida.
+4. Integrar un pequeño recorrido entre paradas del piloto, con selector de práctica, próxima parada y guardado. Patrón real solo cuando se compruebe toda la cobertura necesaria.
+5. Mejorar un segmento visto desde la cabina: materiales, plataforma y fachadas cercanas. Priorizar reconocimiento y operación sobre decorar todo el recorte.
+
+## Ejecución y limitaciones del entorno
+
+Desde la raíz del proyecto, usar Godot absoluto en vez de depender del PATH:
 
 ```sh
-work/venv/bin/python outputs/BogotaTransmi/tools/build_pilot.py
-work/venv/bin/python -m unittest discover -s outputs/BogotaTransmi/tests -v
-work/tools/Godot.app/Contents/MacOS/Godot --headless --path outputs/BogotaTransmi/game --log-file /Users/daniel/Documents/Codex/2026-09-08/ho/work/godot_headless.log
+../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_driving.gd
+../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_practice_scene.gd -- --keep-running
+../../work/venv/bin/python -m unittest discover -s tests -v
 ```
 
-No hace falta volver a investigar todo: consultar docs/FUENTES.md, los metadatos guardados y docs/PLAN_DEL_PROYECTO.md. No hay despliegue, cuenta externa, compra ni automatización del proyecto.
+Blender genera el modelo con `Blender -b -t 2 --python tools/build_bus.py`. En el entorno de comandos restringido, Blender falló al inicializar Metal y Godot gráfico al conectar con WindowServer. Ambos funcionan al lanzar sus scripts .command desde Finder mediante CUA. Scripts de sesión: work/build_bus.command, work/preview_practice.command y work/preview.command. Para abrir un archivo fuera de pantalla en Finder: Ir a carpeta → ruta exacta → Return → Cmd+O. No depender de una acción AX que no cambie de archivo seleccionado.
 
-## Punto de recuperación
+No desactivar protecciones. Capturas nativas de CUA fallaron antes; el propio viewport de Godot guarda PNG revisables. No cerrar terminales/aplicaciones del usuario. Los recursos .godot y copias .blend1 no se versionan.
 
-Repositorio Git local creado. Primer commit: `9578128` (plan, datos y prototipo). Hay un checkpoint posterior con el estado final de la sesión. Ver `git log -2 --oneline`. Remoto solicitado y comprobado vacío: https://github.com/daniii3012/transmi-game. Consultar git remote y git log para comprobar el último respaldo.
+## Respaldo
 
-## Actualización en curso — 9 de septiembre
-
-La meta final es todo el sistema BRT. Prioridad: Bus Simulator, escala, rutas y operación antes que gráficos complejos. Ver docs/SISTEMAS_Y_HOJA_DE_RUTA.md y docs/DIRECCION_VISUAL.md. Incorporar la 68 en obras y actualizar cuando se verifique su apertura. El buscador oficial de rutas está añadido a las referencias.
-
-Se está construyendo el controlador de bus articulado y una pista de práctica. No darlo por terminado hasta pruebas. Daniel acaba de indicar que instaló Blender; comprobar la aplicación disponible antes de descargar de nuevo. El instalador oficial ya se había descargado y montado en /Volumes/Blender.
+Git local, rama main, remoto origin https://github.com/daniii3012/transmi-game.git. El remoto estaba vacío; el primer push autorizado terminó correctamente con upstream main. Se usa la identidad Git configurada por Daniel. No cambiar visibilidad, forzar historial ni desplegar. Guardar los siguientes hitos y verificar coincidencia entre HEAD local y origin/main.

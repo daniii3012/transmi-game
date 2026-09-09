@@ -28,7 +28,7 @@ El objetivo final es un **Bus Simulator centrado en Bogotá y en todo el sistema
 | Herramienta | Uso | Decisión |
 |---|---|---|
 | Godot 4.7.2 | Juego, cámara, vehículos, interacción, carga de sectores y exportación | Base inicial instalada de forma local. Su proyecto de texto y ejecución por comandos facilitan mantenerlo y comprobarlo. |
-| Blender para Apple Silicon | Modelado de buses, cabinas, estaciones, puentes y materiales; exportación glTF/GLB | Instalar en la fase de modelado. |
+| Blender 5.2.1 para Apple Silicon | Modelado de buses, cabinas, estaciones, puentes y materiales; exportación glTF/GLB | Instalado por Daniel; primer articulado de ensayo generado. |
 | Python + pyproj + Shapely + Earcut | Descargar, recortar, reproyectar y triangular datos | Entorno ya preparado; versiones fijadas. |
 | QGIS | Inspección visual de datos, medidas y edición geográfica manual cuando aporte valor | Opcional; la descarga y conversión actuales no dependen de instalarlo. |
 | Git + GitHub | Versionar código, decisiones y progreso | Repositorio autorizado: daniii3012/transmi-game. Guardar hitos pequeños; separar datos pesados y binarios al crecer. |
@@ -96,8 +96,8 @@ Separaremos la geometría duradera de la capa de obra: barreras, carriles habili
 
 | Hito | Entregable | Se considera terminado cuando… |
 |---|---|---|
-| 0. Investigación y base | Este plan, fuentes, datos y explorador | Datos descargados, escala comprobada y vista revisada. La última corrección visual aún debe verificarse. |
-| 1. Conducción de prueba | Bus articulado provisional sobre pista métrica | Acelera, frena, gira y retrocede de forma estable; cámaras y puertas funcionan; remolque no atraviesa barreras. |
+| 0. Investigación y base | Este plan, fuentes, datos y explorador | Completado: datos descargados, escala comprobada y vistas general/cercana revisadas. |
+| 1. Conducción de prueba | Bus articulado provisional sobre pista métrica | Primera entrega implementada y comprobada en pista plana: conducción, cámaras, puertas, articulación y barreras. Ver PRUEBA_DE_CONDUCCION.md; falta criterio de manejo del usuario y pruebas en pendientes. |
 | 2. Primer tramo | Calzadas transitables y una estación del piloto | Se puede completar aproximación, alineación, apertura, cierre y salida en ambos sentidos; niveles y anchos están verificados. |
 | 3. Recorrido reconocible | Tres estaciones y edificios cercanos del recorte | Se conduce de extremo a extremo sin huecos de colisión ni bloqueos; los accesos y señales corresponden al tramo. |
 | 4. Primer bus definitivo | Carrocería, cabina, materiales y audio | Dimensiones y disposición de puertas/ejes contrastadas con referencias de una variante; manejo aprobado por Daniel. |

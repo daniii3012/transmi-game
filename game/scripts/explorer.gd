@@ -138,7 +138,7 @@ func build_hud(summary: Dictionary) -> void:
 	stack.add_child(metrics)
 	var footer := Label.new()
 	footer.position = Vector2(24, 810)
-	footer.text = "1 Vista general   2 Mandalay   3 Av. Boyacá   4 Marsella   B Edificios\nWASD / flechas: mover · Q/E: bajar/subir · Shift: rápido · Clic derecho: mirar · Esc: liberar cursor\nDatos: UAECD / IDECA y TRANSMILENIO S.A. · CC BY 4.0 · Instantánea " + str(summary.source_snapshot).substr(0, 8)
+	footer.text = "F2 Conducir   1 Vista general   2 Mandalay   3 Av. Boyacá   4 Marsella   B Edificios\nWASD / flechas: mover · Q/E: bajar/subir · Shift: rápido · Clic derecho: mirar · Esc: liberar cursor\nDatos: UAECD / IDECA y TRANSMILENIO S.A. · CC BY 4.0 · Instantánea " + str(summary.source_snapshot).substr(0, 8)
 	footer.add_theme_font_size_override("font_size", 16)
 	footer.add_theme_color_override("font_color", Color("ffffff"))
 	footer.add_theme_color_override("font_shadow_color", Color("122124"))
@@ -166,6 +166,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera.rotation.x = clampf(camera.rotation.x - event.relative.y * 0.0025, -1.5, 1.5)
 	if event is InputEventKey and event.pressed and not event.echo:
 		match event.keycode:
+			KEY_F2: get_tree().change_scene_to_file("res://scenes/practice.tscn")
 			KEY_1: view_overview()
 			KEY_2: view_station(0)
 			KEY_3: view_station(1)

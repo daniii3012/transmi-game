@@ -2,8 +2,8 @@
 config_version=5
 
 [application]
-config/name="Bogotá Transmi · Explorador de Américas"
-run/main_scene="res://scenes/main.tscn"
+config/name="Bogotá Transmi · Conducción de prueba"
+run/main_scene="res://scenes/practice.tscn"
 
 [display]
 window/size/viewport_width=1440

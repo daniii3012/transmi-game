@@ -21,6 +21,7 @@ var doors_target := false
 var doors_fraction := 0.0
 var distance_m := 0.0
 var last_block := ""
+var sliding := false
 
 static func forward(angle: float) -> Vector2:
 	return Vector2(sin(angle), -cos(angle))
@@ -47,6 +48,7 @@ func reset(p: Vector2, angle := 0.0) -> void:
 	doors_target = false
 	doors_fraction = 0
 	last_block = ""
+	sliding = false
 	distance_m = 0
 
 func toggle_gear() -> bool:
@@ -82,6 +84,7 @@ func control(dt: float, throttle: float, brake: float, steer: float, handbrake: 
 
 func advance(dt: float, collision_check: Callable = Callable()) -> void:
 	last_block = ""
+	sliding = false
 	if absf(speed) < 0.00001:
 		return
 	# Bound translation AND corner rotation per substep. Translation is also swept.
@@ -106,12 +109,20 @@ func advance(dt: float, collision_check: Callable = Callable()) -> void:
 			return
 		var proposed := {"p": next_position, "h": next_heading, "t": next_trailer}
 		if collision_check.is_valid():
-			var hit: String = collision_check.call(old, proposed)
-			if not hit.is_empty():
-				last_block = hit
+			var result = collision_check.call(old, proposed)
+			# The simple check callback remains useful for strict obstacle tests.
+			if result is String: result = {"state": proposed} if result.is_empty() else {"blocked": result}
+			if result.has("blocked"):
+				last_block = result.blocked
 				speed = 0
 				return
-		position = next_position
-		heading = wrapf(next_heading, -PI, PI)
-		trailer_heading = wrapf(next_trailer, -PI, PI)
-		distance_m += absf(speed * h)
+			proposed = result.state
+			sliding = sliding or result.get("sliding", false)
+		if absf(wrapf(proposed.h-proposed.t, -PI, PI)) > MAX_ARTICULATION:
+			last_block = "articulation"
+			speed = 0
+			return
+		distance_m += position.distance_to(proposed.p)
+		position = proposed.p
+		heading = wrapf(proposed.h, -PI, PI)
+		trailer_heading = wrapf(proposed.t, -PI, PI)

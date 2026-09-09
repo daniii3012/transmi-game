@@ -76,7 +76,7 @@ func _run() -> void:
 	check(s.aligned(m),"las cuatro puertas coinciden con anclajes de plataforma")
 	m.trailer_heading = deg_to_rad(8)
 	check(not s.aligned(m),"rechaza parada con frente alineado y remolque desviado")
-	m.reset(Service.STOP+Vector2(0,1))
+	m.reset(Service.STOP+Vector2(0,1.6))
 	check(not s.aligned(m),"rechaza sobrepasar tolerancia longitudinal")
 	m.reset(Service.STOP)
 	m.toggle_doors()

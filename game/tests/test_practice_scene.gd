@@ -23,7 +23,7 @@ func _run() -> void:
 		var remaining := -distance
 		var target := minf(7.0,sqrt(maxf(0,remaining-.18)*5.0))
 		m.control(1.0/60,1.0 if m.speed < target-.12 else 0.0,1.0 if m.speed > target else 0.0,0,false)
-		m.advance(1.0/60,scene.collision.check)
+		m.advance(1.0/60,scene.collision.resolve)
 		if remaining < .65 and m.speed < .05: break
 	verify(m.last_block.is_empty() and scene.service.aligned(m),"aproximación a plataforma real de ensayo, sin colisión")
 	m.toggle_doors()

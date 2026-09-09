@@ -9,6 +9,7 @@ var joint_mesh: MeshInstance3D
 var rubber := StandardMaterial3D.new()
 var model: Node3D
 var wheel_angle := 0.0
+var finish_cache: Dictionary = {}
 
 func _ready() -> void:
 	model = MODEL.instantiate()
@@ -35,10 +36,21 @@ func _collect(node: Node) -> void:
 	if node is MeshInstance3D:
 		for i in node.mesh.get_surface_count():
 			var original = node.get_active_material(i)
-			if original is StandardMaterial3D and original.transparency != BaseMaterial3D.TRANSPARENCY_DISABLED:
-				var window_mat = original.duplicate()
-				window_mat.albedo_color.a = 0.18
-				node.set_surface_override_material(i,window_mat)
+			if original is StandardMaterial3D:
+				var key: String = original.resource_name
+				if not finish_cache.has(key):
+					var finish = original.duplicate()
+					if original.transparency != BaseMaterial3D.TRANSPARENCY_DISABLED:
+						finish.albedo_color.a = 0.18
+					elif "Pintura" in key:
+						finish.albedo_color = Color("b53d38")
+						finish.metallic = 0.08
+						finish.roughness = 0.65
+					elif "Franja" in key:
+						finish.albedo_color = Color("e2be70")
+						finish.roughness = 0.75
+					finish_cache[key] = finish
+				node.set_surface_override_material(i,finish_cache[key])
 	if node.name.begins_with("Door_"):
 		doors.append({"node":node, "base":node.position.z, "sign":-1 if "minus" in str(node.name) else 1})
 	if node.name.begins_with("SteerWheel") or node.name.begins_with("Wheel"):

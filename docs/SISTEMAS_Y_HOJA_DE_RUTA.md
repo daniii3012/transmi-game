@@ -1,6 +1,6 @@
 # Simulador de buses de Bogotá: sistemas y entregas
 
-Actualizado el 9 de septiembre de 2026. Dirección confirmada por Daniel: un Bus Simulator del sistema BRT, con **toda la red troncal como meta final**, escala espacial 1:1 y conducción accesible. La extensión del mundo y la operación tienen prioridad sobre gráficos complejos. Las etapas iniciales no reducen ese objetivo.
+Actualizado el 9 de septiembre de 2026. Dirección confirmada por Daniel: un Bus Simulator del sistema BRT, **exclusivamente para un jugador**, con toda la red troncal como meta final, escala espacial 1:1 y apariencia cozy. La extensión del mundo y la operación tienen prioridad sobre gráficos complejos. Otros buses realizarán rutas mediante IA local. Las etapas iniciales no reducen ese objetivo.
 
 ## La experiencia completa
 
@@ -28,7 +28,8 @@ Una troncal es infraestructura; un servicio es una secuencia de paradas que pued
 | Servicios y selector | Servicio de prueba, lista de paradas y sentido | Catálogo oficial, variantes, calendarios y horarios | Importador, carriles y cobertura comprobada |
 | Navegación | Próxima parada, distancia y orientación | Mapa de red, instrucciones de desvío y señalización de servicio | Itinerario sobre carriles |
 | Pasajeros | Tiempo de intercambio y conteo sencillo | Personas visibles, colas y demanda por parada | Ciclo de puertas y estación |
-| Tráfico | Otros buses en trayectos controlados | Adelantamiento, semáforos y tráfico mixto en operación dual | Grafo dirigido y prioridades |
+| Buses con IA local | Un NPC que sigue carriles, se detiene y abre puertas en ensayo | Colas, reservas de dársena/intersección, despachos reales y simulación lejana | Grafo dirigido, anclajes, controlador y vigencia |
+| Tráfico mixto | Conflictos básicos con buses y semáforos | Adelantamiento permitido y vehículos de contexto en operación dual | IA de buses y prioridades verificadas |
 | Mundo por sectores | Carga del entorno cercano, colisiones preparadas antes de entrar | LOD, precarga por itinerario y cambio de origen | Geografía estable y pruebas de bordes |
 | Obras y fechas | Cierres y variantes de una zona, con evidencia | Actualizaciones de la 68 y otros nodos | Carriles, geometría y catálogo fechado |
 | Guardado | Bus, posición válida, servicio y siguiente parada | Migraciones al cambiar mapa/rutas | Versiones estables e IDs persistentes |
@@ -45,6 +46,8 @@ Son sistemas planificados, no una afirmación de que ya existan. El estado imple
 **B. Mandalay y primer tramo de Américas.** Sustituir la plataforma de ensayo por una estación verificada; construir calzada, carriles y separadores. Confirmar alturas y niveles antes de habilitar Av. Boyacá. Completar parada y salida desde la cabina.
 
 **C. Marsella–Boyacá–Mandalay.** Recorrido continuo, tres estaciones reconocibles, indicadores de siguiente parada y un servicio de prueba. Introducir guardado y selector mínimo antes de ampliar varios kilómetros. Medir rendimiento durante conducción, no solo desde cámara aérea.
+
+Con el pequeño grafo de C disponible, probar primero un NPC en circuito y luego varios buses con colas en una dársena. No esperar a completar toda Bogotá para comprobar esos conflictos. Los servicios oficiales de los NPC llegarán cuando la cobertura y los patrones estén verificados. La [ficha de IA](IA_DE_BUSES.md) define las fases, el estado que se guarda y los criterios de aceptación; la implementación sigue pendiente.
 
 **D. Américas ampliada y Calle 13.** Carga por sectores, portales y conexiones que correspondan, capa de obras de Carrera 50 y 68 cuando se alcance cada zona. Primer patrón de servicio real únicamente al verificar su recorrido, paradas, sentido y fecha.
 
@@ -65,7 +68,11 @@ Son sistemas planificados, no una afirmación de que ya existan. El estado imple
 
 ## Qué queda fuera de la prioridad
 
-Multijugador, economía empresarial, gestión exhaustiva de baterías/mecánica, interiores de todos los edificios, ciudad fotogramétrica completa y simulación individual de toda la población. Podrán reconsiderarse; no condicionan el objetivo de conducir servicios troncales por una Bogotá grande y reconocible.
+Multijugador queda fuera del alcance por decisión explícita de Daniel. Economía empresarial, gestión exhaustiva de baterías/mecánica, interiores de todos los edificios, ciudad fotogramétrica completa y simulación individual de toda la población tampoco condicionan el objetivo de conducir servicios troncales por una Bogotá grande y reconocible.
+
+## Organización del trabajo
+
+La [dirección visual](DIRECCION_VISUAL.md) fija materiales, siluetas y reparto de detalle conservando metros reales. La [guía de agentes ligeros](TRABAJO_CON_AGENTES.md) define investigación acotada y normalización delegables. El principal integra sus resultados y comprueba física, escenas y datos. Las revisiones de Daniel se concentrarán en hitos completos, incorporando las correcciones puntuales con validación interna.
 
 ## Referencias operativas
 

@@ -7,10 +7,13 @@ Leer este archivo, README.md y docs/PLAN_DEL_PROYECTO.md antes de continuar. Dan
 - **Meta final: un Bus Simulator de Bogotá centrado en todo el sistema BRT de TransMilenio**, con distancias espaciales 1:1. Prioridad: escala, red, conducción y operación antes que gráficos complejos.
 - Américas es el piloto; zona inicial Mandalay–Av. Américas/Av. Boyacá–Marsella. Después ampliar Américas, Calle 13/centro, NQS/Carrera 30, Calle 26 y Séptima; continuar al resto del sistema. No reducir la meta a esos corredores.
 - Ciudad actual con obras y desvíos. Fecha inicial del escenario: 8–9 de septiembre de 2026; evidencia y vigencia por zona. Carrera 50–Américas–Calle 13–Calle 6 y la futura actualización de 68–Américas son nodos expresamente pedidos. No habilitar diseños finales antes de comprobar apertura.
-- Apariencia reconocible con materiales y luz cuidados. Referencias del usuario: over the hill, ETS y Bus Simulator; su última aclaración da prioridad a escala y sistemas. No presentar el entorno ficticio de pruebas como el acabado final de Bogotá.
+- **Dirección visual cozy confirmada**, basada en over the hill, la maqueta ferroviaria de Nick y el proyecto de Givros. Formas suaves, materiales mate, color contenido y detalle selectivo; se conservan metros reales y proporciones. ETS/Bus Simulator orientan la experiencia de recorrido y operación. Ver docs/DIRECCION_VISUAL.md. No presentar el ensayo ficticio como el acabado urbano final.
+- **Exclusivamente para un jugador.** La meta incluye otros buses haciendo rutas con IA local: carriles, paradas, puertas, colas, reservas y simulación lejana. Plan en docs/IA_DE_BUSES.md; aún no implementado. No introducir multijugador.
 - Conducción accesible, puertas y articulación coherentes; sin obligación de simulación mecánica exhaustiva.
 - Posible publicación futura si alcanza un buen desarrollo. **Push a https://github.com/daniii3012/transmi-game está expresamente autorizado**; no se pidió desplegar una versión del juego.
 - El asistente tiene autorización para investigar, instalar herramientas y desarrollar/modelar. Daniel confirmó que instaló Blender. No pedir que lo vuelva a instalar.
+- Daniel autorizó agentes ligeros para investigación y tareas acotadas. Ya se usó gpt-5.6-luna; sus borradores se revisaron. docs/TRABAJO_CON_AGENTES.md contiene los siguientes paquetes. Mantener física e integración con el principal; no prometer porcentajes de ahorro de cuota.
+- Daniel ya probó la pista. Pidió roce lateral sin frenado completo, cámara orientable y mayor margen de parada; están integrados y comprobados. Pidió evitar ciclos continuos de pequeñas pruebas manuales: agrupar el trabajo y la revisión por hitos coherentes.
 
 ## Ubicación y herramientas
 
@@ -20,7 +23,7 @@ Leer este archivo, README.md y docs/PLAN_DEL_PROYECTO.md antes de continuar. Dan
 - **Blender de Daniel: `/Applications/Blender.app/Contents/MacOS/Blender`, 5.2.1 LTS**, usado para generar el bus. También quedó una copia portátil previa en work/tools/Blender.app y el DMG oficial; no se necesita otra descarga.
 - Python: `work/venv/bin/python`, base 3.9, dependencias en tools/requirements.txt.
 - Equipo: M3 Pro, GPU 14 núcleos, 18 GB de RAM. No se ha hecho benchmark de una ciudad completa.
-- Se concedió red y escritura en ajustes/caché de Godot a nivel de sesión. Si el entorno cambia, usar los permisos mínimos del entorno sin pedir nuevamente autorización de alcance.
+- En la revisión actual hay acceso completo a archivos y red; Godot gráfico ya pudo lanzarse directamente desde comandos. Comprobar el contexto vigente si cambia de sesión, sin confundir permisos del entorno con autorización de alcance.
 
 ## Qué funciona ahora
 
@@ -39,11 +42,13 @@ Explorador con cámaras, edificios y marcadores. Terreno y puentes planos; no es
 - Articulado provisional de dos cuerpos, longitud nominal 18 m, carrocería de 2,55 m, tres ejes, cuatro puertas izquierdas (ocho hojas), cabina sencilla y fuelle flexible.
 - Blender editable: assets/source/articulado_prototipo.blend. GLB de juego: game/assets/vehicles/articulado_prototipo.glb. Generador original: tools/build_bus.py. Dimensiones de ensayo, no una réplica verificada de un fabricante.
 - `bus_motion.gd`: cinemática plana con enganche fuera del eje, reversa y límite de articulación de 60°, dirección que se modera con velocidad, freno y resistencia.
-- `bus_collision.gd`: barrido de traslación y solape final por pasos pequeños, cajas de los dos cuerpos y envolvente del fuelle. Obstáculos en capa 1. No hay suspensión ni contacto de ruedas con terreno 3D todavía.
+- `bus_collision.gd`: barrido de traslación y solape final por pasos pequeños, cajas de los dos cuerpos y envolvente del fuelle. `resolve` conserva avance tangencial al rozar el andén, comprobando la pose candidata; contacto frontal sigue deteniendo. `check` conserva comprobación estricta para pruebas. Obstáculos en capa 1. No hay suspensión ni contacto de ruedas con terreno 3D todavía.
 - `bus_visual.gd`: importación, cuerpos, ruedas, hojas de puertas y fuelle dinámico.
-- `practice_service.gd`: alineación de las cuatro puertas, tiempo de atención 4 s, cierre y salida 15 m.
+- `practice_service.gd`: alineación de las cuatro puertas, separación puerta-andén 0,025–0,90 m, error longitudinal hasta 1,20 m por puerta y rumbo del frente dentro de 6°. Son valores de ensayo, no normativa real. Tiempo de atención 4 s, cierre y salida 15 m.
 - `practice_world.gd` y `practice.gd`: pista, plataforma, controles, cámaras, HUD, pausa y reinicio.
-- Controles: W acelera, S frena, A/D gira, Espacio freno de mano, R avance/reversa estando detenido, P puertas detenido, C cámaras, Retroceso reinicia, Esc pausa, F2 mapa.
+- `driving_camera.gd`: tres vistas orientables; clic derecho + ratón mira, rueda acerca/aleja, V centra, Q/E mirada lateral rápida en cabina. La cámara exterior limita su posición ante obstáculos mediante un rayo; no es aún una solución exhaustiva para toda geometría de estación.
+- Controles: W acelera, S frena, A/D gira, Espacio freno de mano, R avance/reversa estando detenido, P puertas detenido, C cámaras, Retroceso reinicia, Esc pausa, F2 mapa; ratón, V y Q/E como se indica arriba.
+- Primera aplicación cozy en la pista: pintura mate, paleta del entorno, copas agrupadas, variación del suelo y HUD verde oscuro/crema. Se aplica en Godot; los materiales base del archivo Blender siguen siendo los originales del generador.
 - El bus NO está integrado en las calzadas reales. Sin pasajeros visibles, sonido, tráfico, espejos funcionales, selector de rutas oficiales, guardado de partida, pendientes ni streaming.
 
 ### Catálogo de rutas
@@ -52,21 +57,29 @@ El buscador oficial aportado por Daniel tiene una API pública. `tools/audit_rou
 
 Ver docs/RUTAS_INVESTIGACION.md. Falta importar secuencia de paradas y validar variantes, fechas y carriles. No se descargó GTFS vigente: el endpoint antiguo falló. La licencia de la API del buscador no se ha establecido; no heredar la de la cartografía. Ninguno de estos candidatos está ofrecido como servicio jugable.
 
+### Referencias y Mandalay
+
+Se inspeccionó visualmente la experiencia ferroviaria enlazada por Nick y la galería oficial de over the hill. De Givros se leyó la descripción, pero X exigió iniciar sesión para el vídeo completo; no afirmar que se revisaron su animación y acabado. Links y traducción a Bogotá en docs/DIRECCION_VISUAL.md.
+
+docs/ESTACION_MANDALAY.md registra num_est 05101, punto oficial, longitud publicada 115,705 m, ancho publicado 3 m y dos vagones. El significado geométrico del ancho/longitud sigue pendiente. El visor de planos identifica TM0082, pero sus enlaces de imagen devolvieron 404 y una reconsulta de la API por urllib dio 403. La tabla oficial de 2019 sirve como antecedente, no para rotular operación de 2026. El principal contrastó los atributos con la instantánea local y la fecha de la nota oficial. Aún no se construyó el modelo detallado de la estación.
+
 ## Comprobaciones completadas
 
 - Python geográfico: 2 pruebas, escala cardinal de 1 km y triangulación cóncava con patio.
 - Godot conducción: **19/19 comprobaciones**. Círculo delantero contrastado con radio teórico y remolque con radio interior independiente, límite/reanudación de articulación, puertas, parada y barreras de 5 cm delante y detrás.
+- Comentarios del usuario: **12/12 comprobaciones**, en test_player_feedback.gd. Roce lateral diez segundos: unos 39,9 m de avance a 4 m/s, sin solape final de las tres envolventes; puede separarse girando hacia fuera. Impacto frontal sigue deteniendo, margen de parada acepta/rechaza los casos previstos y cámara permite orientar/centrar.
 - Integración de escena: PASS. Importa cuerpos y ocho hojas, se aproxima automáticamente a la plataforma usando sus colisiones, atiende la parada y abre las hojas visuales.
 - Carga headless de escena principal: PRACTICE_READY. Captura nativa sobre OpenGL/Metal M3 Pro: PRACTICE_CAPTURE_COMPLETE. Se inspeccionaron docs/preview_practica.png, preview_cabina.png y preview_puertas.png; muestran vistas distintas, el bus completo y puertas abiertas.
-- Las pruebas no constituyen aún validación de conducción por puentes reales o ensayos largos de rendimiento. Daniel puede probar los controles para ajustar sensación.
+- Capturas actualizadas tras los ajustes visuales en work/cozy_capture.log, PRACTICE_CAPTURE_COMPLETE. Las pruebas no constituyen aún validación de conducción por puentes reales ni ensayos largos de rendimiento. La próxima revisión de Daniel se reservará para un hito integrado.
 
 ## Próximo trabajo concreto
 
-1. Tomar una estación del piloto, preferiblemente Mandalay, y reunir planos/fotografías actuales y medidas de andén, vagones, puertas y carriles. Consultar el enlace de planos de estaciones descubierto en el cliente del buscador. No inventar la etiqueta A/B o su compatibilidad.
+1. Continuar desde docs/ESTACION_MANDALAY.md: obtener cotas y referencias actuales para interpretar andén, vagones, puertas y carriles. Los enlaces concretos de imágenes del visor fallaron; investigar otras fuentes oficiales o referencias de calle. No repetir a ciegas el catálogo ni inventar A/B o compatibilidad.
 2. Construir una primera sección BRT física en metros, con niveles y anchos comprobados, y conectar el bus a ella. No habilitar el cruce de Boyacá hasta revisar puente, rampas y continuidad.
 3. Introducir datos configurables de vehículo y anclajes, antes de multiplicar variantes. El prototipo tiene constantes de ensayo en motion y service; al usar una variante real deben migrar a una especificación compartida.
 4. Integrar un pequeño recorrido entre paradas del piloto, con selector de práctica, próxima parada y guardado. Patrón real solo cuando se compruebe toda la cobertura necesaria.
-5. Mejorar un segmento visto desde la cabina: materiales, plataforma y fachadas cercanas. Priorizar reconocimiento y operación sobre decorar todo el recorte.
+5. Aplicar la dirección cozy a esa sección como un conjunto: materiales, plataforma y fachadas cercanas. Preservar escala y reconocimiento; revisar desde cabina y exterior y medir rendimiento.
+6. Con el grafo y los anclajes definidos, introducir un NPC en circuito según docs/IA_DE_BUSES.md antes de extenderlo a servicios reales. Mantener este trabajo como una fase explícita, no declarar tráfico existente.
 
 ## Ejecución y limitaciones del entorno
 
@@ -74,11 +87,12 @@ Desde la raíz del proyecto, usar Godot absoluto en vez de depender del PATH:
 
 ```sh
 ../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_driving.gd
+../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_player_feedback.gd
 ../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_practice_scene.gd -- --keep-running
 ../../work/venv/bin/python -m unittest discover -s tests -v
 ```
 
-Blender genera el modelo con `Blender -b -t 2 --python tools/build_bus.py`. En el entorno de comandos restringido, Blender falló al inicializar Metal y Godot gráfico al conectar con WindowServer. Ambos funcionan al lanzar sus scripts .command desde Finder mediante CUA. Scripts de sesión: work/build_bus.command, work/preview_practice.command y work/preview.command. Para abrir un archivo fuera de pantalla en Finder: Ir a carpeta → ruta exacta → Return → Cmd+O. No depender de una acción AX que no cambie de archivo seleccionado.
+Blender genera el modelo con `Blender -b -t 2 --python tools/build_bus.py`. En un entorno restringido previo, Blender falló al inicializar Metal y Godot gráfico al conectar con WindowServer; sus scripts .command funcionaron desde Finder mediante CUA. Con los permisos actuales, Godot gráfico ya se ejecutó directamente desde comandos y guardó las tres capturas con `-- --capture-practice`. No asumir que aquel fallo sigue vigente. Scripts auxiliares de sesión: work/build_bus.command, work/preview_practice.command y work/preview.command.
 
 No desactivar protecciones. Capturas nativas de CUA fallaron antes; el propio viewport de Godot guarda PNG revisables. No cerrar terminales/aplicaciones del usuario. Los recursos .godot y copias .blend1 no se versionan.
 

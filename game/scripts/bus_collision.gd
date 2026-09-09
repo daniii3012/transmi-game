@@ -27,6 +27,9 @@ func poses(state: Dictionary) -> Array[Transform3D]:
 		Transform3D(Basis.IDENTITY, Vector3(hinge.x, 1.7, hinge.y))]
 
 func check(old: Dictionary, proposed: Dictionary) -> String:
+	return str(contact(old, proposed).get("body", ""))
+
+func contact(old: Dictionary, proposed: Dictionary) -> Dictionary:
 	var before := poses(old)
 	var after := poses(proposed)
 	for i in shapes.size():
@@ -38,9 +41,38 @@ func check(old: Dictionary, proposed: Dictionary) -> String:
 		query.motion = after[i].origin - before[i].origin
 		var fractions := space.cast_motion(query)
 		if fractions.size() == 2 and fractions[0] < 0.9999:
-			return "front" if i == 0 else ("rear" if i == 1 else "joint")
+			query.transform.origin += query.motion * minf(1.0, fractions[1] + 0.005)
+			query.motion = Vector3.ZERO
+			return _contact_info(query, i)
 		query.motion = Vector3.ZERO
 		query.transform = after[i]
 		if not space.intersect_shape(query, 1).is_empty():
-			return "front" if i == 0 else ("rear" if i == 1 else "joint")
-	return ""
+			return _contact_info(query, i)
+	return {}
+
+func _contact_info(query: PhysicsShapeQueryParameters3D, body_index: int) -> Dictionary:
+	var info := space.get_rest_info(query)
+	var normal: Vector3 = info.get("normal", Vector3.ZERO)
+	return {"body": ["front", "rear", "joint"][body_index],
+		"normal": Vector2(normal.x, normal.z).normalized()}
+
+func resolve(old: Dictionary, proposed: Dictionary) -> Dictionary:
+	var hit := contact(old, proposed)
+	if hit.is_empty(): return {"state": proposed, "sliding": false}
+	var movement: Vector2 = proposed.p - old.p
+	var normal: Vector2 = hit.normal
+	# Keep tangential travel at a glancing contact, with no artificial friction.
+	# A frontal impact still stops. Never accept an unchecked translated/rotated pose.
+	if movement.length() > 0.000001 and normal.length() > 0.9:
+		var incidence := absf(movement.normalized().dot(normal))
+		if incidence < 0.75:
+			var tangent := movement - normal * minf(movement.dot(normal), 0.0)
+			var trailer: float = old.t + tangent.dot(Motion.right(old.t)) / Motion.TRAILER_WHEELBASE
+			var slide := {"p": old.p + tangent, "h": old.h, "t": trailer}
+			if tangent.length() > movement.length() * 0.25 and check(old, slide).is_empty():
+				return {"state": slide, "sliding": true}
+			# Contact can temporarily constrain trailer rotation as well as front yaw.
+			slide.t = old.t
+			if tangent.length() > movement.length() * 0.25 and check(old, slide).is_empty():
+				return {"state": slide, "sliding": true}
+	return {"blocked": hit.body}

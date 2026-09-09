@@ -1,14 +1,14 @@
 # Plan de desarrollo de Bogotá Transmi
 
-Versión 0.2 · 9 de septiembre de 2026 · Proyecto personal de Daniel.
+Versión 0.3 · 9 de septiembre de 2026 · Proyecto personal de Daniel.
 
 ## 1. Experiencia que construiremos
 
 Un simulador arcade en primera y tercera persona donde sea agradable conducir buses reconocibles de TransMilenio por corredores reales de Bogotá. Distancias, anchos y tamaño de los vehículos deben conservar escala métrica. La apariencia deberá hacer reconocible la ciudad desde la cabina: disposición de vías, estaciones, separadores, puentes, fachadas cercanas, señalización y cerros cuando corresponda.
 
-La fidelidad geométrica y el acabado visual son objetivos diferentes. Mantendremos las distancias reales sin exigir que cada fachada o negocio de toda Bogotá se modele individualmente. Los edificios cercanos al recorrido reciben más atención; los del fondo pueden generarse con reglas y niveles de detalle.
+La dirección visual confirmada es **Bogotá cozy a escala real**: formas suaves con volumen, materiales mate, paleta contenida, luz cuidada y detalle selectivo. over the hill y las referencias de Nick y Givros orientan ese acabado; su análisis y límites de acceso están en [DIRECCION_VISUAL.md](DIRECCION_VISUAL.md). La fidelidad geométrica y el acabado visual son objetivos diferentes. Conservaremos distancias y proporciones; los edificios cercanos reciben más atención y los del fondo pueden generarse con reglas y niveles de detalle. La sensación íntima se busca con composición y materiales; no se comprimen kilómetros ni tiempos de recorrido a igual velocidad.
 
-El objetivo final es un **Bus Simulator centrado en Bogotá y en todo el sistema BRT de TransMilenio**. Prioridad: escala real, amplitud de la red y operación de buses, con un acabado visual agradable y sostenible. El usuario contempla publicarlo en el futuro si alcanza un buen desarrollo; hoy seguimos construyendo el proyecto personal, sin lanzar una distribución. La primera plataforma será su Mac; el diseño conservará la posibilidad de exportar a Windows más adelante. La experiencia inicial será para una persona, sin conexión permanente. No incluimos de inicio multijugador, economía de operadores, interior de toda la ciudad, simulación mecánica exhaustiva ni todos los servicios del SITP.
+El objetivo final es un **Bus Simulator centrado en Bogotá y en todo el sistema BRT de TransMilenio**. Prioridad: escala real, amplitud de la red y operación de buses, con un acabado visual agradable y sostenible. El usuario contempla publicarlo en el futuro si alcanza un buen desarrollo; hoy seguimos construyendo el proyecto personal, sin lanzar una distribución. La primera plataforma será su Mac; el diseño conservará la posibilidad de exportar a Windows más adelante. El juego será exclusivamente para un jugador y funcionará sin conexión permanente. Otros buses recorrerán rutas mediante IA local. Multijugador queda fuera del alcance del proyecto; economía de operadores, interiores de toda la ciudad, simulación mecánica exhaustiva y todos los servicios zonales tampoco son requisitos.
 
 ## 2. Alcance geográfico acordado
 
@@ -62,6 +62,8 @@ La capa descargada de estaciones incluye campos de longitud, ancho y número de 
 
 Primera mecánica: detectar aproximación, detenerse dentro de una tolerancia, permitir abrir las puertas del lado correcto, esperar un tiempo sencillo de intercambio y cerrar antes de salir. Pasajeros visibles y filas se añaden después de que la conducción y la parada funcionen.
 
+Daniel probó la pista y pidió más margen de alineación. La práctica ya acepta separación al andén de 0,025 a 0,90 m y error longitudinal de hasta 1,20 m por puerta, verificando todas las puertas. Son parámetros de accesibilidad del ensayo, no una norma real de abordaje. Al construir estaciones verificadas pasarán a configuración por punto de parada. [Mandalay](ESTACION_MANDALAY.md) ya tiene una ficha de datos publicados y cotas pendientes; su geometría detallada aún no está construida.
+
 ## 6. Rutas y operación
 
 No necesitamos copiar manualmente toda la red. Diseñaremos un importador GTFS para rutas, viajes, paradas ordenadas, trazados y calendarios. Antes de usar un paquete se verificarán su fecha de servicio, archivos completos, identificadores, horas posteriores a medianoche y variantes por sentido. El paquete probado aún no se pudo descargar y su ficha antigua no garantiza vigencia. [Catálogo GTFS](https://datosabiertos.bogota.gov.co/en/dataset/especificacion-gtfs-general-transport-feed-specification-sitp).
@@ -70,7 +72,7 @@ La red física de carriles será independiente de las rutas comerciales. GTFS pu
 
 El [buscador oficial de rutas](https://buscador-rutas.transmilenio.gov.co/rutas) aportado por Daniel se añade como referencia de consulta y contraste. No clasificar servicios solo con una expresión regular de letra y dos dígitos: distinguir troncales, servicios fáciles, duales y zonales mediante datos oficiales y vigencia. La enumeración actual de rutas fáciles está pendiente de verificar. No tratar toda ruta SITP como parte del alcance jugable.
 
-Primero habrá conducción libre por el tramo; después un servicio de prueba entre las estaciones verificadas. Incorporar un servicio con nombre real exigirá comprobar su secuencia de paradas y vigencia. Los horarios estrictos, despachos y tráfico de buses son ampliaciones posteriores.
+Primero habrá conducción libre por el tramo; después un servicio de prueba entre las estaciones verificadas. Incorporar un servicio con nombre real exigirá comprobar su secuencia de paradas y vigencia. La IA de otros buses es parte del alcance final: seguirá carriles y servicios, hará paradas, operará puertas, mantendrá separación y formará colas. Primero se comprobará un NPC en un circuito, después varios buses y finalmente despachos reales sobre la red validada. La simulación lejana conservará estados de viaje para limitar el coste. Arquitectura, recuperación de bloqueos y aceptación: [IA_DE_BUSES.md](IA_DE_BUSES.md). Está planificada, no implementada todavía.
 
 ## 7. Vehículos y conducción
 
@@ -81,6 +83,8 @@ Propuesta de dos vehículos iniciales: un articulado troncal reconocible y uno d
 Las físicas incluirán aceleración y frenado progresivos, resistencia al avance, dirección que se modera con la velocidad, marcha atrás, límites de articulación, detección de colisiones y un comportamiento estable sobre pendientes. Se comprobará el espacio que barre la cola al girar y al retroceder. Animar visualmente un fuelle sin que el remolque siga una trayectoria coherente no es suficiente.
 
 Controles iniciales: teclado y ratón; después mando si se desea. Cámaras: conductor, seguimiento y exterior libre. Puertas izquierda/derecha cuando corresponda, interbloqueo de movimiento con puertas abiertas, luces, reversa y sonido básico. Suspensión compleja, daños, baterías exhaustivas y simulación de cada componente mecánico quedan fuera de la primera versión.
+
+Se incorporó el comentario de Daniel sobre contacto con el andén: los roces laterales permiten deslizar sin un frenado artificial completo; los impactos frontales siguen bloqueando y toda posición aceptada se comprueba contra obstáculos. Las tres cámaras de conducción admiten orientación con ratón, zoom y centrado, con mirada lateral rápida en cabina. Son mejoras comprobadas en la pista plana; no equivalen aún a una física de suspensión o pendientes.
 
 ## 8. Bogotá actual y obras
 
@@ -97,17 +101,19 @@ Separaremos la geometría duradera de la capa de obra: barreras, carriles habili
 | Hito | Entregable | Se considera terminado cuando… |
 |---|---|---|
 | 0. Investigación y base | Este plan, fuentes, datos y explorador | Completado: datos descargados, escala comprobada y vistas general/cercana revisadas. |
-| 1. Conducción de prueba | Bus articulado provisional sobre pista métrica | Primera entrega implementada y comprobada en pista plana: conducción, cámaras, puertas, articulación y barreras. Ver PRUEBA_DE_CONDUCCION.md; falta criterio de manejo del usuario y pruebas en pendientes. |
+| 1. Conducción de prueba | Bus articulado provisional sobre pista métrica | Implementada, probada por Daniel y ajustada con sus observaciones: roce lateral, cámara orientable y mayor tolerancia. 19 comprobaciones base, 12 de ajustes e integración aprobadas. Las pendientes pertenecen a la integración posterior. Ver PRUEBA_DE_CONDUCCION.md. |
 | 2. Primer tramo | Calzadas transitables y una estación del piloto | Se puede completar aproximación, alineación, apertura, cierre y salida en ambos sentidos; niveles y anchos están verificados. |
-| 3. Recorrido reconocible | Tres estaciones y edificios cercanos del recorte | Se conduce de extremo a extremo sin huecos de colisión ni bloqueos; los accesos y señales corresponden al tramo. |
+| 3. Recorrido reconocible | Tres estaciones y edificios cercanos del recorte | Se conduce de extremo a extremo sin huecos de colisión ni bloqueos; los accesos y señales corresponden al tramo. Se introduce un NPC en ensayo sobre el pequeño grafo ya validado. |
 | 4. Primer bus definitivo | Carrocería, cabina, materiales y audio | Dimensiones y disposición de puertas/ejes contrastadas con referencias de una variante; manejo aprobado por Daniel. |
 | 5. Américas y obras | Extensión hacia el nodo Carrera 50 y Calle 13 | Obras y desvíos documentados; conexiones transitables; carga por sectores sin pausas graves. |
 | 6. Red prioritaria | NQS, Calle 26, centro y Séptima; segundo bus | Continuidad entre corredores y operación dual comprobada en las zonas correspondientes. |
-| 7. Operación de red | Selección de bus, servicio, sentido y fecha; pasajeros básicos, tráfico y guardado | Se completa un servicio verificado con progreso persistente y sin atravesar sectores pendientes. |
+| 7. Operación de red | Selección de bus, servicio, sentido y fecha; pasajeros básicos, buses NPC y guardado | Jugador y NPC completan servicios verificados; colas e intersecciones sin solapes, estado persistente y simulación lejana coherente. No se atraviesan sectores pendientes. |
 | 8. Sistema completo | Expansión por paquetes al resto de troncales, portales y conexiones | Inventario de cobertura y rutas comprobado por zona; mundo cargado por sectores, no simultáneamente. |
 | 9. Calidad y posible distribución | Rendimiento, accesibilidad, instaladores y revisión de recursos | Recorridos estables; recursos con procedencia y permisos claros. Publicación sujeta a una decisión posterior del usuario. |
 
 Trabajaremos por resultados comprobables, sin prometer que un corredor detallado cabe en una sesión. La mayor incertidumbre está en referencias actuales, puentes y estaciones especiales; dibujar volumen general a partir de datos es más automatizable. Primero medir tiempo y rendimiento del tramo, después estimar las expansiones con esa experiencia.
+
+Daniel pidió evitar ciclos constantes de prueba manual y corrección puntual. Los cambios pequeños se integrarán y comprobarán internamente; las revisiones con él se concentrarán en hitos completos de conducción, entorno y operación.
 
 ## 10. Rendimiento, calidad y riesgos
 
@@ -119,8 +125,10 @@ Los riesgos principales son datos de épocas distintas, falta de detalle de esta
 
 El asistente se encarga de investigación, herramientas, código, conversión de datos, modelado, pruebas y documentación. Daniel aporta criterio sobre la experiencia de conducción y el reconocimiento de lugares y buses. No necesita aprender Blender o descargar datos manualmente para empezar. Si aparece un permiso del sistema o un detalle que no pueda verificarse con fuentes disponibles, se pedirá únicamente lo necesario en ese momento.
 
+Está autorizado repartir investigación delimitada, fichas y normalización a agentes ligeros, con contexto mínimo y revisión del principal. Física, arquitectura, modelado e integración central permanecen bajo responsabilidad del principal. La guía [TRABAJO_CON_AGENTES.md](TRABAJO_CON_AGENTES.md) define paquetes, límites de escritura y criterios de entrega. Ya se aplicó a la ficha de Mandalay; no se promete un ahorro porcentual de la cuota de cinco horas.
+
 Al cerrar cada sesión: actualizar CONTINUAR.md con decisiones, resultado comprobado, problemas abiertos, archivos y próxima tarea; conservar una versión recuperable. Las referencias nuevas del usuario se incorporan al alcance existente. El trabajo continúa en sesiones activas; no se ha configurado ejecución automática ni publicación.
 
 ## 12. Diseño ampliado
 
-Ver [SISTEMAS_Y_HOJA_DE_RUTA.md](SISTEMAS_Y_HOJA_DE_RUTA.md) para el ciclo de juego, dependencias y entregas. Ver [DIRECCION_VISUAL.md](DIRECCION_VISUAL.md) para el presupuesto de detalle. Estas decisiones incorporan la aclaración del 9 de septiembre: escala y experiencia de Bus Simulator antes que gráficos complejos.
+Ver [SISTEMAS_Y_HOJA_DE_RUTA.md](SISTEMAS_Y_HOJA_DE_RUTA.md) para el ciclo de juego, dependencias y entregas. Ver [DIRECCION_VISUAL.md](DIRECCION_VISUAL.md) para el acabado cozy y presupuesto de detalle. Estas decisiones incorporan las aclaraciones del 9 de septiembre: escala 1:1, experiencia de Bus Simulator, un solo jugador, otros buses con IA local y trabajo por hitos.

@@ -1,12 +1,12 @@
 # Bogotá Transmi
 
-Simulador de buses de Bogotá: meta final de todo el sistema BRT de TransMilenio, escala métrica real y conducción accesible. Desarrollo por etapas, con prioridad en la escala y la operación. Primera sesión: 8 de septiembre de 2026, hora de Bogotá.
+Simulador de buses de Bogotá para un solo jugador: meta final de todo el sistema BRT de TransMilenio, mapa a escala 1:1, conducción accesible y dirección visual cozy. Desarrollo por etapas, con prioridad en la escala y la operación. Primera sesión: 8 de septiembre de 2026, hora de Bogotá.
 
 **Respaldo del proyecto:** [daniii3012/transmi-game](https://github.com/daniii3012/transmi-game). Para continuar, leer primero [CONTINUAR.md](CONTINUAR.md). El documento principal es [PLAN_DEL_PROYECTO.md](docs/PLAN_DEL_PROYECTO.md).
 
 ## Qué existe hoy
 
-- **Primera pista conducible:** articulado de 18 m provisional, reversa, puertas, cámaras, colisiones y ciclo de parada. Modelo editable de Blender incluido.
+- **Primera pista conducible:** articulado de 18 m provisional, reversa, puertas, cámaras orientables, deslizamiento al rozar el andén y ciclo de parada con tolerancia ampliada. Modelo editable de Blender incluido.
 - Proyecto nativo de Godot 4.7.2 y explorador de cámara libre de un recorte de Américas: Mandalay, Av. Américas–Av. Boyacá y Marsella.
 - Descarga reproducible de seis capas oficiales, con licencias, metadatos, identificadores y comprobaciones SHA-256.
 - Conversión de polígonos reales de calzadas, andenes, separadores y construcciones a una escena 3D de unas 301.000 caras triangulares.
@@ -28,6 +28,9 @@ Controles: **1** vista general; **2/3/4** estaciones; **WASD o flechas** mover; 
 - [Plan del proyecto](docs/PLAN_DEL_PROYECTO.md)
 - [Sistemas y hoja de ruta hacia toda la red BRT](docs/SISTEMAS_Y_HOJA_DE_RUTA.md)
 - [Dirección visual y prioridades](docs/DIRECCION_VISUAL.md)
+- [IA local de buses y etapas de tráfico](docs/IA_DE_BUSES.md) — planificada
+- [Investigación de Mandalay](docs/ESTACION_MANDALAY.md)
+- [Trabajo con agentes ligeros](docs/TRABAJO_CON_AGENTES.md)
 - [Fuentes y límites de los datos](docs/FUENTES.md)
 - [Buses y referencias visuales](docs/BUSES_Y_REFERENCIAS.md)
 - [Arquitectura propuesta](docs/ARQUITECTURA.md)

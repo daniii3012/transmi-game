@@ -10,6 +10,8 @@ var heading := 0.0
 var forward := Vector2(0,-1)
 var right := Vector2(1,0)
 var door_targets: Array[Vector2] = []
+var vehicle_spec_sha256 := ""
+var vehicle_door_ids: Array = []
 var departure_m := 25.0
 var dwell := 0.0
 var served := false
@@ -17,6 +19,8 @@ var completed := false
 var message := "Acércate a Mandalay"
 
 func _init(stop: Dictionary) -> void:
+	vehicle_spec_sha256 = stop.get("vehicle_spec_sha256", "")
+	vehicle_door_ids = stop.get("vehicle_door_ids", [])
 	target = Vector2(stop.position[0],stop.position[1])
 	heading = stop.heading
 	forward = Motion.forward(heading)
@@ -25,17 +29,17 @@ func _init(stop: Dictionary) -> void:
 	for p in stop.doors: door_targets.append(Vector2(p[0],p[1]))
 
 func door_positions(motion) -> Array[Vector2]:
-	var anchors: Array[Vector2] = []
-	for z in [-4.6,-.9]:
-		anchors.append(motion.position-Motion.forward(motion.heading)*z-Motion.right(motion.heading)*1.275)
-	for z in [2.0,5.9]:
-		anchors.append(motion.hinge()-Motion.forward(motion.trailer_heading)*z-Motion.right(motion.trailer_heading)*1.275)
-	return anchors
+	return motion.door_positions()
 
 func longitudinal_error(motion) -> float:
 	return (target-motion.position).dot(forward)
 
 func aligned(motion) -> bool:
+	# Authored practice gates must not silently move when the vehicle definition changes.
+	if not vehicle_spec_sha256.is_empty() and vehicle_spec_sha256 != motion.spec.source_sha256: return false
+	var ids: Array = []
+	for door in motion.spec.straight_doors(): ids.append(door.id)
+	if not vehicle_door_ids.is_empty() and ids != vehicle_door_ids: return false
 	if absf(motion.speed) > .05 or absf(wrapf(motion.heading-heading,-PI,PI)) > deg_to_rad(6): return false
 	var anchors := door_positions(motion)
 	if door_targets.size() != anchors.size(): return false

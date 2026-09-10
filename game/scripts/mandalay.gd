@@ -48,6 +48,7 @@ func _choose_stop(index: int) -> void:
 
 func _ready() -> void:
 	super._ready()
+	if bus == null or not bus.ready_ok: return
 	ui.get_child(0).custom_minimum_size.y = 155
 	direction_label = label(ui,"",16,"e8c989")
 	direction_label.position = Vector2(47,137)

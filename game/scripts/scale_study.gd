@@ -172,9 +172,12 @@ func _build_row(variant: Dictionary, row: int) -> void:
 		sign_text(["Mandalay","Boyacá*","Marsella"][i],p+Vector3(0,22,-26))
 	var first: Dictionary = variant.stations[0]
 	var bus_pose := pose_at(variant,float(first.game_m)+28)
-	var bus = Visual.new()
-	add_child(bus)
 	var motion = Motion.new()
+	var bus = Visual.new(motion.spec)
+	add_child(bus)
+	if not bus.ready_ok:
+		get_tree().quit(1)
+		return
 	var bus_p := world_point(bus_pose.position,row)
 	motion.reset(Vector2(bus_p.x,bus_p.z),atan2(float(bus_pose.tangent[0]),-float(bus_pose.tangent[1])))
 	bus.sync(motion,0)

@@ -52,11 +52,11 @@ func _run() -> void:
 	m.reset(Vector2.ZERO)
 	m.speed = 6
 	m.steering = deg_to_rad(25)
-	var radius := Motion.WHEELBASE / tan(m.steering)
+	var radius: float = m.spec.wheelbase / tan(m.steering)
 	for i in 3600: m.advance(1.0/60)
 	var expected := Vector2(radius*(1-cos(m.heading)),-radius*sin(m.heading))
 	check(m.position.distance_to(expected) < .02,"círculo delantero coincide con radio geométrico")
-	var trailer_radius := sqrt(radius*radius+Motion.HITCH_OFFSET**2-Motion.TRAILER_WHEELBASE**2)
+	var trailer_radius: float = sqrt(radius*radius+m.spec.hitch_offset**2-m.spec.trailer_wheelbase**2)
 	check(absf(m.trailer_axle().distance_to(Vector2(radius,0))-trailer_radius) < .04,"remolque converge a radio interior independiente")
 	m.reset(Vector2.ZERO)
 	m.gear = -1
@@ -64,7 +64,7 @@ func _run() -> void:
 	for i in 1200:
 		m.control(1.0/60,1,0,1,false)
 		m.advance(1.0/60)
-	check(absf(m.articulation()) <= Motion.MAX_ARTICULATION and absf(m.articulation()) > deg_to_rad(55),"límite de articulación en reversa")
+	check(absf(m.articulation()) <= m.spec.max_articulation and absf(m.articulation()) > deg_to_rad(55),"límite de articulación en reversa")
 	m.speed = 0
 	m.toggle_gear()
 	for i in 300:

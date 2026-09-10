@@ -2,7 +2,6 @@ extends RefCounted
 ## A fixture, not a real commercial route. Door anchors are independently checked.
 const Motion = preload("res://scripts/bus_motion.gd")
 const STOP := Vector2(0, -45)
-const DOOR_Z := [-4.6, -0.9, 4.7, 8.6]
 const DWELL_SECONDS := 4.0
 const PLATFORM_EDGE_X := -1.65
 const MIN_GAP_M := 0.025
@@ -19,13 +18,10 @@ func longitudinal_error(motion) -> float:
 func aligned(motion) -> bool:
 	if absf(motion.speed) > 0.05 or absf(wrapf(motion.heading,-PI,PI)) > deg_to_rad(6):
 		return false
-	var anchors: Array[Vector2] = []
-	for z in [-4.6, -0.9]:
-		anchors.append(motion.position - Motion.forward(motion.heading) * z - Motion.right(motion.heading) * 1.275)
-	for z in [2.0, 5.9]:
-		anchors.append(motion.hinge() - Motion.forward(motion.trailer_heading) * z - Motion.right(motion.trailer_heading) * 1.275)
+	var anchors: Array[Vector2] = motion.door_positions()
+	var targets: Array[Dictionary] = motion.spec.straight_doors()
 	for i in anchors.size():
-		var target := STOP + Vector2(-1.275, DOOR_Z[i])
+		var target := STOP + Vector2(targets[i].x_m,targets[i].z_m)
 		var gap := anchors[i].x - PLATFORM_EDGE_X
 		if gap < MIN_GAP_M or gap > MAX_GAP_M or absf(anchors[i].y-target.y) > LONGITUDINAL_TOLERANCE_M:
 			return false

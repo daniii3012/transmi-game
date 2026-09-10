@@ -1,5 +1,7 @@
 extends Camera3D
 ## Mouse-look is independent from vehicle steering. All driving views are orientable.
+const Definition = preload("res://scripts/vehicle_definition.gd")
+var spec: Definition = Definition.new()
 var mode := 0
 var orbit_yaw := 0.445
 var orbit_pitch := 0.29
@@ -51,14 +53,14 @@ func look(delta: Vector2) -> void:
 
 func follow(bus_front: Node3D, dt: float, space: PhysicsDirectSpaceState3D) -> void:
 	if mode == 1:
-		position = bus_front.to_global(Vector3(-.64,2.34,-6.05))
+		position = bus_front.to_global(spec.vector(spec.data.camera.driver_eye_m))
 		var glance := 0.0
 		if Input.is_physical_key_pressed(KEY_Q): glance -= 1.35
 		if Input.is_physical_key_pressed(KEY_E): glance += 1.35
 		var direction := Vector3(0,0,-1).rotated(Vector3.RIGHT,cabin_look.y).rotated(Vector3.UP,-cabin_look.x-glance)
 		look_at(position + bus_front.global_basis * direction,Vector3.UP)
 		return
-	var target := bus_front.to_global(Vector3(0,1.8,-.2))
+	var target := bus_front.to_global(spec.vector(spec.data.camera.follow_target_m))
 	var offset := Vector3(sin(orbit_yaw)*cos(orbit_pitch),sin(orbit_pitch),cos(orbit_yaw)*cos(orbit_pitch))*orbit_distance
 	var desired := target + bus_front.global_basis * offset
 	# Keep the exterior camera in front of opaque station walls/roofs.

@@ -1,5 +1,7 @@
 {
   "layout_version": "mandalay-local-v1",
+  "vehicle_id": "articulado_prototipo",
+  "vehicle_spec_sha256": "9e704ff0a63aa63a47e60fbf58cd91e3bc8d75ca4dc9db0aa402f562a1f7d393",
   "origin_lon_lat": [
     -74.14129817180734,
     4.630863657469235
@@ -17,9 +19,9 @@
   "practice_stops": 2,
   "buildings": 84,
   "omitted_building_features": 179,
-  "surface_join_area_m2": 58.58040552424952,
+  "surface_join_area_m2": 58.6784642657922,
   "surface_join_max_distance_m": 1.0,
-  "triangles": 6896,
+  "triangles": 6895,
   "source_hashes": {
     "data/raw/20260909T035301Z/roads.geojson": "5950a8a0c627088a0717f1ba0e70e1c986e898030cebd6a3fd2c4cddc6bdf02a",
     "data/raw/20260909T035301Z/sidewalks.geojson": "be896cfbe02b2581ec2e2b1fdcc03880d937285fc6d7d51b995092ea80269eed",

@@ -1,5 +1,7 @@
 extends Node3D
-const MODEL = preload("res://assets/vehicles/articulado_prototipo.glb")
+const Definition = preload("res://scripts/vehicle_definition.gd")
+var spec: Definition
+var ready_ok := false
 const Motion = preload("res://scripts/bus_motion.gd")
 var front: Node3D
 var rear: Node3D
@@ -11,11 +13,18 @@ var model: Node3D
 var wheel_angle := 0.0
 var finish_cache: Dictionary = {}
 
+func _init(definition = null) -> void:
+	spec = Definition.new() if definition == null else definition
+
 func _ready() -> void:
-	model = MODEL.instantiate()
+	var error: String = spec.asset_error()
+	if not error.is_empty():
+		push_error(error)
+		return
+	model = load(spec.data.model_path).instantiate()
 	add_child(model)
-	front = model.find_child("Front", true, false)
-	rear = model.find_child("Rear", true, false)
+	front = model.find_child(spec.front.node_name, true, false)
+	rear = model.find_child(spec.rear.node_name, true, false)
 	_collect(model)
 	rubber.albedo_color = Color("444c51")
 	rubber.roughness = 0.95
@@ -27,10 +36,11 @@ func _ready() -> void:
 	sign_label.text = "PRÁCTICA"
 	sign_label.font_size = 40
 	sign_label.pixel_size = 0.0025
-	sign_label.position = Vector3(0, 2.87, -7.385)
+	sign_label.position = Vector3(0, 2.87, float(spec.front.z_min_m)+.015)
 	sign_label.rotation.y = PI
 	sign_label.modulate = Color("ffca62")
 	front.add_child(sign_label)
+	ready_ok = true
 
 func _collect(node: Node) -> void:
 	if node is MeshInstance3D:
@@ -52,20 +62,21 @@ func _collect(node: Node) -> void:
 					finish_cache[key] = finish
 				node.set_surface_override_material(i,finish_cache[key])
 	if node.name.begins_with("Door_"):
-		doors.append({"node":node, "base":node.position.z, "sign":-1 if "minus" in str(node.name) else 1})
+		doors.append({"id":str(node.name).trim_prefix("Door_").trim_suffix("_minus").trim_suffix("_plus"), "node":node, "base":node.position.z, "sign":-1 if "minus" in str(node.name) else 1})
 	if node.name.begins_with("SteerWheel") or node.name.begins_with("Wheel"):
 		wheels.append(node)
 	for child in node.get_children(): _collect(child)
 
 func sync(motion, dt: float) -> void:
+	assert(motion.spec.source_sha256 == spec.source_sha256,"Motion and model must use the same vehicle definition")
 	front.position = Vector3(motion.position.x, 0, motion.position.y)
 	front.rotation.y = -motion.heading
 	var hinge: Vector2 = motion.hinge()
 	rear.position = Vector3(hinge.x, 0, hinge.y)
 	rear.rotation.y = -motion.trailer_heading
 	for door in doors:
-		door.node.position.z = door.base + door.sign * 0.59 * motion.doors_fraction
-	wheel_angle += motion.speed * dt / 0.51
+		door.node.position.z = door.base + door.sign * float(spec.data.door_motion.stroke_m) * motion.doors_fraction
+	wheel_angle += motion.speed * dt / float(spec.data.wheels.radius_m)
 	for wheel in wheels:
 		wheel.rotation.y = -motion.steering if wheel.name.begins_with("SteerWheel") else 0.0
 		# The wheel pivots own the tire and hub; rotate children without changing axle position.
@@ -74,8 +85,8 @@ func sync(motion, dt: float) -> void:
 	_update_joint()
 
 func _update_joint() -> void:
-	var a := front.to_global(Vector3(0, 0, 2.17))
-	var b := rear.to_global(Vector3(0, 0, 0.53))
+	var a := front.to_global(Vector3(0, 0, float(spec.front.z_max_m)-.03))
+	var b := rear.to_global(Vector3(0, 0, float(spec.rear.z_min_m)+.03))
 	var surface := SurfaceTool.new()
 	surface.begin(Mesh.PRIMITIVE_TRIANGLES)
 	var rings: Array[PackedVector3Array] = []
@@ -83,7 +94,7 @@ func _update_joint() -> void:
 		var t := float(i) / 12.0
 		var center := a.lerp(b, t)
 		var basis := front.global_basis.slerp(rear.global_basis, t)
-		var w := 1.22 + (0.055 if i % 2 == 0 else -0.02)
+		var w: float = spec.width*.5-.055 + (0.055 if i % 2 == 0 else -0.02)
 		var top := 3.05 + (0.035 if i % 2 == 0 else -0.01)
 		var ring := PackedVector3Array()
 		for corner in [Vector3(-w, 1.02, 0), Vector3(-w, top, 0), Vector3(w, top, 0), Vector3(w, 1.02, 0)]:
@@ -93,6 +104,6 @@ func _update_joint() -> void:
 		for j in range(4):
 			var k := (j + 1) % 4
 			for vertex in [rings[i][j], rings[i+1][j], rings[i+1][k], rings[i][j], rings[i+1][k], rings[i][k]]:
-				surface.add_vertex(vertex)
+				surface.add_vertex(to_local(vertex))
 	surface.generate_normals()
 	joint_mesh.mesh = surface.commit()

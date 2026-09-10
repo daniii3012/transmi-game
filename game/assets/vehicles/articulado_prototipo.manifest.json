@@ -1,0 +1,38 @@
+{
+  "vehicle_id": "articulado_prototipo",
+  "vehicle_revision": 1,
+  "vehicle_spec_sha256": "9e704ff0a63aa63a47e60fbf58cd91e3bc8d75ca4dc9db0aa402f562a1f7d393",
+  "model_sha256": "abff9f36c5c6749291996a2843f1662db2816763ebaabdb4728cbbfa2b35386c",
+  "generator": "tools/build_bus.py",
+  "status": "design_estimate",
+  "nominal_bounds_z_m": [
+    -7.4,
+    10.600000000000001
+  ],
+  "doors": [
+    {
+      "id": "front_1",
+      "module": "front",
+      "x_m": -1.275,
+      "z_m": -4.6
+    },
+    {
+      "id": "front_2",
+      "module": "front",
+      "x_m": -1.275,
+      "z_m": -0.9
+    },
+    {
+      "id": "rear_1",
+      "module": "rear",
+      "x_m": -1.275,
+      "z_m": 4.7
+    },
+    {
+      "id": "rear_2",
+      "module": "rear",
+      "x_m": -1.275,
+      "z_m": 8.600000000000001
+    }
+  ]
+}

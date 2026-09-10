@@ -20,7 +20,11 @@ El JSON de mallas facilita inspeccionar y validar esta prueba. Para ampliar el m
 
 `mandalay.gd` reutiliza entrada, cámara, pausa y HUD de `practice.gd` mediante funciones de creación de mundo, servicio y pose inicial. `station_service.gd` acepta orientación y cuatro anclajes de plataforma: la atención verifica cada puerta del vehículo y la salida se mide en el sentido de avance. `mandalay_world.gd` construye la arquitectura provisional y carga las mallas; no hay simulación de calles laterales o peatones.
 
-Esta disposición local no implementa todavía el grafo de red descrito más adelante. Alturas y anclajes del bus siguen siendo de ensayo, pendientes de especificación compartida antes de variantes. [Estado, pruebas y límites](MANDALAY_JUGABLE.md).
+Esta disposición local no implementa todavía el grafo de red descrito más adelante. Alturas y anclajes del bus siguen siendo de ensayo; ahora proceden de una ficha compartida. Las variantes reales requieren contrastar sus medidas y compatibilidad. [Estado, pruebas y límites](MANDALAY_JUGABLE.md).
+
+## Definición de vehículo implementada
+
+`game/data/vehicles/articulado_prototipo.json` → `tools/vehicle_definition.py` / `vehicle_definition.gd` → modelo Blender/GLB, cinemática, colisiones, puertas, cámara y anclajes de práctica. Los manifiestos registran hashes de definición/modelo y las paradas identifican los anclajes y revisión usados. El visual trabaja el fuelle en su espacio local. Alcance de plantilla y reconstrucción en [FICHA_DE_VEHICULO.md](FICHA_DE_VEHICULO.md).
 
 ## Primera conducción implementada
 

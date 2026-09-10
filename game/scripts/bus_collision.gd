@@ -1,30 +1,33 @@
 extends RefCounted
 ## Conservative body boxes + articulation envelope. Ground uses a separate layer.
 const Motion = preload("res://scripts/bus_motion.gd")
+const Definition = preload("res://scripts/vehicle_definition.gd")
+var spec: Definition
 var space: PhysicsDirectSpaceState3D
 var shapes: Array[Shape3D] = []
 
-func _init(state: PhysicsDirectSpaceState3D) -> void:
+func _init(state: PhysicsDirectSpaceState3D, definition = null) -> void:
 	space = state
-	for size in [Motion.FRONT_SIZE, Motion.REAR_SIZE]:
+	spec = Motion.Definition.new() if definition == null else definition
+	for size in [spec.module_size(spec.front), spec.module_size(spec.rear)]:
 		var shape := BoxShape3D.new()
 		shape.size = size
 		shapes.append(shape)
 	var joint := CylinderShape3D.new()
-	joint.radius = 1.3
-	joint.height = 3.2
+	joint.radius = spec.data.collision.joint_radius_m
+	joint.height = spec.data.collision.height_m
 	shapes.append(joint)
 
 func poses(state: Dictionary) -> Array[Transform3D]:
 	var p: Vector2 = state.p
 	var h: float = state.h
 	var t: float = state.t
-	var hinge := p - Motion.forward(h) * Motion.HITCH_OFFSET
-	var front := p - Motion.forward(h) * Motion.FRONT_CENTER
-	var rear := hinge - Motion.forward(t) * Motion.REAR_CENTER
-	return [Transform3D(Basis(Vector3.UP, -h), Vector3(front.x, 1.7, front.y)),
-		Transform3D(Basis(Vector3.UP, -t), Vector3(rear.x, 1.7, rear.y)),
-		Transform3D(Basis.IDENTITY, Vector3(hinge.x, 1.7, hinge.y))]
+	var hinge: Vector2 = p - Motion.forward(h) * spec.hitch_offset
+	var front: Vector2 = p - Motion.forward(h) * spec.module_center(spec.front)
+	var rear: Vector2 = hinge - Motion.forward(t) * spec.module_center(spec.rear)
+	return [Transform3D(Basis(Vector3.UP, -h), Vector3(front.x, spec.data.collision.center_y_m, front.y)),
+		Transform3D(Basis(Vector3.UP, -t), Vector3(rear.x, spec.data.collision.center_y_m, rear.y)),
+		Transform3D(Basis.IDENTITY, Vector3(hinge.x, spec.data.collision.center_y_m, hinge.y))]
 
 func check(old: Dictionary, proposed: Dictionary) -> String:
 	return str(contact(old, proposed).get("body", ""))
@@ -36,7 +39,7 @@ func contact(old: Dictionary, proposed: Dictionary) -> Dictionary:
 		var query := PhysicsShapeQueryParameters3D.new()
 		query.shape = shapes[i]
 		query.collision_mask = 1
-		query.margin = 0.025
+		query.margin = spec.data.collision.query_margin_m
 		query.transform = before[i]
 		query.motion = after[i].origin - before[i].origin
 		var fractions := space.cast_motion(query)
@@ -67,7 +70,7 @@ func resolve(old: Dictionary, proposed: Dictionary) -> Dictionary:
 		var incidence := absf(movement.normalized().dot(normal))
 		if incidence < 0.75:
 			var tangent := movement - normal * minf(movement.dot(normal), 0.0)
-			var trailer: float = old.t + tangent.dot(Motion.right(old.t)) / Motion.TRAILER_WHEELBASE
+			var trailer: float = old.t + tangent.dot(Motion.right(old.t)) / spec.trailer_wheelbase
 			var slide := {"p": old.p + tangent, "h": old.h, "t": trailer}
 			if tangent.length() > movement.length() * 0.25 and check(old, slide).is_empty():
 				return {"state": slide, "sliding": true}

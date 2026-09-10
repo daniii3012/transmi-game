@@ -31,15 +31,21 @@ func _ready() -> void:
 	capture_mode = "--capture-practice" in OS.get_cmdline_user_args()
 	world = _create_world()
 	add_child(world)
-	bus = Visual.new()
+	bus = Visual.new(motion.spec)
 	add_child(bus)
+	if not bus.ready_ok:
+		set_process(false)
+		set_physics_process(false)
+		get_tree().quit(1)
+		return
 	camera = CameraRig.new()
+	camera.spec = motion.spec
 	camera.far = 900
 	camera.near = 0.06
 	camera.fov = 65
 	add_child(camera)
 	camera.make_current()
-	collision = Collision.new(get_world_3d().direct_space_state)
+	collision = Collision.new(get_world_3d().direct_space_state,motion.spec)
 	_reset()
 	_make_ui()
 	if capture_mode:
@@ -48,7 +54,7 @@ func _ready() -> void:
 		camera.set_mode(camera_mode)
 	bus.sync(motion, 0)
 	_update_camera(1.0)
-	print("PRACTICE_READY bodies=2 length_m=18 doors=4 scale=1m")
+	print("PRACTICE_READY bodies=2 length_m=",motion.spec.length_m," doors=",motion.spec.door_count()," scale=1m")
 	if DisplayServer.get_name() == "headless" and not "--keep-running" in OS.get_cmdline_user_args():
 		get_tree().quit()
 

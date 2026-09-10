@@ -25,7 +25,7 @@ La arquitectura de IA, física, control del vehículo, integración con el grafo
 | Paquete | Responsable previsto | Entrega | Estado y dependencia |
 |---|---|---|---|
 | Ficha inicial de Mandalay | Agente ligero + revisión principal | ESTACION_MANDALAY.md, datos publicados y lagunas | Entregada y revisada; aún faltan cotas y plano actual. |
-| Estación Av. Américas–Av. Boyacá | Agente ligero | Ficha de atributos, accesos y referencias con fechas | Pendiente; acotar a la estación. La ingeniería del cruce y rampas corresponde al principal. |
+| Estación Av. Américas–Av. Boyacá | Agente ligero + revisión principal | BOYACA_NIVELES_REFERENCIAS.md, atributos y fuentes con límites | Entregada y revisada; cotas de niveles pendientes. La ingeniería del cruce y rampas corresponde al principal. |
 | Estación Marsella | Agente ligero | Ficha equivalente, con medidas publicadas y dudas | Pendiente; reutilizar esquema de Mandalay y cartografía existente. |
 | Auditoría de candidatos de rutas del piloto | Agente ligero | Tabla de IDs, sentidos y evidencia de paradas, sin habilitarlos | Pendiente; empezar por los candidatos ya descargados, sin repetir el catálogo completo. |
 | Revisión de procedencia de módulos urbanos | Agente ligero | Lista de fuentes, licencias declaradas y campos ausentes | Pendiente; cuando exista la primera biblioteca de módulos. |

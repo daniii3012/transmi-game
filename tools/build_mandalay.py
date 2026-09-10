@@ -16,9 +16,16 @@ from shapely.geometry import Point, Polygon, LineString, box, shape
 from shapely.ops import transform, unary_union
 
 from build_pilot import PROJECT, ROOT, add_polygon, polygons
+import vehicle_definition
 
 
 def build():
+    vehicle = vehicle_definition.load()
+    vehicle_sha = vehicle_definition.digest()
+    vehicle_doors = vehicle_definition.straight_doors(vehicle)
+    vehicle_min_z, vehicle_max_z = vehicle_definition.nominal_bounds(vehicle)
+    vehicle_half_width = vehicle['width_m']/2
+    vehicle_center_z = (vehicle_min_z+vehicle_max_z)/2
     cfg = json.loads((ROOT / 'data/design/mandalay.json').read_text())
     raw = ROOT / 'data/raw' / cfg['source_snapshot']
     scheme = ROOT / 'data/research' / cfg['scheme_snapshot']
@@ -99,10 +106,10 @@ def build():
         forward = [(b[0]-a[0])/length, (b[1]-a[1])/length]
         right = [-forward[1], forward[0]]
         edge_center = [(a[i]+b[i])/2 for i in (0, 1)]
-        pos = [edge_center[i]+right[i]*(1.275+cfg['target_door_gap_m'])+forward[i]*1.35 for i in (0, 1)]
+        pos = [edge_center[i]+right[i]*(vehicle_half_width+cfg['target_door_gap_m'])+forward[i]*vehicle_center_z for i in (0, 1)]
         # Door targets are authored for the prototype, not inferred real platform gates.
-        doors = [[pos[i]-forward[i]*z-right[i]*(1.275+cfg['target_door_gap_m']) for i in (0, 1)] for z in [-4.6, -.9, 4.7, 8.6]]
-        module = {'id': p['objectid'], 'source_tipo': p['tipo'], 'source_name_conflict': p['nombre'], 'outline': list(g.exterior.coords)[:-1], 'area_m2': g.area, 'edge': [a, b], 'position': pos, 'heading': math.atan2(forward[0], -forward[1]), 'forward': forward, 'right': right, 'doors': doors, 'length_m': length, 'direction': 'Hacia Av. Boyacá' if south else 'Hacia Banderas', 'status': 'practice_anchors_estimated'}
+        doors = [[pos[i]-forward[i]*door['z_m']-right[i]*(vehicle_half_width+cfg['target_door_gap_m']) for i in (0, 1)] for door in vehicle_doors]
+        module = {'id': p['objectid'], 'source_tipo': p['tipo'], 'source_name_conflict': p['nombre'], 'outline': list(g.exterior.coords)[:-1], 'area_m2': g.area, 'edge': [a, b], 'position': pos, 'heading': math.atan2(forward[0], -forward[1]), 'forward': forward, 'right': right, 'doors': doors, 'length_m': length, 'direction': 'Hacia Av. Boyacá' if south else 'Hacia Banderas', 'status': 'practice_anchors_estimated', 'vehicle_id': vehicle['id'], 'vehicle_spec_sha256': vehicle_sha, 'vehicle_door_ids': [d['id'] for d in vehicle_doors]}
         modules.append(module)
         mesh_group('Cubierta_'+str(p['objectid']), g.buffer(.22, join_style=2), cfg['roof_base_m'], cfg['roof_thickness_m'], colors['roof'])
     station_union = unary_union(station_parts)
@@ -120,9 +127,9 @@ def build():
     practice_envelopes = []
     for stop in stops:
         p, f = stop['position'], stop['forward']
-        a = [p[i]-f[i]*(cfg['spawn_behind_stop_m']+11) for i in (0, 1)]
-        b = [p[i]+f[i]*(cfg['departure_m']+8) for i in (0, 1)]
-        practice_envelopes.append(LineString([a, b]).buffer(1.55, cap_style=2))
+        a = [p[i]-f[i]*(cfg['spawn_behind_stop_m']+vehicle_max_z+.4) for i in (0, 1)]
+        b = [p[i]+f[i]*(cfg['departure_m']-vehicle_min_z+.6) for i in (0, 1)]
+        practice_envelopes.append(LineString([a, b]).buffer(vehicle_half_width+.275, cap_style=2))
     joins = unary_union(practice_envelopes).difference(roads_game).difference(station_union)
     # Do not quietly bridge substantial missing cartography.
     if not roads_game.buffer(1.0).covers(joins):
@@ -171,7 +178,7 @@ def build():
         for x in [-51, -23, -3, 24, 51]:
             if green.covers(Point(x, z).buffer(2)):
                 trees.append([x, z])
-    summary = {'layout_version': cfg['layout_version'], 'origin_lon_lat': [lon, lat], 'source_axis_tangent_godot_xz': [tx, tz], 'frame': 'X derecha/sur, Y arriba, Z atrás/oeste; estación sin compresión', 'source_length_m': half*2, 'game_length_m': game_z(half)*2, 'protected_length_m': protect*2, 'connector_factor': factor, 'modules': len(modules), 'practice_stops': len(stops), 'buildings': len(buildings), 'omitted_building_features': omitted, 'surface_join_area_m2': joins.area, 'surface_join_max_distance_m': 1.0, 'triangles': sum(len(g['vertices'])//9 for g in groups), 'source_hashes': source_hashes, 'scheme_sha256': manifest['sha256'], 'scheme_license_status': manifest['license_status'], 'estimates': cfg['estimate_note'], 'excluded_schema_ids': [287]}
+    summary = {'layout_version': cfg['layout_version'], 'vehicle_id': vehicle['id'], 'vehicle_spec_sha256': vehicle_sha, 'origin_lon_lat': [lon, lat], 'source_axis_tangent_godot_xz': [tx, tz], 'frame': 'X derecha/sur, Y arriba, Z atrás/oeste; estación sin compresión', 'source_length_m': half*2, 'game_length_m': game_z(half)*2, 'protected_length_m': protect*2, 'connector_factor': factor, 'modules': len(modules), 'practice_stops': len(stops), 'buildings': len(buildings), 'omitted_building_features': omitted, 'surface_join_area_m2': joins.area, 'surface_join_max_distance_m': 1.0, 'triangles': sum(len(g['vertices'])//9 for g in groups), 'source_hashes': source_hashes, 'scheme_sha256': manifest['sha256'], 'scheme_license_status': manifest['license_status'], 'estimates': cfg['estimate_note'], 'excluded_schema_ids': [287]}
     return {'summary': summary, 'config': cfg, 'groups': groups, 'modules': modules, 'stops': stops, 'buildings': buildings, 'trees': trees, 'driving_surface': [{'outline':list(p.exterior.coords), 'holes':[list(r.coords) for r in p.interiors]} for p in polygons(road_surface)]}
 
 

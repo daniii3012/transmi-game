@@ -56,7 +56,8 @@ func _ready() -> void:
 		box("Marco", Vector3(-5.55, 1.55, z+2), Vector3(.12, .08, 4.9), "53636c")
 	box("Fascia", Vector3(-1.41, 4.11, -43), Vector3(.12, .44, 31.8), "a7443e")
 	text_sign("ESTACIÓN DE PRÁCTICA", Vector3(-1.32, 4.12, -44), PI/2, 58)
-	for z in [-49.6, -45.9, -40.3, -36.4]:
+	for door in preload("res://scripts/vehicle_definition.gd").new().straight_doors():
+		var z: float = -45.0+float(door.z_m)
 		box("Acceso", Vector3(-2.3, 1.115, z), Vector3(1.1, .02, 1.3), "cfb451")
 	box("Linea_de_parada", Vector3(0, .034, -52.4), Vector3(3.5, .018, .2), "e2ded0")
 	box("Senal", Vector3(2.8, 1.6, -52.4), Vector3(.06, 3.2, .06), "59636a", true)

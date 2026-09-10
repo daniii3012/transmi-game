@@ -7,6 +7,7 @@ Simulador de buses de Bogotá para un solo jugador: meta final de todo el sistem
 ## Qué existe hoy
 
 - **Mandalay conducible:** primera sección basada en huellas oficiales, con dos sentidos de práctica, parada y salida, cuatro módulos de plataforma y entorno próximo. Recorte de 480 m fuente → 390 m jugables; alturas y detalles aún provisionales. [Qué incluye y límites](docs/MANDALAY_JUGABLE.md).
+- **Ficha de bus compartida:** Blender, conducción, colisiones, cámaras y puertas consumen la misma definición; se detectan modelos y anclajes desactualizados. [Funcionamiento](docs/FICHA_DE_VEHICULO.md).
 - **Primera pista conducible:** articulado de 18 m provisional, reversa, puertas, cámaras orientables, deslizamiento al rozar el andén y ciclo de parada con tolerancia ampliada. Modelo editable de Blender incluido.
 - **Comparación 3D de escala:** eje del piloto de 1.602,47 m frente a una propuesta de 1.285,94 m, preservando tres estaciones y reservas de espacio. Generación reproducible; es un estudio de disposición, todavía sin carriles transitables.
 - Proyecto nativo de Godot 4.7.2 y explorador de cámara libre de un recorte de Américas: Mandalay, Av. Américas–Av. Boyacá y Marsella.
@@ -16,6 +17,10 @@ Simulador de buses de Bogotá para un solo jugador: meta final de todo el sistem
 - Plan de mapa, buses, estaciones, rutas, obras y continuidad entre sesiones.
 
 **El bus ya tiene una primera práctica local en Mandalay**, además de la pista ficticia. El resto de Américas continúa como explorador geográfico. La nueva estación usa huellas oficiales con arquitectura vertical y puertas de práctica estimadas; el terreno sigue plano. Los niveles, las obras actuales y sus desvíos requieren verificación específica. Su apariencia es provisional.
+
+## Próxima exploración
+
+Simulación 2D inspirada en Mini Metro, con Three.js como opción viable, geografía fuente a escala real y **mayoría de rutas troncales y flota circulando simultáneamente**. Es una línea paralela solicitada por Daniel, aún sin implementar. El piloto será acotado; la meta de cobertura es amplia. [Análisis y alcance](docs/EXPLORACION_TRANSMI_2D.md).
 
 ## Abrir
 
@@ -27,6 +32,8 @@ Controles: **1** vista general; **2/3/4** estaciones; **WASD o flechas** mover; 
 
 ## Documentos
 
+- [Ficha compartida del vehículo](docs/FICHA_DE_VEHICULO.md)
+- [Exploración de simulación 2D](docs/EXPLORACION_TRANSMI_2D.md)
 - [Mandalay conducible y sus límites](docs/MANDALAY_JUGABLE.md)
 - [Primera prueba de conducción](docs/PRUEBA_DE_CONDUCCION.md)
 - [Investigación del buscador de rutas](docs/RUTAS_INVESTIGACION.md)

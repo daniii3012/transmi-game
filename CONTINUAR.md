@@ -1,4 +1,4 @@
-# Continuidad del proyecto — 9 de septiembre de 2026
+# Continuidad del proyecto — 10 de septiembre de 2026
 
 Leer este archivo, README.md y docs/PLAN_DEL_PROYECTO.md antes de continuar. Daniel pidió conservar el progreso entre sesiones por los límites de uso. Eso no cancela el proyecto. Los documentos y el código están en Git; revisar `git log` y `git status` para el último checkpoint.
 
@@ -13,6 +13,7 @@ Leer este archivo, README.md y docs/PLAN_DEL_PROYECTO.md antes de continuar. Dan
 - Posible publicación futura si alcanza un buen desarrollo. **Push a https://github.com/daniii3012/transmi-game está expresamente autorizado**; no se pidió desplegar una versión del juego.
 - El asistente tiene autorización para investigar, instalar herramientas y desarrollar/modelar. Daniel confirmó que instaló Blender. No pedir que lo vuelva a instalar.
 - Daniel autorizó agentes ligeros para investigación y tareas acotadas. Ya se usó gpt-5.6-luna; sus borradores se revisaron. docs/TRABAJO_CON_AGENTES.md contiene los siguientes paquetes. Mantener física e integración con el principal; no prometer porcentajes de ahorro de cuota.
+- **Próxima exploración solicitada: simulación 2D con Three.js**, inspirada en la legibilidad de Mini Metro, con geografía fuente 1:1, mayoría de rutas troncales y mayoría de la flota del escenario circulando simultáneamente. Es una línea paralela, no reemplaza el juego 3D condensado. Ver docs/EXPLORACION_TRANSMI_2D.md; todavía no implementada. El piloto pequeño solo valida la arquitectura.
 - Daniel ya probó la pista. Pidió roce lateral sin frenado completo, cámara orientable y mayor margen de parada; están integrados y comprobados. Pidió evitar ciclos continuos de pequeñas pruebas manuales: agrupar el trabajo y la revisión por hitos coherentes.
 
 ## Ubicación y herramientas
@@ -98,19 +99,33 @@ Abrir **ABRIR_MANDALAY.command**, o desde Esc en la pista anterior. Esc permite 
 - Recorte local: 480 m reales → 390 m jugables. Zona central de ±150 m intacta; factor 0,5 fuera. Es una reserva mayor que la del estudio anterior para proteger el acceso representado. X local apunta aproximadamente al sur, Z al oeste, Y arriba; origen geográfico y tangente en el resumen.
 - Cuatro huellas Vagon, plaza central unida y arquitectura vertical provisional. Se excluye Externa 287. Plataformas a 1,10 m, cubiertas desde 4,35 m, puente a unos 6,3 m: estimaciones, no cotas. Las puertas corresponden al bus de ensayo, no a A/B o servicios verificados. Cubiertas y plataforma tienen colisiones, además de la estructura principal del puente; rampas peatonales y contexto no tienen navegación física completa.
 - 84 partes de edificios con sus huellas y patios intactos, alturas estimadas por pisos. 179 registros omitidos por límites, contacto con vías o solapamiento. Decoración propia de fachadas, árboles, luminarias y jardines; todavía no acabado final.
-- Hay 58,58 m² de empalmes de pavimento provisionales para reconciliar bordes del esquema y calzadas. Todos quedan dentro de 1 m de las calzadas fuente; el generador rechaza ajustes mayores. También recorta caras superiores de andenes/separadores para no ocultar el pavimento. No presentar el borde ajustado como medición real.
+- Hay 58,68 m² de empalmes de pavimento provisionales para reconciliar bordes del esquema y calzadas. Todos quedan dentro de 1 m de las calzadas fuente; el generador rechaza ajustes mayores. También recorta caras superiores de andenes/separadores para no ocultar el pavimento. No presentar el borde ajustado como medición real.
 - game/scripts/mandalay.gd hereda el controlador de practice.gd mediante fábricas de mundo, servicio y pose inicial; conserva controles, HUD y cámaras. mandalay_world.gd genera arquitectura y contexto; station_service.gd verifica anclajes en cualquier orientación. Servicio atendido exige cuatro segundos continuos alineado y salida hacia delante; reversa no completa el ciclo.
 - Pruebas Godot nuevas: **17 comprobaciones aprobadas**, incluidos ambos ciclos con colisiones y ocho hojas abiertas. Integración de la pista anterior vuelve a aprobar tras reutilizar el controlador.
 - Suite Python: **11 pruebas aprobadas**. Tres nuevas contrastan aristas de estación con geodesia, áreas de huellas/patios y hashes, y toda la envolvente del bus sobre la superficie en 101 poses por sentido. Comprobación independiente de la física del motor.
 - Capturas nativas generales, cabina y parada en docs/preview_mandalay*.png; log work/mandalay_capture.log, MANDALAY_CAPTURE_COMPLETE. Capturas de inspección, sin benchmark prolongado ni aprobación final de acabado.
 
+## Ficha compartida del vehículo: cierre integrado
+
+`game/data/vehicles/articulado_prototipo.json` es la fuente común de dimensiones, extremos de cuerpos, ejes, enganche, puertas identificadas, ruedas, cámaras y parámetros de conducción. Se consumen desde Blender/Python y Godot. Las medidas y comportamiento originales permanecen; no se ha creado un nuevo tipo de bus. Ver docs/FICHA_DE_VEHICULO.md.
+
+- `tools/vehicle_definition.py` valida el esquema, la topología de dos cuerpos y los huecos. `vehicle_definition.gd` carga los datos en Godot; `Motion` expone `spec` y `door_positions()`.
+- Se actualizaron física, colisiones, visual, cámara, pista y servicio de Mandalay. `tools/build_mandalay.py` genera anclajes desde la misma ficha y registra su hash/IDs; no repite la lista de coordenadas.
+- GLB y Blender regenerados. `game/assets/vehicles/articulado_prototipo.manifest.json` vincula ficha y modelo mediante hashes; Godot detecta desincronización. Mandalay no acepta anclajes de otra revisión del bus.
+- Fuelle corregido para usar coordenadas locales cuando se coloca el visual dentro de un sector trasladado o girado. No se ha implementado origen flotante ni contacto con terreno 3D.
+- **14 pruebas Python y 7 comprobaciones Godot nuevas aprobadas**. Las 19 pruebas base, 12 de ajustes del usuario, integración de pista, 17 de Mandalay y 5 del estudio de escala siguen pasando. Logs work/vehicle_spec_*.log; captura nativa completa en vehicle_spec_capture.log.
+- La plantilla aún tiene detalles de carrocería e interior propios del prototipo. No admite biarticulados ni embarque derecho por cambiar únicamente el JSON. Para otra variante, revisar compatibilidad y geometría.
+
+Un agente ligero preparó docs/BOYACA_NIVELES_REFERENCIAS.md. El principal contrastó punto/dimensiones con raw, consultó directamente los campos de accesos en la API oficial y revisó la nota BIM de 2022. Hay una pista de consultoría IDU-529-2022, pero no cotas verificadas de nivel/gálibo/rampas. No habilitar el cruce con alturas inventadas.
+
 ## Próximo trabajo concreto
 
-1. Consolidar Mandalay antes de extender: verificar cotas, puente/accesos, puertas reales y estado 2026 con fuentes fechadas. Se puede inspeccionar la escena entera, pero solo se han comprobado los dos ejercicios locales; no afirmar que todas sus vías laterales son transitables. No inventar rótulos A/B ni rutas.
-2. Migrar dimensiones y anclajes del articulado a una especificación compartida antes de introducir variantes. motion, build_bus y los servicios aún tienen constantes coherentes de ensayo que deben unificarse. Mantener las pruebas de articulación y puertas.
-3. Construir el grafo de carriles dirigido y la conexión a la siguiente estación. La muestra local se tendrá que integrar a una disposición común, sin transformar cada arista por separado. **No habilitar Boyacá** hasta revisar puente, rampas, niveles y continuidad; añadir soporte de altura y pendientes antes de circular por desniveles.
-4. Completar el conjunto visual cercano de Mandalay y medir carga, memoria y FPS en conducción. Añadir colisiones de entorno donde corresponda, sonido básico y guardar la selección de práctica. No confundir el modelo cozy provisional con un acabado aprobado.
-5. Con el grafo y anclajes definidos, introducir un NPC en circuito según docs/IA_DE_BUSES.md. Continúa planificado, no implementado. Rutas oficiales solo después de verificar secuencias, vigencia y cobertura.
+1. **Explorar la simulación 2D solicitada**, según docs/EXPLORACION_TRANSMI_2D.md: Three.js es viable para cámara ortográfica e iconos repetidos. Geografía fuente sin compresión, piloto de red dirigido con buses y paradas, concebido para ampliar a mayoría de rutas y flota concurrente. No confundir los registros candidatos con servicios validados ni animación con operación real. No desplegar.
+2. Consolidar Mandalay antes de extender: verificar cotas, puente/accesos, puertas reales y estado 2026 con fuentes fechadas. Se puede inspeccionar la escena entera, pero solo se han comprobado los dos ejercicios locales; no afirmar que todas sus vías laterales son transitables. No inventar rótulos A/B ni rutas.
+3. Usar la ficha compartida al incorporar una variante real; revisar geometría, alturas y compatibilidad antes de multiplicar buses. Mantener las pruebas de articulación y puertas.
+4. Construir el grafo de carriles dirigido y la conexión a la siguiente estación. La muestra local se tendrá que integrar a una disposición común, sin transformar cada arista por separado. **No habilitar Boyacá** hasta revisar puente, rampas, niveles y continuidad; añadir soporte de altura y pendientes antes de circular por desniveles.
+5. Completar el conjunto visual cercano de Mandalay y medir carga, memoria y FPS en conducción. Añadir colisiones de entorno donde corresponda, sonido básico y guardar la selección de práctica. No confundir el modelo cozy provisional con un acabado aprobado.
+6. Con el grafo y anclajes definidos, introducir un NPC en circuito según docs/IA_DE_BUSES.md. Continúa planificado, no implementado. Rutas oficiales solo después de verificar secuencias, vigencia y cobertura.
 
 ## Ejecución y limitaciones del entorno
 
@@ -124,6 +139,7 @@ Desde la raíz del proyecto, usar Godot absoluto en vez de depender del PATH:
 ../../work/venv/bin/python tools/build_scale_study.py
 ../../work/venv/bin/python tools/build_mandalay.py
 ../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_mandalay.gd -- --keep-running
+../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_vehicle_definition.gd
 ../../work/venv/bin/python -m unittest discover -s tests -v
 ```
 

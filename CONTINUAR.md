@@ -49,7 +49,7 @@ Explorador con cámaras, edificios y marcadores. Terreno y puentes planos; no es
 - `driving_camera.gd`: tres vistas orientables; clic derecho + ratón mira, rueda acerca/aleja, V centra, Q/E mirada lateral rápida en cabina. La cámara exterior limita su posición ante obstáculos mediante un rayo; no es aún una solución exhaustiva para toda geometría de estación.
 - Controles: W acelera, S frena, A/D gira, Espacio freno de mano, R avance/reversa estando detenido, P puertas detenido, C cámaras, Retroceso reinicia, Esc pausa, F2 mapa; ratón, V y Q/E como se indica arriba.
 - Primera aplicación cozy en la pista: pintura mate, paleta del entorno, copas agrupadas, variación del suelo y HUD verde oscuro/crema. Se aplica en Godot; los materiales base del archivo Blender siguen siendo los originales del generador.
-- El bus NO está integrado en las calzadas reales. Sin pasajeros visibles, sonido, tráfico, espejos funcionales, selector de rutas oficiales, guardado de partida, pendientes ni streaming.
+- La pista permanece como ensayo independiente. El bus ya está integrado en una primera sección local de Mandalay, descrita abajo. Sin pasajeros visibles, sonido, tráfico, espejos funcionales, selector de rutas oficiales, guardado de partida, pendientes ni streaming.
 
 ### Estudio de compresión del piloto
 
@@ -72,7 +72,7 @@ Ver docs/RUTAS_INVESTIGACION.md. Falta importar secuencia de paradas y validar v
 
 Se inspeccionó visualmente la experiencia ferroviaria enlazada por Nick y la galería oficial de over the hill. De Givros se leyó la descripción, pero X exigió iniciar sesión para el vídeo completo; no afirmar que se revisaron su animación y acabado. Links y traducción a Bogotá en docs/DIRECCION_VISUAL.md.
 
-docs/ESTACION_MANDALAY.md registra num_est 05101, punto oficial, longitud publicada 115,705 m, ancho publicado 3 m y dos vagones. El significado geométrico del ancho/longitud sigue pendiente. El visor de planos identifica TM0082, pero sus enlaces de imagen devolvieron 404 y una reconsulta de la API por urllib dio 403. La tabla oficial de 2019 sirve como antecedente, no para rotular operación de 2026. El principal contrastó los atributos con la instantánea local y la fecha de la nota oficial. Aún no se construyó el modelo detallado de la estación.
+docs/ESTACION_MANDALAY.md registra num_est 05101, punto oficial, longitud publicada 115,705 m, ancho publicado 3 m y dos vagones. El significado geométrico del ancho/longitud sigue pendiente. El visor de planos identifica TM0082, pero sus enlaces de imagen devolvieron 404 y una reconsulta de la API por urllib dio 403. La tabla oficial de 2019 sirve como antecedente, no para rotular operación de 2026. El principal contrastó los atributos con la instantánea local y la fecha de la nota oficial. Se obtuvo posteriormente otra fuente de polígonos y se construyó una primera sección conducible provisional; ver los apartados siguientes.
 
 ## Comprobaciones completadas
 
@@ -84,20 +84,33 @@ docs/ESTACION_MANDALAY.md registra num_est 05101, punto oficial, longitud public
 - Capturas actualizadas tras los ajustes visuales en work/cozy_capture.log, PRACTICE_CAPTURE_COMPLETE. Las pruebas no constituyen aún validación de conducción por puentes reales ni ensayos largos de rendimiento. La próxima revisión de Daniel se reservará para un hito integrado.
 - Compresión: **8 pruebas Python aprobadas**, 6 nuevas de intervalos, inversión, geometría protegida, límites y piloto real; las 2 geográficas previas siguen pasando. Integración Godot del estudio aprobada: ambas instancias del articulado mantienen dimensiones con diferencia inferior a 1 mm, escala y anclaje. Capturas nativas de comparación y detalle revisadas; work/scale_study_capture.log terminó en SCALE_STUDY_CAPTURE_COMPLETE.
 
-## Checkpoint adicional: investigación de Mandalay guardada
+## Investigación nueva y sección conducible de Mandalay
 
 Se obtuvo una fuente oficial nueva con nueve polígonos de las secciones de Mandalay. Fuente, respuesta y hashes están en data/research/mandalay_scheme_20260909/; descargador tools/fetch_mandalay_scheme.py. La revisión del agente fue contrastada y corregida: cuatro Vagon, una Externa, una Conexa, una Conexion, una Transicion y una Entrada. tipo/nombre/id_vagon tienen discrepancias, no inferir A/B ni operación. Licencia de este servicio aún no establecida, independiente de las capas CC BY previas.
 
-Se inspeccionó una ortofoto SIMUR nominal 2021: dos franjas de plataforma/cubierta, zona central amplia y puente peatonal al este. Referencia local work/mandalay/ortofoto_2021.png, petición con hash junto a ella; no es textura ni prueba de vigencia de 2026. Ver docs/MANDALAY_REFERENCIAS_ADICIONALES.md para evidencia y límites. El nuevo modelo conducible todavía no está implementado en este checkpoint.
+Se inspeccionó una ortofoto SIMUR nominal 2021: dos franjas de plataforma/cubierta, zona central amplia y puente peatonal al este. Referencia local work/mandalay/ortofoto_2021.png, petición con hash junto a ella; no es textura ni prueba de vigencia de 2026. Ver docs/MANDALAY_REFERENCIAS_ADICIONALES.md para evidencia y límites. La investigación quedó respaldada en el commit 581aa0f; después se implementó la sección que sigue.
+
+### Mandalay conducible: estado integrado
+
+Abrir **ABRIR_MANDALAY.command**, o desde Esc en la pista anterior. Esc permite elegir práctica hacia Av. Boyacá o hacia Banderas. Son sentidos de práctica local, no servicios oficiales ni trayectos hasta esas estaciones. Aproximación de 75 m, cuatro puertas, 4 s de atención, cierre y salida de 25 m. El mundo sigue plano. Documentación completa en docs/MANDALAY_JUGABLE.md.
+
+- data/design/mandalay.json y tools/build_mandalay.py generan game/data/mandalay.json y data/processed/mandalay_summary.json. Instantes fuente fijados y hashes registrados; usa el origen de estación y la tangente de game/data/scale_study.json. No modificar raw ni mezclar esta disposición con todo el eje del estudio.
+- Recorte local: 480 m reales → 390 m jugables. Zona central de ±150 m intacta; factor 0,5 fuera. Es una reserva mayor que la del estudio anterior para proteger el acceso representado. X local apunta aproximadamente al sur, Z al oeste, Y arriba; origen geográfico y tangente en el resumen.
+- Cuatro huellas Vagon, plaza central unida y arquitectura vertical provisional. Se excluye Externa 287. Plataformas a 1,10 m, cubiertas desde 4,35 m, puente a unos 6,3 m: estimaciones, no cotas. Las puertas corresponden al bus de ensayo, no a A/B o servicios verificados. Cubiertas y plataforma tienen colisiones, además de la estructura principal del puente; rampas peatonales y contexto no tienen navegación física completa.
+- 84 partes de edificios con sus huellas y patios intactos, alturas estimadas por pisos. 179 registros omitidos por límites, contacto con vías o solapamiento. Decoración propia de fachadas, árboles, luminarias y jardines; todavía no acabado final.
+- Hay 58,58 m² de empalmes de pavimento provisionales para reconciliar bordes del esquema y calzadas. Todos quedan dentro de 1 m de las calzadas fuente; el generador rechaza ajustes mayores. También recorta caras superiores de andenes/separadores para no ocultar el pavimento. No presentar el borde ajustado como medición real.
+- game/scripts/mandalay.gd hereda el controlador de practice.gd mediante fábricas de mundo, servicio y pose inicial; conserva controles, HUD y cámaras. mandalay_world.gd genera arquitectura y contexto; station_service.gd verifica anclajes en cualquier orientación. Servicio atendido exige cuatro segundos continuos alineado y salida hacia delante; reversa no completa el ciclo.
+- Pruebas Godot nuevas: **17 comprobaciones aprobadas**, incluidos ambos ciclos con colisiones y ocho hojas abiertas. Integración de la pista anterior vuelve a aprobar tras reutilizar el controlador.
+- Suite Python: **11 pruebas aprobadas**. Tres nuevas contrastan aristas de estación con geodesia, áreas de huellas/patios y hashes, y toda la envolvente del bus sobre la superficie en 101 poses por sentido. Comprobación independiente de la física del motor.
+- Capturas nativas generales, cabina y parada en docs/preview_mandalay*.png; log work/mandalay_capture.log, MANDALAY_CAPTURE_COMPLETE. Capturas de inspección, sin benchmark prolongado ni aprobación final de acabado.
 
 ## Próximo trabajo concreto
 
-1. Continuar desde docs/MANDALAY_REFERENCIAS_ADICIONALES.md: usar la nueva fuente poligonal para la sección conducible, con dos sentidos y ciclo de parada. Alturas y puertas siguen pendientes de cota; registrar estimaciones. No extruir Externa 287 como obstáculo ni interpretar nombre como clasificación fiable. Mantener estación y puente peatonal en zona sin compresión.
-2. Construir la primera sección BRT con medidas locales coherentes y su correspondencia a la fuente geográfica; conectar el bus a ella. La disposición condensada es una base de diseño, no carriles ya validados. No habilitar Boyacá hasta revisar puente, rampas, niveles y continuidad.
-3. Introducir datos configurables de vehículo y anclajes, antes de multiplicar variantes. El prototipo tiene constantes de ensayo en motion y service; al usar una variante real deben migrar a una especificación compartida.
-4. Integrar un pequeño recorrido entre paradas del piloto, con selector de práctica, próxima parada y guardado. Patrón real solo cuando se compruebe toda la cobertura necesaria.
-5. Aplicar la dirección cozy a esa sección como un conjunto: materiales, plataforma y fachadas cercanas. Preservar proporciones y reconocimiento; revisar desde cabina y exterior, medir tiempo de recorrido y rendimiento. El diseño del contexto reemplaza repetición por módulos; no aplasta edificios reales.
-6. Con el grafo y los anclajes definidos, introducir un NPC en circuito según docs/IA_DE_BUSES.md antes de extenderlo a servicios reales. Mantener este trabajo como una fase explícita, no declarar tráfico existente.
+1. Consolidar Mandalay antes de extender: verificar cotas, puente/accesos, puertas reales y estado 2026 con fuentes fechadas. Se puede inspeccionar la escena entera, pero solo se han comprobado los dos ejercicios locales; no afirmar que todas sus vías laterales son transitables. No inventar rótulos A/B ni rutas.
+2. Migrar dimensiones y anclajes del articulado a una especificación compartida antes de introducir variantes. motion, build_bus y los servicios aún tienen constantes coherentes de ensayo que deben unificarse. Mantener las pruebas de articulación y puertas.
+3. Construir el grafo de carriles dirigido y la conexión a la siguiente estación. La muestra local se tendrá que integrar a una disposición común, sin transformar cada arista por separado. **No habilitar Boyacá** hasta revisar puente, rampas, niveles y continuidad; añadir soporte de altura y pendientes antes de circular por desniveles.
+4. Completar el conjunto visual cercano de Mandalay y medir carga, memoria y FPS en conducción. Añadir colisiones de entorno donde corresponda, sonido básico y guardar la selección de práctica. No confundir el modelo cozy provisional con un acabado aprobado.
+5. Con el grafo y anclajes definidos, introducir un NPC en circuito según docs/IA_DE_BUSES.md. Continúa planificado, no implementado. Rutas oficiales solo después de verificar secuencias, vigencia y cobertura.
 
 ## Ejecución y limitaciones del entorno
 
@@ -109,6 +122,8 @@ Desde la raíz del proyecto, usar Godot absoluto en vez de depender del PATH:
 ../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_practice_scene.gd -- --keep-running
 ../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_scale_study.gd -- --keep-running
 ../../work/venv/bin/python tools/build_scale_study.py
+../../work/venv/bin/python tools/build_mandalay.py
+../../work/tools/Godot.app/Contents/MacOS/Godot --headless --path game --script res://tests/test_mandalay.gd -- --keep-running
 ../../work/venv/bin/python -m unittest discover -s tests -v
 ```
 

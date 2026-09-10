@@ -9,6 +9,7 @@ var motion = Motion.new()
 var service = Service.new()
 var collision
 var bus
+var world
 var camera
 var camera_mode := 0
 var paused := false
@@ -28,7 +29,7 @@ var capture_seconds := 0.0
 
 func _ready() -> void:
 	capture_mode = "--capture-practice" in OS.get_cmdline_user_args()
-	var world := World.new()
+	world = _create_world()
 	add_child(world)
 	bus = Visual.new()
 	add_child(bus)
@@ -51,9 +52,32 @@ func _ready() -> void:
 	if DisplayServer.get_name() == "headless" and not "--keep-running" in OS.get_cmdline_user_args():
 		get_tree().quit()
 
+func _create_world():
+	return World.new()
+
+func _create_service():
+	return Service.new()
+
+func _spawn_pose() -> Dictionary:
+	return {"p":Vector2(0,35),"h":0.0}
+
+func _outside_sample() -> bool:
+	return absf(motion.position.x) > 200 or absf(motion.position.y) > 270
+
+func _session_text() -> Dictionary:
+	return {"title":"Escuela de conducción · Articulado","subtitle":"Pista de ensayo / escala métrica real","exercise":"PRÁCTICA 01   /   APROXIMACIÓN Y PUERTAS","pause":"Pista y vehículo provisionales.\nEl mapa real se inspecciona en el explorador."}
+
+func _extra_pause_buttons(stack: VBoxContainer) -> void:
+	var button := Button.new()
+	button.text = "Conducir en Mandalay"
+	button.custom_minimum_size.y = 36
+	button.pressed.connect(func(): get_tree().change_scene_to_file("res://scenes/mandalay.tscn"))
+	stack.add_child(button)
+
 func _reset() -> void:
-	motion.reset(Vector2(0, 35))
-	service = Service.new()
+	var pose := _spawn_pose()
+	motion.reset(pose.p,pose.h)
+	service = _create_service()
 	feedback = "W acelera · S frena · P abre puertas estando detenido"
 	feedback_seconds = 6
 
@@ -84,18 +108,19 @@ func panel(p: Vector2, size: Vector2, opacity := 0.91) -> PanelContainer:
 	return result
 
 func _make_ui() -> void:
+	var session := _session_text()
 	ui = CanvasLayer.new()
 	add_child(ui)
 	var top := panel(Vector2(24,24),Vector2(410,120))
 	var stack := VBoxContainer.new()
 	top.add_child(stack)
 	label(stack,"BOGOTÁ TRANSMI",25,"e8c989")
-	label(stack,"Escuela de conducción · Articulado",18)
-	label(stack,"Pista de ensayo / escala métrica real",15,"b5c3c7")
+	label(stack,session.title,18)
+	label(stack,session.subtitle,15,"b5c3c7")
 	var route_panel := panel(Vector2(790,24),Vector2(626,115))
 	var route_stack := VBoxContainer.new()
 	route_panel.add_child(route_stack)
-	label(route_stack,"PRÁCTICA 01   /   APROXIMACIÓN Y PUERTAS",16,"e8c989")
+	label(route_stack,session.exercise,16,"e8c989")
 	instruction_label = label(route_stack,"",20)
 	operation_label = label(route_stack,"",16,"b5c3c7")
 	var dashboard := panel(Vector2(24,672),Vector2(265,196))
@@ -119,13 +144,14 @@ func _make_ui() -> void:
 	pause_stack.add_theme_constant_override("separation",16)
 	pause_panel.add_child(pause_stack)
 	pause_title = label(pause_stack,"PAUSA",32,"e8c989")
-	label(pause_stack,"Pista y vehículo provisionales.\nEl mapa real se inspecciona en el explorador.",18)
+	label(pause_stack,session.pause,18)
 	for item in [["Continuar",_toggle_pause],["Reiniciar práctica",_restart_from_menu],["Explorar Américas",_open_explorer]]:
 		var button := Button.new()
 		button.text = item[0]
 		button.custom_minimum_size.y = 36
 		button.pressed.connect(item[1])
 		pause_stack.add_child(button)
+	_extra_pause_buttons(pause_stack)
 	pause_panel.hide()
 
 func _toggle_pause() -> void:
@@ -177,9 +203,9 @@ func _physics_process(dt: float) -> void:
 	motion.advance(dt,collision.resolve)
 	if not motion.last_block.is_empty():
 		_notice("Límite de articulación · Endereza avanzando" if motion.last_block == "articulation" else "Contacto con obstáculo · Frena y corrige la maniobra")
-	if absf(motion.position.x) > 200 or absf(motion.position.y) > 270:
+	if _outside_sample():
 		_reset()
-		_notice("Regreso al circuito de práctica")
+		_notice("Regreso al inicio de la práctica")
 	service.update(dt,motion)
 	bus.sync(motion,dt)
 

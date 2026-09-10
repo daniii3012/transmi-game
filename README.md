@@ -6,6 +6,7 @@ Simulador de buses de Bogotá para un solo jugador: meta final de todo el sistem
 
 ## Qué existe hoy
 
+- **Mandalay conducible:** primera sección basada en huellas oficiales, con dos sentidos de práctica, parada y salida, cuatro módulos de plataforma y entorno próximo. Recorte de 480 m fuente → 390 m jugables; alturas y detalles aún provisionales. [Qué incluye y límites](docs/MANDALAY_JUGABLE.md).
 - **Primera pista conducible:** articulado de 18 m provisional, reversa, puertas, cámaras orientables, deslizamiento al rozar el andén y ciclo de parada con tolerancia ampliada. Modelo editable de Blender incluido.
 - **Comparación 3D de escala:** eje del piloto de 1.602,47 m frente a una propuesta de 1.285,94 m, preservando tres estaciones y reservas de espacio. Generación reproducible; es un estudio de disposición, todavía sin carriles transitables.
 - Proyecto nativo de Godot 4.7.2 y explorador de cámara libre de un recorte de Américas: Mandalay, Av. Américas–Av. Boyacá y Marsella.
@@ -14,11 +15,11 @@ Simulador de buses de Bogotá para un solo jugador: meta final de todo el sistem
 - Coordenadas locales en metros y pruebas de escala y conservación de patios interiores.
 - Plan de mapa, buses, estaciones, rutas, obras y continuidad entre sesiones.
 
-**El bus se conduce en una pista de ensayo ficticia.** El mapa real de Américas continúa como explorador geográfico. Los edificios usan alturas estimadas; las estaciones son marcadores; el terreno es plano. Los puentes, las obras actuales y sus desvíos requieren modelado específico. Su apariencia es provisional.
+**El bus ya tiene una primera práctica local en Mandalay**, además de la pista ficticia. El resto de Américas continúa como explorador geográfico. La nueva estación usa huellas oficiales con arquitectura vertical y puertas de práctica estimadas; el terreno sigue plano. Los niveles, las obras actuales y sus desvíos requieren verificación específica. Su apariencia es provisional.
 
 ## Abrir
 
-En Finder, abrir **ABRIR_SIMULADOR.command** con doble clic para conducir. Controles y límites: [Prueba de conducción](docs/PRUEBA_DE_CONDUCCION.md). Abrir **ABRIR_EXPLORADOR.command** para inspeccionar Américas. Usa la copia de Godot que está en `../../work/tools/Godot.app`, relativa a esta carpeta. No requiere descargar nada para explorar la muestra ya preparada. También puede abrirse `game/project.godot` con Godot 4.7.2.
+En Finder, abrir **ABRIR_MANDALAY.command** para la nueva sección; **Esc** permite elegir sentido. Abrir **ABRIR_SIMULADOR.command** con doble clic para conducir. Controles y límites: [Prueba de conducción](docs/PRUEBA_DE_CONDUCCION.md). Abrir **ABRIR_EXPLORADOR.command** para inspeccionar Américas. Usa la copia de Godot que está en `../../work/tools/Godot.app`, relativa a esta carpeta. No requiere descargar nada para explorar la muestra ya preparada. También puede abrirse `game/project.godot` con Godot 4.7.2.
 
 **ABRIR_ESTUDIO_ESCALA.command** abre la comparación entre referencia y versión condensada. **1** vista conjunta, **2/3** detalle de Mandalay en cada versión, clic derecho para orbitar y rueda para acercar. Las bandas arena son reservas de diseño; los edificios ilustran la reducción de contexto y no reproducen fachadas reales. [Resultados y límites](docs/ESCALA_Y_COMPRESION.md).
 
@@ -26,6 +27,7 @@ Controles: **1** vista general; **2/3/4** estaciones; **WASD o flechas** mover; 
 
 ## Documentos
 
+- [Mandalay conducible y sus límites](docs/MANDALAY_JUGABLE.md)
 - [Primera prueba de conducción](docs/PRUEBA_DE_CONDUCCION.md)
 - [Investigación del buscador de rutas](docs/RUTAS_INVESTIGACION.md)
 - [Plan del proyecto](docs/PLAN_DEL_PROYECTO.md)
@@ -44,7 +46,9 @@ Controles: **1** vista general; **2/3/4** estaciones; **WASD o flechas** mover; 
 
 Las capturas son del prototipo, no del aspecto final del simulador. Ver [bus de prueba](docs/preview_practica.png), [cabina](docs/preview_cabina.png) y [puertas](docs/preview_puertas.png).
 
-Estudio nuevo: [comparación de escala](docs/preview_escala.png) y [detalle ilustrativo de Mandalay](docs/preview_escala_mandalay.png).
+Mandalay: [vista general](docs/preview_mandalay.png), [cabina](docs/preview_mandalay_cabina.png) y [parada](docs/preview_mandalay_parada.png).
+
+Estudio de escala: [comparación de escala](docs/preview_escala.png) y [detalle ilustrativo de Mandalay](docs/preview_escala_mandalay.png).
 
 ## Reconstruir los datos
 
@@ -65,3 +69,5 @@ Para reconstruir el estudio de compresión, ejecutar `.venv/bin/python tools/bui
 ## Atribución
 
 Geometría: Unidad Administrativa Especial de Catastro Distrital / IDECA y entidades del Mapa de Referencia; estaciones y trazados: TRANSMILENIO S.A. Las seis fichas consultadas declaran CC BY 4.0. Se conservan las fichas originales en `data/raw/20260909T035301Z/`. Cambios realizados: recorte espacial, reproyección, triangulación y extrusión con alturas estimadas. Ver [fuentes](docs/FUENTES.md).
+
+La fuente adicional de esquemas de estación conserva copyright TransMilenio S.A.; su licencia de reutilización no se ha establecido. Se registra por separado en [referencias de Mandalay](docs/MANDALAY_REFERENCIAS_ADICIONALES.md). No heredar la licencia de las seis capas anteriores.

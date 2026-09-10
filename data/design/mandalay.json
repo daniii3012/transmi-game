@@ -1,0 +1,18 @@
+{
+  "layout_version": "mandalay-local-v1",
+  "source_snapshot": "20260909T035301Z",
+  "station_id": "05101",
+  "scheme_snapshot": "mandalay_scheme_20260909",
+  "source_half_length_m": 240.0,
+  "source_half_width_m": 105.0,
+  "protected_half_length_m": 150.0,
+  "connector_factor": 0.5,
+  "platform_height_m": 1.10,
+  "roof_base_m": 4.35,
+  "roof_thickness_m": 0.18,
+  "target_door_gap_m": 0.375,
+  "spawn_behind_stop_m": 75.0,
+  "departure_m": 25.0,
+  "practice_module_ids": [218, 27],
+  "estimate_note": "Huella de esquema oficial. Alturas, puertas y puntos de práctica estimados. Reserva ampliada a 150 m por lado para incluir el acceso peatonal; no valida rampas ni vigencia 2026. Compresión longitudinal local, no solución de red."
+}

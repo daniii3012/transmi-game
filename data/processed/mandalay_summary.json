@@ -1,0 +1,38 @@
+{
+  "layout_version": "mandalay-local-v1",
+  "origin_lon_lat": [
+    -74.14129817180734,
+    4.630863657469235
+  ],
+  "source_axis_tangent_godot_xz": [
+    0.9958334929024721,
+    0.09119021007576167
+  ],
+  "frame": "X derecha/sur, Y arriba, Z atrás/oeste; estación sin compresión",
+  "source_length_m": 480.0,
+  "game_length_m": 390.0,
+  "protected_length_m": 300.0,
+  "connector_factor": 0.5,
+  "modules": 4,
+  "practice_stops": 2,
+  "buildings": 84,
+  "omitted_building_features": 179,
+  "surface_join_area_m2": 58.58040552424952,
+  "surface_join_max_distance_m": 1.0,
+  "triangles": 6896,
+  "source_hashes": {
+    "data/raw/20260909T035301Z/roads.geojson": "5950a8a0c627088a0717f1ba0e70e1c986e898030cebd6a3fd2c4cddc6bdf02a",
+    "data/raw/20260909T035301Z/sidewalks.geojson": "be896cfbe02b2581ec2e2b1fdcc03880d937285fc6d7d51b995092ea80269eed",
+    "data/raw/20260909T035301Z/medians.geojson": "699a2fd49b9b93c09bddff24a40e4d7f96f79bb10bc04a5652fa057970da6d61",
+    "data/raw/20260909T035301Z/buildings.geojson": "b81a6b455f55b1b3907a46ca628114a96a14060c9b3c59b91ea8e196ed146676"
+  },
+  "scheme_sha256": {
+    "scheme.geojson": "591b061e1c650d77124a73394d9c6c1928d1628770ac62aa4462631467c4711f",
+    "layer.metadata.json": "a930b0c9473425e338f4e152a33a8d62ea168555d42a27eeb93f2df3f2c65b40"
+  },
+  "scheme_license_status": "Not established for this service. Do not inherit CC BY from the separate geographic catalog.",
+  "estimates": "Huella de esquema oficial. Alturas, puertas y puntos de práctica estimados. Reserva ampliada a 150 m por lado para incluir el acceso peatonal; no valida rampas ni vigencia 2026. Compresión longitudinal local, no solución de red.",
+  "excluded_schema_ids": [
+    287
+  ]
+}

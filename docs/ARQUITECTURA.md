@@ -14,6 +14,14 @@ game/scripts/explorer.gd
 
 El JSON de mallas facilita inspeccionar y validar esta prueba. Para ampliar el mapa se reemplazará por recursos binarios por sector; no cargar toda Bogotá en un único JSON. Los datos originales permanecerán fuera de la escena y se conservarán como fuente de reconstrucción.
 
+## Sección local de Mandalay implementada
+
+`tools/fetch_mandalay_scheme.py` conserva el esquema oficial nuevo con procedencia independiente; `tools/build_mandalay.py` lo combina con calzadas y edificios ya descargados. `data/design/mandalay.json` fija reserva, compresión y parámetros estimados. Las huellas de estación conservan dimensiones; las construcciones se trasladan enteras y se omiten conflictos. Los empalmes de pavimento quedan registrados por separado.
+
+`mandalay.gd` reutiliza entrada, cámara, pausa y HUD de `practice.gd` mediante funciones de creación de mundo, servicio y pose inicial. `station_service.gd` acepta orientación y cuatro anclajes de plataforma: la atención verifica cada puerta del vehículo y la salida se mide en el sentido de avance. `mandalay_world.gd` construye la arquitectura provisional y carga las mallas; no hay simulación de calles laterales o peatones.
+
+Esta disposición local no implementa todavía el grafo de red descrito más adelante. Alturas y anclajes del bus siguen siendo de ensayo, pendientes de especificación compartida antes de variantes. [Estado, pruebas y límites](MANDALAY_JUGABLE.md).
+
 ## Primera conducción implementada
 
 `tools/build_bus.py` → Blender editable + GLB con cuerpos independientes. `bus_motion.gd` integra el vehículo en el plano; `bus_collision.gd` comprueba sus cuerpos; `bus_visual.gd` aplica poses, ruedas, puertas y fuelle. `practice_service.gd` verifica anclajes de cuatro puertas y el ciclo de parada. `practice_world.gd` construye la pista y sus obstáculos; `practice.gd` enlaza entrada, cámaras y HUD. Las pruebas del motor están en game/tests.

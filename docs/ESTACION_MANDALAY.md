@@ -65,9 +65,11 @@ La nota oficial [Conozca los nuevos cambios para algunas estaciones del Sistema]
 
 La misma página enlaza una imagen histórica de “Puntos de parada de la estación Mandalay” con `parada=7670`, pero ese enlace legado también responde 404 al consultarlo ahora. Esta tabla documenta una configuración de operación de 2019, **no la vigente en 2026 ni un plano de puertas**. No deben modelarse puertas individuales ni señalización actual a partir de esos códigos de servicio.
 
-## Primera reconstrucción recomendada
+## Reconstrucción actual
 
-Para una versión inicial reproducible, usar el punto WGS84 y el eje local de `TZ009`; conservar **115.705 m**, **3 m** y **2 vagones** como atributos publicados del dataset, marcando el ancho como pendiente de interpretación geométrica. Puede representarse una estación lineal de dos módulos/vagones a lo largo del eje O–E, con la advertencia de que la división exacta de la longitud, las plataformas, los accesos y las puertas no están verificadas.
+Se obtuvo posteriormente un esquema oficial con nueve polígonos. Sus cuatro secciones Vagon permiten conservar las dos franjas paralelas de la estación, en lugar de inferir una única plataforma de 3 m. El contraste y las discrepancias de atributos están en [referencias adicionales](MANDALAY_REFERENCIAS_ADICIONALES.md).
+
+La [primera sección conducible](MANDALAY_JUGABLE.md) ya usa esas huellas y permite completar una práctica por sentido. Cubiertas, altura de plataforma, puerta y acceso peatonal siguen siendo aproximaciones. Los atributos anteriores se conservan como datos publicados, sin sustituir el esquema por una caja de 115,705 × 3 m.
 
 ### Pendientes de verificación
 

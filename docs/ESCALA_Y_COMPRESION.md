@@ -59,3 +59,7 @@ Para reconstruir, ejecutar `python tools/build_scale_study.py` con el entorno de
 ## Límite de la transformación actual
 
 El algoritmo resuelve un solo eje continuo. Comprueba orden de estaciones, intervalos, inversión de distancias y ausencia de autointersección del eje resultante. No es una deformación general de Bogotá: no distribuye automáticamente cruces compartidos, manzanas o redes con ciclos, ni garantiza espacio lateral de todo el entorno. Antes de conectar corredores, un diseño común deberá resolver sus nodos y niveles. El estado de obras tampoco cambia por acortar un tramo.
+
+## Aplicación local en Mandalay
+
+La primera sección conducible usa un recorte propio de 480 m fuente y 390 m jugables, con ±150 m centrales protegidos. La reserva se amplió para el acceso peatonal representado. Conserva cuatro huellas oficiales de plataforma y dimensiones de edificios; los empalmes provisionales entre esquema y calzadas se registran explícitamente. Este tramo local aún debe conectarse a una disposición común del corredor; no reemplaza automáticamente las cifras ni la geometría del estudio de eje. Ver [Mandalay conducible](MANDALAY_JUGABLE.md).

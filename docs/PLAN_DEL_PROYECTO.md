@@ -1,6 +1,6 @@
 # Plan de desarrollo de Bogotá Transmi
 
-Versión 0.4 · 9 de septiembre de 2026 · Proyecto personal de Daniel.
+Versión 0.5 · 9 de septiembre de 2026 · Proyecto personal de Daniel.
 
 ## 1. Experiencia que construiremos
 
@@ -65,7 +65,7 @@ La capa descargada de estaciones incluye campos de longitud, ancho y número de 
 
 Primera mecánica: detectar aproximación, detenerse dentro de una tolerancia, permitir abrir las puertas del lado correcto, esperar un tiempo sencillo de intercambio y cerrar antes de salir. Pasajeros visibles y filas se añaden después de que la conducción y la parada funcionen.
 
-Daniel probó la pista y pidió más margen de alineación. La práctica ya acepta separación al andén de 0,025 a 0,90 m y error longitudinal de hasta 1,20 m por puerta, verificando todas las puertas. Son parámetros de accesibilidad del ensayo, no una norma real de abordaje. Al construir estaciones verificadas pasarán a configuración por punto de parada. [Mandalay](ESTACION_MANDALAY.md) ya tiene una ficha de datos publicados y cotas pendientes; su geometría detallada aún no está construida.
+Daniel probó la pista y pidió más margen de alineación. La práctica ya acepta separación al andén de 0,025 a 0,90 m y error longitudinal de hasta 1,20 m por puerta, verificando todas las puertas. Son parámetros de accesibilidad del ensayo, no una norma real de abordaje. Al construir estaciones verificadas pasarán a configuración por punto de parada. [Mandalay](ESTACION_MANDALAY.md) ya tiene una ficha de datos publicados y cotas pendientes; ya tiene una primera sección conducible con huellas oficiales y arquitectura vertical provisional. [Estado de Mandalay](MANDALAY_JUGABLE.md).
 
 ## 6. Rutas y operación
 
@@ -108,7 +108,7 @@ Separaremos la geometría duradera de la capa de obra: barreras, carriles habili
 | 0. Investigación y base | Este plan, fuentes, datos y explorador | Completado: datos descargados, escala comprobada y vistas general/cercana revisadas. |
 | 1. Conducción de prueba | Bus articulado provisional sobre pista métrica | Implementada, probada por Daniel y ajustada con sus observaciones: roce lateral, cámara orientable y mayor tolerancia. 19 comprobaciones base, 12 de ajustes e integración aprobadas. Las pendientes pertenecen a la integración posterior. Ver PRUEBA_DE_CONDUCCION.md. |
 | 1b. Disposición condensada | Transformación reversible y comparación 3D del eje piloto | Estudio de eje implementado y medido; protege intervalos y conserva IDs. La aceptación como mundo conducible depende de los niveles, accesos y maniobras del hito 2. |
-| 2. Primer tramo | Calzadas transitables y una estación del piloto | Se puede completar aproximación, alineación, apertura, cierre y salida en ambos sentidos; niveles y anchos están verificados. |
+| 2. Primer tramo | Calzadas transitables y una estación del piloto | **En curso:** Mandalay permite completar aproximación, alineación, apertura, cierre y salida en ambos sentidos. Faltan cotas verticales, accesos y validación del borde real; no declarar terminado el hito solo por superar las pruebas del prototipo. Ver MANDALAY_JUGABLE.md. |
 | 3. Recorrido reconocible | Tres estaciones y edificios cercanos del recorte | Se conduce de extremo a extremo sin huecos de colisión ni bloqueos; los accesos y señales corresponden al tramo. Se introduce un NPC en ensayo sobre el pequeño grafo ya validado. |
 | 4. Primer bus definitivo | Carrocería, cabina, materiales y audio | Dimensiones y disposición de puertas/ejes contrastadas con referencias de una variante; manejo aprobado por Daniel. |
 | 5. Américas y obras | Extensión hacia el nodo Carrera 50 y Calle 13 | Obras y desvíos documentados; conexiones transitables; carga por sectores sin pausas graves. |

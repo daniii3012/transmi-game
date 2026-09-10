@@ -1,6 +1,6 @@
 # Primera prueba conducible
 
-9 de septiembre de 2026. Abrir `ABRIR_SIMULADOR.command` desde Finder o `game/project.godot` con Godot 4.7.2. No requiere red. `F2` cambia entre pista y explorador geográfico; el bus todavía no conduce por el mapa real.
+9 de septiembre de 2026. Abrir `ABRIR_SIMULADOR.command` desde Finder o `game/project.godot` con Godot 4.7.2. No requiere red. `F2` cambia entre pista y explorador geográfico; esta pista sigue siendo ficticia. La nueva sección basada en huellas de Mandalay se abre con ABRIR_MANDALAY.command o desde el menú de pausa; ver [Mandalay conducible](MANDALAY_JUGABLE.md).
 
 | Control | Acción |
 |---|---|

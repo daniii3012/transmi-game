@@ -1,0 +1,15 @@
+{
+  "id": 1316,
+  "codigo": "P85",
+  "nombre": "AV 68 Calle 9",
+  "tipo": "TransMilenio",
+  "color": "#A80F79",
+  "fechaDesde": "2026-06-28T00:00:00.000Z",
+  "fechaHasta": "2026-09-14T00:00:00.000Z",
+  "horarios": [
+    {"tipoDia":"L-S","inicio":"5:00 AM","fin":"9:00 PM"},
+    {"tipoDia":"D-F","inicio":"2:00 PM","fin":"9:00 PM"}
+  ],
+  "troncal": {"id":14,"nombre":"Avenida 68","zona":"P","color":"#A80F79"},
+  "informacion": {"fechaActualizacion":"2026-04-05 11:35:00"}
+}

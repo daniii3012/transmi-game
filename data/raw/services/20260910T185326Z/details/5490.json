@@ -1,0 +1,217 @@
+{
+  "color": "#009A9D",
+  "nombre": "KR 7 - CLL 107A Ciclovía",
+  "estaciones": [
+    {
+      "id": 6000,
+      "codigo": "TM0135",
+      "nombre": "Portal El Dorado – C.C Nuestro Bogotá",
+      "direccion": "AV. Eldorado - KR 91",
+      "posicion": 0,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 6100,
+      "codigo": "TM0132",
+      "nombre": "Av. Rojas - UNISALESIANA",
+      "direccion": "AV. Eldorado - KR 69D",
+      "posicion": 2440,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 6101,
+      "codigo": "TM0131",
+      "nombre": "El Tiempo - Cámara De Comercio De Bogotá",
+      "direccion": "AV. Eldorado - KR 69",
+      "posicion": 3172,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 6103,
+      "codigo": "TM0129",
+      "nombre": "CAN - British Council",
+      "direccion": "AV. Eldorado - KR 59",
+      "posicion": 4522,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 6104,
+      "codigo": "TM0128",
+      "nombre": "Gobernacion",
+      "direccion": "AV. Eldorado - KR 54",
+      "posicion": 5031,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 6106,
+      "codigo": "TM0126",
+      "nombre": "Corferias",
+      "direccion": "AV. Eldorado - KR 40",
+      "posicion": 6265,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 6108,
+      "codigo": "TM0124",
+      "nombre": "Concejo de Bogotá",
+      "direccion": "AV. Eldorado - KR 28",
+      "posicion": 7694,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 10008,
+      "codigo": "TM0136",
+      "nombre": "San Diego",
+      "direccion": "AK 10 - CL 23",
+      "posicion": 9885,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 10009,
+      "codigo": "TM0146",
+      "nombre": "Museo Nacional",
+      "direccion": "KR 7 - CL 29",
+      "posicion": 10417,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 73073,
+      "codigo": "BD-005B",
+      "nombre": "K7 - CL40 S/N B",
+      "direccion": "K7 - CL40",
+      "posicion": 11889,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71381,
+      "codigo": "BD-009A",
+      "nombre": "K7 - CL50",
+      "direccion": "K7 - CL50",
+      "posicion": 12899,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71382,
+      "codigo": "BD-011A",
+      "nombre": "K7 - CL57",
+      "direccion": "K7 - CL57",
+      "posicion": 13583,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71383,
+      "codigo": "BD-013A",
+      "nombre": "K7 - CL61",
+      "direccion": "K7 - CL61",
+      "posicion": 14016,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71384,
+      "codigo": "BD-015A",
+      "nombre": "K7 - CL66",
+      "direccion": "K7 - CL66",
+      "posicion": 14490,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71385,
+      "codigo": "BD-017B",
+      "nombre": "K7 - CL70A S/N B",
+      "direccion": "K7 - CL70A",
+      "posicion": 14979,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71802,
+      "codigo": "BD-033A.",
+      "nombre": "K7-CL82",
+      "direccion": "K7 - CL82",
+      "posicion": 16179,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71595,
+      "codigo": "BD-035A",
+      "nombre": "K7 - CL87",
+      "direccion": "K7 - CL87",
+      "posicion": 16689,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71596,
+      "codigo": "BD-037A",
+      "nombre": "K7 - CL92",
+      "direccion": "K7 - CL92",
+      "posicion": 17289,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71597,
+      "codigo": "BD-039A",
+      "nombre": "K7 - CL94",
+      "direccion": "K7 - CL94",
+      "posicion": 17828,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71598,
+      "codigo": "BD-041A",
+      "nombre": "K7 - CL100",
+      "direccion": "K7 - CL100",
+      "posicion": 18609,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 56414,
+      "codigo": "113B01",
+      "nombre": "Cantón Norte",
+      "direccion": "AK 7 - CL 103A",
+      "posicion": 18947,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 74292,
+      "codigo": "BD",
+      "nombre": "K7 - CL107A NS",
+      "direccion": "K7 - CL107A Sentido Norte - Sur",
+      "posicion": 19686,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    }
+  ],
+  "horario": [
+    {
+      "tipoDia": "L-S",
+      "inicio": "4:00 AM",
+      "fin": "10:00 PM"
+    },
+    {
+      "tipoDia": "D-F",
+      "inicio": "5:00 AM",
+      "fin": "9:00 PM"
+    }
+  ],
+  "trazado": null
+}

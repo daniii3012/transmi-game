@@ -1,0 +1,172 @@
+{
+  "color": "#009A9D",
+  "nombre": "CLL134 - KR 7 Ciclovía",
+  "estaciones": [
+    {
+      "id": 10000,
+      "codigo": "TM0145",
+      "nombre": "Portal 20  de Julio",
+      "direccion": "KR 5A - CL 30D Sur",
+      "posicion": 0,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 10001,
+      "codigo": "TM0144",
+      "nombre": "Country Sur",
+      "direccion": "AK 10 - CL 27 Sur",
+      "posicion": 1068,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 10002,
+      "codigo": "TM0143",
+      "nombre": "Av. Primero de Mayo",
+      "direccion": "AK 10 - CL 17 Sur",
+      "posicion": 1780,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 10005,
+      "codigo": "TM0139",
+      "nombre": "Bicentenario",
+      "direccion": "AK 10 - CL 6",
+      "posicion": 4023,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 10008,
+      "codigo": "TM0136",
+      "nombre": "San Diego",
+      "direccion": "AK 10 - CL 23",
+      "posicion": 6303,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71675,
+      "codigo": "BD-031A",
+      "nombre": "K7 - CL78",
+      "direccion": "K7 - CL78",
+      "posicion": 13034,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71596,
+      "codigo": "BD-037A",
+      "nombre": "K7 - CL92",
+      "direccion": "K7 - CL92",
+      "posicion": 14484,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71597,
+      "codigo": "BD-039A",
+      "nombre": "K7 - CL94",
+      "direccion": "K7 - CL94",
+      "posicion": 15023,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71598,
+      "codigo": "BD-041A",
+      "nombre": "K7 - CL100",
+      "direccion": "K7 - CL100",
+      "posicion": 15804,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71676,
+      "codigo": "BD-052A",
+      "nombre": "K7 - CL106",
+      "direccion": "K7 - CL106",
+      "posicion": 16448,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71678,
+      "codigo": "BD-053A",
+      "nombre": "K7 - CL110",
+      "direccion": "K7 - CL110",
+      "posicion": 16820,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71681,
+      "codigo": "BD-055A",
+      "nombre": "K7 - CL116",
+      "direccion": "K7 - CL116",
+      "posicion": 17336,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71683,
+      "codigo": "BD-057A",
+      "nombre": "K7 - CL119B",
+      "direccion": "K7 - CL119B",
+      "posicion": 17779,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71684,
+      "codigo": "BD-059A",
+      "nombre": "K7 - CL124",
+      "direccion": "K7 - CL124",
+      "posicion": 18254,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71686,
+      "codigo": "BD-061A",
+      "nombre": "K7 - CL127B",
+      "direccion": "K7 - CL127B",
+      "posicion": 18828,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71688,
+      "codigo": "BD-063A",
+      "nombre": "K7 - CL130B",
+      "direccion": "K7 - CL130B",
+      "posicion": 19239,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71690,
+      "codigo": "BD-065A",
+      "nombre": "CL134 - K7",
+      "direccion": "CL134 - K7",
+      "posicion": 19643,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    }
+  ],
+  "horario": [
+    {
+      "tipoDia": "L-S",
+      "inicio": "4:00 AM",
+      "fin": "11:00 PM"
+    },
+    {
+      "tipoDia": "D-F",
+      "inicio": "4:30 AM",
+      "fin": "10:00 PM"
+    }
+  ],
+  "trazado": null
+}

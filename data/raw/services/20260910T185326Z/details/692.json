@@ -1,0 +1,18 @@
+{
+  "color": "#E1A2AC",
+  "nombre": "Calle 76",
+  "estaciones": [],
+  "horario": [
+    {
+      "tipoDia": "D-F",
+      "inicio": "4:30 AM",
+      "fin": "10:00 PM"
+    },
+    {
+      "tipoDia": "L-S",
+      "inicio": "4:30 AM",
+      "fin": "11:00 PM"
+    }
+  ],
+  "trazado": null
+}

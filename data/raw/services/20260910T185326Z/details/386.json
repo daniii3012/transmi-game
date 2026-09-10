@@ -1,0 +1,18 @@
+{
+  "color": "#80BA27",
+  "nombre": "Portal Norte",
+  "estaciones": [],
+  "horario": [
+    {
+      "tipoDia": "L-S",
+      "inicio": "4:00 AM",
+      "fin": "9:00 AM"
+    },
+    {
+      "tipoDia": "L-S",
+      "inicio": "3:00 PM",
+      "fin": "8:00 PM"
+    }
+  ],
+  "trazado": null
+}

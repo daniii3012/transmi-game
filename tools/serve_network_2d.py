@@ -9,7 +9,7 @@ import webbrowser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DIRECTORY = ROOT/'web/transmi2d/dist'
+DIRECTORY = ROOT/'app/dist'
 PORT = 8766
 URL = f'http://127.0.0.1:{PORT}/'
 

@@ -1,0 +1,12 @@
+[
+  {"id":74206,"codigo":"BD-075A","nombre":"AK 68 - CL 11 V2","direccion":"AK 68 - CL 11","posicion":9649,"sistema":"TransMilenio"},
+  {"id":74155,"codigo":"BD-069A","nombre":"AK 68 - CL 9A","direccion":"AK 68 - CL 9A","posicion":11137,"sistema":"TransMilenio"},
+  {"id":74213,"codigo":"BD-068A","nombre":"AK68- CL12","direccion":"AK 68 - CL 12","posicion":11661,"sistema":"TransMilenio"},
+  {"id":74138,"codigo":"BD-070A","nombre":"AK 68 - Cl 13","direccion":"AK 68 - Cl 13","posicion":12168,"sistema":"TransMilenio"},
+  {"id":74153,"codigo":"BD-071A","nombre":"AK 68 - Cl 19","direccion":"AK 68 - Cl 19","posicion":12884,"sistema":"TransMilenio"},
+  {"id":6102,"codigo":"TM0130","nombre":"Salitre El Greco - Vive Claro","direccion":"AV. Eldorado - KR 66","posicion":14656,"sistema":"TransMilenio"},
+  {"id":6103,"codigo":"TM0129","nombre":"CAN - British Council","direccion":"AV. Eldorado - KR 59","posicion":15249,"sistema":"TransMilenio"},
+  {"id":6105,"codigo":"TM0127","nombre":"Quinta Paredes","direccion":"AV. Eldorado - KR 45","posicion":16416,"sistema":"TransMilenio"},
+  {"id":6109,"codigo":"TM0123","nombre":"Centro Memoria","direccion":"AV. Eldorado - KR 19B","posicion":19243,"sistema":"TransMilenio"},
+  {"id":10009,"codigo":"TM0146","nombre":"Museo Nacional","direccion":"KR 7 - CL 29","posicion":21582,"sistema":"TransMilenio"}
+]

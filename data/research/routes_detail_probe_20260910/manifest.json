@@ -1,0 +1,29 @@
+{
+  "created_utc": "20260910T000000Z",
+  "source_application": "https://buscador-rutas.transmilenio.gov.co/rutas",
+  "detail_base_url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/{id}/rutaDetalle",
+  "catalog_source": "data/research/20260909T090945Z/route_candidates.json",
+  "catalog_records_observed": 256,
+  "catalog_sha256": "46c413adc32f0a5a67e9982d49f39cf2e97ed35ebf305867cb96d3e30e8040cc",
+  "frontend_troncales_probe": {
+    "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/troncales",
+    "method": "POST",
+    "body": {},
+    "retrieved_on": "2026-09-10",
+    "records": 116,
+    "sha256_response": "4322166c6b7ad81ea45301975b37c4d70996c092529f5ad90e80ada44cfd5d70",
+    "field_keys": ["id", "codigo", "nombre", "color"]
+  },
+  "detail_requests": 8,
+  "detail_ids": [690,1315,4596,1316,4595,1185,5490,12297],
+  "detail_sha256_in_probe": true,
+  "administrative_or_personal_data_saved": false,
+  "license": "Not established for this endpoint.",
+  "limitations": [
+    "The detail response has no sampled field for bus type, fleet configuration, frequency/headway, vagón, platform, or boarding-side assignment.",
+    "A missing trazado occurred for id 5490 even though stations and schedules were present.",
+    "Route IDs and visible codes are separate identifiers; duplicate codes M85, P85 and M86 have distinct IDs and variants.",
+    "The catalog is the prior six-page audit; this probe did not download the catalog again.",
+    "Presence under Carrera 7 or Avenida 68 does not prove a route is a dual carriageway or that infrastructure is complete."
+  ]
+}

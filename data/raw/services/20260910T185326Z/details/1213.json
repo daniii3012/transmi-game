@@ -1,0 +1,104 @@
+{
+  "color": "#F18500",
+  "nombre": "Portal Usme",
+  "estaciones": [
+    {
+      "id": 6111,
+      "codigo": "TM0122",
+      "nombre": "Universidades CityU",
+      "direccion": "KR 3 - CL 22",
+      "posicion": 0,
+      "sistema": "TransMilenio",
+      "color": "#F18500"
+    },
+    {
+      "id": 9110,
+      "codigo": "TM0013",
+      "nombre": "Avenida Jiménez",
+      "direccion": "AV. Caracas - CL 11",
+      "posicion": 7796,
+      "sistema": "TransMilenio",
+      "color": "#F18500"
+    },
+    {
+      "id": 9104,
+      "codigo": "TM0108",
+      "nombre": "Restrepo",
+      "direccion": "AV. Caracas - CL 21 Sur",
+      "posicion": 10820,
+      "sistema": "TransMilenio",
+      "color": "#F18500"
+    },
+    {
+      "id": 9100,
+      "codigo": "TM0111",
+      "nombre": "Calle 40 Sur",
+      "direccion": "AV. Caracas - CL 40 Sur",
+      "posicion": 12899,
+      "sistema": "TransMilenio",
+      "color": "#F18500"
+    },
+    {
+      "id": 9004,
+      "codigo": "TM0112",
+      "nombre": "Santa Lucía",
+      "direccion": "AV. Caracas - CL 46 Sur",
+      "posicion": 13777,
+      "sistema": "TransMilenio",
+      "color": "#F18500"
+    },
+    {
+      "id": 9003,
+      "codigo": "TM0113",
+      "nombre": "Socorro",
+      "direccion": "AK 15 - CL 51 SUR",
+      "posicion": 14546,
+      "sistema": "TransMilenio",
+      "color": "#F18500"
+    },
+    {
+      "id": 9002,
+      "codigo": "TM0114",
+      "nombre": "Consuelo",
+      "direccion": "CL 51 Sur - KR 11",
+      "posicion": 15150,
+      "sistema": "TransMilenio",
+      "color": "#F18500"
+    },
+    {
+      "id": 9001,
+      "codigo": "TM0115",
+      "nombre": "Molinos",
+      "direccion": "CL 50A Sur - KR 7",
+      "posicion": 15510,
+      "sistema": "TransMilenio",
+      "color": "#F18500"
+    },
+    {
+      "id": 90008,
+      "codigo": "TM90008",
+      "nombre": "Danubio",
+      "direccion": "Danubio",
+      "posicion": 16747,
+      "sistema": "TransMilenio",
+      "color": "#F18500"
+    },
+    {
+      "id": 74368,
+      "codigo": "Portal Usme T2D.",
+      "nombre": "Portal Usme T2D.",
+      "direccion": "Portal Usme",
+      "posicion": 18416,
+      "sistema": "TransMilenio",
+      "color": "#F18500"
+    }
+  ],
+  "horario": [
+    {
+      "tipoDia": "L-V",
+      "inicio": "4:00 PM",
+      "fin": "10:30 PM"
+    }
+  ],
+  "trazado": null
+}

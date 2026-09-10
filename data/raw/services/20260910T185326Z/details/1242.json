@@ -1,0 +1,168 @@
+{
+  "color": "#009A9D",
+  "nombre": "Portal 20 de Julio Ciclovía",
+  "estaciones": [
+    {
+      "id": 71692,
+      "codigo": "BD-064A",
+      "nombre": "K7 - CL132",
+      "direccion": "K7 - CL132",
+      "posicion": 19970,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 56778,
+      "codigo": "249A01",
+      "nombre": "Pq. Ginebra",
+      "direccion": "AK 7 - CL 127C Bis",
+      "posicion": 20522,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71696,
+      "codigo": "BD-060A",
+      "nombre": "K7  -  CL124",
+      "direccion": "K7 - CL124",
+      "posicion": 21118,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71505,
+      "codigo": "BD-168A01",
+      "nombre": "K7  -  CL114",
+      "direccion": "K7 - CL114",
+      "posicion": 22303,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71701,
+      "codigo": "BD-054A",
+      "nombre": "K7  -  CL110",
+      "direccion": "K7 - CL110",
+      "posicion": 22594,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71706,
+      "codigo": "BD-048A",
+      "nombre": "K7  - CL106",
+      "direccion": "K7 - CL106",
+      "posicion": 23177,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 56547,
+      "codigo": "164A01",
+      "nombre": "Br. El Pedregal",
+      "direccion": "AK 7 - CL 101",
+      "posicion": 23488,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 74408,
+      "codigo": "AC100 - KR 8A",
+      "nombre": "AC100 - KR 8A",
+      "direccion": "AC 100 - KR 8A",
+      "posicion": 23933,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71518,
+      "codigo": "BD-043A",
+      "nombre": "K11 - CL95",
+      "direccion": "K11 - CL95",
+      "posicion": 24747,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 71705,
+      "codigo": "BD-067A",
+      "nombre": "K11 - CL78",
+      "direccion": "K11 - CL78",
+      "posicion": 26847,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 57324,
+      "codigo": "225B00",
+      "nombre": "Br. Porciúncula",
+      "direccion": "AK 11 - CL 75",
+      "posicion": 27223,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 10008,
+      "codigo": "TM0136",
+      "nombre": "San Diego",
+      "direccion": "AK 10 - CL 23",
+      "posicion": 33525,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 10005,
+      "codigo": "TM0139",
+      "nombre": "Bicentenario",
+      "direccion": "AK 10 - CL 6",
+      "posicion": 35776,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 10002,
+      "codigo": "TM0143",
+      "nombre": "Av. Primero de Mayo",
+      "direccion": "AK 10 - CL 17 Sur",
+      "posicion": 38059,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 10001,
+      "codigo": "TM0144",
+      "nombre": "Country Sur",
+      "direccion": "AK 10 - CL 27 Sur",
+      "posicion": 38755,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    },
+    {
+      "id": 10000,
+      "codigo": "TM0145",
+      "nombre": "Portal 20  de Julio",
+      "direccion": "KR 5A - CL 30D Sur",
+      "posicion": 40222,
+      "sistema": "TransMilenio",
+      "color": "#009A9D"
+    }
+  ],
+  "horario": [
+    {
+      "tipoDia": "S",
+      "inicio": "4:00 AM",
+      "fin": "11:00 PM"
+    },
+    {
+      "tipoDia": "D-F",
+      "inicio": "2:00 PM",
+      "fin": "10:00 PM"
+    },
+    {
+      "tipoDia": "L-V",
+      "inicio": "4:00 AM",
+      "fin": "11:00 PM"
+    }
+  ],
+  "trazado": null
+}

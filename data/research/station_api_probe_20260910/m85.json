@@ -1,0 +1,11 @@
+{
+  "id": 4596,
+  "codigo": "M85",
+  "nombre": "Museo Nacional Ciclovía",
+  "tipo": "TransMilenio",
+  "color": "#009A9D",
+  "fechaDesde": "2026-06-28T00:00:00.000Z",
+  "fechaHasta": "2026-09-13T00:00:00.000Z",
+  "horarios": [{"tipoDia":"L-D","inicio":"5:00 AM","fin":"9:00 PM"}],
+  "troncal": {"id":12,"nombre":"Carrera 7","zona":"M","color":"#009A9D"}
+}

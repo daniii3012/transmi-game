@@ -1,0 +1,18 @@
+{
+  "color": "#26358C",
+  "nombre": "Polo",
+  "estaciones": [],
+  "horario": [
+    {
+      "tipoDia": "S",
+      "inicio": "4:30 AM",
+      "fin": "12:00 PM"
+    },
+    {
+      "tipoDia": "L-V",
+      "inicio": "4:30 AM",
+      "fin": "10:00 AM"
+    }
+  ],
+  "trazado": null
+}

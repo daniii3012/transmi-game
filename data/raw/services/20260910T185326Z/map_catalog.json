@@ -1,0 +1,698 @@
+[
+  {
+    "id": 697,
+    "codigo": "1",
+    "nombre": "Universidades",
+    "color": "#E1A2AC"
+  },
+  {
+    "id": 684,
+    "codigo": "1",
+    "nombre": "Portal Eldorado",
+    "color": "#D5B079"
+  },
+  {
+    "id": 698,
+    "codigo": "2",
+    "nombre": "Museo Nacional",
+    "color": "#E1A2AC"
+  },
+  {
+    "id": 685,
+    "codigo": "2",
+    "nombre": "Portal 20 de Julio",
+    "color": "#009A9D"
+  },
+  {
+    "id": 699,
+    "codigo": "3",
+    "nombre": "Corferias",
+    "color": "#D5B079"
+  },
+  {
+    "id": 686,
+    "codigo": "3",
+    "nombre": "Portal Tunal",
+    "color": "#F18500"
+  },
+  {
+    "id": 688,
+    "codigo": "4",
+    "nombre": "Héroes",
+    "color": "#80BA27"
+  },
+  {
+    "id": 687,
+    "codigo": "4",
+    "nombre": "Portal Sur",
+    "color": "#009CDE"
+  },
+  {
+    "id": 690,
+    "codigo": "5",
+    "nombre": "Av. Jiménez",
+    "color": "#DC0814"
+  },
+  {
+    "id": 689,
+    "codigo": "5",
+    "nombre": "Portal Américas",
+    "color": "#DC0814"
+  },
+  {
+    "id": 692,
+    "codigo": "6",
+    "nombre": "Calle 76",
+    "color": "#E1A2AC"
+  },
+  {
+    "id": 5709,
+    "codigo": "6",
+    "nombre": "Calle 72",
+    "color": "#000000"
+  },
+  {
+    "id": 691,
+    "codigo": "6",
+    "nombre": "Portal 80",
+    "color": "#8064A9"
+  },
+  {
+    "id": 694,
+    "codigo": "7",
+    "nombre": "Portal suba",
+    "color": "#FCBD1B"
+  },
+  {
+    "id": 693,
+    "codigo": "7",
+    "nombre": "Polo FINCOMERCIO",
+    "color": "#8064A9"
+  },
+  {
+    "id": 695,
+    "codigo": "8",
+    "nombre": "Guatoque",
+    "color": "#AE6B00"
+  },
+  {
+    "id": 696,
+    "codigo": "8",
+    "nombre": "Terminal",
+    "color": "#80BA27"
+  },
+  {
+    "id": 295,
+    "codigo": "A52",
+    "nombre": "Flores Temporal",
+    "color": "#26358C"
+  },
+  {
+    "id": 5711,
+    "codigo": "A60",
+    "nombre": "Calle 72",
+    "color": "#26358C"
+  },
+  {
+    "id": 1187,
+    "codigo": "A60",
+    "nombre": "Calle 76",
+    "color": "#26358C"
+  },
+  {
+    "id": 1188,
+    "codigo": "A61",
+    "nombre": "Polo",
+    "color": "#26358C"
+  },
+  {
+    "id": 334,
+    "codigo": "B10",
+    "nombre": "Portal Norte",
+    "color": "#80BA27"
+  },
+  {
+    "id": 346,
+    "codigo": "B11",
+    "nombre": "Terminal",
+    "color": "#80BA27"
+  },
+  {
+    "id": 349,
+    "codigo": "B12",
+    "nombre": "P. Norte",
+    "color": "#80BA27"
+  },
+  {
+    "id": 282,
+    "codigo": "B13",
+    "nombre": "Portal Norte",
+    "color": "#80BA27"
+  },
+  {
+    "id": 355,
+    "codigo": "B16",
+    "nombre": "Terminal",
+    "color": "#80BA27"
+  },
+  {
+    "id": 318,
+    "codigo": "B18",
+    "nombre": "Terminal",
+    "color": "#80BA27"
+  },
+  {
+    "id": 320,
+    "codigo": "B23",
+    "nombre": "Alcalá",
+    "color": "#80BA27"
+  },
+  {
+    "id": 1191,
+    "codigo": "B26",
+    "nombre": "Alcalá",
+    "color": "#80BA27"
+  },
+  {
+    "id": 287,
+    "codigo": "B27",
+    "nombre": "Portal Norte",
+    "color": "#80BA27"
+  },
+  {
+    "id": 383,
+    "codigo": "B28",
+    "nombre": "Portal Norte",
+    "color": "#80BA27"
+  },
+  {
+    "id": 5656,
+    "codigo": "B46",
+    "nombre": "P Norte",
+    "color": "#80BA27"
+  },
+  {
+    "id": 386,
+    "codigo": "B46",
+    "nombre": "Portal Norte",
+    "color": "#80BA27"
+  },
+  {
+    "id": 363,
+    "codigo": "B50",
+    "nombre": "Calle 161",
+    "color": "#80BA27"
+  },
+  {
+    "id": 336,
+    "codigo": "B55",
+    "nombre": "Terminal",
+    "color": "#80BA27"
+  },
+  {
+    "id": 338,
+    "codigo": "B72",
+    "nombre": "Toberín",
+    "color": "#80BA27"
+  },
+  {
+    "id": 344,
+    "codigo": "B74",
+    "nombre": "Portal Norte",
+    "color": "#80BA27"
+  },
+  {
+    "id": 280,
+    "codigo": "B75",
+    "nombre": "Portal Norte",
+    "color": "#80BA27"
+  },
+  {
+    "id": 3915,
+    "codigo": "C15",
+    "nombre": "Portal Suba",
+    "color": "#FCBD1B"
+  },
+  {
+    "id": 366,
+    "codigo": "C15",
+    "nombre": "Chapinero Ciclovía",
+    "color": "#FCBD1B"
+  },
+  {
+    "id": 297,
+    "codigo": "C17",
+    "nombre": "Portal Suba",
+    "color": "#FCBD1B"
+  },
+  {
+    "id": 157,
+    "codigo": "C19",
+    "nombre": "P.SUBA",
+    "color": "#FCBD1B"
+  },
+  {
+    "id": 777,
+    "codigo": "C25",
+    "nombre": "Portal Suba",
+    "color": "#FCBD1B"
+  },
+  {
+    "id": 369,
+    "codigo": "C30",
+    "nombre": "PORTAL SUBA",
+    "color": "#FCBD1B"
+  },
+  {
+    "id": 364,
+    "codigo": "C50",
+    "nombre": "P. Suba",
+    "color": "#FCBD1B"
+  },
+  {
+    "id": 375,
+    "codigo": "C73",
+    "nombre": "P.SUBA",
+    "color": "#FCBD1B"
+  },
+  {
+    "id": 335,
+    "codigo": "D10",
+    "nombre": "Portal 80",
+    "color": "#8064A9"
+  },
+  {
+    "id": 302,
+    "codigo": "D20",
+    "nombre": "Portal 80",
+    "color": "#8064A9"
+  },
+  {
+    "id": 313,
+    "codigo": "D21",
+    "nombre": "PORTAL 80",
+    "color": "#8064A9"
+  },
+  {
+    "id": 379,
+    "codigo": "D22",
+    "nombre": "Portal 80",
+    "color": "#8064A9"
+  },
+  {
+    "id": 310,
+    "codigo": "D24",
+    "nombre": "P. 80",
+    "color": "#8064A9"
+  },
+  {
+    "id": 1246,
+    "codigo": "D55",
+    "nombre": "Portal 80",
+    "color": "#8064A9"
+  },
+  {
+    "id": 353,
+    "codigo": "E32",
+    "nombre": "NQS Calle 75",
+    "color": "#AE6B00"
+  },
+  {
+    "id": 1174,
+    "codigo": "E42",
+    "nombre": "7 de Agosto",
+    "color": "#AE6B00"
+  },
+  {
+    "id": 12444,
+    "codigo": "E48",
+    "nombre": "CAD",
+    "color": "#AE6B00"
+  },
+  {
+    "id": 5466,
+    "codigo": "F19",
+    "nombre": "P. Américas",
+    "color": "#DC0814"
+  },
+  {
+    "id": 10082,
+    "codigo": "F23",
+    "nombre": "Banderas",
+    "color": "#DC0814"
+  },
+  {
+    "id": 396,
+    "codigo": "F23",
+    "nombre": "P. Américas",
+    "color": "#DC0814"
+  },
+  {
+    "id": 1192,
+    "codigo": "F26",
+    "nombre": "Portal Américas",
+    "color": "#DC0814"
+  },
+  {
+    "id": 352,
+    "codigo": "F28",
+    "nombre": "Portal Américas",
+    "color": "#DC0814"
+  },
+  {
+    "id": 354,
+    "codigo": "F32",
+    "nombre": "Portal Américas",
+    "color": "#DC0814"
+  },
+  {
+    "id": 399,
+    "codigo": "F51",
+    "nombre": "PORTAL AMÉRICAS",
+    "color": "#DC0814"
+  },
+  {
+    "id": 3848,
+    "codigo": "F60",
+    "nombre": "Portal Américas",
+    "color": "#DC0814"
+  },
+  {
+    "id": 1190,
+    "codigo": "F61",
+    "nombre": "Portal Américas",
+    "color": "#DC0814"
+  },
+  {
+    "id": 347,
+    "codigo": "G11",
+    "nombre": "Portal Sur",
+    "color": "#009CDE"
+  },
+  {
+    "id": 1210,
+    "codigo": "G12",
+    "nombre": "G. Santander",
+    "color": "#009CDE"
+  },
+  {
+    "id": 350,
+    "codigo": "G12",
+    "nombre": "P. Sur",
+    "color": "#009CDE"
+  },
+  {
+    "id": 380,
+    "codigo": "G22",
+    "nombre": "Portal Sur",
+    "color": "#009CDE"
+  },
+  {
+    "id": 370,
+    "codigo": "G30",
+    "nombre": "PORTAL SUR",
+    "color": "#009CDE"
+  },
+  {
+    "id": 776,
+    "codigo": "G41",
+    "nombre": "San Mateo",
+    "color": "#009CDE"
+  },
+  {
+    "id": 1175,
+    "codigo": "G42",
+    "nombre": "San Mateo",
+    "color": "#009CDE"
+  },
+  {
+    "id": 389,
+    "codigo": "G43",
+    "nombre": "San Mateo",
+    "color": "#009CDE"
+  },
+  {
+    "id": 3929,
+    "codigo": "G45",
+    "nombre": "Portal Sur",
+    "color": "#009CDE"
+  },
+  {
+    "id": 393,
+    "codigo": "G45",
+    "nombre": "San Mateo",
+    "color": "#009CDE"
+  },
+  {
+    "id": 387,
+    "codigo": "G46",
+    "nombre": "San Mateo",
+    "color": "#009CDE"
+  },
+  {
+    "id": 385,
+    "codigo": "G47",
+    "nombre": "Portal Sur",
+    "color": "#009CDE"
+  },
+  {
+    "id": 12611,
+    "codigo": "G48",
+    "nombre": "San Mateo",
+    "color": "#009CDE"
+  },
+  {
+    "id": 296,
+    "codigo": "G52",
+    "nombre": "Portal Sur",
+    "color": "#009CDE"
+  },
+  {
+    "id": 5662,
+    "codigo": "G53",
+    "nombre": "Portal Sur",
+    "color": "#009CDE"
+  },
+  {
+    "id": 283,
+    "codigo": "H13",
+    "nombre": "P. TUNAL",
+    "color": "#F18500"
+  },
+  {
+    "id": 367,
+    "codigo": "H15",
+    "nombre": "Portal Tunal",
+    "color": "#F18500"
+  },
+  {
+    "id": 298,
+    "codigo": "H17",
+    "nombre": "Portal Usme",
+    "color": "#F18500"
+  },
+  {
+    "id": 303,
+    "codigo": "H20",
+    "nombre": "Portal Usme",
+    "color": "#F18500"
+  },
+  {
+    "id": 312,
+    "codigo": "H21",
+    "nombre": "PORTAL TUNAL",
+    "color": "#F18500"
+  },
+  {
+    "id": 288,
+    "codigo": "H27",
+    "nombre": "Portal Tunal",
+    "color": "#F18500"
+  },
+  {
+    "id": 317,
+    "codigo": "H54",
+    "nombre": "Portal Usme",
+    "color": "#F18500"
+  },
+  {
+    "id": 339,
+    "codigo": "H72",
+    "nombre": "P. Usme",
+    "color": "#F18500"
+  },
+  {
+    "id": 281,
+    "codigo": "H75",
+    "nombre": "P.USME",
+    "color": "#F18500"
+  },
+  {
+    "id": 1213,
+    "codigo": "H76",
+    "nombre": "Portal Usme",
+    "color": "#F18500"
+  },
+  {
+    "id": 397,
+    "codigo": "J23",
+    "nombre": "Aguas",
+    "color": "#E1A2AC"
+  },
+  {
+    "id": 311,
+    "codigo": "J24",
+    "nombre": "Universidades",
+    "color": "#E1A2AC"
+  },
+  {
+    "id": 342,
+    "codigo": "J70",
+    "nombre": "Aguas",
+    "color": "#E1A2AC"
+  },
+  {
+    "id": 376,
+    "codigo": "J73",
+    "nombre": "UNIVERSIDADES",
+    "color": "#E1A2AC"
+  },
+  {
+    "id": 289,
+    "codigo": "J74",
+    "nombre": "Universidades",
+    "color": "#E1A2AC"
+  },
+  {
+    "id": 1214,
+    "codigo": "J76",
+    "nombre": "Universidades",
+    "color": "#E1A2AC"
+  },
+  {
+    "id": 314,
+    "codigo": "K10",
+    "nombre": "P. ELDORADO",
+    "color": "#D5B079"
+  },
+  {
+    "id": 356,
+    "codigo": "K16",
+    "nombre": "P ElDorado",
+    "color": "#D5B079"
+  },
+  {
+    "id": 321,
+    "codigo": "K23",
+    "nombre": "Portal Eldorado",
+    "color": "#D5B079"
+  },
+  {
+    "id": 5663,
+    "codigo": "K43",
+    "nombre": "P. ElDorado",
+    "color": "#D5B079"
+  },
+  {
+    "id": 388,
+    "codigo": "K43",
+    "nombre": "Portal Eldorado",
+    "color": "#D5B079"
+  },
+  {
+    "id": 5661,
+    "codigo": "K53",
+    "nombre": "P. ElDorado",
+    "color": "#D5B079"
+  },
+  {
+    "id": 316,
+    "codigo": "K54",
+    "nombre": "Portal Eldorado",
+    "color": "#D5B079"
+  },
+  {
+    "id": 315,
+    "codigo": "L10",
+    "nombre": "P. 20 DE JULIO",
+    "color": "#009A9D"
+  },
+  {
+    "id": 319,
+    "codigo": "L18",
+    "nombre": "PORTAL 20 DE JULIO",
+    "color": "#009A9D"
+  },
+  {
+    "id": 778,
+    "codigo": "L25",
+    "nombre": "Portal 20 de Julio",
+    "color": "#009A9D"
+  },
+  {
+    "id": 775,
+    "codigo": "L41",
+    "nombre": "Bicentenario",
+    "color": "#009A9D"
+  },
+  {
+    "id": 384,
+    "codigo": "M47",
+    "nombre": "Museo Nacional",
+    "color": "#009A9D"
+  },
+  {
+    "id": 398,
+    "codigo": "M51",
+    "nombre": "Museo Nacional",
+    "color": "#009A9D"
+  },
+  {
+    "id": 646,
+    "codigo": "M83",
+    "nombre": "Museo Nacional",
+    "color": "#009A9D"
+  },
+  {
+    "id": 5591,
+    "codigo": "S41",
+    "nombre": "San Mateo",
+    "color": "#049CDD"
+  },
+  {
+    "id": 5653,
+    "codigo": "S42",
+    "nombre": "San Mateo",
+    "color": "#049CDD"
+  },
+  {
+    "id": 5665,
+    "codigo": "S43",
+    "nombre": "San Mateo",
+    "color": "#049CDD"
+  },
+  {
+    "id": 5587,
+    "codigo": "S45",
+    "nombre": "San Mateo",
+    "color": "#049CDD"
+  },
+  {
+    "id": 5658,
+    "codigo": "S46",
+    "nombre": "San Mateo",
+    "color": "#049CDD"
+  },
+  {
+    "id": 5655,
+    "codigo": "S48",
+    "nombre": "San Mateo",
+    "color": "#049CDD"
+  },
+  {
+    "id": 5467,
+    "codigo": "Z61",
+    "nombre": "Tibanica",
+    "color": "#BD202A"
+  }
+]

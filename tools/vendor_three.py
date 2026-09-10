@@ -17,7 +17,7 @@ def main():
     archive = urllib.request.urlopen(URL, timeout=90).read()
     if base64.b64encode(hashlib.sha512(archive).digest()).decode() != INTEGRITY:
         raise ValueError('npm tarball integrity mismatch')
-    folder = ROOT / 'web/transmi2d/dist/vendor'
+    folder = ROOT / 'app/dist/vendor'
     folder.mkdir(parents=True, exist_ok=True)
     hashes = {}
     with tarfile.open(fileobj=io.BytesIO(archive), mode='r:gz') as tar:

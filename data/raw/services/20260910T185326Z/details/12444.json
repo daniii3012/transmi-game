@@ -1,0 +1,118 @@
+{
+  "color": "#AE6B00",
+  "nombre": "CAD",
+  "estaciones": [
+    {
+      "id": 7503,
+      "codigo": "TM0103",
+      "nombre": "San Mateo",
+      "direccion": "KR 4 - CL 30 Soacha",
+      "posicion": 0,
+      "sistema": "TransMilenio",
+      "color": "#AE6B00"
+    },
+    {
+      "id": 7504,
+      "codigo": "TM0102",
+      "nombre": "Terreros - H. Cardiovascular",
+      "direccion": "KR 7 - CL 33 Soacha",
+      "posicion": 866,
+      "sistema": "TransMilenio",
+      "color": "#AE6B00"
+    },
+    {
+      "id": 7505,
+      "codigo": "TM0101",
+      "nombre": "León XIII",
+      "direccion": "TV 7 - CL 47 Soacha",
+      "posicion": 1574,
+      "sistema": "TransMilenio",
+      "color": "#AE6B00"
+    },
+    {
+      "id": 7506,
+      "codigo": "TM0100",
+      "nombre": "La Despensa",
+      "direccion": "TV 7 - CL 55 Soacha",
+      "posicion": 2239,
+      "sistema": "TransMilenio",
+      "color": "#AE6B00"
+    },
+    {
+      "id": 7010,
+      "codigo": "TM0149",
+      "nombre": "Bosa",
+      "direccion": "Autopista Sur- 65A Sur",
+      "posicion": 3002,
+      "sistema": "TransMilenio",
+      "color": "#AE6B00"
+    },
+    {
+      "id": 7003,
+      "codigo": "TM0096",
+      "nombre": "Sevillana",
+      "direccion": "Autopista Sur - KRA 61",
+      "posicion": 6776,
+      "sistema": "TransMilenio",
+      "color": "#AE6B00"
+    },
+    {
+      "id": 7004,
+      "codigo": "TM0095",
+      "nombre": "Venecia",
+      "direccion": "Autopista Sur - KR 54A",
+      "posicion": 7355,
+      "sistema": "TransMilenio",
+      "color": "#AE6B00"
+    },
+    {
+      "id": 7006,
+      "codigo": "TM0093",
+      "nombre": "General Santander",
+      "direccion": "Autopista Sur - KR 50A Bis",
+      "posicion": 8644,
+      "sistema": "TransMilenio",
+      "color": "#AE6B00"
+    },
+    {
+      "id": 7113,
+      "codigo": "TM0089",
+      "nombre": "Santa Isabel",
+      "direccion": "AV. NQS - CL 1G",
+      "posicion": 12027,
+      "sistema": "TransMilenio",
+      "color": "#AE6B00"
+    },
+    {
+      "id": 7111,
+      "codigo": "TM0069",
+      "nombre": "Ricaurte",
+      "direccion": "AV. NQS - CL 10",
+      "posicion": 13588,
+      "sistema": "TransMilenio",
+      "color": "#AE6B00"
+    },
+    {
+      "id": 7109,
+      "codigo": "TM0067",
+      "nombre": "CAD",
+      "direccion": "AV. NQS - CL 22C",
+      "posicion": 15259,
+      "sistema": "TransMilenio",
+      "color": "#AE6B00"
+    }
+  ],
+  "horario": [
+    {
+      "tipoDia": "S",
+      "inicio": "4:30 AM",
+      "fin": "10:00 AM"
+    },
+    {
+      "tipoDia": "L-V",
+      "inicio": "4:00 AM",
+      "fin": "10:00 AM"
+    }
+  ],
+  "trazado": null
+}

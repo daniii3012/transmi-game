@@ -8,7 +8,7 @@ from shapely.ops import transform
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/'tools'))
 from build_network_2d import build, SNAPSHOT, LOAD_CORRIDORS
-from build_pilot import PROJECT
+from geo import PROJECT
 from vehicle_definition import digest
 
 class Network2DTests(unittest.TestCase):
@@ -47,7 +47,7 @@ class Network2DTests(unittest.TestCase):
         self.assertEqual([s['station_id'] for s in pilot[0]['stops']],['05101','05102','05103'])
 
     def test_generated_bundle_matches_source(self):
-        on_disk=json.loads((ROOT/'web/transmi2d/dist/network.json').read_text())
+        on_disk=json.loads((ROOT/'app/dist/network.json').read_text())
         self.assertEqual(on_disk,json.loads(json.dumps(self.data)))
 
 if __name__=='__main__':

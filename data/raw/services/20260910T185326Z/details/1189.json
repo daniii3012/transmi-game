@@ -1,0 +1,257 @@
+{
+  "color": "#D5B079",
+  "nombre": "Portal ElDorado Ciclovía",
+  "estaciones": [
+    {
+      "id": 56547,
+      "codigo": "164A01",
+      "nombre": "Br. El Pedregal",
+      "direccion": "AK 7 - CL 101",
+      "posicion": 20196,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 74408,
+      "codigo": "AC100 - KR 8A",
+      "nombre": "AC100 - KR 8A",
+      "direccion": "AC 100 - KR 8A",
+      "posicion": 20641,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 56541,
+      "codigo": "161A01",
+      "nombre": "Urb. Conjunto de La 100",
+      "direccion": "AC 100 - KR 8A",
+      "posicion": 20874,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 71517,
+      "codigo": "BD-042A",
+      "nombre": "K11 - CL100",
+      "direccion": "K11 - CL100",
+      "posicion": 21140,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 56891,
+      "codigo": "044B00",
+      "nombre": "Embajada de Francia",
+      "direccion": "AK 11 - CL 93",
+      "posicion": 22057,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 71520,
+      "codigo": "BD-045A",
+      "nombre": "K11 - CL86A",
+      "direccion": "K11 - CL86A",
+      "posicion": 22637,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 56892,
+      "codigo": "045A00",
+      "nombre": "Br. La Cabrera",
+      "direccion": "AK 11 - AC 82",
+      "posicion": 22999,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 57324,
+      "codigo": "225B00",
+      "nombre": "Br. Porciúncula",
+      "direccion": "AK 11 - CL 75",
+      "posicion": 23931,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 57327,
+      "codigo": "227A00",
+      "nombre": "Clín de Traumatología y Ortopedi",
+      "direccion": "AK 11 - CL 70A",
+      "posicion": 24534,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 71389,
+      "codigo": "BD-022A",
+      "nombre": "K13 - CL66",
+      "direccion": "K13 - CL66",
+      "posicion": 25210,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 57337,
+      "codigo": "232A00",
+      "nombre": "Cuerpo Of de Bomberos de Bogotá",
+      "direccion": "AK 13 - CL 60 Bis",
+      "posicion": 25832,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 71391,
+      "codigo": "BD-024A",
+      "nombre": "K13 - CL55",
+      "direccion": "K13 - CL55",
+      "posicion": 26370,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 71394,
+      "codigo": "BD-027A",
+      "nombre": "K13 - CL43A",
+      "direccion": "K13 - CL43A",
+      "posicion": 27668,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 10009,
+      "codigo": "TM0146",
+      "nombre": "Museo Nacional",
+      "direccion": "KR 7 - CL 29",
+      "posicion": 29633,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 6108,
+      "codigo": "TM0124",
+      "nombre": "Concejo de Bogotá",
+      "direccion": "AV. Eldorado - KR 28",
+      "posicion": 31849,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 6106,
+      "codigo": "TM0126",
+      "nombre": "Corferias",
+      "direccion": "AV. Eldorado - KR 40",
+      "posicion": 33254,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 6104,
+      "codigo": "TM0128",
+      "nombre": "Gobernacion",
+      "direccion": "AV. Eldorado - KR 54",
+      "posicion": 34483,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 6103,
+      "codigo": "TM0129",
+      "nombre": "CAN - British Council",
+      "direccion": "AV. Eldorado - KR 59",
+      "posicion": 35007,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 6101,
+      "codigo": "TM0131",
+      "nombre": "El Tiempo - Cámara De Comercio De Bogotá",
+      "direccion": "AV. Eldorado - KR 69",
+      "posicion": 36424,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 6100,
+      "codigo": "TM0132",
+      "nombre": "Av. Rojas - UNISALESIANA",
+      "direccion": "AV. Eldorado - KR 69D",
+      "posicion": 37099,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 52733,
+      "codigo": "194A05",
+      "nombre": "CIAC",
+      "direccion": "AC 26 - KR 103",
+      "posicion": 41097,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 53036,
+      "codigo": "380A05",
+      "nombre": "Puente Aéreo",
+      "direccion": "AC 26 - KR 106",
+      "posicion": 41435,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 53037,
+      "codigo": "383A05",
+      "nombre": "Puente Aéreo",
+      "direccion": "AC 26 - KR 106",
+      "posicion": 41768,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 53014,
+      "codigo": "377B05",
+      "nombre": "Aeropuerto Eldorado",
+      "direccion": "Aeropuerto Eldorado",
+      "posicion": 42394,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 73769,
+      "codigo": "382A06",
+      "nombre": "CAC",
+      "direccion": "AC 26 - KR 106",
+      "posicion": 43519,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 73770,
+      "codigo": "383A06",
+      "nombre": "Aeronáutica Civil",
+      "direccion": "AC 26 - KR 103",
+      "posicion": 43961,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    },
+    {
+      "id": 6000,
+      "codigo": "TM0135",
+      "nombre": "Portal El Dorado – C.C Nuestro Bogotá",
+      "direccion": "AV. Eldorado - KR 91",
+      "posicion": 48129,
+      "sistema": "TransMilenio",
+      "color": "#D5B079"
+    }
+  ],
+  "horario": [
+    {
+      "tipoDia": "D-F",
+      "inicio": "7:00 AM",
+      "fin": "2:00 PM"
+    }
+  ],
+  "trazado": null
+}

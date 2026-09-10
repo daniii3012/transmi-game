@@ -4,7 +4,7 @@ import json
 import math
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_PATH = ROOT / 'game/data/vehicles/articulado_prototipo.json'
+DEFAULT_PATH = ROOT / 'data/vehicles/articulado_prototipo.json'
 
 
 def validate(data):

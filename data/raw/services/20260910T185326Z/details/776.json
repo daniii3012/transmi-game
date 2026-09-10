@@ -1,0 +1,18 @@
+{
+  "color": "#009CDE",
+  "nombre": "San Mateo",
+  "estaciones": [],
+  "horario": [
+    {
+      "tipoDia": "L-V",
+      "inicio": "5:00 AM",
+      "fin": "9:00 PM"
+    },
+    {
+      "tipoDia": "S",
+      "inicio": "5:00 AM",
+      "fin": "9:00 PM"
+    }
+  ],
+  "trazado": null
+}

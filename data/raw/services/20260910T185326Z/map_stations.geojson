@@ -1,0 +1,4087 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.061249344,
+          4.663229629
+        ]
+      },
+      "properties": {
+        "id": "9123",
+        "estacion_parada": "9123",
+        "nombre_estacion": "Calle 76",
+        "direccion": "AV. Caracas - CL 76",
+        "longitud": -74.06124934398012,
+        "latitud": 4.663229628844525,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0001.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "En obras",
+        "vagones": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.062062086,
+          4.658444161
+        ]
+      },
+      "properties": {
+        "id": "9122",
+        "estacion_parada": "9122",
+        "nombre_estacion": "Calle 72 - Areandina",
+        "direccion": "AV. Caracas - CL 72",
+        "longitud": -74.0620620857438,
+        "latitud": 4.658444161083302,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0002.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.063092808,
+          4.65481805
+        ]
+      },
+      "properties": {
+        "id": "9121",
+        "estacion_parada": "9121",
+        "nombre_estacion": "Flores",
+        "direccion": "AV. Caracas - CL 69",
+        "longitud": -74.0630928081527,
+        "latitud": 4.654818050006717,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0003.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.064995632,
+          4.647705498
+        ]
+      },
+      "properties": {
+        "id": "9120",
+        "estacion_parada": "9120",
+        "nombre_estacion": "Calle 63",
+        "direccion": "AV. Caracas - CL 63",
+        "longitud": -74.06499563240814,
+        "latitud": 4.647705497643488,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0004.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "En obras",
+        "vagones": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.065811963,
+          4.643272142
+        ]
+      },
+      "properties": {
+        "id": "9119",
+        "estacion_parada": "9119",
+        "nombre_estacion": "Calle 57",
+        "direccion": "AV. Caracas - CL 57",
+        "longitud": -74.0658119631138,
+        "latitud": 4.643272141803835,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0005.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.066777597,
+          4.637729929
+        ]
+      },
+      "properties": {
+        "id": "9118",
+        "estacion_parada": "9118",
+        "nombre_estacion": "Marly",
+        "direccion": "AV. Caracas - CL 51",
+        "longitud": -74.0667775968778,
+        "latitud": 4.637729928908476,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0006.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.067845159,
+          4.631693065
+        ]
+      },
+      "properties": {
+        "id": "9117",
+        "estacion_parada": "9117",
+        "nombre_estacion": "Calle 45",
+        "direccion": "AV. Caracas - CL 45",
+        "longitud": -74.0678451586427,
+        "latitud": 4.631693064804521,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0007.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "En obras",
+        "vagones": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.06869277,
+          4.62706245
+        ]
+      },
+      "properties": {
+        "id": "9116",
+        "estacion_parada": "9116",
+        "nombre_estacion": "Av. 39",
+        "direccion": "AV. Caracas - CL 39",
+        "longitud": -74.06869277048493,
+        "latitud": 4.627062450329631,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0008.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.069746921,
+          4.621627054
+        ]
+      },
+      "properties": {
+        "id": "9115",
+        "estacion_parada": "9115",
+        "nombre_estacion": "Calle 34",
+        "direccion": "AV. Caracas - CL 33A",
+        "longitud": -74.0697469206329,
+        "latitud": 4.621627054173595,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0009.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "En obras",
+        "vagones": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.072158322,
+          4.616803874
+        ]
+      },
+      "properties": {
+        "id": "9114",
+        "estacion_parada": "9114",
+        "nombre_estacion": "Calle 26 - Atrio",
+        "direccion": "AV. Caracas - CL 28",
+        "longitud": -74.07215832212262,
+        "latitud": 4.61680387393329,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0010.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.074631417,
+          4.611790833
+        ]
+      },
+      "properties": {
+        "id": "9113",
+        "estacion_parada": "9113",
+        "nombre_estacion": "Calle 22",
+        "direccion": "AV. Caracas - CL 22",
+        "longitud": -74.0746314168675,
+        "latitud": 4.611790833113925,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0011.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.07688221,
+          4.607868601
+        ]
+      },
+      "properties": {
+        "id": "9111",
+        "estacion_parada": "9111",
+        "nombre_estacion": "Calle 19",
+        "direccion": "AV. Caracas - CL 19",
+        "longitud": -74.076882209875,
+        "latitud": 4.607868600930221,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0012.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "En obras",
+        "vagones": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.080499881,
+          4.602792382
+        ]
+      },
+      "properties": {
+        "id": "9110",
+        "estacion_parada": "9110",
+        "nombre_estacion": "Avenida Jiménez",
+        "direccion": "AV. Caracas - CL 11",
+        "longitud": -74.08049988131012,
+        "latitud": 4.602792381921948,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0013.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "Operativa",
+        "vagones": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.083863141,
+          4.598136957
+        ]
+      },
+      "properties": {
+        "id": "9109",
+        "estacion_parada": "9109",
+        "nombre_estacion": "Tercer Milenio",
+        "direccion": "AV. Caracas - CL 6",
+        "longitud": -74.08386314105057,
+        "latitud": 4.59813695734415,
+        "id_troncal": 1,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0014.jpg",
+        "zona": "A",
+        "color": "#26358C",
+        "nom_tronc": "Caracas",
+        "id_trazado": "TZ001",
+        "estado": "En obras",
+        "vagones": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.060240793,
+          4.668671388
+        ]
+      },
+      "properties": {
+        "id": "2304",
+        "estacion_parada": "2304",
+        "nombre_estacion": "Héroes - Colmena Seguros",
+        "direccion": "Autopista Norte - CL 81",
+        "longitud": -74.06024079317713,
+        "latitud": 4.668671387897557,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0015.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.059800893,
+          4.671531937
+        ]
+      },
+      "properties": {
+        "id": "2303",
+        "estacion_parada": "2303",
+        "nombre_estacion": "Calle 85 - Gato Dumas",
+        "direccion": "Autopista Norte - CL 83A",
+        "longitud": -74.05980089332574,
+        "latitud": 4.671531937028568,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0016.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.058958646,
+          4.676386824
+        ]
+      },
+      "properties": {
+        "id": "2302",
+        "estacion_parada": "2302",
+        "nombre_estacion": "Virrey - Cendiatra",
+        "direccion": "Autopista Norte - CL 89",
+        "longitud": -74.05895864609013,
+        "latitud": 4.676386823599941,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0017.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.05766577,
+          4.684500504
+        ]
+      },
+      "properties": {
+        "id": "2300",
+        "estacion_parada": "2300",
+        "nombre_estacion": "Calle 100 - Marketmedios",
+        "direccion": "Autopista Norte - CL 97",
+        "longitud": -74.05766576971402,
+        "latitud": 4.684500504397233,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0018.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.05601211,
+          4.694090132
+        ]
+      },
+      "properties": {
+        "id": "2205",
+        "estacion_parada": "2205",
+        "nombre_estacion": "Calle 106",
+        "direccion": "Autopista Norte - CL 104A",
+        "longitud": -74.05601210982444,
+        "latitud": 4.694090131876952,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0019.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.055346986,
+          4.697993859
+        ]
+      },
+      "properties": {
+        "id": "2204",
+        "estacion_parada": "2204",
+        "nombre_estacion": "Pepe Sierra - Utel Universidad",
+        "direccion": "Autopista Norte - CL 114A",
+        "longitud": -74.05534698578055,
+        "latitud": 4.697993858660694,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0020.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.054290752,
+          4.704501783
+        ]
+      },
+      "properties": {
+        "id": "2202",
+        "estacion_parada": "2202",
+        "nombre_estacion": "Calle 127",
+        "direccion": "Autopista Norte - CL 124",
+        "longitud": -74.05429075236722,
+        "latitud": 4.704501782695917,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0021.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.052613592,
+          4.714507397
+        ]
+      },
+      "properties": {
+        "id": "2201",
+        "estacion_parada": "2201",
+        "nombre_estacion": "Prado",
+        "direccion": "Autopista Norte - CL 128B",
+        "longitud": -74.05261359237171,
+        "latitud": 4.71450739746417,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0022.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.051443637,
+          4.721474437
+        ]
+      },
+      "properties": {
+        "id": "2200",
+        "estacion_parada": "2200",
+        "nombre_estacion": "Alcalá - Colegio S. Tomás Dominicos",
+        "direccion": "Autopista Norte - CL 134",
+        "longitud": -74.05144363697242,
+        "latitud": 4.721474436888247,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0023.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.050545674,
+          4.726823802
+        ]
+      },
+      "properties": {
+        "id": "2105",
+        "estacion_parada": "2105",
+        "nombre_estacion": "Calle 142",
+        "direccion": "Autopista Norte - CL 143",
+        "longitud": -74.05054567393462,
+        "latitud": 4.726823802388401,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0024.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.049739733,
+          4.731381287
+        ]
+      },
+      "properties": {
+        "id": "2104",
+        "estacion_parada": "2104",
+        "nombre_estacion": "Calle 146",
+        "direccion": "Autopista Norte - CL 147",
+        "longitud": -74.04973973334786,
+        "latitud": 4.731381286613273,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0025.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.049058504,
+          4.735388422
+        ]
+      },
+      "properties": {
+        "id": "2103",
+        "estacion_parada": "2103",
+        "nombre_estacion": "Mazurén",
+        "direccion": "Autopista Norte - CL 151",
+        "longitud": -74.04905850413411,
+        "latitud": 4.735388422201552,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0026.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.047948963,
+          4.742134858
+        ]
+      },
+      "properties": {
+        "id": "2102",
+        "estacion_parada": "2102",
+        "nombre_estacion": "Calle 161",
+        "direccion": "Autopista Norte - CL 161",
+        "longitud": -74.04794896258822,
+        "latitud": 4.742134858459318,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0027.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.047160479,
+          4.747125297
+        ]
+      },
+      "properties": {
+        "id": "2101",
+        "estacion_parada": "2101",
+        "nombre_estacion": "Toberín",
+        "direccion": "Autopista Norte - CL 165",
+        "longitud": -74.04716047871734,
+        "latitud": 4.747125296704463,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0028.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.045886326,
+          4.755476319
+        ]
+      },
+      "properties": {
+        "id": "2000",
+        "estacion_parada": "2000",
+        "nombre_estacion": "Portal Norte - Unicervantes",
+        "direccion": "Autopista Norte - CL 172A",
+        "longitud": -74.04588632560464,
+        "latitud": 4.755476318993964,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0029.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.044482817,
+          4.763355907
+        ]
+      },
+      "properties": {
+        "id": "2001",
+        "estacion_parada": "2001",
+        "nombre_estacion": "Calle 187",
+        "direccion": "Autopista Norte - CL 187",
+        "longitud": -74.04448281672104,
+        "latitud": 4.763355907034681,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0030.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.04349853,
+          4.769015312
+        ]
+      },
+      "properties": {
+        "id": "2502",
+        "estacion_parada": "2502",
+        "nombre_estacion": "Terminal",
+        "direccion": "Autopista Norte - CL 192",
+        "longitud": -74.04349853001276,
+        "latitud": 4.769015312056167,
+        "id_troncal": 2,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0031.jpg",
+        "zona": "B",
+        "color": "#80BA27",
+        "nom_tronc": "Autopista Norte",
+        "id_trazado": "TZ002",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.067175079,
+          4.676406715
+        ]
+      },
+      "properties": {
+        "id": "3014",
+        "estacion_parada": "3014",
+        "nombre_estacion": "San Martín",
+        "direccion": "AV. SUBA - CL 86A",
+        "longitud": -74.0671750792231,
+        "latitud": 4.676406715270886,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0032.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.064814447,
+          4.68038381
+        ]
+      },
+      "properties": {
+        "id": "3013",
+        "estacion_parada": "3013",
+        "nombre_estacion": "Rionegro",
+        "direccion": "AV SUBA - CL 90",
+        "longitud": -74.0648144473768,
+        "latitud": 4.680383810104609,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0033.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.063260448,
+          4.684688701
+        ]
+      },
+      "properties": {
+        "id": "3012",
+        "estacion_parada": "3012",
+        "nombre_estacion": "Suba - Calle 95",
+        "direccion": "AV. SUBA - CL 95",
+        "longitud": -74.06326044839722,
+        "latitud": 4.684688700606545,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0034.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.06446867,
+          4.687090598
+        ]
+      },
+      "properties": {
+        "id": "90007",
+        "estacion_parada": "90007",
+        "nombre_estacion": "Suba Calle 100",
+        "direccion": "AV. SUBA - CL 100",
+        "longitud": -74.0644686699256,
+        "latitud": 4.687090598134652,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0035.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.067196034,
+          4.693531041
+        ]
+      },
+      "properties": {
+        "id": "3010",
+        "estacion_parada": "3010",
+        "nombre_estacion": "Puentelargo",
+        "direccion": "AV. SUBA - CL 106",
+        "longitud": -74.06719603430062,
+        "latitud": 4.693531041456957,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0036.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.070038663,
+          4.699822803
+        ]
+      },
+      "properties": {
+        "id": "3009",
+        "estacion_parada": "3009",
+        "nombre_estacion": "Av. Suba - Calle 116",
+        "direccion": "AV. SUBA - CL 116",
+        "longitud": -74.0700386632801,
+        "latitud": 4.69982280307737,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0037.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.071229142,
+          4.706652778
+        ]
+      },
+      "properties": {
+        "id": "3007",
+        "estacion_parada": "3007",
+        "nombre_estacion": "Humedal Córdoba",
+        "direccion": "AV. SUBA - CL 120",
+        "longitud": -74.07122914156672,
+        "latitud": 4.706652777841256,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0038.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.072322602,
+          4.71197357
+        ]
+      },
+      "properties": {
+        "id": "3006",
+        "estacion_parada": "3006",
+        "nombre_estacion": "Niza - Calle 127",
+        "direccion": "AV. SUBA - CL 127D",
+        "longitud": -74.07232260157902,
+        "latitud": 4.711973570264825,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0039.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.074778937,
+          4.721407875
+        ]
+      },
+      "properties": {
+        "id": "3005",
+        "estacion_parada": "3005",
+        "nombre_estacion": "Suba - Av. Boyacá",
+        "direccion": "AV. SUBA - AV. BOYACA",
+        "longitud": -74.0747789369504,
+        "latitud": 4.721407874529325,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0040.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.074693102,
+          4.727684552
+        ]
+      },
+      "properties": {
+        "id": "3004",
+        "estacion_parada": "3004",
+        "nombre_estacion": "Gratamira",
+        "direccion": "AV. SUBA - CL 132A",
+        "longitud": -74.07469310245017,
+        "latitud": 4.727684552141268,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0041.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.081146752,
+          4.735570417
+        ]
+      },
+      "properties": {
+        "id": "3003",
+        "estacion_parada": "3003",
+        "nombre_estacion": "21 Ángeles",
+        "direccion": "AV. SUBA - KR 83",
+        "longitud": -74.0811467518341,
+        "latitud": 4.735570417014516,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0042.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.087013621,
+          4.738934773
+        ]
+      },
+      "properties": {
+        "id": "3002",
+        "estacion_parada": "3002",
+        "nombre_estacion": "Suba - Tv. 91",
+        "direccion": "AV. SUBA - KR 91D",
+        "longitud": -74.08701362057269,
+        "latitud": 4.738934772784217,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0043.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.091219748,
+          4.742625982
+        ]
+      },
+      "properties": {
+        "id": "3001",
+        "estacion_parada": "3001",
+        "nombre_estacion": "La Campiña",
+        "direccion": "AV. SUBA - KR 99A",
+        "longitud": -74.09121974847446,
+        "latitud": 4.742625981863797,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0044.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.094252542,
+          4.746992733
+        ]
+      },
+      "properties": {
+        "id": "3000",
+        "estacion_parada": "3000",
+        "nombre_estacion": "Portal Suba",
+        "direccion": "AV. Suba - AV. Ciudad de Cali",
+        "longitud": -74.09425254222107,
+        "latitud": 4.746992732573813,
+        "id_troncal": 3,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0045.jpg",
+        "zona": "C",
+        "color": "#FCBD1B",
+        "nom_tronc": "Suba",
+        "id_trazado": "TZ003",
+        "estado": "Operativa",
+        "vagones": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.064842985,
+          4.670725761
+        ]
+      },
+      "properties": {
+        "id": "4108",
+        "estacion_parada": "4108",
+        "nombre_estacion": "Polo - FINCOMERCIO",
+        "direccion": "AC 80 - KR 27",
+        "longitud": -74.0648429850451,
+        "latitud": 4.670725760633027,
+        "id_troncal": 4,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0046.jpg",
+        "zona": "D",
+        "color": "#8064A9",
+        "nom_tronc": "Calle 80",
+        "id_trazado": "TZ005",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.069853135,
+          4.675545814
+        ]
+      },
+      "properties": {
+        "id": "4107",
+        "estacion_parada": "4107",
+        "nombre_estacion": "Escuela Militar",
+        "direccion": "AC 80 - KR 51",
+        "longitud": -74.0698531351869,
+        "latitud": 4.675545814153923,
+        "id_troncal": 4,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0047.jpg",
+        "zona": "D",
+        "color": "#8064A9",
+        "nom_tronc": "Calle 80",
+        "id_trazado": "TZ005",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.073652873,
+          4.677963079
+        ]
+      },
+      "properties": {
+        "id": "4106",
+        "estacion_parada": "4106",
+        "nombre_estacion": "Carrera 47",
+        "direccion": "AC 80 - KR 57",
+        "longitud": -74.07365287257349,
+        "latitud": 4.677963079060529,
+        "id_troncal": 4,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0048.jpg",
+        "zona": "D",
+        "color": "#8064A9",
+        "nom_tronc": "Calle 80",
+        "id_trazado": "TZ005",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.077421034,
+          4.681765586
+        ]
+      },
+      "properties": {
+        "id": "4105",
+        "estacion_parada": "4105",
+        "nombre_estacion": "Carrera 53",
+        "direccion": "AC 80 - KR 64",
+        "longitud": -74.0774210338658,
+        "latitud": 4.68176558583446,
+        "id_troncal": 4,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0049.jpg",
+        "zona": "D",
+        "color": "#8064A9",
+        "nom_tronc": "Calle 80",
+        "id_trazado": "TZ005",
+        "estado": "Operativa",
+        "vagones": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.080580373,
+          4.685779659
+        ]
+      },
+      "properties": {
+        "id": "4104",
+        "estacion_parada": "4104",
+        "nombre_estacion": "Avenida 68",
+        "direccion": "AC 80 - KR 68G",
+        "longitud": -74.0805803733461,
+        "latitud": 4.685779659231951,
+        "id_troncal": 4,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0050.jpg",
+        "zona": "D",
+        "color": "#8064A9",
+        "nom_tronc": "Calle 80",
+        "id_trazado": "TZ005",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.084661148,
+          4.690931928
+        ]
+      },
+      "properties": {
+        "id": "4103",
+        "estacion_parada": "4103",
+        "nombre_estacion": "Ferias",
+        "direccion": "AC 80 - KR69T",
+        "longitud": -74.08466114804749,
+        "latitud": 4.690931928013001,
+        "id_troncal": 4,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0051.jpg",
+        "zona": "D",
+        "color": "#8064A9",
+        "nom_tronc": "Calle 80",
+        "id_trazado": "TZ005",
+        "estado": "Operativa",
+        "vagones": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.087195617,
+          4.693935046
+        ]
+      },
+      "properties": {
+        "id": "4102",
+        "estacion_parada": "4102",
+        "nombre_estacion": "Boyacá",
+        "direccion": "AC 80 - KR 70F",
+        "longitud": -74.08719561655728,
+        "latitud": 4.693935046426019,
+        "id_troncal": 4,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0052.jpg",
+        "zona": "D",
+        "color": "#8064A9",
+        "nom_tronc": "Calle 80",
+        "id_trazado": "TZ005",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.091599978,
+          4.696653204
+        ]
+      },
+      "properties": {
+        "id": "4101",
+        "estacion_parada": "4101",
+        "nombre_estacion": "Minuto De Dios",
+        "direccion": "AC 80 - KR 73A",
+        "longitud": -74.09159997846265,
+        "latitud": 4.696653203938971,
+        "id_troncal": 4,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0053.jpg",
+        "zona": "D",
+        "color": "#8064A9",
+        "nom_tronc": "Calle 80",
+        "id_trazado": "TZ005",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.095379529,
+          4.698708861
+        ]
+      },
+      "properties": {
+        "id": "4004",
+        "estacion_parada": "4004",
+        "nombre_estacion": "Granja - cra 77",
+        "direccion": "AC 80 - KR 77",
+        "longitud": -74.09537952945217,
+        "latitud": 4.698708860770716,
+        "id_troncal": 4,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0054.jpg",
+        "zona": "D",
+        "color": "#8064A9",
+        "nom_tronc": "Calle 80",
+        "id_trazado": "TZ005",
+        "estado": "Operativa",
+        "vagones": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.10025204,
+          4.702406768
+        ]
+      },
+      "properties": {
+        "id": "4003",
+        "estacion_parada": "4003",
+        "nombre_estacion": "Avenida Cali",
+        "direccion": "AC 80 - KR 86",
+        "longitud": -74.10025204038617,
+        "latitud": 4.702406768132601,
+        "id_troncal": 4,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0055.jpg",
+        "zona": "D",
+        "color": "#8064A9",
+        "nom_tronc": "Calle 80",
+        "id_trazado": "TZ005",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.10467811,
+          4.704669206
+        ]
+      },
+      "properties": {
+        "id": "4002",
+        "estacion_parada": "4002",
+        "nombre_estacion": "Carrera 90",
+        "direccion": "AC 80 - KR 90",
+        "longitud": -74.10467811012995,
+        "latitud": 4.704669206201036,
+        "id_troncal": 4,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0056.jpg",
+        "zona": "D",
+        "color": "#8064A9",
+        "nom_tronc": "Calle 80",
+        "id_trazado": "TZ005",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.108842487,
+          4.706744811
+        ]
+      },
+      "properties": {
+        "id": "4001",
+        "estacion_parada": "4001",
+        "nombre_estacion": "Quirigua",
+        "direccion": "AC 80 -  KR 94",
+        "longitud": -74.10884248740176,
+        "latitud": 4.706744810763617,
+        "id_troncal": 4,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0057.jpg",
+        "zona": "D",
+        "color": "#8064A9",
+        "nom_tronc": "Calle 80",
+        "id_trazado": "TZ005",
+        "estado": "Operativa",
+        "vagones": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.11068572,
+          4.709665445
+        ]
+      },
+      "properties": {
+        "id": "4000",
+        "estacion_parada": "4000",
+        "nombre_estacion": "Portal 80",
+        "direccion": "Portal 80 - AC 80 - KR 96",
+        "longitud": -74.11068571966644,
+        "latitud": 4.709665445198582,
+        "id_troncal": 4,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0058.jpg",
+        "zona": "D",
+        "color": "#8064A9",
+        "nom_tronc": "Calle 80",
+        "id_trazado": "TZ005",
+        "estado": "Operativa",
+        "vagones": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.064712051,
+          4.675470462
+        ]
+      },
+      "properties": {
+        "id": "7101",
+        "estacion_parada": "7101",
+        "nombre_estacion": "La Castellana",
+        "direccion": "AV. NQS - CL 86",
+        "longitud": -74.06471205104542,
+        "latitud": 4.675470461593589,
+        "id_troncal": 5,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0059.jpg",
+        "zona": "E",
+        "color": "#AE6B00",
+        "nom_tronc": "NQS Central",
+        "id_trazado": "TZ007",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.071595032,
+          4.669986708
+        ]
+      },
+      "properties": {
+        "id": "7102",
+        "estacion_parada": "7102",
+        "nombre_estacion": "NQS Calle 75",
+        "direccion": "AV. NQS - CL 75",
+        "longitud": -74.0715950324679,
+        "latitud": 4.669986708041112,
+        "id_troncal": 5,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0060.jpg",
+        "zona": "E",
+        "color": "#AE6B00",
+        "nom_tronc": "NQS Central",
+        "id_trazado": "TZ007",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.074660919,
+          4.666401655
+        ]
+      },
+      "properties": {
+        "id": "7103",
+        "estacion_parada": "7103",
+        "nombre_estacion": "Avenida Chile",
+        "direccion": "AV. NQS - CL 71",
+        "longitud": -74.07466091874579,
+        "latitud": 4.666401655110201,
+        "id_troncal": 5,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0061.jpg",
+        "zona": "E",
+        "color": "#AE6B00",
+        "nom_tronc": "NQS Central",
+        "id_trazado": "TZ007",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.077729391,
+          4.657167359
+        ]
+      },
+      "properties": {
+        "id": "7104",
+        "estacion_parada": "7104",
+        "nombre_estacion": "7 de Agosto",
+        "direccion": "AV. NQS - CL 63G",
+        "longitud": -74.0777293912855,
+        "latitud": 4.657167358519644,
+        "id_troncal": 5,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0062.jpg",
+        "zona": "E",
+        "color": "#AE6B00",
+        "nom_tronc": "NQS Central",
+        "id_trazado": "TZ007",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.078388508,
+          4.649836612
+        ]
+      },
+      "properties": {
+        "id": "7105",
+        "estacion_parada": "7105",
+        "nombre_estacion": "Movistar Arena",
+        "direccion": "AV. NQS - CL 63",
+        "longitud": -74.0783885075735,
+        "latitud": 4.649836612133974,
+        "id_troncal": 5,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0063.jpg",
+        "zona": "E",
+        "color": "#AE6B00",
+        "nom_tronc": "NQS Central",
+        "id_trazado": "TZ007",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.078684393,
+          4.645926935
+        ]
+      },
+      "properties": {
+        "id": "7106",
+        "estacion_parada": "7106",
+        "nombre_estacion": "Campin - UAN",
+        "direccion": "AV. NQS - CL 53 Bis",
+        "longitud": -74.0786843925836,
+        "latitud": 4.645926935472695,
+        "id_troncal": 5,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0064.jpg",
+        "zona": "E",
+        "color": "#AE6B00",
+        "nom_tronc": "NQS Central",
+        "id_trazado": "TZ007",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.079320102,
+          4.637090955
+        ]
+      },
+      "properties": {
+        "id": "7107",
+        "estacion_parada": "7107",
+        "nombre_estacion": "Universidad Nacional",
+        "direccion": "AV. NQS - CL 47",
+        "longitud": -74.0793201018144,
+        "latitud": 4.637090954970345,
+        "id_troncal": 5,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0065.jpg",
+        "zona": "E",
+        "color": "#AE6B00",
+        "nom_tronc": "NQS Central",
+        "id_trazado": "TZ007",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.079921041,
+          4.630183444
+        ]
+      },
+      "properties": {
+        "id": "7108",
+        "estacion_parada": "7108",
+        "nombre_estacion": "Av. Eldorado",
+        "direccion": "AV. NQS - CL 40A",
+        "longitud": -74.07992104136048,
+        "latitud": 4.630183444396017,
+        "id_troncal": 5,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0066.jpg",
+        "zona": "E",
+        "color": "#AE6B00",
+        "nom_tronc": "NQS Central",
+        "id_trazado": "TZ007",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.084448689,
+          4.623156349
+        ]
+      },
+      "properties": {
+        "id": "7109",
+        "estacion_parada": "7109",
+        "nombre_estacion": "CAD",
+        "direccion": "AV. NQS - CL 22C",
+        "longitud": -74.08444868897989,
+        "latitud": 4.623156349390788,
+        "id_troncal": 5,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0067.jpg",
+        "zona": "E",
+        "color": "#AE6B00",
+        "nom_tronc": "NQS Central",
+        "id_trazado": "TZ007",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.089712061,
+          4.616752571
+        ]
+      },
+      "properties": {
+        "id": "7110",
+        "estacion_parada": "7110",
+        "nombre_estacion": "Paloquemao",
+        "direccion": "AV. NQS - CL 18A",
+        "longitud": -74.08971206077527,
+        "latitud": 4.616752570969716,
+        "id_troncal": 5,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0068.jpg",
+        "zona": "E",
+        "color": "#AE6B00",
+        "nom_tronc": "NQS Central",
+        "id_trazado": "TZ007",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.094044517,
+          4.611509982
+        ]
+      },
+      "properties": {
+        "id": "7111",
+        "estacion_parada": "7111",
+        "nombre_estacion": "Ricaurte",
+        "direccion": "AV. NQS - CL 10",
+        "longitud": -74.09404451674625,
+        "latitud": 4.611509982287985,
+        "id_troncal": 5,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0069.jpg",
+        "zona": "E",
+        "color": "#AE6B00",
+        "nom_tronc": "NQS Central",
+        "id_trazado": "TZ007",
+        "estado": "Operativa",
+        "vagones": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.079034263,
+          4.602964699
+        ]
+      },
+      "properties": {
+        "id": "9110",
+        "estacion_parada": "9110",
+        "nombre_estacion": "Avenida Jiménez",
+        "direccion": "AV. Caracas - CL 11",
+        "longitud": -74.0790342625948,
+        "latitud": 4.602964698590776,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0070.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.081837758,
+          4.60532909
+        ]
+      },
+      "properties": {
+        "id": "14001",
+        "estacion_parada": "14001",
+        "nombre_estacion": "De La Sabana",
+        "direccion": "CL 13 - KR 16",
+        "longitud": -74.08183775824678,
+        "latitud": 4.605329089606639,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0071.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.08669807,
+          4.609636771
+        ]
+      },
+      "properties": {
+        "id": "12004",
+        "estacion_parada": "12004",
+        "nombre_estacion": "San Facon Carrera 22",
+        "direccion": "CL 13 - KR 22",
+        "longitud": -74.08669806966428,
+        "latitud": 4.609636771097005,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0072.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.090418561,
+          4.612931094
+        ]
+      },
+      "properties": {
+        "id": "7111",
+        "estacion_parada": "7111",
+        "nombre_estacion": "Ricaurte",
+        "direccion": "CL 13 - KR 27",
+        "longitud": -74.09041856067827,
+        "latitud": 4.612931094395905,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0073.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.093961745,
+          4.616095128
+        ]
+      },
+      "properties": {
+        "id": "12002",
+        "estacion_parada": "12002",
+        "nombre_estacion": "CDS Carrera 32",
+        "direccion": "CL 13 - KR 32",
+        "longitud": -74.09396174519657,
+        "latitud": 4.616095127503604,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0074.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.098615593,
+          4.620222582
+        ]
+      },
+      "properties": {
+        "id": "12007",
+        "estacion_parada": "12007",
+        "nombre_estacion": "Zona Industrial",
+        "direccion": "CL 13 - KR 38",
+        "longitud": -74.09861559253555,
+        "latitud": 4.620222582383956,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0075.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1015404,
+          4.622870276
+        ]
+      },
+      "properties": {
+        "id": "12001",
+        "estacion_parada": "12001",
+        "nombre_estacion": "Carrera 43 - Comapan",
+        "direccion": "CL 13 - KR 43",
+        "longitud": -74.10154040010366,
+        "latitud": 4.622870276471313,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0076.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.104807529,
+          4.625779171
+        ]
+      },
+      "properties": {
+        "id": "12000",
+        "estacion_parada": "12000",
+        "nombre_estacion": "Puente Aranda",
+        "direccion": "CL 13 - KR 47",
+        "longitud": -74.10480752878716,
+        "latitud": 4.625779171404112,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0077.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.111673978,
+          4.627891878
+        ]
+      },
+      "properties": {
+        "id": "5107",
+        "estacion_parada": "5107",
+        "nombre_estacion": "Distrito Grafiti",
+        "direccion": "AV. Américas -  KR 53",
+        "longitud": -74.11167397833702,
+        "latitud": 4.627891878017593,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0078.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.118613706,
+          4.628504032
+        ]
+      },
+      "properties": {
+        "id": "5105",
+        "estacion_parada": "5105",
+        "nombre_estacion": "Pradera - Plaza Central",
+        "direccion": "AV. Américas -  KR 63",
+        "longitud": -74.11861370647584,
+        "latitud": 4.628504032421003,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0079.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.130386602,
+          4.629683789
+        ]
+      },
+      "properties": {
+        "id": "5103",
+        "estacion_parada": "5103",
+        "nombre_estacion": "Marsella",
+        "direccion": "AV. Américas - KR 69C",
+        "longitud": -74.13038660150593,
+        "latitud": 4.629683789436129,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0080.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.134196911,
+          4.630107055
+        ]
+      },
+      "properties": {
+        "id": "5102",
+        "estacion_parada": "5102",
+        "nombre_estacion": "Av Américas - Av. Boyacá",
+        "direccion": "AV. Américas - KR 71C",
+        "longitud": -74.13419691112763,
+        "latitud": 4.630107055076185,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0081.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.141408518,
+          4.630866754
+        ]
+      },
+      "properties": {
+        "id": "5101",
+        "estacion_parada": "5101",
+        "nombre_estacion": "Mandalay",
+        "direccion": "AV. Américas - KR 73",
+        "longitud": -74.1414085178534,
+        "latitud": 4.630866753771207,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0082.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.14566342,
+          4.631326219
+        ]
+      },
+      "properties": {
+        "id": "5100",
+        "estacion_parada": "5100",
+        "nombre_estacion": "Banderas",
+        "direccion": "AV. Américas - KR 78G",
+        "longitud": -74.1456634204114,
+        "latitud": 4.631326218909392,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0083.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.151957192,
+          4.634159421
+        ]
+      },
+      "properties": {
+        "id": "5005",
+        "estacion_parada": "5005",
+        "nombre_estacion": "Transversal 86",
+        "direccion": "AV. Amércias - KR 80C",
+        "longitud": -74.1519571919688,
+        "latitud": 4.634159421462913,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0084.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.159387204,
+          4.637998625
+        ]
+      },
+      "properties": {
+        "id": "5002",
+        "estacion_parada": "5002",
+        "nombre_estacion": "Biblioteca Tintal",
+        "direccion": "AV. Ciudad de Cali - 33 SUR",
+        "longitud": -74.15938720426969,
+        "latitud": 4.637998625161179,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0085.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.164722329,
+          4.63322368
+        ]
+      },
+      "properties": {
+        "id": "5001",
+        "estacion_parada": "5001",
+        "nombre_estacion": "Patio Bonito",
+        "direccion": "AV. Ciudad de Cali - 40 SUR",
+        "longitud": -74.16472232907489,
+        "latitud": 4.633223680195437,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0086.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "En obras",
+        "vagones": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.173221244,
+          4.629568928
+        ]
+      },
+      "properties": {
+        "id": "5000",
+        "estacion_parada": "5000",
+        "nombre_estacion": "Portal Américas",
+        "direccion": "AV. Villavicencio - KR 86",
+        "longitud": -74.17322124434446,
+        "latitud": 4.629568928133814,
+        "id_troncal": 6,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0087.jpg",
+        "zona": "F",
+        "color": "#DC0814",
+        "nom_tronc": "Americas",
+        "id_trazado": "TZ009",
+        "estado": "Operativa",
+        "vagones": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.099917772,
+          4.60419884
+        ]
+      },
+      "properties": {
+        "id": "7112",
+        "estacion_parada": "7112",
+        "nombre_estacion": "Comuneros",
+        "direccion": "AV. NQS -  CL 5",
+        "longitud": -74.09991777247457,
+        "latitud": 4.604198839918896,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0088.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.10275549,
+          4.601588185
+        ]
+      },
+      "properties": {
+        "id": "7113",
+        "estacion_parada": "7113",
+        "nombre_estacion": "Santa Isabel",
+        "direccion": "AV. NQS - CL 1G",
+        "longitud": -74.10275549014096,
+        "latitud": 4.601588184690898,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0089.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.110770898,
+          4.597323692
+        ]
+      },
+      "properties": {
+        "id": "7009",
+        "estacion_parada": "7009",
+        "nombre_estacion": "SENA",
+        "direccion": "Autopista Sur - CL 17A Sur",
+        "longitud": -74.11077089774065,
+        "latitud": 4.597323691619684,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0090.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "En obras",
+        "vagones": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.118119844,
+          4.59473945
+        ]
+      },
+      "properties": {
+        "id": "7008",
+        "estacion_parada": "7008",
+        "nombre_estacion": "NQS Calle 30 SUR",
+        "direccion": "Autopista Sur - CL 30 Sur",
+        "longitud": -74.11811984402215,
+        "latitud": 4.594739449544646,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0091.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.123778156,
+          4.593792135
+        ]
+      },
+      "properties": {
+        "id": "7007",
+        "estacion_parada": "7007",
+        "nombre_estacion": "CL 38A Sur - Centro Mayor",
+        "direccion": "Autopista Sur - CL 38 Sur",
+        "longitud": -74.12377815562081,
+        "latitud": 4.59379213517923,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0092.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.129602992,
+          4.593562807
+        ]
+      },
+      "properties": {
+        "id": "7006",
+        "estacion_parada": "7006",
+        "nombre_estacion": "General Santander",
+        "direccion": "Autopista Sur - KR 50A Bis",
+        "longitud": -74.12960299169742,
+        "latitud": 4.59356280683402,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0093.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.134276225,
+          4.594264844
+        ]
+      },
+      "properties": {
+        "id": "7005",
+        "estacion_parada": "7005",
+        "nombre_estacion": "Alquería",
+        "direccion": "Autopista Sur - KR 52A",
+        "longitud": -74.13427622455903,
+        "latitud": 4.594264843997793,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0094.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.142846443,
+          4.59555426
+        ]
+      },
+      "properties": {
+        "id": "7004",
+        "estacion_parada": "7004",
+        "nombre_estacion": "Venecia",
+        "direccion": "Autopista Sur - KR 54A",
+        "longitud": -74.14284644276131,
+        "latitud": 4.595554260257223,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0095.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.147502096,
+          4.595111945
+        ]
+      },
+      "properties": {
+        "id": "7003",
+        "estacion_parada": "7003",
+        "nombre_estacion": "Sevillana",
+        "direccion": "Autopista Sur - KRA 61",
+        "longitud": -74.1475020964447,
+        "latitud": 4.595111944751638,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0096.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.156991384,
+          4.596280495
+        ]
+      },
+      "properties": {
+        "id": "7002",
+        "estacion_parada": "7002",
+        "nombre_estacion": "C.C Paseo Villa Del Rio - Madelena",
+        "direccion": "Autopista Sur - KR 65",
+        "longitud": -74.1569913839973,
+        "latitud": 4.596280495276091,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0097.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.164964617,
+          4.595784506
+        ]
+      },
+      "properties": {
+        "id": "7001",
+        "estacion_parada": "7001",
+        "nombre_estacion": "Perdomo",
+        "direccion": "Autopista Sur - KR 72 Sur",
+        "longitud": -74.16496461709657,
+        "latitud": 4.595784506462141,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0098.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.169328801,
+          4.59735103
+        ]
+      },
+      "properties": {
+        "id": "7000",
+        "estacion_parada": "7000",
+        "nombre_estacion": "Portal Sur - JFK Coop. Financiera",
+        "direccion": "Autopista Sur - KR 73",
+        "longitud": -74.16932880051048,
+        "latitud": 4.59735103034249,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0099.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 9
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.188212324,
+          4.594580331
+        ]
+      },
+      "properties": {
+        "id": "7506",
+        "estacion_parada": "7506",
+        "nombre_estacion": "La Despensa",
+        "direccion": "TV 7 - CL 55 Soacha",
+        "longitud": -74.18821232416347,
+        "latitud": 4.594580331347404,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0100.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.193156802,
+          4.592199508
+        ]
+      },
+      "properties": {
+        "id": "7505",
+        "estacion_parada": "7505",
+        "nombre_estacion": "León XIII",
+        "direccion": "TV 7 - CL 47 Soacha",
+        "longitud": -74.19315680176636,
+        "latitud": 4.592199507545358,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0101.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.199437082,
+          4.588958604
+        ]
+      },
+      "properties": {
+        "id": "7504",
+        "estacion_parada": "7504",
+        "nombre_estacion": "Terreros - H. Cardiovascular",
+        "direccion": "KR 7 - CL 33 Soacha",
+        "longitud": -74.19943708248036,
+        "latitud": 4.588958603817709,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0102.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.204833174,
+          4.586244046
+        ]
+      },
+      "properties": {
+        "id": "7503",
+        "estacion_parada": "7503",
+        "nombre_estacion": "San Mateo",
+        "direccion": "KR 4 - CL 30 Soacha",
+        "longitud": -74.20483317413506,
+        "latitud": 4.586244046072214,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0103.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.08627803,
+          4.595198084
+        ]
+      },
+      "properties": {
+        "id": "9108",
+        "estacion_parada": "9108",
+        "nombre_estacion": "Hospital",
+        "direccion": "AV. Caracas - CL 4",
+        "longitud": -74.0862780296031,
+        "latitud": 4.595198084491477,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0104.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "En obras",
+        "vagones": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.090327651,
+          4.590757822
+        ]
+      },
+      "properties": {
+        "id": "9107",
+        "estacion_parada": "9107",
+        "nombre_estacion": "Hortúa",
+        "direccion": "AV. Caracas - CL 1 Bis Sur",
+        "longitud": -74.09032765087238,
+        "latitud": 4.590757822174403,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0105.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.093844841,
+          4.586393557
+        ]
+      },
+      "properties": {
+        "id": "9106",
+        "estacion_parada": "9106",
+        "nombre_estacion": "Nariño",
+        "direccion": "AV. Caracas - CL 10 Sur",
+        "longitud": -74.09384484073017,
+        "latitud": 4.586393557494672,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0106.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.099563239,
+          4.582883259
+        ]
+      },
+      "properties": {
+        "id": "9105",
+        "estacion_parada": "9105",
+        "nombre_estacion": "Fucha",
+        "direccion": "AV. Caracas - CL 17A Sur",
+        "longitud": -74.09956323943527,
+        "latitud": 4.582883258826658,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0107.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.101384828,
+          4.582008633
+        ]
+      },
+      "properties": {
+        "id": "9104",
+        "estacion_parada": "9104",
+        "nombre_estacion": "Restrepo",
+        "direccion": "AV. Caracas - CL 21 Sur",
+        "longitud": -74.10138482841965,
+        "latitud": 4.582008632850893,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0108.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.107553453,
+          4.578831584
+        ]
+      },
+      "properties": {
+        "id": "9103",
+        "estacion_parada": "9103",
+        "nombre_estacion": "Olaya",
+        "direccion": "AV. Caracas - CL 27 Sur",
+        "longitud": -74.10755345257796,
+        "latitud": 4.578831584078808,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0109.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.114385203,
+          4.57680279
+        ]
+      },
+      "properties": {
+        "id": "9101",
+        "estacion_parada": "9101",
+        "nombre_estacion": "Quiroga",
+        "direccion": "AV. Caracas - CL 33 Sur",
+        "longitud": -74.11438520325974,
+        "latitud": 4.576802790336541,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0110.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.120058902,
+          4.57579612
+        ]
+      },
+      "properties": {
+        "id": "9100",
+        "estacion_parada": "9100",
+        "nombre_estacion": "Calle 40 Sur",
+        "direccion": "AV. Caracas - CL 40 Sur",
+        "longitud": -74.12005890206323,
+        "latitud": 4.575796119814633,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0111.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.124785345,
+          4.570915188
+        ]
+      },
+      "properties": {
+        "id": "9004",
+        "estacion_parada": "9004",
+        "nombre_estacion": "Santa Lucía",
+        "direccion": "AV. Caracas - CL 46 Sur",
+        "longitud": -74.12478534499623,
+        "latitud": 4.570915188471839,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0112.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.125581993,
+          4.564669201
+        ]
+      },
+      "properties": {
+        "id": "9003",
+        "estacion_parada": "9003",
+        "nombre_estacion": "Socorro",
+        "direccion": "AK 15 - CL 51 SUR",
+        "longitud": -74.12558199292691,
+        "latitud": 4.564669200793544,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0113.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.123838634,
+          4.560093133
+        ]
+      },
+      "properties": {
+        "id": "9002",
+        "estacion_parada": "9002",
+        "nombre_estacion": "Consuelo",
+        "direccion": "CL 51 Sur - KR 11",
+        "longitud": -74.12383863396792,
+        "latitud": 4.560093133146061,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0114.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.121797247,
+          4.557420471
+        ]
+      },
+      "properties": {
+        "id": "9001",
+        "estacion_parada": "9001",
+        "nombre_estacion": "Molinos",
+        "direccion": "CL 50A Sur - KR 7",
+        "longitud": -74.12179724693641,
+        "latitud": 4.557420471146332,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0115.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.130455759,
+          4.570367063
+        ]
+      },
+      "properties": {
+        "id": "8002",
+        "estacion_parada": "8002",
+        "nombre_estacion": "Biblioteca",
+        "direccion": "KR 19C -  CL 51 Sur",
+        "longitud": -74.13045575889683,
+        "latitud": 4.570367062793955,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0116.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.135544146,
+          4.56844279
+        ]
+      },
+      "properties": {
+        "id": "8001",
+        "estacion_parada": "8001",
+        "nombre_estacion": "Parque",
+        "direccion": "KR 19C - CL 56 Sur",
+        "longitud": -74.13554414590241,
+        "latitud": 4.568442789892743,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0117.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.119447941,
+          4.5318441
+        ]
+      },
+      "properties": {
+        "id": "90004",
+        "estacion_parada": "90004",
+        "nombre_estacion": "Portal Usme",
+        "direccion": "AV. Caracas - CL 65 Sur",
+        "longitud": -74.11944794059994,
+        "latitud": 4.531844099950219,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0118.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 8
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.139574904,
+          4.570911725
+        ]
+      },
+      "properties": {
+        "id": "8000",
+        "estacion_parada": "8000",
+        "nombre_estacion": "Portal Tunal",
+        "direccion": "AV. Boyacá -  AV. Villavicencio",
+        "longitud": -74.13957490426222,
+        "latitud": 4.570911724571651,
+        "id_troncal": 8,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0119.jpg",
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 5
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.072928445,
+          4.601182287
+        ]
+      },
+      "properties": {
+        "id": "14004",
+        "estacion_parada": "14004",
+        "nombre_estacion": "Museo Del Oro",
+        "direccion": "AC 13 - KR 7",
+        "longitud": -74.0729284449537,
+        "latitud": 4.60118228663876,
+        "id_troncal": 9,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0120.jpg",
+        "zona": "J",
+        "color": "#E1A2AC",
+        "nom_tronc": "Eje Ambiental",
+        "id_trazado": "TZ015",
+        "estado": "Operativa",
+        "vagones": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0684004,
+          4.602459798
+        ]
+      },
+      "properties": {
+        "id": "14005",
+        "estacion_parada": "14005",
+        "nombre_estacion": "Las Aguas - Centro Colombo Americano",
+        "direccion": "KR 3 - AC 19",
+        "longitud": -74.0684003997693,
+        "latitud": 4.602459798238067,
+        "id_troncal": 9,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0121.jpg",
+        "zona": "J",
+        "color": "#E1A2AC",
+        "nom_tronc": "Eje Ambiental",
+        "id_trazado": "TZ015",
+        "estado": "Operativa",
+        "vagones": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.067111561,
+          4.604882615
+        ]
+      },
+      "properties": {
+        "id": "6111",
+        "estacion_parada": "6111",
+        "nombre_estacion": "Universidades CityU",
+        "direccion": "KR 3 - CL 22",
+        "longitud": -74.0671115606689,
+        "latitud": 4.604882615196551,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0122.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.076878038,
+          4.621211611
+        ]
+      },
+      "properties": {
+        "id": "6109",
+        "estacion_parada": "6109",
+        "nombre_estacion": "Centro Memoria",
+        "direccion": "AV. Eldorado - KR 19B",
+        "longitud": -74.0768780376477,
+        "latitud": 4.621211611410523,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0123.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.080382063,
+          4.626010177
+        ]
+      },
+      "properties": {
+        "id": "6108",
+        "estacion_parada": "6108",
+        "nombre_estacion": "Concejo de Bogotá",
+        "direccion": "AV. Eldorado - KR 28",
+        "longitud": -74.08038206258139,
+        "latitud": 4.626010177444533,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0124.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.08357926,
+          4.630889827
+        ]
+      },
+      "properties": {
+        "id": "6107",
+        "estacion_parada": "6107",
+        "nombre_estacion": "Ciudad Universitaria",
+        "direccion": "AV. Eldorado - KR 33A",
+        "longitud": -74.08357926010217,
+        "latitud": 4.630889827126442,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0125.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.089831016,
+          4.634346818
+        ]
+      },
+      "properties": {
+        "id": "6106",
+        "estacion_parada": "6106",
+        "nombre_estacion": "Corferias",
+        "direccion": "AV. Eldorado - KR 40",
+        "longitud": -74.08983101565438,
+        "latitud": 4.634346817832747,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0126.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.09307767,
+          4.637454109
+        ]
+      },
+      "properties": {
+        "id": "6105",
+        "estacion_parada": "6105",
+        "nombre_estacion": "Quinta Paredes",
+        "direccion": "AV. Eldorado - KR 45",
+        "longitud": -74.09307766998107,
+        "latitud": 4.637454109035526,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0127.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.096342567,
+          4.642505654
+        ]
+      },
+      "properties": {
+        "id": "6104",
+        "estacion_parada": "6104",
+        "nombre_estacion": "Gobernacion",
+        "direccion": "AV. Eldorado - KR 54",
+        "longitud": -74.09634256714126,
+        "latitud": 4.642505654198748,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0128.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.099203837,
+          4.647050276
+        ]
+      },
+      "properties": {
+        "id": "6103",
+        "estacion_parada": "6103",
+        "nombre_estacion": "CAN - British Council",
+        "direccion": "AV. Eldorado - KR 59",
+        "longitud": -74.09920383725778,
+        "latitud": 4.647050275682244,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0129.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.101679843,
+          4.650849583
+        ]
+      },
+      "properties": {
+        "id": "6102",
+        "estacion_parada": "6102",
+        "nombre_estacion": "Salitre El Greco - Vive Claro",
+        "direccion": "AV. Eldorado - KR 66",
+        "longitud": -74.10167984308436,
+        "latitud": 4.650849583408996,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0130.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.105658964,
+          4.657010839
+        ]
+      },
+      "properties": {
+        "id": "6101",
+        "estacion_parada": "6101",
+        "nombre_estacion": "El Tiempo - Cámara De Comercio De Bogotá",
+        "direccion": "AV. Eldorado - KR 69",
+        "longitud": -74.10565896432655,
+        "latitud": 4.657010839108273,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0131.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.108941216,
+          4.662221443
+        ]
+      },
+      "properties": {
+        "id": "6100",
+        "estacion_parada": "6100",
+        "nombre_estacion": "Av. Rojas - UNISALESIANA",
+        "direccion": "AV. Eldorado - KR 69D",
+        "longitud": -74.10894121638506,
+        "latitud": 4.66222144340472,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0132.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.113169878,
+          4.668815859
+        ]
+      },
+      "properties": {
+        "id": "6002",
+        "estacion_parada": "6002",
+        "nombre_estacion": "Normandia",
+        "direccion": "AV. Eldorado - KR 74",
+        "longitud": -74.11316987815763,
+        "latitud": 4.66881585856713,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0133.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.117232125,
+          4.675150385
+        ]
+      },
+      "properties": {
+        "id": "6001",
+        "estacion_parada": "6001",
+        "nombre_estacion": "Modelia",
+        "direccion": "AV. Eldorado - KR 82",
+        "longitud": -74.11723212454794,
+        "latitud": 4.675150384565788,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0134.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.121692816,
+          4.682083475
+        ]
+      },
+      "properties": {
+        "id": "6000",
+        "estacion_parada": "6000",
+        "nombre_estacion": "Portal El Dorado – C.C Nuestro Bogotá",
+        "direccion": "AV. Eldorado - KR 91",
+        "longitud": -74.12169281558816,
+        "latitud": 4.68208347503534,
+        "id_troncal": 10,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0135.jpg",
+        "zona": "K",
+        "color": "#D5B079",
+        "nom_tronc": "Calle 26",
+        "id_trazado": "TZ016",
+        "estado": "Operativa",
+        "vagones": 6
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.071256949,
+          4.611267125
+        ]
+      },
+      "properties": {
+        "id": "10008",
+        "estacion_parada": "10008",
+        "nombre_estacion": "San Diego",
+        "direccion": "AK 10 - CL 23",
+        "longitud": -74.0712569492809,
+        "latitud": 4.611267125396012,
+        "id_troncal": 11,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0136.jpg",
+        "zona": "L",
+        "color": "#009A9D",
+        "nom_tronc": "Carrera 10",
+        "id_trazado": "TZ018",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.074480713,
+          4.605841075
+        ]
+      },
+      "properties": {
+        "id": "10007",
+        "estacion_parada": "10007",
+        "nombre_estacion": "Las Nieves",
+        "direccion": "AK 10 - AC 19",
+        "longitud": -74.07448071325507,
+        "latitud": 4.605841074712592,
+        "id_troncal": 11,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0137.jpg",
+        "zona": "L",
+        "color": "#009A9D",
+        "nom_tronc": "Carrera 10",
+        "id_trazado": "TZ018",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.077605405,
+          4.600682113
+        ]
+      },
+      "properties": {
+        "id": "10006",
+        "estacion_parada": "10006",
+        "nombre_estacion": "San Victorino",
+        "direccion": "AK 10 - CL 11",
+        "longitud": -74.07760540477267,
+        "latitud": 4.600682112745512,
+        "id_troncal": 11,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0138.jpg",
+        "zona": "L",
+        "color": "#009A9D",
+        "nom_tronc": "Carrera 10",
+        "id_trazado": "TZ018",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.082471426,
+          4.593139
+        ]
+      },
+      "properties": {
+        "id": "10005",
+        "estacion_parada": "10005",
+        "nombre_estacion": "Bicentenario",
+        "direccion": "AK 10 - CL 6",
+        "longitud": -74.08247142569006,
+        "latitud": 4.59313899978167,
+        "id_troncal": 11,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0139.jpg",
+        "zona": "L",
+        "color": "#009A9D",
+        "nom_tronc": "Carrera 10",
+        "id_trazado": "TZ018",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.084196527,
+          4.590265558
+        ]
+      },
+      "properties": {
+        "id": "10010",
+        "estacion_parada": "10010",
+        "nombre_estacion": "Estación San Bernardo",
+        "direccion": "AK 10 - CL 1",
+        "longitud": -74.08419652699568,
+        "latitud": 4.59026555834191,
+        "id_troncal": 11,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0140.jpg",
+        "zona": "L",
+        "color": "#009A9D",
+        "nom_tronc": "Carrera 10",
+        "id_trazado": "TZ018",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.086803056,
+          4.586465241
+        ]
+      },
+      "properties": {
+        "id": "10004",
+        "estacion_parada": "10004",
+        "nombre_estacion": "Policarpa",
+        "direccion": "AK 10 - CL 2 Sur",
+        "longitud": -74.08680305612299,
+        "latitud": 4.586465240827369,
+        "id_troncal": 11,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0141.jpg",
+        "zona": "L",
+        "color": "#009A9D",
+        "nom_tronc": "Carrera 10",
+        "id_trazado": "TZ018",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.090215576,
+          4.581634607
+        ]
+      },
+      "properties": {
+        "id": "10003",
+        "estacion_parada": "10003",
+        "nombre_estacion": "Ciudad Jardín - UAN",
+        "direccion": "AK 10 - CL 11 Sur",
+        "longitud": -74.09021557612857,
+        "latitud": 4.58163460706706,
+        "id_troncal": 11,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0142.jpg",
+        "zona": "L",
+        "color": "#009A9D",
+        "nom_tronc": "Carrera 10",
+        "id_trazado": "TZ018",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.093898686,
+          4.576669423
+        ]
+      },
+      "properties": {
+        "id": "10002",
+        "estacion_parada": "10002",
+        "nombre_estacion": "Av. Primero de Mayo",
+        "direccion": "AK 10 - CL 17 Sur",
+        "longitud": -74.09389868591046,
+        "latitud": 4.576669423186862,
+        "id_troncal": 11,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0143.jpg",
+        "zona": "L",
+        "color": "#009A9D",
+        "nom_tronc": "Carrera 10",
+        "id_trazado": "TZ018",
+        "estado": "Operativa",
+        "vagones": 3
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.098759341,
+          4.571074261
+        ]
+      },
+      "properties": {
+        "id": "10001",
+        "estacion_parada": "10001",
+        "nombre_estacion": "Country Sur",
+        "direccion": "AK 10 - CL 27 Sur",
+        "longitud": -74.09875934090577,
+        "latitud": 4.571074260684786,
+        "id_troncal": 11,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0144.jpg",
+        "zona": "L",
+        "color": "#009A9D",
+        "nom_tronc": "Carrera 10",
+        "id_trazado": "TZ018",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.09712578,
+          4.565647327
+        ]
+      },
+      "properties": {
+        "id": "10000",
+        "estacion_parada": "10000",
+        "nombre_estacion": "Portal 20  de Julio",
+        "direccion": "KR 5A - CL 30D Sur",
+        "longitud": -74.09712577981017,
+        "latitud": 4.565647326959187,
+        "id_troncal": 11,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0145.jpg",
+        "zona": "L",
+        "color": "#009A9D",
+        "nom_tronc": "Carrera 10",
+        "id_trazado": "TZ018",
+        "estado": "Operativa",
+        "vagones": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.069127307,
+          4.615377051
+        ]
+      },
+      "properties": {
+        "id": "10009",
+        "estacion_parada": "10009",
+        "nombre_estacion": "Museo Nacional",
+        "direccion": "KR 7 - CL 29",
+        "longitud": -74.0691273074048,
+        "latitud": 4.615377050925598,
+        "id_troncal": 12,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0146.jpg",
+        "zona": "M",
+        "color": "#009A9D",
+        "nom_tronc": "Carrera 7",
+        "id_trazado": "TZ019",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.094782976,
+          4.604036564
+        ]
+      },
+      "properties": {
+        "id": "7201",
+        "estacion_parada": "7201",
+        "nombre_estacion": "Guatoque - Veraguas",
+        "direccion": "AC 6 - KR 27",
+        "longitud": -74.09478297555988,
+        "latitud": 4.604036564327348,
+        "id_troncal": 5,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0147.jpg",
+        "zona": "E",
+        "color": "#AE6B00",
+        "nom_tronc": "NQS Central",
+        "id_trazado": "TZ007",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.088777108,
+          4.599782364
+        ]
+      },
+      "properties": {
+        "id": "7200",
+        "estacion_parada": "7200",
+        "nombre_estacion": "Tygua-San José",
+        "direccion": "AC 6 - KR 18",
+        "longitud": -74.08877710798339,
+        "latitud": 4.599782364267206,
+        "id_troncal": 5,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0148.jpg",
+        "zona": "E",
+        "color": "#AE6B00",
+        "nom_tronc": "NQS Central",
+        "id_trazado": "TZ007",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.181267128,
+          4.596832694
+        ]
+      },
+      "properties": {
+        "id": "7010",
+        "estacion_parada": "7010",
+        "nombre_estacion": "Bosa",
+        "direccion": "Autopista Sur- 65A Sur",
+        "longitud": -74.1812671284443,
+        "latitud": 4.596832694046237,
+        "id_troncal": 7,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0149.jpg",
+        "zona": "G",
+        "color": "#009CDE",
+        "nom_tronc": "NQS Sur",
+        "id_trazado": "TZ010",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.147431881,
+          4.55569758
+        ]
+      },
+      "properties": {
+        "id": "40001",
+        "estacion_parada": "40001",
+        "nombre_estacion": "Juan Pablo II - TransMiCable",
+        "direccion": " Carrera 18Q Bis # 67B-21Sur",
+        "longitud": -74.14743188116162,
+        "latitud": 4.555697579759077,
+        "id_troncal": 13,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0150.jpg",
+        "zona": "T",
+        "color": "#808000",
+        "nom_tronc": "TransMICable",
+        "id_trazado": "13",
+        "estado": "Operativa",
+        "vagones": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.158770862,
+          4.549991914
+        ]
+      },
+      "properties": {
+        "id": "40003",
+        "estacion_parada": "40003",
+        "nombre_estacion": "Mirador del Paraíso - TransMiCable",
+        "direccion": "Calle 71L Bis # 27-84 Sur",
+        "longitud": -74.15877086188861,
+        "latitud": 4.549991913764738,
+        "id_troncal": 13,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0151.jpg",
+        "zona": "T",
+        "color": "#808000",
+        "nom_tronc": "TransMICable",
+        "id_trazado": "13",
+        "estado": "Operativa",
+        "vagones": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.150519209,
+          4.55021312
+        ]
+      },
+      "properties": {
+        "id": "40002",
+        "estacion_parada": "40002",
+        "nombre_estacion": "Manitas - TransMiCable",
+        "direccion": "Carrera 18L # 70 B-84 Sur",
+        "longitud": -74.15051920882563,
+        "latitud": 4.550213119811174,
+        "id_troncal": 13,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0152.jpg",
+        "zona": "T",
+        "color": "#808000",
+        "nom_tronc": "TransMICable",
+        "id_trazado": "13",
+        "estado": "Operativa",
+        "vagones": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.139601908,
+          4.570947133
+        ]
+      },
+      "properties": {
+        "id": "40000",
+        "estacion_parada": "40000",
+        "nombre_estacion": "Estación Tunal TransMiCable",
+        "direccion": "AV. Boyacá -  AV. Villavicencio",
+        "longitud": -74.1396019082637,
+        "latitud": 4.57094713300125,
+        "id_troncal": 13,
+        "ruta_imagen": "https://www.transmilenio.gov.co/info/transmilenio/media/ParadasMapaTM0153.jpg",
+        "zona": "T",
+        "color": "#808000",
+        "nom_tronc": "TransMICable",
+        "id_trazado": "13",
+        "estado": "Operativa",
+        "vagones": 0
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.120967654,
+          4.546359404
+        ]
+      },
+      "properties": {
+        "id": "90008",
+        "estacion_parada": "90008",
+        "nombre_estacion": "Danubio",
+        "direccion": "Danubio",
+        "longitud": -74.12096765383608,
+        "latitud": 4.546359403822814,
+        "id_troncal": 8,
+        "ruta_imagen": null,
+        "zona": "H",
+        "color": "#F18500",
+        "nom_tronc": "Caracas Sur",
+        "id_trazado": "TZ012",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.206023327,
+          4.606806029
+        ]
+      },
+      "properties": {
+        "id": "90009",
+        "estacion_parada": "90009",
+        "nombre_estacion": "Tibanica - Primavera",
+        "direccion": "Tibanica",
+        "longitud": -74.20602332745386,
+        "latitud": 4.606806029287865,
+        "id_troncal": 15,
+        "ruta_imagen": null,
+        "zona": "Z",
+        "color": "#BD202A",
+        "nom_tronc": "Avenida Ciudad de Cali",
+        "id_trazado": "TZ022",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.202399184,
+          4.611017341
+        ]
+      },
+      "properties": {
+        "id": "90010",
+        "estacion_parada": "90010",
+        "nombre_estacion": "Laureles",
+        "direccion": "Laureles",
+        "longitud": -74.20239918412493,
+        "latitud": 4.6110173414413005,
+        "id_troncal": 15,
+        "ruta_imagen": null,
+        "zona": "Z",
+        "color": "#BD202A",
+        "nom_tronc": "Avenida Ciudad de Cali",
+        "id_trazado": "TZ022",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.193750148,
+          4.61437715
+        ]
+      },
+      "properties": {
+        "id": "90011",
+        "estacion_parada": "90011",
+        "nombre_estacion": "Islandia",
+        "direccion": "Islandia",
+        "longitud": -74.19375014827943,
+        "latitud": 4.614377149695439,
+        "id_troncal": 15,
+        "ruta_imagen": null,
+        "zona": "Z",
+        "color": "#BD202A",
+        "nom_tronc": "Avenida Ciudad de Cali",
+        "id_trazado": "TZ022",
+        "estado": "Operativa",
+        "vagones": 2
+      }
+    }
+  ]
+}

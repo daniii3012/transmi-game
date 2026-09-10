@@ -1,0 +1,11 @@
+{
+  "retrieved_at": "2026-09-10T10:59:00-05:00",
+  "scope": "small official API samples; no remote media downloaded",
+  "sources": [
+    {"name":"station_map","url":"https://tramites.transmilenio.gov.co/station-maps/api/map","http_status":200,"bytes":48842,"sha256":"de4204921e82e34fc4690e4fb168d69efc2a55fb91e2397ec711241c10c6ecac","sanitized_file":"README.md"},
+    {"name":"p85","url":"https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/1316/P85/","bytes":619,"sha256":"304621cc82169cec94b1cce81233da82e33574acde7d96e20d7b09d03d04bfe3","sanitized_file":"p85.json"},
+    {"name":"p85_paraderos","url":"https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/1316/P85/paraderos","bytes":1198,"sha256":"eb335e0b84bcd3dda0403c7964012804aedabb55cb75c32cc9745ec87ab3776d","sanitized_file":"p85_paraderos.json"},
+    {"name":"m85","url":"https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/4596/M85/","bytes":466,"sha256":"82bdc40214b111337d7f4d44eebde5e8014f462fed12962cb92b667070773d9","sanitized_file":"m85.json"},
+    {"name":"m85_paraderos","url":"https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/4596/M85/paraderos","bytes":1496,"sha256":"6386496e4e9abbf32b3077c85db1f351d28ba340c1888e3205da92a92e4b874d","sanitized_file":"m85_paraderos.json"}
+  ]
+}

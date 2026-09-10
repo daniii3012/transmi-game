@@ -1,0 +1,13 @@
+{
+  "color": "#DC0814",
+  "nombre": "Portal Américas",
+  "estaciones": [],
+  "horario": [
+    {
+      "tipoDia": "L-V",
+      "inicio": "3:00 PM",
+      "fin": "8:00 PM"
+    }
+  ],
+  "trazado": null
+}

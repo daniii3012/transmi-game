@@ -1,0 +1,18 @@
+{
+  "color": "#D5B079",
+  "nombre": "Portal Eldorado",
+  "estaciones": [],
+  "horario": [
+    {
+      "tipoDia": "D-F",
+      "inicio": "4:00 AM",
+      "fin": "10:00 PM"
+    },
+    {
+      "tipoDia": "L-S",
+      "inicio": "4:00 AM",
+      "fin": "11:00 PM"
+    }
+  ],
+  "trazado": null
+}

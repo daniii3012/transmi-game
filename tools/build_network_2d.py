@@ -8,7 +8,7 @@ import json
 from pathlib import Path
 from shapely.geometry import LineString, Point, shape
 from shapely.ops import transform, substring
-from build_pilot import PROJECT, ORIGIN, LOCAL_CRS
+from geo import PROJECT, ORIGIN, LOCAL_CRS
 from vehicle_definition import load, digest, nominal_bounds
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -98,7 +98,7 @@ def build():
 
 def main():
     data = build()
-    out = ROOT/'web/transmi2d/dist/network.json'; out.parent.mkdir(parents=True,exist_ok=True)
+    out = ROOT/'app/dist/network.json'; out.parent.mkdir(parents=True,exist_ok=True)
     out.write_text(json.dumps(data,ensure_ascii=False,separators=(',',':'))+'\n')
     print(json.dumps({'corridors':len(data['corridors']), 'stations':len(data['stations']),
                       'components':len(data['component_audit']), 'directed_trial_patterns':len(data['patterns']),

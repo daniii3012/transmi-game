@@ -1,83 +1,40 @@
-# Bogotá Transmi
+# Transmi 2D
 
-Simulador de buses de Bogotá para un solo jugador: meta final de todo el sistema BRT de TransMilenio, ciudad condensada, conducción accesible y dirección visual cozy. Los datos fuente conservan escala 1:1; el mundo jugable estudia compresión selectiva entre lugares importantes. Buses, plataformas y carriles mantienen proporciones coherentes. Primera sesión: 8 de septiembre de 2026, hora de Bogotá.
+Simulación para un jugador de **todas las rutas troncales y duales de TransMilenio**, sobre la geografía real de Bogotá a escala 1:1. Incluye como alcance las paradas de calle de Carrera Séptima y Avenida 68. Las rutas zonales del SITP quedan para una etapa posterior.
 
-**Respaldo del proyecto:** [daniii3012/transmi-game](https://github.com/daniii3012/transmi-game). Para continuar, leer primero [CONTINUAR.md](CONTINUAR.md). El documento principal es [PLAN_DEL_PROYECTO.md](docs/PLAN_DEL_PROYECTO.md).
-
-## Qué existe hoy
-
-- **Mandalay conducible:** primera sección basada en huellas oficiales, con dos sentidos de práctica, parada y salida, cuatro módulos de plataforma y entorno próximo. Recorte de 480 m fuente → 390 m jugables; alturas y detalles aún provisionales. [Qué incluye y límites](docs/MANDALAY_JUGABLE.md).
-- **Ficha de bus compartida:** Blender, conducción, colisiones, cámaras y puertas consumen la misma definición; se detectan modelos y anclajes desactualizados. [Funcionamiento](docs/FICHA_DE_VEHICULO.md).
-- **Primera pista conducible:** articulado de 18 m provisional, reversa, puertas, cámaras orientables, deslizamiento al rozar el andén y ciclo de parada con tolerancia ampliada. Modelo editable de Blender incluido.
-- **Comparación 3D de escala:** eje del piloto de 1.602,47 m frente a una propuesta de 1.285,94 m, preservando tres estaciones y reservas de espacio. Generación reproducible; es un estudio de disposición, todavía sin carriles transitables.
-- Proyecto nativo de Godot 4.7.2 y explorador de cámara libre de un recorte de Américas: Mandalay, Av. Américas–Av. Boyacá y Marsella.
-- Descarga reproducible de seis capas oficiales, con licencias, metadatos, identificadores y comprobaciones SHA-256.
-- Conversión de polígonos reales de calzadas, andenes, separadores y construcciones a una escena 3D de unas 301.000 caras triangulares.
-- Coordenadas locales en metros y pruebas de escala y conservación de patios interiores.
-- Plan de mapa, buses, estaciones, rutas, obras y continuidad entre sesiones.
-
-**El bus ya tiene una primera práctica local en Mandalay**, además de la pista ficticia. El resto de Américas continúa como explorador geográfico. La nueva estación usa huellas oficiales con arquitectura vertical y puertas de práctica estimadas; el terreno sigue plano. Los niveles, las obras actuales y sus desvíos requieren verificación específica. Su apariencia es provisional.
-
-## Simulación 2D local
-
-Ya existe un primer laboratorio en Three.js: mapa fuente a escala real, ensayo Mandalay–Marsella, paradas, colas, selección y seguimiento de bus, pausa y reloj acelerado. Incluye una prueba de carga de hasta **3.000 buses sintéticos** en componentes aislados. La meta sigue siendo **mayoría de rutas troncales y flota simultánea**; los patrones actuales aún no son servicios oficiales. [Uso, resultados y límites](docs/SIMULACION_2D_LOCAL.md).
-
-Abrir **ABRIR_SIMULACION_2D.command** con doble clic. Funciona localmente con las bibliotecas incluidas; mantener abierta la Terminal que inicia. No se publicó una web.
+**El simulador 3D está en pausa hasta nuevo aviso**, conservado en [archive/transmi3d](archive/transmi3d/README.md). La nueva dirección se confirmó el 10 de septiembre de 2026. No se comprimen distancias en el proyecto 2D.
 
 ## Abrir
 
-En Finder, abrir **ABRIR_MANDALAY.command** para la nueva sección; **Esc** permite elegir sentido. Abrir **ABRIR_SIMULADOR.command** con doble clic para conducir. Controles y límites: [Prueba de conducción](docs/PRUEBA_DE_CONDUCCION.md). Abrir **ABRIR_EXPLORADOR.command** para inspeccionar Américas. Usa la copia de Godot que está en `../../work/tools/Godot.app`, relativa a esta carpeta. No requiere descargar nada para explorar la muestra ya preparada. También puede abrirse `game/project.godot` con Godot 4.7.2.
+Doble clic en **ABRIR_SIMULACION_2D.command**. Funciona localmente; mantener abierta su Terminal. La aplicación vive en `app/dist/`. El enlace `web/transmi2d` conserva compatibilidad con la primera prueba.
 
-**ABRIR_ESTUDIO_ESCALA.command** abre la comparación entre referencia y versión condensada. **1** vista conjunta, **2/3** detalle de Mandalay en cada versión, clic derecho para orbitar y rueda para acercar. Las bandas arena son reservas de diseño; los edificios ilustran la reducción de contexto y no reproducen fachadas reales. [Resultados y límites](docs/ESCALA_Y_COMPRESION.md).
+Ya existe el laboratorio geográfico con paradas, reloj acelerado y flota de ensayo. La nueva línea incorpora servicios publicados, calendario y selección por ruta/zona. Ver [estado y continuidad](CONTINUAR.md) para distinguir lo implementado de lo pendiente.
 
-Controles: **1** vista general; **2/3/4** estaciones; **WASD o flechas** mover; **Q/E** bajar/subir respecto a la cámara; **Shift** acelerar; **clic derecho mantenido** mirar; **B** mostrar/ocultar edificios; **Esc** liberar cursor. Es una cámara de inspección, sin colisiones.
+## Dirección de la simulación
 
-## Documentos
+Distancias reales, tiempo virtual a ritmo real o acelerado y avance/retroceso reproducible. Enfoque híbrido: movimiento y atención de paradas, con circulación simplificada para evitar atascos artificiales. Los buses que no paran deben poder pasar. La flota se derivará de despachos y frecuencias; frecuencias, velocidades y asignaciones de vagón estimadas se mostrarán como tales.
 
-- [Ficha compartida del vehículo](docs/FICHA_DE_VEHICULO.md)
-- [Simulación 2D local: uso y estado](docs/SIMULACION_2D_LOCAL.md)
-- [Alcance de la exploración 2D](docs/EXPLORACION_TRANSMI_2D.md)
-- [Mandalay conducible y sus límites](docs/MANDALAY_JUGABLE.md)
-- [Primera prueba de conducción](docs/PRUEBA_DE_CONDUCCION.md)
-- [Investigación del buscador de rutas](docs/RUTAS_INVESTIGACION.md)
-- [Plan del proyecto](docs/PLAN_DEL_PROYECTO.md)
-- [Sistemas y hoja de ruta hacia toda la red BRT](docs/SISTEMAS_Y_HOJA_DE_RUTA.md)
-- [Dirección visual y prioridades](docs/DIRECCION_VISUAL.md)
-- [Escala y compresión selectiva](docs/ESCALA_Y_COMPRESION.md)
-- [IA local de buses y etapas de tráfico](docs/IA_DE_BUSES.md) — planificada
-- [Investigación de Mandalay](docs/ESTACION_MANDALAY.md)
-- [Trabajo con agentes ligeros](docs/TRABAJO_CON_AGENTES.md)
-- [Fuentes y límites de los datos](docs/FUENTES.md)
-- [Buses y referencias visuales](docs/BUSES_Y_REFERENCIAS.md)
-- [Arquitectura propuesta](docs/ARQUITECTURA.md)
-- [Continuidad y pendientes](CONTINUAR.md)
-- [Resumen de datos procesados](data/processed/summary.json)
-- [Vista general del primer render](docs/preview_general.png)
+La referencia visual principal es Subway Builder, con la claridad de Mini Metro: ciudad reconocible, mapa ligero, líneas y símbolos legibles, sin transformar Bogotá en un diagrama esquemático. No se construye ni rediseña la red; se observa y configura qué parte se simula.
 
-Las capturas son del prototipo, no del aspecto final del simulador. Ver [bus de prueba](docs/preview_practica.png), [cabina](docs/preview_cabina.png) y [puertas](docs/preview_puertas.png).
+## Estructura
 
-Mandalay: [vista general](docs/preview_mandalay.png), [cabina](docs/preview_mandalay_cabina.png) y [parada](docs/preview_mandalay_parada.png).
+| Carpeta | Contenido |
+|---|---|
+| `app/` | Aplicación 2D principal y pruebas JavaScript |
+| `tools/` | Importación, normalización y servidor local |
+| `data/raw/` | Instantáneas originales fechadas y metadatos |
+| `data/processed/` | Auditorías y resultados derivados |
+| `data/vehicles/` | Parámetros compartidos del bus provisional |
+| `docs/` | Plan, arquitectura, fuentes y decisiones vigentes |
+| `archive/transmi3d/` | Juego 3D, Blender, generadores, pruebas y documentación en pausa |
 
-Estudio de escala: [comparación de escala](docs/preview_escala.png) y [detalle ilustrativo de Mandalay](docs/preview_escala_mandalay.png).
+## Documentación
 
-## Reconstruir los datos
+- [Plan y alcance](docs/PLAN_DEL_PROYECTO.md)
+- [Arquitectura](docs/ARQUITECTURA.md)
+- [Dirección visual](docs/DIRECCION_VISUAL.md)
+- [Estado para continuar](CONTINUAR.md)
+- [Primer laboratorio y sus límites](docs/SIMULACION_2D_LOCAL.md)
+- [Fuentes](docs/FUENTES.md)
 
-Desde esta carpeta, con Python 3.9:
-
-```sh
-python3 -m venv .venv
-.venv/bin/python -m pip install -r tools/requirements.txt
-.venv/bin/python tools/fetch_pilot.py
-.venv/bin/python tools/build_pilot.py
-.venv/bin/python -m unittest discover -s tests -v
-```
-
-La descarga usa la instantánea existente; `tools/fetch_pilot.py --refresh` crea otra fechada y cambia `data/raw/latest.json`. El resultado 3D está en `game/data/pilot.json`. Actualizar los datos no actualiza automáticamente el modelo de obras.
-
-Para reconstruir el estudio de compresión, ejecutar `.venv/bin/python tools/build_scale_study.py`. Usa la instantánea fijada en `data/design/americas_scale_study.json` y genera archivos separados; no modifica el explorador original. Las distancias del estudio son sobre el eje oficial recortado, no sobre carriles ni rutas de servicio.
-
-## Atribución
-
-Geometría: Unidad Administrativa Especial de Catastro Distrital / IDECA y entidades del Mapa de Referencia; estaciones y trazados: TRANSMILENIO S.A. Las seis fichas consultadas declaran CC BY 4.0. Se conservan las fichas originales en `data/raw/20260909T035301Z/`. Cambios realizados: recorte espacial, reproyección, triangulación y extrusión con alturas estimadas. Ver [fuentes](docs/FUENTES.md).
-
-La fuente adicional de esquemas de estación conserva copyright TransMilenio S.A.; su licencia de reutilización no se ha establecido. Se registra por separado en [referencias de Mandalay](docs/MANDALAY_REFERENCIAS_ADICIONALES.md). No heredar la licencia de las seis capas anteriores.
+Respaldo autorizado: [daniii3012/transmi-game](https://github.com/daniii3012/transmi-game). El uso actual es local; no se ha publicado una versión jugable. La procedencia y licencia de cada fuente se conservan por separado; una API pública no hereda automáticamente la licencia de otra capa GIS.

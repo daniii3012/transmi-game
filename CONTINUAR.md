@@ -13,7 +13,7 @@ Leer este archivo, README.md y docs/PLAN_DEL_PROYECTO.md antes de continuar. Dan
 - Posible publicación futura si alcanza un buen desarrollo. **Push a https://github.com/daniii3012/transmi-game está expresamente autorizado**; no se pidió desplegar una versión del juego.
 - El asistente tiene autorización para investigar, instalar herramientas y desarrollar/modelar. Daniel confirmó que instaló Blender. No pedir que lo vuelva a instalar.
 - Daniel autorizó agentes ligeros para investigación y tareas acotadas. Ya se usó gpt-5.6-luna; sus borradores se revisaron. docs/TRABAJO_CON_AGENTES.md contiene los siguientes paquetes. Mantener física e integración con el principal; no prometer porcentajes de ahorro de cuota.
-- **Próxima exploración solicitada: simulación 2D con Three.js**, inspirada en la legibilidad de Mini Metro, con geografía fuente 1:1, mayoría de rutas troncales y mayoría de la flota del escenario circulando simultáneamente. Es una línea paralela, no reemplaza el juego 3D condensado. Ver docs/EXPLORACION_TRANSMI_2D.md; todavía no implementada. El piloto pequeño solo valida la arquitectura.
+- **Simulación 2D con Three.js: primer laboratorio implementado**, inspirada en la legibilidad de Mini Metro, con geografía fuente 1:1, mayoría de rutas troncales y mayoría de la flota del escenario circulando simultáneamente. Es una línea paralela, no reemplaza el juego 3D condensado. Ver docs/SIMULACION_2D_LOCAL.md y docs/EXPLORACION_TRANSMI_2D.md. Ensayos sintéticos: no son rutas oficiales; la cobertura mayoritaria sigue pendiente.
 - Daniel ya probó la pista. Pidió roce lateral sin frenado completo, cámara orientable y mayor margen de parada; están integrados y comprobados. Pidió evitar ciclos continuos de pequeñas pruebas manuales: agrupar el trabajo y la revisión por hitos coherentes.
 
 ## Ubicación y herramientas
@@ -118,9 +118,24 @@ Abrir **ABRIR_MANDALAY.command**, o desde Esc en la pista anterior. Esc permite 
 
 Un agente ligero preparó docs/BOYACA_NIVELES_REFERENCIAS.md. El principal contrastó punto/dimensiones con raw, consultó directamente los campos de accesos en la API oficial y revisó la nota BIM de 2022. Hay una pista de consultoría IDU-529-2022, pero no cotas verificadas de nivel/gálibo/rampas. No habilitar el cruce con alturas inventadas.
 
+## Laboratorio Transmi 2D: primer hito
+
+`ABRIR_SIMULACION_2D.command` abre la nueva aplicación local. `web/transmi2d/dist/` contiene fuentes estáticas editables, no una carpeta de compilación desechable. Three.js 0.186.0 está incluido con licencia MIT e integridad verificada; no necesita npm ni red al jugar. `tools/serve_network_2d.py` sirve solo esa carpeta en 127.0.0.1:8766. Detener con Ctrl+C.
+
+- 22 registros de trazado, 48 partes y 153 estaciones como referencia. Coordenadas X este/Y norte, metros AEQD, mismo origen GIS, **sin compresión 3D**. Hashes y propiedades conservados. Piloto 1.602,465665 m.
+- Escenario Américas de 8/24/64 buses; carga sintética de 100/1.000/3.000 buses. La carga utiliza 17 componentes, 14 registros de trazado y 34 sentidos de ensayo; **no 34 servicios oficiales**. No conecta cruces ni componentes separados; portales fuera de tolerancia siguen como referencia.
+- Núcleo independiente `simulation.mjs`: paso fijo 0,1 s, reloj 1×/8×/32×, pausa, paradas ordenadas de 18 s, separación de carrocerías 5 m dentro de un mismo componente dirigido, regulación de 35 s y regreso abstracto en la misma coordenada. Flota distribuida al inicio, sin despachos de horario real. Parámetros de ensayo.
+- Cámara ortográfica, símbolos instanciados, selección/filtro/seguimiento y todas las entidades lógicas fuera de pantalla. Bus lógico comparte dimensiones/hash del articulado 3D; todavía no hay varios tipos de flota.
+- 7 pruebas Node aprobadas, incluidas conservación/separación de 3.000 buses, paradas y reloj; 17 Python aprobadas (3 nuevas). Benchmark de CPU en data/processed/network2d_benchmark.json: 3.000 buses, 300 s simulados, media 0,084 ms/paso en esta ejecución. **No es benchmark de navegador/GPU/FPS ni de la red completa.**
+- Referencias locales, sintaxis, hashes, HTTP y MIME comprobados. Apertura de primera vista solicitada en Codex; no se inspeccionó ni probó visualmente el navegador. WebMCP opcional con contrato simulado, sin verificación nativa. Mantener estas limitaciones al comunicar estado.
+- No hay carriles compartidos entre servicios, adelantamientos, intersecciones, niveles, demanda ni rutas comerciales. La IA de buses dentro de Godot sigue pendiente. No habilita Boyacá o la 68.
+- Agente ligero auditó los datos; se revisaron conteos e IDs y se evitó su inferencia de que tipo_tra=2 implica trazado proyectado. Fuente de verdad: archivo bruto y dominios verificados.
+
+Documentación completa: docs/SIMULACION_2D_LOCAL.md. Pruebas: `node --test web/transmi2d/tests/simulation.test.mjs`; reconstrucción: `../../work/venv/bin/python tools/build_network_2d.py`.
+
 ## Próximo trabajo concreto
 
-1. **Explorar la simulación 2D solicitada**, según docs/EXPLORACION_TRANSMI_2D.md: Three.js es viable para cámara ortográfica e iconos repetidos. Geografía fuente sin compresión, piloto de red dirigido con buses y paradas, concebido para ampliar a mayoría de rutas y flota concurrente. No confundir los registros candidatos con servicios validados ni animación con operación real. No desplegar.
+1. **Pasar de ensayos 2D a un primer servicio real verificado de Américas**: normalizar paradas/variantes/sentidos/calendario y trazado desde fuentes fechadas; después compartir carriles y añadir despachos. Ver docs/SIMULACION_2D_LOCAL.md. Medir cobertura contra inventarios elegibles, sin confundir los 256 candidatos con servicios validados ni los 3.000 buses sintéticos con flota oficial. Sigue pendiente medir rendimiento gráfico en navegador. No desplegar.
 2. Consolidar Mandalay antes de extender: verificar cotas, puente/accesos, puertas reales y estado 2026 con fuentes fechadas. Se puede inspeccionar la escena entera, pero solo se han comprobado los dos ejercicios locales; no afirmar que todas sus vías laterales son transitables. No inventar rótulos A/B ni rutas.
 3. Usar la ficha compartida al incorporar una variante real; revisar geometría, alturas y compatibilidad antes de multiplicar buses. Mantener las pruebas de articulación y puertas.
 4. Construir el grafo de carriles dirigido y la conexión a la siguiente estación. La muestra local se tendrá que integrar a una disposición común, sin transformar cada arista por separado. **No habilitar Boyacá** hasta revisar puente, rampas, niveles y continuidad; añadir soporte de altura y pendientes antes de circular por desniveles.

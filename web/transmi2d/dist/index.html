@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Laboratorio local de operación de TransMilenio: geografía real de Bogotá y buses de ensayo.">
+<title>Transmi · Red en movimiento</title>
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<header><div class="brand"><strong>transmi<span> / </span></strong><span>Red en movimiento</span></div><span class="tag">Laboratorio 2D · local</span></header>
+<main>
+<aside aria-label="Controles de simulación">
+<div class="eyebrow">BOGOTÁ, COLOMBIA</div><h1>Simulación de red</h1>
+<p class="intro">Observa la red, acércate a una estación y sigue el recorrido de un bus.</p>
+<label for="scenario">Escenario</label><select id="scenario"><option value="pilot">Américas · ensayo de paradas</option><option value="load">Red · prueba de carga</option></select>
+<p id="scenario-note" class="note">Mandalay → Av. Boyacá → Marsella. Recorridos de ensayo sobre el eje real.</p>
+<div id="simulation-controls"></div>
+<div class="rule"></div>
+<label for="pattern">Recorrido visible</label><select id="pattern"><option value="all">Todos los recorridos del ensayo</option></select>
+<div class="view-buttons"><button id="pilot-view">Ver Américas</button><button id="network-view">Ver red</button></div>
+<section id="selection" aria-label="Selección"><div class="eyebrow">EXPLORAR</div><h2>Las distancias se conservan</h2><p>Selecciona una estación en el mapa. Arrastra para desplazarte y usa la rueda para acercarte.</p></section>
+<details><summary>Datos y alcance</summary><p id="source-note">Cartografía de TRANSMILENIO S.A. / IDECA · CC BY 4.0. Descarga: 8 sep. 2026, hora de Bogotá. La fecha de descarga no acredita operación vigente.</p><p>Los recorridos, tiempos y buses de ensayo no son servicios oficiales. Los cruces entre trazos no crean conexiones. Los símbolos crecen al alejarse para seguir siendo visibles.</p></details>
+</aside>
+<section id="map" aria-label="Mapa geográfico interactivo de TransMilenio">
+<div id="canvas-host" tabindex="0" aria-label="Mapa: arrastra o usa flechas; más y menos para zoom"></div><div id="labels" aria-hidden="true"></div>
+<div class="map-heading"><span id="view-title">Bogotá · cartografía de referencia</span><small>Geografía 1:1 · norte arriba</small></div>
+<div class="zoom-controls"><span class="north" aria-label="Norte arriba">↑ N</span><button id="zoom-in" aria-label="Acercar">+</button><button id="zoom-out" aria-label="Alejar">−</button></div>
+<div class="map-footer"><span id="scale">1 km</span><span id="map-status">Cargando cartografía…</span></div>
+<div id="error" role="alert" hidden></div>
+</section>
+</main>
+<script type="module" src="./app.mjs"></script>
+</body></html>

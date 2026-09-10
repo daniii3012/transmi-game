@@ -1,6 +1,6 @@
 # Plan de desarrollo de Bogotá Transmi
 
-Versión 0.6 · 9 de septiembre de 2026 · Proyecto personal de Daniel.
+Versión 0.7 · 10 de septiembre de 2026 · Proyecto personal de Daniel.
 
 ## 1. Experiencia que construiremos
 
@@ -142,10 +142,10 @@ Al cerrar cada sesión: actualizar CONTINUAR.md con decisiones, resultado compro
 
 Ver [SISTEMAS_Y_HOJA_DE_RUTA.md](SISTEMAS_Y_HOJA_DE_RUTA.md) para el ciclo de juego, dependencias y entregas. Ver [DIRECCION_VISUAL.md](DIRECCION_VISUAL.md) y [ESCALA_Y_COMPRESION.md](ESCALA_Y_COMPRESION.md) para el acabado y la nueva disposición. Estas decisiones incorporan las aclaraciones del 9 de septiembre: Bogotá condensada, fuente geográfica intacta, Bus Simulator para un solo jugador, otros buses con IA local y trabajo por hitos.
 
-## 13. Próxima exploración: simulación de red en 2D
+## 13. Línea de simulación de red en 2D
 
 Daniel pidió analizar y dejar como próximo pendiente una simulación inspirada en la claridad de Mini Metro, conservando la geografía de Bogotá a escala real y el diseño de TransMilenio. Aclaró que la meta es **simular la mayoría de rutas troncales y de buses de la flota del escenario simultáneamente**, incluyendo sus tipos principales. El piloto acotado no limita esa cobertura final.
 
 Three.js es viable para la representación cenital; la lógica de servicios, despachos, paradas y colas deberá implementarse aparte. Se reutilizarán IDs, fuentes y contratos de red donde corresponda. El mapa 2D empleará las distancias fuente 1:1; el juego 3D mantiene su disposición condensada. Al alejarse podrán ampliarse símbolos para legibilidad sin cambiar las distancias simuladas.
 
-Esta línea se explorará después del cierre de la ficha de vehículo, antes de continuar ampliando geometría 3D. No sustituye la meta del simulador ni autoriza un despliegue. Análisis, dependencias y primer experimento: [EXPLORACION_TRANSMI_2D.md](EXPLORACION_TRANSMI_2D.md).
+El primer laboratorio local ya está implementado: geografía íntegra, piloto con paradas, colas y reloj independiente, más carga sintética de hasta 3.000 buses en componentes aislados. Sus 34 sentidos de carga no son servicios comerciales. Se comprobó el núcleo lógico; faltan revisión gráfica, red compartida, despachos y un primer servicio real verificado. No sustituye la meta del simulador ni autoriza un despliegue. [Estado, uso y siguiente hito](SIMULACION_2D_LOCAL.md); [alcance y dependencias](EXPLORACION_TRANSMI_2D.md).

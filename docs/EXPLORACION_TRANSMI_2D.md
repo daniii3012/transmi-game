@@ -1,6 +1,6 @@
-# Próxima exploración: simulación de TransMilenio en 2D
+# Exploración: simulación de TransMilenio en 2D
 
-Solicitud de Daniel, 9 de septiembre de 2026. **Pendiente de explorar después de cerrar la ficha compartida del bus.** No está implementada y no reemplaza el simulador de conducción 3D.
+Solicitud de Daniel, 9 de septiembre de 2026. **Primer laboratorio local implementado el 10 de septiembre de 2026.** Mapa fuente, ensayos con paradas y prueba lógica de carga hasta 3.000 buses sintéticos. Ver [resultado, uso y límites](SIMULACION_2D_LOCAL.md). No reemplaza el simulador de conducción 3D. El resto de este documento conserva el alcance y los criterios de expansión.
 
 ## Alcance confirmado
 
@@ -46,6 +46,6 @@ Reutilizar contratos de datos, identificadores, procedencia y pruebas de lógica
 
 ## Entrega y límites
 
-La siguiente tarea de exploración debe producir una maqueta local funcional y un breve resultado de viabilidad: distancia fuente conservada, movimiento coherente en el tiempo y trazabilidad de lo que es ensayo frente a operación verificada. No desplegar ni publicar una web por el solo hecho de construirla. La elección concreta del soporte local y sus dependencias se verificará al implementarla.
+La primera tarea de exploración debía producir una maqueta local funcional y un breve resultado de viabilidad: distancia fuente conservada, movimiento coherente en el tiempo y trazabilidad de lo que es ensayo frente a operación verificada. No desplegar ni publicar una web por el solo hecho de construirla. La elección concreta del soporte local y sus dependencias se verificará al implementarla.
 
 La representación 2D evita modelar volúmenes, materiales, cabinas y rampas visibles. Sigue necesitando resolver la red operativa, sentidos, niveles, secuencias de parada y datos de servicio. Ese sería su principal coste y también el trabajo más reutilizable para los buses NPC del simulador 3D.

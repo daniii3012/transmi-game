@@ -18,9 +18,11 @@ Simulador de buses de Bogotá para un solo jugador: meta final de todo el sistem
 
 **El bus ya tiene una primera práctica local en Mandalay**, además de la pista ficticia. El resto de Américas continúa como explorador geográfico. La nueva estación usa huellas oficiales con arquitectura vertical y puertas de práctica estimadas; el terreno sigue plano. Los niveles, las obras actuales y sus desvíos requieren verificación específica. Su apariencia es provisional.
 
-## Próxima exploración
+## Simulación 2D local
 
-Simulación 2D inspirada en Mini Metro, con Three.js como opción viable, geografía fuente a escala real y **mayoría de rutas troncales y flota circulando simultáneamente**. Es una línea paralela solicitada por Daniel, aún sin implementar. El piloto será acotado; la meta de cobertura es amplia. [Análisis y alcance](docs/EXPLORACION_TRANSMI_2D.md).
+Ya existe un primer laboratorio en Three.js: mapa fuente a escala real, ensayo Mandalay–Marsella, paradas, colas, selección y seguimiento de bus, pausa y reloj acelerado. Incluye una prueba de carga de hasta **3.000 buses sintéticos** en componentes aislados. La meta sigue siendo **mayoría de rutas troncales y flota simultánea**; los patrones actuales aún no son servicios oficiales. [Uso, resultados y límites](docs/SIMULACION_2D_LOCAL.md).
+
+Abrir **ABRIR_SIMULACION_2D.command** con doble clic. Funciona localmente con las bibliotecas incluidas; mantener abierta la Terminal que inicia. No se publicó una web.
 
 ## Abrir
 
@@ -33,7 +35,8 @@ Controles: **1** vista general; **2/3/4** estaciones; **WASD o flechas** mover; 
 ## Documentos
 
 - [Ficha compartida del vehículo](docs/FICHA_DE_VEHICULO.md)
-- [Exploración de simulación 2D](docs/EXPLORACION_TRANSMI_2D.md)
+- [Simulación 2D local: uso y estado](docs/SIMULACION_2D_LOCAL.md)
+- [Alcance de la exploración 2D](docs/EXPLORACION_TRANSMI_2D.md)
 - [Mandalay conducible y sus límites](docs/MANDALAY_JUGABLE.md)
 - [Primera prueba de conducción](docs/PRUEBA_DE_CONDUCCION.md)
 - [Investigación del buscador de rutas](docs/RUTAS_INVESTIGACION.md)

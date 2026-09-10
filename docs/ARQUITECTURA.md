@@ -120,3 +120,9 @@ Reutilizar módulos de estación y mobiliario, con variantes por sitio. Usar ins
 - Rendimiento: recorrido reproducible con memoria y tiempos de cuadro, además de FPS. Medir con bus, estaciones y tráfico antes de extrapolar desde el explorador.
 
 La pista articulada y el estudio de disposición ya existen. El siguiente objetivo técnico es una sección BRT con estación, carriles y niveles contrastados que integre el bus. La expansión se hace cuando esos sistemas permiten recorrer el piloto sin bloqueos.
+
+## Laboratorio de operación 2D
+
+Implementado en `web/transmi2d/dist/`: `simulation.mjs` mantiene recorridos métricos, estados y reloj fijo, mientras `map.mjs` dibuja con Three.js y `app.mjs` conecta controles. Usa X este / Y norte fuente, sin la disposición condensada de Godot. `tools/build_network_2d.py` exporta geografía, procedencia y patrones identificados como sintéticos. Se comparte la ficha de medidas del articulado; no se ejecuta GDScript en el navegador.
+
+Las aristas del ensayo son componentes dirigidos independientes, cada uno enlazado únicamente con su reverso abstracto. No representan todavía la red de carriles ni servicios compartidos del contrato general. No convertir sus extremos o proximidades en conexiones operativas. La siguiente ampliación requiere un servicio verificado, topología compartida y reglas de despacho. [Detalle y límites](SIMULACION_2D_LOCAL.md).

@@ -1,33 +1,33 @@
 <!doctype html>
-<html lang="es">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Laboratorio local de operación de TransMilenio: geografía real de Bogotá y buses de ensayo.">
-<title>Transmi · Red en movimiento</title>
-<link rel="stylesheet" href="./style.css">
-</head>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Simulador local de TransMilenio: geografía real de Bogotá, servicios publicados, estaciones y operación estimada ajustable."><title>Transmi · Bogotá en movimiento</title><link rel="stylesheet" href="./style.css?v=20260910.3"></head>
 <body>
-<header><div class="brand"><strong>transmi<span> / </span></strong><span>Red en movimiento</span></div><span class="tag">Laboratorio 2D · local</span></header>
+<header><a class="brand" href="./" aria-label="Transmi, inicio"><b>t<span>m</span></b><div>transmi<small>BOGOTÁ EN MOVIMIENTO</small></div></a><nav aria-label="Paneles"><button class="nav-active" data-panel="routes">Red y rutas</button><button data-panel="depots">Terminales</button><button data-panel="settings">Operación</button><button data-panel="data">Datos</button></nav><div class="header-right"><span class="local-tag">SIMULADOR 2D</span><button id="save" aria-label="Guardar escenario en este dispositivo">Guardar</button></div></header>
 <main>
-<aside aria-label="Controles de simulación">
-<div class="eyebrow">BOGOTÁ, COLOMBIA</div><h1>Simulación de red</h1>
-<p class="intro">Observa la red, acércate a una estación y sigue el recorrido de un bus.</p>
-<label for="scenario">Escenario</label><select id="scenario"><option value="pilot">Américas · ensayo de paradas</option><option value="load">Red · prueba de carga</option></select>
-<p id="scenario-note" class="note">Mandalay → Av. Boyacá → Marsella. Recorridos de ensayo sobre el eje real.</p>
-<div id="simulation-controls"></div>
-<div class="rule"></div>
-<label for="pattern">Recorrido visible</label><select id="pattern"><option value="all">Todos los recorridos del ensayo</option></select>
-<div class="view-buttons"><button id="pilot-view">Ver Américas</button><button id="network-view">Ver red</button></div>
-<section id="selection" aria-label="Selección"><div class="eyebrow">EXPLORAR</div><h2>Las distancias se conservan</h2><p>Selecciona una estación en el mapa. Arrastra para desplazarte y usa la rueda para acercarte.</p></section>
-<details><summary>Datos y alcance</summary><p id="source-note">Cartografía de TRANSMILENIO S.A. / IDECA · CC BY 4.0. Descarga: 8 sep. 2026, hora de Bogotá. La fecha de descarga no acredita operación vigente.</p><p>Los recorridos, tiempos y buses de ensayo no son servicios oficiales. Los cruces entre trazos no crean conexiones. Los símbolos crecen al alejarse para seguir siendo visibles.</p></details>
-</aside>
-<section id="map" aria-label="Mapa geográfico interactivo de TransMilenio">
-<div id="canvas-host" tabindex="0" aria-label="Mapa: arrastra o usa flechas; más y menos para zoom"></div><div id="labels" aria-hidden="true"></div>
-<div class="map-heading"><span id="view-title">Bogotá · cartografía de referencia</span><small>Geografía 1:1 · norte arriba</small></div>
-<div class="zoom-controls"><span class="north" aria-label="Norte arriba">↑ N</span><button id="zoom-in" aria-label="Acercar">+</button><button id="zoom-out" aria-label="Alejar">−</button></div>
-<div class="map-footer"><span id="scale">1 km</span><span id="map-status">Cargando cartografía…</span></div>
-<div id="error" role="alert" hidden></div>
+<section id="map" aria-label="Mapa de TransMilenio en Bogotá"><div id="canvas-host" tabindex="0" aria-label="Mapa: arrastra o usa las flechas; más y menos para acercar"></div><div id="labels" aria-hidden="true"></div><div class="map-caption"><strong id="view-title">Toda la red</strong><span>BOGOTÁ · ESCALA REAL</span></div>
+<div class="map-actions"><span class="north">↑ N</span><button id="zoom-in" aria-label="Acercar">+</button><button id="zoom-out" aria-label="Alejar">−</button><button id="fit" aria-label="Encuadrar selección">⌖</button><button id="context-toggle" aria-label="Mostrar u ocultar calles" aria-pressed="true">▧</button></div>
+<div class="map-bottom"><span id="scale">1 km</span><small>© OpenStreetMap · TRANSMILENIO S.A.</small></div>
+<div id="loading" role="status">Preparando la operación…</div><div id="error" role="alert" hidden></div>
 </section>
-</main>
-<script type="module" src="./app.mjs"></script>
-</body></html>
+<aside id="sidebar" aria-label="Controles y rutas">
+<div id="routes-panel" class="panel"><div class="panel-heading"><div><span class="eyebrow">EXPLORAR BOGOTÁ</span><h1>La red en movimiento</h1></div><span class="count-badge" id="route-total">116</span></div>
+<div class="segmented" role="group" aria-label="Alcance de simulación"><button data-mode="all" class="active">Toda la red</button><button data-mode="zones">Troncal</button><button data-mode="route">Ruta</button></div>
+<div id="zone-options" hidden><p class="muted">Servicios que atienden estas troncales o terminan en ellas.</p><div id="zones" class="zone-grid"></div><button id="apply-zones" class="primary full">Simular selección</button></div>
+<label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" aria-label="Buscar ruta o estación" placeholder="Ruta, estación o destino"></label>
+<div class="list-header"><span id="list-count">Servicios publicados</span><label class="inline"><input id="only-dual" type="checkbox"> Duales</label></div><div id="route-list"></div>
+</div>
+<div id="depots-panel" class="panel" hidden><span class="eyebrow">OFERTA Y FLOTA</span><h1>Terminales</h1><p class="muted">Despachos y buses que terminan su regulación, listos para otro viaje. Gestión de patio simplificada en el origen del servicio.</p><div id="depot-list"></div></div>
+<div id="settings-panel" class="panel" hidden><span class="eyebrow">TU ESCENARIO</span><h1>Operación</h1><p class="muted">Frecuencias y pasajeros estimados. Las distancias siempre son reales.</p>
+<form id="settings-form"><label for="demand-mode">Demanda</label><select id="demand-mode"><option value="auto">Según la hora y el día</option><option value="peak">Forzar hora pico</option><option value="offpeak">Forzar hora valle</option></select>
+<div class="form-pair"><div><label for="peak">Salida en pico · min</label><input id="peak" type="number" min="2" max="20" step="1" value="4" required></div><div><label for="offpeak">En valle · min</label><input id="offpeak" type="number" min="3" max="30" step="1" value="8" required></div></div>
+<label for="bio-share">Biarticulados · mezcla estimada <output id="bio-value">0%</output></label><input id="bio-share" type="range" min="0" max="100" step="10" value="0"><p class="muted">Articulado: 160 plazas. Biarticulado: 240–250 según modelo. Duales convencionales: 80 plazas estimadas. F63/Z63: dual articulado eléctrico de 160, publicado. Los demás tipos se asignan como estimación.</p><label for="bio-capacity">Plazas del biarticulado</label><select id="bio-capacity"><option value="250">250 · referencia general publicada</option><option value="240">240 · configuración alternativa</option></select><label for="demand">Pasajeros <output id="demand-value">1×</output></label><input id="demand" type="range" min="0.25" max="3" step="0.25" value="1">
+<div class="form-pair"><div><label for="cruise">Máxima troncal · km/h</label><input id="cruise" type="number" min="25" max="60" value="48" required></div><div><label for="street-speed">Máxima calle · km/h</label><input id="street-speed" type="number" min="15" max="40" value="30" required></div></div>
+<button class="primary full" type="submit">Aplicar y reconstruir</button></form>
+<div class="info-box"><strong>Paso libre en estaciones</strong><p>El carril de atención y el de paso operan separados. Los buses expresos continúan; quienes paran esperan si su punto está ocupado.</p><p>Vagones: cantidad publicada cuando existe. La asignación por servicio y las dos posiciones de atención por vagón son estimadas.</p></div>
+</div>
+<div id="data-panel" class="panel" hidden><span class="eyebrow">COBERTURA Y FUENTES</span><h1>Datos del escenario</h1><div id="coverage"></div><p class="muted">Instantánea del 10 sep. 2026. Las fechas de vigencia se respetan: un registro del catálogo no implica una ruta activa.</p><p class="muted">Paraderos en calle: coordenadas oficiales donde se encontraron; los restantes se aproximan sobre el trazado y se identifican en el detalle.</p><p class="muted">No son ubicaciones GPS en vivo. No se simulan rutas zonales ni TransMiCable.</p><div id="pending-list"></div><a href="https://mapadigital.transmilenio.gov.co/" target="_blank" rel="noreferrer">Consultar mapa oficial ↗</a><p class="muted">Contexto cartográfico © OpenStreetMap contributors · ODbL. Los trazados conservan sus cruces y giros; la vista 2D no atribuye una altura donde no esté verificada.</p></div>
+</aside>
+<section id="inspector" aria-label="Detalle de selección" hidden><button id="close-inspector" class="close" aria-label="Cerrar detalle">×</button><div id="selection"></div></section>
+<section id="metrics" aria-label="Estado de operación"><div><strong id="active-count">—</strong><span>en servicio</span></div><div><strong id="onboard-count">—</strong><span>a bordo · est.</span></div><div><strong id="dwell-count">—</strong><span>en parada</span></div><div><strong id="queue-count">—</strong><span>en espera</span></div></section>
+<section id="timeline" aria-label="Reloj de simulación"><div class="time-main"><div class="date-controls"><label for="date" class="visually-hidden">Fecha de Bogotá</label><input id="date" type="date" value="2026-09-10"><span id="day-type">Jueves</span></div><button id="back" aria-label="Retroceder quince minutos">−15′</button><button id="pause" class="play" aria-label="Pausar">Ⅱ</button><button id="forward" aria-label="Avanzar quince minutos">+15′</button><label for="time" class="visually-hidden">Hora de Bogotá</label><input id="time" type="time" step="1" value="07:00:00"><div class="speed-controls" role="group" aria-label="Velocidad del reloj"><button data-speed="1" class="active">1×</button><button data-speed="8">8×</button><button data-speed="32">32×</button><button data-speed="120">120×</button></div><span id="period" class="period">Hora pico</span></div><div class="scrub-row"><span>00:00</span><label for="scrub" class="visually-hidden">Elegir hora del día</label><input id="scrub" type="range" min="0" max="86399" step="1" value="25200"><span>24:00</span></div></section>
+<div id="toast" role="status" hidden></div>
+</main><script type="module" src="./app.mjs?v=20260910.3"></script></body></html>

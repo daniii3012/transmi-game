@@ -1,0 +1,1894 @@
+{
+  "displayFieldName": "cenefa",
+  "fieldAliases": {
+    "objectid": "objectid",
+    "cenefa": "cenefa",
+    "nombre": "nombre",
+    "via": "via",
+    "direccion_bandera": "direccion_bandera"
+  },
+  "geometryType": "esriGeometryPoint",
+  "spatialReference": {
+    "wkid": 4326,
+    "latestWkid": 4326
+  },
+  "fields": [
+    {
+      "name": "objectid",
+      "type": "esriFieldTypeOID",
+      "alias": "objectid"
+    },
+    {
+      "name": "cenefa",
+      "type": "esriFieldTypeString",
+      "alias": "cenefa",
+      "length": 8000
+    },
+    {
+      "name": "nombre",
+      "type": "esriFieldTypeString",
+      "alias": "nombre",
+      "length": 8000
+    },
+    {
+      "name": "via",
+      "type": "esriFieldTypeString",
+      "alias": "via",
+      "length": 8000
+    },
+    {
+      "name": "direccion_bandera",
+      "type": "esriFieldTypeString",
+      "alias": "direccion_bandera",
+      "length": 8000
+    }
+  ],
+  "features": [
+    {
+      "attributes": {
+        "objectid": 229,
+        "cenefa": "014A00",
+        "nombre": "Centro Johann Kepler",
+        "via": "AC 63",
+        "direccion_bandera": "AC 63 - KR 16"
+      },
+      "geometry": {
+        "x": -74.06701072823292,
+        "y": 4.649914168964007
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 237,
+        "cenefa": "014A08",
+        "nombre": "Br. San Eusebio",
+        "via": "AK 50",
+        "direccion_bandera": "AK 50 - DG 16 Sur"
+      },
+      "geometry": {
+        "x": -74.11949908625891,
+        "y": 4.605615330837019
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 256,
+        "cenefa": "015A08",
+        "nombre": "Br. Remanso Sur",
+        "via": "AK 50",
+        "direccion_bandera": "AK 50 - CL 19 Sur"
+      },
+      "geometry": {
+        "x": -74.12047614463299,
+        "y": 4.603798962628112
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 432,
+        "cenefa": "026B09",
+        "nombre": "Br. Catalina",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - CL 48A Sur"
+      },
+      "geometry": {
+        "x": -74.16663526644706,
+        "y": 4.613973129122699
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 434,
+        "cenefa": "027A00",
+        "nombre": "Cementerio Central",
+        "via": "AK 19",
+        "direccion_bandera": "AK 19 - AC 26"
+      },
+      "geometry": {
+        "x": -74.07552105255981,
+        "y": 4.617882284654776
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 443,
+        "cenefa": "027A09",
+        "nombre": "Br. Roma",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - KR 79D"
+      },
+      "geometry": {
+        "x": -74.17387872279176,
+        "y": 4.613640308325039
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 482,
+        "cenefa": "029B09",
+        "nombre": "Br. Catalina",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - CL 51 Sur"
+      },
+      "geometry": {
+        "x": -74.1706325832728,
+        "y": 4.613398288064798
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 708,
+        "cenefa": "044B00",
+        "nombre": "Embajada de Francia",
+        "via": "AK 11",
+        "direccion_bandera": "AK 11 - CL 93"
+      },
+      "geometry": {
+        "x": -74.04756177767467,
+        "y": 4.674696270007206
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 710,
+        "cenefa": "045A00",
+        "nombre": "Br. La Cabrera",
+        "via": "AK 11",
+        "direccion_bandera": "AK 11 - AC 82"
+      },
+      "geometry": {
+        "x": -74.05187979782299,
+        "y": 4.667417509385753
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 825,
+        "cenefa": "052B09",
+        "nombre": "Zona Recreativa La Avenida Bosa",
+        "via": "CL 65 Sur",
+        "direccion_bandera": "CL 65 Sur - KR 78L"
+      },
+      "geometry": {
+        "x": -74.18415599985107,
+        "y": 4.60589599991795
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 840,
+        "cenefa": "054A00",
+        "nombre": "Estación Calle 63",
+        "via": "AC 63",
+        "direccion_bandera": "AC 63 - AV. Caracas"
+      },
+      "geometry": {
+        "x": -74.06514127981409,
+        "y": 4.649583278804511
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 849,
+        "cenefa": "054A09",
+        "nombre": "Br. José Antonio Galán",
+        "via": "Av. Agoberto Mejía",
+        "direccion_bandera": "AV. A. Mejía - CL 58K Sur"
+      },
+      "geometry": {
+        "x": -74.17909801106721,
+        "y": 4.610367715195634
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 957,
+        "cenefa": "061B09",
+        "nombre": "Br. Alcalá",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - KR 51F"
+      },
+      "geometry": {
+        "x": -74.12516186842551,
+        "y": 4.605141022892211
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1093,
+        "cenefa": "070A08",
+        "nombre": "Br. Remanso",
+        "via": "AC 8 Sur",
+        "direccion_bandera": "AC 8 Sur - KR 42"
+      },
+      "geometry": {
+        "x": -74.11767612044046,
+        "y": 4.607144334329072
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1108,
+        "cenefa": "071A08",
+        "nombre": "Br. Remanso",
+        "via": "AC 8 Sur",
+        "direccion_bandera": "AC 8 Sur - KR 38"
+      },
+      "geometry": {
+        "x": -74.11296567870949,
+        "y": 4.603761520364801
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1109,
+        "cenefa": "071A09",
+        "nombre": "Pl. de Mercado San Pablo I Sector",
+        "via": "TV 78L",
+        "direccion_bandera": "TV 78L - CL 66 Sur"
+      },
+      "geometry": {
+        "x": -74.18737400025041,
+        "y": 4.605641000278859
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1140,
+        "cenefa": "073A08",
+        "nombre": "Br. Remanso",
+        "via": "AC 8 Sur",
+        "direccion_bandera": "AC 8 Sur - KR 40"
+      },
+      "geometry": {
+        "x": -74.11560240963105,
+        "y": 4.60598161072163
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1141,
+        "cenefa": "073A09",
+        "nombre": "CED Los Andes",
+        "via": "KR 80C",
+        "direccion_bandera": "KR 80C - CL 65 Sur"
+      },
+      "geometry": {
+        "x": -74.18561776604027,
+        "y": 4.607635865589936
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1250,
+        "cenefa": "081A00",
+        "nombre": "Br. Antiguo Country",
+        "via": "AC 85",
+        "direccion_bandera": "AC 85 - KR 16A"
+      },
+      "geometry": {
+        "x": -74.05685199956318,
+        "y": 4.67064600039422
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1479,
+        "cenefa": "095B09",
+        "nombre": "IED Benjamín Herrera",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - KR 50B"
+      },
+      "geometry": {
+        "x": -74.12298261568604,
+        "y": 4.6034898608263495
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1495,
+        "cenefa": "096B09",
+        "nombre": "Br. Tejar",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - KR 51"
+      },
+      "geometry": {
+        "x": -74.12716814157032,
+        "y": 4.60720463358703
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1523,
+        "cenefa": "098A09",
+        "nombre": "Floralia",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - KR 68D"
+      },
+      "geometry": {
+        "x": -74.13142335256207,
+        "y": 4.6106038924115165
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1533,
+        "cenefa": "098C09",
+        "nombre": "Floralia",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - KR 68GBis"
+      },
+      "geometry": {
+        "x": -74.1325689140684,
+        "y": 4.611290643641849
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1546,
+        "cenefa": "099A09",
+        "nombre": "Carvajal",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - KR 69CBis"
+      },
+      "geometry": {
+        "x": -74.13657700015219,
+        "y": 4.615172000123998
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1568,
+        "cenefa": "100A09",
+        "nombre": "Br. Roma",
+        "via": "Av. Agoberto Mejía",
+        "direccion_bandera": "AV. A. Mejía - CL 57B Sur"
+      },
+      "geometry": {
+        "x": -74.17732896731955,
+        "y": 4.611936515994439
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1597,
+        "cenefa": "102A00",
+        "nombre": "Iglesia Divino Salvador",
+        "via": "KR 17",
+        "direccion_bandera": "KR 17 - CL 58B"
+      },
+      "geometry": {
+        "x": -74.06842769733271,
+        "y": 4.645568127106382
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1620,
+        "cenefa": "103A00",
+        "nombre": "Calle 51 (Br. Quesada)",
+        "via": "KR 17",
+        "direccion_bandera": "KR 17 - CL 51"
+      },
+      "geometry": {
+        "x": -74.06965519644099,
+        "y": 4.638670846586654
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1636,
+        "cenefa": "103B09",
+        "nombre": "Hsp. Occidente de Kennedy",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - CL 40B Sur"
+      },
+      "geometry": {
+        "x": -74.15376089084715,
+        "y": 4.616795685982007
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1659,
+        "cenefa": "104C09",
+        "nombre": "Br. Provivienda Occidental",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - CL 35A Sur"
+      },
+      "geometry": {
+        "x": -74.1442956107155,
+        "y": 4.618892575836114
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1675,
+        "cenefa": "105B09",
+        "nombre": "Br. Timiza",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - CL 39C Sur"
+      },
+      "geometry": {
+        "x": -74.15067555716351,
+        "y": 4.617307721908716
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1692,
+        "cenefa": "106B09",
+        "nombre": "Br. Timiza",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - CL 41 Sur"
+      },
+      "geometry": {
+        "x": -74.15614825031157,
+        "y": 4.6163554279874655
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1711,
+        "cenefa": "107B09",
+        "nombre": "Br. Tocarema",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - CL 44A Sur"
+      },
+      "geometry": {
+        "x": -74.16375842364451,
+        "y": 4.614620657361489
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1715,
+        "cenefa": "108A00",
+        "nombre": "CAI Samper Mendoza",
+        "via": "Cl 24",
+        "direccion_bandera": "CL 24 - KR 19A"
+      },
+      "geometry": {
+        "x": -74.07825013761995,
+        "y": 4.618163700372585
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1729,
+        "cenefa": "108B09",
+        "nombre": "Br. Timiza",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - CL 41G Sur"
+      },
+      "geometry": {
+        "x": -74.1592192625514,
+        "y": 4.615820793032686
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 1805,
+        "cenefa": "113B01",
+        "nombre": "Cantón Norte",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 103A"
+      },
+      "geometry": {
+        "x": -74.03637023774719,
+        "y": 4.683167916635056
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2037,
+        "cenefa": "126A09",
+        "nombre": "Br. El Jardín",
+        "via": "KR 80I",
+        "direccion_bandera": "KR 80I - CL 87B Sur"
+      },
+      "geometry": {
+        "x": -74.2111739995679,
+        "y": 4.613452999625861
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2174,
+        "cenefa": "135A00",
+        "nombre": " Armenia",
+        "via": "AC 32",
+        "direccion_bandera": "AC 32 - KR 17"
+      },
+      "geometry": {
+        "x": -74.07347846584152,
+        "y": 4.620454465351487
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2277,
+        "cenefa": "143A00",
+        "nombre": "Canal Arzobispo",
+        "via": "AK 19",
+        "direccion_bandera": "AK 19 - DG 40A"
+      },
+      "geometry": {
+        "x": -74.07235825308008,
+        "y": 4.630632101959809
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2298,
+        "cenefa": "144A09",
+        "nombre": "Br. San Diego Bosa",
+        "via": "KR 80K",
+        "direccion_bandera": "KR 80K - CL 82B Sur"
+      },
+      "geometry": {
+        "x": -74.20671705299895,
+        "y": 4.611975785095451
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2304,
+        "cenefa": "145A00",
+        "nombre": "Br. Palermo",
+        "via": "AK 19",
+        "direccion_bandera": "AK 19 - CL 44"
+      },
+      "geometry": {
+        "x": -74.07174086107491,
+        "y": 4.633770807034608
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2333,
+        "cenefa": "147A00",
+        "nombre": "Br. La Magdalena",
+        "via": "KR 17",
+        "direccion_bandera": "KR 17 - CL 37"
+      },
+      "geometry": {
+        "x": -74.07274018195082,
+        "y": 4.627031904133216
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2383,
+        "cenefa": "150A09",
+        "nombre": " Br. Grancolombiano I",
+        "via": "CL 75 Sur ",
+        "direccion_bandera": "CL 75 Sur – KR 80M"
+      },
+      "geometry": {
+        "x": -74.20253628759556,
+        "y": 4.61038161608576
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2439,
+        "cenefa": "154B00",
+        "nombre": "Br. La Sabana",
+        "via": "KR 24",
+        "direccion_bandera": "KR 24 - CL 12B"
+      },
+      "geometry": {
+        "x": -74.08873428974483,
+        "y": 4.60924462061445
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2456,
+        "cenefa": "155B00",
+        "nombre": "Br. Progreso",
+        "via": "KR 24",
+        "direccion_bandera": "KR 24 - CL 5A"
+      },
+      "geometry": {
+        "x": -74.09389199983866,
+        "y": 4.601600999873011
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2471,
+        "cenefa": "156B00",
+        "nombre": "Br. El Vergel",
+        "via": "KR 24",
+        "direccion_bandera": "KR 24 - CL 2A"
+      },
+      "geometry": {
+        "x": -74.09523344916215,
+        "y": 4.598330132623222
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2535,
+        "cenefa": "161A01",
+        "nombre": "Urb. Conjunto de La 100",
+        "via": "AC 100",
+        "direccion_bandera": "AC 100 - KR 8A"
+      },
+      "geometry": {
+        "x": -74.04190717767327,
+        "y": 4.682066831062965
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2582,
+        "cenefa": "164A01",
+        "nombre": "IED General Santander (Br. El Pedregal)",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 101"
+      },
+      "geometry": {
+        "x": -74.03727999970879,
+        "y": 4.681921000149339
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2684,
+        "cenefa": "171A00",
+        "nombre": "Br. Paloquemao",
+        "via": "AK 27",
+        "direccion_bandera": "AK 27 - AC 19"
+      },
+      "geometry": {
+        "x": -74.08617745461912,
+        "y": 4.615546514931382
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2702,
+        "cenefa": "172A00",
+        "nombre": "CAI Paloquemao",
+        "via": "KR 25",
+        "direccion_bandera": "KR 25 - CL 17"
+      },
+      "geometry": {
+        "x": -74.08650888400331,
+        "y": 4.6126854761282035
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 2991,
+        "cenefa": "191B03",
+        "nombre": "Br. Lombardía II",
+        "via": "Av. Suba",
+        "direccion_bandera": "AV. Suba - KR 110A"
+      },
+      "geometry": {
+        "x": -74.10030635937956,
+        "y": 4.749040378412516
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3017,
+        "cenefa": "193B03",
+        "nombre": "ETB Tibabuyes",
+        "via": "Av. Suba",
+        "direccion_bandera": "AV. Suba - KR 114D"
+      },
+      "geometry": {
+        "x": -74.10367756223361,
+        "y": 4.750360272241845
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3024,
+        "cenefa": "194A05",
+        "nombre": "CIAC",
+        "via": "AC 26",
+        "direccion_bandera": "AC 26 - KR 103"
+      },
+      "geometry": {
+        "x": -74.13141594007242,
+        "y": 4.690361490060903
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3044,
+        "cenefa": "195B03",
+        "nombre": "Br. Lombardía",
+        "via": "Av. Suba",
+        "direccion_bandera": "AV. Suba - KR 110"
+      },
+      "geometry": {
+        "x": -74.10000321493241,
+        "y": 4.748565645187954
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3085,
+        "cenefa": "199A09",
+        "nombre": "Br. Humberto Valencia",
+        "via": "Cl 71A S",
+        "direccion_bandera": "CL 71A Sur - KR 81B"
+      },
+      "geometry": {
+        "x": -74.19466011529269,
+        "y": 4.61075642739462
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3089,
+        "cenefa": "200A00",
+        "nombre": "San Andresito San José",
+        "via": "KR 24",
+        "direccion_bandera": "KR 24 - CL 10"
+      },
+      "geometry": {
+        "x": -74.09069191827146,
+        "y": 4.6065708445759075
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3126,
+        "cenefa": "202A09",
+        "nombre": "Br. Islandia",
+        "via": "CL 71A Sur",
+        "direccion_bandera": "CL 71A Sur - KR 82"
+      },
+      "geometry": {
+        "x": -74.19496599984782,
+        "y": 4.61263399974311
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3140,
+        "cenefa": "203A09",
+        "nombre": "Br. Piamonte Sector II",
+        "via": "KR 81",
+        "direccion_bandera": "KR 81 - CL 70 B Sur"
+      },
+      "geometry": {
+        "x": -74.19393499980718,
+        "y": 4.609756000202259
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3170,
+        "cenefa": "206A00",
+        "nombre": "Br. Santa Isabel Sur",
+        "via": "CL 1F",
+        "direccion_bandera": "CL 1F - KR 26"
+      },
+      "geometry": {
+        "x": -74.0997622848519,
+        "y": 4.597743990247794
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3179,
+        "cenefa": "206A09",
+        "nombre": "Br. Piamonte Sector II",
+        "via": "Cl 68A S",
+        "direccion_bandera": "CL 68A Sur - KR 80N"
+      },
+      "geometry": {
+        "x": -74.19156843839065,
+        "y": 4.609494337021181
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3367,
+        "cenefa": "220A09",
+        "nombre": "Br. Piamonte Etapa I",
+        "via": "Cl 68A S",
+        "direccion_bandera": "CL 68A Sur - TV 79"
+      },
+      "geometry": {
+        "x": -74.18928571502343,
+        "y": 4.6045160780668155
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3393,
+        "cenefa": "222A09",
+        "nombre": "IED Fernando Mazuera Villegas",
+        "via": "Cl 68A S",
+        "direccion_bandera": "CL 68A Sur - TV 80F"
+      },
+      "geometry": {
+        "x": -74.19031145859178,
+        "y": 4.606220671885916
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3416,
+        "cenefa": "224A09",
+        "nombre": "Parroquia el Divino Niño Jesús de Praga",
+        "via": "Cl 68A S",
+        "direccion_bandera": "CL 68A Sur - KR 80K"
+      },
+      "geometry": {
+        "x": -74.19106779957269,
+        "y": 4.608085504571973
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3430,
+        "cenefa": "225B00",
+        "nombre": "Br. Porciúncula",
+        "via": "AK 11",
+        "direccion_bandera": "AK 11 - CL 75"
+      },
+      "geometry": {
+        "x": -74.05658000343702,
+        "y": 4.6604780692923855
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3443,
+        "cenefa": "227A00",
+        "nombre": "Clínica de Traumatología y Ortopedia",
+        "via": "AK 11",
+        "direccion_bandera": "AK 11 - CL 70A"
+      },
+      "geometry": {
+        "x": -74.05965891691453,
+        "y": 4.656000359742888
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3501,
+        "cenefa": "232A00",
+        "nombre": "Cuerpo Oficial de Bomberos de Bogotá",
+        "via": "AK 13",
+        "direccion_bandera": "AK 13 - CL 60 Bis"
+      },
+      "geometry": {
+        "x": -74.06395060599111,
+        "y": 4.64747062369824
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 3726,
+        "cenefa": "249A01",
+        "nombre": "Pq. Ginebra",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 127C Bis"
+      },
+      "geometry": {
+        "x": -74.02865125536891,
+        "y": 4.706310014557583
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 4112,
+        "cenefa": "281A00",
+        "nombre": "C.C. La Cabrera",
+        "via": "AC 85",
+        "direccion_bandera": "AC 85 - AK 11"
+      },
+      "geometry": {
+        "x": -74.05187563769826,
+        "y": 4.66798324419635
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 4864,
+        "cenefa": "347A00",
+        "nombre": "Br. Teusaquillo",
+        "via": "KR 17",
+        "direccion_bandera": "KR 17 - AC 34"
+      },
+      "geometry": {
+        "x": -74.07206114330533,
+        "y": 4.6239930843551065
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 4911,
+        "cenefa": "351B00",
+        "nombre": "Alcaldía Local de Teusaquillo",
+        "via": "AK 19",
+        "direccion_bandera": "KR 19 - CL 39A"
+      },
+      "geometry": {
+        "x": -74.07266416062822,
+        "y": 4.628965243190124
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 4912,
+        "cenefa": "352A00",
+        "nombre": "Centro de Altos Estudios Sabio Caldas (Parque Gernika)",
+        "via": "TV 17",
+        "direccion_bandera": "TV 17 - DG 46A"
+      },
+      "geometry": {
+        "x": -74.07059909802491,
+        "y": 4.635268404996681
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 4922,
+        "cenefa": "353A00",
+        "nombre": "Clínica Eusalud (Br. Chapinero Occidental)",
+        "via": "KR 17",
+        "direccion_bandera": "KR 17 - CL 54A"
+      },
+      "geometry": {
+        "x": -74.068883921676,
+        "y": 4.643098523911309
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 4946,
+        "cenefa": "354B00",
+        "nombre": "Centro Johann Kepler",
+        "via": "KR 17",
+        "direccion_bandera": "KR 17 - CL 61"
+      },
+      "geometry": {
+        "x": -74.06767585236175,
+        "y": 4.649649641724512
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 5190,
+        "cenefa": "377B05",
+        "nombre": "Aeropuerto Eldorado",
+        "via": "Av Eldorado",
+        "direccion_bandera": "Aeropuerto Eldorado"
+      },
+      "geometry": {
+        "x": -74.1408752031205,
+        "y": 4.698039653437335
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 5214,
+        "cenefa": "380A05",
+        "nombre": "Puente Aéreo",
+        "via": "AC 26",
+        "direccion_bandera": "AC 26 - KR 106"
+      },
+      "geometry": {
+        "x": -74.13385923240845,
+        "y": 4.692184056258547
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 5225,
+        "cenefa": "382A06",
+        "nombre": "CAC",
+        "via": "AC 26",
+        "direccion_bandera": "AC 26 - KR 106"
+      },
+      "geometry": {
+        "x": -74.13602175431896,
+        "y": 4.6927399302456845
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 5234,
+        "cenefa": "383A05",
+        "nombre": "Puente Aéreo",
+        "via": "Av Eldorado",
+        "direccion_bandera": "AC 26 - KR 106"
+      },
+      "geometry": {
+        "x": -74.13602037107464,
+        "y": 4.694171743250119
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 5235,
+        "cenefa": "383A06",
+        "nombre": "Aeronáutica Civil",
+        "via": "AC 26",
+        "direccion_bandera": "AC 26 - KR 103"
+      },
+      "geometry": {
+        "x": -74.13284324495508,
+        "y": 4.69033644664548
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 5547,
+        "cenefa": "415A00",
+        "nombre": "JAC Santa Isabel",
+        "via": "CL 1F",
+        "direccion_bandera": "CL 1F - KR 29B"
+      },
+      "geometry": {
+        "x": -74.10317171543423,
+        "y": 4.6004412869773255
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 5580,
+        "cenefa": "418A00",
+        "nombre": "Br. Santa Isabel Sur",
+        "via": "CL 1F",
+        "direccion_bandera": "CL 1F - KR 27A"
+      },
+      "geometry": {
+        "x": -74.10097354406312,
+        "y": 4.598697002969088
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 5637,
+        "cenefa": "424A00",
+        "nombre": "Colegio Externado Cultural",
+        "via": "KR 26",
+        "direccion_bandera": "KR 26 - CL 1H Bis"
+      },
+      "geometry": {
+        "x": -74.09819516779294,
+        "y": 4.598603415132714
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 6434,
+        "cenefa": "515A08",
+        "nombre": "Br. Bochica Puente Aranda",
+        "via": "CL 1F",
+        "direccion_bandera": "CL 1F - KR 35B"
+      },
+      "geometry": {
+        "x": -74.10914152861011,
+        "y": 4.604764802048806
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 6440,
+        "cenefa": "516A08",
+        "nombre": "IED Marco Antonio Carreño Silva",
+        "via": "CL 1F",
+        "direccion_bandera": "CL 1F - KR 32B"
+      },
+      "geometry": {
+        "x": -74.10671605703142,
+        "y": 4.602954055862564
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 6445,
+        "cenefa": "517A08",
+        "nombre": "Estación Santa Isabel",
+        "via": "CL 1F",
+        "direccion_bandera": "CL 1F - KR 31"
+      },
+      "geometry": {
+        "x": -74.10421516162687,
+        "y": 4.601162039586557
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 6460,
+        "cenefa": "520A09",
+        "nombre": "Br. La Capilla",
+        "via": "Av. Agoberto Mejía",
+        "direccion_bandera": "AV. A. Mejía - CL 60A Sur"
+      },
+      "geometry": {
+        "x": -74.182576454138,
+        "y": 4.607267135552189
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 6758,
+        "cenefa": "569A09",
+        "nombre": "CAI Roma",
+        "via": "Av. Agoberto Mejía",
+        "direccion_bandera": "AV. A. Mejía - CL 55A Sur"
+      },
+      "geometry": {
+        "x": -74.17530833339183,
+        "y": 4.61378007638996
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7036,
+        "cenefa": "615A00",
+        "nombre": "Pl. Paloquemao",
+        "via": "AK 27",
+        "direccion_bandera": "AK 27 - AC 19"
+      },
+      "geometry": {
+        "x": -74.08529894818878,
+        "y": 4.616570060993702
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7041,
+        "cenefa": "616A00",
+        "nombre": "Br. Samper Mendoza",
+        "via": "AK 27",
+        "direccion_bandera": "AK 27 - CL 23"
+      },
+      "geometry": {
+        "x": -74.0815018215844,
+        "y": 4.621133026720688
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7073,
+        "cenefa": "621B09",
+        "nombre": "Urb. Pastrana",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "AV. 1 de Mayo - CL 42F Sur"
+      },
+      "geometry": {
+        "x": -74.16149593979426,
+        "y": 4.615384696942192
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7110,
+        "cenefa": "627B09",
+        "nombre": "Br. Kennedy Supermanzana 6B",
+        "via": "AV. 1 de Mayo",
+        "direccion_bandera": "Av. 1 de Mayo - CL 37 Sur"
+      },
+      "geometry": {
+        "x": -74.14663299962001,
+        "y": 4.618243999577411
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7230,
+        "cenefa": "650A09",
+        "nombre": "Pq. Laureles Alborada",
+        "via": "AV. C. de Cali",
+        "direccion_bandera": "AV. C. de Cali - KR 81F"
+      },
+      "geometry": {
+        "x": -74.20115800012316,
+        "y": 4.612426000093729
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7241,
+        "cenefa": "652A09",
+        "nombre": "Br. Grancolombiano",
+        "via": "AV. C. de Cali",
+        "direccion_bandera": "AV. C. de Cali - CL 73D Sur"
+      },
+      "geometry": {
+        "x": -74.199447999838,
+        "y": 4.613344000045633
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7253,
+        "cenefa": "654A09",
+        "nombre": "Br. Islandia - Santa Lucía",
+        "via": "AV. C. de Cali",
+        "direccion_bandera": "AV. C. de Cali - CL 72A Sur"
+      },
+      "geometry": {
+        "x": -74.19618800029312,
+        "y": 4.612986999667585
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7387,
+        "cenefa": "689A09",
+        "nombre": "Br. Bosa San José",
+        "via": "KR 80I",
+        "direccion_bandera": "KR 80I - CL 84C Bis"
+      },
+      "geometry": {
+        "x": -74.20918599984789,
+        "y": 4.612167999902074
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7416,
+        "cenefa": "710A00",
+        "nombre": "Br. Samper Mendoza",
+        "via": "TV 28",
+        "direccion_bandera": "TV 28 - CL 22B"
+      },
+      "geometry": {
+        "x": -74.08264808737874,
+        "y": 4.620237752804861
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7475,
+        "cenefa": "803B00",
+        "nombre": "Br. La Pepita",
+        "via": "KR 24",
+        "direccion_bandera": "KR 24 - CL 6 Bis"
+      },
+      "geometry": {
+        "x": -74.09262985131149,
+        "y": 4.603579768731211
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7519,
+        "cenefa": "867A00",
+        "nombre": "Br. Samper Mendoza",
+        "via": "Cl 24",
+        "direccion_bandera": "CL 24 - KR 25"
+      },
+      "geometry": {
+        "x": -74.07988299969942,
+        "y": 4.620533999703412
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7555,
+        "cenefa": "BD-005B",
+        "nombre": "U. Javeriana",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 40"
+      },
+      "geometry": {
+        "x": -74.06509799978171,
+        "y": 4.628190999811325
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7557,
+        "cenefa": "BD-006B",
+        "nombre": "Universidad Distrital",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 40"
+      },
+      "geometry": {
+        "x": -74.06523800010758,
+        "y": 4.628511999863427
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7560,
+        "cenefa": "BD-009A",
+        "nombre": "Hospital Militar",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 – CL 50"
+      },
+      "geometry": {
+        "x": -74.063410865888,
+        "y": 4.636962742910381
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7561,
+        "cenefa": "BD-010A",
+        "nombre": "Universidad Santo Tomás",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 – CL 51"
+      },
+      "geometry": {
+        "x": -74.06341770511203,
+        "y": 4.637934400724414
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7562,
+        "cenefa": "BD-011A",
+        "nombre": "Br. Bosque Calderón",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 – CL 57"
+      },
+      "geometry": {
+        "x": -74.06186485015154,
+        "y": 4.642958126620956
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7563,
+        "cenefa": "BD-012A",
+        "nombre": "SENA – Dirección General",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 – CL 55"
+      },
+      "geometry": {
+        "x": -74.06240500830782,
+        "y": 4.641801546755085
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7565,
+        "cenefa": "BD-013A",
+        "nombre": "U. La Salle",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 – CL 61"
+      },
+      "geometry": {
+        "x": -74.06037314637649,
+        "y": 4.64651473461868
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7566,
+        "cenefa": "BD-014A",
+        "nombre": "Br. Chapinero Central",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 – CL 60"
+      },
+      "geometry": {
+        "x": -74.0609082887609,
+        "y": 4.646130013319474
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7568,
+        "cenefa": "BD-015A",
+        "nombre": "Calle 67",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 – CL 66"
+      },
+      "geometry": {
+        "x": -74.05839422836367,
+        "y": 4.650253239654253
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7570,
+        "cenefa": "BD-016B",
+        "nombre": "Chapinero Norte",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 66"
+      },
+      "geometry": {
+        "x": -74.05853700016159,
+        "y": 4.650483999846642
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7572,
+        "cenefa": "BD-017B",
+        "nombre": "Av. Chile",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 – CL 70A"
+      },
+      "geometry": {
+        "x": -74.05577599981146,
+        "y": 4.653791999702715
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7574,
+        "cenefa": "BD-018B",
+        "nombre": "Avenida Chile",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 71"
+      },
+      "geometry": {
+        "x": -74.0560069997322,
+        "y": 4.653826999963137
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7575,
+        "cenefa": "BD-019A",
+        "nombre": "Br. Bellavista",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 – CL 73"
+      },
+      "geometry": {
+        "x": -74.05438714090593,
+        "y": 4.656485937120988
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7576,
+        "cenefa": "BD-022A",
+        "nombre": "Chapinero Norte",
+        "via": "AK 13",
+        "direccion_bandera": "AK 13 - CL 66"
+      },
+      "geometry": {
+        "x": -74.06300696244857,
+        "y": 4.653041824930257
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7577,
+        "cenefa": "BD-024A",
+        "nombre": "Alcaldía Local de Chapinero",
+        "via": "AK 13",
+        "direccion_bandera": "AK 13 - CL 55"
+      },
+      "geometry": {
+        "x": -74.0647218673694,
+        "y": 4.642707692141265
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7581,
+        "cenefa": "BD-029A",
+        "nombre": "Br. Porciúncula",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 – CL 75"
+      },
+      "geometry": {
+        "x": -74.05433000042926,
+        "y": 4.657035000346792
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7582,
+        "cenefa": "BD-029B",
+        "nombre": "Br. Porciúncula",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 – CL 75"
+      },
+      "geometry": {
+        "x": -74.05405799990925,
+        "y": 4.657405999689941
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7583,
+        "cenefa": "BD-030A",
+        "nombre": "El Nogal",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 79"
+      },
+      "geometry": {
+        "x": -74.05125653367898,
+        "y": 4.660549458562492
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7584,
+        "cenefa": "BD-031A",
+        "nombre": "Los Rosales",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 78"
+      },
+      "geometry": {
+        "x": -74.05138086199501,
+        "y": 4.6600833730689715
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7585,
+        "cenefa": "BD-032A",
+        "nombre": "Calle 82",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 81"
+      },
+      "geometry": {
+        "x": -74.04912907295268,
+        "y": 4.662780827105813
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7587,
+        "cenefa": "BD-034A",
+        "nombre": "La Cabrera",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 86"
+      },
+      "geometry": {
+        "x": -74.0461416333794,
+        "y": 4.666759596691924
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7588,
+        "cenefa": "BD-035A",
+        "nombre": "El Refugio",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 87"
+      },
+      "geometry": {
+        "x": -74.04634380624232,
+        "y": 4.665846407999336
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7589,
+        "cenefa": "BD-036A",
+        "nombre": "El Chicó",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 90"
+      },
+      "geometry": {
+        "x": -74.04499283410605,
+        "y": 4.669271426859554
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7590,
+        "cenefa": "BD-037A",
+        "nombre": "Chicó Oriental",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 92"
+      },
+      "geometry": {
+        "x": -74.0440071080776,
+        "y": 4.670693982625535
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7591,
+        "cenefa": "BD-038A",
+        "nombre": "Parque La Gran Vía",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 94"
+      },
+      "geometry": {
+        "x": -74.04109644687657,
+        "y": 4.675053051963135
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7592,
+        "cenefa": "BD-039A",
+        "nombre": "Calle 94",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 94"
+      },
+      "geometry": {
+        "x": -74.04125594074357,
+        "y": 4.674526529948722
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7593,
+        "cenefa": "BD-040A",
+        "nombre": "Chicó Reservado",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 97A"
+      },
+      "geometry": {
+        "x": -74.03978133619012,
+        "y": 4.678179086969998
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7594,
+        "cenefa": "BD-041A",
+        "nombre": "Escuela de Caballería",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 100"
+      },
+      "geometry": {
+        "x": -74.03766047186535,
+        "y": 4.680376902931267
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7595,
+        "cenefa": "BD-042A",
+        "nombre": "Calle 100",
+        "via": "AK 11",
+        "direccion_bandera": "AK 11 - CL 100"
+      },
+      "geometry": {
+        "x": -74.04382081281211,
+        "y": 4.681935771205904
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7596,
+        "cenefa": "BD-043A",
+        "nombre": "Chicó Norte II",
+        "via": "AK 11",
+        "direccion_bandera": "AK 11 - CL 95"
+      },
+      "geometry": {
+        "x": -74.04507593282325,
+        "y": 4.679502354361361
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7597,
+        "cenefa": "BD-048A",
+        "nombre": "Teatro Patria",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 106"
+      },
+      "geometry": {
+        "x": -74.03617590981737,
+        "y": 4.684449937280075
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7598,
+        "cenefa": "BD-049A",
+        "nombre": "Escuela de Caballería",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 101"
+      },
+      "geometry": {
+        "x": -74.03835399980741,
+        "y": 4.679782000021339
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7599,
+        "cenefa": "BD-050A",
+        "nombre": "U. Pedagógica",
+        "via": "AC 72",
+        "direccion_bandera": "AC 72 - KR 10"
+      },
+      "geometry": {
+        "x": -74.05847054216223,
+        "y": 4.656816647940762
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7600,
+        "cenefa": "BD-051A",
+        "nombre": "AK 11",
+        "via": "Cl 76",
+        "direccion_bandera": "CL 76 - AK 11"
+      },
+      "geometry": {
+        "x": -74.05748800042544,
+        "y": 4.661847999770657
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7602,
+        "cenefa": "BD-052A",
+        "nombre": "Cantón Norte",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 106"
+      },
+      "geometry": {
+        "x": -74.03529388466926,
+        "y": 4.685594599170375
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7603,
+        "cenefa": "BD-053A",
+        "nombre": "SANTA ANA",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 110"
+      },
+      "geometry": {
+        "x": -74.03437248568274,
+        "y": 4.6895315561031055
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7604,
+        "cenefa": "BD-054A",
+        "nombre": "Santa Ana Occidental",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 110"
+      },
+      "geometry": {
+        "x": -74.03487088720365,
+        "y": 4.689528296829839
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7605,
+        "cenefa": "BD-055A",
+        "nombre": "Hacienda Santa Bárbara",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 116"
+      },
+      "geometry": {
+        "x": -74.0331337279211,
+        "y": 4.693252373223191
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7608,
+        "cenefa": "BD-057A",
+        "nombre": "Usaquén",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 119B"
+      },
+      "geometry": {
+        "x": -74.03124723626236,
+        "y": 4.696811629167759
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7611,
+        "cenefa": "BD-059A",
+        "nombre": "San Gabriel Norte",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 124"
+      },
+      "geometry": {
+        "x": -74.02864115912003,
+        "y": 4.700005364979604
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7612,
+        "cenefa": "BD-060A",
+        "nombre": "Santa Bárbara Oriental",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 124"
+      },
+      "geometry": {
+        "x": -74.02876955123973,
+        "y": 4.700925113254367
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7613,
+        "cenefa": "BD-061A",
+        "nombre": "Unicerros",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 127B"
+      },
+      "geometry": {
+        "x": -74.02845188022766,
+        "y": 4.7051531464017335
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7614,
+        "cenefa": "BD-062A",
+        "nombre": "Bella Suiza",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 127B"
+      },
+      "geometry": {
+        "x": -74.02875023614718,
+        "y": 4.705249044813061
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7615,
+        "cenefa": "BD-063A",
+        "nombre": "Ginebra",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 130B"
+      },
+      "geometry": {
+        "x": -74.02847831799284,
+        "y": 4.7089150740474786
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7616,
+        "cenefa": "BD-064A",
+        "nombre": "Ginebra Norte",
+        "via": "AK 7",
+        "direccion_bandera": "AK 7 - CL 132"
+      },
+      "geometry": {
+        "x": -74.02920006838028,
+        "y": 4.711210498606866
+      }
+    },
+    {
+      "attributes": {
+        "objectid": 7617,
+        "cenefa": "BD-065A",
+        "nombre": "Clínica El Bosque",
+        "via": "AC 134",
+        "direccion_bandera": "AC 134 - AK 7"
+      },
+      "geometry": {
+        "x": -74.02996411532895,
+        "y": 4.711994052675872
+      }
+    }
+  ]
+}

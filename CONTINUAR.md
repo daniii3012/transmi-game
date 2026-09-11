@@ -1,56 +1,66 @@
 # Continuidad — Transmi 2D
 
-Actualizado el 10 de septiembre de 2026. Leer README.md y docs/PLAN_DEL_PROYECTO.md. Las nuevas decisiones de Daniel sustituyen la dirección previa de conducción 3D.
+Actualizado: 10 de septiembre de 2026. Esta entrega sustituye las notas que describían solo un laboratorio. Leer README.md, docs/OPERACION_Y_DATOS.md y docs/VALIDACION_20260910.md antes de continuar.
 
-## Decisiones vigentes
+## Instrucciones y decisiones de Daniel
 
-- **Principal: simulación 2D de todas las rutas troncales y duales**, con geografía real de Bogotá 1:1. Incluye calle/paraderos de Séptima y 68, P85/M85, obras actuales según fuentes. Confirmó **zonales para después**.
-- **3D pausado hasta nuevo aviso**, conservado en archive/transmi3d. No continuar modelado/Blender/Godot por inercia. Último estado antes del cambio: e18c8d6ba7c6a3568f61c3c9bdbdaea9a2d1a99a.
-- Elegir una ruta, varias zonas por letras o toda la red; calendario, días, pico/valle, reloj 1×/acelerado y saltos adelante/atrás. Un solo jugador; sin GPS en vivo ni construcción de red.
-- Última aclaración: evitar atascos artificiales. Adoptado **modelo híbrido fluido**: metros y velocidades coherentes, despacho por oferta estimada/verificada, paso independiente de paradas y conflictos locales solo con datos suficientes. No reducir distancias ni introducir miles de buses por un contador fijo como operación real.
-- Buses homogéneos hasta verificar tipo por ruta. No inventar asignaciones a vagones. Horarios oficiales separados de frecuencias/velocidades/atención estimadas.
-- Visual: Subway Builder + claridad de Mini Metro; geografía exacta, contexto urbano tenue por zoom. La referencia Wikimedia tiene última actualización del archivo en 2019, no sirve para vigencia 2026.
-- Push a daniii3012/transmi-game autorizado. No desplegar. Agentes ligeros permitidos para investigación acotada; el principal integra. Revisiones por hitos, no microensayos constantes con Daniel.
+- Simulador 2D geográfico 1:1 de troncales y duales. Zonales y TransMiCable fuera del alcance. 3D pausado en `archive/transmi3d`; no retomar Godot/Blender por inercia.
+- Referencia visual preferida: Subway Builder, con legibilidad de Mini Metro. Mapa real, paneles compactos, colores publicados, sin construcción de líneas.
+- Metros y km/h reales; reloj 1×/acelerado y reversible. Seleccionar ruta, una o varias troncales, o la red. No son posiciones GPS en vivo.
+- Autorizó expresamente estimaciones ajustables de frecuencia/demanda y pruebas completas en navegador. Dos carriles por sentido como abstracción, paso independiente de atención y pequeñas colas. Las asignaciones de vagón estimadas se identifican.
+- Añadió pasajeros por estación/hora y orientación al centro en la mañana/periferia en la tarde. Integrado mediante validaciones históricas + hipótesis; no dejarlo descrito como enteramente pendiente.
+- Destacó F63/Z63 dual articulado eléctrico; perfil publicado 160 integrado. Otros tipos sin ficha por ruta siguen estimados (80/160/240/250).
+- Corrigió C15 Chapinero Ciclovía: es zonal, ID366 excluido. C15/3915 y H15/367 troncales, 19 paradas cada una, enlazadas en búsqueda y detalle. Evidencia del API TransMiApp conservada.
+- Push a `daniii3012/transmi-game` autorizado. Mantener aplicación local; no desplegar. No pedir nuevamente las autorizaciones ya concedidas. Agentes ligeros solo para investigación acotada; los dos usados terminaron, uno agotó cuota. No hay tarea automática pendiente.
 
-## Estructura y ejecución
+## Ubicación y ejecución
 
-Raíz: `/Users/daniel/Documents/Codex/2026-09-08/ho/outputs/BogotaTransmi`.
+Repo: `/Users/daniel/Documents/Codex/2026-09-08/ho/outputs/BogotaTransmi`. Rama `main`, remoto `https://github.com/daniii3012/transmi-game.git`.
 
-- `app/dist`: fuente estática editable de la aplicación 2D; `app/tests`: pruebas Node. Three.js 0.186.0 vendorizado con licencia/hash.
-- `web/transmi2d` es enlace de compatibilidad a `../app`; conserva el antiguo servidor si Daniel lo abrió.
-- `tools`: importadores y servidor; `data/raw`: fuentes inmutables; `data/processed`: auditorías; `data/vehicles`: ficha provisional compartida; `docs`: documentación activa.
-- `archive/transmi3d`: recursos, generadores, pruebas y documentos históricos 3D. Datos raw y research compartidos mediante enlaces relativos. Lanzadores Godot ajustados a la ubicación nueva. **14 pruebas Python del archivo pasan tras moverlo**.
-- Abrir `ABRIR_SIMULACION_2D.command`: servidor solo local 127.0.0.1:8766. No detener servidores o terminales iniciados por Daniel.
-- Python geográfico: `../../work/venv/bin/python`. Node: /opt/homebrew/bin/node v26.4.0. Godot/Blender quedan instalados, sin nuevo desarrollo.
+- Fuente web editable: `app/dist`; módulos de simulación, worker y renderer separados. Three.js 0.186.0 local.
+- Servidor loopback `python3 tools/serve_network_2d.py`, URL `http://127.0.0.1:8766/`. El lanzador `ABRIR_SIMULACION_2D.command` abre/reutiliza el servidor. Sirve solo `app/dist` y envía no-store. No detener procesos del usuario.
+- Python geo disponible: `../../work/venv/bin/python`. Python estándar sirve web e importa agregados. Node está disponible en PATH.
+- `/work/` del repo está ignorado. No añadir archivos temporales ni ZIP/CSV de transacciones.
+- `web/transmi2d` es compatibilidad con la ubicación anterior, no otra aplicación activa.
 
-## Datos nuevos comprobados
+## Estado integrado
 
-`tools/fetch_services.py` produjo `data/raw/services/20260910T185326Z/` y `latest.json`:
+- 138 servicios/variantes depurados; 115 utilizables de 103 códigos, 23 pendientes. Mapa bruto: 116 registros/100 códigos. 113 variantes con salidas el jueves inicial 10 sep. 2026. Los contadores significan cosas diferentes.
+- Geometría oficial recortada, secuencia de paradas, fuentes, hashes, calendarios, vigencia y bloqueo de anomalías. M85 empieza en el tramo correcto; K86/629 completo bloqueado, no confundirlo con aeropuerto/5316.
+- Calendario colombiano, ventanas partidas y nocturnas, reemplazo Ciclovía solo explícito, horas pico/valle y reloj reversible. Se precalculan día anterior + elegido para cruzar medianoche.
+- Movimiento métrico, aceleración/frenado/curvas, paradas y reservas por vagón. Expresos no heredan la cola de la parada. Cantidad de vagones oficial, asignación y dimensiones estimadas.
+- Demanda histórica agregada de 1.920.298 validaciones, archivo 9 sep., 14 posteriores a medianoche. 1.920.297 enlazadas a 142 estaciones lógicas; una de cable excluida. Se descarta información transaccional del producto. Perfiles por hora, dirección/descenso/fines de semana estimados, capacidad y abandono de espera.
+- F63/Z63 eléctricos de 160, mezcla ajustable de biarticulados y padrones duales estimados. Tipo estable por vehículo y reutilización compatible en terminal.
+- Contexto OSM 15.573 elementos, colores oficiales, puentes con bordes y túneles punteados si están etiquetados. No se infiere nivel ni conexión por intersección de líneas; no es auditoría completa de obras.
+- UI con rutas, operación, terminales, datos, inspectores de ruta/bus/estación, guardar/restaurar, filtros, seguimiento y velocidades 1/8/32/120.
+- Worker sustituido al reconstruir, instancias gráficas, agrupación visual, dibujo actualizado en zoom incluso pausado. No se borran buses para esconder la congestión.
 
-- POST oficial `/api/v1/rutas/troncales` devuelve **116 objetos, 100 códigos distintos**.
-- Consulta del catálogo amplio y selección de **132 registros**: 116 del mapa más 16 candidatos complementarios de familias duales. Se obtuvieron **132 detalles, sin fallos de descarga**.
-- **113 con LineString, 19 sin trazado**. Algunas versiones antiguas del mapa no tienen paradas ni geometría. No ofrecerlas como simuladas.
-- `rutaDetalle`: color, nombre, estaciones ordenadas (id/código/nombre/dirección/posicion/sistema/color), horario por tipo de día y trazado geográfico. No trae frecuencia, tipo bus ni servicio→vagón.
-- Calendarios observados L-S, L-V, D-F, S, L-D. Fechas metadata vigentes hasta días distintos (incluye entradas ya vencidas); preservar sin convertir medianoche UTC al día anterior por accidente. Variantes Ciclovía requieren resolución específica para no duplicarlas.
-- M85/P85 tienen tramos/paradas de calle y geometrías publicadas. Ciertos trazados contienen ambos sentidos en una sola polilínea; primer `posicion` de M85 ronda 9,6 km. No recorrer todo el trazado bruto antes de su primera parada. K86/629 tiene una geometría claramente incompatible con su cadena; bloquear hasta corregir.
-- `posicion` aproxima distancia métrica, pero no equivale a coordenada exacta. En ruta690 se contrastó con estaciones fuente: diferencias de decenas de metros y extremo Avenida Jiménez problemático. Evitar interpolación presentada como medición.
-- API `/arcgis/estaciones`: 157 puntos con coordenadas, zona, color, estado y número de vagones (incluye cable fuera del alcance). `/arcgis/trazados_troncal`: 25 registros, incluye tres de cable. Son fuentes aparte de las capas CC BY previas; licencia de estos endpoints no establecida.
-- API de planos: un agente reportó 156 marcadores con porcentajes sobre imagen y colores. Reconsulta principal dio 403; **no se verificó íntegramente esa respuesta**. No son coordenadas geográficas ni asignaciones ruta-vagón.
+## Fuentes y regeneración
 
-Sondeos auxiliares en data/research/routes_detail_probe_20260910 y station_api_probe_20260910. Las fechas/horas y hashes declarados en sondeos no sustituyen la instantánea principal con respuestas conservadas. Un agente se quedó sin cuota durante el seguimiento; no queda trabajando.
+Base `data/raw/services/20260910T185326Z`; complemento `supplement_20260910`; curación `data/curated/services.json`. Paraderos duales y contexto tienen sus manifests/respuestas. Los detalles de C15/H15 en `data/research/c15_h15_20260910` contrastan enlaces aportados por Daniel.
 
-## Estado de implementación al reorganizar
+`tools/build_services.py` → services.json + auditoría; `build_context.py` → context.json; `aggregate_validations.py` → agregado de un ZIP oficial; `import_passenger_profiles.py` → demand.json. El ZIP de referencia se descargó en el trabajo de la tarea `/Users/daniel/Documents/Codex/2026-09-10/create-an-image-of-2/work/passengers/`, fuera del repositorio, y no hace falta para ejecutar el simulador.
 
-El laboratorio anterior funciona tras el traslado: piloto de paradas 8/24/64 buses y carga de100/1.000/3.000 sobre componentes aislados. **3 pruebas Python activas y 7 Node pasan**. El benchmark anterior de núcleo (0,084 ms/paso con3.000) no es FPS ni operación real. El juego 3D tenía las pruebas y capturas descritas en archive/transmi3d/HISTORICO_CONTINUAR.md.
+Usar el agregado versionado para reproducir la app sin consultar internet. Si se vuelve a descargar, preservar fuente/fecha/hash y revisar licencias por conjunto. El artículo de buses 240 es histórico de 2015, no una noticia de 2025. Fuentes actuales de F63/Z63 verificadas en publicaciones oficiales de agosto de 2026.
 
-Los servicios publicados se descargaron; integrar ahora el catálogo, auditoría geométrica, calendario y operación híbrida. La vista actual todavía conserva los ensayos hasta que se complete ese hito. No afirmar cobertura de todas las rutas ni validación visual de navegador. La guía Sites permite QA de navegador solo cuando se pide explícitamente; Daniel ha revisado el prototipo por su cuenta.
+## Verificación y límites
 
-## Siguiente trabajo concreto
+30 pruebas Node y 3 Python activas. Incluyen escala, velocidades, curvas, calendarios, pausa/retroceso, medianoche, capacidad/conservación, reservas sin superposición por posición, paso expreso, tipos estables, F63/Z63 y corrección C15. El laboratorio anterior tiene pruebas propias; su prueba de 3.000 buses no representa la operación real.
 
-1. Normalizar los132 detalles: fuentes, código/ID/variante, calendario, fechas, geometría recortada al sentido, paradas y anomalías. Mantener19 sin geometría como pendientes. No rellenar con líneas rectas.
-2. Geolocalizar paradas duales: fuente oficial por ID/código; investigar catálogo de Paraderos Zonales del SITP solo para paraderos utilizados por duales. No ampliar alcance a buses zonales.
-3. Implementar perfiles de viaje métricos y despachos estimados por pico/valle, calendario, selección y reconstrucción temporal. Congestión física entre servicios pendiente; modo fluido explícito.
-4. Vincular capas de contexto cartográfico y actualizar interfaz con colores oficiales y lista de servicios disponible/pending.
-5. Verificar puntos/vagones y conexiones con topología compartida donde sea necesario; medir dibujo/rendimiento sin inventar datos.
+Benchmark actual del motor: referencia máximo 944 buses, 4 en cola local simultánea, preparación ~4,0 s, muestreo ~0,41 ms, heap ~389 MB; estrés (2/3 min, demanda3, mezcla40%) máximo 1.938 buses, 42 en cola, ~9,2 s, ~1,33 ms, ~808 MB. Son mediciones Node de esta máquina, no FPS ni promesa universal. Reportes JSON versionados.
 
-No reiniciar investigación ni volver a instalar herramientas. Guardar un checkpoint tras la reorganización y otro tras la próxima integración; verificar HEAD remoto. No se creó automatización, goal ni tarea separada.
+QA en navegador de escritorio documentada por acciones verificadas. Se recuperó el servidor local que estaba apagado; no se detuvo otro. Se abrió una pestaña nueva porque la anterior quedó en una página de error al recargar. No declarar QA completa de móviles o de cada una de las 115 geometrías.
+
+## Pendientes concretos
+
+1. Conseguir trazados vigentes de E48, H76/J76, K86 completo y aclarar Ciclovía de L81/L82/M82/M85/M86/P85. Doce registros bloqueados ya están vencidos; no reactivarlos artificialmente.
+2. Asignaciones reales ruta→tipo, vagón/puerta, patios/inventario y recorridos en vacío. Actualmente terminales abstractas, vehículos creados según oferta, sin flota fija de operador.
+3. Calibrar con más días, frecuencias y tiempos de viaje, salidas y matriz OD. No confundir denegaciones de abordaje repetidas con personas únicas ni validaciones con viajes completos.
+4. Contrastar rotondas/puentes/deprimidos y obras una por una. La forma se conserva, pero no se certifica una topología de niveles exhaustiva.
+5. Ampliar QA táctil/móvil y medir FPS/memoria en equipos modestos; mantener los límites configurables y el trabajador cancelable.
+
+La versión funcional queda integrada; el trabajo futuro debe resolver estos huecos con evidencia, no reiniciar arquitectura ni investigación ya guardada. Al guardar un nuevo hito, confirmar push y coincidencia entre HEAD local y remoto.
+
+## Nueva solicitud activa · 11 septiembre
+
+Daniel probó el checkpoint y envió15capturas y una lista extensa de correcciones. **Aplicar ahora docs/OBSERVACIONES_20260911.md después de respaldar este checkpoint.** Cambia defaults a50calle/60troncal±5, capacidades80/160/240 y tamaño fijo por ruta; pide plataformas físicas OSM, trazados duales grises solo fuera de troncal, mejor seguimiento/selección/slider, modo oscuro, hora actual y lanzadorLAN. No confundir guardar el checkpoint con terminar estas nuevas tareas. Los23registros pendientes deben permanecer pendientes.

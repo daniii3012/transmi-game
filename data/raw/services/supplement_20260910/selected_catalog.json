@@ -1,0 +1,479 @@
+[
+  {
+    "id": 5279,
+    "codigo": "D81",
+    "nombre": "AV CL80 - KR114 Ciclovía",
+    "tipo": "TransMilenio",
+    "color": "#8064A9",
+    "fechaDesde": "2026-06-28T00:00:00.000Z",
+    "fechaHasta": "2026-09-13T00:00:00.000Z",
+    "troncal": {
+      "id": 4,
+      "nombre": "Calle 80",
+      "zona": "D",
+      "color": "#8064A9",
+      "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal4.pdf"
+    },
+    "horarios": [
+      {
+        "id": "32167",
+        "tipoDia": "D-F",
+        "inicio": "7:00 AM",
+        "fin": "2:00 PM"
+      }
+    ],
+    "activa": null,
+    "metadata": {
+      "id": 5279,
+      "codigo": "D81",
+      "nombre": "AV CL80 - KR114 Ciclovía",
+      "tipo": "TransMilenio",
+      "color": "#8064A9",
+      "fechaDesde": "2026-06-28T00:00:00.000Z",
+      "fechaHasta": "2026-09-13T00:00:00.000Z",
+      "troncal": {
+        "id": 4,
+        "nombre": "Calle 80",
+        "zona": "D",
+        "color": "#8064A9",
+        "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal4.pdf"
+      },
+      "horarios": [
+        {
+          "id": "32167",
+          "tipoDia": "D-F",
+          "inicio": "7:00 AM",
+          "fin": "2:00 PM"
+        }
+      ],
+      "activa": null
+    },
+    "scope_source": "supplementary_verified_family"
+  },
+  {
+    "id": 619,
+    "codigo": "D81",
+    "nombre": "AV CL80 - KR114",
+    "tipo": "TransMilenio",
+    "color": "#8064A9",
+    "fechaDesde": "2026-06-28T00:00:00.000Z",
+    "fechaHasta": "2026-09-14T00:00:00.000Z",
+    "troncal": {
+      "id": 4,
+      "nombre": "Calle 80",
+      "zona": "D",
+      "color": "#8064A9",
+      "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal4.pdf"
+    },
+    "horarios": [
+      {
+        "id": "724",
+        "tipoDia": "L-V",
+        "inicio": "4:00 AM",
+        "fin": "11:00 PM"
+      },
+      {
+        "id": "722",
+        "tipoDia": "S",
+        "inicio": "4:00 AM",
+        "fin": "10:30 PM"
+      },
+      {
+        "id": "723",
+        "tipoDia": "D-F",
+        "inicio": "4:30 AM",
+        "fin": "10:00 PM"
+      }
+    ],
+    "activa": null,
+    "metadata": {
+      "id": 619,
+      "codigo": "D81",
+      "nombre": "AV CL80 - KR114",
+      "tipo": "TransMilenio",
+      "color": "#8064A9",
+      "fechaDesde": "2026-06-28T00:00:00.000Z",
+      "fechaHasta": "2026-09-14T00:00:00.000Z",
+      "troncal": {
+        "id": 4,
+        "nombre": "Calle 80",
+        "zona": "D",
+        "color": "#8064A9",
+        "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal4.pdf"
+      },
+      "horarios": [
+        {
+          "id": "724",
+          "tipoDia": "L-V",
+          "inicio": "4:00 AM",
+          "fin": "11:00 PM"
+        },
+        {
+          "id": "722",
+          "tipoDia": "S",
+          "inicio": "4:00 AM",
+          "fin": "10:30 PM"
+        },
+        {
+          "id": "723",
+          "tipoDia": "D-F",
+          "inicio": "4:30 AM",
+          "fin": "10:00 PM"
+        }
+      ],
+      "activa": null
+    },
+    "scope_source": "supplementary_verified_family"
+  },
+  {
+    "id": 5450,
+    "codigo": "F63",
+    "nombre": "Pradera",
+    "tipo": "TransMilenio",
+    "color": "#DC0814",
+    "fechaDesde": "2026-08-17T00:00:00.000Z",
+    "fechaHasta": "2026-09-14T00:00:00.000Z",
+    "troncal": {
+      "id": 6,
+      "nombre": "Américas",
+      "zona": "F",
+      "color": "#DC0814",
+      "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal6.pdf"
+    },
+    "horarios": [
+      {
+        "id": "32337",
+        "tipoDia": "L-S",
+        "inicio": "4:00 AM",
+        "fin": "11:00 PM"
+      },
+      {
+        "id": "32338",
+        "tipoDia": "D-F",
+        "inicio": "4:00 AM",
+        "fin": "10:00 PM"
+      }
+    ],
+    "activa": null,
+    "metadata": {
+      "id": 5450,
+      "codigo": "F63",
+      "nombre": "Pradera",
+      "tipo": "TransMilenio",
+      "color": "#DC0814",
+      "fechaDesde": "2026-08-17T00:00:00.000Z",
+      "fechaHasta": "2026-09-14T00:00:00.000Z",
+      "troncal": {
+        "id": 6,
+        "nombre": "Américas",
+        "zona": "F",
+        "color": "#DC0814",
+        "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal6.pdf"
+      },
+      "horarios": [
+        {
+          "id": "32337",
+          "tipoDia": "L-S",
+          "inicio": "4:00 AM",
+          "fin": "11:00 PM"
+        },
+        {
+          "id": "32338",
+          "tipoDia": "D-F",
+          "inicio": "4:00 AM",
+          "fin": "10:00 PM"
+        }
+      ],
+      "activa": null
+    },
+    "scope_source": "supplementary_verified_family"
+  },
+  {
+    "id": 645,
+    "codigo": "H83",
+    "nombre": "Portal Usme",
+    "tipo": "TransMilenio",
+    "color": "#F18500",
+    "fechaDesde": "2026-06-28T00:00:00.000Z",
+    "fechaHasta": "2026-09-11T00:00:00.000Z",
+    "troncal": {
+      "id": 8,
+      "nombre": "Caracas Sur",
+      "zona": "H",
+      "color": "#F18500",
+      "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal8.pdf"
+    },
+    "horarios": [
+      {
+        "id": "760",
+        "tipoDia": "L-V",
+        "inicio": "5:00 AM",
+        "fin": "11:00 PM"
+      },
+      {
+        "id": "761",
+        "tipoDia": "S",
+        "inicio": "5:00 AM",
+        "fin": "10:30 PM"
+      },
+      {
+        "id": "759",
+        "tipoDia": "D-F",
+        "inicio": "5:00 AM",
+        "fin": "10:00 PM"
+      }
+    ],
+    "activa": null,
+    "metadata": {
+      "id": 645,
+      "codigo": "H83",
+      "nombre": "Portal Usme",
+      "tipo": "TransMilenio",
+      "color": "#F18500",
+      "fechaDesde": "2026-06-28T00:00:00.000Z",
+      "fechaHasta": "2026-09-11T00:00:00.000Z",
+      "troncal": {
+        "id": 8,
+        "nombre": "Caracas Sur",
+        "zona": "H",
+        "color": "#F18500",
+        "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal8.pdf"
+      },
+      "horarios": [
+        {
+          "id": "760",
+          "tipoDia": "L-V",
+          "inicio": "5:00 AM",
+          "fin": "11:00 PM"
+        },
+        {
+          "id": "761",
+          "tipoDia": "S",
+          "inicio": "5:00 AM",
+          "fin": "10:30 PM"
+        },
+        {
+          "id": "759",
+          "tipoDia": "D-F",
+          "inicio": "5:00 AM",
+          "fin": "10:00 PM"
+        }
+      ],
+      "activa": null
+    },
+    "scope_source": "supplementary_verified_family"
+  },
+  {
+    "id": 5280,
+    "codigo": "L81",
+    "nombre": "Portal 20 de Julio Ciclovía",
+    "tipo": "TransMilenio",
+    "color": "#009A9D",
+    "fechaDesde": "2026-06-28T00:00:00.000Z",
+    "fechaHasta": "2026-09-13T00:00:00.000Z",
+    "troncal": {
+      "id": 11,
+      "nombre": "Carrera 10",
+      "zona": "L",
+      "color": "#009A9D",
+      "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal11.pdf"
+    },
+    "horarios": [
+      {
+        "id": "32172",
+        "tipoDia": "L-V",
+        "inicio": "5:00 AM",
+        "fin": "11:00 PM"
+      },
+      {
+        "id": "32170",
+        "tipoDia": "S",
+        "inicio": "5:00 AM",
+        "fin": "10:30 PM"
+      },
+      {
+        "id": "32171",
+        "tipoDia": "D-F",
+        "inicio": "6:00 AM",
+        "fin": "10:00 PM"
+      }
+    ],
+    "activa": null,
+    "metadata": {
+      "id": 5280,
+      "codigo": "L81",
+      "nombre": "Portal 20 de Julio Ciclovía",
+      "tipo": "TransMilenio",
+      "color": "#009A9D",
+      "fechaDesde": "2026-06-28T00:00:00.000Z",
+      "fechaHasta": "2026-09-13T00:00:00.000Z",
+      "troncal": {
+        "id": 11,
+        "nombre": "Carrera 10",
+        "zona": "L",
+        "color": "#009A9D",
+        "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal11.pdf"
+      },
+      "horarios": [
+        {
+          "id": "32172",
+          "tipoDia": "L-V",
+          "inicio": "5:00 AM",
+          "fin": "11:00 PM"
+        },
+        {
+          "id": "32170",
+          "tipoDia": "S",
+          "inicio": "5:00 AM",
+          "fin": "10:30 PM"
+        },
+        {
+          "id": "32171",
+          "tipoDia": "D-F",
+          "inicio": "6:00 AM",
+          "fin": "10:00 PM"
+        }
+      ],
+      "activa": null
+    },
+    "scope_source": "supplementary_verified_family"
+  },
+  {
+    "id": 620,
+    "codigo": "L81",
+    "nombre": "Portal 20 de Julio",
+    "tipo": "TransMilenio",
+    "color": "#009A9D",
+    "fechaDesde": "2026-06-28T00:00:00.000Z",
+    "fechaHasta": "2026-09-14T00:00:00.000Z",
+    "troncal": {
+      "id": 11,
+      "nombre": "Carrera 10",
+      "zona": "L",
+      "color": "#009A9D",
+      "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal11.pdf"
+    },
+    "horarios": [
+      {
+        "id": "725",
+        "tipoDia": "L-V",
+        "inicio": "5:00 AM",
+        "fin": "11:00 PM"
+      },
+      {
+        "id": "727",
+        "tipoDia": "S",
+        "inicio": "5:00 AM",
+        "fin": "10:30 PM"
+      },
+      {
+        "id": "726",
+        "tipoDia": "D-F",
+        "inicio": "5:00 AM",
+        "fin": "10:00 PM"
+      }
+    ],
+    "activa": null,
+    "metadata": {
+      "id": 620,
+      "codigo": "L81",
+      "nombre": "Portal 20 de Julio",
+      "tipo": "TransMilenio",
+      "color": "#009A9D",
+      "fechaDesde": "2026-06-28T00:00:00.000Z",
+      "fechaHasta": "2026-09-14T00:00:00.000Z",
+      "troncal": {
+        "id": 11,
+        "nombre": "Carrera 10",
+        "zona": "L",
+        "color": "#009A9D",
+        "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal11.pdf"
+      },
+      "horarios": [
+        {
+          "id": "725",
+          "tipoDia": "L-V",
+          "inicio": "5:00 AM",
+          "fin": "11:00 PM"
+        },
+        {
+          "id": "727",
+          "tipoDia": "S",
+          "inicio": "5:00 AM",
+          "fin": "10:30 PM"
+        },
+        {
+          "id": "726",
+          "tipoDia": "D-F",
+          "inicio": "5:00 AM",
+          "fin": "10:00 PM"
+        }
+      ],
+      "activa": null
+    },
+    "scope_source": "supplementary_verified_family"
+  },
+  {
+    "id": 5451,
+    "codigo": "Z63",
+    "nombre": "Tibanica",
+    "tipo": "TransMilenio",
+    "color": "#BD202A",
+    "fechaDesde": "2026-08-17T00:00:00.000Z",
+    "fechaHasta": "2026-09-14T00:00:00.000Z",
+    "troncal": {
+      "id": 15,
+      "nombre": "Avenida Ciudad de Cali",
+      "zona": "Z",
+      "color": "#BD202A",
+      "esquemaPdf": null
+    },
+    "horarios": [
+      {
+        "id": "32335",
+        "tipoDia": "L-S",
+        "inicio": "5:00 AM",
+        "fin": "11:00 PM"
+      },
+      {
+        "id": "32336",
+        "tipoDia": "D-F",
+        "inicio": "4:30 AM",
+        "fin": "10:00 PM"
+      }
+    ],
+    "activa": null,
+    "metadata": {
+      "id": 5451,
+      "codigo": "Z63",
+      "nombre": "Tibanica",
+      "tipo": "TransMilenio",
+      "color": "#BD202A",
+      "fechaDesde": "2026-08-17T00:00:00.000Z",
+      "fechaHasta": "2026-09-14T00:00:00.000Z",
+      "troncal": {
+        "id": 15,
+        "nombre": "Avenida Ciudad de Cali",
+        "zona": "Z",
+        "color": "#BD202A",
+        "esquemaPdf": null
+      },
+      "horarios": [
+        {
+          "id": "32335",
+          "tipoDia": "L-S",
+          "inicio": "5:00 AM",
+          "fin": "11:00 PM"
+        },
+        {
+          "id": "32336",
+          "tipoDia": "D-F",
+          "inicio": "4:30 AM",
+          "fin": "10:00 PM"
+        }
+      ],
+      "activa": null
+    },
+    "scope_source": "supplementary_verified_family"
+  }
+]

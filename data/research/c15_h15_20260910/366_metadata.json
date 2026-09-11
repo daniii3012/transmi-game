@@ -1,0 +1,24 @@
+{
+  "id": 366,
+  "codigo": "C15",
+  "nombre": "Chapinero Ciclovía",
+  "tipo": "TransMilenio",
+  "color": "#FCBD1B",
+  "fechaDesde": "2026-06-28T00:00:00.000Z",
+  "fechaHasta": "2026-09-13T00:00:00.000Z",
+  "troncal": {
+    "id": 3,
+    "nombre": "Suba",
+    "zona": "C",
+    "color": "#FCBD1B",
+    "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal3.pdf"
+  },
+  "horarios": [
+    {
+      "id": "405",
+      "tipoDia": "D-F",
+      "inicio": "4:00 AM",
+      "fin": "2:00 PM"
+    }
+  ]
+}

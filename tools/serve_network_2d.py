@@ -14,12 +14,17 @@ PORT = 8766
 URL = f'http://127.0.0.1:{PORT}/'
 
 
+class LocalHandler(http.server.SimpleHTTPRequestHandler):
+    def end_headers(self):
+        self.send_header("Cache-Control", "no-store")
+        super().end_headers()
+
 def main():
     parser=argparse.ArgumentParser(description='Simulación local Transmi 2D')
     parser.add_argument('--open',action='store_true',help='Abrir el navegador predeterminado')
     args=parser.parse_args()
     try:
-        server=http.server.ThreadingHTTPServer(('127.0.0.1',PORT),functools.partial(http.server.SimpleHTTPRequestHandler,directory=str(DIRECTORY)))
+        server=http.server.ThreadingHTTPServer(('127.0.0.1',PORT),functools.partial(LocalHandler,directory=str(DIRECTORY)))
     except OSError as error:
         # Reuse this same app only; do not scan ports or terminate another process.
         try:

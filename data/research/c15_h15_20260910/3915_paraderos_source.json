@@ -1,0 +1,8 @@
+{
+  "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/3915/C15/paraderos",
+  "method": "GET",
+  "body": null,
+  "retrieved_at_utc": "2026-09-11T00:53:17.328604+00:00",
+  "response_sha256": "33c24d5fe42d215d02119949ea2cda0101a1772b24896bc2708d96f2524a0465",
+  "response_bytes": 2805
+}

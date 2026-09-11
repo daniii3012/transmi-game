@@ -1,0 +1,173 @@
+[
+  {
+    "id": 3000,
+    "codigo": "TM0045",
+    "nombre": "Portal Suba",
+    "direccion": "AV. Suba - AV. Ciudad de Cali",
+    "posicion": 0,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 3001,
+    "codigo": "TM0044",
+    "nombre": "La Campiña",
+    "direccion": "AV. SUBA - KR 99A",
+    "posicion": 423,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 3002,
+    "codigo": "TM0043",
+    "nombre": "Suba - Tv. 91",
+    "direccion": "AV. SUBA - KR 91D",
+    "posicion": 946,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 3004,
+    "codigo": "TM0041",
+    "nombre": "Gratamira",
+    "direccion": "AV. SUBA - CL 132A",
+    "posicion": 3261,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 3006,
+    "codigo": "TM0039",
+    "nombre": "Niza - Calle 127",
+    "direccion": "AV. SUBA - CL 127D",
+    "posicion": 4973,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 3007,
+    "codigo": "TM0038",
+    "nombre": "Humedal Córdoba",
+    "direccion": "AV. SUBA - CL 120",
+    "posicion": 5575,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 3009,
+    "codigo": "TM0037",
+    "nombre": "Av. Suba - Calle 116",
+    "direccion": "AV. SUBA - CL 116",
+    "posicion": 6481,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 3013,
+    "codigo": "TM0033",
+    "nombre": "Rionegro",
+    "direccion": "AV SUBA - CL 90",
+    "posicion": 8812,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 9122,
+    "codigo": "TM0002",
+    "nombre": "Calle 72 - Areandina",
+    "direccion": "AV. Caracas - CL 72",
+    "posicion": 12365,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 9119,
+    "codigo": "TM0005",
+    "nombre": "Calle 57",
+    "direccion": "AV. Caracas - CL 57",
+    "posicion": 13840,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 9118,
+    "codigo": "TM0006",
+    "nombre": "Marly",
+    "direccion": "AV. Caracas - CL 51",
+    "posicion": 14831,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 9116,
+    "codigo": "TM0008",
+    "nombre": "Av. 39",
+    "direccion": "AV. Caracas - CL 39",
+    "posicion": 15893,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 9113,
+    "codigo": "TM0011",
+    "nombre": "Calle 22",
+    "direccion": "AV. Caracas - CL 22",
+    "posicion": 17925,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 9110,
+    "codigo": "TM0013",
+    "nombre": "Avenida Jiménez",
+    "direccion": "AV. Caracas - CL 11",
+    "posicion": 19307,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 9106,
+    "codigo": "TM0106",
+    "nombre": "Nariño",
+    "direccion": "AV. Caracas - CL 10 Sur",
+    "posicion": 21214,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 9103,
+    "codigo": "TM0109",
+    "nombre": "Olaya",
+    "direccion": "AV. Caracas - CL 27 Sur",
+    "posicion": 23019,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 9100,
+    "codigo": "TM0111",
+    "nombre": "Calle 40 Sur",
+    "direccion": "AV. Caracas - CL 40 Sur",
+    "posicion": 24479,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 8001,
+    "codigo": "TM0117",
+    "nombre": "Parque",
+    "direccion": "KR 19C - CL 56 Sur",
+    "posicion": 26653,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  },
+  {
+    "id": 8000,
+    "codigo": "TM0119",
+    "nombre": "Portal Tunal",
+    "direccion": "AV. Boyacá -  AV. Villavicencio",
+    "posicion": 27740,
+    "sistema": "TransMilenio",
+    "color": "#F18500"
+  }
+]

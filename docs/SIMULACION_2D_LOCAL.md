@@ -1,3 +1,5 @@
+> Documento histórico del laboratorio. La aplicación actual y sus controles están en [README](../README.md) y [Operación y datos](OPERACION_Y_DATOS.md).
+
 # Transmi 2D — primer laboratorio local
 
 10 de septiembre de 2026. Implementación inicial de la exploración solicitada por Daniel. **La meta sigue siendo la mayoría de rutas troncales y la mayoría de la flota del escenario.** Esta entrega comprueba geografía y operación sintética; todavía no representa servicios comerciales vigentes.

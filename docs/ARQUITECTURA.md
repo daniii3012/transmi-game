@@ -1,41 +1,48 @@
 # Arquitectura de Transmi 2D
 
-Dirección vigente desde el 10 de septiembre de 2026. El simulador 3D y su arquitectura anterior están en `archive/transmi3d`.
+Actualizada: 10 de septiembre de 2026. La aplicación es estática y local. Los archivos de `app/dist` son sus fuentes editables; no existe un paso obligatorio de npm/bundler. Three.js 0.186.0 está vendorizado con licencia.
 
 ## Separación de responsabilidades
 
-`data/raw` conserva instantáneas fechadas. `tools/fetch_services.py` descarga y filtra campos de transporte; conserva URL, método, fecha y hashes sin metadatos administrativos. `tools/geo.py` define AEQD local en metros. El normalizador produce un catálogo apto para el visor y un informe separado de problemas; nunca rellena una geometría ausente con segmentos rectos inventados.
-
-La aplicación `app/dist` usa módulos JavaScript y Three.js local. El modelo operativo está separado de la cámara y los símbolos. El laboratorio previo de pasos fijos se mantiene para pruebas; el modelo de servicios puede usar perfiles analíticos de viaje y despachos/eventos, apropiados para avance y retroceso deterministas y miles de vehículos.
-
-## Contratos principales
-
-| Entidad | Campos esenciales |
+| Archivo | Responsabilidad |
 |---|---|
-| Snapshot | ID, fecha de consulta, fuentes, hashes, vigencia y licencias por fuente |
-| RouteVariant | ID del proveedor, código, destino, zona, variante, calendario, geometría y estados de validación |
-| Stop | ID/código, nombre, coordenadas, estación/paradero calle, estado de obra, procedencia |
-| RouteStop | ID de parada, orden, distancia sobre trazado, punto/andén/vagón si se conoce, confianza |
-| ServiceCalendar | Días, intervalos, excepciones, rango de fechas, interpretación de zona horaria |
-| DispatchProfile | Intervalos pico/valle, headway, fase determinista, fuente o marca de estimación |
-| Trip | ID estable, variante, día, despacho, vehículo, progreso, atención, finalización |
-| DirectedEdge | Geometría métrica, sentido, nivel, conexiones explícitas, carril de paso/atención |
-| StationOperation | Berths por sentido, asignación de servicio, capacidad, acceso y bypass |
+| `app.mjs` | Controles, selección, reloj, guardado y ciclo de vida del trabajador |
+| `worker.mjs` | Construcción y muestreo de escenarios fuera del hilo de interfaz |
+| `calendar.mjs` | Fechas civiles de Bogotá, festivos, vigencia y ventanas publicadas |
+| `operation.mjs` | Despachos, viajes, atención, pasajeros, vehículos y terminales |
+| `travel.mjs` | Perfil distancia/velocidad con curvas, aceleración y frenado |
+| `passengers.mjs` | Entradas históricas o sintéticas y orientación estimada |
+| `vehicles.mjs` | Capacidad y tipo estables por vehículo |
+| `map.mjs` | Mapa ortográfico, contexto, vagones, buses, selección y agrupación |
+| `webmcp.mjs` | Lectura opcional del estado y control del reloj; funciona sin esa API |
+| `simulation.mjs` | MetricPath compartido y laboratorio sintético anterior, conservado para regresión |
 
-Las rutas comparten paradas y, cuando esté validado, aristas. El modelo inicial fluido evita colas ficticias entre servicios independientes; la ocupación de berths y conflictos físicos se añaden como eventos locales cuando haya datos suficientes. La separación visual de iconos no modifica su posición lógica ni longitud del trazado.
+## Geometría y movimiento
 
-## Tiempo reproducible
+Proyección AEQD WGS84 con origen `(-74.136, 4.63027)`, X este, Y norte, unidades en metros. Cada servicio conserva la polilínea oficial recortada entre primera y última parada. La referencia lineal desambigua recorridos que incluyen ambos sentidos; una parada publicada cercana permite corregir su distancia sobre el trazado. La auditoría distingue coordenadas oficiales, ubicación aproximada y geometría insuficiente.
 
-El reloj representa fecha/hora de Bogotá. La velocidad del reloj es independiente de m/s. Un estado se identifica por instantánea, selección, parámetros y tiempo. Los despachos tienen identidad determinista; un salto temporal reconstruye los viajes activos a ese instante. No acumular errores por invertir pasos físicos ni hacer depender la operación de si un bus está visible.
+Los perfiles se calculan en el dominio de distancia, con muestreo de 18 m, curvatura local, aceleración y frenado acotados. Se cachean por ruta, tramo y período. El reloj consulta posición y velocidad analíticamente; 120× no significa buses 120 veces más rápidos en km/h. Un cruce 2D no conecta rutas ni genera colisiones: no hay un grafo vial inferido del dibujo.
 
-Calendarios y perfiles de frecuencia se mantienen separados. Si solo se conocen ventanas horarias, la frecuencia es una hipótesis rotulada. Fin de atención no equivale a fin de calendario; los últimos viajes pueden terminar después de la última salida.
+Los puntos de vagón se desplazan a lo largo del trazado únicamente en visitas intermedias, con límite según distancia entre paradas. Separación de 64 m y andén de 58 m son medidas de representación estimadas; no se modifican las coordenadas originales guardadas. Los tamaños mínimos de iconos al alejarse y el desplazamiento lateral de carriles son convenciones visuales.
 
-## Geografía y dibujo
+## Eventos y capacidad
 
-WGS84 → AEQD, origen lon −74.136, lat 4.63027; X este / Y norte. Guardar coordenadas fuente y doble precisión para cálculos. El redondeo del archivo no aumenta la precisión de la fuente. No se usa la compresión 3D.
+Una cola de prioridad prepara salidas, atención y liberación de vehículos en orden temporal. Se construye el día elegido más el anterior para incluir viajes que cruzan medianoche. Después se descartan viajes anteriores que no pueden verse y se conservan índices ordenados para el muestreo. Retroceder consulta los mismos eventos; no integra con tiempo negativo.
 
-Three.js: cámara ortográfica, mallas compartidas/instancias y geografía generalizada solo para representación. Los detalles a nivel de estación y el contexto urbano usan niveles de zoom. Todos los servicios permanecen en el modelo aunque se filtren o agrupen símbolos. La lista de selección debe seguir siendo usable cuando el mapa esté muy alejado.
+La clave estación/sentido/vagón reserva dos posiciones de atención, o una en calle. La asignación servicio→vagón es determinista y estimada. No bloquea expresos que pasan. Buses que completan un servicio quedan disponibles tras 240 s de regulación en la terminal de destino y pueden reutilizarse en salidas compatibles. No se dibujan accesos de patio inventados, no hay inventario oficial de flota ni desplazamientos en vacío modelados.
 
-## Validación
+El tipo de cada vehículo permanece fijo; los depósitos separan tipos. F63/Z63 tienen perfil publicado propio. La mezcla configurable de biarticulados se aplica a servicios troncales sin tipo verificado.
 
-Comprobar IDs, procedencia, secuencia, geometrías vacías/discontinuas, extremos, fechas, horarios partidos, cruce de medianoche, festivos y variantes superpuestas. Comprobar desplazamiento por metros, coherencia 1×/acelerado, reconstrucción adelante/atrás, identidad de viajes y paso independiente de parada. Medir por separado normalización, núcleo, dibujo, memoria y legibilidad; no extrapolar FPS desde un benchmark de CPU.
+## Pasajeros
+
+Se agregan cantidades por estación y sentido, no millones de objetos individuales. Los perfiles históricos aportan entradas por hora. El reparto hacia/desde un centro de empleo aproximado, descensos, fines de semana y demanda sin observaciones son hipótesis. Al simular una parte de la red se asigna una fracción de la demanda por proporción de servicios seleccionados; esto no sustituye asignación OD por destinos.
+
+La capacidad se conserva en cada visita: carga anterior − descensos + abordajes. El exceso queda esperando. Se aplica abandono agregado con tiempo medio estimado de 30 minutos. `boardingDenials` cuenta oportunidades de abordaje no satisfechas, pudiendo contar de nuevo a una persona que espera; no es número de personas únicas. El último punto del viaje solo admite descensos.
+
+## Renderizado y memoria
+
+Buses, estaciones y vagones usan geometrías instanciadas. Se descartan símbolos fuera de cámara y se agrupan los cercanos cuando el mapa está alejado, sin suprimir vehículos del motor. Un movimiento de cámara vuelve a muestrear el dibujo incluso en pausa. Los colores identifican las rutas; la ocupación y el estado se muestran en el inspector.
+
+La interfaz solicita estados hasta 20 veces/s y dibuja a ritmo de `requestAnimationFrame`. Un cambio de parámetros o fecha cancela el trabajador anterior; sus respuestas se distinguen por generación. Al ocultar la pestaña se congela el reloj visible. El guardado conserva configuración y hora, no enormes estados de buses. La reconstrucción al cambiar de día conserva identificadores de viaje, pero los números de inventario de bus no son matrículas reales ni una flota persistente entre días.
+
+Los límites de los controles acotan densidad; aún así, los ajustes más exigentes consumen más memoria y tardan varios segundos en preparar el día. Las cifras del benchmark son del motor Node, no FPS ni garantía para cualquier dispositivo. Ver el informe de validación.

@@ -1,0 +1,25 @@
+{
+  "mode": "stress",
+  "build_ms": 9215.960417,
+  "sample_ms": 1.3257430558333332,
+  "maxFleet": 1938,
+  "maxQueue": 42,
+  "heap_MB": 808.179904,
+  "stats": {
+    "time_s": 111600,
+    "fleet": 1876,
+    "moving": 1562,
+    "dwell": 287,
+    "queue": 27,
+    "onboard": 100332,
+    "boarded": 978029,
+    "stops": 72355,
+    "averageWait": 0.9518993520936282,
+    "boardingDenials": 2902363,
+    "scheduled": 41513,
+    "completed": 4035,
+    "routes": 115,
+    "peakActive": 1945
+  },
+  "limits": "CPU engine only, not FPS. Includes historical station-entry profile, not verified OD."
+}

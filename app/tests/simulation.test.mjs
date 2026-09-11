@@ -51,5 +51,5 @@ test('optional tool surface shares clock actions and invalid input leaves state 
  const registered=new Map();let current={paused:false,speed:1};const dispose=registerSimulationTools({registerTool(t){registered.set(t.name,t);}},{read:()=>({...current}),control:i=>Object.assign(current,i)});
  assert.equal(registered.size,2);const control=registered.get('control_transmi_clock');assert.deepEqual(control.execute({paused:true,speed:8}),{paused:true,speed:8});
  assert.throws(()=>control.execute({paused:false,speed:99}));assert.deepEqual(current,{paused:true,speed:8});
- assert.deepEqual(registered.get('read_transmi_trial').execute({}),current);dispose();assert.equal(registerSimulationTools(null,{}),null);
+ assert.deepEqual(registered.get('read_transmi_simulation').execute({}),current);dispose();assert.equal(registerSimulationTools(null,{}),null);
 });

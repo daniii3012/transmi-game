@@ -8,3 +8,6 @@ __pycache__/
 # Copias automáticas de Blender; el original .blend sí se versiona.
 *.blend1
 *.blend2
+
+# Scratch work is kept outside the versioned application.
+/work/

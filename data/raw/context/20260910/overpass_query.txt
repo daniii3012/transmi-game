@@ -1,0 +1,9 @@
+[out:json][timeout:35];
+(
+  way[highway~"^(motorway|trunk|primary|secondary)$"](4.45,-74.27,4.84,-73.99);
+  way[waterway~"^(river|canal)$"](4.45,-74.27,4.84,-73.99);
+  way[natural="water"](4.45,-74.27,4.84,-73.99);
+  relation[leisure="park"](4.45,-74.27,4.84,-73.99);
+  way[leisure="park"](4.45,-74.27,4.84,-73.99);
+);
+out tags geom;

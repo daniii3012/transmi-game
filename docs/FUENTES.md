@@ -1,4 +1,6 @@
-# Fuentes y estado de la investigación
+# Fuentes e investigación histórica
+
+**Para la aplicación 2D vigente ver [Operación y datos](OPERACION_Y_DATOS.md).** Lo que sigue conserva la investigación del 8 de septiembre y del proyecto 3D; los pendientes históricos de OSM, rutas y simulación no describen el estado actual.
 
 Consulta: 8 de septiembre de 2026, hora de Bogotá. Conservar la fecha de publicación, la fecha del dato y la fecha de descarga como campos distintos.
 

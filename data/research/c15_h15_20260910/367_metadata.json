@@ -1,0 +1,36 @@
+{
+  "id": 367,
+  "codigo": "H15",
+  "nombre": "Portal Tunal",
+  "tipo": "TransMilenio",
+  "color": "#F18500",
+  "fechaDesde": "2026-06-28T00:00:00.000Z",
+  "fechaHasta": "2026-09-19T00:00:00.000Z",
+  "troncal": {
+    "id": 8,
+    "nombre": "Caracas Sur",
+    "zona": "H",
+    "color": "#F18500",
+    "esquemaPdf": "https://www.transmilenio.gov.co/info/transmilenio/media/RutasEsquemaTroncal8.pdf"
+  },
+  "horarios": [
+    {
+      "id": "407",
+      "tipoDia": "L-V",
+      "inicio": "4:30 AM",
+      "fin": "11:00 PM"
+    },
+    {
+      "id": "3460",
+      "tipoDia": "S",
+      "inicio": "5:30 AM",
+      "fin": "11:00 PM"
+    },
+    {
+      "id": "408",
+      "tipoDia": "D-F",
+      "inicio": "4:30 AM",
+      "fin": "10:00 PM"
+    }
+  ]
+}

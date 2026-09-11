@@ -1,6 +1,6 @@
 # Observaciones de Daniel · 11 septiembre de 2026
 
-**Pendientes de implementar tras respaldar el checkpoint inicial.** Esta lista recoge la solicitud activa completa. No sustituye las decisiones anteriores salvo donde se indica expresamente. El usuario pidió guardar primero y compactar contexto; no hay herramienta de compactación manual disponible, por lo que este registro y CONTINUAR.md preservan el trabajo para la compactación automática.
+**Revisión implementada y comprobada.** El checkpoint inicial se respaldó como c0ed101 antes de estos cambios. Ver VALIDACION_20260911.md para pruebas y límites. Semáforos opcionales, los 23 registros y datos operativos sin evidencia quedan pendientes por acuerdo; las demás observaciones se incorporaron. Esta lista recoge la solicitud activa completa. No sustituye las decisiones anteriores salvo donde se indica expresamente. El usuario pidió guardar primero y compactar contexto; no hay herramienta de compactación manual disponible, por lo que este registro y CONTINUAR.md preservan el trabajo para la compactación automática.
 
 ## Mapa y estaciones
 

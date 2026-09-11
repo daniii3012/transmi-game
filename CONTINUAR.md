@@ -1,66 +1,50 @@
 # Continuidad — Transmi 2D
 
-Actualizado: 10 de septiembre de 2026. Esta entrega sustituye las notas que describían solo un laboratorio. Leer README.md, docs/OPERACION_Y_DATOS.md y docs/VALIDACION_20260910.md antes de continuar.
+Actualizado: 11 septiembre de 2026. Leer README.md, docs/OPERACION_Y_DATOS.md y docs/VALIDACION_20260911.md. El checkpoint previo a la revisión de Daniel es `c0ed10116fbf708b13b96f7dcceada9a4e4ddd44`, verificado y subido antes de implementar sus observaciones. Esta revisión continúa ese trabajo; no reiniciar la arquitectura.
 
-## Instrucciones y decisiones de Daniel
+## Proyecto y autorizaciones
 
-- Simulador 2D geográfico 1:1 de troncales y duales. Zonales y TransMiCable fuera del alcance. 3D pausado en `archive/transmi3d`; no retomar Godot/Blender por inercia.
-- Referencia visual preferida: Subway Builder, con legibilidad de Mini Metro. Mapa real, paneles compactos, colores publicados, sin construcción de líneas.
-- Metros y km/h reales; reloj 1×/acelerado y reversible. Seleccionar ruta, una o varias troncales, o la red. No son posiciones GPS en vivo.
-- Autorizó expresamente estimaciones ajustables de frecuencia/demanda y pruebas completas en navegador. Dos carriles por sentido como abstracción, paso independiente de atención y pequeñas colas. Las asignaciones de vagón estimadas se identifican.
-- Añadió pasajeros por estación/hora y orientación al centro en la mañana/periferia en la tarde. Integrado mediante validaciones históricas + hipótesis; no dejarlo descrito como enteramente pendiente.
-- Destacó F63/Z63 dual articulado eléctrico; perfil publicado 160 integrado. Otros tipos sin ficha por ruta siguen estimados (80/160/240/250).
-- Corrigió C15 Chapinero Ciclovía: es zonal, ID366 excluido. C15/3915 y H15/367 troncales, 19 paradas cada una, enlazadas en búsqueda y detalle. Evidencia del API TransMiApp conservada.
-- Push a `daniii3012/transmi-game` autorizado. Mantener aplicación local; no desplegar. No pedir nuevamente las autorizaciones ya concedidas. Agentes ligeros solo para investigación acotada; los dos usados terminaron, uno agotó cuota. No hay tarea automática pendiente.
+Repo: `/Users/daniel/Documents/Codex/2026-09-08/ho/outputs/BogotaTransmi`, rama main, remoto `https://github.com/daniii3012/transmi-game.git`. Push autorizado. Simulador 2D geográfico 1:1 de troncales y duales; zonales/cable fuera, conducción 3D pausada en archive/transmi3d. Diseño inspirado en Subway Builder/Mini Metro, sin construcción. No son posiciones GPS en vivo.
 
-## Ubicación y ejecución
+Estimaciones ajustables y QA de navegador autorizadas; dos carriles por sentido como abstracción y paso expreso independiente de atención. Daniel autorizó servir por LAN, pero no publicar una versión jugable en internet. Investigación acotada con agentes ligeros autorizada por AGENTS; la investigación de plataformas terminó. No hay agentes ni tareas automáticas pendientes que esperar.
 
-Repo: `/Users/daniel/Documents/Codex/2026-09-08/ho/outputs/BogotaTransmi`. Rama `main`, remoto `https://github.com/daniii3012/transmi-game.git`.
+## Ejecutar y desarrollar
 
-- Fuente web editable: `app/dist`; módulos de simulación, worker y renderer separados. Three.js 0.186.0 local.
-- Servidor loopback `python3 tools/serve_network_2d.py`, URL `http://127.0.0.1:8766/`. El lanzador `ABRIR_SIMULACION_2D.command` abre/reutiliza el servidor. Sirve solo `app/dist` y envía no-store. No detener procesos del usuario.
-- Python geo disponible: `../../work/venv/bin/python`. Python estándar sirve web e importa agregados. Node está disponible en PATH.
-- `/work/` del repo está ignorado. No añadir archivos temporales ni ZIP/CSV de transacciones.
-- `web/transmi2d` es compatibilidad con la ubicación anterior, no otra aplicación activa.
+- Fuentes estáticas editables `app/dist`, Three.js 0.186.0 local y cámara ortográfica. No hace falta npm ni bundler.
+- `ABRIR_SIMULACION_2D.command`: loopback `http://127.0.0.1:8766/`.
+- `ABRIR_EN_RED_LOCAL.command`: escucha LAN en puerto 8767; imprime IP actual. Ambos sirven solo app/dist, no-store, sin listar directorios. Mantener Terminal abierta. Cada navegador tiene su propia simulación.
+- Python geográfico: `../../work/venv/bin/python`, con shapely/pyproj. Python del sistema sirve la web pero no trae esas bibliotecas. Node en PATH.
+- `work/` está ignorado. ZIP de validaciones en la carpeta work/passengers de la tarea original, fuera del repo. Nunca añadir transacciones crudas a Git. El agregado versionado basta para reproducir.
+- `web/transmi2d` es compatibilidad histórica. No confundirlo con otra aplicación.
 
-## Estado integrado
+## Estado después de las observaciones
 
-- 138 servicios/variantes depurados; 115 utilizables de 103 códigos, 23 pendientes. Mapa bruto: 116 registros/100 códigos. 113 variantes con salidas el jueves inicial 10 sep. 2026. Los contadores significan cosas diferentes.
-- Geometría oficial recortada, secuencia de paradas, fuentes, hashes, calendarios, vigencia y bloqueo de anomalías. M85 empieza en el tramo correcto; K86/629 completo bloqueado, no confundirlo con aeropuerto/5316.
-- Calendario colombiano, ventanas partidas y nocturnas, reemplazo Ciclovía solo explícito, horas pico/valle y reloj reversible. Se precalculan día anterior + elegido para cruzar medianoche.
-- Movimiento métrico, aceleración/frenado/curvas, paradas y reservas por vagón. Expresos no heredan la cola de la parada. Cantidad de vagones oficial, asignación y dimensiones estimadas.
-- Demanda histórica agregada de 1.920.298 validaciones, archivo 9 sep., 14 posteriores a medianoche. 1.920.297 enlazadas a 142 estaciones lógicas; una de cable excluida. Se descarta información transaccional del producto. Perfiles por hora, dirección/descenso/fines de semana estimados, capacidad y abandono de espera.
-- F63/Z63 eléctricos de 160, mezcla ajustable de biarticulados y padrones duales estimados. Tipo estable por vehículo y reutilización compatible en terminal.
-- Contexto OSM 15.573 elementos, colores oficiales, puentes con bordes y túneles punteados si están etiquetados. No se infiere nivel ni conexión por intersección de líneas; no es auditoría completa de obras.
-- UI con rutas, operación, terminales, datos, inspectores de ruta/bus/estación, guardar/restaurar, filtros, seguimiento y velocidades 1/8/32/120.
-- Worker sustituido al reconstruir, instancias gráficas, agrupación visual, dibujo actualizado en zoom incluso pausado. No se borran buses para esconder la congestión.
+137 registros: 114 utilizables de 103 códigos, 23 pendientes. El jueves inicial 10 sep. hay 112 variantes con ventanas. El mapa bruto tiene 116 registros/100 códigos, no 116 rutas únicas. C15 zonal/366 excluida; C15/3915 y H15/367 troncales tienen 19 paradas. F23/10082 Banderas excluida por indicación de Daniel; se conserva F23/396 Portal Américas. **Los 23 pendientes, incluido K86 completo/629, deben permanecer pendientes por ahora.** No confundirlo con aeropuerto/5316.
 
-## Fuentes y regeneración
+- Reloj, calendarios/festivos colombianos, medianoche, demanda pico/valle, geometría métrica, curvas, aceleración y frenado integrados. Motor por eventos en worker; recorridos y reservas reproducibles al retroceder.
+- Capacidad fija 80/160/240 y tamaño fijo por ruta. Fáciles 1–8 articuladas, M51/F51 biarticuladas por usuario; F63/Z63 dual articulado eléctrico publicado. Otros duales padrón; otros servicios ≥18 km biarticulados y menores articulados, hipótesis documentada, no verificación de flota.
+- Cruceros 60 troncal/50 calle, variación por vehículo −5/−2/0/+2/+5. Los buses frenan en curvas/paradas; calle en pico factor 0,82.
+- Nuevo 1× de demanda = 2,25 del modelo previo. Referencia histórica sin modificar: 1.920.298 entradas del archivo 9 sep. (14 después de medianoche), 1.920.297 enlazadas a 142 estaciones, una de cable excluida. OD, descensos, direcciones y abandono medio 30 min estimados. Denegaciones son oportunidades repetidas, no personas únicas.
+- Salidas 4/8 min, variación opcional ±12%; refuerzos limitados a una minoría de salidas pico con presión estimada alta, intercalados a 120 s. Reutilización de vehículos por terminal/tipo; patios operativos abstractos, sin circulación en vacío.
+- Fondo: solo troncales de color. Tramos tipo_tra=2 (Séptima exterior y otras extensiones) y segmentos de calle de duales son grises discontinuos. Geometría exacta aparece al seleccionar servicio o bus; atenuada al seguirlo.
+- OSM físico en seis estaciones: Sur, Suba, Américas, Banderas, Ricaurte y Jiménez. Plataformas explícitas en los primeros cuatro; cubiertas/accesos en los intercambiadores. `station-layouts.mjs` estima 114 visitas compatibles sobre rutas existentes (una visita de Jiménez conserva referencia oficial). No crea conexiones ni redirige por vías OSM. Otros andenes siguen esquemáticos. Puentes/túneles tienen contexto OSM etiquetado, sin auditoría exhaustiva de niveles.
+- Exploración Ruta separada del alcance operativo. Solo los botones de simular cambian servicios. Al volver a red se conserva hora y estado de reproducción. Cambiar de pestaña limpia ruta visual. Seleccionar otro bus actualiza su ruta; final de viaje vuelve a detalle de ruta.
+- Seguimiento interpolado en distancia sobre la polilínea más cámara suavizada cada frame. Zoom de rueda/pinch más sensible. Clusters se reposicionan también al mover cámara en pausa.
+- Slider protegido durante arrastre, respuestas del worker numeradas, botón Ahora (Bogotá), modo oscuro persistente, fuentes propias y notas de archivo al final de estación. No hay filtro Duales ni notas de una ruta particular en Operación.
+- Guardado v3, restaurado pausado. Se lee v2 si falta v3: conserva fecha/hora/alcance y parámetros compatibles, migra antiguos cruceros por defecto 48/30 a 60/50 y elimina mezcla/capacidad configurables. F23 antiguo se redirige a 396.
 
-Base `data/raw/services/20260910T185326Z`; complemento `supplement_20260910`; curación `data/curated/services.json`. Paraderos duales y contexto tienen sus manifests/respuestas. Los detalles de C15/H15 en `data/research/c15_h15_20260910` contrastan enlaces aportados por Daniel.
+## Reproducir y validar
 
-`tools/build_services.py` → services.json + auditoría; `build_context.py` → context.json; `aggregate_validations.py` → agregado de un ZIP oficial; `import_passenger_profiles.py` → demand.json. El ZIP de referencia se descargó en el trabajo de la tarea `/Users/daniel/Documents/Codex/2026-09-10/create-an-image-of-2/work/passengers/`, fuera del repositorio, y no hace falta para ejecutar el simulador.
+Fuentes de servicios: data/raw/services/20260910T185326Z + supplement_20260910, curación data/curated/services.json. OSM de estaciones: data/raw/station_layouts/20260911T025000Z (consulta real 2026-09-11T06:05:06Z, base OSM reportada 2026-06-01). La carpeta es identificador de captura, no la hora de consulta.
 
-Usar el agregado versionado para reproducir la app sin consultar internet. Si se vuelve a descargar, preservar fuente/fecha/hash y revisar licencias por conjunto. El artículo de buses 240 es histórico de 2015, no una noticia de 2025. Fuentes actuales de F63/Z63 verificadas en publicaciones oficiales de agosto de 2026.
+`build_services.py`, `build_context.py`, `build_station_layouts.py` usan Python geo; `import_passenger_profiles.py` usa agregado existente. Scripts de descarga separados; no actualizar fuentes silenciosamente.
 
-## Verificación y límites
+35 pruebas Node y 3 Python pasaron. Benchmarks guardados: referencia 896 buses máximos muestreados, 68 esperando atención en toda la red, ~4,48 s preparación / 0,43 ms muestreo / 370 MB heap; estrés 2/3 min y demanda3: 2.403 buses muestreados, 820 en espera, ~9,03 s / 2,15 ms / 824 MB. El máximo exacto por eventos es 904/2.407 e incluye día previo. Es CPU Node, no FPS. El estrés puede congestionarse: no se oculta eliminando vehículos.
 
-30 pruebas Node y 3 Python activas. Incluyen escala, velocidades, curvas, calendarios, pausa/retroceso, medianoche, capacidad/conservación, reservas sin superposición por posición, paso expreso, tipos estables, F63/Z63 y corrección C15. El laboratorio anterior tiene pruebas propias; su prueba de 3.000 buses no representa la operación real.
+QA de escritorio en navegador incluye las seis estaciones, capas, F23, C15/H15, selección de otro bus, seguimiento/fin de viaje, cambios de alcance, reloj/arrastre/Ahora, temas, fuentes, guardado y URL LAN. Sin errores de consola. No se ha certificado pinch físico, móviles reales ni cada geometría de ruta. Ver informe de validación.
 
-Benchmark actual del motor: referencia máximo 944 buses, 4 en cola local simultánea, preparación ~4,0 s, muestreo ~0,41 ms, heap ~389 MB; estrés (2/3 min, demanda3, mezcla40%) máximo 1.938 buses, 42 en cola, ~9,2 s, ~1,33 ms, ~808 MB. Son mediciones Node de esta máquina, no FPS ni promesa universal. Reportes JSON versionados.
+## Pendientes consentidos
 
-QA en navegador de escritorio documentada por acciones verificadas. Se recuperó el servidor local que estaba apagado; no se detuvo otro. Se abrió una pestaña nueva porque la anterior quedó en una página de error al recargar. No declarar QA completa de móviles o de cada una de las 115 geometrías.
+23 registros de datos; asignaciones oficiales ruta/tipo/vagón, más planos, patios/inventarios/vacíos; calibración con OD y varios días; revisión exhaustiva de cruces/obras. Semáforos opcionales aplazados porque faltan fases y coordinación fiables. Mantener estas incertidumbres visibles y enlazadas desde la app. Nuevas observaciones del usuario deben incorporarse sobre esta versión.
 
-## Pendientes concretos
-
-1. Conseguir trazados vigentes de E48, H76/J76, K86 completo y aclarar Ciclovía de L81/L82/M82/M85/M86/P85. Doce registros bloqueados ya están vencidos; no reactivarlos artificialmente.
-2. Asignaciones reales ruta→tipo, vagón/puerta, patios/inventario y recorridos en vacío. Actualmente terminales abstractas, vehículos creados según oferta, sin flota fija de operador.
-3. Calibrar con más días, frecuencias y tiempos de viaje, salidas y matriz OD. No confundir denegaciones de abordaje repetidas con personas únicas ni validaciones con viajes completos.
-4. Contrastar rotondas/puentes/deprimidos y obras una por una. La forma se conserva, pero no se certifica una topología de niveles exhaustiva.
-5. Ampliar QA táctil/móvil y medir FPS/memoria en equipos modestos; mantener los límites configurables y el trabajador cancelable.
-
-La versión funcional queda integrada; el trabajo futuro debe resolver estos huecos con evidencia, no reiniciar arquitectura ni investigación ya guardada. Al guardar un nuevo hito, confirmar push y coincidencia entre HEAD local y remoto.
-
-## Nueva solicitud activa · 11 septiembre
-
-Daniel probó el checkpoint y envió15capturas y una lista extensa de correcciones. **Aplicar ahora docs/OBSERVACIONES_20260911.md después de respaldar este checkpoint.** Cambia defaults a50calle/60troncal±5, capacidades80/160/240 y tamaño fijo por ruta; pide plataformas físicas OSM, trazados duales grises solo fuera de troncal, mejor seguimiento/selección/slider, modo oscuro, hora actual y lanzadorLAN. No confundir guardar el checkpoint con terminar estas nuevas tareas. Los23registros pendientes deben permanecer pendientes.
+Antes de terminar cada hito, verificar diff, commit/push y coincidencia HEAD local/remoto. Los informes del 10 sep. se conservan como evidencia histórica, no resultados actuales.

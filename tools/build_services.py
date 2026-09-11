@@ -11,7 +11,7 @@ import unicodedata
 from collections import Counter
 from pathlib import Path
 from shapely.geometry import LineString, Point, shape
-from shapely.ops import transform, substring
+from shapely.ops import transform, substring, unary_union
 from geo import PROJECT, ORIGIN, LOCAL_CRS
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -59,6 +59,7 @@ def build():
         g=transform(PROJECT.transform,shape(f['geometry']))
         lines=list(g.geoms) if g.geom_type=='MultiLineString' else [g]
         corridors.append({'id':p['id_trazado'],'zone':p['le_troncal'],'name':p['nom_tronc'],'color':p['color'],
+           'source_type':p['tipo_tra'],'kind':'street' if p['tipo_tra']==2 else 'trunk',
            'components':[[[round(x,2),round(y,2)] for x,y in l.coords] for l in lines]})
         zones.setdefault(p['le_troncal'], {'id':p['le_troncal'],'name':p['nom_tronc'],'color':p['color']})
     curated=read(ROOT/'data/curated/services.json')
@@ -148,6 +149,16 @@ def build():
     # Numeric codes have two legitimate directions: origin/destination remain part of identity.
     for r in routes:
         r['family']=r['code']+(':'+r['stops'][0]['station_id'] if r['code'].isdigit() and r['stops'] else '')
+    # Generalized background only: service shapes themselves remain unmodified.
+    trunk_mask=unary_union([LineString(line) for c in corridors if c['kind']=='trunk' for line in c['components']]).buffer(18)
+    street_context=[line for c in corridors if c['kind']=='street' for line in c['components']]
+    displayed_mask=trunk_mask.union(unary_union([LineString(line) for line in street_context]).buffer(18))
+    for r in routes:
+        if not r['ready'] or not r['dual']:continue
+        remainder=LineString(r['points']).difference(displayed_mask)
+        lines=list(remainder.geoms) if remainder.geom_type=='MultiLineString' else [remainder]
+        for line in lines:
+            if line.geom_type=='LineString' and line.length>=30:street_context.append([[round(x,1),round(y,1)] for x,y in line.simplify(5).coords])
     xy=[p for c in corridors for line in c['components'] for p in line]
     return {'schema_version':2,'revision':'services-v2-'+snapshot,'snapshot':snapshot,'scenario_date':'2026-09-10',
        'origin_lon_lat':ORIGIN,'projection':LOCAL_CRS.to_string(),'coordinate_frame':'XY east/north metres; 1:1',
@@ -161,7 +172,7 @@ def build():
           'linear_reference':'Local projection within 650m of published chainage; unlocated street stops interpolate official shape',
           'depot':'Abstract vehicle staging at journey origin; no invented yard access geometry'},
        'counts':{'map_records':116,'map_codes':100,'records':len(routes),'excluded':len(excluded),'ready':sum(r['ready'] for r in routes),'pending':sum(not r['ready'] for r in routes)},
-       'excluded':excluded,'corridors':corridors,'stations':list(stations.values()),'routes':routes,'zones':sorted(zones.values(),key=lambda z:z['id']),
+       'street_context':street_context,'excluded':excluded,'corridors':corridors,'stations':list(stations.values()),'routes':routes,'zones':sorted(zones.values(),key=lambda z:z['id']),
        'vehicle':{'length_m':18.5,'width_m':2.5,'capacity':160,'label':'Articulado de referencia; mezcla y perfiles en vehicles.mjs'}}
 
 if __name__=='__main__':

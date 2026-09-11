@@ -1,48 +1,65 @@
-"""Loopback-only local player. Serves only authored public assets, never the repo."""
+"""Serve only public simulator assets: loopback by default, optional explicit LAN."""
 import argparse
 import functools
 import http.server
 import json
+import socket
 import threading
 import urllib.request
 import webbrowser
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
-DIRECTORY = ROOT/'app/dist'
-PORT = 8766
-URL = f'http://127.0.0.1:{PORT}/'
-
+DIRECTORY = ROOT / 'app/dist'
 
 class LocalHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
-        self.send_header("Cache-Control", "no-store")
+        self.send_header('Cache-Control', 'no-store')
         super().end_headers()
 
-def main():
-    parser=argparse.ArgumentParser(description='Simulación local Transmi 2D')
-    parser.add_argument('--open',action='store_true',help='Abrir el navegador predeterminado')
-    args=parser.parse_args()
+    def list_directory(self, path):
+        self.send_error(404, 'Not found')
+        return None
+
+def lan_address():
     try:
-        server=http.server.ThreadingHTTPServer(('127.0.0.1',PORT),functools.partial(LocalHandler,directory=str(DIRECTORY)))
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as connection:
+            # A connect without send discovers the selected interface; no packet payload.
+            connection.connect(('192.0.2.1', 9))
+            return connection.getsockname()[0]
+    except OSError:
+        return socket.gethostname() + '.local'
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--open', action='store_true')
+    parser.add_argument('--lan', action='store_true', help='Permitir acceso desde la red local por el puerto 8767')
+    args = parser.parse_args()
+    port = 8767 if args.lan else 8766
+    host = '0.0.0.0' if args.lan else '127.0.0.1'
+    local_url = f'http://127.0.0.1:{port}/'
+    player_url = f'http://{lan_address()}:{port}/' if args.lan else local_url
+    try:
+        server = http.server.ThreadingHTTPServer((host, port), functools.partial(LocalHandler, directory=str(DIRECTORY)))
     except OSError as error:
-        # Reuse this same app only; do not scan ports or terminate another process.
         try:
-            with urllib.request.urlopen(URL+'network.json',timeout=2) as response:
-                current=json.loads(response.read(2_000_000))
-            expected=json.loads((DIRECTORY/'network.json').read_text())
-            if current.get('revision')!=expected['revision'] or current.get('source_sha256')!=expected['source_sha256']:
+            with urllib.request.urlopen(local_url + 'services.json', timeout=2) as response:
+                current = json.loads(response.read(20_000_000))
+            expected = json.loads((DIRECTORY / 'services.json').read_text())
+            if current.get('revision') != expected['revision'] or current.get('source_hashes') != expected['source_hashes']:
                 raise ValueError('Different server')
         except Exception:
-            raise SystemExit(f'El puerto {PORT} está ocupado por otra aplicación. Cierra esa aplicación y vuelve a abrir la prueba. {error}')
-        print('Transmi 2D ya está abierto: '+URL)
+            raise SystemExit(f'El puerto {port} está ocupado por otra aplicación. {error}')
+        print('Transmi ya está abierto: ' + player_url)
         if args.open:
-            webbrowser.open(URL)
+            webbrowser.open(local_url)
         return
-    print('Transmi 2D: '+URL,flush=True)
-    print('Prueba local sin conexión externa. Mantén esta ventana abierta; Ctrl+C cierra el servidor.',flush=True)
+    print('Transmi 2D: ' + player_url, flush=True)
+    if args.lan:
+        print('Abre esa dirección desde otro dispositivo de la misma red. Cada dispositivo tiene su propio escenario.', flush=True)
+    print('Mantén esta Terminal abierta; Ctrl+C cierra este servidor.', flush=True)
     if args.open:
-        threading.Timer(.3,lambda:webbrowser.open(URL)).start()
+        threading.Timer(.3, lambda: webbrowser.open(local_url)).start()
     try:
         server.serve_forever()
     except KeyboardInterrupt:
@@ -50,5 +67,5 @@ def main():
     finally:
         server.server_close()
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()

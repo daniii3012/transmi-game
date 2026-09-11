@@ -1,19 +1,23 @@
+import {MetricPath} from './simulation.mjs?v=20260911.2';
 import * as THREE from './vendor/three.module.js';
 
 export class NetworkMap {
   constructor(host, labels, data, onSelect) {
     this.host=host; this.labels=labels; this.data=data; this.onSelect=onSelect;
-    this.routeId=null;this.routeSet=new Set(data.routes.filter(r=>r.ready).map(r=>r.id));this.contextGroup=new THREE.Group();this.center=[0,0]; this.mpp=30; this.selected=null; this.busSamples=[];
+    this.routeId=null;this.routeSet=new Set(data.routes.filter(r=>r.ready).map(r=>r.id));this.metricPaths=new Map(data.routes.filter(r=>r.ready).map(r=>[r.id,new MetricPath(r.points)]));this.contextGroup=new THREE.Group();this.center=[0,0]; this.mpp=30; this.selected=null; this.busSamples=[];
     this.renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});
     this.renderer.setPixelRatio(Math.min(devicePixelRatio,2));
     this.renderer.setClearColor('#edf1f4'); host.append(this.renderer.domElement);
     this.scene=new THREE.Scene();
     this.camera=new THREE.OrthographicCamera(-1,1,1,-1,.1,100); this.camera.position.z=20;
     this.scene.add(this.contextGroup);this.paths=[];
+    this.streetGroup=new THREE.Group();this.scene.add(this.streetGroup);
+    for(const points of data.street_context||[]){const geometry=new THREE.BufferGeometry().setFromPoints(points.map(p=>new THREE.Vector3(...p,0)));const line=new THREE.Line(geometry,new THREE.LineDashedMaterial({color:'#8d9aa5',dashSize:18,gapSize:12,transparent:true,opacity:.65,depthTest:false}));line.computeLineDistances();line.renderOrder=.8;this.streetGroup.add(line);}
+
     this.routeGroup=new THREE.Group();this.scene.add(this.routeGroup);
     this.highlight=new THREE.Mesh(new THREE.BufferGeometry(),new THREE.MeshBasicMaterial({color:'#dc253b',depthTest:false,transparent:true,opacity:.95}));this.highlight.renderOrder=2;this.scene.add(this.highlight);
     this.clusterLayer=document.createElement('div');this.clusterLayer.className='clusters';host.parentElement.append(this.clusterLayer);this.clusterLayer.setAttribute('aria-hidden','true');this.clusterLayer.style.cssText='position:absolute;inset:0;pointer-events:none;overflow:hidden';
-    for(const c of data.corridors){
+    for(const c of data.corridors.filter(c=>c.kind!=='street')){
       const mesh=new THREE.Mesh(new THREE.BufferGeometry(),new THREE.MeshBasicMaterial({color:c.color,transparent:true,opacity:c.zone==='Z'?.25:.88,depthTest:false}));
       mesh.renderOrder=1; this.scene.add(mesh); this.paths.push({c,mesh});
     }
@@ -26,7 +30,8 @@ export class NetworkMap {
     this.marker.renderOrder=7;this.marker.visible=false;this.scene.add(this.marker);
     this.wagonBorder=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({color:'#97a8b7',depthTest:false}),3000);this.wagonBorder.renderOrder=3.5;this.wagonBorder.frustumCulled=false;this.scene.add(this.wagonBorder);
     this.wagonMesh=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({color:'#f9fafb',depthTest:false}),3000);this.wagonMesh.renderOrder=4;this.wagonMesh.frustumCulled=false;this.scene.add(this.wagonMesh);
-    this.axes=new Map();for(const r of data.routes.filter(r=>r.ready)){for(const st of r.stops){let nearest=0,d=Infinity;for(let i=0;i<r.points.length-1;i++){const p=r.points[i],station=data.stations.find(s=>s.id===st.station_id);if(!station)continue;const n=Math.hypot(p[0]-station.xy[0],p[1]-station.xy[1]);if(n<d){d=n;nearest=i;}}const a=r.points[nearest],b=r.points[nearest+1],angle=Math.atan2(b[1]-a[1],b[0]-a[0]),sum=this.axes.get(st.station_id)||[0,0];sum[0]+=Math.cos(2*angle);sum[1]+=Math.sin(2*angle);this.axes.set(st.station_id,sum);}}
+    this.axes=new Map();for(const r of data.routes.filter(r=>r.ready)){const path=new MetricPath(r.points);for(const st of r.stops){const angle=path.sample(st.at_m).angle,sum=this.axes.get(st.station_id)||[0,0];sum[0]+=Math.cos(2*angle);sum[1]+=Math.sin(2*angle);this.axes.set(st.station_id,sum);}}
+    this.buildStationGeometry();
     this.object=new THREE.Object3D(); this.w=1;this.h=1;
     this.resizeObserver=new ResizeObserver(()=>{this.resize();});this.resizeObserver.observe(host);
     this.resize(); this.fitNetwork(); this.bind();
@@ -34,16 +39,17 @@ export class NetworkMap {
   fit(bounds){const mobile=this.w<800,left=mobile?20:350,right=!mobile&&this.w>1100&&!document.querySelector('#inspector').hidden?400:70,top=70,bottom=mobile?this.h*.54:235;this.mpp=Math.max((bounds[2]-bounds[0])/Math.max(100,this.w-left-right),(bounds[3]-bounds[1])/Math.max(100,this.h-top-bottom),.3);this.center=[(bounds[0]+bounds[2])/2-(left-right)/2*this.mpp,(bounds[1]+bounds[3])/2+(top-bottom)/2*this.mpp];this.updateCamera();}
   fitNetwork(){this.fit(this.data.bounds);}
   fitPilot(){this.fitNetwork();}
+  focusStation(station){const layout=this.data.station_layouts?.stations.find(s=>s.station_id===station.id);const points=layout?[...layout.platforms,...layout.areas].flatMap(p=>p.points):[];if(points.length){const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);this.fit([Math.min(...xs)-45,Math.min(...ys)-45,Math.max(...xs)+45,Math.max(...ys)+45]);}else{this.center=[...station.xy];this.mpp=.8;this.updateCamera();}}
   fitPoints(points){this.fit([Math.min(...points.map(p=>p[0])),Math.min(...points.map(p=>p[1]))-80,Math.max(...points.map(p=>p[0])),Math.max(...points.map(p=>p[1]))+80]);}
   resize(){this.w=this.host.clientWidth;this.h=this.host.clientHeight;if(!this.w||!this.h)return;this.renderer.setSize(this.w,this.h);this.updateCamera();}
   worldToScreen(p){return [(p[0]-this.center[0])/this.mpp+this.w/2, (this.center[1]-p[1])/this.mpp+this.h/2];}
   screenToWorld(p){return [this.center[0]+(p[0]-this.w/2)*this.mpp,this.center[1]-(p[1]-this.h/2)*this.mpp];}
   zoom(factor, anchor=[this.w/2,this.h/2]){const before=this.screenToWorld(anchor);this.mpp=Math.max(.12,Math.min(160,this.mpp*factor));const after=this.screenToWorld(anchor);this.center[0]+=before[0]-after[0];this.center[1]+=before[1]-after[1];this.updateCamera();}
-  updateCamera(){
+  updateCamera({labels=true}={}){
     Object.assign(this.camera,{left:-this.w*this.mpp/2,right:this.w*this.mpp/2,top:this.h*this.mpp/2,bottom:-this.h*this.mpp/2});
     this.camera.position.set(this.center[0],this.center[1],20);this.camera.updateProjectionMatrix();this.camera.updateMatrixWorld();
     if(this.builtMpp!==this.mpp){
-    this.builtMpp=this.mpp;
+    this.builtMpp=this.mpp;for(const line of this.streetGroup.children){line.material.dashSize=Math.max(12,this.mpp*5);line.material.gapSize=Math.max(8,this.mpp*3);}
     for(const {c,mesh} of this.paths){
       const vertices=[];const width=Math.max(9,this.mpp*3.2);
       for(const line of c.components)for(let i=1;i<line.length;i++){
@@ -60,9 +66,9 @@ export class NetworkMap {
     });
     this.rebuildHighlight();this.updateWagons();this.stopOuter.instanceMatrix.needsUpdate=true;this.stopInner.instanceMatrix.needsUpdate=true;
     }
-    this.updateLabels();this.updateMarker();this.updateScale();
+    if(labels)this.updateLabels();this.updateMarker();this.updateScale();if(this.stationGroup)this.stationGroup.visible=this.mpp<3;
     if(this.infrastructureGroup)this.infrastructureGroup.visible=this.mpp<8;
-    if(this.lastSimulation)this.updateBuses(this.lastSimulation);
+    if(this.lastSimulation)this.updateBuses(this.lastSimulation,'all',true);
   }
   updateLabels(){
     this.labels.replaceChildren();const occupied=[];
@@ -83,19 +89,34 @@ export class NetworkMap {
     this.host.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;this.center=[drag.center[0]-(e.clientX-drag.start[0])*this.mpp,drag.center[1]+(e.clientY-drag.start[1])*this.mpp];this.onPan?.();this.updateCamera();});
     this.host.addEventListener('pointerup',e=>{if(!drag||drag.id!==e.pointerId)return;const click=Math.hypot(e.clientX-drag.start[0],e.clientY-drag.start[1])<5;drag=null;if(click){const r=this.host.getBoundingClientRect();this.pick([e.clientX-r.left,e.clientY-r.top]);}});
     this.host.addEventListener('pointercancel',()=>{drag=null;});
-    this.host.addEventListener('wheel',e=>{e.preventDefault();const r=this.host.getBoundingClientRect();this.zoom(Math.exp(Math.max(-.7,Math.min(.7,e.deltaY*.0015))),[e.clientX-r.left,e.clientY-r.top]);},{passive:false});
+    this.host.addEventListener('wheel',e=>{e.preventDefault();const r=this.host.getBoundingClientRect();this.zoom(Math.exp(Math.max(-1,Math.min(1,e.deltaY*(e.ctrlKey?.018:.004)))),[e.clientX-r.left,e.clientY-r.top]);},{passive:false});
     this.host.addEventListener('keydown',e=>{const offsets={ArrowLeft:[-80,0],ArrowRight:[80,0],ArrowUp:[0,80],ArrowDown:[0,-80]};if(offsets[e.key]){e.preventDefault();this.center[0]+=offsets[e.key][0]*this.mpp;this.center[1]+=offsets[e.key][1]*this.mpp;this.onPan?.();this.updateCamera();}else if(['+','=','-'].includes(e.key)){e.preventDefault();this.zoom(e.key==='-'?1.3:1/1.3);}});
   }
   pick(point){let nearest=null, distance=12;for(const [kind,items] of [['bus',this.busSamples],['station',this.data.stations]])for(const item of items){const p=this.worldToScreen(item.xy),d=Math.hypot(point[0]-p[0],point[1]-p[1]);if(d<distance){nearest={kind,id:item.id};distance=d;}}if(nearest){this.select(nearest.kind,nearest.id);this.onSelect(nearest);}}
-  setRoute(id){this.routeId=id;this.rebuildHighlight();}
+  setRoute(id,{subtle=false}={}){this.routeId=id;this.subtleRoute=subtle;this.rebuildHighlight();}
   rebuildHighlight(){
-    const routes=this.routeId?this.data.routes.filter(r=>r.id===this.routeId&&r.ready):this.data.routes.filter(r=>r.dual&&r.ready&&this.routeSet.has(r.id));
+    const routes=this.routeId?this.data.routes.filter(r=>r.id===this.routeId&&r.ready):[];
     const vertices=[],colors=[];for(const r of routes){const color=new THREE.Color(r.color),width=Math.max(4,this.mpp*(this.routeId?5:2.1));for(let i=1;i<r.points.length;i++){const [x,y]=r.points[i-1],[a,b]=r.points[i],len=Math.hypot(a-x,b-y);if(!len)continue;const dx=-(b-y)/len*width/2,dy=(a-x)/len*width/2;vertices.push(x+dx,y+dy,0,x-dx,y-dy,0,a+dx,b+dy,0,a+dx,b+dy,0,x-dx,y-dy,0,a-dx,b-dy,0);for(let j=0;j<6;j++)colors.push(color.r,color.g,color.b);}}
     this.highlight.geometry.dispose();this.highlight.geometry=new THREE.BufferGeometry();this.highlight.geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));this.highlight.geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));this.highlight.material.vertexColors=true;this.highlight.material.color.set('#ffffff');this.highlight.material.needsUpdate=true;
-    for(const {mesh} of this.paths)mesh.material.opacity=this.routeId?.3:.86;
+    this.highlight.material.opacity=this.subtleRoute?.32:.95;for(const {mesh} of this.paths)mesh.material.opacity=this.routeId?(this.subtleRoute?.18:.3):.86;
+  }
+  buildStationGeometry(){
+    this.stationGroup=new THREE.Group();this.scene.add(this.stationGroup);this.layoutIds=new Set();
+    const add=(points,palette,order,closed=false)=>{
+      const geometry=new THREE.BufferGeometry();let object;
+      if(closed){const contour=points.slice(0,-1).map(p=>new THREE.Vector2(...p)),vertices=[];for(const tri of THREE.ShapeUtils.triangulateShape(contour,[]))for(const i of tri)vertices.push(contour[i].x,contour[i].y,0);geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));object=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({color:palette[0],side:THREE.DoubleSide,depthTest:false}));}
+      else {geometry.setFromPoints(points.map(p=>new THREE.Vector3(...p,0)));object=new THREE.Line(geometry,new THREE.LineBasicMaterial({color:palette[0],depthTest:false}));}
+      object.renderOrder=order;object.userData.palette=palette;this.stationGroup.add(object);
+    };
+    for(const layout of this.data.station_layouts?.stations||[]){
+      this.layoutIds.add(layout.station_id);
+      for(const line of layout.internal_lines)add(line.points,['#c8d2db','#4d6274'],.6);
+      for(const area of layout.areas.filter(a=>a.closed)){add(area.points,['#dbe1e6','#425565'],2.3,true);add(area.points,['#9aaab7','#879cae'],2.4);}
+      for(const p of layout.platforms.filter(p=>p.points.length>1)){if(p.closed)add(p.points,['#f8fafb','#607689'],3.5,true);add(p.points,['#879dac','#a5bbce'],3.6);}
+    }
   }
   updateWagons(){
-    this.wagonBorder.visible=this.wagonMesh.visible=this.mpp<2.2;let i=0;if(this.wagonMesh.visible)for(const s of this.data.stations){if(s.kind==='street'||s.status==='En obras')continue;const sum=this.axes.get(s.id)||[1,0],angle=Math.atan2(sum[1],sum[0])/2,n=s.wagons||2;for(let w=1;w<=n;w++){const offset=(w-(n+1)/2)*64;this.object.position.set(s.xy[0]+Math.cos(angle)*offset,s.xy[1]+Math.sin(angle)*offset,2);this.object.rotation.z=angle;this.object.scale.set(60,7,1);this.object.updateMatrix();this.wagonBorder.setMatrixAt(i,this.object.matrix);this.object.scale.set(58,5,1);this.object.updateMatrix();this.wagonMesh.setMatrixAt(i++,this.object.matrix);}}
+    this.wagonBorder.visible=this.wagonMesh.visible=this.mpp<2.2;let i=0;if(this.wagonMesh.visible)for(const s of this.data.stations){if(s.kind==='street'||s.status==='En obras'||this.layoutIds.has(s.id))continue;const sum=this.axes.get(s.id)||[1,0],angle=Math.atan2(sum[1],sum[0])/2,n=s.wagons||2;for(let w=1;w<=n;w++){const offset=(w-(n+1)/2)*64;this.object.position.set(s.xy[0]+Math.cos(angle)*offset,s.xy[1]+Math.sin(angle)*offset,2);this.object.rotation.z=angle;this.object.scale.set(60,7,1);this.object.updateMatrix();this.wagonBorder.setMatrixAt(i,this.object.matrix);this.object.scale.set(58,5,1);this.object.updateMatrix();this.wagonMesh.setMatrixAt(i++,this.object.matrix);}}
     this.wagonMesh.count=this.wagonBorder.count=i;this.wagonMesh.instanceMatrix.needsUpdate=this.wagonBorder.instanceMatrix.needsUpdate=true;
   }
   setContext(data){
@@ -108,7 +129,7 @@ export class NetworkMap {
       }else segments(f.points,f.kind==='water'?waterLines:roads);
       if(f.bridge||f.tunnel)segments(f.points,bridges);
     }
-    const add=(points,color,line=false,opacity=1)=>{const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(points,3));const mesh=line?new THREE.LineSegments(geometry,new THREE.LineBasicMaterial({color,depthTest:false,transparent:true,opacity})):new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({color,depthTest:false,side:THREE.DoubleSide}));mesh.renderOrder=0;this.contextGroup.add(mesh);};
+    const add=(points,color,line=false,opacity=1)=>{const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(points,3));const mesh=line?new THREE.LineSegments(geometry,new THREE.LineBasicMaterial({color,depthTest:false,transparent:true,opacity})):new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({color,depthTest:false,side:THREE.DoubleSide}));mesh.renderOrder=0;this.contextGroup.add(mesh);(this.contextMeshes||=[]).push(mesh);};
     this.infrastructureGroup=new THREE.Group();this.contextGroup.add(this.infrastructureGroup);this.infrastructureGroup.visible=this.mpp<8;
     const rails=[];for(const f of data.features.filter(f=>f.bridge&&!f.tunnel))for(let i=1;i<f.points.length;i++){
       const a=f.points[i-1],b=f.points[i],len=Math.hypot(b[0]-a[0],b[1]-a[1]);if(!len)continue;
@@ -120,7 +141,16 @@ export class NetworkMap {
     for(const f of data.features.filter(f=>f.tunnel)){const geometry=new THREE.BufferGeometry().setFromPoints(f.points.map(p=>new THREE.Vector3(...p,0)));const line=new THREE.Line(geometry,new THREE.LineDashedMaterial({color:'#7f93a3',dashSize:12,gapSize:9,depthTest:false,transparent:true,opacity:.7}));line.computeLineDistances();line.renderOrder=.5;this.infrastructureGroup.add(line);}
     add(parks,'#d4e3d8');add(water,'#c5dce8');add(roads,'#ffffff',true,.75);add(waterLines,'#b6d5e4',true,.85);add(bridges,'#c1cbd5',true,.75);
   }
-  updateBuses(simulation,filter='all'){
+  acceptSimulation(simulation,animate=false){
+    this.previousVisual=new Map((animate?this.visualBuses||[]:[]).map(b=>[b.id,b]));this.targetSimulation=simulation;this.visualSettled=false;this.visualStart=performance.now();this.visualBuses=simulation.buses;if(!animate)this.updateBuses(simulation);
+  }
+  animateBuses(now){
+    if(!this.targetSimulation||this.visualSettled)return;
+    const blend=Math.min(1,(now-this.visualStart)/60);
+    this.visualBuses=this.targetSimulation.buses.map(b=>{const a=this.previousVisual.get(b.id);if(!a||blend>=1||a.state!==b.state||a.routeId!==b.routeId||b.s<a.s)return b;const s=a.s+(b.s-a.s)*blend,pose=this.metricPaths.get(b.routeId).sample(s);return {...b,s,xy:pose.xy,angle:pose.angle};});
+    this.updateBuses({...this.targetSimulation,buses:this.visualBuses});this.visualSettled=blend>=1;
+  }
+  updateBuses(simulation,filter='all',forceClusters=false){
     this.lastSimulation=simulation;const buses=simulation.buses;
     if(!this.busMesh||this.busCapacity<buses.length){
       if(this.busMesh){for(const m of [this.busMesh,this.busNose]){this.scene.remove(m);m.dispose();m.geometry.dispose();m.material.dispose();}}
@@ -142,8 +172,11 @@ export class NetworkMap {
       this.object.position.set(...xy,3);this.object.rotation.z=b.angle;this.object.scale.set(length,width,1);this.object.updateMatrix();this.busMesh.setMatrixAt(i,this.object.matrix);color.set(b.color);this.busMesh.setColorAt(i,color);
       this.object.position.set(xy[0]+Math.cos(b.angle)*length*.25,xy[1]+Math.sin(b.angle)*length*.25,3.1);this.object.scale.set(length*.16,width*.7,1);this.object.updateMatrix();this.busNose.setMatrixAt(i,this.object.matrix);i++;
     }
-    if(!this.lastClusterTime||performance.now()-this.lastClusterTime>300){this.lastClusterTime=performance.now();this.clusterLayer.replaceChildren();for(const c of clusters.filter(c=>c.count>5).sort((a,b)=>b.count-a.count).slice(0,32)){const el=document.createElement('div');el.className='cluster-label';el.textContent=c.count;el.style.left=c.screen[0]+5+'px';el.style.top=c.screen[1]-16+'px';this.clusterLayer.append(el);}}
+    if(forceClusters||!this.lastClusterTime||performance.now()-this.lastClusterTime>300){this.lastClusterTime=performance.now();this.clusterLayer.replaceChildren();for(const c of clusters.filter(c=>c.count>5).sort((a,b)=>b.count-a.count).slice(0,32)){const el=document.createElement('div');el.className='cluster-label';el.textContent=c.count;el.style.left=c.screen[0]+5+'px';el.style.top=c.screen[1]-16+'px';this.clusterLayer.append(el);}}
     this.visibleBuses=i;this.busMesh.count=i;this.busNose.count=i;this.busMesh.instanceMatrix.needsUpdate=true;if(this.busMesh.instanceColor)this.busMesh.instanceColor.needsUpdate=true;this.busNose.instanceMatrix.needsUpdate=true;this.updateMarker();
   }
+  follow(xy,dt){const blend=1-Math.exp(-Math.min(.1,Math.max(0,dt))*15);this.center[0]+=(xy[0]-this.center[0])*blend;this.center[1]+=(xy[1]-this.center[1])*blend;const now=performance.now();const labels=!this.lastFollowLabels||now-this.lastFollowLabels>150;if(labels)this.lastFollowLabels=now;this.updateCamera({labels});}
+  setTheme(theme){this.dark=theme==='dark';this.renderer.setClearColor(this.dark?'#18212b':'#edf1f4');const colors=this.dark?['#233b35','#233d50','#2b3947','#35596c','#607383']:['#d4e3d8','#c5dce8','#ffffff','#b6d5e4','#c1cbd5'];for(const [i,mesh] of (this.contextMeshes||[]).entries())mesh.material.color.set(colors[i]);this.stopInner.material.color.set(this.dark?'#293746':'#ffffff');this.wagonMesh.material.color.set(this.dark?'#637383':'#f9fafb');for(const mesh of this.stationGroup.children)mesh.material.color.set(mesh.userData.palette[this.dark?1:0]);}
   render(){this.renderer.render(this.scene,this.camera);}
+
 }

@@ -1,4 +1,4 @@
-import {Operation} from './operation.mjs?v=20260910.3';
+import {Operation} from './operation.mjs?v=20260911.2';
 let engine=null,generation=0;
 self.onmessage=({data:m})=>{
  try{
@@ -9,7 +9,7 @@ self.onmessage=({data:m})=>{
   }
   if(m.generation!==generation||!engine)return;
   if(m.type==='sample'||m.type==='init'){
-   engine.seek(m.time);self.postMessage({type:'state',generation,time:m.time,buses:engine.buses,stats:engine.stats()});
+   engine.seek(m.time);self.postMessage({type:'state',generation,time:m.time,requestId:m.requestId||0,buses:engine.buses,stats:engine.stats()});
   }else if(m.type==='station')self.postMessage({type:'station',generation,id:m.id,...engine.stationStats(m.id)});
   else if(m.type==='depots')self.postMessage({type:'depots',generation,depots:engine.depotStats()});
  }catch(error){self.postMessage({type:'error',generation,message:error.message});}

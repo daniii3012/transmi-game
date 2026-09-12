@@ -87,3 +87,28 @@ test('Irregular departures and bounded peak reinforcements are deterministic',()
 test('F23 has one published playable destination after user correction',()=>{const routes=source.routes.filter(r=>r.code==='F23');assert.equal(routes.length,1);assert.equal(routes[0].id,'396');assert.ok(source.excluded.some(r=>r.id==='10082'));});
 
 test('OSM station placements remain on each directed route and keep stop order',async()=>{const {placeVisit}=await import('../dist/station-layouts.mjs');const {hash}=await import('../dist/operation.mjs');const layouts=JSON.parse(fs.readFileSync(new URL('../dist/station_layouts.json',import.meta.url)));const byId=new Map(layouts.stations.map(l=>[l.station_id,l]));let located=0;const ricaurte=new Set();for(const r of source.routes.filter(r=>r.ready)){const path=new MetricPath(r.points),visits=r.stops.map((s,i)=>{const p=placeVisit({...r,path},i,byId.get(s.station_id),hash(r.family));if(p){located++;assert.ok(p.at_m>=0&&p.at_m<=path.length);assert.ok(Math.abs(p.at_m-s.at_m)<=400.01);assert.ok(p.placement_source.startsWith('https://www.openstreetmap.org/'));if(s.station_id==='7111')ricaurte.add(p.platform_id);}return p?.at_m??s.at_m;});for(let i=1;i<visits.length;i++)assert.ok(visits[i]>visits[i-1],r.code);}assert.ok(located>100);assert.ok(ricaurte.size>=4);for(const id of ['7000','3000','5000'])assert.ok(byId.get(id).platforms.filter(p=>p.closed&&p.role==='platform_trunk').length>=2);});
+test('Measured day-type profiles replace the estimated weekend reduction',()=>{
+ const demand=JSON.parse(fs.readFileSync(new URL('../dist/demand.json',import.meta.url)));
+ assert.ok(demand.profiles.length>100);
+ for(const p of demand.profiles){
+  assert.ok(p.hourly_by_day_type,`${p.station_id} sin perfil por tipo de día`);
+  for(const kind of ['weekday','saturday','holiday']){
+   const hourly=p.hourly_by_day_type[kind];
+   assert.equal(hourly.length,24,`${p.station_id}/${kind}`);
+   assert.ok(hourly.every(v=>Number.isFinite(v)&&v>=0),`${p.station_id}/${kind}`);
+   assert.ok(p.days_observed[kind]>=1,`${p.station_id}/${kind} sin días observados`);
+  }
+  // The legacy field must stay the weekday profile so an older reader keeps working.
+  assert.deepEqual(p.hourly,p.hourly_by_day_type.weekday,p.station_id);
+ }
+ const station={...base.stations[0],demand_profile:demand.profiles.find(p=>p.station_id==='2000')};
+ const rate=(date)=>generatedPassengers(station,0,8*3600,8*3600+600,date,parameters({}));
+ // A Sunday must now come out of the measured Sunday profile, not a 0,55 factor on a Wednesday.
+ const semana=rate('2026-09-10'),domingo=rate('2026-09-13'),sabado=rate('2026-09-12');
+ assert.ok(semana>0&&sabado>0&&domingo>0);
+ assert.ok(domingo<sabado&&sabado<semana,`domingo ${domingo} sábado ${sabado} semana ${semana}`);
+ assert.ok(domingo/semana<0.55,'el domingo medido debe quedar por debajo del factor estimado que reemplaza');
+ // A station without a profile keeps the estimated path and still responds to the day type.
+ const sinPerfil={...base.stations[0]};
+ assert.ok(generatedPassengers(sinPerfil,0,8*3600,8*3600+600,'2026-09-10',parameters({}))>0);
+});

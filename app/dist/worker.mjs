@@ -1,5 +1,5 @@
-import {Operation} from './operation.mjs?v=20260911.4';
-import {JourneyPlanner} from './planner.mjs?v=20260911.4';
+import {Operation} from './operation.mjs?v=20260911.5';
+import {JourneyPlanner} from './planner.mjs?v=20260911.5';
 let engine=null,generation=0,planner=null;
 self.onmessage=({data:m})=>{
  try{

@@ -1,5 +1,5 @@
 /** Aggregate, deterministic synthetic passenger demand. Not an OD survey. */
-import {DAY,addDays,demandPeriod,dayType} from './calendar.mjs?v=20260911.4';
+import {DAY,addDays,demandPeriod,dayType} from './calendar.mjs?v=20260911.5';
 export const DEMAND_BASELINE=2.25; // User-calibrated reference; 1× means this scenario baseline.
 export const EMPLOYMENT_CENTER=[6960,-300]; // Approx. Centro Internacional, projected metres; scenario assumption.
 export function centrality(xy){return Math.exp(-Math.hypot(xy[0]-EMPLOYMENT_CENTER[0],xy[1]-EMPLOYMENT_CENTER[1])/6500);}
@@ -10,7 +10,14 @@ export function directionalFactor(station,angle,second){
 }
 export function arrivalRate(station,angle,time,date,params){
  const hour=((time%DAY)+DAY)%DAY/3600;if(hour<4||hour>=23.5)return 0;
- if(station.demand_profile){const observed=station.demand_profile.hourly[Math.floor(hour)]/3600,dayFactor=dayType(date)==='weekday'?1:dayType(date)==='saturday'?.7:.55,override=params.mode==='peak'?1.5:params.mode==='offpeak'?.7:1;return DEMAND_BASELINE*observed*.5*directionalFactor(station,angle,time)*dayFactor*override*params.demand;}
+ if(station.demand_profile){
+  const profile=station.demand_profile,kind=dayType(date),measured=profile.hourly_by_day_type?.[kind];
+  // With several days observed per type, Saturday and Sunday are measured rather than a flat
+  // reduction of a weekday. The estimated factors only remain for a single-day aggregate.
+  const hourly=measured||profile.hourly,dayFactor=measured?1:kind==='weekday'?1:kind==='saturday'?.7:.55;
+  const observed=hourly[Math.floor(hour)]/3600,override=params.mode==='peak'?1.5:params.mode==='offpeak'?.7:1;
+  return DEMAND_BASELINE*observed*.5*directionalFactor(station,angle,time)*dayFactor*override*params.demand;
+ }
  const central=centrality(station.xy),morning=hour<11,peak=demandPeriod(time,date,params.mode)==='peak';
  const landUse=peak?(morning?1.35-.6*central:.6+1.2*central):1;
  const weight=station.demand_weight||(/portal/i.test(station.name)?3.2:station.kind==='street'?.2:.7+central);

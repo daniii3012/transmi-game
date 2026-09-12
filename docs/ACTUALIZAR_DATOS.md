@@ -217,12 +217,24 @@ que usan servicios y paraderos.
 
 ### Llegan datos nuevos de pasajeros
 
-Descarga el ZIP oficial a un directorio de trabajo **fuera del repositorio**:
+Descarga los ZIP oficiales a un directorio de trabajo **fuera del repositorio**. La
+demanda vigente se mide sobre 17 días; para actualizarla conviene bajar semanas completas
+de lunes a domingo, para que cada tipo de día tenga varios representantes:
 
 ```sh
-python3 tools/aggregate_validations.py /ruta/validacionTroncalAAAAMMDD.zip
+python3 tools/aggregate_validation_period.py /ruta/validacionTroncal*.zip
 python3 tools/import_passenger_profiles.py
 ```
+
+El agregado de periodo produce un perfil horario por estación **y tipo de día**, con la
+media de los días observados, su desviación, mínimo y máximo. El importador lo prefiere
+automáticamente; si no existe, vuelve al agregado de un solo día que produce
+`tools/aggregate_validations.py`, y en ese caso el motor retoma los factores estimados de
+fin de semana. Detalle y límites en [DEMANDA_MULTIDIA_20260911.md](DEMANDA_MULTIDIA_20260911.md).
+
+Un archivo diario trae unas pocas transacciones con fecha del día anterior o del
+siguiente, de servicio que cruza medianoche. Se cuentan bajo el día de servicio del
+archivo y el reparto queda registrado en `transaction_dates`.
 
 El agregador valida formato y fechas antes de escribir, y solo exporta estación,
 hora, totales y procedencia. **Nunca se añaden el ZIP ni el CSV crudo a Git**; el

@@ -25,7 +25,31 @@ Estimaciones ajustables y QA de navegador autorizadas; dos carriles por sentido 
 - Capacidad fija 80/160/240 y tamaño fijo por ruta. Fáciles 1–8 articuladas, M51/F51 biarticuladas por usuario; F63/Z63 dual articulado eléctrico publicado. Otros duales padrón; otros servicios ≥18 km biarticulados y menores articulados, hipótesis documentada, no verificación de flota.
 - Cruceros 60 troncal/50 calle, variación por vehículo −5/−2/0/+2/+5. Los buses frenan en curvas/paradas; calle en pico factor 0,82.
 - Nuevo 1× de demanda = 2,25 del modelo previo. Demanda medida sobre 17 días (24 ago.–9 sep. 2026, 28.014.777 validaciones): perfil horario por tipo de día en `hourly_by_day_type`, 13 días de semana, 2 sábados y 2 domingos. Factores medidos sábado 0,654 y domingo 0,302, frente a los 0,70/0,55 estimados que reemplazan; el domingo estaba sobreestimado ~80%. Entre días de semana la variación es 2,0%. OD, descensos, direcciones y abandono medio 30 min siguen estimados. Denegaciones son oportunidades repetidas, no personas únicas. Detalle en docs/DEMANDA_MULTIDIA_20260911.md. Contraste estacional con 15 días de marzo (21.156.110 validaciones) en docs/DEMANDA_COMPARACION_MARZO_20260911.md: factores por tipo de día estables (sábado 0,654 vs 0,642; domingo 0,302 vs 0,289), nivel de marzo −7,3 % uniforme, reparto horario casi idéntico. Dos hallazgos: un festivo entre semana queda 16,5 % por debajo de un domingo —mejora pendiente, falta medir más festivos— y la red cambió entre marzo y septiembre (Calle 76 y Calle 45 desaparecen, Calle 72 - Areandina aparece), lo que corrobora la retirada de los pendientes 6/692 y A60/1187. La calibración sigue siendo la de agosto–septiembre por ser contemporánea del catálogo.
-- Salidas 4/8 min, variación opcional ±12%; refuerzos limitados a una minoría de salidas pico con presión estimada alta, intercalados a 120 s. Reutilización de vehículos por terminal/tipo; patios operativos abstractos, sin circulación en vacío.
+- **Salidas del horario publicado** (12/09/2026): 104 de los 117 servicios utilizables despachan a las horas
+  del GTFS de TRANSMILENIO; los 13 restantes, casi todos duales cuyo registro publicado es una vuelta completa,
+  conservan la regla y constan con motivo en `app/dist/schedule.json`. Interruptor «Salidas del horario publicado».
+  Sábado a las 12:30: 477 activos con la regla, 634 con el horario, 975 viajes GTFS en curso. La diferencia que
+  queda es duración, no frecuencia: los 91 servicios comparables terminan antes de lo programado, razón mediana
+  0,67. **Corregido el mismo día**: la velocidad de cada tramo se despeja del tiempo publicado tras descontar
+  atención y coste esperado de semáforos, con el crucero como techo. Velocidad comercial simulada 21,3 km/h
+  frente a 21,1 programada; dentro de banda p10–p90 99/104 viernes, 77/91 sábado, 39/53 domingo; 874 activos
+  el sábado a las 12:30 frente a 850 viajes GTFS en curso de servicios emparejados. Interruptores separados
+  «Salidas del horario publicado» y «Duración del recorrido publicada». Ver docs/HORARIO_GTFS_20260912.md
+  y docs/COMO_SE_SIMULA.md.
+- **Captura de la operación** (12/09/2026): `tools/capture_rt.py` graba el alimentador GTFS-Realtime abierto cada
+  30 s —sin credencial— y `tools/analyse_capture.py` lo convierte en flota por hora, tiempo real de cada tramo
+  contra el publicado, y agrupamiento. ~50 MB/día; las lecturas no se versionan, el informe sí. El feed trae la
+  cabecera congelada y repite la última posición de cada bus, así que el análisis se construye sobre los cambios
+  de parada, nunca sobre velocidades entre lotes. Primera lectura de 1,32 h: en tramos de más de 240 s los buses
+  tardaron el 85% de lo programado; 6% de los intervalos troncales por debajo de un minuto. **No aplicado al
+  simulador**: hace falta de 7 a 14 días con laborables y fin de semana. Ver docs/CAPTURA_RT_20260912.md.
+- **Vista En vivo sobre datos abiertos** (12/09/2026): `/api/en-vivo/red` sale de `tools/live_network.py`, que lee
+  el alimentador GTFS-Realtime: sin credencial, sin truncar, ~1.010 buses troncales y duales por lectura. Publica
+  antigüedad del lote y los ~120 vehículos de servicios fuera del catálogo, que se dibujan rotulados. Con un
+  servicio en foco no se repiten buses: las dos fuentes comparten identificadores y la red omite los ya dibujados.
+  «Por servicio» sigue en la consulta local, que es la única con ocupación, accesibilidad y avance sobre la ruta.
+  Se retiró la instantánea de red que usaba el servicio local, ya sin uso. 30 pruebas Python.
+- Regla de reserva, ahora solo para los pendientes: salidas 4/8 min, variación opcional ±12%; refuerzos limitados a una minoría de salidas pico con presión estimada alta, intercalados a 120 s. Reutilización de vehículos por terminal/tipo; patios operativos abstractos, sin circulación en vacío.
 - Calzada real de OSM dibujada bajo los corredores: 929 vías conservadas de 1.203 descargadas, 341 con carriles publicados y las demás dibujadas con un carril. Ancho carriles×3,5 m, tonos distintos para calzada exclusiva y compartida, visible al acercarse y apagable con el botón ═. Los buses siguen la polilínea publicada del servicio, no esta calzada; pueden separarse unos metros. Detalle en docs/CALZADAS_20260911.md.
 - Fondo: solo troncales de color. Tramos tipo_tra=2 (Séptima exterior y otras extensiones) y segmentos de calle de duales son grises discontinuos. Geometría exacta aparece al seleccionar servicio o bus; atenuada al seguirlo.
 - OSM físico en 40 estaciones: nueve portales, Banderas, Ricaurte y Jiménez, más las 28 troncales con más servicios. Hay 111 elementos de parada/plataforma, 98 áreas y 478 líneas internas; los 111 incluyen nodos, no son 111 plataformas físicas. Calle 72 - Areandina y Virrey - Cendiatra no tienen geometría en OSM. Norte tiene puntos/área, sin contorno de plataforma inventado. Las otras estaciones mantienen vagones esquemáticos.
@@ -46,7 +70,7 @@ Fuentes de servicios: data/raw/services/20260910T185326Z + supplement_20260910, 
 
 `build_services.py`, `build_context.py`, `build_station_layouts.py` usan Python geo; `import_passenger_profiles.py` usa agregado existente. Scripts de descarga separados; no actualizar fuentes silenciosamente.
 
-62 pruebas Node y 13 Python pasaron; las 10 de `tests/test_live_buses.py` corren también con el Python del sistema y no tocan la red. Benchmarks con semáforos de calzada y calle y demanda multidía: referencia 1.113 buses máximos muestreados, 71 esperando atención y 121 en semáforo; preparación 12,01 s, muestreo 1,30 ms, heap 560 MB. Estrés 2/3 min y demanda 3×: 3.303 buses, 1.441 esperando atención y 236 en semáforo; 21,00 s / 4,56 ms / 1.138 MB. Máximos exactos por eventos 1.118/3.337. CPU Node, no FPS; el estrés puede congestionarse, sin borrar vehículos.
+74 pruebas Node pasaron, 30 Python entre proxy en vivo, adaptador de red y análisis de capturas; test_network_2d.py no corre por falta de shapely en el equipo; las 10 de `tests/test_live_buses.py` corren también con el Python del sistema y no tocan la red. Benchmarks con semáforos de calzada y calle y demanda multidía: referencia 1.113 buses máximos muestreados, 71 esperando atención y 121 en semáforo; preparación 12,01 s, muestreo 1,30 ms, heap 560 MB. Estrés 2/3 min y demanda 3×: 3.303 buses, 1.441 esperando atención y 236 en semáforo; 21,00 s / 4,56 ms / 1.138 MB. Máximos exactos por eventos 1.118/3.337. CPU Node, no FPS; el estrés puede congestionarse, sin borrar vehículos.
 
 QA de navegador: seis portales nuevos y anteriores conservados, transbordos/fecha independiente, etiquetas moviéndose continuamente, rojo de 19 s y arranque en verde con H20, controles, guardado y escenarios. La primera revisión registra las pruebas originales de reloj, selección y LAN. Sin certificación de móviles físicos o pinch. Ver informe final para evidencia concreta de esta revisión.
 

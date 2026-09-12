@@ -1,8 +1,13 @@
-"""Live vehicle positions, read from services configured locally and projected to the frame.
+"""Live vehicles of one service, read from a service configured locally and projected to the frame.
 
-Where the readings come from is not part of this repository: the addresses and the credential
-live in tools/en_vivo.local.json, which is not versioned. Without that file nothing is requested
-and the tab says so. Services answer only to requests that do not carry a browser Origin, or that
+Only the per-service view lives here. The snapshot of the whole network moved to live_network.py,
+which reads the published realtime feed: open data, no credential, and it cannot truncate. What
+this module still adds over that feed is what the feed does not carry —occupancy, accessibility and
+how far along its route a bus is— for one service at a time.
+
+Where these readings come from is not part of this repository: the addresses and the credential live
+in tools/en_vivo.local.json, which is not versioned. Without that file nothing is requested and the
+tab says so, while the network-wide view keeps working on its own. Services answer only to requests that do not carry a browser Origin, or that
 carry one they expect, so the page cannot call them and this proxy exists for that reason.
 
 Only the standard library, because the simulator is served by the system Python; the projection
@@ -23,16 +28,11 @@ SERVICES = ROOT / 'app/dist/services.json'
 CREDENTIAL = ROOT / 'tools/en_vivo.local.json'
 # Todo lo que identifica a los servicios está en la configuración local, nunca aquí.
 ATTRIBUTION = 'Lectura de un servicio configurado localmente'
+# La instantánea de toda la red no sale de ahí, y sí se puede nombrar: es dato abierto publicado.
+NETWORK_ATTRIBUTION = 'GTFS-Realtime de TRANSMILENIO S.A., datos abiertos'
 BOGOTA = ZoneInfo('America/Bogota')
 CACHE_TTL = 15.0
 MIN_INTERVAL = 2.0
-# Instantánea de toda la red, de otro servicio: el planificador que la app incorpora en su sección
-# de viajes. Responde por recuadro geográfico y devuelve exactamente el máximo que se le pida, así
-# que un resultado del tamaño del tope significa que truncó y hay que repartirlo en cuadrantes.
-BOGOTA_BBOX = {'llLat': 4.45, 'llLon': -74.25, 'urLat': 4.85, 'urLon': -73.99}
-MAX_JOURNEYS = 1000
-TRUNK_OPERATORS = ('Transmilenio-Troncal', 'Transmilenio-Dual')
-NETWORK_TTL = 45.0
 # El tablero de una estación cambia minuto a minuto; 25 s lo mantiene fresco sin repetir la
 # consulta cada vez que se vuelve a dibujar la ficha. Doce salidas cubren de sobra lo que cabe
 # en el panel.
@@ -110,14 +110,6 @@ def normalise(entry, origin, now):
         'reported_age_s': reported_age(entry.get('lasttime'), now),
     }
 
-def quadrants(box):
-    """The box split in four. Each vehicle is one point, so it falls in exactly one piece."""
-    mid_lat = (box['llLat'] + box['urLat']) / 2
-    mid_lon = (box['llLon'] + box['urLon']) / 2
-    return [{'llLat': lower, 'llLon': left, 'urLat': upper, 'urLon': right}
-            for lower, upper in ((box['llLat'], mid_lat), (mid_lat, box['urLat']))
-            for left, right in ((box['llLon'], mid_lon), (mid_lon, box['urLon']))]
-
 class LiveBuses:
     """Ask the configured service for one route at a time, cached and rate limited."""
 
@@ -128,8 +120,6 @@ class LiveBuses:
         self.last_call = 0.0
         self._catalogue = None
         self._stations = None
-        self.network_lock = threading.Lock()
-        self.network_cache = None
         self.board_lock = threading.Lock()
         self.boards = {}
 
@@ -157,10 +147,14 @@ class LiveBuses:
         s = self.settings()
         return bool(s.get('appid') and s.get('buses_url'))
 
-    def status(self):
+    def status(self, network_ready=False):
+        """Qué puede responder este servidor. La red y el seguimiento por servicio son independientes:
+        la primera sale de datos abiertos y la segunda de la configuración local, así que la página
+        tiene que poder ofrecer una sin la otra."""
         codes, _ = self.catalogue()
-        return {'available': True, 'configured': self.configured(), 'codes': codes,
-                'interval_s': 20, 'attribution': ATTRIBUTION}
+        return {'available': True, 'configured': self.configured(), 'network': bool(network_ready),
+                'codes': codes, 'interval_s': 20, 'attribution': ATTRIBUTION,
+                'network_attribution': NETWORK_ATTRIBUTION}
 
     def buses(self, code):
         """(status, payload) for one route code. Status is ok, unknown_route, not_configured or upstream."""
@@ -203,75 +197,6 @@ class LiveBuses:
                       'discarded': len(raw) - len(buses)}
             self.cache[code] = cached
             return 'ok', self.payload(code, cached)
-
-    def network(self):
-        """(status, payload) with every trunk and dual vehicle the planner places right now.
-
-        One request covers Bogotá. If it comes back exactly at the cap it truncated, so the box is
-        split into quadrants and the pieces are merged by journey reference. Zonal and feeder
-        vehicles are dropped here: the simulator does not model them.
-        """
-        _, origin = self.catalogue()
-        cached = self.network_cache
-        if cached and time.time() - cached['fetched'] < NETWORK_TTL:
-            return 'ok', self.network_payload(cached)
-        with self.network_lock:
-            cached = self.network_cache
-            if cached and time.time() - cached['fetched'] < NETWORK_TTL:
-                return 'ok', self.network_payload(cached)
-            try:
-                raw = self.journeys(BOGOTA_BBOX)
-                truncated = len(raw) >= MAX_JOURNEYS
-                boxes = 1
-                if truncated:
-                    # Un cuadrante que vuelva a venir en el tope sigue truncando, y se dice.
-                    merged, truncated = {}, False
-                    for box in quadrants(BOGOTA_BBOX):
-                        piece = self.journeys(box)
-                        truncated = truncated or len(piece) >= MAX_JOURNEYS
-                        for journey in piece:
-                            merged[journey.get('journeyDetailRef') or repr(journey)] = journey
-                        boxes += 1
-                    raw = list(merged.values())
-            except urllib.error.HTTPError as error:
-                return 'upstream', {'detail': f'El planificador respondió {error.code}.', 'code': error.code}
-            except (urllib.error.URLError, TimeoutError, ValueError, OSError) as error:
-                return 'upstream', {'detail': f'No se pudo consultar el planificador: {error}', 'code': None}
-            now = datetime.now(BOGOTA)
-            vehicles = [v for v in (self.vehicle(j, origin) for j in raw if j.get('operator') in TRUNK_OPERATORS) if v]
-            cached = {'fetched': time.time(), 'queried_at': now.isoformat(timespec='seconds'),
-                      'vehicles': vehicles, 'seen': len(raw), 'boxes': boxes, 'truncated': truncated}
-            self.network_cache = cached
-            return 'ok', self.network_payload(cached)
-
-    def journeys(self, box):
-        body = {**box, 'maxJny': str(MAX_JOURNEYS), 'positionMode': 'CALC_REPORT'}
-        settings = self.settings()
-        url = settings.get('planner_positions_url')
-        if not url:
-            raise ValueError('Falta la dirección del servicio en la configuración local.')
-        headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
-        if settings.get('planner_origin'):
-            headers['Origin'] = settings['planner_origin']
-        request = urllib.request.Request(url, data=json.dumps(body).encode(), method='POST', headers=headers)
-        with urllib.request.urlopen(request, timeout=40) as response:
-            payload = json.loads(response.read(40_000_000))
-        return payload.get('data') or []
-
-    def vehicle(self, journey, origin):
-        """One planner vehicle, without the timetable it carries: the page only draws the position."""
-        try:
-            lon, lat = float(journey['lon']), float(journey['lat'])
-        except (KeyError, TypeError, ValueError):
-            return None
-        if not (-75.5 < lon < -73 and 3.5 < lat < 5.5):
-            return None
-        x, y = aeqd(lon, lat, origin)
-        stops = journey.get('stops') or []
-        return {'id': journey.get('journeyDetailRef') or '', 'line': str(journey.get('line') or '').strip(),
-                'line_id': journey.get('lineId'), 'operator': journey.get('operator'),
-                'destination': str((stops[-1] if stops else {}).get('name') or '').strip(),
-                'xy': [round(x, 2), round(y, 2)], 'lonlat': [lon, lat]}
 
     def stations(self):
         """Los identificadores de estación del catálogo, para no consultar por uno inventado."""
@@ -361,12 +286,6 @@ class LiveBuses:
         return {'station_id': station_id, 'name': self.stations().get(station_id, ''),
                 'queried_at': cached['queried_at'], 'age_s': round(time.time() - cached['fetched'], 1),
                 'departures': departures, 'attribution': ATTRIBUTION}
-
-    def network_payload(self, cached):
-        return {'queried_at': cached['queried_at'], 'age_s': round(time.time() - cached['fetched'], 1),
-                'vehicles': cached['vehicles'], 'seen': cached['seen'], 'boxes': cached['boxes'],
-                'truncated': cached['truncated'], 'cap': MAX_JOURNEYS,
-                'attribution': ATTRIBUTION}
 
     def request(self, code):
         settings = self.settings()

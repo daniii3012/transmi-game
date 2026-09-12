@@ -19,6 +19,12 @@ Las consultas de estaciones y trazados usan las capas 2 y 5 de [Consulta Planifi
 
 ## Fuentes identificadas que necesitan trabajo adicional
 
+> **Actualización del 12/09/2026.** El GTFS sí está resuelto: TRANSMILENIO lo publica, junto con un
+> alimentador GTFS-Realtime, en `gtfs.transmilenio.gov.co`. Ver [Horario publicado](HORARIO_GTFS_20260912.md),
+> [Captura del alimentador en vivo](CAPTURA_RT_20260912.md) y, para las direcciones muertas que
+> siguen citándose por ahí, [Endpoints de legado](ENDPOINTS_LEGADO_20260912.md). El párrafo que sigue
+> conserva lo que se sabía el 8 de septiembre.
+
 - [GTFS SITP](https://datosabiertos.bogota.gov.co/en/dataset/especificacion-gtfs-general-transport-feed-specification-sitp): localizado. La ficha antigua indica fecha del dato 2022-01-24 y CC BY-SA 4.0. El [endpoint probado](https://gis.transmilenio.gov.co/gtfs/) devolvió HTTP 500. No se descargó ni validó un paquete vigente. El catálogo nuevo y el [portal de datos de TransMilenio](https://datosabiertos-transmilenio.hub.arcgis.com/) son las siguientes vías de búsqueda.
 - [Mapa digital de TransMilenio](https://mapadigital.transmilenio.gov.co/): referencia visual oficial de servicios. No se completó aún una auditoría interactiva de cada ruta y parada.
 - [Mapas Bogotá](https://mapas.bogota.gov.co/) y [Mapas Bogotá 3D](https://mapas.bogota.gov.co/3d/): orientación y comparación visual. Se examinó la configuración pública del visor 3D, que construye volumen por extrusión. Esto no acredita disponibilidad de fachadas fotorealistas ni de un paquete de modelos terminado.

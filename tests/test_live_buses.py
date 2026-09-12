@@ -56,30 +56,6 @@ class ParsingTests(unittest.TestCase):
         self.assertIsNone(reported_age('a las once', midnight))
         self.assertIsNone(reported_age(None, midnight))
 
-class NetworkTests(unittest.TestCase):
-    def test_the_quadrants_tile_the_box_without_gaps_or_overlap(self):
-        box = {'llLat': 4.0, 'llLon': -74.0, 'urLat': 5.0, 'urLon': -73.0}
-        pieces = live_buses.quadrants(box)
-        self.assertEqual(len(pieces), 4)
-        area = sum((p['urLat'] - p['llLat']) * (p['urLon'] - p['llLon']) for p in pieces)
-        self.assertAlmostEqual(area, (box['urLat'] - box['llLat']) * (box['urLon'] - box['llLon']))
-        for corner in [(4.0, -74.0), (5.0, -73.0), (4.5, -73.5), (4.9, -73.1)]:
-            inside = [p for p in pieces if p['llLat'] <= corner[0] <= p['urLat'] and p['llLon'] <= corner[1] <= p['urLon']]
-            self.assertTrue(inside, f'{corner} quedó fuera de todos los cuadrantes')
-
-    def test_a_planner_vehicle_keeps_its_line_and_drops_its_timetable(self):
-        live = LiveBuses()
-        journey = {'lat': 4.628316797400941, 'lon': -74.06853068345309, 'line': '5', 'lineId': '12841',
-                   'operator': 'Transmilenio-Troncal', 'journeyDetailRef': 'ref',
-                   'stops': [{'name': 'Portal Américas T4'}, {'name': 'Av. Jiménez C - 2 ó 5-T'}]}
-        vehicle = live.vehicle(journey, ORIGIN)
-        self.assertEqual(vehicle['line'], '5')
-        self.assertEqual(vehicle['destination'], 'Av. Jiménez C - 2 ó 5-T')
-        self.assertNotIn('stops', vehicle)
-        self.assertAlmostEqual(vehicle['xy'][0], 7486.32, places=1)
-        self.assertIsNone(live.vehicle({'lat': 40.4, 'lon': -3.7}, ORIGIN))
-        self.assertIsNone(live.vehicle({}, ORIGIN))
-
 class GuardTests(unittest.TestCase):
     def setUp(self):
         self.live = LiveBuses()

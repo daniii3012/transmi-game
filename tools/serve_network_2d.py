@@ -1,8 +1,10 @@
 """Serve only public simulator assets: loopback by default, optional explicit LAN.
 
 It also answers /api/en-vivo, the only dynamic part of the simulator: a published page cannot make
-those readings itself. That extra exists only while this server runs and only when the local
-configuration is present; what gets published is static, and the panel says so there.
+those readings itself, because the feed it would need answers with an origin no browser accepts.
+That extra exists only while this server runs; what gets published is static, and the panel says so
+there. The network-wide snapshot comes from open data and needs no local configuration; following a
+single service does need it, and says so when it is missing.
 """
 import argparse
 import functools
@@ -16,10 +18,12 @@ import webbrowser
 from pathlib import Path
 
 from live_buses import LiveBuses
+from live_network import LiveNetwork
 
 ROOT = Path(__file__).resolve().parents[1]
 DIRECTORY = ROOT / 'app/dist'
 LIVE = LiveBuses()
+NETWORK = LiveNetwork()
 
 class LocalHandler(http.server.SimpleHTTPRequestHandler):
     def end_headers(self):
@@ -40,9 +44,11 @@ class LocalHandler(http.server.SimpleHTTPRequestHandler):
         query = urllib.parse.parse_qs(url.query)
         try:
             if url.path == '/api/en-vivo/estado':
-                return self.json(200, LIVE.status())
+                return self.json(200, LIVE.status(NETWORK.ready()))
             if url.path == '/api/en-vivo/red':
-                state, payload = LIVE.network()
+                # La instantánea de toda la red sale del alimentador abierto: no necesita la
+                # configuración local, así que responde aunque esa no exista.
+                state, payload = NETWORK.snapshot()
             elif url.path == '/api/en-vivo/buses':
                 code = (query.get('ruta') or [''])[0].strip().upper()[:8]
                 state, payload = LIVE.buses(code)
@@ -61,6 +67,8 @@ class LocalHandler(http.server.SimpleHTTPRequestHandler):
             return self.json(404, {'error': state, 'detail': 'Esta estación no tiene tablero publicado.'})
         if state == 'not_configured':
             return self.json(503, {'error': state, 'detail': 'Falta la configuración local del servicio.'})
+        if state == 'unavailable':
+            return self.json(503, {'error': state, **payload})
         return self.json(502, {'error': 'upstream', **payload})
 
     def json(self, status, payload):

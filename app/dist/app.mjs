@@ -1,8 +1,8 @@
-import {NetworkMap} from './map.mjs?v=20260912.12';
-import {DAY,addDays,dayType,dateNumber,dateEligible,validityState,serviceWindows,demandPeriod} from './calendar.mjs?v=20260912.12';
-import {DEFAULTS,parameters} from './operation.mjs?v=20260912.12';
-import {registerSimulationTools} from './webmcp.mjs?v=20260912.12';
-import {LiveFeed,groupByDestination,occupancyText,ageText,sameName} from './live.mjs?v=20260912.12';
+import {NetworkMap} from './map.mjs?v=20260912.13';
+import {DAY,addDays,dayType,dateNumber,dateEligible,validityState,serviceWindows,demandPeriod} from './calendar.mjs?v=20260912.13';
+import {DEFAULTS,parameters} from './operation.mjs?v=20260912.13';
+import {registerSimulationTools} from './webmcp.mjs?v=20260912.13';
+import {LiveFeed,groupByDestination,occupancyText,ageText,sameName} from './live.mjs?v=20260912.13';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const el=(tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;};
 const fmt=n=>Math.round(n).toLocaleString('es-CO');
@@ -46,11 +46,11 @@ try{
  let theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';try{theme=localStorage.getItem('transmi-theme')||theme;}catch{}
  function applyTheme(){document.body.dataset.theme=theme;map.setTheme(theme);$('#theme').textContent=theme==='dark'?'☀':'☾';$('#theme').setAttribute('aria-label',theme==='dark'?'Usar modo claro':'Usar modo oscuro');}applyTheme();
  $('#theme').onclick=()=>{theme=theme==='dark'?'light':'dark';applyTheme();try{localStorage.setItem('transmi-theme',theme);}catch{}};
- let worker=new Worker('./worker.mjs?v=20260912.12',{type:'module'});
+ let worker=new Worker('./worker.mjs?v=20260912.13',{type:'module'});
  function badge(r){const b=el('span',r.code,'route-code');b.style.setProperty('--route',r.color);const rgb=r.color.match(/[0-9a-f]{2}/gi)?.map(s=>parseInt(s,16));if(rgb?.length===3&&rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722>155)b.style.setProperty('--route-ink','#24303f');return b;}
  function row(label,value,parent=$('#selection')){const r=el('div',undefined,'metric-row');r.append(el('span',label),el('strong',value));parent.append(r);return r;}
  function rebuild({fit=false,clear=true}={}){
-  planSequence++;$('#plan-journey').disabled=true;$('#journey-results').replaceChildren(el('p','Elige origen, destino y fecha para buscar conexiones.','muted'));generation++;const messageHandler=worker.onmessage,errorHandler=worker.onerror;worker.terminate();worker=new Worker('./worker.mjs?v=20260912.12',{type:'module'});worker.onmessage=messageHandler;worker.onerror=errorHandler;ready=false;pendingSample=false;sampleSequence=0;$('#loading').hidden=false;$('#loading').textContent='Calculando despachos y estaciones…';$('#error').hidden=true;
+  planSequence++;$('#plan-journey').disabled=true;$('#journey-results').replaceChildren(el('p','Elige origen, destino y fecha para buscar conexiones.','muted'));generation++;const messageHandler=worker.onmessage,errorHandler=worker.onerror;worker.terminate();worker=new Worker('./worker.mjs?v=20260912.13',{type:'module'});worker.onmessage=messageHandler;worker.onerror=errorHandler;ready=false;pendingSample=false;sampleSequence=0;$('#loading').hidden=false;$('#loading').textContent='Calculando despachos y estaciones…';$('#error').hidden=true;
   if(clear)clearSelection();
   map.routeSet=new Set(data.routes.filter(r=>r.ready&&(config.selection.mode==='all'||config.selection.mode==='route'&&r.id===config.selection.route||config.selection.mode==='zones'&&config.selection.zones.some(z=>r.served_zones.includes(z)||r.zone===z))).map(r=>r.id));map.rebuildHighlight();map.signalsEnabled=config.params.signals;
   worker.postMessage({type:'init',generation,data,config,time:clock.time});syncControls();renderRoutes();
@@ -159,7 +159,11 @@ try{
  // "Portal Américas T5" la plataforma 5 de un portal. El terminal se prueba primero porque "T5"
  // también se leería como vagón T con puerta 5. Lo que no encaje se muestra tal cual llega.
  const TERMINAL=/(?:^|\s)T\s*(\d+)\s*([A-Z]?)\s*\.?$/,VAGON=/(?:^|\s)([A-Z])\s*-?\s*(\d+(?:\s*ó\s*\d+)*)\s*(?:-\s*[A-Z])?\s*(?:I+\s*)?\.?$/;
- function boardingPoint(text){
+ // Nombre propio, y no boardingPoint: hay otra con ese nombre en el ámbito del módulo que recibe
+ // una visita y no un texto. Declararlas iguales tapaba a aquella en todo este bloque, así que la
+ // ficha de un bus y las llegadas de una estación le pasaban un objeto a esta y reventaban en cada
+ // fotograma, congelando el mapa entero.
+ function boardingPointFromBoard(text){
   const limpio=(text||'').trim();if(!limpio)return '';
   const terminal=limpio.match(TERMINAL);
   if(terminal)return 'Plataforma T'+terminal[1]+terminal[2];
@@ -200,7 +204,7 @@ try{
    const fila=el('button',undefined,'route-row');
    fila.append(badge({code:salida.line,color:colorByCode.get(salida.line)||'#8b98a8'}));
    const texto=el('div',undefined,'route-text');
-   const punto=boardingPoint(salida.stop);
+   const punto=boardingPointFromBoard(salida.stop);
    texto.append(el('strong',salida.destination||'Sin destino publicado'),
     el('small',`${salida.time}${punto?' · '+punto:''}${conocido?'':' · fuera del catálogo'}`));
    fila.append(texto,el('span',salida.in_min<=0?'Ahora':salida.in_min+' min','value'));

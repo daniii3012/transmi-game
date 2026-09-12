@@ -206,3 +206,24 @@ test('Con tiempos publicados el recorrido dura lo programado; sin ellos se queda
  assert.ok(parameters({}).programmedRunning);
  assert.throws(()=>parameters({programmedRunning:1}));
 });
+
+// --- La ficha de un bus no puede depender de qué función gane un nombre repetido ---------------
+test('app.mjs no declara dos veces un mismo nombre de función en ámbitos que se tapan',()=>{
+ // Una declaración dentro del bloque principal tapa a la del módulo en todo ese bloque, y el
+ // error no aparece al cargar sino al pintar: la ficha de un bus quedaba a medias, sin sus
+ // botones, y la excepción se repetía en cada fotograma dejando el mapa congelado.
+ const fuente=fs.readFileSync(new URL('../dist/app.mjs',import.meta.url),'utf8').split('\n');
+ const nivel=[],vistos=new Map();
+ let profundidad=0;
+ for(const linea of fuente){
+  const nombre=linea.match(/^\s*function\s+([A-Za-z_$][\w$]*)\s*\(/);
+  if(nombre){
+   const previo=vistos.get(nombre[1]);
+   assert.ok(previo===undefined||previo===profundidad,
+    `La función ${nombre[1]} se declara en dos ámbitos anidados: la interior tapa a la exterior.`);
+   vistos.set(nombre[1],profundidad);
+  }
+  profundidad+=(linea.match(/\{/g)||[]).length-(linea.match(/\}/g)||[]).length;
+ }
+ assert.ok(vistos.size>20,'el recorrido no encontró funciones: la prueba no estaría comprobando nada');
+});

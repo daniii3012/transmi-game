@@ -14,9 +14,6 @@ name: Publicar simulador en Pages
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths: ['app/dist/**', '.github/workflows/pages.yml']
 
 permissions:
   contents: read

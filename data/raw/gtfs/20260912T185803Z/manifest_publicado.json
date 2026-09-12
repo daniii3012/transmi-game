@@ -1,0 +1,47 @@
+{
+  "manifest_version": "1.0",
+  "generated_at": "2026-09-12T04:19:12.260515-05:00",
+  "dataset": "tmsa-gtfs",
+  "files": [
+    {
+      "icon": "\ud83d\udce6",
+      "badge": "ZIP",
+      "class": "badge-zip",
+      "frequency": "Diariamente",
+      "file_name": "GTFS.zip",
+      "size_bytes": 121251822,
+      "last_modified": "2026-09-12T04:19:10.594000-05:00",
+      "url": "https://gtfs.transmilenio.gov.co/GTFS.zip"
+    },
+    {
+      "icon": "\ud83d\udccd",
+      "badge": "PB",
+      "class": "badge-pb",
+      "frequency": "Cada 15 segundos",
+      "file_name": "alerts.pb",
+      "size_bytes": 90756,
+      "last_modified": "2026-09-12T04:19:07.472000-05:00",
+      "url": "https://gtfs.transmilenio.gov.co/alerts.pb"
+    },
+    {
+      "icon": "\ud83d\udccd",
+      "badge": "PB",
+      "class": "badge-pb",
+      "frequency": "Cada 15 segundos",
+      "file_name": "positions.pb",
+      "size_bytes": 193134,
+      "last_modified": "2026-09-12T04:19:07.740000-05:00",
+      "url": "https://gtfs.transmilenio.gov.co/positions.pb"
+    },
+    {
+      "icon": "\ud83d\udccd",
+      "badge": "PB",
+      "class": "badge-pb",
+      "frequency": "Cada 15 segundos",
+      "file_name": "tripupdates.pb",
+      "size_bytes": 173977,
+      "last_modified": "2026-09-12T04:19:07.863000-05:00",
+      "url": "https://gtfs.transmilenio.gov.co/tripupdates.pb"
+    }
+  ]
+}

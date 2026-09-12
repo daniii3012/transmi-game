@@ -1,0 +1,53 @@
+{
+  "generated_at_utc": "2026-09-12T18:58:20.193996+00:00",
+  "scope": {
+    "agency_ids": [
+      "1",
+      "6"
+    ],
+    "meaning": "Troncal y Dual; el paquete trae siete agencias"
+  },
+  "sources": [
+    {
+      "url": "https://gtfs.transmilenio.gov.co/GTFS.zip",
+      "retrieved_at_utc": "2026-09-12T18:58:03.702556+00:00",
+      "published_header": null,
+      "sha256": "43c0c82de709e8bd1e3c6a170084ee696e5283553bb38b1235fe59551586a14d",
+      "bytes": 121251822,
+      "reused_archive": "/Users/daniel/Documents/Codex/2026-09-08/ho/outputs/BogotaTransmi/data/raw/gtfs/GTFS_20260912T184722Z.zip"
+    },
+    {
+      "url": "https://gtfs.transmilenio.gov.co/manifest.json",
+      "retrieved_at_utc": "2026-09-12T18:58:04.080506+00:00",
+      "sha256": "965738e931bcbed07c42778c883ee6498522b8277dae9cfafdbd7437f6fcaf8b",
+      "bytes": 1369
+    }
+  ],
+  "package_contents_bytes": {
+    "calendar_dates.txt": 1760,
+    "routes.txt": 60155,
+    "feed_info.txt": 216,
+    "stops.txt": 648102,
+    "trips.txt": 6041018,
+    "agency.txt": 1094,
+    "calendar.txt": 326,
+    "shapes.txt": 44722733,
+    "frequencies.txt": 541,
+    "fare_attributes.txt": 102,
+    "stop_times.txt": 580179936
+  },
+  "feed_info": {
+    "feed_publisher_name": "Transmilenio S.A.",
+    "feed_start_date": "20260101",
+    "feed_version": "1",
+    "feed_end_date": "20261231",
+    "feed_lang": "es",
+    "feed_publisher_url": "https://www.transmilenio.gov.co/",
+    "feed_contact_email": "radicacion@transmilenio.gov.co"
+  },
+  "trips": 45614,
+  "segments": 2454,
+  "archive_kept_at": "data/raw/gtfs/GTFS_20260912T184722Z.zip",
+  "archive_versioned": false,
+  "note": "departure_s y arrival_s son segundos tras la medianoche del día de servicio y pueden pasar de 86400. metres sale de shape_dist_traveled, comprobado en metros para este paquete; no suponerlo para otros. El tiempo de cada tramo lleva dentro la atención en estación: el feed da llegada y salida iguales en todas las paradas."
+}

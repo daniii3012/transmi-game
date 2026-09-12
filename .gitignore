@@ -14,3 +14,12 @@ __pycache__/
 
 # Credencial de un servicio de terceros: se toma de la propia captura, no se publica.
 tools/en_vivo.local.json
+
+# El paquete GTFS se vuelve a publicar a diario y pesa 121 MB: se guarda el manifiesto con su
+# SHA-256 y las tablas reducidas, no el zip.
+data/raw/gtfs/*.zip
+
+# Las capturas del alimentador en vivo crecen ~50 MB al día. Se versiona el informe que sale de
+# ellas, en data/processed, no las lecturas. Sin anclar a la raíz: si alguien la lanza desde otro
+# directorio, las lecturas siguen quedando fuera.
+**/rt_capture/

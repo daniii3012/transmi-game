@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "snapshot": "20260912T013005Z",
+  "source_url": "https://overpass-api.de/api/interpreter",
+  "queried_at": "2026-09-12T01:30:05.000230+00:00",
+  "bbox": "4.5118,-74.2260,4.7890,-74.0235",
+  "raw_file": "overpass.json",
+  "raw_sha256": "2107157b7eca4581bc85bc2f54b1b4bed3d9f8ae97fbbca48746f9a7bcfee41d",
+  "way_count": 1203,
+  "ways_with_lane_tag": 367,
+  "license": "OpenStreetMap contributors, ODbL 1.0; retrieved through Overpass API"
+}

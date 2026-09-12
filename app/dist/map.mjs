@@ -32,6 +32,7 @@ export class NetworkMap {
     this.wagonBorder=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({color:'#97a8b7',depthTest:false}),3000);this.wagonBorder.renderOrder=3.5;this.wagonBorder.frustumCulled=false;this.scene.add(this.wagonBorder);
     this.wagonMesh=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({color:'#f9fafb',depthTest:false}),3000);this.wagonMesh.renderOrder=4;this.wagonMesh.frustumCulled=false;this.scene.add(this.wagonMesh);
     this.axes=new Map();for(const r of data.routes.filter(r=>r.ready)){const path=new MetricPath(r.points);for(const st of r.stops){const angle=path.sample(st.at_m).angle,sum=this.axes.get(st.station_id)||[0,0];sum[0]+=Math.cos(2*angle);sum[1]+=Math.sin(2*angle);this.axes.set(st.station_id,sum);}}
+    this.buildCarriageways();
     this.buildStationGeometry();
     this.signalsEnabled=true;const signalCount=data.busway_signals?.signals.length||0;
     if(signalCount){this.signalMesh=new THREE.InstancedMesh(new THREE.CircleGeometry(1,12),new THREE.MeshBasicMaterial({depthTest:false}),signalCount);this.signalMesh.frustumCulled=false;this.signalMesh.renderOrder=4.5;this.scene.add(this.signalMesh);}
@@ -71,6 +72,7 @@ export class NetworkMap {
     }
     if(labels)this.updateLabels();this.positionLabels();this.updateMarker();this.updateScale();if(this.stationGroup)this.stationGroup.visible=this.mpp<3;
     if(this.infrastructureGroup)this.infrastructureGroup.visible=this.mpp<8;
+    if(this.carriagewayGroup)this.carriagewayGroup.visible=this.carriagewaysEnabled!==false&&this.mpp<6;
     if(this.lastSimulation)this.updateBuses(this.lastSimulation,'all',true);
   }
   updateLabels(){
@@ -105,6 +107,28 @@ export class NetworkMap {
     const vertices=[],colors=[];for(const r of routes){const color=new THREE.Color(r.color),width=Math.max(4,this.mpp*(focused?5:2.1));for(let i=1;i<r.points.length;i++){const [x,y]=r.points[i-1],[a,b]=r.points[i],len=Math.hypot(a-x,b-y);if(!len)continue;const dx=-(b-y)/len*width/2,dy=(a-x)/len*width/2;vertices.push(x+dx,y+dy,0,x-dx,y-dy,0,a+dx,b+dy,0,a+dx,b+dy,0,x-dx,y-dy,0,a-dx,b-dy,0);for(let j=0;j<6;j++)colors.push(color.r,color.g,color.b);}}
     this.highlight.geometry.dispose();this.highlight.geometry=new THREE.BufferGeometry();this.highlight.geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));this.highlight.geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));this.highlight.material.vertexColors=true;this.highlight.material.color.set('#ffffff');this.highlight.material.needsUpdate=true;
     this.highlight.material.opacity=this.subtleRoute?.32:.95;for(const {mesh} of this.paths)mesh.material.opacity=focused?(this.subtleRoute?.18:.3):.86;
+  }
+  buildCarriageways(){
+    // Actual OSM carriageway, drawn as context under the coloured corridors. Width follows the
+    // published lanes tag where OSM has one; ways without it get a single lane so nothing is
+    // invented. The buses keep following the published route polyline, not this geometry.
+    this.carriagewaysEnabled=true;this.carriagewayGroup=new THREE.Group();this.carriagewayGroup.visible=false;this.scene.add(this.carriagewayGroup);
+    const ways=this.data.busway_lanes?.ways||[];if(!ways.length)return;
+    const exclusive=[],shared=[];
+    for(const way of ways){
+      const width=Math.max(3.5,(way.lanes||1)*3.5),target=way.exclusive?exclusive:shared;
+      for(let i=1;i<way.points.length;i++){
+        const [x,y]=way.points[i-1],[a,b]=way.points[i],len=Math.hypot(a-x,b-y);if(!len)continue;
+        const dx=-(b-y)/len*width/2,dy=(a-x)/len*width/2;
+        target.push(x+dx,y+dy,0, x-dx,y-dy,0, a+dx,b+dy,0, a+dx,b+dy,0, x-dx,y-dy,0, a-dx,b-dy,0);
+      }
+    }
+    for(const [vertices,palette] of [[exclusive,['#c3ccd4','#2f4152']],[shared,['#d7dde2','#293747']]]){
+      if(!vertices.length)continue;
+      const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
+      const mesh=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({color:palette[0],depthTest:false,transparent:true,opacity:.9}));
+      mesh.renderOrder=.6;mesh.userData.palette=palette;this.carriagewayGroup.add(mesh);
+    }
   }
   buildStationGeometry(){
     this.stationGroup=new THREE.Group();this.scene.add(this.stationGroup);this.layoutIds=new Set();
@@ -189,7 +213,7 @@ export class NetworkMap {
     for(const s of this.data.busway_signals.signals){this.object.position.set(...s.xy,0);this.object.rotation.z=0;this.object.scale.setScalar(Math.max(2,this.mpp*3));this.object.updateMatrix();this.signalMesh.setMatrixAt(i,this.object.matrix);color.set({green:'#269765',amber:'#e8a41b',red:'#e8394b'}[signalPhase(s.id,time||0).color]);this.signalMesh.setColorAt(i++,color);}
     this.signalMesh.instanceMatrix.needsUpdate=true;this.signalMesh.instanceColor.needsUpdate=true;
   }
-  setTheme(theme){this.dark=theme==='dark';this.renderer.setClearColor(this.dark?'#18212b':'#edf1f4');const colors=this.dark?['#233b35','#233d50','#2b3947','#35596c','#607383']:['#d4e3d8','#c5dce8','#ffffff','#b6d5e4','#c1cbd5'];for(const [i,mesh] of (this.contextMeshes||[]).entries())mesh.material.color.set(colors[i]);this.stopInner.material.color.set(this.dark?'#293746':'#ffffff');this.wagonMesh.material.color.set(this.dark?'#637383':'#f9fafb');for(const mesh of this.stationGroup.children)mesh.material.color.set(mesh.userData.palette[this.dark?1:0]);}
+  setTheme(theme){this.dark=theme==='dark';this.renderer.setClearColor(this.dark?'#18212b':'#edf1f4');const colors=this.dark?['#233b35','#233d50','#2b3947','#35596c','#607383']:['#d4e3d8','#c5dce8','#ffffff','#b6d5e4','#c1cbd5'];for(const [i,mesh] of (this.contextMeshes||[]).entries())mesh.material.color.set(colors[i]);this.stopInner.material.color.set(this.dark?'#293746':'#ffffff');this.wagonMesh.material.color.set(this.dark?'#637383':'#f9fafb');for(const mesh of this.stationGroup.children)mesh.material.color.set(mesh.userData.palette[this.dark?1:0]);for(const mesh of (this.carriagewayGroup?.children||[]))mesh.material.color.set(mesh.userData.palette[this.dark?1:0]);}
   render(){this.renderer.render(this.scene,this.camera);}
 
 }

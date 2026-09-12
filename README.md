@@ -28,6 +28,7 @@ El botón **Ahora** usa fecha/hora de Bogotá. El botón de luna/sol cambia el t
 - Flota reutilizable en terminales, cálculo en un trabajador separado y agrupación visual al alejarse, conservando los buses del modelo.
 - Geometría física OSM para 40 estaciones: los nueve portales, Banderas, Ricaurte, Avenida Jiménez y las 28 troncales con más servicios. Las cubiertas, plataformas, puntos de parada y vías internas se representan según la evidencia disponible; otras estaciones mantienen andenes esquemáticos.
 - Troncales coloreadas permanentemente y corredores de calle grises punteados; el recorrido exacto se destaca al seleccionar una ruta o bus.
+- Calzada real de TransMilenio según OpenStreetMap, con el número de carriles publicado donde existe. Aparece al acercarse y se apaga desde el mapa.
 - Semáforos corroborados por pertenencia directa a vías de buses en OSM, con frenado y espera ante rojo/amarillo. Ciclo estimado de 90 s, desactivable en Operación.
 - Planificador con calendarios publicados y tiempos aproximados; resalta únicamente los tramos que se toman.
 - Colores publicados, calles/parques/agua de OpenStreetMap y marcas de puentes/túneles con etiquetas explícitas. Los cruces de líneas no crean giros o conexiones.

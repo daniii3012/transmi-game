@@ -55,6 +55,7 @@ los `build_*` escriben ambas.
 | Contexto urbano: vías, parques, agua | OpenStreetMap / Overpass | (consulta registrada en `data/raw/context`) | `build_context.py` | `app/dist/context.json` |
 | Geometría física de estaciones y portales | OpenStreetMap API 0.6 y Overpass | `fetch_station_layouts.py` | `build_station_layouts.py` | `app/dist/station_layouts.json` |
 | Semáforos en calzada de buses | OpenStreetMap API 0.6 | `fetch_busway_signals.py` | `build_busway_signals.py` | `app/dist/busway_signals.json` |
+| Calzada y carriles de TransMilenio | OpenStreetMap / Overpass | `fetch_busway_lanes.py` | `build_busway_lanes.py` | `app/dist/busway_lanes.json` |
 | Demanda de pasajeros | Validaciones diarias SITP, Datos Abiertos Bogotá | descarga manual del ZIP | `aggregate_validations.py` y luego `import_passenger_profiles.py` | `app/dist/demand.json` |
 | Three.js | npm oficial, versión fijada | `vendor_three.py` | — | `app/dist/vendor/` |
 

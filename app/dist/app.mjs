@@ -296,7 +296,7 @@ try{
  function switchPanel(name){if(name==='planner'||activePanel==='planner'&&selection?.kind==='journey')clearSelection();activePanel=name;$$('[data-panel]').forEach(b=>b.classList.toggle('nav-active',b.dataset.panel===name));$$('.panel').forEach(p=>p.hidden=p.id!==name+'-panel');$('#sidebar').scrollTop=0;if(name==='depots'&&ready)worker.postMessage({type:'depots',generation});syncLive();}
  // Buses reales. Es la única parte que sale a la red y a un tercero: vive en su pestaña, se apaga
  // al salir de ella o al ocultar la ventana, y no toca el escenario, el reloj ni el planificador.
- const live=new LiveFeed({onState:renderLive});let liveFitted=null,liveScope='network',liveUsable=false;
+ const live=new LiveFeed({onState:renderLive});let liveFitted=null,liveScope='network',liveUsable=false,livePerService=false;
  const liveNetwork=new LiveFeed({onState:state=>{ultimaRed=state;renderLiveNetwork(state);},url:()=>'./api/en-vivo/red'});
  // Identificadores que la vista por servicio ya dibuja, y el último estado de la red, para poder
  // repintarla sin volver a pedirla cuando cambia lo que está en foco.
@@ -317,7 +317,7 @@ try{
   // La instantánea de la red acompaña a las dos vistas: en «Por servicio» queda detrás, atenuada.
   liveNetwork.setCadence(liveScope==='route'?60000:20000);
   liveNetwork.setActive(awake);
-  live.setActive(awake&&liveScope==='route');
+  live.setActive(awake&&liveScope==='route'&&livePerService);
   map.setSimulationVisible(!inLive);
   scenarioControls(!inLive);
   // Los indicadores del escenario no hablan de los buses reales, así que en esta pestaña ceden el
@@ -336,7 +336,11 @@ try{
   if(!inLive){$('#live-count').textContent='—';$('#live-stopped').textContent='—';}
   $('#live-network').hidden=liveScope!=='network';
   $('#live-route-block').hidden=liveScope!=='route';
-  $$('[data-live-scope]').forEach(b=>b.classList.toggle('active',b.dataset.liveScope===liveScope));
+  $$('[data-live-scope]').forEach(b=>{b.classList.toggle('active',b.dataset.liveScope===liveScope);
+   // Sin configuración local no hay lectura por servicio: el botón se desactiva en vez de llevar
+   // a una vista que no puede responder.
+   if(b.dataset.liveScope==='route')b.disabled=!livePerService;});
+  if(liveScope==='route'&&!livePerService)$('#live-status').textContent='Esta vista necesita la configuración local del servicio.';
   // Fuera de la pestaña no queda ningún bus real dibujado, así que su ficha tampoco se sostiene.
   // Con una estación abierta, entrar o salir de la pestaña cambia de qué fuente se responde: el
   // tablero del operador dentro, la estimación del escenario fuera.
@@ -386,8 +390,11 @@ try{
  const liveRoutes=code=>data.routes.filter(r=>r.code===code&&r.ready);
  async function setUpLive(){
   const status=await live.probe();
-  const usable=!!status.available&&!!status.configured;
-  liveUsable=usable;
+  // La vista de toda la red sale de datos abiertos y la de un servicio de la configuración local:
+  // condicionar la pestaña entera a la segunda escondería una que sí funciona.
+  const porServicio=!!status.configured;
+  const usable=!!status.available&&(!!status.network||porServicio);
+  liveUsable=usable;livePerService=porServicio;
   $('#live-unavailable').hidden=usable;$('#live-controls').hidden=!usable;
   syncLive();
   if(!usable)return;

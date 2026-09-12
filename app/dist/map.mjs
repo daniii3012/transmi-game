@@ -1,5 +1,5 @@
-import {MetricPath} from './simulation.mjs?v=20260911.6';
-import {signalPhase} from './signals.mjs?v=20260911.6';
+import {MetricPath} from './simulation.mjs?v=20260911.7';
+import {signalPhase} from './signals.mjs?v=20260911.7';
 import * as THREE from './vendor/three.module.js';
 
 export class NetworkMap {
@@ -106,7 +106,7 @@ export class NetworkMap {
     const routes=this.journey||(this.routeId?this.data.routes.filter(r=>r.id===this.routeId&&r.ready):[]),focused=!!this.routeId||!!this.journey?.length;
     const vertices=[],colors=[];for(const r of routes){const color=new THREE.Color(r.color),width=Math.max(4,this.mpp*(focused?5:2.1));for(let i=1;i<r.points.length;i++){const [x,y]=r.points[i-1],[a,b]=r.points[i],len=Math.hypot(a-x,b-y);if(!len)continue;const dx=-(b-y)/len*width/2,dy=(a-x)/len*width/2;vertices.push(x+dx,y+dy,0,x-dx,y-dy,0,a+dx,b+dy,0,a+dx,b+dy,0,x-dx,y-dy,0,a-dx,b-dy,0);for(let j=0;j<6;j++)colors.push(color.r,color.g,color.b);}}
     this.highlight.geometry.dispose();this.highlight.geometry=new THREE.BufferGeometry();this.highlight.geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));this.highlight.geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));this.highlight.material.vertexColors=true;this.highlight.material.color.set('#ffffff');this.highlight.material.needsUpdate=true;
-    this.highlight.material.opacity=this.subtleRoute?.32:.95;for(const {mesh} of this.paths)mesh.material.opacity=focused?(this.subtleRoute?.18:.3):.86;
+    this.highlight.material.opacity=this.subtleRoute?.62:.98;for(const {mesh} of this.paths)mesh.material.opacity=focused?(this.subtleRoute?.24:.3):.86;
   }
   buildCarriageways(){
     // Actual OSM carriageway, drawn as context under the coloured corridors. Width follows the

@@ -1,7 +1,7 @@
-import {NetworkMap} from './map.mjs?v=20260911.6';
-import {DAY,addDays,dayType,dateNumber,dateEligible,validityState,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.6';
-import {DEFAULTS,parameters} from './operation.mjs?v=20260911.6';
-import {registerSimulationTools} from './webmcp.mjs?v=20260911.6';
+import {NetworkMap} from './map.mjs?v=20260911.7';
+import {DAY,addDays,dayType,dateNumber,dateEligible,validityState,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.7';
+import {DEFAULTS,parameters} from './operation.mjs?v=20260911.7';
+import {registerSimulationTools} from './webmcp.mjs?v=20260911.7';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const el=(tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;};
 const fmt=n=>Math.round(n).toLocaleString('es-CO');
@@ -14,8 +14,17 @@ try{
  if(!response.ok)throw new Error('No se pudieron cargar los servicios locales.');
  const data=await response.json();if(signalsResponse.ok)data.busway_signals=await signalsResponse.json();if(lanesResponse.ok)data.busway_lanes=await lanesResponse.json();if(layoutsResponse.ok)data.station_layouts=await layoutsResponse.json();if(demandResponse.ok){data.demand=await demandResponse.json();const profiles=new Map(data.demand.profiles.map(p=>[p.station_id,p]));for(const s of data.stations){const p=profiles.get(s.id);if(p)s.demand_profile=p;}}const routeById=new Map(data.routes.map(r=>[r.id,r]));
  let saved=null;try{const current=localStorage.getItem('transmi-scenario-v3');saved=JSON.parse(current||localStorage.getItem('transmi-scenario-v2'));if(saved&&!current){const p=saved.config.params;if(p.cruiseKmh===48)p.cruiseKmh=60;if(p.streetKmh===30)p.streetKmh=50;delete p.biarticulatedShare;delete p.biarticulatedCapacity;delete p.biShare;delete p.bioShare;delete p.bioCapacity;delete p.capacity;if(saved.config.selection.route==='10082')saved.config.selection.route='396';}if(saved?.revision!==data.revision)saved=null;}catch{}
- let config={date:data.scenario_date,params:{...DEFAULTS},selection:{mode:'all'}};
- let clock={time:DAY+7*3600,speed:1,paused:false};
+ // Hora civil de Bogotá, independiente del huso del equipo.
+ function bogotaNow(){
+  const parts=new Intl.DateTimeFormat('sv-SE',{timeZone:'America/Bogota',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(new Date());
+  const v=Object.fromEntries(parts.map(p=>[p.type,p.value]));
+  return {date:`${v.year}-${v.month}-${v.day}`,time:DAY+Number(v.hour)*3600+Number(v.minute)*60+Number(v.second)};
+ }
+ // Arranca en la fecha y hora actuales de Bogotá. Los servicios conservan su último horario
+ // publicado aunque la fecha sea posterior a su vigencia, y la interfaz lo rotula.
+ const inicio=bogotaNow();
+ let config={date:inicio.date,params:{...DEFAULTS},selection:{mode:'all'}};
+ let clock={time:inicio.time,speed:1,paused:false};
  if(saved){try{saved.config.params=parameters(saved.config.params);dateNumber(saved.config.date);if(!Number.isFinite(saved.clock.time)||saved.clock.time<DAY||saved.clock.time>=2*DAY||![1,8,32,120].includes(saved.clock.speed))throw Error();if(!['all','route','zones'].includes(saved.config.selection.mode))throw Error();if(saved.config.selection.mode==='route'&&!routeById.get(saved.config.selection.route)?.ready)throw Error();if(saved.config.selection.mode==='zones'&&!saved.config.selection.zones?.length)throw Error();config=saved.config;clock={...clock,...saved.clock,paused:true};}catch{saved=null;}}
  let selection=null,following=false,focusedRoute=null,activePanel='routes',generation=0,ready=false,pendingSample=false,lastUI=0,lastList=0,lastInspect=0,lastSample=0,windows={},snap={buses:[],stats:{}};
  let viewMode=config.selection.mode,scrubbing=false,sampleSequence=0,planSequence=0;
@@ -24,11 +33,11 @@ try{
  let theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';try{theme=localStorage.getItem('transmi-theme')||theme;}catch{}
  function applyTheme(){document.body.dataset.theme=theme;map.setTheme(theme);$('#theme').textContent=theme==='dark'?'☀':'☾';$('#theme').setAttribute('aria-label',theme==='dark'?'Usar modo claro':'Usar modo oscuro');}applyTheme();
  $('#theme').onclick=()=>{theme=theme==='dark'?'light':'dark';applyTheme();try{localStorage.setItem('transmi-theme',theme);}catch{}};
- let worker=new Worker('./worker.mjs?v=20260911.6',{type:'module'});
+ let worker=new Worker('./worker.mjs?v=20260911.7',{type:'module'});
  function badge(r){const b=el('span',r.code,'route-code');b.style.setProperty('--route',r.color);const rgb=r.color.match(/[0-9a-f]{2}/gi)?.map(s=>parseInt(s,16));if(rgb?.length===3&&rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722>155)b.style.setProperty('--route-ink','#24303f');return b;}
  function row(label,value,parent=$('#selection')){const r=el('div',undefined,'metric-row');r.append(el('span',label),el('strong',value));parent.append(r);return r;}
  function rebuild({fit=false,clear=true}={}){
-  planSequence++;$('#plan-journey').disabled=true;$('#journey-results').replaceChildren(el('p','Elige origen, destino y fecha para buscar conexiones.','muted'));generation++;const messageHandler=worker.onmessage,errorHandler=worker.onerror;worker.terminate();worker=new Worker('./worker.mjs?v=20260911.6',{type:'module'});worker.onmessage=messageHandler;worker.onerror=errorHandler;ready=false;pendingSample=false;sampleSequence=0;$('#loading').hidden=false;$('#loading').textContent='Calculando despachos y estaciones…';$('#error').hidden=true;
+  planSequence++;$('#plan-journey').disabled=true;$('#journey-results').replaceChildren(el('p','Elige origen, destino y fecha para buscar conexiones.','muted'));generation++;const messageHandler=worker.onmessage,errorHandler=worker.onerror;worker.terminate();worker=new Worker('./worker.mjs?v=20260911.7',{type:'module'});worker.onmessage=messageHandler;worker.onerror=errorHandler;ready=false;pendingSample=false;sampleSequence=0;$('#loading').hidden=false;$('#loading').textContent='Calculando despachos y estaciones…';$('#error').hidden=true;
   if(clear)clearSelection();
   map.routeSet=new Set(data.routes.filter(r=>r.ready&&(config.selection.mode==='all'||config.selection.mode==='route'&&r.id===config.selection.route||config.selection.mode==='zones'&&config.selection.zones.some(z=>r.served_zones.includes(z)||r.zone===z))).map(r=>r.id));map.rebuildHighlight();map.signalsEnabled=config.params.signals;
   worker.postMessage({type:'init',generation,data,config,time:clock.time});syncControls();renderRoutes();
@@ -137,7 +146,7 @@ try{
  $('#date').onchange=()=>{if(!$('#date').value)return;config.date=$('#date').value;rebuild();};$('#time').onchange=()=>{if(!$('#time').value)return;const p=$('#time').value.split(':').map(Number);jump(DAY+p[0]*3600+p[1]*60+(p[2]||0));};
  function commitScrub(){if(!scrubbing)return;const value=Number($('#scrub').value);scrubbing=false;jump(DAY+value);}
  $('#scrub').onpointerdown=()=>{scrubbing=true;};$('#scrub').oninput=()=>{scrubbing=true;$('#time').value=timeText(Number($('#scrub').value));};$('#scrub').onchange=commitScrub;$('#scrub').onpointerup=commitScrub;$('#scrub').onpointercancel=commitScrub;$('#scrub').onblur=commitScrub;
- $('#now').onclick=()=>{const parts=new Intl.DateTimeFormat('sv-SE',{timeZone:'America/Bogota',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).formatToParts(new Date());const values=Object.fromEntries(parts.map(p=>[p.type,p.value]));const date=values.year+'-'+values.month+'-'+values.day;clock.time=DAY+Number(values.hour)*3600+Number(values.minute)*60+Number(values.second);following=false;if(date!==config.date){config.date=date;rebuild();}else sample(true);syncControls();updateUI();};
+ $('#now').onclick=()=>{const {date,time}=bogotaNow();clock.time=time;following=false;if(date!==config.date){config.date=date;rebuild();}else sample(true);syncControls();updateUI();};
  $('#back').onclick=()=>jump(clock.time-900);$('#forward').onclick=()=>jump(clock.time+900);$('#pause').onclick=()=>{clock.paused=!clock.paused;syncControls();};
  $$('[data-speed]').forEach(b=>b.onclick=()=>{clock.speed=Number(b.dataset.speed);syncControls();});
  $('#zoom-in').onclick=()=>map.zoom(1/1.4);$('#zoom-out').onclick=()=>map.zoom(1.4);$('#fit').onclick=()=>{following=false;fitSelection();};$('#context-toggle').onclick=()=>{map.contextGroup.visible=!map.contextGroup.visible;$('#context-toggle').setAttribute('aria-pressed',map.contextGroup.visible);};$('#lanes-toggle').onclick=()=>{map.carriagewaysEnabled=map.carriagewaysEnabled===false;$('#lanes-toggle').setAttribute('aria-pressed',map.carriagewaysEnabled);if(map.carriagewayGroup)map.carriagewayGroup.visible=map.carriagewaysEnabled&&map.mpp<6;};map.onPan=()=>following=false;

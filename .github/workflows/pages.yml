@@ -59,6 +59,10 @@ jobs:
           [ "$versiones" = "1" ] || { echo "Hay $versiones versiones ?v= distintas"; exit 1; }
           # Rutas absolutas romperían bajo el subdirectorio /transmi-sim/.
           ! grep -rn "fetch('/\|src=\"/\|href=\"/" app/dist/*.mjs app/dist/index.html
+          # La configuración de las lecturas en vivo es local y no se versiona nunca.
+          if git ls-files --error-unmatch tools/en_vivo.local.json > /dev/null 2>&1; then
+            echo "tools/en_vivo.local.json no puede estar versionado"; exit 1
+          fi
           echo "Comprobaciones superadas"
 
   publicar:

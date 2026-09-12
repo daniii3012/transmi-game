@@ -144,7 +144,7 @@ sus paradas ajustan a 21,4 m como máximo y 8,7 m de promedio, frente a las refe
 utilizable y ahora forma par completo. No se confunde con el ramal de aeropuerto (5316).
 
 Los otros veinte siguen pendientes por las razones descritas arriba: sin trazado
-publicado, o con la clasificación Ciclovía sin resolver. **J76/1214 sigue pendiente**
+publicado, o con la clasificación Ciclovía sin resolver. **Corroboración independiente:** `6/692` y `A60/1187`, ambos con destino Calle 76 y vigencia hasta el 21 de agosto de 2026, coinciden con que la estación Calle 76 deja de aparecer en las validaciones diarias a partir de esa fecha; en marzo sí registraba 26.171 validaciones diarias. Ver [DEMANDA_COMPARACION_MARZO_20260911.md](DEMANDA_COMPARACION_MARZO_20260911.md). **J76/1214 sigue pendiente**
 aunque su hermano H76 se haya podido activar: la fuente publica sus diez paradas pero
 ningún trazado.
 

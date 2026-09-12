@@ -65,12 +65,22 @@ archivo. No lee ni exporta tarjetas, dispositivos, vehículos ni transacciones.
 `import_passenger_profiles.py` prefiere el agregado de periodo si existe y vuelve al de un
 solo día si no. Ambos caminos están en el mismo script y se eligen solos.
 
+## ¿Es este periodo representativo?
+
+Se contrastó con 15 días de marzo de 2026: los factores por tipo de día se mueven poco más
+de un punto y el reparto por hora es casi idéntico, aunque el nivel de marzo está un 7 %
+por debajo. También apareció que un festivo entre semana queda 16,5 % por debajo de un
+domingo, y que la red física cambió entre ambas fechas. Detalle en
+[DEMANDA_COMPARACION_MARZO_20260911.md](DEMANDA_COMPARACION_MARZO_20260911.md).
+
 ## Límites que siguen
 
 - Diecisiete días de agosto y septiembre de 2026 no predicen otros meses, ni vacaciones,
   ni un día de paro o lluvia fuerte.
-- **Ningún festivo entre semana quedó observado.** El perfil de festivo son dos domingos;
-  un festivo de lunes puede comportarse distinto.
+- **Ningún festivo entre semana quedó observado en este periodo.** El perfil de festivo son
+  dos domingos. El contraste de marzo midió uno, el 23 de marzo, y resultó 16,5 % por debajo
+  de un domingo: separar ambos tipos de día es una mejora con evidencia, pendiente de medir
+  más festivos antes de aplicarla.
 - Dos sábados y dos domingos son pocos: la media de esos tipos descansa sobre menos
   evidencia que la de día de semana. El agregado guarda desviación, mínimo y máximo por
   estación para que ese margen sea visible.

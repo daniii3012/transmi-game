@@ -1,0 +1,60 @@
+/* Map-led layout: generous canvas, one reading surface, compact controls. */
+:root{--surface:#fffffff5;--edge:#253b5219;--nav-height:64px;--safe-bottom:env(safe-area-inset-bottom,0px)}
+body{overscroll-behavior:none}button,summary{-webkit-tap-highlight-color:transparent}
+button:focus-visible,summary:focus-visible{outline:2px solid #2470aa;outline-offset:3px}
+#canvas-host{touch-action:none}header{border-bottom:1px solid var(--edge)}
+#sidebar,#inspector,#timeline{border:1px solid var(--edge);background:var(--surface);box-shadow:0 6px 26px #10233512}
+.panel{padding:22px}.panel h1{font-size:1.2rem;letter-spacing:-.025em}.eyebrow{font-size:.6rem}
+#panel-toggle{display:none}#more-menu{position:relative;border:0;padding:0;font-size:.8rem}
+#more-menu summary{list-style:none;padding:12px;cursor:pointer}#more-menu summary::-webkit-details-marker{display:none}
+.more-options{position:absolute;right:0;top:100%;z-index:20;min-width:180px;padding:6px;background:var(--surface);border:1px solid var(--edge);border-radius:12px;box-shadow:0 8px 26px #10233520}
+.more-options button{display:block;width:100%;text-align:left;min-height:44px}
+body[data-panel=live] #timeline{display:none}body[data-panel=live] #sidebar{bottom:24px}body[data-panel=live] #inspector{bottom:24px}
+body[data-panel=live] #metrics{bottom:24px}body[data-panel=live] .map-bottom{bottom:108px}
+body[data-theme=dark]{--surface:#202b36f5;--edge:#e5efff16}
+body[data-theme=dark] #sidebar,body[data-theme=dark] #inspector,body[data-theme=dark] #timeline{background:var(--surface)}
+@media(max-width:800px){
+ html,body{height:100%;width:100%;overflow:hidden}
+ header{height:calc(52px + env(safe-area-inset-top,0px));padding:env(safe-area-inset-top,0px) 16px 0;gap:12px}
+ .brand>div{display:block;font-size:1.1rem}.brand small{display:none}.brand>b{width:29px;height:30px;font-size:1.2rem}
+ .header-right{margin-left:auto}.header-right #theme{width:42px;min-height:42px}
+ nav{position:fixed;bottom:0;left:0;right:0;height:calc(var(--nav-height) + var(--safe-bottom));padding:4px 10px var(--safe-bottom);display:flex;align-items:center;justify-content:space-around;z-index:15;background:var(--surface);border-top:1px solid var(--edge);overflow:visible;gap:4px}
+ nav>button,nav>#more-menu{flex:1;min-width:0;text-align:center}nav button{min-height:48px;font-size:.75rem;padding:8px 4px;border-radius:9px}
+ nav button.nav-active{background:#dce9f2;color:#164f79;border-bottom:0}body[data-theme=dark] nav button.nav-active{background:#334b60;color:#e6f1ff}
+ #more-menu summary{min-height:48px;display:grid;place-items:center;padding:8px}.more-options{top:auto;bottom:60px;right:0;min-width:190px}
+ main{height:calc(100dvh - 52px - env(safe-area-inset-top,0px) - var(--nav-height) - var(--safe-bottom));min-height:0;overflow:hidden}
+ #sidebar,body[data-panel=live] #sidebar{top:auto;left:10px;right:10px;width:auto;height:min(39%,350px);bottom:118px;border-radius:16px;overflow:auto;overscroll-behavior:contain;padding:0}
+ body[data-panel=live] #sidebar,body[data-panel=planner] #sidebar{bottom:10px;height:min(45%,440px)}
+ #panel-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:48px;padding:13px 18px;border:0;border-radius:0;position:sticky;top:0;z-index:6;background:var(--surface);font-size:.85rem;text-align:left}
+ #panel-toggle:after{content:'⌄';font-size:1.1rem;color:var(--muted)}body[data-sheet=closed] #panel-toggle:after{content:'⌃'}
+ body[data-sheet=closed] #sidebar{height:48px!important;overflow:hidden}body[data-sheet=closed] #sidebar>.panel{display:none}
+ .panel{padding:0 18px 22px}.panel>.eyebrow,.panel-heading .eyebrow{display:none}.panel>h1,.panel-heading h1{font-size:1.1rem;margin-top:4px}.panel-heading h1{display:none}
+ button,input,select{min-height:44px}input,select{font-size:16px!important}.segmented button{font-size:.78rem;min-height:42px}
+ #route-list{display:block}.route-row{min-height:62px;padding:12px 0}.zone-grid{grid-template-columns:repeat(4,1fr)}
+ .map-caption{top:15px;left:16px;right:74px;max-width:none}.map-caption strong{font-size:.85rem}.map-caption span{font-size:.55rem}
+ .map-actions{top:12px;right:12px;gap:6px}.map-actions button{width:40px;min-height:40px}.map-actions .north{display:none}
+ #context-toggle,#lanes-toggle,#signals-toggle,#corridors-toggle{display:none}
+ #metrics,body[data-panel=live] #metrics{left:12px;right:auto;top:66px;bottom:auto;max-width:calc(100% - 80px);padding:8px 0;overflow:hidden}
+ #metrics>div{min-width:0;padding:0 10px}#metrics strong{font-size:.98rem}#metrics span{font-size:.58rem}
+ .map-bottom,body[data-panel=live] .map-bottom{top:auto;bottom:8px;left:16px;max-width:calc(100% - 32px);pointer-events:none}.map-bottom small{font-size:.5rem}
+ #timeline{bottom:10px;left:10px;right:10px;padding:10px 12px;height:98px;overflow:auto;border-radius:14px}
+ .time-main{gap:5px;flex-wrap:nowrap}.date-controls{display:none}.time-main>button{min-width:34px;min-height:36px;padding:4px}.time-main input[type=time],#time{min-width:102px!important;width:102px!important;font-size:.9rem!important;min-height:36px}
+ .speed-controls{gap:0;margin-left:auto;order:0}.speed-controls button{min-width:30px;padding:4px;font-size:.7rem;min-height:36px}.period{display:none}.scrub-row{margin-top:6px}.scrub-row input{min-height:28px}
+ body[data-panel=planner] #timeline{display:none}body[data-panel=planner] #metrics{display:none}
+ #inspector,body[data-panel=live] #inspector{top:auto;bottom:10px;left:10px;right:10px;width:auto;max-height:48%;padding:24px 20px;border-radius:16px;z-index:8}
+ body[data-inspect=true] #sidebar,body[data-inspect=true] #timeline{visibility:hidden}#inspector .close{min-width:44px;min-height:44px}
+ #loading{max-width:80%;width:max-content;top:28%;font-size:.8rem}#error{top:18%;font-size:.8rem}
+ #toast{bottom:120px;max-width:calc(100% - 40px);width:max-content;text-align:center}
+}
+@media(max-width:380px){.speed-controls button{min-width:25px;font-size:.65rem}.time-main>button{min-width:28px}.map-caption span{display:none}}
+@media(max-width:950px) and (max-height:500px){
+ #sidebar,body[data-panel=live] #sidebar,body[data-panel=planner] #sidebar{width:300px;right:auto;bottom:10px;height:calc(100% - 20px)}
+ #timeline{left:320px;height:98px}#inspector{left:10px;right:auto;width:300px;max-height:95%}.map-caption,#metrics{left:330px}
+}
+
+.mobile-date{display:none!important}
+@media(max-width:800px){
+ .mobile-date{display:block!important}.time-main{gap:3px}.speed-controls button{min-width:26px;font-size:.65rem}.time-main input[type=time],#time{min-width:92px!important;width:92px!important;font-size:.8rem!important}
+ body.time-expanded #timeline{height:155px}body.time-expanded #sidebar{bottom:175px}body.time-expanded .time-main{flex-wrap:wrap}body.time-expanded .date-controls{display:flex;flex-basis:100%;margin:0 0 5px}body.time-expanded .date-controls input{width:145px}
+ body[data-panel=live].time-expanded #sidebar,body[data-panel=planner].time-expanded #sidebar{bottom:10px}
+}

@@ -1,5 +1,5 @@
-import {MetricPath} from './simulation.mjs?v=20260912.13';
-import {signalPhase} from './signals.mjs?v=20260912.13';
+import {MetricPath} from './simulation.mjs?v=20260912.14';
+import {signalPhase} from './signals.mjs?v=20260912.14';
 import * as THREE from './vendor/three.module.js';
 
 export class NetworkMap {
@@ -40,7 +40,7 @@ export class NetworkMap {
     this.resizeObserver=new ResizeObserver(()=>{this.resize();});this.resizeObserver.observe(host);
     this.resize(); this.fitNetwork(); this.bind();
   }
-  fit(bounds){const mobile=this.w<800,left=mobile?20:350,right=!mobile&&this.w>1100&&!document.querySelector('#inspector').hidden?400:70,top=70,bottom=mobile?this.h*.54:235;this.mpp=Math.max((bounds[2]-bounds[0])/Math.max(100,this.w-left-right),(bounds[3]-bounds[1])/Math.max(100,this.h-top-bottom),.3);this.center=[(bounds[0]+bounds[2])/2-(left-right)/2*this.mpp,(bounds[1]+bounds[3])/2+(top-bottom)/2*this.mpp];this.updateCamera();}
+  fit(bounds){const mobile=this.w<800,left=mobile?18:350,right=!mobile&&this.w>1100&&!document.querySelector('#inspector').hidden?400:60,top=mobile?120:70,panel=document.querySelector(document.body.dataset.inspect==='true'?'#inspector':'#sidebar'),bottom=mobile&&panel?Math.max(40,this.host.getBoundingClientRect().bottom-panel.getBoundingClientRect().top+20):document.body.dataset.panel==='live'?100:235;this.mpp=Math.max((bounds[2]-bounds[0])/Math.max(100,this.w-left-right),(bounds[3]-bounds[1])/Math.max(100,this.h-top-bottom),.3);this.center=[(bounds[0]+bounds[2])/2-(left-right)/2*this.mpp,(bounds[1]+bounds[3])/2+(top-bottom)/2*this.mpp];this.updateCamera();}
   fitNetwork(){this.fit(this.data.bounds);}
   fitPilot(){this.fitNetwork();}
   focusStation(station){const layout=this.data.station_layouts?.stations.find(s=>s.station_id===station.id);const points=layout?[...layout.platforms,...layout.areas].flatMap(p=>p.points):[];if(points.length){const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);this.fit([Math.min(...xs)-45,Math.min(...ys)-45,Math.max(...xs)+45,Math.max(...ys)+45]);}else{this.center=[...station.xy];this.mpp=.8;this.updateCamera();}}
@@ -102,17 +102,43 @@ export class NetworkMap {
   }
   updateMarker(){const item=this.selectedItem();if(!item){this.marker.visible=false;return;}this.marker.visible=true;this.marker.position.set(...item.xy,4);this.marker.scale.setScalar(Math.max(10,this.mpp*11));}
   bind(){
-    let drag=null;
-    this.host.addEventListener('pointerdown',e=>{if(e.button!==0)return;this.host.focus({preventScroll:true});this.host.setPointerCapture(e.pointerId);drag={id:e.pointerId,start:[e.clientX,e.clientY],center:[...this.center]};});
-    this.host.addEventListener('pointermove',e=>{if(!drag||drag.id!==e.pointerId)return;this.center=[drag.center[0]-(e.clientX-drag.start[0])*this.mpp,drag.center[1]+(e.clientY-drag.start[1])*this.mpp];this.onPan?.();this.updateCamera();});
-    this.host.addEventListener('pointerup',e=>{if(!drag||drag.id!==e.pointerId)return;const click=Math.hypot(e.clientX-drag.start[0],e.clientY-drag.start[1])<5;drag=null;if(click){const r=this.host.getBoundingClientRect();this.pick([e.clientX-r.left,e.clientY-r.top]);}});
-    this.host.addEventListener('pointercancel',()=>{drag=null;});
+    const pointers=new Map();let gesture=null;
+    const startGesture=()=>{
+      const values=[...pointers.values()];
+      gesture={center:[...this.center],mpp:this.mpp,values,moved:false};
+    };
+    this.host.addEventListener('pointerdown',e=>{
+      if(e.pointerType==='mouse'&&e.button!==0)return;
+      this.host.focus({preventScroll:true});this.host.setPointerCapture(e.pointerId);
+      pointers.set(e.pointerId,[e.clientX,e.clientY]);startGesture();
+    });
+    this.host.addEventListener('pointermove',e=>{
+      if(!pointers.has(e.pointerId)||!gesture)return;
+      pointers.set(e.pointerId,[e.clientX,e.clientY]);const values=[...pointers.values()];
+      const midpoint=a=>a.length>1?[(a[0][0]+a[1][0])/2,(a[0][1]+a[1][1])/2]:a[0];
+      const before=midpoint(gesture.values),after=midpoint(values),r=this.host.getBoundingClientRect();
+      if(values.length>1&&gesture.values.length>1){
+        const distance=a=>Math.hypot(a[0][0]-a[1][0],a[0][1]-a[1][1]);
+        this.mpp=Math.max(.15,Math.min(100,gesture.mpp*distance(gesture.values)/Math.max(1,distance(values))));
+      }
+      const x=before[0]-r.left-r.width/2,y=before[1]-r.top-r.height/2;
+      this.center=[gesture.center[0]+x*gesture.mpp-(after[0]-r.left-r.width/2)*this.mpp,gesture.center[1]-y*gesture.mpp+(after[1]-r.top-r.height/2)*this.mpp];
+      gesture.moved ||= values.length>1||Math.hypot(after[0]-before[0],after[1]-before[1])>5;
+      this.onPan?.();this.updateCamera();
+    });
+    const end=e=>{
+      if(!pointers.has(e.pointerId))return;
+      const click=e.type==='pointerup'&&pointers.size===1&&!gesture?.moved;
+      pointers.delete(e.pointerId);if(pointers.size){startGesture();gesture.moved=true;}else gesture=null;
+      if(click){const r=this.host.getBoundingClientRect();this.pick([e.clientX-r.left,e.clientY-r.top]);}
+    };
+    this.host.addEventListener('pointerup',end);this.host.addEventListener('pointercancel',end);
     this.host.addEventListener('wheel',e=>{e.preventDefault();const r=this.host.getBoundingClientRect();this.zoom(Math.exp(Math.max(-1,Math.min(1,e.deltaY*(e.ctrlKey?.018:.004)))),[e.clientX-r.left,e.clientY-r.top]);},{passive:false});
     this.host.addEventListener('keydown',e=>{const offsets={ArrowLeft:[-80,0],ArrowRight:[80,0],ArrowUp:[0,80],ArrowDown:[0,-80]};if(offsets[e.key]){e.preventDefault();this.center[0]+=offsets[e.key][0]*this.mpp;this.center[1]+=offsets[e.key][1]*this.mpp;this.onPan?.();this.updateCamera();}else if(['+','=','-'].includes(e.key)){e.preventDefault();this.zoom(e.key==='-'?1.3:1/1.3);}});
   }
   pick(point){
     const distanceTo=item=>{const p=this.worldToScreen(item.xy);return Math.hypot(point[0]-p[0],point[1]-p[1]);};
-    const nearest=items=>{let best=null,limit=12;for(const item of items||[]){const d=distanceTo(item);if(d<limit){best=item;limit=d;}}return best;};
+    const nearest=items=>{let best=null,limit=globalThis.matchMedia?.('(pointer:coarse)').matches?24:12;for(const item of items||[]){const d=distanceTo(item);if(d<limit){best=item;limit=d;}}return best;};
     let chosen=null;
     if(this.simulationVisible===false){
       // Con la simulación oculta —la pestaña En vivo— se eligen los buses reales, pero las dos

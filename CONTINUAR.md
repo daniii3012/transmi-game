@@ -85,3 +85,5 @@ Procedimiento de actualización de fuentes en docs/ACTUALIZAR_DATOS.md; es el do
 Colas de buses en semáforos: analizado y **no implementado** por decisión de Daniel. Ver docs/COLAS_Y_ESPACIO_20260911.md.
 
 Antes de terminar cada hito, verificar diff, commit/push y coincidencia HEAD local/remoto. Los informes del 10 sep. se conservan como evidencia histórica, no resultados actuales.
+
+12/09/2026 — Interfaz adaptable refinada en `responsive.css` y `shell.mjs`: navegación inferior móvil, panel plegable, Más para controles secundarios, zoom con dos dedos y reloj contextual. Ver docs/INTERFAZ_MOVIL_20260912.md. Fuentes con versión 20260912.14. Cambios de iOS y transporte nativo solo en el repositorio privado.

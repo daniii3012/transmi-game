@@ -1,7 +1,14 @@
-import {travelProfile,travelTimeAtDistance,travelAt} from './travel.mjs?v=20260911.11';
+import {travelProfile,travelTimeAtDistance,travelAt} from './travel.mjs?v=20260912.12';
 
 // Existence is sourced from OSM. These phases are explicitly scenario estimates.
 export const SIGNAL_CYCLE=Object.freeze({cycle:90,green:52,amber:3});
+// Lo que un semáforo cuesta en promedio, deducido del mismo ciclo que usa signalPhase: se detiene
+// quien llega fuera del verde, y la espera media es la integral de (ciclo−fase) sobre el ciclo.
+// Sirve para descontar del tiempo publicado lo que ya lleva dentro de semáforos, sin simularlos dos veces.
+export const SIGNAL_EXPECTED=Object.freeze({
+ stopChance:(SIGNAL_CYCLE.cycle-SIGNAL_CYCLE.green)/SIGNAL_CYCLE.cycle,
+ wait:(SIGNAL_CYCLE.cycle-SIGNAL_CYCLE.green)**2/(2*SIGNAL_CYCLE.cycle),
+});
 function phaseOffset(id){let h=2166136261;for(const c of String(id)){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return (h>>>0)%SIGNAL_CYCLE.cycle;}
 export function signalPhase(id,time){
  const {cycle,green,amber}=SIGNAL_CYCLE,p=((time+phaseOffset(id))%cycle+cycle)%cycle;

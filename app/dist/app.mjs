@@ -1,8 +1,8 @@
-import {NetworkMap} from './map.mjs?v=20260911.11';
-import {DAY,addDays,dayType,dateNumber,dateEligible,validityState,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.11';
-import {DEFAULTS,parameters} from './operation.mjs?v=20260911.11';
-import {registerSimulationTools} from './webmcp.mjs?v=20260911.11';
-import {LiveFeed,groupByDestination,occupancyText,ageText,sameName} from './live.mjs?v=20260911.11';
+import {NetworkMap} from './map.mjs?v=20260912.12';
+import {DAY,addDays,dayType,dateNumber,dateEligible,validityState,serviceWindows,demandPeriod} from './calendar.mjs?v=20260912.12';
+import {DEFAULTS,parameters} from './operation.mjs?v=20260912.12';
+import {registerSimulationTools} from './webmcp.mjs?v=20260912.12';
+import {LiveFeed,groupByDestination,occupancyText,ageText,sameName} from './live.mjs?v=20260912.12';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const el=(tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;};
 const fmt=n=>Math.round(n).toLocaleString('es-CO');
@@ -23,9 +23,9 @@ function boardingPoint(x){
 let toastTimer;
 function toast(message){$('#toast').textContent=message;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,4500);}
 try{
- const [response,contextResponse,demandResponse,layoutsResponse,signalsResponse,lanesResponse,wagonsResponse]=await Promise.all([fetch('./services.json',{cache:'no-store'}),fetch('./context.json',{cache:'no-store'}),fetch('./demand.json',{cache:'no-store'}),fetch('./station_layouts.json',{cache:'no-store'}),fetch('./busway_signals.json',{cache:'no-store'}),fetch('./busway_lanes.json',{cache:'no-store'}),fetch('./station_wagons.json',{cache:'no-store'})]);
+ const [response,contextResponse,demandResponse,layoutsResponse,signalsResponse,lanesResponse,wagonsResponse,scheduleResponse]=await Promise.all([fetch('./services.json',{cache:'no-store'}),fetch('./context.json',{cache:'no-store'}),fetch('./demand.json',{cache:'no-store'}),fetch('./station_layouts.json',{cache:'no-store'}),fetch('./busway_signals.json',{cache:'no-store'}),fetch('./busway_lanes.json',{cache:'no-store'}),fetch('./station_wagons.json',{cache:'no-store'}),fetch('./schedule.json',{cache:'no-store'})]);
  if(!response.ok)throw new Error('No se pudieron cargar los servicios locales.');
- const data=await response.json();if(signalsResponse.ok)data.busway_signals=await signalsResponse.json();if(lanesResponse.ok)data.busway_lanes=await lanesResponse.json();if(layoutsResponse.ok)data.station_layouts=await layoutsResponse.json();if(wagonsResponse.ok)data.station_wagons=await wagonsResponse.json();if(demandResponse.ok){data.demand=await demandResponse.json();const profiles=new Map(data.demand.profiles.map(p=>[p.station_id,p]));for(const s of data.stations){const p=profiles.get(s.id);if(p)s.demand_profile=p;}}const routeById=new Map(data.routes.map(r=>[r.id,r]));
+ const data=await response.json();if(scheduleResponse.ok)data.schedule=await scheduleResponse.json();if(signalsResponse.ok)data.busway_signals=await signalsResponse.json();if(lanesResponse.ok)data.busway_lanes=await lanesResponse.json();if(layoutsResponse.ok)data.station_layouts=await layoutsResponse.json();if(wagonsResponse.ok)data.station_wagons=await wagonsResponse.json();if(demandResponse.ok){data.demand=await demandResponse.json();const profiles=new Map(data.demand.profiles.map(p=>[p.station_id,p]));for(const s of data.stations){const p=profiles.get(s.id);if(p)s.demand_profile=p;}}const routeById=new Map(data.routes.map(r=>[r.id,r]));
  let saved=null;try{const current=localStorage.getItem('transmi-scenario-v3');saved=JSON.parse(current||localStorage.getItem('transmi-scenario-v2'));if(saved&&!current){const p=saved.config.params;if(p.cruiseKmh===48)p.cruiseKmh=60;if(p.streetKmh===30)p.streetKmh=50;delete p.biarticulatedShare;delete p.biarticulatedCapacity;delete p.biShare;delete p.bioShare;delete p.bioCapacity;delete p.capacity;if(saved.config.selection.route==='10082')saved.config.selection.route='396';}if(saved?.revision!==data.revision)saved=null;}catch{}
  // Hora civil de Bogotá, independiente del huso del equipo.
  function bogotaNow(){
@@ -46,11 +46,11 @@ try{
  let theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';try{theme=localStorage.getItem('transmi-theme')||theme;}catch{}
  function applyTheme(){document.body.dataset.theme=theme;map.setTheme(theme);$('#theme').textContent=theme==='dark'?'☀':'☾';$('#theme').setAttribute('aria-label',theme==='dark'?'Usar modo claro':'Usar modo oscuro');}applyTheme();
  $('#theme').onclick=()=>{theme=theme==='dark'?'light':'dark';applyTheme();try{localStorage.setItem('transmi-theme',theme);}catch{}};
- let worker=new Worker('./worker.mjs?v=20260911.11',{type:'module'});
+ let worker=new Worker('./worker.mjs?v=20260912.12',{type:'module'});
  function badge(r){const b=el('span',r.code,'route-code');b.style.setProperty('--route',r.color);const rgb=r.color.match(/[0-9a-f]{2}/gi)?.map(s=>parseInt(s,16));if(rgb?.length===3&&rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722>155)b.style.setProperty('--route-ink','#24303f');return b;}
  function row(label,value,parent=$('#selection')){const r=el('div',undefined,'metric-row');r.append(el('span',label),el('strong',value));parent.append(r);return r;}
  function rebuild({fit=false,clear=true}={}){
-  planSequence++;$('#plan-journey').disabled=true;$('#journey-results').replaceChildren(el('p','Elige origen, destino y fecha para buscar conexiones.','muted'));generation++;const messageHandler=worker.onmessage,errorHandler=worker.onerror;worker.terminate();worker=new Worker('./worker.mjs?v=20260911.11',{type:'module'});worker.onmessage=messageHandler;worker.onerror=errorHandler;ready=false;pendingSample=false;sampleSequence=0;$('#loading').hidden=false;$('#loading').textContent='Calculando despachos y estaciones…';$('#error').hidden=true;
+  planSequence++;$('#plan-journey').disabled=true;$('#journey-results').replaceChildren(el('p','Elige origen, destino y fecha para buscar conexiones.','muted'));generation++;const messageHandler=worker.onmessage,errorHandler=worker.onerror;worker.terminate();worker=new Worker('./worker.mjs?v=20260912.12',{type:'module'});worker.onmessage=messageHandler;worker.onerror=errorHandler;ready=false;pendingSample=false;sampleSequence=0;$('#loading').hidden=false;$('#loading').textContent='Calculando despachos y estaciones…';$('#error').hidden=true;
   if(clear)clearSelection();
   map.routeSet=new Set(data.routes.filter(r=>r.ready&&(config.selection.mode==='all'||config.selection.mode==='route'&&r.id===config.selection.route||config.selection.mode==='zones'&&config.selection.zones.some(z=>r.served_zones.includes(z)||r.zone===z))).map(r=>r.id));map.rebuildHighlight();map.signalsEnabled=config.params.signals;
   worker.postMessage({type:'init',generation,data,config,time:clock.time});syncControls();renderRoutes();
@@ -74,7 +74,7 @@ try{
  function jump(value){clock.time=value;if(clock.time<DAY||clock.time>=2*DAY){const day=Math.floor(clock.time/DAY)-1;config.date=addDays(config.date,day);clock.time-=day*DAY;rebuild();}else{sample(true);updateUI();}following=false;}
  function syncControls(displayMode=viewMode){
   $('#date').value=config.date;$$('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===displayMode));$('#zone-options').hidden=displayMode!=='zones';$('#network-now').hidden=displayMode!=='all';$('#route-browser').hidden=displayMode==='all';
-  $('#peak').value=config.params.peakHeadway/60;$('#offpeak').value=config.params.offpeakHeadway/60;$('#demand').value=config.params.demand;$('#demand-value').textContent=config.params.demand+'×';$('#demand-mode').value=config.params.mode;$('#variable-dispatch').checked=config.params.variableDispatch;$('#reinforcements').checked=config.params.reinforcements;$('#signals').checked=config.params.signals;$('#beyond-validity').checked=config.params.beyondValidity;$('#cruise').value=config.params.cruiseKmh;$('#street-speed').value=config.params.streetKmh;
+  $('#peak').value=config.params.peakHeadway/60;$('#offpeak').value=config.params.offpeakHeadway/60;$('#demand').value=config.params.demand;$('#demand-value').textContent=config.params.demand+'×';$('#demand-mode').value=config.params.mode;$('#programmed-dispatch').checked=config.params.programmedDispatch;$('#programmed-running').checked=config.params.programmedRunning;$('#variable-dispatch').checked=config.params.variableDispatch;$('#reinforcements').checked=config.params.reinforcements;$('#signals').checked=config.params.signals;$('#beyond-validity').checked=config.params.beyondValidity;$('#cruise').value=config.params.cruiseKmh;$('#street-speed').value=config.params.streetKmh;
   $$('[data-speed]').forEach(b=>b.classList.toggle('active',Number(b.dataset.speed)===clock.speed));$('#pause').textContent=clock.paused?'▶':'Ⅱ';$('#pause').setAttribute('aria-label',clock.paused?'Reanudar':'Pausar');
  }
  const validityNote={expired:'horario vencido',future:'horario aún no vigente'};
@@ -297,7 +297,10 @@ try{
  // Buses reales. Es la única parte que sale a la red y a un tercero: vive en su pestaña, se apaga
  // al salir de ella o al ocultar la ventana, y no toca el escenario, el reloj ni el planificador.
  const live=new LiveFeed({onState:renderLive});let liveFitted=null,liveScope='network',liveUsable=false;
- const liveNetwork=new LiveFeed({onState:renderLiveNetwork,url:()=>'./api/en-vivo/red'});
+ const liveNetwork=new LiveFeed({onState:state=>{ultimaRed=state;renderLiveNetwork(state);},url:()=>'./api/en-vivo/red'});
+ // Identificadores que la vista por servicio ya dibuja, y el último estado de la red, para poder
+ // repintarla sin volver a pedirla cuando cambia lo que está en foco.
+ let enFoco=new Set(),ultimaRed=null;
  const colorByCode=new Map(data.routes.filter(r=>r.ready).map(r=>[r.code,r.color]));
  const stationById=new Map(data.stations.map(s=>[s.id,s]));
  // El servicio no dice si un bus está detenido, así que se infiere por cercanía a una parada del
@@ -346,14 +349,18 @@ try{
   const status=$('#live-network-status'),list=$('#live-network-list');
   if(phase==='error'){status.textContent=message;list.replaceChildren();map.setNetworkBuses([]);return;}
   if(phase!=='ok')return;
-  const vehicles=payload.vehicles.map(v=>({...v,color:colorByCode.get(v.line)}));
+  const todos=payload.vehicles.map(v=>({...v,color:colorByCode.get(v.line)}));
+  const vehicles=liveScope==='route'?todos.filter(v=>!enFoco.has(v.id)):todos;
   map.setNetworkBuses(vehicles,{dimmed:liveScope==='route'});
-  if(liveScope!=='route')$('#live-count').textContent=fmt(vehicles.length);
+  if(liveScope!=='route')$('#live-count').textContent=fmt(todos.length);
   const age=Number(payload.age_s)||0;
+  const lote=Number(payload.build_age_s);
   const reloj=readingClock(payload.queried_at);
-  status.textContent=`${fmt(vehicles.length)} ${vehicles.length===1?'bus troncal o dual':'buses troncales y duales'} · consultado ${reloj?`a las ${reloj}`:ageText(age)}${reloj&&age>=2?` (${ageText(age)})`:''}`
-   +(payload.boxes>1?` · en ${payload.boxes} cuadrantes`:'')
-   +(payload.truncated?` · el servicio cortó en ${fmt(payload.cap)} por cuadrante: faltan buses`:'');
+  status.textContent=`${fmt(todos.length)} ${todos.length===1?'bus troncal o dual':'buses troncales y duales'} · consultado ${reloj?`a las ${reloj}`:ageText(age)}${reloj&&age>=2?` (${ageText(age)})`:''}`
+   // El lote viejo es la única forma de saber que lo dibujado dejó de moverse hace rato. Se dice a
+   // partir de minuto y medio, que es seis veces lo que el alimentador tarda en reconstruirse.
+   +(Number.isFinite(lote)&&lote>=90?` · el alimentador no se reconstruye desde hace ${ageText(lote)}`:'')
+   +(payload.unmatched?` · ${fmt(payload.unmatched)} de servicios que el simulador todavía no tiene`:'');
   const porLinea=new Map();
   for(const v of vehicles)porLinea.set(v.line,(porLinea.get(v.line)||0)+1);
   const filas=[...porLinea].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'es',{numeric:true}));
@@ -393,11 +400,18 @@ try{
   const status=$('#live-status'),results=$('#live-results');
   if(phase==='idle'||phase==='error'){
    status.textContent=phase==='idle'?'Elige un servicio para ver sus buses.':message;results.replaceChildren();map.setLiveBuses([]);
+   // Sin servicio en foco no hay nada que ocultar detrás: la red vuelve a mostrarlos todos.
+   if(enFoco.size){enFoco=new Set();renderLiveNetwork(ultimaRed||{phase:'idle'});}
    return;
   }
   if(phase==='loading'){status.textContent='Consultando el servicio…';return;}
   const buses=payload.buses.map(b=>{const r=liveRouteFor(payload.code,b.destination);return {...b,code:payload.code,color:r?.color,routeId:r?.id};});
   map.setLiveBuses(buses);
+  // Las dos fuentes comparten los identificadores de vehículo, así que el mismo bus llegaría por
+  // partida doble: en foco desde el servicio y atenuado desde la red. Se anota cuál ya está dibujado
+  // para que la instantánea general no lo repita detrás.
+  enFoco=new Set(buses.map(b=>b.id).filter(Boolean));
+  renderLiveNetwork(ultimaRed||{phase:'idle'});
   $('#live-count').textContent=fmt(buses.length);
   $('#live-stopped').textContent=fmt(buses.filter(atStop).length);
   // El trazado del servicio queda resaltado como al elegirlo en la simulación, los dos sentidos
@@ -478,7 +492,7 @@ try{
  for(const z of data.zones.filter(z=>z.id!=='?')){const b=el('button',undefined,'zone-button');b.style.setProperty('--zone',z.color);b.append(el('b',z.id),el('span',z.name));b.classList.toggle('active',selectedZones.has(z.id));b.setAttribute('aria-pressed',selectedZones.has(z.id));b.onclick=()=>{if(selectedZones.has(z.id))selectedZones.delete(z.id);else selectedZones.add(z.id);b.classList.toggle('active',selectedZones.has(z.id));b.setAttribute('aria-pressed',selectedZones.has(z.id));};$('#zones').append(b);}
  $('#apply-zones').onclick=()=>{if(!selectedZones.size){toast('Selecciona al menos una troncal.');return;}config.selection={mode:'zones',zones:[...selectedZones]};viewMode='zones';rebuild({fit:true});};
  $('#search').oninput=renderRoutes;$('#demand').oninput=()=>$('#demand-value').textContent=$('#demand').value+'×';
- $('#settings-form').onsubmit=e=>{e.preventDefault();config.params=parameters({...config.params,variableDispatch:$('#variable-dispatch').checked,reinforcements:$('#reinforcements').checked,signals:$('#signals').checked,beyondValidity:$('#beyond-validity').checked,peakHeadway:Number($('#peak').value)*60,offpeakHeadway:Number($('#offpeak').value)*60,demand:Number($('#demand').value),mode:$('#demand-mode').value,cruiseKmh:Number($('#cruise').value),streetKmh:Number($('#street-speed').value)});rebuild();toast('Escenario reconstruido con la nueva operación.');};
+ $('#settings-form').onsubmit=e=>{e.preventDefault();config.params=parameters({...config.params,programmedDispatch:$('#programmed-dispatch').checked,programmedRunning:$('#programmed-running').checked,variableDispatch:$('#variable-dispatch').checked,reinforcements:$('#reinforcements').checked,signals:$('#signals').checked,beyondValidity:$('#beyond-validity').checked,peakHeadway:Number($('#peak').value)*60,offpeakHeadway:Number($('#offpeak').value)*60,demand:Number($('#demand').value),mode:$('#demand-mode').value,cruiseKmh:Number($('#cruise').value),streetKmh:Number($('#street-speed').value)});rebuild();toast('Escenario reconstruido con la nueva operación.');};
  $('#date').onchange=()=>{if(!$('#date').value)return;config.date=$('#date').value;rebuild();};$('#time').onchange=()=>{if(!$('#time').value)return;const p=$('#time').value.split(':').map(Number);jump(DAY+p[0]*3600+p[1]*60+(p[2]||0));};
  function commitScrub(){if(!scrubbing)return;const value=Number($('#scrub').value);scrubbing=false;jump(DAY+value);}
  $('#scrub').onpointerdown=()=>{scrubbing=true;};$('#scrub').oninput=()=>{scrubbing=true;$('#time').value=timeText(Number($('#scrub').value));};$('#scrub').onchange=commitScrub;$('#scrub').onpointerup=commitScrub;$('#scrub').onpointercancel=commitScrub;$('#scrub').onblur=commitScrub;

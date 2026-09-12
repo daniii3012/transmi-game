@@ -1,12 +1,36 @@
-import {DAY,addDays,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.11';
-import {vehicleSpec} from './vehicles.mjs?v=20260911.11';
-import {matchSignals,signalTravel,signalTravelAt} from './signals.mjs?v=20260911.11';
-import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260911.11';
-import {placeVisit} from './station-layouts.mjs?v=20260911.11';
-import {MetricPath} from './simulation.mjs?v=20260911.11';
-export const DEFAULTS=Object.freeze({peakHeadway:240,offpeakHeadway:480,demand:1,mode:'auto',cruiseKmh:60,streetKmh:50,acceleration:.8,braking:1.1,turnaround:240,variableDispatch:true,reinforcements:true,signals:true,beyondValidity:true});
-export function parameters(input={}){const p={...DEFAULTS,...input};for(const [k,min,max] of [['peakHeadway',120,1200],['offpeakHeadway',180,1800],['demand',.25,3],['cruiseKmh',25,75],['streetKmh',20,60],['acceleration',.4,1.4],['braking',.5,1.8],['turnaround',60,900]])if(!Number.isFinite(p[k])||p[k]<min||p[k]>max)throw new Error('Parámetro fuera de rango: '+k);if(typeof p.variableDispatch!=='boolean'||typeof p.reinforcements!=='boolean'||typeof p.signals!=='boolean'||typeof p.beyondValidity!=='boolean')throw new Error('Opciones de despacho inválidas');if(!['auto','peak','offpeak'].includes(p.mode))throw new Error('Demanda inválida');return p;}
+import {DAY,addDays,serviceWindows,demandPeriod,dayType,gtfsServices,programmedDepartures} from './calendar.mjs?v=20260912.12';
+import {vehicleSpec} from './vehicles.mjs?v=20260912.12';
+import {matchSignals,signalTravel,signalTravelAt,SIGNAL_EXPECTED} from './signals.mjs?v=20260912.12';
+import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260912.12';
+import {placeVisit} from './station-layouts.mjs?v=20260912.12';
+import {MetricPath} from './simulation.mjs?v=20260912.12';
+export const DEFAULTS=Object.freeze({peakHeadway:240,offpeakHeadway:480,demand:1,mode:'auto',cruiseKmh:60,streetKmh:50,acceleration:.8,braking:1.1,turnaround:240,variableDispatch:true,reinforcements:true,signals:true,beyondValidity:true,programmedDispatch:true,programmedRunning:true});
+export function parameters(input={}){const p={...DEFAULTS,...input};for(const [k,min,max] of [['peakHeadway',120,1200],['offpeakHeadway',180,1800],['demand',.25,3],['cruiseKmh',25,75],['streetKmh',20,60],['acceleration',.4,1.4],['braking',.5,1.8],['turnaround',60,900]])if(!Number.isFinite(p[k])||p[k]<min||p[k]>max)throw new Error('Parámetro fuera de rango: '+k);if(typeof p.variableDispatch!=='boolean'||typeof p.reinforcements!=='boolean'||typeof p.signals!=='boolean'||typeof p.beyondValidity!=='boolean'||typeof p.programmedDispatch!=='boolean'||typeof p.programmedRunning!=='boolean')throw new Error('Opciones de despacho inválidas');if(!['auto','peak','offpeak'].includes(p.mode))throw new Error('Demanda inválida');return p;}
 export function hash(text){let h=2166136261;for(const c of String(text)){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;}
+// Velocidad de crucero que hace durar un tramo lo que dura en el horario publicado.
+//
+// El tiempo publicado de un tramo lleva dentro la atención en estación y los rojos, porque el feed
+// da llegada y salida iguales en todas las paradas. Así que primero se descuenta lo que el motor ya
+// modela aparte —la atención recién calculada y el coste esperado de los semáforos del tramo— y el
+// resto es el presupuesto de movimiento. Sobre él:
+//
+//   t(v) = distancia/v + (v/2)(1/a+1/b)(1 + n·p)
+//
+// el primer término es el crucero y el segundo lo que cuestan el arranque y la frenada, una vez en
+// las paradas y otra en cada semáforo en que toque parar. Igualar t(v) al presupuesto deja una
+// ecuación de segundo grado; se toma la raíz menor, que es la de ir más despacio, no la de correr
+// desperdiciando el tiempo en acelerar. Si el presupuesto no alcanza ni yendo al máximo, se va al
+// máximo y el viaje sale más corto que el horario: se prefiere eso a inventar una velocidad
+// imposible. El techo sigue siendo el crucero del escenario; esto nunca acelera un bus.
+export function programmedSpeed(target,distance,cap,a,b,signals=0){
+ if(!(target>0)||!(distance>0))return cap;
+ const budget=target-signals*SIGNAL_EXPECTED.wait;
+ const k=(1/a+1/b)*(1+signals*SIGNAL_EXPECTED.stopChance);
+ const disc=budget*budget-2*distance*k;
+ if(!(disc>0))return cap;
+ const v=(budget-Math.sqrt(disc))/k;
+ return Math.max(3,Math.min(cap,v));
+}
 export function motion(distance,v,a=.8,b=1.1){const top=Math.min(v,Math.sqrt(2*Math.max(0,distance)/(1/a+1/b))),ta=top/a,tb=top/b,cruise=Math.max(0,(distance-top*top/2/a-top*top/2/b)/Math.max(top,.01));return {distance,top,ta,tb,cruise,duration:ta+cruise+tb,a,b};}
 export function motionAt(m,t){t=Math.max(0,Math.min(t,m.duration));if(t<m.ta)return {s:.5*m.a*t*t,speed:m.a*t};if(t<m.ta+m.cruise)return {s:.5*m.top*m.ta+m.top*(t-m.ta),speed:m.top};const remaining=m.duration-t;return {s:m.distance-.5*m.b*remaining*remaining,speed:m.b*remaining};}
 class Heap{constructor(){this.a=[];this.n=0;}push(e){e.seq=this.n++;let i=this.a.length;this.a.push(e);while(i){const p=(i-1)>>1;if(this.less(this.a[p],e))break;this.a[i]=this.a[p];i=p;}this.a[i]=e;}less(a,b){return a.time<b.time||(a.time===b.time&&a.seq<b.seq);}pop(){const first=this.a[0],last=this.a.pop();if(this.a.length){let i=0;while(i*2+1<this.a.length){let j=i*2+1;if(j+1<this.a.length&&this.less(this.a[j+1],this.a[j]))j++;if(this.less(last,this.a[j]))break;this.a[i]=this.a[j];i=j;}this.a[i]=last;}return first;}get length(){return this.a.length;}}
@@ -33,11 +57,25 @@ export class Operation {
   for(const r of this.routes.values())for(let i=0;i<r.visits.length;i++){const s=r.visits[i];if(s.kind==='street')continue;const layout=layouts.get(s.station_id),placed=placeVisit(r,i,layout,hash(r.family));if(placed){Object.assign(s,placed);continue;}if(layout||i===0||i===r.visits.length-1)continue;const shift=(s.wagon-(s.wagons+1)/2)*64*(s.direction===0?1:-1),bound=Math.min((r.stops[i].at_m-r.stops[i-1].at_m)/4,(r.stops[i+1].at_m-r.stops[i].at_m)/4);s.at_m+=Math.max(-bound,Math.min(bound,shift));}
  }
  build(){
-  const queue=new Heap(),berths=new Map(),parked=new Map(),waiting=new Map();this.passengerEvents=new Map();this.trips=[];this.vehicles=[];this.depotEvents=[];this.routeWindows={};
+  const queue=new Heap(),berths=new Map(),parked=new Map(),waiting=new Map();this.passengerEvents=new Map();this.trips=[];this.vehicles=[];this.depotEvents=[];this.routeWindows={};this.programmedRoutes=new Set();this.programmedIdle=new Set();this.programmedMoves=0;this.programmedCapped=0;
   for(let day=-1;day<=0;day++){
    const date=addDays(this.date,day),offset=(day+1)*DAY;
+   const active=this.params.programmedDispatch?gtfsServices(this.data.schedule,date):null;
    for(const r of this.routes.values()){
     const windows=serviceWindows(r,date,this.data.routes,{beyondValidity:this.params.beyondValidity});if(day===0)this.routeWindows[r.id]=windows;
+    // El horario publicado sustituye la regla de cuatro y ocho minutos donde existe. La vigencia
+    // local sigue decidiendo si el servicio opera ese día, para que el interruptor de la interfaz
+    // conserve su sentido; lo que deja de inventarse es a qué hora sale cada bus.
+    const programmed=active&&windows.length?programmedDepartures(this.data.schedule,r.id,active):null;
+    if(programmed){
+     // Horario publicado sin ninguna salida ese día, pero el calendario local sí lo hace operar:
+     // los dos catálogos se contradicen. Gana el publicado, y la discrepancia se cuenta en vez de
+     // dejar que el servicio desaparezca del mapa sin decir por qué.
+     if(day===0){this.programmedRoutes.add(r.id);if(!programmed.length)this.programmedIdle.add(r.id);}
+     // Sin variación ni refuerzos: las salidas ya son las publicadas, incluidas las adicionales.
+     for(const t of programmed)queue.push({type:'dispatch',time:offset+t,rid:r.id,date,departure:t,programmed:true});
+     continue;
+    }
     for(let wi=0;wi<windows.length;wi++){
      const [start,end]=windows[wi];let t=start+hash(r.id)%23;
      let sequence=0;while(t<end){
@@ -89,10 +127,28 @@ export class Operation {
    trip.stops.push({arrival,open,close,at_m:s.at_m,wagon:s.wagon,wagonLabel:s.wagonLabel,wagonDoors:s.wagonDoors,wagonSource:s.wagonSource,slot,direction:s.direction,board,alight,load:trip.passengers,left:offered-board});
    if(isLast){trip.end=close;queue.push({type:'complete',time:close});queue.push({type:'release',time:close+this.params.turnaround,station:s.station_id,vehicle:trip.vehicle});continue;}
    const next=r.visits[e.index+1],distance=next.at_m-s.at_m,isStreet=s.kind==='street'||next.kind==='street';
-   const speedOffset=this.vehicles[trip.vehicle].spec.speedOffset;const v=((isStreet?this.params.streetKmh:this.params.cruiseKmh)+speedOffset)/3.6;
+   const speedOffset=this.vehicles[trip.vehicle].spec.speedOffset;const cap=((isStreet?this.params.streetKmh:this.params.cruiseKmh)+speedOffset)/3.6;
    // Stop-to-stop acceleration/braking is metric; street congestion is a slower estimated cruise profile.
-   const profileKey=r.id+'/'+e.index+'/'+period+'/'+speedOffset;
-   const m=signalTravel(r.path,s.at_m,next.at_m,v*(isStreet&&period==='peak'?.82:1),this.params.acceleration,this.params.braking,close,r.signals,this.motionCache,profileKey);
+   const published=this.params.programmedRunning?this.data.schedule?.routes?.[r.id]?.segments?.[e.index]:null;
+   let v=cap*(isStreet&&period==='peak'?.82:1),budget=0;
+   if(published){
+    // El tiempo publicado ya incluye la congestión de la punta: aplicarle además el factor de calle
+    // sería contarla dos veces.
+    // [base, punta, laborable, sábado, festivo]. La punta solo existe dentro del laborable.
+    const kind=dayType(actualDate),column=kind==='weekday'?(period==='peak'?1:2):kind==='saturday'?3:4;
+    // Se descuenta la atención realmente aplicada, que es la que el tiempo publicado lleva dentro.
+    // Redondeada a diez segundos: sin redondear, cada viaje pediría su propio perfil por diferencias
+    // de décimas en el embarque y la caché se cuadruplicaría. El error de un tramo queda por debajo
+    // de cinco segundos y no se acumula, porque unos redondean hacia arriba y otros hacia abajo.
+    budget=Math.round(((published[column]||published[0])-(close-arrival))/10)*10;
+    const crossings=r.signals.reduce((n,sg)=>n+(sg.at_m>s.at_m+.1&&sg.at_m<next.at_m-.1?1:0),0);
+    // Redondear antes de usarla: el presupuesto lleva dentro la atención, que cambia en cada viaje
+    // con la demanda, y sin redondeo cada bus pediría su propio perfil y la caché no serviría de nada.
+    v=Math.round(programmedSpeed(budget,distance,cap,this.params.acceleration,this.params.braking,crossings)*10)/10;
+    if(e.time>=DAY){if(v<cap-1e-9)this.programmedMoves++;else this.programmedCapped++;}
+   }
+   const profileKey=r.id+'/'+e.index+'/'+period+'/'+speedOffset+'/'+v;
+   const m=signalTravel(r.path,s.at_m,next.at_m,v,this.params.acceleration,this.params.braking,close,r.signals,this.motionCache,profileKey);
    trip.moves.push({profile:m.profile,holds:m.holds,start:close,end:close+m.duration,from:s.at_m});
    queue.push({type:'stop',time:close+m.duration,trip:e.trip,index:e.index+1,date:e.date});
   }
@@ -125,7 +181,7 @@ export class Operation {
  }
  seek(time){if(!Number.isFinite(time))throw new Error('Hora inválida');this.time=time;const a=upperBound(this.trips,time-this.maxDuration,t=>t.start),b=upperBound(this.trips,time,t=>t.start);this.buses=[];for(let i=a;i<b;i++){const t=this.trips[i];if(t.end>time){const bus=this.sampleTrip(t,time);if(bus)this.buses.push(bus);}}this.byId=new Map(this.buses.map(b=>[b.id,b]));return this.buses;}
  inspect(id){return this.byId.get(id)||null;}
- stats(){const counts={moving:0,dwell:0,queue:0,signal:0};let load=0;for(const b of this.buses){counts[b.state]++;load+=b.load;}const n=upperBound(this.stopEvents,this.time,e=>e.time),start=upperBound(this.stopEvents,DAY,e=>e.time),events=Math.max(0,n-start);return {time_s:this.time,fleet:this.buses.length,...counts,onboard:load,boarded:this.boardPrefix[n]-this.boardPrefix[Math.min(start,n)],stops:events,averageWait:events?(this.waitPrefix[n]-this.waitPrefix[start])/events:0,boardingDenials:this.leftPrefix[n]-this.leftPrefix[Math.min(start,n)],scheduled:this.trips.filter(t=>t.start>=DAY).length,completed:upperBound(this.ends,this.time,t=>t.end)-upperBound(this.ends,DAY,t=>t.end),routes:this.routes.size,peakActive:this.peakActive};}
+ stats(){const counts={moving:0,dwell:0,queue:0,signal:0};let load=0;for(const b of this.buses){counts[b.state]++;load+=b.load;}const n=upperBound(this.stopEvents,this.time,e=>e.time),start=upperBound(this.stopEvents,DAY,e=>e.time),events=Math.max(0,n-start);return {time_s:this.time,fleet:this.buses.length,...counts,onboard:load,boarded:this.boardPrefix[n]-this.boardPrefix[Math.min(start,n)],stops:events,averageWait:events?(this.waitPrefix[n]-this.waitPrefix[start])/events:0,boardingDenials:this.leftPrefix[n]-this.leftPrefix[Math.min(start,n)],scheduled:this.trips.filter(t=>t.start>=DAY).length,completed:upperBound(this.ends,this.time,t=>t.end)-upperBound(this.ends,DAY,t=>t.end),routes:this.routes.size,peakActive:this.peakActive,programmedRoutes:this.programmedRoutes.size,programmedIdle:this.programmedIdle.size,programmedMoves:this.programmedMoves,programmedCapped:this.programmedCapped};}
  depotStats(){const map=new Map();for(const t of this.trips){const r=this.routes.get(t.routeId),origin=r.stops[0].station_id;if(!map.has(origin))map.set(origin,{id:origin,name:this.stations.get(origin)?.name||r.stops[0].name,departures:0,next:Infinity,reserve:0});const d=map.get(origin);if(t.start>=DAY&&t.start<=this.time)d.departures++;if(t.start>this.time)d.next=Math.min(d.next,t.start);}
  for(const e of this.depotEvents){if(e.time>this.time)break;if(!map.has(e.station))map.set(e.station,{id:e.station,name:this.stations.get(e.station)?.name||e.station,departures:0,next:Infinity,reserve:0});map.get(e.station).reserve+=e.delta;}
  return [...map.values()].sort((a,b)=>b.departures-a.departures);

@@ -34,6 +34,31 @@ export function serviceWindows(route,date,routes,{beyondValidity=false}={}){
  if(newer.length)windows=subtractWindows(windows,newer.flatMap(r=>r.calendar.filter(h=>dayMatches(h.days,date)).map(h=>[h.start,h.end])));
  return windows;
 }
+// El horario publicado trae su propio calendario: banderas por día de la semana, vigencia y fechas
+// añadidas o retiradas una a una. Los festivos colombianos vienen ahí como excepciones, así que se
+// resuelve sobre la fecha real y no se traduce a los tres tipos de día del proyecto: traducir
+// perdería precisamente los días que el operador trata aparte.
+export function gtfsServices(schedule,date){
+ const tag=date.replace(/-/g,''),weekday=(new Date(date+'T12:00:00Z').getUTCDay()+6)%7;
+ const out=new Set();
+ for(const [id,calendar] of Object.entries(schedule?.calendar||{})){
+  const exception=schedule.exceptions?.[id];
+  if(exception?.added?.includes(tag)){out.add(id);continue;}
+  if(exception?.removed?.includes(tag))continue;
+  if(tag>=calendar.start&&tag<=calendar.end&&calendar.days[weekday])out.add(id);
+ }
+ return out;
+}
+// Las salidas de un servicio ese día, o null si no hay horario publicado para él. Null y lista
+// vacía significan cosas distintas: sin horario se recurre a la regla sintética; con horario y sin
+// salidas, ese día no opera.
+export function programmedDepartures(schedule,routeId,active){
+ const entry=schedule?.routes?.[routeId];
+ if(!entry)return null;
+ const out=[];
+ for(const [service,list] of Object.entries(entry.departures))if(active.has(service))out.push(...list);
+ return out.sort((a,b)=>a-b);
+}
 export function demandPeriod(second,date,mode='auto'){
  if(mode==='peak'||mode==='offpeak')return mode;
  const h=((second%DAY)+DAY)%DAY/3600;

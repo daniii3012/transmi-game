@@ -33,7 +33,7 @@ Tras excluir la zonal y F23/10082 Banderas (corrección de catálogo, 11 sep.) y
 |---|---|
 | Intervalo entre salidas | 4 min pico, 8 min valle; ajustable, con variación determinista de ±12% opcional |
 | Pico entre semana | 06–09 y 16–20, o modo forzado |
-| Crucero troncal / calle | 60 / 50 km/h ajustables; cada bus conserva una variación de −5, −2, 0, +2 o +5; calle en pico factor 0,82 |
+| Crucero troncal / calle | Techo de 60 / 50 km/h ajustable; cada tramo con horario publicado rueda por debajo, a lo que ese horario le da; cada bus conserva una variación de −5, −2, 0, +2 o +5; calle en pico factor 0,82 |
 | Aceleración / frenado | 0,8 / 1,1 m/s²; desaceleración por curvas estimada |
 | Atención | Base 13 s troncal, 9 s calle; +4 s pico; abordajes a 2,5 personas/s y descensos a 3 personas/s |
 | Regulación en terminal | 240 s; patio abstracto en el extremo, sin acceso físico inventado |
@@ -41,7 +41,22 @@ Tras excluir la zonal y F23/10082 Banderas (corrección de catálogo, 11 sep.) y
 | Carriles y posiciones | Atención y paso independientes por sentido; 2 posiciones por vagón y 1 en calle |
 | Flota | Sin un contador fijo de buses activos: resultado de salidas y duración; reutilización compatible por terminal/tipo |
 
-Los horarios publicados se interpretan como ventanas de despacho, no como instante de desaparición del último bus. Un viaje puede terminar después del cierre.
+Desde el 12 de septiembre de 2026 las salidas salen del **horario publicado**: 104 de los 117 servicios
+utilizables despachan a las horas del GTFS de TRANSMILENIO, no a un intervalo fijo. Los 13 restantes
+conservan la regla de 4/8 min y constan uno a uno, con su motivo, en `app/dist/schedule.json`; casi todos
+son duales cuyo registro publicado es una vuelta completa que cubre dos códigos locales, y atarlos a ambos
+inventaría un segundo bus. El interruptor «Salidas del horario publicado» devuelve la regla a todos.
+Ver [Horario publicado](HORARIO_GTFS_20260912.md).
+
+La velocidad de crucero de cada tramo también sale del horario: se despeja del tiempo publicado para
+ese tramo tras descontar la atención y el coste esperado de sus semáforos, con el crucero de la tabla
+de arriba como techo. Interruptor «Duración del recorrido publicada». Con eso la velocidad comercial
+simulada queda en 21,3 km/h frente a 21,1 programada, y 99 de 104 servicios de un viernes caen dentro
+de su banda p10–p90.
+
+La vigencia local sigue decidiendo si un servicio opera esa fecha; lo que ya no se inventa es a qué hora
+sale cada bus. Los horarios publicados se interpretan como ventanas de despacho, no como instante de
+desaparición del último bus. Un viaje puede terminar después del cierre.
 
 ## Pasajeros y clases de bus
 

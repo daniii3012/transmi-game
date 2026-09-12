@@ -1,9 +1,9 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
-import {Operation,DEFAULTS,parameters,motion,motionAt} from '../dist/operation.mjs';
+import {Operation,DEFAULTS,parameters,motion,motionAt,programmedSpeed} from '../dist/operation.mjs';
 import {vehicleSpec} from '../dist/vehicles.mjs';
 import {MetricPath} from '../dist/simulation.mjs';
 import {travelProfile,travelAt} from '../dist/travel.mjs';
-import {dayType,holidays,serviceWindows,dateNumber,validityState} from '../dist/calendar.mjs';
+import {dayType,holidays,serviceWindows,dateNumber,validityState,gtfsServices,programmedDepartures,DAY} from '../dist/calendar.mjs';
 import {directionalFactor,generatedPassengers,EMPLOYMENT_CENTER} from '../dist/passengers.mjs';
 const source=JSON.parse(fs.readFileSync(new URL('../dist/services.json',import.meta.url)));
 const base={schema_version:2,scenario_date:'2026-09-10',vehicle:{length_m:18.5,width_m:2.5},stations:[{id:'a',xy:[0,0],name:'Portal Prueba',kind:'station',wagons:2},{id:'b',xy:[1000,0],name:'Centro',kind:'station',wagons:2},{id:'c',xy:[2000,0],name:'Terminal',kind:'station',wagons:2}]};
@@ -111,4 +111,98 @@ test('Measured day-type profiles replace the estimated weekend reduction',()=>{
  // A station without a profile keeps the estimated path and still responds to the day type.
  const sinPerfil={...base.stations[0]};
  assert.ok(generatedPassengers(sinPerfil,0,8*3600,8*3600+600,'2026-09-10',parameters({}))>0);
+});
+
+// --- Salidas del horario publicado -----------------------------------------------------------
+const horario=JSON.parse(fs.readFileSync(new URL('../dist/schedule.json',import.meta.url)));
+test('El calendario GTFS se resuelve sobre la fecha real, con sus excepciones',()=>{
+ // Viernes laborable, sábado y domingo activan conjuntos distintos y disjuntos en su día propio.
+ assert.deepEqual([...gtfsServices(horario,'2026-09-11')].sort(),['1','3','5','7']);
+ assert.deepEqual([...gtfsServices(horario,'2026-09-12')].sort(),['2','3','6','7']);
+ assert.deepEqual([...gtfsServices(horario,'2026-09-13')].sort(),['4','5','6','7']);
+ // Un festivo entre semana: el paquete lo trae como excepción añadida al servicio dominical y
+ // retirada del laborable, que es justo lo que se perdería al traducirlo a un tipo de día.
+ const festivo=gtfsServices(horario,'2026-08-17');
+ assert.ok(festivo.has('4')&&!festivo.has('1'),'el 17 de agosto opera como domingo');
+ assert.equal(gtfsServices({},'2026-09-12').size,0);
+});
+test('Un servicio despacha exactamente a las horas publicadas y no a un intervalo',()=>{
+ const activos=gtfsServices(horario,'2026-09-12');
+ const id=Object.keys(horario.routes).find(k=>programmedDepartures(horario,k,activos).length>20);
+ const esperadas=programmedDepartures(horario,id,activos);
+ const ruta=source.routes.find(r=>r.id===id);
+ const datos={...source,routes:[ruta],schedule:horario};
+ const op=new Operation(datos,{date:'2026-09-12'});
+ const salidas=op.trips.filter(t=>t.start>=DAY&&t.start<2*DAY).map(t=>t.start-DAY).sort((a,b)=>a-b);
+ assert.deepEqual(salidas,esperadas);
+ assert.ok(op.programmedRoutes.has(id));
+ // Los intervalos publicados no son constantes: es lo que la regla de cuatro y ocho minutos borraba.
+ const huecos=new Set(esperadas.slice(1).map((t,i)=>t-esperadas[i]));
+ assert.ok(huecos.size>1,'el horario real tiene intervalos distintos a lo largo del día');
+});
+test('Sin horario, o con el interruptor apagado, vuelve la regla sintética',()=>{
+ const activos=gtfsServices(horario,'2026-09-12');
+ const id=Object.keys(horario.routes).find(k=>programmedDepartures(horario,k,activos).length>20);
+ const ruta=source.routes.find(r=>r.id===id);
+ const con=new Operation({...source,routes:[ruta],schedule:horario},{date:'2026-09-12'});
+ const sin=new Operation({...source,routes:[ruta],schedule:horario},{date:'2026-09-12',params:{programmedDispatch:false}});
+ const huerfana=new Operation({...source,routes:[ruta]},{date:'2026-09-12'});
+ assert.equal(sin.programmedRoutes.size,0);
+ assert.equal(huerfana.programmedRoutes.size,0);
+ assert.notDeepEqual(con.trips.map(t=>t.start),sin.trips.map(t=>t.start));
+ // Ausencia de archivo y apagado deliberado producen la misma operación: una sola regla de reserva.
+ assert.deepEqual(huerfana.trips.map(t=>t.start),sin.trips.map(t=>t.start));
+ assert.ok(parameters({}).programmedDispatch);
+ assert.throws(()=>parameters({programmedDispatch:'sí'}));
+});
+test('El horario cubre la mayoría del catálogo y lo que falta queda declarado, no inventado',()=>{
+ const listas=source.routes.filter(r=>r.ready);
+ const conHorario=listas.filter(r=>horario.routes[r.id]);
+ assert.ok(conHorario.length>=100,`${conHorario.length} servicios con horario publicado`);
+ // Cada servicio sin horario aparece en la lista de pendientes con un motivo escrito.
+ const pendientes=new Map(horario.pending.map(p=>[p.id,p]));
+ for(const r of listas)if(!horario.routes[r.id]){
+  assert.ok(pendientes.has(r.id),`${r.code} ${r.name} sin horario y sin constar como pendiente`);
+  assert.ok(pendientes.get(r.id).reason);
+ }
+ // Ninguna ruta apunta a un registro de vuelta completa: contaría un bus dos veces.
+ const combinadas=new Set(JSON.parse(fs.readFileSync(new URL('../../data/processed/schedule_audit.json',import.meta.url))).combined_records.map(c=>c.route_id));
+ for(const entrada of Object.values(horario.routes))for(const g of entrada.gtfs)assert.ok(!combinadas.has(g));
+});
+
+// --- Duración del recorrido publicada ---------------------------------------------------------
+test('La velocidad se despeja del tiempo del tramo y nunca supera el crucero',()=>{
+ const a=.8,b=1.1,cap=60/3.6;
+ // Sin semáforos, la velocidad devuelta reproduce el tiempo objetivo: distancia/v + (v/2)(1/a+1/b).
+ for(const [distancia,objetivo] of [[1200,150],[800,120],[2000,240]]){
+  const v=programmedSpeed(objetivo,distancia,cap,a,b,0);
+  assert.ok(v<cap,'un tramo holgado tiene que ir por debajo del crucero');
+  assert.ok(Math.abs(distancia/v+v/2*(1/a+1/b)-objetivo)<1e-6);
+ }
+ // Un objetivo imposible no inventa velocidad: se queda en el techo del escenario.
+ assert.equal(programmedSpeed(5,3000,cap,a,b,0),cap);
+ assert.equal(programmedSpeed(0,1200,cap,a,b,0),cap);
+ assert.equal(programmedSpeed(150,0,cap,a,b,0),cap);
+ // Más semáforos en el mismo tramo se comen parte del tiempo publicado, así que para llegar a la
+ // misma hora hay que rodar más rápido entre ellos. Es justamente lo que evita contarlos dos veces:
+ // si la velocidad bajara además de esperar en los rojos, el viaje se pasaría del horario.
+ const sin=programmedSpeed(300,2000,cap,a,b,0),con=programmedSpeed(300,2000,cap,a,b,4);
+ assert.ok(con>sin,'el tiempo que se van los semáforos hay que recuperarlo rodando');
+ // El suelo físico se respeta aunque el tramo sea absurdamente holgado.
+ assert.equal(programmedSpeed(10000,100,cap,a,b,0),3);
+});
+test('Con tiempos publicados el recorrido dura lo programado; sin ellos se queda corto',()=>{
+ const activos=gtfsServices(horario,'2026-09-12');
+ const id=Object.keys(horario.routes).find(k=>horario.routes[k].segments&&programmedDepartures(horario,k,activos).length>20);
+ const ruta=source.routes.find(r=>r.id===id);
+ const datos={...source,routes:[ruta],schedule:horario};
+ const objetivo=horario.routes[id].segments.reduce((a,s)=>a+s[3],0)/60; // columna sábado
+ const media=op=>{const v=op.trips.filter(t=>t.start>=DAY&&t.start<2*DAY).map(t=>(t.end-t.start)/60).sort((a,b)=>a-b);return v[Math.floor(v.length/2)];};
+ const con=media(new Operation(datos,{date:'2026-09-12'}));
+ const sin=media(new Operation(datos,{date:'2026-09-12',params:{programmedRunning:false}}));
+ assert.ok(sin<objetivo*.85,`a crucero fijo el recorrido sale corto: ${sin.toFixed(1)} frente a ${objetivo.toFixed(1)}`);
+ assert.ok(Math.abs(con-objetivo)<objetivo*.15,`con tiempos publicados se acerca: ${con.toFixed(1)} frente a ${objetivo.toFixed(1)}`);
+ assert.ok(con>sin,'los tiempos publicados solo pueden alargar el recorrido, nunca acortarlo');
+ assert.ok(parameters({}).programmedRunning);
+ assert.throws(()=>parameters({programmedRunning:1}));
 });

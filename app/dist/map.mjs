@@ -250,7 +250,7 @@ export class NetworkMap {
     }
     // Con un servicio en foco la instantánea pierde el contorno y baja de opacidad: el anillo
     // blanco es la marca de la lectura GPS, y dos contornos iguales compiten por la atención.
-    const opacity=this.networkDimmed?.3:1;
+    const opacity=this.networkDimmed?.55:1;
     this.networkHalo.visible=!this.networkDimmed;
     this.networkHalo.material.color.set(this.dark?'#e8eef6':'#ffffff');this.networkHalo.material.opacity=opacity;
     this.networkDot.material.color.set('#ffffff');this.networkDot.material.opacity=opacity;
@@ -273,10 +273,13 @@ export class NetworkMap {
   // que nunca se confundan con los buses del modelo, que son rectángulos. Entre dos lecturas se
   // interpola 1,2 s por continuidad visual; no se extrapola más allá de la última posición real.
   // La pestaña En vivo esconde la flota simulada: dos flotas encima de la misma troncal no se
-  // distinguen, y la pregunta ahí es dónde están los buses de verdad.
+  // distinguen, y la pregunta ahí es dónde están los buses de verdad. Los semáforos se van con
+  // ella: su fase la inventa el modelo, y siendo también puntos de color se leen antes que los
+  // buses reales, que son el motivo de la pestaña.
   setSimulationVisible(visible){
     this.simulationVisible=visible;
     if(this.busMesh)this.busMesh.visible=this.busNose.visible=visible;
+    if(this.signalMesh)this.signalMesh.visible=false;
     if(!visible)this.clusterLayer.replaceChildren();
   }
   setLiveBuses(buses,color='#dc253b'){
@@ -327,7 +330,7 @@ export class NetworkMap {
   }
   follow(xy,dt){const blend=1-Math.exp(-Math.min(.1,Math.max(0,dt))*15);this.center[0]+=(xy[0]-this.center[0])*blend;this.center[1]+=(xy[1]-this.center[1])*blend;const now=performance.now();const labels=!this.lastFollowLabels||now-this.lastFollowLabels>150;if(labels)this.lastFollowLabels=now;this.updateCamera({labels});}
   updateSignals(time){
-    if(!this.signalMesh)return;this.signalMesh.visible=this.signalsEnabled&&this.mpp<4;if(!this.signalMesh.visible)return;
+    if(!this.signalMesh)return;this.signalMesh.visible=this.signalsEnabled&&this.simulationVisible!==false&&this.mpp<4;if(!this.signalMesh.visible)return;
     const color=new THREE.Color();let i=0;
     for(const s of this.data.busway_signals.signals){this.object.position.set(...s.xy,0);this.object.rotation.z=0;this.object.scale.setScalar(Math.max(2,this.mpp*3));this.object.updateMatrix();this.signalMesh.setMatrixAt(i,this.object.matrix);color.set({green:'#269765',amber:'#e8a41b',red:'#e8394b'}[signalPhase(s.id,time||0).color]);this.signalMesh.setColorAt(i++,color);}
     this.signalMesh.instanceMatrix.needsUpdate=true;this.signalMesh.instanceColor.needsUpdate=true;

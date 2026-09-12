@@ -46,6 +46,6 @@ Three.js se mantiene para dibujar el mapa 2D con cámara ortográfica y muchos b
 
 `app/dist/` contiene fuentes editables y dependencias vendorizadas; `tools/`, los importadores; `data/`, instantáneas, curación y auditorías. Pruebas: `node --test app/tests/*.test.mjs` y `python3 -m unittest discover -s tests` usando el Python geográfico indicado en [continuidad](CONTINUAR.md).
 
-[Arquitectura](docs/ARQUITECTURA.md) · [Plan y pendientes](docs/PLAN_DEL_PROYECTO.md) · [Validación actual](docs/VALIDACION_FASE2_20260911.md) · [Planificador](docs/PLANIFICADOR.md) · [Continuar](CONTINUAR.md)
+[Arquitectura](docs/ARQUITECTURA.md) · [Actualizar los datos](docs/ACTUALIZAR_DATOS.md) · [Plan y pendientes](docs/PLAN_DEL_PROYECTO.md) · [Registros pendientes](docs/PENDIENTES_20260911.md) · [Validación actual](docs/VALIDACION_FASE2_20260911.md) · [Planificador](docs/PLANIFICADOR.md) · [Continuar](CONTINUAR.md)
 
 Respaldo: [daniii3012/transmi-game](https://github.com/daniii3012/transmi-game). Uso local; no se ha desplegado una versión jugable pública.

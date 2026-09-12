@@ -65,6 +65,10 @@ El mapa permanente usa colores de troncales. Los tramos tipo_tra=2 del mapa (inc
 
 Los 23 registros de datos pendientes se mantienen por petición expresa. Los semáforos con evidencia directa se incorporan con ciclos expresamente estimados; las fases y coordinación reales permanecen sin corroborar. También siguen pendientes OD, asignaciones reales de flota/vagones, planos de otras estaciones, patios e inventarios oficiales y recorridos en vacío.
 
+El procedimiento completo para **reemplazar** una fuente cuando el sistema real cambie
+está en [ACTUALIZAR_DATOS.md](ACTUALIZAR_DATOS.md). Lo que sigue solo regenera los
+artefactos a partir de las instantáneas ya archivadas.
+
 ## Reproducir sin volver a descargar
 
 Desde la raíz del proyecto, con Python y shapely/pyproj instalados. En el equipo actual existe `../../work/venv/bin/python`:

@@ -229,7 +229,7 @@ try{
   $$('[data-live-scope]').forEach(b=>b.classList.toggle('active',b.dataset.liveScope===liveScope));
   if(!inLive){liveFitted=null;map.setLiveBuses([]);map.setNetworkBuses([]);map.setRoute(focusedRoute);}
   else if(liveScope!=='route'){map.setLiveBuses([]);map.setRoute(null);}
-  map.setNetworkBuses(map.networkVehicles||[],{dimmed:liveScope==='route'});
+  map.setNetworkDimmed(liveScope==='route');
  }
  function renderLiveNetwork({phase,payload,message}){
   const status=$('#live-network-status'),list=$('#live-network-list');
@@ -409,7 +409,7 @@ try{
  setUpLive();
  let last=performance.now();document.addEventListener('visibilitychange',()=>{last=performance.now();syncLive();});
  function frame(now){const dt=(now-last)/1000;last=now;if(!document.hidden){if(ready&&!clock.paused&&!scrubbing&&document.activeElement!==$('#time')){clock.time+=dt*clock.speed;if(clock.time>=2*DAY)jump(clock.time);}if(now-lastSample>=50){sample();lastSample=now;}
-  map.animateBuses(now);map.animateLive(now);if(following&&selection?.kind==='bus'){const b=(map.visualBuses||snap.buses).find(b=>b.id===selection.id);if(b){map.follow(b.xy,dt);}}
+  map.animateBuses(now);map.animateLive(now);map.animateNetwork(now);if(following&&selection?.kind==='bus'){const b=(map.visualBuses||snap.buses).find(b=>b.id===selection.id);if(b){map.follow(b.xy,dt);}}
   map.render();if(now-lastUI>200){updateUI();renderNow();lastUI=now;}if(now-lastList>5000){if(activePanel==='routes'&&!$('#route-list').contains(document.activeElement))renderRoutes();if(activePanel==='depots'&&ready)worker.postMessage({type:'depots',generation});lastList=now;}
   if(now-lastInspect>1000){if(selection?.kind==='bus'){const focus=document.activeElement?.id;renderBus();if(focus==='follow')$('#follow')?.focus({preventScroll:true});}if(selection?.kind==='station'&&ready&&!$('#inspector').contains(document.activeElement))worker.postMessage({type:'station',generation,id:selection.id});lastInspect=now;}}
  requestAnimationFrame(frame);}

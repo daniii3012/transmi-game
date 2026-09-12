@@ -220,7 +220,24 @@ export class NetworkMap {
   // Instantánea de toda la red. Es otra fuente que la capa de un servicio —posición calculada por
   // el planificador, no la lectura GPS del bus—, así que se dibuja más pequeña y sin número, y se
   // atenúa cuando hay un servicio en foco para que no compita con él.
-  setNetworkBuses(vehicles,{dimmed=false}={}){this.networkVehicles=vehicles;this.networkDimmed=dimmed;this.updateNetwork();}
+  setNetworkBuses(vehicles,{dimmed=false}={}){
+    // El 97% de los vehículos conserva su identificador entre lecturas, así que se unen las dos
+    // posiciones observadas en vez de saltar. No se extrapola más allá de la última.
+    const previous=new Map((this.networkVehicles||[]).map(v=>[v.id,v.xy]));
+    this.networkDimmed=dimmed;this.networkTarget=vehicles;this.networkStart=performance.now();
+    this.networkSettled=!vehicles.length;this.networkPrevious=previous;
+    this.networkVehicles=vehicles.map(v=>({...v,xy:previous.get(v.id)||v.xy}));
+    this.updateNetwork();
+  }
+  // Cambiar solo la atenuación no es una lectura nueva: reaplicar la lista entera congelaría a
+  // mitad de camino cualquier interpolación en curso.
+  setNetworkDimmed(dimmed){if(dimmed===this.networkDimmed)return;this.networkDimmed=dimmed;this.updateNetwork();}
+  animateNetwork(now){
+    if(!this.networkTarget||this.networkSettled)return;
+    const blend=Math.min(1,(now-this.networkStart)/1200),ease=blend*(2-blend);
+    this.networkVehicles=this.networkTarget.map(v=>{const from=this.networkPrevious.get(v.id);return from?{...v,xy:[from[0]+(v.xy[0]-from[0])*ease,from[1]+(v.xy[1]-from[1])*ease]}:v;});
+    this.networkSettled=blend>=1;this.updateNetwork();
+  }
   updateNetwork(){
     const vehicles=this.networkVehicles||[];
     if(!vehicles.length&&!this.networkHalo)return;
@@ -278,9 +295,12 @@ export class NetworkMap {
     const buses=this.liveVisual||[];
     if(!buses.length&&!this.liveHalo)return;// Quien nunca abre la pestaña no paga ni una malla.
     if(!this.liveHalo){
-      this.liveHalo=new THREE.InstancedMesh(new THREE.CircleGeometry(1,20),new THREE.MeshBasicMaterial({depthTest:false}),256);
-      this.liveDot=new THREE.InstancedMesh(new THREE.CircleGeometry(1,20),new THREE.MeshBasicMaterial({depthTest:false}),256);
-      this.liveNose=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({depthTest:false}),256);
+      // Transparentes a propósito aunque se dibujen opacas: Three pinta todo lo opaco antes que lo
+      // transparente, y el trazado resaltado es transparente. Siendo opacas quedaban debajo de la
+      // línea por mucho renderOrder que llevaran.
+      this.liveHalo=new THREE.InstancedMesh(new THREE.CircleGeometry(1,20),new THREE.MeshBasicMaterial({depthTest:false,transparent:true}),256);
+      this.liveDot=new THREE.InstancedMesh(new THREE.CircleGeometry(1,20),new THREE.MeshBasicMaterial({depthTest:false,transparent:true}),256);
+      this.liveNose=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({depthTest:false,transparent:true}),256);
       for(const [mesh,order] of [[this.liveHalo,8],[this.liveNose,8.1],[this.liveDot,8.2]]){mesh.renderOrder=order;mesh.frustumCulled=false;mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);this.scene.add(mesh);}
     }
     const halo=this.dark?'#e8eef6':'#ffffff';

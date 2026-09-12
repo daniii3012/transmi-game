@@ -56,6 +56,32 @@ test('Every method the application calls on the feed exists',async()=>{
  for(const metodo of usados)assert.equal(typeof feed[metodo],'function',`falta ${metodo}() en LiveFeed`);
 });
 
+test('Every method the application calls on the map exists',async()=>{
+ // La misma guarda que para el feed: un método que desaparezca de NetworkMap rompe la pestaña
+ // entera en tiempo de ejecución, sin que nada lo señale antes.
+ const {NetworkMap}=await import('../dist/map.mjs');
+ const fuente=await readFile(new URL('../dist/app.mjs',import.meta.url),'utf8');
+ const usados=[...new Set([...fuente.matchAll(/\bmap\.([a-zA-Z]+)\(/g)].map(m=>m[1]))];
+ assert.ok(usados.length>10,'se esperaban muchas llamadas al mapa');
+ for(const metodo of usados)assert.equal(typeof NetworkMap.prototype[metodo],'function',`falta ${metodo}() en NetworkMap`);
+});
+
+test('The whole-system snapshot eases between readings instead of jumping',async()=>{
+ const {NetworkMap}=await import('../dist/map.mjs');
+ // Se ejercita la mecánica de interpolación sola: construir el mapa pediría WebGL.
+ const mapa={updateNetwork(){},setNetworkBuses:NetworkMap.prototype.setNetworkBuses,animateNetwork:NetworkMap.prototype.animateNetwork};
+ mapa.setNetworkBuses([{id:'a',xy:[0,0]},{id:'b',xy:[10,10]}]);
+ mapa.setNetworkBuses([{id:'a',xy:[100,0]},{id:'c',xy:[5,5]}]);
+ assert.deepEqual(mapa.networkVehicles.find(v=>v.id==='a').xy,[0,0],'un vehículo conocido arranca donde estaba');
+ assert.deepEqual(mapa.networkVehicles.find(v=>v.id==='c').xy,[5,5],'uno nuevo aparece ya en su sitio');
+ mapa.animateNetwork(mapa.networkStart+600);
+ const medio=mapa.networkVehicles.find(v=>v.id==='a').xy[0];
+ assert.ok(medio>0&&medio<100,`a mitad del trayecto se esperaba un punto intermedio, no ${medio}`);
+ mapa.animateNetwork(mapa.networkStart+5000);
+ assert.deepEqual(mapa.networkVehicles.find(v=>v.id==='a').xy,[100,0],'al terminar se queda en la posición leída');
+ assert.ok(mapa.networkSettled,'y deja de animarse');
+});
+
 test('A reading slower than the interval is not cancelled by the next tick',async()=>{
  let enCurso=0,maximo=0,completadas=0;
  const original=globalThis.fetch;

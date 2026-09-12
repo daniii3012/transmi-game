@@ -1,0 +1,2706 @@
+{
+  "generated_at": "2026-09-12T14:22:41",
+  "capture_folder": "/Users/daniel/Documents/code/tm/data/raw/rt_capture",
+  "detail_files": [
+    "rt_detalle_20260912.csv.gz"
+  ],
+  "gtfs_used": {
+    "folder": "20260912T192133Z",
+    "sha256": "43c0c82de709e8bd1e3c6a170084ee696e5283553bb38b1235fe59551586a14d"
+  },
+  "provenance": [],
+  "cobertura": {
+    "builds": 157,
+    "failures": 0,
+    "from": "2026-09-12T13:02:46",
+    "to": "2026-09-12T14:22:08",
+    "span_h": 1.32,
+    "median_step_s": 19,
+    "gaps_over_2min": [],
+    "gaps_total": 0
+  },
+  "flota_por_hora": {
+    "13": {
+      "Alimentador": 372,
+      "Dual": 155,
+      "Troncal": 849,
+      "Troncal+Dual": 1005,
+      "Zonal complementario": 12,
+      "Zonal especial": 3,
+      "Zonal urbano": 4216
+    },
+    "14": {
+      "Alimentador": 376,
+      "Dual": 159,
+      "Troncal": 851,
+      "Troncal+Dual": 1010,
+      "Zonal complementario": 12,
+      "Zonal especial": 3,
+      "Zonal urbano": 4229
+    }
+  },
+  "tramos": {
+    "stretches": 1295,
+    "observations_matched": 17266,
+    "observations_unmatched": 1362,
+    "minimum_observations_per_stretch": 3,
+    "ratio_observed_over_published": {
+      "n": 1275,
+      "p10": 0.58,
+      "p50": 0.92,
+      "p90": 1.47
+    },
+    "ratio_by_published_duration": {
+      "<90 s": {
+        "n": 150,
+        "p10": 0.74,
+        "p50": 1.19,
+        "p90": 1.83
+      },
+      "90-150 s": {
+        "n": 357,
+        "p10": 0.6,
+        "p50": 0.95,
+        "p90": 1.47
+      },
+      "150-240 s": {
+        "n": 307,
+        "p10": 0.59,
+        "p50": 0.85,
+        "p90": 1.47
+      },
+      ">240 s": {
+        "n": 461,
+        "p10": 0.52,
+        "p50": 0.85,
+        "p90": 1.34
+      }
+    },
+    "reliable_from_s": 150,
+    "detail": [
+      {
+        "route_id": "13168",
+        "from_stop": "61627",
+        "to_stop": "74286",
+        "observed": {
+          "n": 34,
+          "p10": 19.0,
+          "p50": 822.0,
+          "p90": 960.0
+        },
+        "published_s": 976.0,
+        "metres": 4619.0
+      },
+      {
+        "route_id": "13265",
+        "from_stop": "61731",
+        "to_stop": "72781",
+        "observed": {
+          "n": 30,
+          "p10": 20.0,
+          "p50": 1106.0,
+          "p90": 1218.0
+        },
+        "published_s": 1279.0,
+        "metres": 9417.0
+      },
+      {
+        "route_id": "12873",
+        "from_stop": "61739",
+        "to_stop": "61755",
+        "observed": {
+          "n": 29,
+          "p10": 19.0,
+          "p50": 481.0,
+          "p90": 580.0
+        },
+        "published_s": 511.0,
+        "metres": 3969.0
+      },
+      {
+        "route_id": "11163",
+        "from_stop": "61625",
+        "to_stop": "73775",
+        "observed": {
+          "n": 28,
+          "p10": 19.0,
+          "p50": 241.0,
+          "p90": 322.0
+        },
+        "published_s": 437.0,
+        "metres": 2120.0
+      },
+      {
+        "route_id": "13168",
+        "from_stop": "74286",
+        "to_stop": "74287",
+        "observed": {
+          "n": 28,
+          "p10": 19.0,
+          "p50": 138.0,
+          "p90": 203.0
+        },
+        "published_s": 152.0,
+        "metres": 720.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "73076",
+        "to_stop": "72331",
+        "observed": {
+          "n": 28,
+          "p10": 38.0,
+          "p50": 265.0,
+          "p90": 364.0
+        },
+        "published_s": 303.5,
+        "metres": 1586.0
+      },
+      {
+        "route_id": "13265",
+        "from_stop": "61580",
+        "to_stop": "61731",
+        "observed": {
+          "n": 28,
+          "p10": 20.0,
+          "p50": 265.0,
+          "p90": 321.0
+        },
+        "published_s": 257.0,
+        "metres": 1887.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71678",
+        "to_stop": "71681",
+        "observed": {
+          "n": 27,
+          "p10": 19.0,
+          "p50": 160.0,
+          "p90": 239.0
+        },
+        "published_s": 117.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "13265",
+        "from_stop": "62278",
+        "to_stop": "71714",
+        "observed": {
+          "n": 27,
+          "p10": 57.0,
+          "p50": 86.0,
+          "p90": 121.0
+        },
+        "published_s": 74.0,
+        "metres": 547.0
+      },
+      {
+        "route_id": "13265",
+        "from_stop": "71714",
+        "to_stop": "72900",
+        "observed": {
+          "n": 27,
+          "p10": 115.0,
+          "p50": 125.0,
+          "p90": 171.0
+        },
+        "published_s": 128.0,
+        "metres": 943.0
+      },
+      {
+        "route_id": "13168",
+        "from_stop": "62298",
+        "to_stop": "61627",
+        "observed": {
+          "n": 26,
+          "p10": 81.0,
+          "p50": 340.0,
+          "p90": 407.0
+        },
+        "published_s": 654.0,
+        "metres": 3097.0
+      },
+      {
+        "route_id": "13265",
+        "from_stop": "72781",
+        "to_stop": "62278",
+        "observed": {
+          "n": 26,
+          "p10": 38.0,
+          "p50": 101.0,
+          "p90": 129.0
+        },
+        "published_s": 110.0,
+        "metres": 805.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71676",
+        "to_stop": "71678",
+        "observed": {
+          "n": 25,
+          "p10": 38.0,
+          "p50": 163.0,
+          "p90": 359.0
+        },
+        "published_s": 84.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "51434",
+        "to_stop": "73998",
+        "observed": {
+          "n": 25,
+          "p10": 39.0,
+          "p50": 116.0,
+          "p90": 332.0
+        },
+        "published_s": 49.0,
+        "metres": 238.0
+      },
+      {
+        "route_id": "13089",
+        "from_stop": "71416",
+        "to_stop": "72333",
+        "observed": {
+          "n": 25,
+          "p10": 38.0,
+          "p50": 80.0,
+          "p90": 189.0
+        },
+        "published_s": 135.0,
+        "metres": 580.0
+      },
+      {
+        "route_id": "13168",
+        "from_stop": "74287",
+        "to_stop": "74274",
+        "observed": {
+          "n": 25,
+          "p10": 20.0,
+          "p50": 549.0,
+          "p90": 780.0
+        },
+        "published_s": 286.0,
+        "metres": 1357.0
+      },
+      {
+        "route_id": "11868",
+        "from_stop": "61610",
+        "to_stop": "61614",
+        "observed": {
+          "n": 24,
+          "p10": 19.0,
+          "p50": 185.0,
+          "p90": 231.0
+        },
+        "published_s": 367.0,
+        "metres": 2291.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "61984",
+        "to_stop": "71675",
+        "observed": {
+          "n": 24,
+          "p10": 19.0,
+          "p50": 1035.0,
+          "p90": 1197.0
+        },
+        "published_s": 1369.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71688",
+        "to_stop": "71690",
+        "observed": {
+          "n": 24,
+          "p10": 19.0,
+          "p50": 81.0,
+          "p90": 144.0
+        },
+        "published_s": 91.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "12612",
+        "from_stop": "61668",
+        "to_stop": "61718",
+        "observed": {
+          "n": 24,
+          "p10": 20.0,
+          "p50": 513.0,
+          "p90": 577.0
+        },
+        "published_s": 510.0,
+        "metres": 3716.0
+      },
+      {
+        "route_id": "12815",
+        "from_stop": "61660",
+        "to_stop": "61626",
+        "observed": {
+          "n": 24,
+          "p10": 19.0,
+          "p50": 183.0,
+          "p90": 238.0
+        },
+        "published_s": 265.0,
+        "metres": 1821.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "71380",
+        "to_stop": "71381",
+        "observed": {
+          "n": 24,
+          "p10": 19.0,
+          "p50": 122.0,
+          "p90": 184.0
+        },
+        "published_s": 114.0,
+        "metres": 556.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "73074",
+        "to_stop": "71386",
+        "observed": {
+          "n": 24,
+          "p10": 19.0,
+          "p50": 105.0,
+          "p90": 127.0
+        },
+        "published_s": 68.0,
+        "metres": 331.0
+      },
+      {
+        "route_id": "13265",
+        "from_stop": "61560",
+        "to_stop": "73803",
+        "observed": {
+          "n": 24,
+          "p10": 81.0,
+          "p50": 100.0,
+          "p90": 121.0
+        },
+        "published_s": 120.0,
+        "metres": 883.0
+      },
+      {
+        "route_id": "13265",
+        "from_stop": "61608",
+        "to_stop": "61560",
+        "observed": {
+          "n": 24,
+          "p10": 57.0,
+          "p50": 127.0,
+          "p90": 191.0
+        },
+        "published_s": 179.0,
+        "metres": 1316.0
+      },
+      {
+        "route_id": "11712",
+        "from_stop": "61591",
+        "to_stop": "61705",
+        "observed": {
+          "n": 23,
+          "p10": 76.0,
+          "p50": 138.0,
+          "p90": 201.0
+        },
+        "published_s": 98.0,
+        "metres": 481.0
+      },
+      {
+        "route_id": "12639",
+        "from_stop": "61719",
+        "to_stop": "61642",
+        "observed": {
+          "n": 23,
+          "p10": 20.0,
+          "p50": 127.0,
+          "p90": 182.0
+        },
+        "published_s": 142.0,
+        "metres": 713.0
+      },
+      {
+        "route_id": "12873",
+        "from_stop": "61729",
+        "to_stop": "61739",
+        "observed": {
+          "n": 23,
+          "p10": 321.0,
+          "p50": 559.0,
+          "p90": 617.0
+        },
+        "published_s": 475.0,
+        "metres": 3690.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "61881",
+        "to_stop": "61852",
+        "observed": {
+          "n": 23,
+          "p10": 20.0,
+          "p50": 63.0,
+          "p90": 117.0
+        },
+        "published_s": 129.5,
+        "metres": 675.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "71412",
+        "to_stop": "73076",
+        "observed": {
+          "n": 23,
+          "p10": 70.0,
+          "p50": 314.0,
+          "p90": 494.0
+        },
+        "published_s": 207.0,
+        "metres": 1078.0
+      },
+      {
+        "route_id": "13265",
+        "from_stop": "73803",
+        "to_stop": "61580",
+        "observed": {
+          "n": 23,
+          "p10": 278.0,
+          "p50": 331.0,
+          "p90": 360.0
+        },
+        "published_s": 363.0,
+        "metres": 2676.0
+      },
+      {
+        "route_id": "13277",
+        "from_stop": "62225",
+        "to_stop": "74089",
+        "observed": {
+          "n": 23,
+          "p10": 58.0,
+          "p50": 112.0,
+          "p90": 132.0
+        },
+        "published_s": 123.0,
+        "metres": 890.0
+      },
+      {
+        "route_id": "11163",
+        "from_stop": "61288",
+        "to_stop": "61647",
+        "observed": {
+          "n": 22,
+          "p10": 20.0,
+          "p50": 125.0,
+          "p90": 236.0
+        },
+        "published_s": 72.0,
+        "metres": 349.0
+      },
+      {
+        "route_id": "11163",
+        "from_stop": "61670",
+        "to_stop": "61625",
+        "observed": {
+          "n": 22,
+          "p10": 20.0,
+          "p50": 138.0,
+          "p90": 201.0
+        },
+        "published_s": 261.0,
+        "metres": 1267.0
+      },
+      {
+        "route_id": "11712",
+        "from_stop": "61630",
+        "to_stop": "61676",
+        "observed": {
+          "n": 22,
+          "p10": 66.0,
+          "p50": 139.0,
+          "p90": 176.0
+        },
+        "published_s": 258.0,
+        "metres": 1271.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71675",
+        "to_stop": "71596",
+        "observed": {
+          "n": 22,
+          "p10": 19.0,
+          "p50": 654.0,
+          "p90": 1019.0
+        },
+        "published_s": 327.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "12873",
+        "from_stop": "61546",
+        "to_stop": "61599",
+        "observed": {
+          "n": 22,
+          "p10": 232.0,
+          "p50": 248.0,
+          "p90": 314.0
+        },
+        "published_s": 332.0,
+        "metres": 2579.0
+      },
+      {
+        "route_id": "12873",
+        "from_stop": "61566",
+        "to_stop": "62032",
+        "observed": {
+          "n": 22,
+          "p10": 58.0,
+          "p50": 118.0,
+          "p90": 138.0
+        },
+        "published_s": 113.0,
+        "metres": 878.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "71379",
+        "to_stop": "71380",
+        "observed": {
+          "n": 22,
+          "p10": 19.0,
+          "p50": 111.0,
+          "p90": 153.0
+        },
+        "published_s": 92.0,
+        "metres": 453.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "71382",
+        "to_stop": "71383",
+        "observed": {
+          "n": 22,
+          "p10": 20.0,
+          "p50": 100.0,
+          "p90": 125.0
+        },
+        "published_s": 88.0,
+        "metres": 433.0
+      },
+      {
+        "route_id": "12984",
+        "from_stop": "71439",
+        "to_stop": "71386",
+        "observed": {
+          "n": 22,
+          "p10": 19.0,
+          "p50": 120.0,
+          "p90": 177.0
+        },
+        "published_s": 125.0,
+        "metres": 635.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "72331",
+        "to_stop": "61899",
+        "observed": {
+          "n": 22,
+          "p10": 127.0,
+          "p50": 240.0,
+          "p90": 301.0
+        },
+        "published_s": 425.0,
+        "metres": 2216.0
+      },
+      {
+        "route_id": "10067",
+        "from_stop": "72757",
+        "to_stop": "72760",
+        "observed": {
+          "n": 21,
+          "p10": 19.0,
+          "p50": 157.0,
+          "p90": 205.0
+        },
+        "published_s": 172.0,
+        "metres": 884.0
+      },
+      {
+        "route_id": "11163",
+        "from_stop": "61647",
+        "to_stop": "61704",
+        "observed": {
+          "n": 21,
+          "p10": 20.0,
+          "p50": 119.0,
+          "p90": 178.0
+        },
+        "published_s": 162.0,
+        "metres": 784.0
+      },
+      {
+        "route_id": "11163",
+        "from_stop": "61699",
+        "to_stop": "61694",
+        "observed": {
+          "n": 21,
+          "p10": 62.0,
+          "p50": 247.0,
+          "p90": 350.0
+        },
+        "published_s": 321.0,
+        "metres": 1557.0
+      },
+      {
+        "route_id": "11868",
+        "from_stop": "61672",
+        "to_stop": "61626",
+        "observed": {
+          "n": 21,
+          "p10": 20.0,
+          "p50": 119.0,
+          "p90": 203.0
+        },
+        "published_s": 205.0,
+        "metres": 1276.0
+      },
+      {
+        "route_id": "11868",
+        "from_stop": "61699",
+        "to_stop": "61672",
+        "observed": {
+          "n": 21,
+          "p10": 19.0,
+          "p50": 402.0,
+          "p90": 496.0
+        },
+        "published_s": 539.0,
+        "metres": 3370.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71598",
+        "to_stop": "71676",
+        "observed": {
+          "n": 21,
+          "p10": 57.0,
+          "p50": 118.0,
+          "p90": 184.0
+        },
+        "published_s": 145.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71706",
+        "to_stop": "71506",
+        "observed": {
+          "n": 21,
+          "p10": 19.0,
+          "p50": 38.0,
+          "p90": 80.0
+        },
+        "published_s": 96.0,
+        "metres": 425.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "73081",
+        "to_stop": "61987",
+        "observed": {
+          "n": 21,
+          "p10": 20.0,
+          "p50": 1095.0,
+          "p90": 1455.0
+        },
+        "published_s": 1274.0,
+        "metres": 5647.0
+      },
+      {
+        "route_id": "12873",
+        "from_stop": "61197",
+        "to_stop": "61242",
+        "observed": {
+          "n": 21,
+          "p10": 118.0,
+          "p50": 148.0,
+          "p90": 202.0
+        },
+        "published_s": 191.0,
+        "metres": 1485.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "61926",
+        "to_stop": "61988",
+        "observed": {
+          "n": 21,
+          "p10": 20.0,
+          "p50": 155.0,
+          "p90": 221.0
+        },
+        "published_s": 201.0,
+        "metres": 988.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "71381",
+        "to_stop": "71382",
+        "observed": {
+          "n": 21,
+          "p10": 57.0,
+          "p50": 89.0,
+          "p90": 129.0
+        },
+        "published_s": 139.5,
+        "metres": 684.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "71383",
+        "to_stop": "71384",
+        "observed": {
+          "n": 21,
+          "p10": 39.0,
+          "p50": 100.0,
+          "p90": 122.0
+        },
+        "published_s": 96.5,
+        "metres": 474.0
+      },
+      {
+        "route_id": "12984",
+        "from_stop": "56949",
+        "to_stop": "57473",
+        "observed": {
+          "n": 21,
+          "p10": 38.0,
+          "p50": 228.0,
+          "p90": 333.0
+        },
+        "published_s": 123.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "61856",
+        "to_stop": "61881",
+        "observed": {
+          "n": 21,
+          "p10": 111.0,
+          "p50": 136.0,
+          "p90": 183.0
+        },
+        "published_s": 271.5,
+        "metres": 1417.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "61899",
+        "to_stop": "61876",
+        "observed": {
+          "n": 21,
+          "p10": 111.0,
+          "p50": 157.0,
+          "p90": 220.0
+        },
+        "published_s": 269.0,
+        "metres": 1405.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "71384",
+        "to_stop": "71385",
+        "observed": {
+          "n": 21,
+          "p10": 19.0,
+          "p50": 81.0,
+          "p90": 119.0
+        },
+        "published_s": 94.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "13276",
+        "from_stop": "61597",
+        "to_stop": "61544",
+        "observed": {
+          "n": 21,
+          "p10": 19.0,
+          "p50": 232.0,
+          "p90": 320.0
+        },
+        "published_s": 380.0,
+        "metres": 2581.0
+      },
+      {
+        "route_id": "13277",
+        "from_stop": "73233",
+        "to_stop": "62225",
+        "observed": {
+          "n": 21,
+          "p10": 240.0,
+          "p50": 281.0,
+          "p90": 345.0
+        },
+        "published_s": 243.0,
+        "metres": 1766.0
+      },
+      {
+        "route_id": "13277",
+        "from_stop": "73536",
+        "to_stop": "61601",
+        "observed": {
+          "n": 21,
+          "p10": 71.0,
+          "p50": 258.0,
+          "p90": 326.0
+        },
+        "published_s": 357.0,
+        "metres": 2594.0
+      },
+      {
+        "route_id": "13308",
+        "from_stop": "73222",
+        "to_stop": "74254",
+        "observed": {
+          "n": 21,
+          "p10": 19.0,
+          "p50": 100.0,
+          "p90": 148.0
+        },
+        "published_s": 170.0,
+        "metres": 860.0
+      },
+      {
+        "route_id": "13312",
+        "from_stop": "61445",
+        "to_stop": "74309",
+        "observed": {
+          "n": 21,
+          "p10": 523.0,
+          "p50": 604.0,
+          "p90": 694.0
+        },
+        "published_s": 689.0,
+        "metres": 3553.0
+      },
+      {
+        "route_id": "13494",
+        "from_stop": "73600",
+        "to_stop": "61438",
+        "observed": {
+          "n": 21,
+          "p10": 19.0,
+          "p50": 136.0,
+          "p90": 208.0
+        },
+        "published_s": 121.0,
+        "metres": 791.0
+      },
+      {
+        "route_id": "13498",
+        "from_stop": "73224",
+        "to_stop": "61532",
+        "observed": {
+          "n": 21,
+          "p10": 105.0,
+          "p50": 280.0,
+          "p90": 366.0
+        },
+        "published_s": 128.0,
+        "metres": 657.0
+      },
+      {
+        "route_id": "10070",
+        "from_stop": "61959",
+        "to_stop": "61996",
+        "observed": {
+          "n": 20,
+          "p10": 20.0,
+          "p50": 144.0,
+          "p90": 259.0
+        },
+        "published_s": 140.0,
+        "metres": 637.0
+      },
+      {
+        "route_id": "11712",
+        "from_stop": "61676",
+        "to_stop": "61697",
+        "observed": {
+          "n": 20,
+          "p10": 20.0,
+          "p50": 205.0,
+          "p90": 239.0
+        },
+        "published_s": 349.0,
+        "metres": 1725.0
+      },
+      {
+        "route_id": "11712",
+        "from_stop": "61690",
+        "to_stop": "73777",
+        "observed": {
+          "n": 20,
+          "p10": 205.0,
+          "p50": 563.0,
+          "p90": 718.0
+        },
+        "published_s": 557.0,
+        "metres": 2745.0
+      },
+      {
+        "route_id": "11712",
+        "from_stop": "61697",
+        "to_stop": "61700",
+        "observed": {
+          "n": 20,
+          "p10": 179.0,
+          "p50": 274.0,
+          "p90": 371.0
+        },
+        "published_s": 315.0,
+        "metres": 1551.0
+      },
+      {
+        "route_id": "11712",
+        "from_stop": "61700",
+        "to_stop": "61591",
+        "observed": {
+          "n": 20,
+          "p10": 266.0,
+          "p50": 359.0,
+          "p90": 419.0
+        },
+        "published_s": 449.0,
+        "metres": 2215.0
+      },
+      {
+        "route_id": "11712",
+        "from_stop": "61705",
+        "to_stop": "61650",
+        "observed": {
+          "n": 20,
+          "p10": 99.0,
+          "p50": 226.0,
+          "p90": 1038.0
+        },
+        "published_s": 155.0,
+        "metres": 764.0
+      },
+      {
+        "route_id": "11725",
+        "from_stop": "61627",
+        "to_stop": "73775",
+        "observed": {
+          "n": 20,
+          "p10": 19.0,
+          "p50": 240.0,
+          "p90": 322.0
+        },
+        "published_s": 418.5,
+        "metres": 1965.0
+      },
+      {
+        "route_id": "11856",
+        "from_stop": "61443",
+        "to_stop": "61466",
+        "observed": {
+          "n": 20,
+          "p10": 19.0,
+          "p50": 120.0,
+          "p90": 148.0
+        },
+        "published_s": 86.0,
+        "metres": 506.0
+      },
+      {
+        "route_id": "11856",
+        "from_stop": "61454",
+        "to_stop": "61422",
+        "observed": {
+          "n": 20,
+          "p10": 19.0,
+          "p50": 64.0,
+          "p90": 125.0
+        },
+        "published_s": 107.0,
+        "metres": 624.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "61926",
+        "to_stop": "61984",
+        "observed": {
+          "n": 20,
+          "p10": 20.0,
+          "p50": 438.0,
+          "p90": 493.0
+        },
+        "published_s": 515.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71681",
+        "to_stop": "71683",
+        "observed": {
+          "n": 20,
+          "p10": 39.0,
+          "p50": 111.0,
+          "p90": 155.0
+        },
+        "published_s": 100.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "12612",
+        "from_stop": "61185",
+        "to_stop": "61232",
+        "observed": {
+          "n": 20,
+          "p10": 39.0,
+          "p50": 100.0,
+          "p90": 127.0
+        },
+        "published_s": 96.0,
+        "metres": 699.0
+      },
+      {
+        "route_id": "12612",
+        "from_stop": "61232",
+        "to_stop": "61248",
+        "observed": {
+          "n": 20,
+          "p10": 20.0,
+          "p50": 142.0,
+          "p90": 221.0
+        },
+        "published_s": 266.0,
+        "metres": 1937.0
+      },
+      {
+        "route_id": "12639",
+        "from_stop": "61664",
+        "to_stop": "61696",
+        "observed": {
+          "n": 20,
+          "p10": 19.0,
+          "p50": 157.0,
+          "p90": 207.0
+        },
+        "published_s": 267.0,
+        "metres": 1348.0
+      },
+      {
+        "route_id": "12815",
+        "from_stop": "61242",
+        "to_stop": "61228",
+        "observed": {
+          "n": 20,
+          "p10": 138.0,
+          "p50": 179.0,
+          "p90": 240.0
+        },
+        "published_s": 274.0,
+        "metres": 1881.0
+      },
+      {
+        "route_id": "12815",
+        "from_stop": "61565",
+        "to_stop": "61640",
+        "observed": {
+          "n": 20,
+          "p10": 563.0,
+          "p50": 1074.0,
+          "p90": 1204.0
+        },
+        "published_s": 1266.0,
+        "metres": 8690.0
+      },
+      {
+        "route_id": "12873",
+        "from_stop": "61242",
+        "to_stop": "61189",
+        "observed": {
+          "n": 20,
+          "p10": 124.0,
+          "p50": 138.0,
+          "p90": 208.0
+        },
+        "published_s": 148.0,
+        "metres": 1146.0
+      },
+      {
+        "route_id": "12873",
+        "from_stop": "61599",
+        "to_stop": "61729",
+        "observed": {
+          "n": 20,
+          "p10": 165.0,
+          "p50": 219.0,
+          "p90": 238.0
+        },
+        "published_s": 142.0,
+        "metres": 1099.0
+      },
+      {
+        "route_id": "12873",
+        "from_stop": "61615",
+        "to_stop": "61546",
+        "observed": {
+          "n": 20,
+          "p10": 119.0,
+          "p50": 138.0,
+          "p90": 193.0
+        },
+        "published_s": 95.0,
+        "metres": 737.0
+      },
+      {
+        "route_id": "12873",
+        "from_stop": "72936",
+        "to_stop": "61197",
+        "observed": {
+          "n": 20,
+          "p10": 102.0,
+          "p50": 171.0,
+          "p90": 224.0
+        },
+        "published_s": 250.0,
+        "metres": 1944.0
+      },
+      {
+        "route_id": "12874",
+        "from_stop": "61752",
+        "to_stop": "61735",
+        "observed": {
+          "n": 20,
+          "p10": 66.0,
+          "p50": 461.0,
+          "p90": 519.0
+        },
+        "published_s": 533.0,
+        "metres": 4050.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "73766",
+        "to_stop": "51434",
+        "observed": {
+          "n": 20,
+          "p10": 20.0,
+          "p50": 721.0,
+          "p90": 911.0
+        },
+        "published_s": 1049.5,
+        "metres": 5151.0
+      },
+      {
+        "route_id": "13089",
+        "from_stop": "61981",
+        "to_stop": "61942",
+        "observed": {
+          "n": 20,
+          "p10": 103.0,
+          "p50": 140.0,
+          "p90": 247.0
+        },
+        "published_s": 199.0,
+        "metres": 859.0
+      },
+      {
+        "route_id": "13089",
+        "from_stop": "72333",
+        "to_stop": "61996",
+        "observed": {
+          "n": 20,
+          "p10": 64.0,
+          "p50": 359.0,
+          "p90": 442.0
+        },
+        "published_s": 443.0,
+        "metres": 1908.0
+      },
+      {
+        "route_id": "13167",
+        "from_stop": "74289",
+        "to_stop": "74276",
+        "observed": {
+          "n": 20,
+          "p10": 100.0,
+          "p50": 125.0,
+          "p90": 232.0
+        },
+        "published_s": 117.0,
+        "metres": 572.0
+      },
+      {
+        "route_id": "13168",
+        "from_stop": "74274",
+        "to_stop": "74278",
+        "observed": {
+          "n": 20,
+          "p10": 181.0,
+          "p50": 213.0,
+          "p90": 247.0
+        },
+        "published_s": 245.0,
+        "metres": 1160.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "71385",
+        "to_stop": "71802",
+        "observed": {
+          "n": 20,
+          "p10": 86.0,
+          "p50": 485.0,
+          "p90": 799.0
+        },
+        "published_s": 229.5,
+        "metres": 0.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "74292",
+        "to_stop": "71506",
+        "observed": {
+          "n": 20,
+          "p10": 20.0,
+          "p50": 125.0,
+          "p90": 202.0
+        },
+        "published_s": 119.5,
+        "metres": 0.0
+      },
+      {
+        "route_id": "13277",
+        "from_stop": "61882",
+        "to_stop": "61916",
+        "observed": {
+          "n": 20,
+          "p10": 97.0,
+          "p50": 112.0,
+          "p90": 127.0
+        },
+        "published_s": 114.0,
+        "metres": 822.0
+      },
+      {
+        "route_id": "13277",
+        "from_stop": "61886",
+        "to_stop": "61878",
+        "observed": {
+          "n": 20,
+          "p10": 112.0,
+          "p50": 121.0,
+          "p90": 128.0
+        },
+        "published_s": 171.0,
+        "metres": 1242.0
+      },
+      {
+        "route_id": "13277",
+        "from_stop": "61916",
+        "to_stop": "61886",
+        "observed": {
+          "n": 20,
+          "p10": 57.0,
+          "p50": 119.0,
+          "p90": 129.0
+        },
+        "published_s": 144.0,
+        "metres": 1051.0
+      },
+      {
+        "route_id": "13277",
+        "from_stop": "74089",
+        "to_stop": "61882",
+        "observed": {
+          "n": 20,
+          "p10": 101.0,
+          "p50": 119.0,
+          "p90": 140.0
+        },
+        "published_s": 203.0,
+        "metres": 1482.0
+      },
+      {
+        "route_id": "13312",
+        "from_stop": "74117",
+        "to_stop": "74243",
+        "observed": {
+          "n": 20,
+          "p10": 205.0,
+          "p50": 245.0,
+          "p90": 280.0
+        },
+        "published_s": 206.0,
+        "metres": 1062.0
+      },
+      {
+        "route_id": "13312",
+        "from_stop": "74309",
+        "to_stop": "74109",
+        "observed": {
+          "n": 20,
+          "p10": 240.0,
+          "p50": 320.0,
+          "p90": 427.0
+        },
+        "published_s": 287.0,
+        "metres": 1475.0
+      },
+      {
+        "route_id": "13498",
+        "from_stop": "73570",
+        "to_stop": "74238",
+        "observed": {
+          "n": 20,
+          "p10": 396.0,
+          "p50": 475.0,
+          "p90": 538.0
+        },
+        "published_s": 424.0,
+        "metres": 2171.0
+      },
+      {
+        "route_id": "10039",
+        "from_stop": "72764",
+        "to_stop": "61992",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 346.0,
+          "p90": 439.0
+        },
+        "published_s": 344.0,
+        "metres": 1873.0
+      },
+      {
+        "route_id": "10067",
+        "from_stop": "61997",
+        "to_stop": "72757",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 349.0,
+          "p90": 385.0
+        },
+        "published_s": 321.0,
+        "metres": 1647.0
+      },
+      {
+        "route_id": "10067",
+        "from_stop": "72760",
+        "to_stop": "61731",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 207.0,
+          "p90": 240.0
+        },
+        "published_s": 167.0,
+        "metres": 858.0
+      },
+      {
+        "route_id": "11712",
+        "from_stop": "73777",
+        "to_stop": "61630",
+        "observed": {
+          "n": 19,
+          "p10": 136.0,
+          "p50": 240.0,
+          "p90": 259.0
+        },
+        "published_s": 430.0,
+        "metres": 2120.0
+      },
+      {
+        "route_id": "11868",
+        "from_stop": "62034",
+        "to_stop": "61539",
+        "observed": {
+          "n": 19,
+          "p10": 38.0,
+          "p50": 61.0,
+          "p90": 124.0
+        },
+        "published_s": 66.0,
+        "metres": 409.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71507",
+        "to_stop": "71508",
+        "observed": {
+          "n": 19,
+          "p10": 77.0,
+          "p50": 122.0,
+          "p90": 183.0
+        },
+        "published_s": 178.0,
+        "metres": 790.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71596",
+        "to_stop": "71597",
+        "observed": {
+          "n": 19,
+          "p10": 57.0,
+          "p50": 100.0,
+          "p90": 183.0
+        },
+        "published_s": 122.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71686",
+        "to_stop": "71688",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 39.0,
+          "p90": 110.0
+        },
+        "published_s": 93.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71690",
+        "to_stop": "71692",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 81.0,
+          "p90": 187.0
+        },
+        "published_s": 74.0,
+        "metres": 25.0
+      },
+      {
+        "route_id": "12639",
+        "from_stop": "61629",
+        "to_stop": "61658",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 98.0,
+          "p90": 118.0
+        },
+        "published_s": 111.0,
+        "metres": 557.0
+      },
+      {
+        "route_id": "12639",
+        "from_stop": "61645",
+        "to_stop": "61719",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 117.0,
+          "p90": 131.0
+        },
+        "published_s": 92.0,
+        "metres": 464.0
+      },
+      {
+        "route_id": "12639",
+        "from_stop": "61701",
+        "to_stop": "61645",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 119.0,
+          "p90": 130.0
+        },
+        "published_s": 88.0,
+        "metres": 442.0
+      },
+      {
+        "route_id": "12815",
+        "from_stop": "61208",
+        "to_stop": "61205",
+        "observed": {
+          "n": 19,
+          "p10": 104.0,
+          "p50": 125.0,
+          "p90": 150.0
+        },
+        "published_s": 204.0,
+        "metres": 1401.0
+      },
+      {
+        "route_id": "12815",
+        "from_stop": "61640",
+        "to_stop": "61717",
+        "observed": {
+          "n": 19,
+          "p10": 20.0,
+          "p50": 57.0,
+          "p90": 124.0
+        },
+        "published_s": 103.0,
+        "metres": 710.0
+      },
+      {
+        "route_id": "12815",
+        "from_stop": "73221",
+        "to_stop": "61208",
+        "observed": {
+          "n": 19,
+          "p10": 170.0,
+          "p50": 228.0,
+          "p90": 325.0
+        },
+        "published_s": 236.0,
+        "metres": 1617.0
+      },
+      {
+        "route_id": "12873",
+        "from_stop": "61173",
+        "to_stop": "61566",
+        "observed": {
+          "n": 19,
+          "p10": 140.0,
+          "p50": 190.0,
+          "p90": 239.0
+        },
+        "published_s": 174.0,
+        "metres": 1347.0
+      },
+      {
+        "route_id": "12873",
+        "from_stop": "61189",
+        "to_stop": "61173",
+        "observed": {
+          "n": 19,
+          "p10": 201.0,
+          "p50": 237.0,
+          "p90": 267.0
+        },
+        "published_s": 313.0,
+        "metres": 2433.0
+      },
+      {
+        "route_id": "12873",
+        "from_stop": "61608",
+        "to_stop": "61615",
+        "observed": {
+          "n": 19,
+          "p10": 124.0,
+          "p50": 217.0,
+          "p90": 240.0
+        },
+        "published_s": 292.0,
+        "metres": 2274.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "61974",
+        "to_stop": "61926",
+        "observed": {
+          "n": 19,
+          "p10": 61.0,
+          "p50": 279.0,
+          "p90": 379.0
+        },
+        "published_s": 462.0,
+        "metres": 2267.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "71386",
+        "to_stop": "74251",
+        "observed": {
+          "n": 19,
+          "p10": 205.0,
+          "p50": 326.0,
+          "p90": 540.0
+        },
+        "published_s": 186.5,
+        "metres": 917.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "73411",
+        "to_stop": "73766",
+        "observed": {
+          "n": 19,
+          "p10": 121.0,
+          "p50": 197.0,
+          "p90": 221.0
+        },
+        "published_s": 272.0,
+        "metres": 1334.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "74251",
+        "to_stop": "73569",
+        "observed": {
+          "n": 19,
+          "p10": 81.0,
+          "p50": 365.0,
+          "p90": 481.0
+        },
+        "published_s": 263.5,
+        "metres": 1290.0
+      },
+      {
+        "route_id": "13008",
+        "from_stop": "74255",
+        "to_stop": "74096",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 229.0,
+          "p90": 298.0
+        },
+        "published_s": 247.0,
+        "metres": 1850.0
+      },
+      {
+        "route_id": "13089",
+        "from_stop": "61935",
+        "to_stop": "61981",
+        "observed": {
+          "n": 19,
+          "p10": 299.0,
+          "p50": 359.0,
+          "p90": 449.0
+        },
+        "published_s": 503.0,
+        "metres": 2163.0
+      },
+      {
+        "route_id": "13163",
+        "from_stop": "61786",
+        "to_stop": "61778",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 359.0,
+          "p90": 445.0
+        },
+        "published_s": 410.0,
+        "metres": 2458.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "53037",
+        "to_stop": "53014",
+        "observed": {
+          "n": 19,
+          "p10": 20.0,
+          "p50": 258.0,
+          "p90": 417.0
+        },
+        "published_s": 119.5,
+        "metres": 626.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "56414",
+        "to_stop": "74292",
+        "observed": {
+          "n": 19,
+          "p10": 86.0,
+          "p50": 357.0,
+          "p90": 424.0
+        },
+        "published_s": 141.5,
+        "metres": 0.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "61852",
+        "to_stop": "73235",
+        "observed": {
+          "n": 19,
+          "p10": 240.0,
+          "p50": 295.0,
+          "p90": 370.0
+        },
+        "published_s": 500.5,
+        "metres": 2616.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "61876",
+        "to_stop": "61884",
+        "observed": {
+          "n": 19,
+          "p10": 57.0,
+          "p50": 118.0,
+          "p90": 147.0
+        },
+        "published_s": 235.5,
+        "metres": 1229.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "61884",
+        "to_stop": "61856",
+        "observed": {
+          "n": 19,
+          "p10": 20.0,
+          "p50": 58.0,
+          "p90": 124.0
+        },
+        "published_s": 100.0,
+        "metres": 524.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "71411",
+        "to_stop": "71412",
+        "observed": {
+          "n": 19,
+          "p10": 57.0,
+          "p50": 122.0,
+          "p90": 230.0
+        },
+        "published_s": 86.0,
+        "metres": 449.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "71596",
+        "to_stop": "71597",
+        "observed": {
+          "n": 19,
+          "p10": 38.0,
+          "p50": 93.0,
+          "p90": 119.0
+        },
+        "published_s": 103.5,
+        "metres": 0.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "73073",
+        "to_stop": "71381",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 221.0,
+          "p90": 336.0
+        },
+        "published_s": 193.5,
+        "metres": 0.0
+      },
+      {
+        "route_id": "13240",
+        "from_stop": "61928",
+        "to_stop": "72757",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 240.0,
+          "p90": 374.0
+        },
+        "published_s": 190.0,
+        "metres": 1183.0
+      },
+      {
+        "route_id": "13240",
+        "from_stop": "72757",
+        "to_stop": "72760",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 139.0,
+          "p90": 240.0
+        },
+        "published_s": 141.0,
+        "metres": 884.0
+      },
+      {
+        "route_id": "13308",
+        "from_stop": "61251",
+        "to_stop": "73222",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 160.0,
+          "p90": 266.0
+        },
+        "published_s": 214.0,
+        "metres": 1079.0
+      },
+      {
+        "route_id": "13311",
+        "from_stop": "73574",
+        "to_stop": "74119",
+        "observed": {
+          "n": 19,
+          "p10": 57.0,
+          "p50": 127.0,
+          "p90": 143.0
+        },
+        "published_s": 121.0,
+        "metres": 631.0
+      },
+      {
+        "route_id": "13312",
+        "from_stop": "61417",
+        "to_stop": "61428",
+        "observed": {
+          "n": 19,
+          "p10": 120.0,
+          "p50": 193.0,
+          "p90": 247.0
+        },
+        "published_s": 332.0,
+        "metres": 1712.0
+      },
+      {
+        "route_id": "13312",
+        "from_stop": "61453",
+        "to_stop": "61445",
+        "observed": {
+          "n": 19,
+          "p10": 306.0,
+          "p50": 445.0,
+          "p90": 502.0
+        },
+        "published_s": 453.0,
+        "metres": 2331.0
+      },
+      {
+        "route_id": "13312",
+        "from_stop": "74109",
+        "to_stop": "74117",
+        "observed": {
+          "n": 19,
+          "p10": 183.0,
+          "p50": 266.0,
+          "p90": 356.0
+        },
+        "published_s": 192.0,
+        "metres": 991.0
+      },
+      {
+        "route_id": "13498",
+        "from_stop": "61473",
+        "to_stop": "73570",
+        "observed": {
+          "n": 19,
+          "p10": 205.0,
+          "p50": 285.0,
+          "p90": 364.0
+        },
+        "published_s": 492.0,
+        "metres": 2520.0
+      },
+      {
+        "route_id": "13498",
+        "from_stop": "74238",
+        "to_stop": "74191",
+        "observed": {
+          "n": 19,
+          "p10": 360.0,
+          "p50": 836.0,
+          "p90": 998.0
+        },
+        "published_s": 790.0,
+        "metres": 4044.0
+      },
+      {
+        "route_id": "13547",
+        "from_stop": "73219",
+        "to_stop": "74096",
+        "observed": {
+          "n": 19,
+          "p10": 19.0,
+          "p50": 131.0,
+          "p90": 227.0
+        },
+        "published_s": 167.0,
+        "metres": 929.0
+      },
+      {
+        "route_id": "10056",
+        "from_stop": "61990",
+        "to_stop": "61955",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 122.0,
+          "p90": 179.0
+        },
+        "published_s": 153.0,
+        "metres": 705.0
+      },
+      {
+        "route_id": "10070",
+        "from_stop": "71424",
+        "to_stop": "61987",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 121.0,
+          "p90": 239.0
+        },
+        "published_s": 148.0,
+        "metres": 673.0
+      },
+      {
+        "route_id": "11163",
+        "from_stop": "61694",
+        "to_stop": "61670",
+        "observed": {
+          "n": 18,
+          "p10": 119.0,
+          "p50": 150.0,
+          "p90": 227.0
+        },
+        "published_s": 358.0,
+        "metres": 1736.0
+      },
+      {
+        "route_id": "11163",
+        "from_stop": "61704",
+        "to_stop": "61585",
+        "observed": {
+          "n": 18,
+          "p10": 20.0,
+          "p50": 85.0,
+          "p90": 122.0
+        },
+        "published_s": 98.0,
+        "metres": 479.0
+      },
+      {
+        "route_id": "11163",
+        "from_stop": "61845",
+        "to_stop": "61847",
+        "observed": {
+          "n": 18,
+          "p10": 20.0,
+          "p50": 157.0,
+          "p90": 279.0
+        },
+        "published_s": 167.0,
+        "metres": 810.0
+      },
+      {
+        "route_id": "11853",
+        "from_stop": "61560",
+        "to_stop": "61614",
+        "observed": {
+          "n": 18,
+          "p10": 20.0,
+          "p50": 119.0,
+          "p90": 129.0
+        },
+        "published_s": 178.0,
+        "metres": 1045.0
+      },
+      {
+        "route_id": "11868",
+        "from_stop": "61554",
+        "to_stop": "61717",
+        "observed": {
+          "n": 18,
+          "p10": 390.0,
+          "p50": 596.0,
+          "p90": 721.0
+        },
+        "published_s": 459.0,
+        "metres": 2866.0
+      },
+      {
+        "route_id": "11868",
+        "from_stop": "61717",
+        "to_stop": "61699",
+        "observed": {
+          "n": 18,
+          "p10": 119.0,
+          "p50": 201.0,
+          "p90": 217.0
+        },
+        "published_s": 145.0,
+        "metres": 904.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71597",
+        "to_stop": "71598",
+        "observed": {
+          "n": 18,
+          "p10": 38.0,
+          "p50": 120.0,
+          "p90": 140.0
+        },
+        "published_s": 176.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71692",
+        "to_stop": "71694",
+        "observed": {
+          "n": 18,
+          "p10": 58.0,
+          "p50": 100.0,
+          "p90": 120.0
+        },
+        "published_s": 150.0,
+        "metres": 667.0
+      },
+      {
+        "route_id": "12297",
+        "from_stop": "71696",
+        "to_stop": "71505",
+        "observed": {
+          "n": 18,
+          "p10": 266.0,
+          "p50": 516.0,
+          "p90": 685.0
+        },
+        "published_s": 267.0,
+        "metres": 1185.0
+      },
+      {
+        "route_id": "12558",
+        "from_stop": "61191",
+        "to_stop": "61183",
+        "observed": {
+          "n": 18,
+          "p10": 108.0,
+          "p50": 118.0,
+          "p90": 132.0
+        },
+        "published_s": 221.0,
+        "metres": 1176.0
+      },
+      {
+        "route_id": "12612",
+        "from_stop": "61628",
+        "to_stop": "61668",
+        "observed": {
+          "n": 18,
+          "p10": 59.0,
+          "p50": 175.0,
+          "p90": 247.0
+        },
+        "published_s": 260.0,
+        "metres": 1896.0
+      },
+      {
+        "route_id": "12612",
+        "from_stop": "61693",
+        "to_stop": "73788",
+        "observed": {
+          "n": 18,
+          "p10": 102.0,
+          "p50": 543.0,
+          "p90": 605.0
+        },
+        "published_s": 359.0,
+        "metres": 2617.0
+      },
+      {
+        "route_id": "12815",
+        "from_stop": "61181",
+        "to_stop": "61565",
+        "observed": {
+          "n": 18,
+          "p10": 232.0,
+          "p50": 277.0,
+          "p90": 319.0
+        },
+        "published_s": 372.0,
+        "metres": 2549.0
+      },
+      {
+        "route_id": "12815",
+        "from_stop": "61205",
+        "to_stop": "61242",
+        "observed": {
+          "n": 18,
+          "p10": 138.0,
+          "p50": 198.0,
+          "p90": 239.0
+        },
+        "published_s": 263.0,
+        "metres": 1809.0
+      },
+      {
+        "route_id": "12815",
+        "from_stop": "61228",
+        "to_stop": "61181",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 62.0,
+          "p90": 105.0
+        },
+        "published_s": 64.0,
+        "metres": 438.0
+      },
+      {
+        "route_id": "12815",
+        "from_stop": "61717",
+        "to_stop": "61660",
+        "observed": {
+          "n": 18,
+          "p10": 139.0,
+          "p50": 559.0,
+          "p90": 596.0
+        },
+        "published_s": 544.0,
+        "metres": 3729.0
+      },
+      {
+        "route_id": "12871",
+        "from_stop": "62020",
+        "to_stop": "61483",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 241.0,
+          "p90": 300.0
+        },
+        "published_s": 201.0,
+        "metres": 1363.0
+      },
+      {
+        "route_id": "12873",
+        "from_stop": "62032",
+        "to_stop": "61608",
+        "observed": {
+          "n": 18,
+          "p10": 118.0,
+          "p50": 182.0,
+          "p90": 239.0
+        },
+        "published_s": 206.0,
+        "metres": 1598.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "61973",
+        "to_stop": "72921",
+        "observed": {
+          "n": 18,
+          "p10": 112.0,
+          "p50": 182.0,
+          "p90": 364.0
+        },
+        "published_s": 189.0,
+        "metres": 928.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "71384",
+        "to_stop": "73074",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 78.0,
+          "p90": 121.0
+        },
+        "published_s": 102.5,
+        "metres": 502.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "72921",
+        "to_stop": "61974",
+        "observed": {
+          "n": 18,
+          "p10": 120.0,
+          "p50": 219.0,
+          "p90": 247.0
+        },
+        "published_s": 145.5,
+        "metres": 713.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "73569",
+        "to_stop": "73411",
+        "observed": {
+          "n": 18,
+          "p10": 136.0,
+          "p50": 170.0,
+          "p90": 241.0
+        },
+        "published_s": 259.0,
+        "metres": 1273.0
+      },
+      {
+        "route_id": "12980",
+        "from_stop": "73998",
+        "to_stop": "51428",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 331.0,
+          "p90": 900.0
+        },
+        "published_s": 64.0,
+        "metres": 314.0
+      },
+      {
+        "route_id": "13089",
+        "from_stop": "61996",
+        "to_stop": "61935",
+        "observed": {
+          "n": 18,
+          "p10": 119.0,
+          "p50": 143.0,
+          "p90": 217.0
+        },
+        "published_s": 245.0,
+        "metres": 1053.0
+      },
+      {
+        "route_id": "13089",
+        "from_stop": "71415",
+        "to_stop": "71416",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 100.0,
+          "p90": 138.0
+        },
+        "published_s": 104.0,
+        "metres": 447.0
+      },
+      {
+        "route_id": "13089",
+        "from_stop": "71439",
+        "to_stop": "73080",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 151.0,
+          "p90": 227.0
+        },
+        "published_s": 143.0,
+        "metres": 615.0
+      },
+      {
+        "route_id": "13167",
+        "from_stop": "74276",
+        "to_stop": "74272",
+        "observed": {
+          "n": 18,
+          "p10": 127.0,
+          "p50": 226.0,
+          "p90": 254.0
+        },
+        "published_s": 235.0,
+        "metres": 1148.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "61879",
+        "to_stop": "61901",
+        "observed": {
+          "n": 18,
+          "p10": 136.0,
+          "p50": 201.0,
+          "p90": 257.0
+        },
+        "published_s": 274.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "61985",
+        "to_stop": "72334",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 100.0,
+          "p90": 140.0
+        },
+        "published_s": 102.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "71506",
+        "to_stop": "71507",
+        "observed": {
+          "n": 18,
+          "p10": 58.0,
+          "p50": 95.0,
+          "p90": 118.0
+        },
+        "published_s": 147.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "71802",
+        "to_stop": "71595",
+        "observed": {
+          "n": 18,
+          "p10": 141.0,
+          "p50": 321.0,
+          "p90": 596.0
+        },
+        "published_s": 98.0,
+        "metres": 0.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "73079",
+        "to_stop": "71410",
+        "observed": {
+          "n": 18,
+          "p10": 81.0,
+          "p50": 123.0,
+          "p90": 217.0
+        },
+        "published_s": 107.0,
+        "metres": 561.0
+      },
+      {
+        "route_id": "13179",
+        "from_stop": "73235",
+        "to_stop": "52733",
+        "observed": {
+          "n": 18,
+          "p10": 150.0,
+          "p50": 231.0,
+          "p90": 321.0
+        },
+        "published_s": 265.0,
+        "metres": 1382.0
+      },
+      {
+        "route_id": "13267",
+        "from_stop": "61763",
+        "to_stop": "72783",
+        "observed": {
+          "n": 18,
+          "p10": 38.0,
+          "p50": 463.0,
+          "p90": 486.0
+        },
+        "published_s": 524.0,
+        "metres": 3735.0
+      },
+      {
+        "route_id": "13275",
+        "from_stop": "61873",
+        "to_stop": "61552",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 325.0,
+          "p90": 480.0
+        },
+        "published_s": 231.0,
+        "metres": 1643.0
+      },
+      {
+        "route_id": "13275",
+        "from_stop": "73233",
+        "to_stop": "74093",
+        "observed": {
+          "n": 18,
+          "p10": 61.0,
+          "p50": 466.0,
+          "p90": 599.0
+        },
+        "published_s": 499.0,
+        "metres": 3546.0
+      },
+      {
+        "route_id": "13276",
+        "from_stop": "61877",
+        "to_stop": "61885",
+        "observed": {
+          "n": 18,
+          "p10": 61.0,
+          "p50": 124.0,
+          "p90": 142.0
+        },
+        "published_s": 182.0,
+        "metres": 1234.0
+      },
+      {
+        "route_id": "13276",
+        "from_stop": "61890",
+        "to_stop": "62022",
+        "observed": {
+          "n": 18,
+          "p10": 20.0,
+          "p50": 96.0,
+          "p90": 120.0
+        },
+        "published_s": 131.0,
+        "metres": 889.0
+      },
+      {
+        "route_id": "13300",
+        "from_stop": "73574",
+        "to_stop": "74119",
+        "observed": {
+          "n": 18,
+          "p10": 39.0,
+          "p50": 124.0,
+          "p90": 149.0
+        },
+        "published_s": 115.0,
+        "metres": 631.0
+      },
+      {
+        "route_id": "13309",
+        "from_stop": "61713",
+        "to_stop": "73573",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 110.0,
+          "p90": 134.0
+        },
+        "published_s": 173.0,
+        "metres": 877.0
+      },
+      {
+        "route_id": "13311",
+        "from_stop": "61414",
+        "to_stop": "73574",
+        "observed": {
+          "n": 18,
+          "p10": 174.0,
+          "p50": 247.0,
+          "p90": 281.0
+        },
+        "published_s": 432.0,
+        "metres": 2260.0
+      },
+      {
+        "route_id": "13312",
+        "from_stop": "61420",
+        "to_stop": "61453",
+        "observed": {
+          "n": 18,
+          "p10": 105.0,
+          "p50": 138.0,
+          "p90": 248.0
+        },
+        "published_s": 176.0,
+        "metres": 906.0
+      },
+      {
+        "route_id": "13312",
+        "from_stop": "61428",
+        "to_stop": "61420",
+        "observed": {
+          "n": 18,
+          "p10": 80.0,
+          "p50": 129.0,
+          "p90": 189.0
+        },
+        "published_s": 117.0,
+        "metres": 602.0
+      },
+      {
+        "route_id": "13312",
+        "from_stop": "61437",
+        "to_stop": "74120",
+        "observed": {
+          "n": 18,
+          "p10": 80.0,
+          "p50": 129.0,
+          "p90": 246.0
+        },
+        "published_s": 82.0,
+        "metres": 423.0
+      },
+      {
+        "route_id": "13312",
+        "from_stop": "73575",
+        "to_stop": "61417",
+        "observed": {
+          "n": 18,
+          "p10": 201.0,
+          "p50": 248.0,
+          "p90": 280.0
+        },
+        "published_s": 449.0,
+        "metres": 2315.0
+      },
+      {
+        "route_id": "13312",
+        "from_stop": "74120",
+        "to_stop": "73575",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 39.0,
+          "p90": 146.0
+        },
+        "published_s": 102.0,
+        "metres": 523.0
+      },
+      {
+        "route_id": "13476",
+        "from_stop": "61787",
+        "to_stop": "61798",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 207.0,
+          "p90": 260.0
+        },
+        "published_s": 130.0,
+        "metres": 945.0
+      },
+      {
+        "route_id": "13498",
+        "from_stop": "61515",
+        "to_stop": "61473",
+        "observed": {
+          "n": 18,
+          "p10": 39.0,
+          "p50": 85.0,
+          "p90": 100.0
+        },
+        "published_s": 143.0,
+        "metres": 729.0
+      },
+      {
+        "route_id": "13503",
+        "from_stop": "61977",
+        "to_stop": "61961",
+        "observed": {
+          "n": 18,
+          "p10": 19.0,
+          "p50": 146.0,
+          "p90": 187.0
+        },
+        "published_s": 251.0,
+        "metres": 1300.0
+      },
+      {
+        "route_id": "13504",
+        "from_stop": "61826",
+        "to_stop": "73876",
+        "observed": {
+          "n": 18,
+          "p10": 61.0,
+          "p50": 236.0,
+          "p90": 307.0
+        },
+        "published_s": 342.0,
+        "metres": 1646.0
+      },
+      {
+        "route_id": "13545",
+        "from_stop": "61826",
+        "to_stop": "73874",
+        "observed": {
+          "n": 18,
+          "p10": 58.0,
+          "p50": 228.0,
+          "p90": 250.0
+        },
+        "published_s": 280.0,
+        "metres": 1738.0
+      },
+      {
+        "route_id": "10056",
+        "from_stop": "61949",
+        "to_stop": "61930",
+        "observed": {
+          "n": 17,
+          "p10": 38.0,
+          "p50": 86.0,
+          "p90": 153.0
+        },
+        "published_s": 105.0,
+        "metres": 487.0
+      },
+      {
+        "route_id": "10067",
+        "from_stop": "61750",
+        "to_stop": "61762",
+        "observed": {
+          "n": 17,
+          "p10": 19.0,
+          "p50": 331.0,
+          "p90": 417.0
+        },
+        "published_s": 518.0,
+        "metres": 2658.0
+      },
+      {
+        "route_id": "11712",
+        "from_stop": "61650",
+        "to_stop": "61292",
+        "observed": {
+          "n": 17,
+          "p10": 20.0,
+          "p50": 202.0,
+          "p90": 1215.0
+        },
+        "published_s": 89.0,
+        "metres": 441.0
+      },
+      {
+        "route_id": "11725",
+        "from_stop": "61619",
+        "to_stop": "61694",
+        "observed": {
+          "n": 17,
+          "p10": 19.0,
+          "p50": 81.0,
+          "p90": 138.0
+        },
+        "published_s": 148.0,
+        "metres": 698.0
+      }
+    ]
+  },
+  "intervalos_min": {
+    "Troncal": {
+      "n": 14160,
+      "p10": 1.6,
+      "p50": 5.3,
+      "p90": 10.1,
+      "bunched_under_60s_pct": 6
+    },
+    "Dual": {
+      "n": 2705,
+      "p10": 0.7,
+      "p50": 3.8,
+      "p90": 9.4,
+      "bunched_under_60s_pct": 13
+    }
+  },
+  "limitations": [
+    "El instante de cada transición se conoce con la resolución del muestreo: una sola observación arrastra hasta un intervalo de error, un agregado no.",
+    "Por eso la razón se reparte por duración publicada: por debajo de unos 150 s el error de medida es una fracción grande de lo medido y la cifra no es utilizable.",
+    "Lo observado va de dejar una parada a dejar la siguiente; lo publicado, de una parada a la otra. Ambos incluyen una atención, atribuida a extremos distintos.",
+    "No se derivan velocidades entre lotes: cada bus refresca su GPS a su ritmo y el feed repite la última posición conocida mientras tanto.",
+    "Es programación frente a operación de los días capturados, no una medición de otros meses ni una predicción."
+  ]
+}

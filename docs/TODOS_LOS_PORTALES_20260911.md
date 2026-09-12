@@ -1,4 +1,8 @@
-# Geometría física de todos los portales — 2026-09-11
+# Geometría física de portales y estaciones — 2026-09-11
+
+> La cobertura creció después a 40 estaciones. Las secciones siguientes describen la
+> captura inicial de doce; el inventario vigente está en
+> [Ampliación a 40 estaciones](#ampliación-a-40-estaciones--11-sep-2026).
 
 Se completó el inventario físico de los doce portales/estaciones presentes en
 `app/dist/services.json`: nueve portales y las tres estaciones intermedias
@@ -73,9 +77,66 @@ operación real.
 
 Artefactos generados:
 
-- `data/curated/station_layouts.json` — SHA-256
-  `361c4acb0ae079952779163d41d2921f1262e7f160c10996dee4a2df393db3f5`.
+- `data/curated/station_layouts.json` — SHA-256 `30cc4ca1c7edc7d44540ab310be105e3f21d856c7adc20a34dd4bfb77b429cfd`
+  tras la ampliación a 40 estaciones descrita al final. La captura de doce
+  estaciones tenía `361c4acb0ae079952779163d41d2921f1262e7f160c10996dee4a2df393db3f5`.
 - `app/dist/station_layouts.json` — mismo contenido y SHA-256.
 
 
-Los 103 elementos de `platforms` incluyen nodos y líneas de parada: no equivalen a 103 plataformas físicas. En la aplicación hay 191 de 201 visitas a estas doce estaciones que admiten una posición compatible con la geometría disponible. Las diez restantes conservan la referencia de la ruta; no se desvían buses ni se inventan conexiones para forzar el ajuste.
+Los 103 elementos de `platforms` incluyen nodos y líneas de parada: no equivalen a 103 plataformas físicas. En la aplicación había 191 de 201 visitas a estas doce estaciones con una posición compatible con la geometría disponible; las diez restantes conservaban la referencia de la ruta. Con 40 estaciones son 477 de 648. no se desvían buses ni se inventan conexiones para forzar el ajuste.
+
+
+## Ampliación a 40 estaciones — 11 sep. 2026
+
+A petición de Daniel se amplió la cobertura de doce a **40 estaciones**: las doce
+anteriores más las 28 troncales con más servicios. Ninguna de las doce originales
+perdió geometría; la comprobación compara los conteos antes y después estación por
+estación.
+
+Inventario total: **111 elementos de parada/plataforma, 98 áreas y 478 líneas internas**
+(687 elementos, frente a 381 con doce estaciones). El archivo curado pasa de
+527 KB a 943 KB. De 648 visitas de servicio a estas 40 estaciones, **477 se ubican sobre
+la geometría disponible** y 171 conservan la referencia oficial del servicio.
+
+La selección ya no está escrita a mano: `fetch_station_layouts.py --stations 40` toma las
+doce de base y completa con las más concurridas según `app/dist/services.json`. Las
+consultas van por lotes con pausa y reintento, porque Overpass devuelve 429 y 504 con
+este volumen.
+
+| station_id | estación | servicios | paradas/plataformas | áreas | líneas internas |
+|---|---|---:|---:|---:|---:|
+| 2101 | Toberín | 22 | 0 | 5 | 15 |
+| 9122 | Calle 72 - Areandina | 18 | 0 | 0 | 0 |
+| 2304 | Héroes - Colmena Seguros | 18 | 0 | 9 | 8 |
+| 2200 | Alcalá - Colegio S. Tomás Dominicos | 17 | 0 | 0 | 3 |
+| 9116 | Av. 39 | 17 | 0 | 0 | 3 |
+| 10005 | Bicentenario | 17 | 0 | 4 | 11 |
+| 7107 | Universidad Nacional | 17 | 0 | 0 | 13 |
+| 6103 | CAN - British Council | 16 | 0 | 3 | 1 |
+| 2105 | Calle 142 | 16 | 0 | 6 | 3 |
+| 2303 | Calle 85 - Gato Dumas | 16 | 0 | 0 | 4 |
+| 3001 | La Campiña | 16 | 4 | 0 | 7 |
+| 4108 | Polo - FINCOMERCIO | 16 | 0 | 3 | 17 |
+| 2201 | Prado | 16 | 0 | 3 | 10 |
+| 3002 | Suba - Tv. 91 | 16 | 4 | 0 | 3 |
+| 2302 | Virrey - Cendiatra | 16 | 0 | 0 | 0 |
+| 10002 | Av. Primero de Mayo | 15 | 0 | 0 | 3 |
+| 2300 | Calle 100 - Marketmedios | 15 | 0 | 3 | 5 |
+| 2104 | Calle 146 | 15 | 0 | 3 | 2 |
+| 9100 | Calle 40 Sur | 15 | 0 | 6 | 6 |
+| 9119 | Calle 57 | 15 | 0 | 0 | 10 |
+| 7006 | General Santander | 15 | 0 | 8 | 39 |
+| 10009 | Museo Nacional | 15 | 0 | 3 | 24 |
+| 2202 | Calle 127 | 14 | 0 | 2 | 5 |
+| 9114 | Calle 26 - Atrio | 14 | 0 | 3 | 13 |
+| 6107 | Ciudad Universitaria | 14 | 0 | 2 | 6 |
+| 4004 | Granja - cra 77 | 14 | 0 | 0 | 8 |
+| 3010 | Puentelargo | 14 | 0 | 0 | 10 |
+| 6102 | Salitre El Greco - Vive Claro | 14 | 0 | 3 | 3 |
+
+**Sin geometría en OSM:** Calle 72 - Areandina, Virrey - Cendiatra. Conservan sus vagones esquemáticos; no se inventó nada para rellenar la tabla.
+
+La mayoría de las estaciones intermedias aportan áreas —cubiertas y edificios de
+acceso— y vías internas, no polígonos de plataforma nombrados. Por eso su porcentaje de
+visitas ubicadas es menor que el de los portales: hay geometría física corroborada, pero
+no siempre una huella de plataforma que permita situar el punto de atención.

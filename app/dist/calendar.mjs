@@ -14,13 +14,17 @@ export function holidays(year){
 }
 export function dayType(date){const weekday=new Date(date+'T12:00:00Z').getUTCDay();return weekday===0||holidays(Number(date.slice(0,4))).has(date)?'holiday':weekday===6?'saturday':'weekday';}
 export function dayMatches(code,date){const kind=dayType(date);return code==='L-D'||(kind==='holiday'?code==='D-F':kind==='saturday'?['S','L-S'].includes(code):['L-V','L-S'].includes(code));}
-export function dateEligible(r,date){return (!r.valid_from||date>=r.valid_from)&&(!r.valid_until||date<=r.valid_until);}
+export function validityState(r,date){if(r.valid_from&&date<r.valid_from)return 'future';if(r.valid_until&&date>r.valid_until)return 'expired';return 'current';}
+export function dateEligible(r,date){return validityState(r,date)==='current';}
 export function mergeWindows(windows){const out=[];for(const [a,b] of windows.sort((a,b)=>a[0]-b[0])){const last=out.at(-1);if(last&&a<=last[1])last[1]=Math.max(last[1],b);else out.push([a,b]);}return out;}
 export function subtractWindows(windows,blocks){let out=windows;for(const [x,y] of blocks)out=out.flatMap(([a,b])=>y<=a||x>=b?[[a,b]]:[[a,Math.min(x,b)],[Math.max(y,a),b]].filter(([c,d])=>d>c));return out;}
-export function serviceWindows(route,date,routes){
- if(!route.ready||!dateEligible(route,date))return [];
+// beyondValidity keeps a service running past its published validity window using its last published
+// calendar. The window itself is never rewritten; the interface states the published dates instead.
+export function serviceWindows(route,date,routes,{beyondValidity=false}={}){
+ const usable=r=>r.ready&&(beyondValidity||dateEligible(r,date));
+ if(!usable(route))return [];
  let windows=mergeWindows(route.calendar.filter(h=>dayMatches(h.days,date)).map(h=>[h.start,h.end]));
- const peers=routes.filter(r=>r.ready&&r.family===route.family&&dateEligible(r,date));
+ const peers=routes.filter(r=>usable(r)&&r.family===route.family);
  // Only explicit D-F variants may override regular departures. Ambiguous variants stay pending in the importer.
  if(route.variant==='regular'){
   const blocks=peers.filter(r=>r.variant==='ciclovia').flatMap(r=>r.calendar.filter(h=>dayMatches(h.days,date)).map(h=>[h.start,h.end]));

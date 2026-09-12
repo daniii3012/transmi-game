@@ -1,12 +1,12 @@
 {
   "mode": "default",
-  "build_ms": 8846.181416,
-  "sample_ms": 0.8589857991666667,
+  "build_ms": 8476.449084,
+  "sample_ms": 0.7409829516666665,
   "maxFleet": 1078,
   "maxQueue": 72,
   "maxSignals": 112,
   "profileCache": 55873,
-  "heap_MB": 504.636024,
+  "heap_MB": 510.064968,
   "stats": {
     "time_s": 111600,
     "fleet": 1054,

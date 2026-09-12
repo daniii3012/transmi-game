@@ -1,8 +1,8 @@
-import {DAY,addDays,dateNumber,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.3';
-import {MetricPath} from './simulation.mjs?v=20260911.3';
-import {travelProfile} from './travel.mjs?v=20260911.3';
-import {parameters,hash} from './operation.mjs?v=20260911.3';
-import {placeVisit} from './station-layouts.mjs?v=20260911.3';
+import {DAY,addDays,dateNumber,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.4';
+import {MetricPath} from './simulation.mjs?v=20260911.4';
+import {travelProfile} from './travel.mjs?v=20260911.4';
+import {parameters,hash} from './operation.mjs?v=20260911.4';
+import {placeVisit} from './station-layouts.mjs?v=20260911.4';
 
 function lowerBound(a,time){let lo=0,hi=a.length;while(lo<hi){const m=(lo+hi)>>1;if(a[m]<time)lo=m+1;else hi=m;}return lo;}
 class Queue{
@@ -36,15 +36,15 @@ export class JourneyPlanner{
    this.routes.push(r);r.stops.slice(0,-1).forEach((s,index)=>{const values=this.boardings.get(s.station_id)||[];values.push({r,index});this.boardings.set(s.station_id,values);});
   }
  }
- plan({origin,destination,date,time=7*3600,maxTransfers=2}){
+ plan({origin,destination,date,time=7*3600,maxTransfers=3}){
   dateNumber(date);if(!this.stations.has(origin)||!this.stations.has(destination))throw Error('Selecciona estaciones válidas.');
   if(!Number.isFinite(time)||time<0||time>=DAY)throw Error('Selecciona una hora válida.');
-  if(!Number.isInteger(maxTransfers)||maxTransfers<0||maxTransfers>2)throw Error('Máximo de transbordos inválido.');
+  if(!Number.isInteger(maxTransfers)||maxTransfers<0||maxTransfers>4)throw Error('Máximo de transbordos inválido.');
   if(origin===destination)return {status:'same',origin,destination,date,time,journeys:[]};
   const deadline=time+6*3600,schedules=new Map();
   for(const r of this.routes){
    const schedule={peak:[],offpeak:[]};
-   for(const day of [-1,0,1]){const label=addDays(date,day);for(const [start,end] of serviceWindows(r,label,this.data.routes)){
+   for(const day of [-1,0,1]){const label=addDays(date,day);for(const [start,end] of serviceWindows(r,label,this.data.routes,{beyondValidity:this.params.beyondValidity})){
     let departure=start+hash(r.id)%23;
     while(departure<end){const absolute=day*DAY+departure,period=demandPeriod(departure,label,this.params.mode);if(absolute<=deadline)schedule[period].push(absolute);departure+=period==='peak'?this.params.peakHeadway:this.params.offpeakHeadway;}
    }}
@@ -73,8 +73,11 @@ export class JourneyPlanner{
    }
   }
   const byTransfers=new Map();for(const goal of goals.sort((a,b)=>a.time-b.time)){const count=goal.legs.length-1;if(!byTransfers.has(count))byTransfers.set(count,goal);}
-  const choices=[...byTransfers.values()].filter(g=>![...byTransfers.values()].some(other=>other!==g&&other.legs.length<g.legs.length&&other.time<=g.time)).sort((a,b)=>a.time-b.time);
+  // Every transfer count that reaches the destination is offered. An option that adds transfers without
+  // arriving earlier is kept but flagged, so a slower alternative stays visible instead of disappearing.
+  const all=[...byTransfers.values()].sort((a,b)=>a.legs.length-b.legs.length);
+  const choices=all.map(g=>({goal:g,dominated:all.some(other=>other.legs.length<g.legs.length&&other.time<=g.time)})).sort((a,b)=>a.goal.legs.length-b.goal.legs.length);
   const byId=new Map(this.routes.map(r=>[r.id,r]));
-  return {status:choices.length?'found':'none',origin,destination,date,time,horizonHours:6,journeys:choices.map(g=>({duration:g.time-time,arrive:g.time,transfers:g.legs.length-1,legs:g.legs.map(l=>({...l,points:routeSlice(byId.get(l.routeId).path,l.from_m,l.to_m)}))}))};
+  return {status:choices.length?'found':'none',origin,destination,date,time,horizonHours:6,maxTransfers,journeys:choices.map(({goal:g,dominated})=>({duration:g.time-time,arrive:g.time,transfers:g.legs.length-1,dominated,legs:g.legs.map(l=>({...l,points:routeSlice(byId.get(l.routeId).path,l.from_m,l.to_m)}))}))};
  }
 }

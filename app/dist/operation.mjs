@@ -1,11 +1,11 @@
-import {DAY,addDays,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.3';
-import {vehicleSpec} from './vehicles.mjs?v=20260911.3';
-import {matchSignals,signalTravel,signalTravelAt} from './signals.mjs?v=20260911.3';
-import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260911.3';
-import {placeVisit} from './station-layouts.mjs?v=20260911.3';
-import {MetricPath} from './simulation.mjs?v=20260911.3';
-export const DEFAULTS=Object.freeze({peakHeadway:240,offpeakHeadway:480,demand:1,mode:'auto',cruiseKmh:60,streetKmh:50,acceleration:.8,braking:1.1,turnaround:240,variableDispatch:true,reinforcements:true,signals:true});
-export function parameters(input={}){const p={...DEFAULTS,...input};for(const [k,min,max] of [['peakHeadway',120,1200],['offpeakHeadway',180,1800],['demand',.25,3],['cruiseKmh',25,75],['streetKmh',20,60],['acceleration',.4,1.4],['braking',.5,1.8],['turnaround',60,900]])if(!Number.isFinite(p[k])||p[k]<min||p[k]>max)throw new Error('Parámetro fuera de rango: '+k);if(typeof p.variableDispatch!=='boolean'||typeof p.reinforcements!=='boolean'||typeof p.signals!=='boolean')throw new Error('Opciones de despacho inválidas');if(!['auto','peak','offpeak'].includes(p.mode))throw new Error('Demanda inválida');return p;}
+import {DAY,addDays,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.4';
+import {vehicleSpec} from './vehicles.mjs?v=20260911.4';
+import {matchSignals,signalTravel,signalTravelAt} from './signals.mjs?v=20260911.4';
+import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260911.4';
+import {placeVisit} from './station-layouts.mjs?v=20260911.4';
+import {MetricPath} from './simulation.mjs?v=20260911.4';
+export const DEFAULTS=Object.freeze({peakHeadway:240,offpeakHeadway:480,demand:1,mode:'auto',cruiseKmh:60,streetKmh:50,acceleration:.8,braking:1.1,turnaround:240,variableDispatch:true,reinforcements:true,signals:true,beyondValidity:true});
+export function parameters(input={}){const p={...DEFAULTS,...input};for(const [k,min,max] of [['peakHeadway',120,1200],['offpeakHeadway',180,1800],['demand',.25,3],['cruiseKmh',25,75],['streetKmh',20,60],['acceleration',.4,1.4],['braking',.5,1.8],['turnaround',60,900]])if(!Number.isFinite(p[k])||p[k]<min||p[k]>max)throw new Error('Parámetro fuera de rango: '+k);if(typeof p.variableDispatch!=='boolean'||typeof p.reinforcements!=='boolean'||typeof p.signals!=='boolean'||typeof p.beyondValidity!=='boolean')throw new Error('Opciones de despacho inválidas');if(!['auto','peak','offpeak'].includes(p.mode))throw new Error('Demanda inválida');return p;}
 export function hash(text){let h=2166136261;for(const c of String(text)){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;}
 export function motion(distance,v,a=.8,b=1.1){const top=Math.min(v,Math.sqrt(2*Math.max(0,distance)/(1/a+1/b))),ta=top/a,tb=top/b,cruise=Math.max(0,(distance-top*top/2/a-top*top/2/b)/Math.max(top,.01));return {distance,top,ta,tb,cruise,duration:ta+cruise+tb,a,b};}
 export function motionAt(m,t){t=Math.max(0,Math.min(t,m.duration));if(t<m.ta)return {s:.5*m.a*t*t,speed:m.a*t};if(t<m.ta+m.cruise)return {s:.5*m.top*m.ta+m.top*(t-m.ta),speed:m.top};const remaining=m.duration-t;return {s:m.distance-.5*m.b*remaining*remaining,speed:m.b*remaining};}
@@ -31,7 +31,7 @@ export class Operation {
   for(let day=-1;day<=0;day++){
    const date=addDays(this.date,day),offset=(day+1)*DAY;
    for(const r of this.routes.values()){
-    const windows=serviceWindows(r,date,this.data.routes);if(day===0)this.routeWindows[r.id]=windows;
+    const windows=serviceWindows(r,date,this.data.routes,{beyondValidity:this.params.beyondValidity});if(day===0)this.routeWindows[r.id]=windows;
     for(let wi=0;wi<windows.length;wi++){
      const [start,end]=windows[wi];let t=start+hash(r.id)%23;
      let sequence=0;while(t<end){

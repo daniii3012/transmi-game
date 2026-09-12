@@ -3,7 +3,7 @@ import {Operation,DEFAULTS,parameters,motion,motionAt} from '../dist/operation.m
 import {vehicleSpec} from '../dist/vehicles.mjs';
 import {MetricPath} from '../dist/simulation.mjs';
 import {travelProfile,travelAt} from '../dist/travel.mjs';
-import {dayType,holidays,serviceWindows,dateNumber} from '../dist/calendar.mjs';
+import {dayType,holidays,serviceWindows,dateNumber,validityState} from '../dist/calendar.mjs';
 import {directionalFactor,generatedPassengers,EMPLOYMENT_CENTER} from '../dist/passengers.mjs';
 const source=JSON.parse(fs.readFileSync(new URL('../dist/services.json',import.meta.url)));
 const base={schema_version:2,scenario_date:'2026-09-10',vehicle:{length_m:18.5,width_m:2.5},stations:[{id:'a',xy:[0,0],name:'Portal Prueba',kind:'station',wagons:2},{id:'b',xy:[1000,0],name:'Centro',kind:'station',wagons:2},{id:'c',xy:[2000,0],name:'Terminal',kind:'station',wagons:2}]};
@@ -11,6 +11,27 @@ const route=(id='r',stops=['a','b','c'])=>({id,code:id,color:'#ff0000',name:'Tes
 const fixture=(routes=[route()])=>({...base,routes});
 test('Bogotá civil dates and Colombian moved/floating holidays',()=>{assert.equal(dayType('2026-09-10'),'weekday');assert.equal(dayType('2026-09-12'),'saturday');assert.equal(dayType('2026-09-13'),'holiday');for(const d of ['2026-01-12','2026-03-23','2026-04-02','2026-04-03','2026-05-18','2026-06-08','2026-06-15','2026-08-17'])assert.ok(holidays(2026).has(d),d);assert.throws(()=>dateNumber('2026-02-30'));});
 test('Calendar splits, weekend exceptions, expiry and overlapping windows',()=>{const r=route();r.calendar=[{days:'L-V',start:18000,end:20000},{days:'L-V',start:19000,end:21000}];assert.deepEqual(serviceWindows(r,'2026-09-10',[r]),[[18000,21000]]);assert.deepEqual(serviceWindows(r,'2026-09-12',[r]),[]);assert.deepEqual(serviceWindows(r,'2027-01-01',[r]),[]);});
+test('Published validity is classified and may be operated past its end without rewriting it',()=>{
+ const r=route();r.valid_from='2026-06-28';r.valid_until='2026-09-11';
+ assert.equal(validityState(r,'2026-09-10'),'current');
+ assert.equal(validityState(r,'2026-09-12'),'expired');
+ assert.equal(validityState(r,'2026-06-01'),'future');
+ // Sin la opción, la vigencia excluye el servicio; con ella conserva exactamente su ventana publicada.
+ assert.deepEqual(serviceWindows(r,'2026-09-12',[r]),[]);
+ assert.deepEqual(serviceWindows(r,'2026-09-12',[r],{beyondValidity:true}),serviceWindows(r,'2026-09-10',[r]));
+ assert.deepEqual(serviceWindows(r,'2026-06-01',[r],{beyondValidity:true}),[[14400,82800]]);
+ // Una variante posterior de la misma familia sigue reemplazando a la anterior aunque ambas estén vencidas.
+ const nueva={...r,id:'nueva',valid_from:'2026-08-01',calendar:[{days:'L-D',start:14400,end:40000}]};
+ assert.deepEqual(serviceWindows(r,'2026-09-12',[r,nueva],{beyondValidity:true}),[[40000,82800]]);
+ // Un servicio sin datos nunca opera, tenga o no vigencia abierta.
+ assert.deepEqual(serviceWindows({...r,ready:false},'2026-09-12',[r],{beyondValidity:true}),[]);
+});
+test('Operating past validity is an explicit boolean parameter',()=>{
+ assert.equal(DEFAULTS.beyondValidity,true);
+ assert.equal(parameters({}).beyondValidity,true);
+ assert.equal(parameters({beyondValidity:false}).beyondValidity,false);
+ assert.throws(()=>parameters({beyondValidity:'sí'}));
+});
 test('Ciclovía replaces overlapping regular departures only',()=>{const r=route(),c={...r,id:'cic',variant:'ciclovia',calendar:[{days:'D-F',start:25200,end:50400}]};assert.deepEqual(serviceWindows(r,'2026-09-13',[r,c]),[[14400,25200],[50400,82800]]);assert.deepEqual(serviceWindows(c,'2026-09-10',[r,c]),[]);});
 test('Distance-domain speed respects metres, speed cap, acceleration and braking',()=>{const path=new MetricPath([[0,0],[2000,0]]),p=travelProfile(path,0,2000,13.333,.8,1.1);assert.equal(travelAt(p,0).speed,0);assert.equal(travelAt(p,p.duration).s,2000);assert.ok(travelAt(p,p.duration).speed<1e-8);for(let t=.1;t<p.duration;t+=.2){const a=travelAt(p,t-.1),b=travelAt(p,t);assert.ok(b.s>=a.s);assert.ok(b.speed<=13.333+1e-8);assert.ok((b.speed-a.speed)/.1<=.8+1e-6);assert.ok((a.speed-b.speed)/.1<=1.1+1e-6);}});
 test('Tight bends slow buses and cannot create a shortcut',()=>{const straight=travelProfile(new MetricPath([[0,0],[200,0]]),0,200,13.333),bend=travelProfile(new MetricPath([[0,0],[100,0],[100,100]]),0,200,13.333);assert.ok(bend.duration>straight.duration);assert.equal(bend.distance,200);});

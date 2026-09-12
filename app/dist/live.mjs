@@ -1,6 +1,6 @@
-// Buses reales, leídos por el servidor local. Es la única parte del simulador que depende de la
-// red: no alimenta el escenario ni el planificador, solo se dibuja encima. Sin servidor local
-// —por ejemplo en lo publicado— la sonda falla y el panel lo explica en vez de fingir datos.
+// Buses reales. Es la única parte del simulador que no sale del escenario: no alimenta el modelo
+// ni el planificador, solo se dibuja encima. Donde no hay de dónde leerlos la sonda falla y el
+// panel queda en blanco, en vez de fingir datos.
 
 export const OCCUPANCY={VACIO:'Vacío',MEDIO:'Medio',LLENO:'Lleno'};
 // El servicio y el catálogo del proyecto vienen de la misma familia de datos y escriben los
@@ -60,11 +60,11 @@ export class LiveFeed{
    const response=await fetch(this.url(this.code),{cache:'no-store',signal:this.controller.signal});
    const payload=await response.json();
    if(sequence!==this.sequence)return;
-   if(!response.ok)return this.emit({phase:'error',message:payload.detail||'El servidor local no pudo responder.',payload});
+   if(!response.ok)return this.emit({phase:'error',message:payload.detail||'No se pudo completar la consulta.',payload});
    this.emit({phase:'ok',payload});
   }catch(error){
    if(error.name==='AbortError'||sequence!==this.sequence)return;
-   this.emit({phase:'error',message:'No hay respuesta del servidor local. ¿Sigue abierta su Terminal?'});
+   this.emit({phase:'error',message:'Sin respuesta.'});
   }finally{
    if(sequence===this.sequence)this.pending=false;
   }

@@ -182,9 +182,9 @@ try{
    const response=await fetch('./api/en-vivo/estacion?id='+encodeURIComponent(station.id),{cache:'no-store'});
    const payload=await response.json();
    if(selection?.id!==station.id)return;
-   renderLiveStation(station,response.ok?{phase:'ok',payload}:{phase:'error',message:payload.detail||'El servidor local no pudo responder.'});
+   renderLiveStation(station,response.ok?{phase:'ok',payload}:{phase:'error',message:payload.detail||'No se pudo completar la consulta.'});
   }catch{
-   if(selection?.id===station.id)renderLiveStation(station,{phase:'error',message:'No hay respuesta del servidor local. ¿Sigue abierta su Terminal?'});
+   if(selection?.id===station.id)renderLiveStation(station,{phase:'error',message:'Sin respuesta.'});
   }
  }
  function renderLiveStation(station,{phase,payload,message}){
@@ -296,7 +296,7 @@ try{
  function switchPanel(name){if(name==='planner'||activePanel==='planner'&&selection?.kind==='journey')clearSelection();activePanel=name;$$('[data-panel]').forEach(b=>b.classList.toggle('nav-active',b.dataset.panel===name));$$('.panel').forEach(p=>p.hidden=p.id!==name+'-panel');$('#sidebar').scrollTop=0;if(name==='depots'&&ready)worker.postMessage({type:'depots',generation});syncLive();}
  // Buses reales. Es la única parte que sale a la red y a un tercero: vive en su pestaña, se apaga
  // al salir de ella o al ocultar la ventana, y no toca el escenario, el reloj ni el planificador.
- const live=new LiveFeed({onState:renderLive});let liveFitted=null,liveScope='network';
+ const live=new LiveFeed({onState:renderLive});let liveFitted=null,liveScope='network',liveUsable=false;
  const liveNetwork=new LiveFeed({onState:renderLiveNetwork,url:()=>'./api/en-vivo/red'});
  const colorByCode=new Map(data.routes.filter(r=>r.ready).map(r=>[r.code,r.color]));
  const stationById=new Map(data.stations.map(s=>[s.id,s]));
@@ -322,6 +322,8 @@ try{
   // la vista general pasarían por detenidos buses que solo cruzan cerca de una estación sin parar.
   $$('[data-scenario-metric]').forEach(d=>d.hidden=inLive);
   $$('[data-live-metric]').forEach(d=>d.hidden=!inLive);
+  // Sin nada que contar, el recuadro entero sobra: dejarlo con un guion es peor que no ponerlo.
+  $('#metrics').hidden=inLive&&!liveUsable;
   $('#live-stopped-cell').hidden=!inLive||liveScope!=='route';
   $('#live-count-label').textContent=liveScope==='route'?'del servicio':'buses reales';
   // Sin servicio elegido, el indicador conservaba el conteo de la red rotulado «del servicio».
@@ -376,8 +378,9 @@ try{
  async function setUpLive(){
   const status=await live.probe();
   const usable=!!status.available&&!!status.configured;
+  liveUsable=usable;
   $('#live-unavailable').hidden=usable;$('#live-controls').hidden=!usable;
-  if(status.available&&!status.configured)$('#live-unavailable-text').textContent='El servidor local está corriendo, pero le falta la configuración del servicio, que va en tools/en_vivo.local.json y no se versiona.';
+  syncLive();
   if(!usable)return;
   for(const code of status.codes){
    const names=[...new Set(data.routes.filter(r=>r.code===code&&r.ready).map(r=>r.name))];

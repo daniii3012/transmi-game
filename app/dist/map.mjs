@@ -1,5 +1,5 @@
-import {MetricPath} from './simulation.mjs?v=20260911.5';
-import {signalPhase} from './signals.mjs?v=20260911.5';
+import {MetricPath} from './simulation.mjs?v=20260911.6';
+import {signalPhase} from './signals.mjs?v=20260911.6';
 import * as THREE from './vendor/three.module.js';
 
 export class NetworkMap {
@@ -123,11 +123,14 @@ export class NetworkMap {
         target.push(x+dx,y+dy,0, x-dx,y-dy,0, a+dx,b+dy,0, a+dx,b+dy,0, x-dx,y-dy,0, a-dx,b-dy,0);
       }
     }
-    for(const [vertices,palette] of [[exclusive,['#c3ccd4','#2f4152']],[shared,['#d7dde2','#293747']]]){
+    // Opaque on purpose: a transparent material would be drawn in Three's transparent pass,
+    // after every opaque layer, and would cover the stations, signals and buses no matter what
+    // renderOrder it carried. Subtlety comes from a colour close to the ground, not from alpha.
+    for(const [vertices,palette] of [[exclusive,['#dfe5ea','#222e3b']],[shared,['#e6eaee','#1d2733']]]){
       if(!vertices.length)continue;
       const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));
-      const mesh=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({color:palette[0],depthTest:false,transparent:true,opacity:.9}));
-      mesh.renderOrder=.6;mesh.userData.palette=palette;this.carriagewayGroup.add(mesh);
+      const mesh=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({color:palette[0],depthTest:false}));
+      mesh.renderOrder=.2;mesh.userData.palette=palette;this.carriagewayGroup.add(mesh);
     }
   }
   buildStationGeometry(){

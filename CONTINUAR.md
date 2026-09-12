@@ -53,4 +53,8 @@ QA de navegador: seis portales nuevos y anteriores conservados, transbordos/fech
 
 Procedimiento de actualización de fuentes en docs/ACTUALIZAR_DATOS.md; es el documento a seguir cuando cambie el sistema real. Revisión de los pendientes en docs/PENDIENTES_20260911.md. E48/12444, H76/1213 y K86/629 se reimportaron con `tools/refresh_route_details.py`, que baja solo el detalle de los identificadores indicados a una carpeta propia y deja `refresh_latest.json`; la metadata de catálogo, vigencia incluida, sigue viniendo de la instantánea base. Cada ruta lleva `detail_snapshot` con su procedencia. El contexto urbano es la única fuente sin `fetch_*` y con la ruta fija dentro de build_context.py.
 
+Publicación en GitHub Pages **preparada y sin ejecutar** por indicación de Daniel: `.github/workflows/pages.yml` publica solo app/dist, se dispara a mano y comprueba pruebas, JSON, paridad curado/web, versión `?v=` única y ausencia de rutas absolutas; tras desplegar verifica el Content-Type de `.mjs`. Falta activar Settings → Pages → Source: GitHub Actions, que es de la cuenta. Pasos en docs/PUBLICACION_WEB_20260911.md.
+
+Colas de buses en semáforos: analizado y **no implementado** por decisión de Daniel. Ver docs/COLAS_Y_ESPACIO_20260911.md.
+
 Antes de terminar cada hito, verificar diff, commit/push y coincidencia HEAD local/remoto. Los informes del 10 sep. se conservan como evidencia histórica, no resultados actuales.

@@ -83,8 +83,44 @@ deje claro que **no es un sitio oficial de TransMilenio y no son posiciones en v
 ya está dicho dentro de la aplicación; en un sitio público debería estar también en la
 primera pantalla.
 
+## Qué quedó preparado
+
+Todo listo, **sin desplegar**. Daniel pidió validar antes del primer cargue.
+
+- `.github/workflows/pages.yml` — flujo que publica **solo `app/dist`**.
+- `app/dist/.nojekyll` — evita cualquier procesado de Jekyll.
+
+El flujo **se dispara a mano y no se ejecuta al hacer push**. Eso es deliberado: guardar
+trabajo no debería publicar nada. Si más adelante se quiere publicación automática, el
+propio archivo lleva comentadas las tres líneas que hay que añadir.
+
+Antes de empaquetar comprueba, y falla si algo no cuadra:
+
+1. Las 56 pruebas del motor.
+2. Que estén los siete JSON de datos y que sean JSON válido.
+3. Que `station_layouts`, `busway_signals` y `busway_lanes` sean **idénticos byte a byte**
+   entre `data/curated` y `app/dist`.
+4. Que haya **una sola versión `?v=`**: servir una mezcla rompe la aplicación.
+5. Que no haya rutas absolutas, que romperían bajo `/transmi-game/`.
+
+Después de desplegar consulta el `Content-Type` de `app.mjs` y falla si no es JavaScript,
+que es justo la única incógnita real de Pages. Así el primer despliegue responde la
+pregunta solo, sin que haya que abrir la consola a mano.
+
+## Pasos para el primer cargue
+
+1. En GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**. Sin
+   esto el flujo falla al desplegar. Es lo único que no se puede dejar hecho desde el
+   repositorio.
+2. **Actions → Publicar simulador en Pages → Run workflow**, sobre `main`.
+3. La URL queda en el resumen del flujo: `https://daniii3012.github.io/transmi-game/`.
+4. Revisar el último paso del flujo: dice si `.mjs` se sirvió bien.
+5. Abrir la URL y comprobar que la simulación construye y no hay errores de consola.
+
+Si `.mjs` no se sirviera como JavaScript, la salida lo dirá explícitamente y la solución
+es renombrar los módulos a `.js` o añadir un paso de construcción que lo haga.
+
 ## Recomendación
 
-Es viable y el trabajo técnico es pequeño: un flujo de Actions que publique `app/dist`, un
-`.nojekyll`, y comprobar la consola en el primer despliegue. Lo que no es pequeño es la
-decisión de publicar, y esa ya la tomó Daniel. Cuando dé la orden, se hace.
+El trabajo técnico está hecho. Lo que queda es la decisión de publicar y el paso 1, que es
+de la cuenta de Daniel. Cuando valides, se ejecuta.

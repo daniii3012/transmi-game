@@ -23,7 +23,16 @@ sus hipótesis, y a [FUENTES.md](FUENTES.md), que registra procedencia y licenci
    cercanía. Lo mismo aplica a plataformas: un punto de parada no se convierte en un
    polígono.
 5. **Lo publicado y lo estimado se distinguen siempre**, en el dato y en la interfaz.
-6. **Cada cambio de fuente se acompaña de pruebas.** Ver *Comprobación obligatoria*.
+6. **Las fuentes tienen que ser contemporáneas entre sí.** La demanda se calibra con
+   validaciones del mismo momento que el catálogo de servicios, no con las más abundantes
+   ni con las más fáciles de conseguir. La red física cambia en cuestión de meses: entre
+   marzo y septiembre de 2026 desaparecieron las estaciones Calle 76 y Calle 45 y apareció
+   Calle 72 - Areandina. Mezclar periodos asigna demanda a estaciones que el catálogo ya no
+   tiene. Ver [DEMANDA_COMPARACION_MARZO_20260911.md](DEMANDA_COMPARACION_MARZO_20260911.md).
+7. **Ninguna cifra se escribe a mano.** Los conteos que muestra la aplicación se calculan
+   desde la instantánea. Si un número aparece como literal en un script o en el HTML, es un
+   error: dejará de ser cierto en la siguiente descarga sin que nada avise.
+8. **Cada cambio de fuente se acompaña de pruebas.** Ver *Comprobación obligatoria*.
 
 ## Entorno
 
@@ -62,6 +71,34 @@ los `build_*` escriben ambas.
 Herramientas de solo lectura que no escriben en el catálogo: `audit_routes.py`
 (contrasta el buscador público) y `probe_pending_routes.py` (revisa si los registros
 pendientes ya tienen trazado publicado).
+
+## En qué orden hay que reconstruir
+
+Las fuentes no son independientes. `services.json` está aguas arriba de casi todo, así que
+un cambio de rutas obliga a rehacer lo que se apoya en él aunque su propia descarga no haya
+cambiado:
+
+```
+services.json  ──▶ busway_signals.json   (las señales se filtran por distancia a los recorridos)
+               ──▶ signal_associations    (depende de rutas y señales a la vez)
+               ──▶ busway_lanes.json      (las calzadas se recortan por distancia a los servicios operados)
+               ──▶ station_layouts.json   (la selección --stations N se ordena por número de servicios)
+               ──▶ demand.json            (los perfiles se enlazan por estación del catálogo)
+```
+
+Orden seguro tras tocar el catálogo de servicios:
+
+```sh
+../../work/venv/bin/python tools/build_services.py
+../../work/venv/bin/python tools/build_busway_signals.py --raw data/raw/busway_signals/<instantánea>
+node tools/build_signal_associations.mjs
+../../work/venv/bin/python tools/build_busway_lanes.py
+python3 tools/import_passenger_profiles.py
+```
+
+`station_layouts` solo hace falta rehacerlo si quieres que la selección de las estaciones
+más concurridas se recalcule con el catálogo nuevo; conservar la anterior es válido y no
+rompe nada.
 
 ## Actualizar según lo que cambió
 
@@ -233,6 +270,24 @@ automáticamente; si no existe, vuelve al agregado de un solo día que produce
 `tools/aggregate_validations.py`, y en ese caso el motor retoma los factores estimados de
 fin de semana. Detalle y límites en [DEMANDA_MULTIDIA_20260911.md](DEMANDA_MULTIDIA_20260911.md).
 
+Al elegir qué días bajar:
+
+- **Contemporáneos del catálogo de servicios.** Es la regla 6 y aquí es donde más duele
+  saltársela. Si actualizas las rutas, actualiza también las validaciones al mismo periodo.
+- **Semanas completas de lunes a domingo**, para que cada tipo de día tenga varios
+  representantes. Con uno o dos sábados la media descansa sobre muy poca evidencia.
+- **Un festivo entre semana no es un domingo.** Se midió uno, el 23 de marzo de 2026, y
+  quedó 16,5 % por debajo de los domingos de ese mes. El calendario del simulador aún los
+  trata igual; si bajas un periodo con varios festivos, es la ocasión de separarlos.
+- **Entre días de semana la variación es pequeña**, 1,4 % a 2,0 % según el periodo medido,
+  así que no hace falta un mes entero para un buen perfil de día de semana.
+- **El nivel sí cambia con la época**: marzo quedó un 7,3 % por debajo de agosto–septiembre,
+  de forma uniforme. Los factores por tipo de día, en cambio, apenas se movieron.
+
+Después de importar, comprueba en el panel **Datos** que el periodo y los días observados
+que muestra coinciden con lo que bajaste. Esa línea se deriva de `demand.json`, así que si
+dice otra cosa es que el importador no tomó el agregado que creías.
+
 Un archivo diario trae unas pocas transacciones con fecha del día anterior o del
 siguiente, de servicio que cruza medianoche. Se cuentan bajo el día de servicio del
 archivo y el reparto queda registrado en `transaction_dates`.
@@ -252,6 +307,13 @@ Consulta el detalle oficial de cada registro pendiente y archiva la evidencia en
 ya trazado y paradas publicados. Activarlos sigue exigiendo una instantánea nueva de
 servicios y una decisión explícita de curación.
 
+**Las validaciones sirven de segunda fuente.** Si una estación deja de aparecer en los
+archivos diarios a partir de cierta fecha, los servicios que van a ella suelen estar
+retirados. Así se corroboró que `6/692` y `A60/1187`, ambos hacia Calle 76, dejaran de
+publicarse el 21 de agosto de 2026: esa estación desaparece de las validaciones justo
+entonces, y en marzo registraba 26.171 al día. Dos fuentes que no se hablan entre sí
+diciendo lo mismo valen más que insistir con una.
+
 ## Comprobación obligatoria después de cualquier actualización
 
 ```sh
@@ -270,6 +332,9 @@ Además, a mano:
 3. **Conteos**: registros totales, utilizables y pendientes; señales aceptadas y
    asociadas; elementos de plataforma, áreas y líneas internas. Si un conteo cambia,
    se actualiza en la documentación que lo cite. No dejar cifras viejas.
+   Los que muestra la aplicación salen de `counts` en `services.json` y de `demand.json`,
+   y se calculan solos; lo que hay que revisar a mano son los que aparecen escritos en la
+   documentación.
 4. **Versión de caché**: subir el sufijo `?v=` en `app/dist/*.mjs` e `index.html` si
    cambió código, para que los navegadores no sirvan una mezcla de versiones.
 5. **Navegador**: abrir con `ABRIR_SIMULACION_2D.command`, comprobar que no hay errores

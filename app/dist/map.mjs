@@ -359,6 +359,9 @@ export class NetworkMap {
     for(const [id,label] of this.liveLabels)if(!keep.has(id)){label.remove();this.liveLabels.delete(id);}
   }
   follow(xy,dt){const blend=1-Math.exp(-Math.min(.1,Math.max(0,dt))*15);this.center[0]+=(xy[0]-this.center[0])*blend;this.center[1]+=(xy[1]-this.center[1])*blend;const now=performance.now();const labels=!this.lastFollowLabels||now-this.lastFollowLabels>150;if(labels)this.lastFollowLabels=now;this.updateCamera({labels});}
+  // El semáforo es una estimación del modelo, no un dato: se puede apagar para leer el mapa. La
+  // pestaña En vivo los esconde por su cuenta, y este interruptor no los devuelve allí.
+  setSignals(enabled){this.signalsEnabled=enabled;if(this.signalMesh&&!enabled)this.signalMesh.visible=false;}
   updateSignals(time){
     if(!this.signalMesh)return;this.signalMesh.visible=this.signalsEnabled&&this.simulationVisible!==false&&this.mpp<4;if(!this.signalMesh.visible)return;
     const color=new THREE.Color();let i=0;

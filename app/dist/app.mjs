@@ -324,6 +324,8 @@ try{
   $$('[data-live-metric]').forEach(d=>d.hidden=!inLive);
   // Sin nada que contar, el recuadro entero sobra: dejarlo con un guion es peor que no ponerlo.
   $('#metrics').hidden=inLive&&!liveUsable;
+  // Aquí los semáforos están escondidos pase lo que pase, así que su interruptor no tiene qué hacer.
+  $('#signals-toggle').disabled=inLive;
   $('#live-stopped-cell').hidden=!inLive||liveScope!=='route';
   $('#live-count-label').textContent=liveScope==='route'?'del servicio':'buses reales';
   // Sin servicio elegido, el indicador conservaba el conteo de la red rotulado «del servicio».
@@ -484,6 +486,7 @@ try{
  $('#back').onclick=()=>jump(clock.time-900);$('#forward').onclick=()=>jump(clock.time+900);$('#pause').onclick=()=>{clock.paused=!clock.paused;syncControls();};
  $$('[data-speed]').forEach(b=>b.onclick=()=>{clock.speed=Number(b.dataset.speed);syncControls();});
  $('#zoom-in').onclick=()=>map.zoom(1/1.4);$('#zoom-out').onclick=()=>map.zoom(1.4);$('#fit').onclick=()=>{following=false;fitSelection();};$('#context-toggle').onclick=()=>{map.contextGroup.visible=!map.contextGroup.visible;$('#context-toggle').setAttribute('aria-pressed',map.contextGroup.visible);};$('#lanes-toggle').onclick=()=>{map.carriagewaysEnabled=map.carriagewaysEnabled===false;$('#lanes-toggle').setAttribute('aria-pressed',map.carriagewaysEnabled);if(map.carriagewayGroup)map.carriagewayGroup.visible=map.carriagewaysEnabled&&map.mpp<6;};
+ $('#signals-toggle').onclick=()=>{const oculto=map.signalsEnabled;map.setSignals(!oculto);$('#signals-toggle').setAttribute('aria-pressed',oculto);$('#signals-toggle').classList.toggle('active',oculto);};
  $('#corridors-toggle').onclick=()=>{const faded=!map.corridorsFaded;map.setCorridorsFaded(faded);$('#corridors-toggle').setAttribute('aria-pressed',faded);$('#corridors-toggle').classList.toggle('active',faded);};map.onPan=()=>following=false;
  $('#close-inspector').onclick=()=>{clearSelection();renderRoutes();};
  $('#save').onclick=()=>{try{localStorage.setItem('transmi-scenario-v3',JSON.stringify({revision:data.revision,config,clock}));toast('Escenario guardado. Se restaurará pausado al abrirlo.');}catch{toast('No se pudo guardar en este dispositivo.');}};

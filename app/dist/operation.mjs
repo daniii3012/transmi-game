@@ -1,9 +1,9 @@
-import {DAY,addDays,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.7';
-import {vehicleSpec} from './vehicles.mjs?v=20260911.7';
-import {matchSignals,signalTravel,signalTravelAt} from './signals.mjs?v=20260911.7';
-import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260911.7';
-import {placeVisit} from './station-layouts.mjs?v=20260911.7';
-import {MetricPath} from './simulation.mjs?v=20260911.7';
+import {DAY,addDays,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.8';
+import {vehicleSpec} from './vehicles.mjs?v=20260911.8';
+import {matchSignals,signalTravel,signalTravelAt} from './signals.mjs?v=20260911.8';
+import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260911.8';
+import {placeVisit} from './station-layouts.mjs?v=20260911.8';
+import {MetricPath} from './simulation.mjs?v=20260911.8';
 export const DEFAULTS=Object.freeze({peakHeadway:240,offpeakHeadway:480,demand:1,mode:'auto',cruiseKmh:60,streetKmh:50,acceleration:.8,braking:1.1,turnaround:240,variableDispatch:true,reinforcements:true,signals:true,beyondValidity:true});
 export function parameters(input={}){const p={...DEFAULTS,...input};for(const [k,min,max] of [['peakHeadway',120,1200],['offpeakHeadway',180,1800],['demand',.25,3],['cruiseKmh',25,75],['streetKmh',20,60],['acceleration',.4,1.4],['braking',.5,1.8],['turnaround',60,900]])if(!Number.isFinite(p[k])||p[k]<min||p[k]>max)throw new Error('Parámetro fuera de rango: '+k);if(typeof p.variableDispatch!=='boolean'||typeof p.reinforcements!=='boolean'||typeof p.signals!=='boolean'||typeof p.beyondValidity!=='boolean')throw new Error('Opciones de despacho inválidas');if(!['auto','peak','offpeak'].includes(p.mode))throw new Error('Demanda inválida');return p;}
 export function hash(text){let h=2166136261;for(const c of String(text)){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;}
@@ -125,5 +125,29 @@ export class Operation {
  return [...map.values()].sort((a,b)=>b.departures-a.departures);
  }
  waitingAt(stationId){let count=0;for(const [key,events] of this.passengerEvents){if(!key.startsWith(stationId+'/'))continue;const index=upperBound(events,this.time,e=>e.time)-1;if(index<0)continue;const e=events[index];count+=e.count*Math.exp(-Math.max(0,this.time-e.time)/1800)+e.share*generatedPassengers(this.stations.get(stationId),e.angle,e.time,this.time,addDays(this.date,-1),this.params);}return Math.round(count);}
+ // Waiting passengers for every station in one pass. waitingAt scans the whole event map
+ // per station, so asking it for all of them would be quadratic; the overview needs a ranking,
+ // not a per-station query.
+ pressure(limit=6){
+  const totals=new Map();
+  for(const [key,events] of this.passengerEvents){
+   const index=upperBound(events,this.time,e=>e.time)-1;if(index<0)continue;
+   const e=events[index],stationId=key.slice(0,key.lastIndexOf('/'));const station=this.stations.get(stationId);if(!station)continue;
+   const count=e.count*Math.exp(-Math.max(0,this.time-e.time)/1800)+e.share*generatedPassengers(station,e.angle,e.time,this.time,addDays(this.date,-1),this.params);
+   totals.set(stationId,(totals.get(stationId)||0)+count);
+  }
+  return [...totals].map(([id,waiting])=>({id,name:this.stations.get(id).name,kind:this.stations.get(id).kind,waiting:Math.round(waiting)}))
+   .filter(s=>s.waiting>0).sort((a,b)=>b.waiting-a.waiting||a.name.localeCompare(b.name,'es')).slice(0,limit);
+ }
+ // Buses and load per trunk, for the overview. Zone identity comes from the route, never from geometry.
+ zoneLoad(){
+  const zones=new Map();
+  for(const bus of this.buses){
+   const route=this.routes.get(bus.routeId);if(!route)continue;
+   const id=route.zone||'?';const entry=zones.get(id)||{id,buses:0,onboard:0,capacity:0};
+   entry.buses++;entry.onboard+=bus.load;entry.capacity+=bus.capacity;zones.set(id,entry);
+  }
+  return [...zones.values()].sort((a,b)=>b.buses-a.buses);
+ }
  stationStats(id){const buses=this.buses.filter(b=>b.next_station===id&&['dwell','queue'].includes(b.state));const routes=[...this.routes.values()].filter(r=>r.stops.some(s=>s.station_id===id));const upcoming=[];for(const t of this.trips){if(t.end<this.time||t.start>this.time+1800)continue;const r=this.routes.get(t.routeId);r.stops.forEach((s,i)=>{const event=t.stops[i];if(s.station_id===id&&event.close>=this.time&&event.arrival<this.time+1800)upcoming.push({code:r.code,routeId:r.id,name:r.name,arrival:event.arrival,wagon:event.wagon,wait:event.open-event.arrival});});}return {waiting:this.waitingAt(id),buses,routes:routes.map(r=>({id:r.id,code:r.code,name:r.name,color:r.color})),upcoming:upcoming.sort((a,b)=>a.arrival-b.arrival).slice(0,8)};}
 }

@@ -1,7 +1,7 @@
-import {NetworkMap} from './map.mjs?v=20260911.7';
-import {DAY,addDays,dayType,dateNumber,dateEligible,validityState,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.7';
-import {DEFAULTS,parameters} from './operation.mjs?v=20260911.7';
-import {registerSimulationTools} from './webmcp.mjs?v=20260911.7';
+import {NetworkMap} from './map.mjs?v=20260911.8';
+import {DAY,addDays,dayType,dateNumber,dateEligible,validityState,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.8';
+import {DEFAULTS,parameters} from './operation.mjs?v=20260911.8';
+import {registerSimulationTools} from './webmcp.mjs?v=20260911.8';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const el=(tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;};
 const fmt=n=>Math.round(n).toLocaleString('es-CO');
@@ -33,11 +33,11 @@ try{
  let theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';try{theme=localStorage.getItem('transmi-theme')||theme;}catch{}
  function applyTheme(){document.body.dataset.theme=theme;map.setTheme(theme);$('#theme').textContent=theme==='dark'?'☀':'☾';$('#theme').setAttribute('aria-label',theme==='dark'?'Usar modo claro':'Usar modo oscuro');}applyTheme();
  $('#theme').onclick=()=>{theme=theme==='dark'?'light':'dark';applyTheme();try{localStorage.setItem('transmi-theme',theme);}catch{}};
- let worker=new Worker('./worker.mjs?v=20260911.7',{type:'module'});
+ let worker=new Worker('./worker.mjs?v=20260911.8',{type:'module'});
  function badge(r){const b=el('span',r.code,'route-code');b.style.setProperty('--route',r.color);const rgb=r.color.match(/[0-9a-f]{2}/gi)?.map(s=>parseInt(s,16));if(rgb?.length===3&&rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722>155)b.style.setProperty('--route-ink','#24303f');return b;}
  function row(label,value,parent=$('#selection')){const r=el('div',undefined,'metric-row');r.append(el('span',label),el('strong',value));parent.append(r);return r;}
  function rebuild({fit=false,clear=true}={}){
-  planSequence++;$('#plan-journey').disabled=true;$('#journey-results').replaceChildren(el('p','Elige origen, destino y fecha para buscar conexiones.','muted'));generation++;const messageHandler=worker.onmessage,errorHandler=worker.onerror;worker.terminate();worker=new Worker('./worker.mjs?v=20260911.7',{type:'module'});worker.onmessage=messageHandler;worker.onerror=errorHandler;ready=false;pendingSample=false;sampleSequence=0;$('#loading').hidden=false;$('#loading').textContent='Calculando despachos y estaciones…';$('#error').hidden=true;
+  planSequence++;$('#plan-journey').disabled=true;$('#journey-results').replaceChildren(el('p','Elige origen, destino y fecha para buscar conexiones.','muted'));generation++;const messageHandler=worker.onmessage,errorHandler=worker.onerror;worker.terminate();worker=new Worker('./worker.mjs?v=20260911.8',{type:'module'});worker.onmessage=messageHandler;worker.onerror=errorHandler;ready=false;pendingSample=false;sampleSequence=0;$('#loading').hidden=false;$('#loading').textContent='Calculando despachos y estaciones…';$('#error').hidden=true;
   if(clear)clearSelection();
   map.routeSet=new Set(data.routes.filter(r=>r.ready&&(config.selection.mode==='all'||config.selection.mode==='route'&&r.id===config.selection.route||config.selection.mode==='zones'&&config.selection.zones.some(z=>r.served_zones.includes(z)||r.zone===z))).map(r=>r.id));map.rebuildHighlight();map.signalsEnabled=config.params.signals;
   worker.postMessage({type:'init',generation,data,config,time:clock.time});syncControls();renderRoutes();
@@ -50,16 +50,17 @@ try{
  worker.onmessage=({data:m})=>{
   if(m.generation!==generation)return;
   if(m.type==='error'){ready=false;$('#loading').hidden=true;$('#error').hidden=false;$('#error').textContent='No se pudo preparar el escenario: '+m.message;return;}
-  if(m.type==='ready'){ready=true;$('#plan-journey').disabled=false;windows=m.windows;$('#loading').hidden=true;renderRoutes();if(activePanel==='depots')worker.postMessage({type:'depots',generation});}
+  if(m.type==='ready'){ready=true;$('#plan-journey').disabled=false;windows=m.windows;$('#loading').hidden=true;renderRoutes();if(activePanel==='depots')worker.postMessage({type:'depots',generation});requestOverview();}
   if(m.type==='state'){if(m.requestId!==sampleSequence)return;pendingSample=false;const animate=!clock.paused&&!scrubbing&&m.time>=snap.time&&m.time-snap.time<clock.speed*.5;snap=m;map.acceptSimulation(snap,animate);updateUI();if(selection?.kind==='bus'&&!snap.buses.some(b=>b.id===selection.id))renderBus();}
   if(m.type==='station'&&selection?.kind==='station'&&selection.id===m.id)renderStation(m);
   if(m.type==='depots')renderDepots(m.depots);
+  if(m.type==='overview')renderOverview(m);
   if((m.type==='plan'||m.type==='plan-error')&&m.requestId===planSequence){$('#plan-journey').disabled=false;if(m.type==='plan')renderJourneys(m.result);else $('#journey-results').replaceChildren(el('p',m.message,'muted'));}
  };
  worker.onerror=e=>{$('#loading').hidden=true;$('#error').hidden=false;$('#error').textContent='No pudo iniciarse el motor: '+e.message;ready=false;};
  function jump(value){clock.time=value;if(clock.time<DAY||clock.time>=2*DAY){const day=Math.floor(clock.time/DAY)-1;config.date=addDays(config.date,day);clock.time-=day*DAY;rebuild();}else{sample(true);updateUI();}following=false;}
  function syncControls(displayMode=viewMode){
-  $('#date').value=config.date;$$('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===displayMode));$('#zone-options').hidden=displayMode!=='zones';
+  $('#date').value=config.date;$$('[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===displayMode));$('#zone-options').hidden=displayMode!=='zones';$('#network-now').hidden=displayMode!=='all';$('#route-browser').hidden=displayMode==='all';
   $('#peak').value=config.params.peakHeadway/60;$('#offpeak').value=config.params.offpeakHeadway/60;$('#demand').value=config.params.demand;$('#demand-value').textContent=config.params.demand+'×';$('#demand-mode').value=config.params.mode;$('#variable-dispatch').checked=config.params.variableDispatch;$('#reinforcements').checked=config.params.reinforcements;$('#signals').checked=config.params.signals;$('#beyond-validity').checked=config.params.beyondValidity;$('#cruise').value=config.params.cruiseKmh;$('#street-speed').value=config.params.streetKmh;
   $$('[data-speed]').forEach(b=>b.classList.toggle('active',Number(b.dataset.speed)===clock.speed));$('#pause').textContent=clock.paused?'▶':'Ⅱ';$('#pause').setAttribute('aria-label',clock.paused?'Reanudar':'Pausar');
  }
@@ -109,6 +110,71 @@ try{
   for(const arrival of info.upcoming){const b=el('button',undefined,'route-row');const r=routeById.get(arrival.routeId);b.append(badge(r));const text=el('div',undefined,'route-text');text.append(el('strong',arrival.name),el('small',Math.max(0,Math.ceil((arrival.arrival-clock.time)/60))+' min'+(s.kind==='street'?'':' · Vagón '+arrival.wagon)));b.append(text);b.onclick=()=>selectRoute(r.id);p.append(b);}
   p.append(el('p','Distribución operativa de vagones estimada. Los expresos usan el carril de paso.','muted'));if(s.demand_profile){p.append(el('h2','Referencia de demanda'));row('Entradas del archivo diario',fmt(s.demand_profile.total));p.append(el('p','Validaciones = entradas registradas por recaudo, no pasajeros presentes ahora. Archivo oficial del 9 sep. 2026; el reparto por sentido se estima.','muted'));}
  }
+ // Demanda observada por hora para el tipo de día del escenario. Son medias de los días
+ // medidos, no una predicción; la curva solo agrega los perfiles de todas las estaciones.
+ const demandCurves=new Map();
+ function demandCurve(date){
+  const kind=dayType(date);
+  if(demandCurves.has(kind))return demandCurves.get(kind);
+  const hours=new Array(24).fill(0);let measured=false;
+  for(const profile of data.demand?.profiles||[]){
+   const hourly=profile.hourly_by_day_type?.[kind]||(kind==='weekday'?profile.hourly:null);
+   if(!hourly)continue;measured=measured||!!profile.hourly_by_day_type;
+   for(let h=0;h<24;h++)hours[h]+=hourly[h];
+  }
+  const curve={hours,measured,days:data.demand?.profiles?.[0]?.days_observed?.[kind]||null};
+  demandCurves.set(kind,curve);return curve;
+ }
+ let overviewAt=0;
+ function requestOverview(){if(ready&&viewMode==='all'){worker.postMessage({type:'overview',generation});overviewAt=performance.now();}}
+ function renderOverview({pressure,zones}){
+  const list=$('#pressure-list');list.replaceChildren();
+  if(!pressure.length)list.append(el('li','Sin pasajeros esperando a esta hora.','muted'));
+  for(const s of pressure){
+   const li=el('li'),b=el('button',s.name);
+   b.onclick=()=>{const station=data.stations.find(st=>st.id===s.id);if(station){onSelect({kind:'station',id:s.id});map.focusStation(station);}};
+   li.append(b,el('span',fmt(s.waiting),'value'));list.append(li);
+  }
+  const zoneList=$('#zone-load');zoneList.replaceChildren();
+  const byZone=new Map(data.zones.map(z=>[z.id,z]));
+  if(!zones.length)zoneList.append(el('li','Sin buses en circulación a esta hora.','muted'));
+  for(const z of zones.slice(0,8)){
+   const meta=byZone.get(z.id),li=el('li'),swatch=el('i',undefined,'swatch');
+   swatch.style.background=meta?.color||'#8b98a8';
+   const share=z.capacity?Math.round(z.onboard/z.capacity*100):0;
+   li.append(swatch,el('span',meta?.name||('Troncal '+z.id),'zone-name'),el('span',`${fmt(z.buses)} · ${share}%`,'value'));
+   zoneList.append(li);
+  }
+ }
+ function renderNow(){
+  if(viewMode!=='all')return;
+  const kind=dayType(config.date),curve=demandCurve(config.date),hour=Math.floor(((clock.time%DAY)+DAY)%DAY/3600);
+  const label=kind==='holiday'?'domingo o festivo':kind==='saturday'?'sábado':'día de semana';
+  $('#now-context').textContent=`${new Date(config.date+'T12:00:00Z').toLocaleDateString('es-CO',{weekday:'long',day:'numeric',month:'long'})} · ${timeText(clock.time)} · perfil de ${label}`;
+  const host=$('#demand-curve'),top=Math.max(1,...curve.hours);
+  if(host.dataset.kind!==kind){
+   host.dataset.kind=kind;host.replaceChildren();
+   curve.hours.forEach((value,h)=>{
+    const bar=el('button');bar.style.height=Math.max(2,value/top*100)+'%';
+    bar.title=`${String(h).padStart(2,'0')}:00 · ${fmt(value)} validaciones`;bar.setAttribute('aria-label',bar.title);
+    if(h%6===0)bar.append(el('span',String(h).padStart(2,'0')));
+    bar.onclick=()=>{jump(DAY+h*3600);};host.append(bar);
+   });
+  }
+  [...host.children].forEach((bar,h)=>bar.classList.toggle('now',h===hour));
+  $('#demand-note').textContent=curve.measured&&curve.days
+   ? `Media de ${curve.days} ${curve.days===1?'día':'días'} de este tipo, del archivo oficial de validaciones. No es una predicción.`
+   : 'Perfil horario del archivo oficial de validaciones.';
+  const s=snap.stats,total=Math.max(1,s.fleet||0);
+  const partes=[['moving','En recorrido','#2f7d68'],['dwell','Puertas abiertas','#3f6ea8'],['queue','Esperando atención','#b9822a'],['signal','En semáforo','#b0503f']];
+  const split=$('#fleet-split');split.replaceChildren();
+  const legend=$('#fleet-legend');legend.replaceChildren();
+  for(const [key,name,color] of partes){
+   const value=s[key]||0,bar=el('i');bar.style.width=value/total*100+'%';bar.style.background=color;split.append(bar);
+   const li=el('li'),dot=el('i');dot.style.background=color;li.append(dot,el('span',name),el('b',fmt(value)));legend.append(li);
+  }
+  if(ready&&performance.now()-overviewAt>4000)requestOverview();
+ }
  function renderDepots(depots){const p=$('#depot-list');p.replaceChildren();if(!depots.length)p.append(el('p','No hay salidas para esta selección y fecha.','muted'));for(const d of depots){const r=el('div',undefined,'depot-row'),b=el('button',d.name);b.onclick=()=>{const station=data.stations.find(s=>s.id===d.id);if(station){onSelect({kind:'station',id:d.id});map.focusStation(station);}};r.append(b,el('small',`${fmt(d.departures)} salidas hoy · ${fmt(d.reserve)} buses disponibles`),el('small',Number.isFinite(d.next)?'Próxima salida '+timeText(d.next).slice(0,5):'Sin más salidas programadas'));p.append(r);}}
  function updateUI(){const s=snap.stats;$('#active-count').textContent=fmt(s.fleet||0);$('#onboard-count').textContent=fmt(s.onboard||0);$('#dwell-count').textContent=fmt(s.dwell||0);$('#queue-count').textContent=fmt((s.queue||0)+(s.signal||0));$('#queue-count').parentElement.title=`${fmt(s.queue||0)} esperando atención · ${fmt(s.signal||0)} en semáforo`;if(!scrubbing&&document.activeElement!==$('#time'))$('#time').value=timeText(clock.time);if(!scrubbing)$('#scrub').value=Math.floor(clock.time%DAY);$('#day-type').textContent=dayType(config.date)==='holiday'?'Domingo / festivo':new Date(config.date+'T12:00:00Z').toLocaleDateString('es-CO',{weekday:'long'});$('#period').textContent=demandPeriod(clock.time,config.date,config.params.mode)==='peak'?'Hora pico':'Hora valle';}
  function switchPanel(name){if(name==='planner'||activePanel==='planner'&&selection?.kind==='journey')clearSelection();activePanel=name;$$('[data-panel]').forEach(b=>b.classList.toggle('nav-active',b.dataset.panel===name));$$('.panel').forEach(p=>p.hidden=p.id!==name+'-panel');$('#sidebar').scrollTop=0;if(name==='depots'&&ready)worker.postMessage({type:'depots',generation});}
@@ -138,7 +204,7 @@ try{
  $('#swap-journey').onclick=()=>{const a=$('#journey-origin'),b=$('#journey-destination');[a.value,b.value]=[b.value,a.value];};
  $('#planner-form').onsubmit=e=>{e.preventDefault();if(!ready)return;const time=$('#journey-time').value.split(':').map(Number),query={origin:$('#journey-origin').value,destination:$('#journey-destination').value,date:$('#journey-date').value,time:time[0]*3600+time[1]*60,maxTransfers:Number($('#journey-transfers').value)};$('#plan-journey').disabled=true;$('#journey-results').replaceChildren(el('p','Buscando conexiones…','muted'));worker.postMessage({type:'plan',generation,requestId:++planSequence,query});};
  $$('[data-panel]').forEach(b=>b.onclick=()=>switchPanel(b.dataset.panel));
- $$('[data-mode]').forEach(b=>b.onclick=()=>{viewMode=b.dataset.mode;clearSelection();if(viewMode==='all'&&config.selection.mode!=='all'){config.selection={mode:'all'};rebuild({fit:true});}else{syncControls();renderRoutes();if(viewMode==='all')map.fitNetwork();}});
+ $$('[data-mode]').forEach(b=>b.onclick=()=>{viewMode=b.dataset.mode;clearSelection();if(viewMode==='all'&&config.selection.mode!=='all'){config.selection={mode:'all'};rebuild({fit:true});}else{syncControls();renderRoutes();if(viewMode==='all'){map.fitNetwork();requestOverview();}}});
  for(const z of data.zones.filter(z=>z.id!=='?')){const b=el('button',undefined,'zone-button');b.style.setProperty('--zone',z.color);b.append(el('b',z.id),el('span',z.name));b.classList.toggle('active',selectedZones.has(z.id));b.setAttribute('aria-pressed',selectedZones.has(z.id));b.onclick=()=>{if(selectedZones.has(z.id))selectedZones.delete(z.id);else selectedZones.add(z.id);b.classList.toggle('active',selectedZones.has(z.id));b.setAttribute('aria-pressed',selectedZones.has(z.id));};$('#zones').append(b);}
  $('#apply-zones').onclick=()=>{if(!selectedZones.size){toast('Selecciona al menos una troncal.');return;}config.selection={mode:'zones',zones:[...selectedZones]};viewMode='zones';rebuild({fit:true});};
  $('#search').oninput=renderRoutes;$('#demand').oninput=()=>$('#demand-value').textContent=$('#demand').value+'×';
@@ -158,7 +224,7 @@ try{
  let last=performance.now();document.addEventListener('visibilitychange',()=>{last=performance.now();});
  function frame(now){const dt=(now-last)/1000;last=now;if(!document.hidden){if(ready&&!clock.paused&&!scrubbing&&document.activeElement!==$('#time')){clock.time+=dt*clock.speed;if(clock.time>=2*DAY)jump(clock.time);}if(now-lastSample>=50){sample();lastSample=now;}
   map.animateBuses(now);if(following&&selection?.kind==='bus'){const b=(map.visualBuses||snap.buses).find(b=>b.id===selection.id);if(b){map.follow(b.xy,dt);}}
-  map.render();if(now-lastUI>200){updateUI();lastUI=now;}if(now-lastList>5000){if(activePanel==='routes'&&!$('#route-list').contains(document.activeElement))renderRoutes();if(activePanel==='depots'&&ready)worker.postMessage({type:'depots',generation});lastList=now;}
+  map.render();if(now-lastUI>200){updateUI();renderNow();lastUI=now;}if(now-lastList>5000){if(activePanel==='routes'&&!$('#route-list').contains(document.activeElement))renderRoutes();if(activePanel==='depots'&&ready)worker.postMessage({type:'depots',generation});lastList=now;}
   if(now-lastInspect>1000){if(selection?.kind==='bus'){const focus=document.activeElement?.id;renderBus();if(focus==='follow')$('#follow')?.focus({preventScroll:true});}if(selection?.kind==='station'&&ready&&!$('#inspector').contains(document.activeElement))worker.postMessage({type:'station',generation,id:selection.id});lastInspect=now;}}
  requestAnimationFrame(frame);}
  const dispose=registerSimulationTools(document.modelContext,{read:()=>({...snap.stats,date:config.date,paused:clock.paused,speed:clock.speed,selected:selection}),control:input=>{if('paused'in input)clock.paused=input.paused;if('speed'in input)clock.speed=input.speed;syncControls();}});

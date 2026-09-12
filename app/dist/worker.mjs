@@ -1,5 +1,5 @@
-import {Operation} from './operation.mjs?v=20260911.7';
-import {JourneyPlanner} from './planner.mjs?v=20260911.7';
+import {Operation} from './operation.mjs?v=20260911.8';
+import {JourneyPlanner} from './planner.mjs?v=20260911.8';
 let engine=null,generation=0,planner=null;
 self.onmessage=({data:m})=>{
  try{
@@ -14,5 +14,6 @@ self.onmessage=({data:m})=>{
    engine.seek(m.time);self.postMessage({type:'state',generation,time:m.time,requestId:m.requestId||0,buses:engine.buses,stats:engine.stats()});
   }else if(m.type==='station')self.postMessage({type:'station',generation,id:m.id,...engine.stationStats(m.id)});
   else if(m.type==='depots')self.postMessage({type:'depots',generation,depots:engine.depotStats()});
+  else if(m.type==='overview')self.postMessage({type:'overview',generation,time:engine.time,pressure:engine.pressure(6),zones:engine.zoneLoad()});
  }catch(error){self.postMessage({type:m.type==='plan'?'plan-error':'error',generation,requestId:m.requestId,message:error.message});}
 };

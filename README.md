@@ -6,12 +6,13 @@ Simulador 2D local de TransMilenio, sobre Bogotá a **escala geográfica 1:1**. 
 
 Doble clic en **ABRIR_SIMULACION_2D.command**. Mantén abierta su Terminal y abre [el simulador local](http://127.0.0.1:8766/). No requiere instalar paquetes JavaScript ni descargar mapas al jugar. También puedes ejecutar `python3 tools/serve_network_2d.py --open` desde esta carpeta.
 
-1. En **Red y rutas**, busca C15, H15, F63, una estación o un destino. Elegir una fila destaca el recorrido; «Simular solo este servicio» cambia la operación. La pestaña Ruta solo cambia la exploración; elegir otra fila tampoco reconstruye el escenario.
-2. **Troncal** permite combinar letras y aplicar la selección. Incluye servicios que atienden estaciones de esas zonas o terminan en ellas. **Toda la red** restaura el conjunto disponible.
-3. Usa el reloj para pausar, avanzar o retroceder 15 minutos, elegir fecha/hora, deslizar el día y acelerar a 1×, 8×, 32× o 120×. La velocidad del reloj no cambia los kilómetros ni los km/h de los buses.
-4. Abre una parada para ver vagones, pasajeros esperando y próximas llegadas. Sigue un bus para consultar velocidad, capacidad y próxima parada. **Terminales** muestra regulación y disponibilidad de flota; **Operación** ajusta frecuencias, velocidades y pasajeros.
-5. **Planear viaje** busca servicios directos o con hasta dos transbordos para un origen, destino, fecha y hora, sin cambiar la simulación. Muestra las estaciones de subida/bajada y el recorrido de cada tramo.
-6. **Guardar** conserva fecha, hora, selección y parámetros en este navegador. Al volver a abrir se restaura pausado. No se guarda una partida en la nube.
+1. En **Red y rutas → Ruta**, busca C15, H15, F63, una estación o un destino. Elegir una fila destaca el recorrido; «Simular solo este servicio» cambia la operación. La pestaña Ruta solo cambia la exploración; elegir otra fila tampoco reconstruye el escenario.
+2. **La red ahora** resume el instante del reloj: demanda por hora del tipo de día, reparto de la flota, estaciones con más espera y buses por troncal. La curva salta a esa hora al hacer clic y las estaciones se abren en el mapa.
+3. **Troncal** permite combinar letras y aplicar la selección. Incluye servicios que atienden estaciones de esas zonas o terminan en ellas. **Toda la red** restaura el conjunto disponible.
+4. Usa el reloj para pausar, avanzar o retroceder 15 minutos, elegir fecha/hora, deslizar el día y acelerar a 1×, 8×, 32× o 120×. La velocidad del reloj no cambia los kilómetros ni los km/h de los buses.
+5. Abre una parada para ver vagones, pasajeros esperando y próximas llegadas. Sigue un bus para consultar velocidad, capacidad y próxima parada. **Terminales** muestra regulación y disponibilidad de flota; **Operación** ajusta frecuencias, velocidades y pasajeros.
+6. **Planear viaje** busca servicios directos o con hasta cuatro transbordos para un origen, destino, fecha y hora, sin cambiar la simulación. Muestra la mejor opción de cada cantidad de transbordos, incluidas las que no llegan antes. Muestra las estaciones de subida/bajada y el recorrido de cada tramo.
+7. **Guardar** conserva fecha, hora, selección y parámetros en este navegador. Al volver a abrir se restaura pausado. No se guarda una partida en la nube.
 
 Para abrir desde otros dispositivos del mismo Wi-Fi, usa **ABRIR_EN_RED_LOCAL.command** o `python3 tools/serve_network_2d.py --lan --open`. La Terminal muestra la dirección de este computador, con puerto 8767. Cada navegador ejecuta y guarda su propio escenario; mantén abierta la Terminal. No se publica en internet.
 

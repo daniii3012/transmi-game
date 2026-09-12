@@ -31,6 +31,9 @@ def build():
     snapshot = read(ROOT/'data/raw/services/latest.json')['snapshot']
     folder = ROOT/'data/raw/services'/snapshot
     catalog = read(folder/'selected_catalog.json')
+    # Recuento del catálogo bruto del mapa digital, leído de la instantánea y no fijado a mano:
+    # una descarga nueva con otro número de registros tiene que reflejarse sola.
+    map_catalog = read(folder/'map_catalog.json')
     supplement=ROOT/'data/raw/services/supplement_20260910'
     extra=read(supplement/'selected_catalog.json') if (supplement/'selected_catalog.json').exists() else []
     extra_ids={str(r['id']) for r in extra}
@@ -179,7 +182,7 @@ def build():
           'frequency':'Configurable estimate, not official headways','demand':'Configurable synthetic boarding/alighting, no passenger OD survey',
           'linear_reference':'Local projection within 650m of published chainage; unlocated street stops interpolate official shape',
           'depot':'Abstract vehicle staging at journey origin; no invented yard access geometry'},
-       'counts':{'map_records':116,'map_codes':100,'records':len(routes),'excluded':len(excluded),'ready':sum(r['ready'] for r in routes),'pending':sum(not r['ready'] for r in routes)},
+       'counts':{'map_records':len(map_catalog),'map_codes':len({r['codigo'] for r in map_catalog}),'records':len(routes),'excluded':len(excluded),'ready':sum(r['ready'] for r in routes),'pending':sum(not r['ready'] for r in routes)},
        'street_context':street_context,'excluded':excluded,'corridors':corridors,'stations':list(stations.values()),'routes':routes,'zones':sorted(zones.values(),key=lambda z:z['id']),
        'vehicle':{'length_m':18.5,'width_m':2.5,'capacity':160,'label':'Articulado de referencia; mezcla y perfiles en vehicles.mjs'}}
 

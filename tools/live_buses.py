@@ -32,7 +32,7 @@ MIN_INTERVAL = 2.0
 BOGOTA_BBOX = {'llLat': 4.45, 'llLon': -74.25, 'urLat': 4.85, 'urLon': -73.99}
 MAX_JOURNEYS = 1000
 TRUNK_OPERATORS = ('Transmilenio-Troncal', 'Transmilenio-Dual')
-NETWORK_TTL = 15.0
+NETWORK_TTL = 45.0
 TIMEOUT = 12.0  # Rechazar una ruta le toma al servicio hasta diez segundos; cortar antes esconde el motivo.
 
 def aeqd(lon, lat, origin):
@@ -223,7 +223,8 @@ class LiveBuses:
                         truncated = truncated or len(piece) >= MAX_JOURNEYS
                         for journey in piece:
                             merged[journey.get('journeyDetailRef') or repr(journey)] = journey
-                        raw = list(merged.values())
+                        boxes += 1
+                    raw = list(merged.values())
             except urllib.error.HTTPError as error:
                 return 'upstream', {'detail': f'El planificador respondió {error.code}.', 'code': error.code}
             except (urllib.error.URLError, TimeoutError, ValueError, OSError) as error:

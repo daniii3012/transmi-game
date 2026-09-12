@@ -14,6 +14,13 @@ name: Publicar simulador en Pages
 
 on:
   workflow_dispatch:
+  # Reactivado solo para este despliegue: Actions perdió el registro del disparador manual al
+  # reescribir la historia. Se retira en el commit siguiente.
+  push:
+    branches: [main]
+    paths:
+      - 'app/dist/**'
+      - '.github/workflows/pages.yml'
 
 permissions:
   contents: read

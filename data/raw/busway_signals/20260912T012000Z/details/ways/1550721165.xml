@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942778 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="4913349125" visible="true" version="2" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7457216" lon="-74.0943956"/>
+ <node id="4913349126" visible="true" version="4" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7455808" lon="-74.0943160"/>
+ <node id="4913349127" visible="true" version="4" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7455154" lon="-74.0942571"/>
+ <node id="4913349128" visible="true" version="1" changeset="49508037" timestamp="2017-06-13T18:05:44Z" user="Facalderonm" uid="1759764" lat="4.7454718" lon="-74.0941997"/>
+ <node id="4913349129" visible="true" version="2" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7453799" lon="-74.0940386"/>
+ <node id="4913349130" visible="true" version="4" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7452982" lon="-74.0938446"/>
+ <node id="4913349131" visible="true" version="2" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7452674" lon="-74.0937805"/>
+ <node id="4913349132" visible="true" version="2" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7451992" lon="-74.0936967"/>
+ <node id="4913349133" visible="true" version="4" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7451260" lon="-74.0936558"/>
+ <node id="4913349135" visible="true" version="5" changeset="184189446" timestamp="2026-06-16T16:10:10Z" user="Facalderonm" uid="1759764" lat="4.7449021" lon="-74.0936460">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="4913349136" visible="true" version="4" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7448352" lon="-74.0936433"/>
+ <node id="5378396623" visible="true" version="3" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7450938" lon="-74.0936515">
+  <tag k="entrance" v="yes"/>
+ </node>
+ <node id="9052535457" visible="true" version="2" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7451638" lon="-74.0936698"/>
+ <node id="9993714568" visible="true" version="1" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7456440" lon="-74.0943583"/>
+ <node id="9993714572" visible="true" version="1" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7452322" lon="-74.0937287"/>
+ <node id="13253226039" visible="true" version="1" changeset="173695989" timestamp="2025-10-24T00:27:11Z" user="Barto920203" uid="10140282" lat="4.7447268" lon="-74.0936343"/>
+ <node id="13253226040" visible="true" version="1" changeset="173695989" timestamp="2025-10-24T00:27:11Z" user="Barto920203" uid="10140282" lat="4.7449478" lon="-74.0936473">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1550721165" visible="true" version="1" changeset="187668137" timestamp="2026-08-19T03:16:56Z" user="Barto920203" uid="10140282">
+  <nd ref="4913349125"/>
+  <nd ref="9993714568"/>
+  <nd ref="4913349126"/>
+  <nd ref="4913349127"/>
+  <nd ref="4913349128"/>
+  <nd ref="4913349129"/>
+  <nd ref="4913349130"/>
+  <nd ref="4913349131"/>
+  <nd ref="9993714572"/>
+  <nd ref="4913349132"/>
+  <nd ref="9052535457"/>
+  <nd ref="4913349133"/>
+  <nd ref="5378396623"/>
+  <nd ref="13253226040"/>
+  <nd ref="4913349135"/>
+  <nd ref="4913349136"/>
+  <nd ref="13253226039"/>
+  <tag k="access" v="no"/>
+  <tag k="alt_name" v="Avenida Ciudad de Cali"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+ </way>
+</osm>

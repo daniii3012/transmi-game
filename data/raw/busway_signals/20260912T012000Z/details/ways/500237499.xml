@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244684 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="887793326" visible="true" version="8" changeset="134927875" timestamp="2023-04-15T05:56:45Z" user="Facalderonm" uid="1759764" lat="4.7413939" lon="-74.0893206"/>
+ <node id="4913386215" visible="true" version="2" changeset="55985820" timestamp="2018-02-02T05:54:34Z" user="Facalderonm" uid="1759764" lat="4.7415700" lon="-74.0896520"/>
+ <node id="4913386216" visible="true" version="2" changeset="52969220" timestamp="2017-10-16T00:14:55Z" user="Facalderonm" uid="1759764" lat="4.7418033" lon="-74.0899963"/>
+ <node id="4913386217" visible="true" version="2" changeset="64612458" timestamp="2018-11-18T06:39:17Z" user="Facalderonm" uid="1759764" lat="4.7418583" lon="-74.0900896"/>
+ <node id="6069998874" visible="true" version="2" changeset="173695989" timestamp="2025-10-24T00:27:11Z" user="Barto920203" uid="10140282" lat="4.7418348" lon="-74.0900469">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="6069998875" visible="true" version="1" changeset="64612458" timestamp="2018-11-18T06:39:12Z" user="Facalderonm" uid="1759764" lat="4.7418729" lon="-74.0901315"/>
+ <node id="13253226029" visible="true" version="1" changeset="173695989" timestamp="2025-10-24T00:27:11Z" user="Barto920203" uid="10140282" lat="4.7418821" lon="-74.0901922"/>
+ <way id="500237499" visible="true" version="8" changeset="173695989" timestamp="2025-10-24T00:27:11Z" user="Barto920203" uid="10140282">
+  <nd ref="887793326"/>
+  <nd ref="4913386215"/>
+  <nd ref="4913386216"/>
+  <nd ref="6069998874"/>
+  <nd ref="4913386217"/>
+  <nd ref="6069998875"/>
+  <nd ref="13253226029"/>
+  <tag k="highway" v="primary_link"/>
+  <tag k="lanes" v="2"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

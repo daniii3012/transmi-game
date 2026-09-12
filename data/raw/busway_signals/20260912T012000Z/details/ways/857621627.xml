@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244700 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1038784839" visible="true" version="8" changeset="92285820" timestamp="2020-10-10T20:04:49Z" user="Facalderonm" uid="1759764" lat="4.6485009" lon="-74.0579756"/>
+ <node id="5105782060" visible="true" version="4" changeset="118646303" timestamp="2022-03-18T20:02:23Z" user="JuanMelo" uid="12906384" lat="4.6492538" lon="-74.0590085">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="7371310003" visible="true" version="6" changeset="130434355" timestamp="2022-12-23T19:29:50Z" user="jonfaust" uid="11438835" lat="4.6492271" lon="-74.0589719">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="10250783721" visible="true" version="1" changeset="129935405" timestamp="2022-12-10T14:29:08Z" user="JuanMelo" uid="12906384" lat="4.6485461" lon="-74.0580342">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="10250783723" visible="true" version="1" changeset="129935405" timestamp="2022-12-10T14:29:08Z" user="JuanMelo" uid="12906384" lat="4.6485980" lon="-74.0581016">
+  <tag k="traffic_calming" v="bump"/>
+ </node>
+ <way id="857621627" visible="true" version="5" changeset="149336513" timestamp="2024-03-30T03:11:34Z" user="osm972" uid="122547">
+  <nd ref="5105782060"/>
+  <nd ref="7371310003"/>
+  <nd ref="10250783723"/>
+  <nd ref="10250783721"/>
+  <nd ref="1038784839"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Calle 65"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

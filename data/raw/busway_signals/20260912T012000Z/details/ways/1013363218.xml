@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244704 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="253762199" visible="true" version="24" changeset="59793499" timestamp="2018-06-12T23:37:06Z" user="Facalderonm" uid="1759764" lat="4.6453213" lon="-74.0613437">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="2806541631" visible="true" version="4" changeset="97405779" timestamp="2021-01-13T03:43:33Z" user="Facalderonm" uid="1759764" lat="4.6455160" lon="-74.0614906"/>
+ <node id="5105783506" visible="true" version="6" changeset="97405779" timestamp="2021-01-13T03:43:33Z" user="Facalderonm" uid="1759764" lat="4.6454729" lon="-74.0614515"/>
+ <node id="5105783508" visible="true" version="5" changeset="89116947" timestamp="2020-08-08T06:27:57Z" user="Facalderonm" uid="1759764" lat="4.6454248" lon="-74.0614125"/>
+ <node id="7371310033" visible="true" version="5" changeset="130434355" timestamp="2022-12-23T19:32:37Z" user="jonfaust" uid="11438835" lat="4.6453867" lon="-74.0613867">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <way id="1013363218" visible="true" version="1" changeset="115104931" timestamp="2021-12-18T18:10:27Z" user="JAAS" uid="3321532">
+  <nd ref="253762199"/>
+  <nd ref="7371310033"/>
+  <nd ref="5105783508"/>
+  <nd ref="5105783506"/>
+  <nd ref="2806541631"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="1"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="mechanical" v="yes"/>
+  <tag k="name" v="Calle 60"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

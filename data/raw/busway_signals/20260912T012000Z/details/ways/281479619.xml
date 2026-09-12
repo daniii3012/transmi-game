@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942767 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2971906765" visible="true" version="4" changeset="182387537" timestamp="2026-05-08T15:15:07Z" user="SoyJosueVerde" uid="20922998" lat="4.6314158" lon="-74.0797180"/>
+ <node id="3283322497" visible="true" version="3" changeset="59130006" timestamp="2018-05-20T18:32:42Z" user="Facalderonm" uid="1759764" lat="4.6322220" lon="-74.0797219"/>
+ <node id="5342192774" visible="true" version="1" changeset="55483002" timestamp="2018-01-16T06:27:20Z" user="Facalderonm" uid="1759764" lat="4.6320842" lon="-74.0797204"/>
+ <node id="5342192776" visible="true" version="1" changeset="55483002" timestamp="2018-01-16T06:27:20Z" user="Facalderonm" uid="1759764" lat="4.6317325" lon="-74.0797341"/>
+ <node id="5342192780" visible="true" version="1" changeset="55483002" timestamp="2018-01-16T06:27:20Z" user="Facalderonm" uid="1759764" lat="4.6322385" lon="-74.0797328"/>
+ <node id="5631009101" visible="true" version="2" changeset="173679410" timestamp="2025-10-23T15:06:29Z" user="Barto920203" uid="10140282" lat="4.6321909" lon="-74.0797141">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="13252352384" visible="true" version="1" changeset="173679410" timestamp="2025-10-23T15:06:29Z" user="Barto920203" uid="10140282" lat="4.6322527" lon="-74.0797518"/>
+ <way id="281479619" visible="true" version="16" changeset="182387537" timestamp="2026-05-08T15:15:07Z" user="SoyJosueVerde" uid="20922998">
+  <nd ref="2971906765"/>
+  <nd ref="5342192776"/>
+  <nd ref="5342192774"/>
+  <nd ref="5631009101"/>
+  <nd ref="3283322497"/>
+  <nd ref="5342192780"/>
+  <nd ref="13252352384"/>
+  <tag k="access" v="no"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="bus"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

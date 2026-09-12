@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244693 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="267586144" visible="true" version="4" changeset="52153905" timestamp="2017-09-18T18:47:35Z" user="hellosun" uid="6127501" lat="4.7121975" lon="-74.1143010"/>
+ <node id="10839969385" visible="true" version="2" changeset="135349849" timestamp="2023-04-25T15:48:29Z" user="SleepyAks" uid="17414280" lat="4.7129729" lon="-74.1148971"/>
+ <node id="10839969386" visible="true" version="2" changeset="135349849" timestamp="2023-04-25T15:48:29Z" user="SleepyAks" uid="17414280" lat="4.7125893" lon="-74.1146296"/>
+ <node id="10839969387" visible="true" version="2" changeset="135349849" timestamp="2023-04-25T15:48:29Z" user="SleepyAks" uid="17414280" lat="4.7123903" lon="-74.1144729"/>
+ <node id="10983161275" visible="true" version="3" changeset="174306643" timestamp="2025-11-06T20:43:55Z" user="JuanMelo" uid="12906384" lat="4.7132113" lon="-74.1150572">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1165424663" visible="true" version="3" changeset="159147815" timestamp="2024-11-14T21:49:15Z" user="JuanMelo" uid="12906384">
+  <nd ref="267586144"/>
+  <nd ref="10839969387"/>
+  <nd ref="10839969386"/>
+  <nd ref="10839969385"/>
+  <nd ref="10983161275"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

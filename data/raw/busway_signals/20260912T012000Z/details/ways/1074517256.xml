@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862522 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="254347517" visible="true" version="23" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6587875" lon="-74.0529088">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="2045404055" visible="true" version="8" changeset="118882838" timestamp="2022-03-24T21:01:42Z" user="JuanMelo" uid="12906384" lat="4.6587274" lon="-74.0528186">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="9027163746" visible="true" version="4" changeset="152353042" timestamp="2024-06-06T23:52:33Z" user="Facalderonm" uid="1759764" lat="4.6587740" lon="-74.0528885">
+  <tag k="bicycle" v="yes"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1074517256" visible="true" version="3" changeset="152353042" timestamp="2024-06-06T23:52:33Z" user="Facalderonm" uid="1759764">
+  <nd ref="2045404055"/>
+  <nd ref="9027163746"/>
+  <nd ref="254347517"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Calle 76"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

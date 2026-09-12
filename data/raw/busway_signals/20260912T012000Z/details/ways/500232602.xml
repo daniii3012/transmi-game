@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942786 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="4913349015" visible="true" version="1" changeset="49508037" timestamp="2017-06-13T18:05:43Z" user="Facalderonm" uid="1759764" lat="4.7483284" lon="-74.0943259"/>
+ <node id="4913349188" visible="true" version="1" changeset="49508037" timestamp="2017-06-13T18:05:44Z" user="Facalderonm" uid="1759764" lat="4.7484827" lon="-74.0944493"/>
+ <node id="4913349189" visible="true" version="3" changeset="87260475" timestamp="2020-06-28T20:24:54Z" user="Facalderonm" uid="1759764" lat="4.7486377" lon="-74.0945756"/>
+ <node id="4913349190" visible="true" version="4" changeset="184208576" timestamp="2026-06-17T05:15:06Z" user="Barto920203" uid="10140282" lat="4.7487271" lon="-74.0946609">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="5378396621" visible="true" version="2" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7485782" lon="-74.0945266">
+  <tag k="access" v="no"/>
+  <tag k="barrier" v="gate"/>
+  <tag k="bus" v="yes"/>
+  <tag k="entrance" v="yes"/>
+ </node>
+ <node id="13946871953" visible="true" version="1" changeset="184208576" timestamp="2026-06-17T05:15:06Z" user="Barto920203" uid="10140282" lat="4.7487923" lon="-74.0947336"/>
+ <way id="500232602" visible="true" version="8" changeset="184208576" timestamp="2026-06-17T05:15:06Z" user="Barto920203" uid="10140282">
+  <nd ref="4913349015"/>
+  <nd ref="4913349188"/>
+  <nd ref="5378396621"/>
+  <nd ref="4913349189"/>
+  <nd ref="4913349190"/>
+  <nd ref="13946871953"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+ </way>
+</osm>

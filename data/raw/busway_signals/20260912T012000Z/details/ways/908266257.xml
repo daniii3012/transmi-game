@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244705 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3188427500" visible="true" version="7" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6213672" lon="-74.0670338">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="5087416469" visible="true" version="7" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6214164" lon="-74.0671286">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="9027163536" visible="true" version="4" changeset="133963214" timestamp="2023-03-22T04:28:40Z" user="Paula Alvarez Quintero" uid="15146593" lat="4.6214014" lon="-74.0670997">
+  <tag k="bicycle" v="yes"/>
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="908266257" visible="true" version="2" changeset="110080520" timestamp="2021-08-22T22:03:15Z" user="Facalderonm" uid="1759764">
+  <nd ref="5087416469"/>
+  <nd ref="9027163536"/>
+  <nd ref="3188427500"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Calle 34"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

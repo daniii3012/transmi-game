@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244708 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="842047786" visible="true" version="4" changeset="149451474" timestamp="2024-04-01T20:06:57Z" user="JuanMelo" uid="12906384" lat="4.6882409" lon="-74.0826885">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="1048733644" visible="true" version="4" changeset="149451474" timestamp="2024-04-01T20:06:57Z" user="JuanMelo" uid="12906384" lat="4.6882001" lon="-74.0827414"/>
+ <way id="905124371" visible="true" version="1" changeset="98922569" timestamp="2021-02-08T17:13:32Z" user="cforin" uid="8926088">
+  <nd ref="1048733644"/>
+  <nd ref="842047786"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Carrera 69H"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

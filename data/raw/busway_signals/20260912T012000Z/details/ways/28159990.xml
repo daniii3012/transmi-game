@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244689 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="309299059" visible="true" version="12" changeset="89431398" timestamp="2020-08-14T22:02:47Z" user="Facalderonm" uid="1759764" lat="4.6501235" lon="-74.0569810"/>
+ <node id="309299060" visible="true" version="19" changeset="115824477" timestamp="2022-01-06T07:36:46Z" user="ChapmansPeak" uid="10652971" lat="4.6502548" lon="-74.0575198"/>
+ <node id="5105816162" visible="true" version="2" changeset="89431398" timestamp="2020-08-14T22:02:47Z" user="Facalderonm" uid="1759764" lat="4.6501310" lon="-74.0570791"/>
+ <node id="5105816163" visible="true" version="2" changeset="89431398" timestamp="2020-08-14T22:02:47Z" user="Facalderonm" uid="1759764" lat="4.6501773" lon="-74.0572910"/>
+ <node id="5105816165" visible="true" version="2" changeset="89431398" timestamp="2020-08-14T22:02:47Z" user="Facalderonm" uid="1759764" lat="4.6501480" lon="-74.0571712"/>
+ <node id="5105816166" visible="true" version="2" changeset="89431398" timestamp="2020-08-14T22:02:47Z" user="Facalderonm" uid="1759764" lat="4.6501969" lon="-74.0573646"/>
+ <node id="5105816167" visible="true" version="2" changeset="92285820" timestamp="2020-10-10T20:04:49Z" user="Facalderonm" uid="1759764" lat="4.6503128" lon="-74.0576271"/>
+ <node id="7371264484" visible="true" version="6" changeset="130426152" timestamp="2022-12-23T15:27:01Z" user="jonfaust" uid="11438835" lat="4.6506255" lon="-74.0580736">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7814108405" visible="true" version="1" changeset="89431398" timestamp="2020-08-14T22:02:47Z" user="Facalderonm" uid="1759764" lat="4.6501213" lon="-74.0568683"/>
+ <node id="7995764516" visible="true" version="1" changeset="92285820" timestamp="2020-10-10T20:04:49Z" user="Facalderonm" uid="1759764" lat="4.6502830" lon="-74.0575781"/>
+ <node id="7995764517" visible="true" version="1" changeset="92285820" timestamp="2020-10-10T20:04:49Z" user="Facalderonm" uid="1759764" lat="4.6502561" lon="-74.0575230"/>
+ <node id="7996375428" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6505470" lon="-74.0579562"/>
+ <node id="9338946813" visible="true" version="1" changeset="114942566" timestamp="2021-12-14T23:13:59Z" user="JAAS" uid="3321532" lat="4.6501197" lon="-74.0568065"/>
+ <node id="9399464163" visible="true" version="1" changeset="115875196" timestamp="2022-01-07T12:26:18Z" user="ChapmansPeak" uid="10652971" lat="4.6506030" lon="-74.0580399"/>
+ <node id="13617956764" visible="true" version="1" changeset="179352483" timestamp="2026-03-04T14:31:20Z" user="Barto920203" uid="10140282" lat="4.6506676" lon="-74.0581366"/>
+ <node id="13617956766" visible="true" version="1" changeset="179352483" timestamp="2026-03-04T14:31:20Z" user="Barto920203" uid="10140282" lat="4.6506143" lon="-74.0580567">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="28159990" visible="true" version="32" changeset="179352483" timestamp="2026-03-04T14:31:20Z" user="Barto920203" uid="10140282">
+  <nd ref="9338946813"/>
+  <nd ref="7814108405"/>
+  <nd ref="309299059"/>
+  <nd ref="5105816162"/>
+  <nd ref="5105816165"/>
+  <nd ref="5105816163"/>
+  <nd ref="5105816166"/>
+  <nd ref="309299060"/>
+  <nd ref="7995764517"/>
+  <nd ref="7995764516"/>
+  <nd ref="5105816167"/>
+  <nd ref="7996375428"/>
+  <nd ref="9399464163"/>
+  <nd ref="13617956766"/>
+  <nd ref="7371264484"/>
+  <nd ref="13617956764"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Calle 67"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

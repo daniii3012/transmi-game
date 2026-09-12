@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244688 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="774710000" visible="true" version="4" changeset="173428036" timestamp="2025-10-17T20:40:47Z" user="Facalderonm" uid="1759764" lat="4.7093930" lon="-74.1118608"/>
+ <node id="3969155874" visible="true" version="4" changeset="173428036" timestamp="2025-10-17T20:40:47Z" user="Facalderonm" uid="1759764" lat="4.7096119" lon="-74.1120888"/>
+ <node id="5749897968" visible="true" version="2" changeset="173428036" timestamp="2025-10-17T20:40:47Z" user="Facalderonm" uid="1759764" lat="4.7095279" lon="-74.1120013"/>
+ <node id="11378257757" visible="true" version="2" changeset="173428036" timestamp="2025-10-17T20:40:47Z" user="Facalderonm" uid="1759764" lat="4.7095389" lon="-74.1120127">
+  <tag k="alt_name" v="AC 80 - KR 101"/>
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Br. El Madrigal"/>
+  <tag k="network" v="SITP"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="151A04"/>
+ </node>
+ <node id="13252347630" visible="true" version="1" changeset="173679138" timestamp="2025-10-23T14:59:45Z" user="Barto920203" uid="10140282" lat="4.7083266" lon="-74.1107498"/>
+ <node id="13252347636" visible="true" version="1" changeset="173679138" timestamp="2025-10-23T14:59:45Z" user="Barto920203" uid="10140282" lat="4.7083710" lon="-74.1107960">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1155256870" visible="true" version="5" changeset="173679138" timestamp="2025-10-23T14:59:45Z" user="Barto920203" uid="10140282">
+  <nd ref="3969155874"/>
+  <nd ref="11378257757"/>
+  <nd ref="5749897968"/>
+  <nd ref="774710000"/>
+  <nd ref="13252347636"/>
+  <nd ref="13252347630"/>
+  <tag k="alt_name" v="Avenida Medellín"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AC 80"/>
+  <tag k="shoulder" v="no"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

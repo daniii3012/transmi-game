@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244702 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2807693397" visible="true" version="6" changeset="86532427" timestamp="2020-06-11T19:32:40Z" user="riskybiznu" uid="10380231" lat="4.6655049" lon="-74.0530646"/>
+ <node id="9883301144" visible="true" version="4" changeset="157518041" timestamp="2024-10-05T21:17:44Z" user="osm972" uid="122547" lat="4.6650249" lon="-74.0533856">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="13805375158" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6650116" lon="-74.0533945"/>
+ <node id="13805375159" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6650590" lon="-74.0533628">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="929026391" visible="true" version="4" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282">
+  <nd ref="2807693397"/>
+  <nd ref="13805375159"/>
+  <nd ref="9883301144"/>
+  <nd ref="13805375158"/>
+  <tag k="alt_name" v="Avenida German Arciniegas"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Carrera 11"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

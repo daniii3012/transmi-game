@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862525 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="264153929" visible="true" version="8" changeset="146957459" timestamp="2024-02-01T18:26:47Z" user="jonfaust" uid="11438835" lat="4.6232778" lon="-74.0662295">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="3982927538" visible="true" version="9" changeset="92291598" timestamp="2020-10-11T04:30:53Z" user="Facalderonm" uid="1759764" lat="4.6233212" lon="-74.0663436">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <way id="1300203553" visible="true" version="1" changeset="153738225" timestamp="2024-07-09T10:24:43Z" user="Pavans" uid="17718139">
+  <nd ref="3982927538"/>
+  <nd ref="264153929"/>
+  <tag k="bicycle:conditional" v="yes @ (Su,PH 07:00-14:00)"/>
+  <tag k="foot:conditional" v="yes @ (Su,PH 07:00-14:00)"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="motor_vehicle:conditional" v="no @ (Su,PH 07:00-14:00)"/>
+  <tag k="name" v="Calle 36"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle:conditional" v="no @ (Su,PH 07:00-14:00)"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

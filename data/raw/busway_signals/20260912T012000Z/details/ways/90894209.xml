@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244683 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="261187565" visible="true" version="10" changeset="60255629" timestamp="2018-06-28T17:16:27Z" user="Facalderonm" uid="1759764" lat="4.6855243" lon="-74.0805126"/>
+ <node id="842047786" visible="true" version="4" changeset="149451474" timestamp="2024-04-01T20:06:57Z" user="JuanMelo" uid="12906384" lat="4.6882409" lon="-74.0826885">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="874608433" visible="true" version="3" changeset="60256407" timestamp="2018-06-28T17:51:38Z" user="Facalderonm" uid="1759764" lat="4.6868823" lon="-74.0815845"/>
+ <node id="4913802760" visible="true" version="3" changeset="149455217" timestamp="2024-04-01T22:22:52Z" user="JuanMelo" uid="12906384" lat="4.6860170" lon="-74.0809068"/>
+ <node id="5726353980" visible="true" version="2" changeset="149455217" timestamp="2024-04-01T22:22:52Z" user="JuanMelo" uid="12906384" lat="4.6862733" lon="-74.0811132"/>
+ <node id="5726422689" visible="true" version="6" changeset="186064823" timestamp="2026-07-20T15:01:53Z" user="Ludway" uid="21683536" lat="4.6881618" lon="-74.0826255">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+ </node>
+ <node id="9645685022" visible="true" version="1" changeset="119387179" timestamp="2022-04-06T13:15:17Z" user="JuanMelo" uid="12906384" lat="4.6867097" lon="-74.0814458"/>
+ <node id="11779099077" visible="true" version="1" changeset="149455217" timestamp="2024-04-01T22:22:52Z" user="JuanMelo" uid="12906384" lat="4.6875081" lon="-74.0821181"/>
+ <way id="90894209" visible="true" version="18" changeset="149455217" timestamp="2024-04-01T22:22:52Z" user="JuanMelo" uid="12906384">
+  <nd ref="842047786"/>
+  <nd ref="5726422689"/>
+  <nd ref="11779099077"/>
+  <nd ref="874608433"/>
+  <nd ref="9645685022"/>
+  <nd ref="5726353980"/>
+  <nd ref="4913802760"/>
+  <nd ref="261187565"/>
+  <tag k="alt_name" v="Avenida Medellín"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AC 80"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

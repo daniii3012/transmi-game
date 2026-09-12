@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244680 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="326470507" visible="true" version="13" changeset="142687342" timestamp="2023-10-16T23:58:36Z" user="Facalderonm" uid="1759764" lat="4.7214986" lon="-74.1209335">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="1067789091" visible="true" version="8" changeset="180606218" timestamp="2026-03-29T23:03:45Z" user="JuanMelo" uid="12906384" lat="4.7215689" lon="-74.1208250">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <way id="91894175" visible="true" version="4" changeset="114668725" timestamp="2021-12-07T16:58:24Z" user="Pegasus21" uid="13510663">
+  <nd ref="326470507"/>
+  <nd ref="1067789091"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Carrera 114"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -46,3 +46,24 @@ test('Every portal has sourced physical evidence; layouts never substitute a con
  for(const id of ids){const layout=d.stations.find(s=>s.station_id===id);assert.ok(layout,id);assert.ok(layout.platforms.length+layout.areas.length>0);assert.ok(layout.internal_lines.length>0);for(const p of [...layout.platforms,...layout.areas])assert.ok(p.source.startsWith('https://www.openstreetmap.org/'));}
  const north=d.stations.find(s=>s.station_id==='2000');assert.ok(north.platforms.some(p=>p.role==='trunk_stop_position'&&p.points.length===1));
 });
+test('The catalogue separates busway signals from shared-street ones and covers both',()=>{
+ const catalogue=JSON.parse(fs.readFileSync(new URL('../dist/busway_signals.json',import.meta.url)));
+ const services=JSON.parse(fs.readFileSync(new URL('../dist/services.json',import.meta.url)));
+ const kinds=new Set(catalogue.signals.map(s=>s.carriageway));
+ assert.deepEqual([...kinds].sort(),['busway','street']);
+ for(const s of catalogue.signals){
+  // Existence evidence is required whatever the carriageway: a signal is never accepted on proximity alone.
+  assert.ok(s.evidence?.direct_membership,s.id);
+  assert.ok((s.evidence.qualifying_ways||[]).length>0,s.id);
+  const declared=s.evidence.qualifying_ways.some(w=>w.carriageway===s.carriageway);
+  assert.ok(declared,`${s.id} declara ${s.carriageway} sin una vía que lo respalde`);
+  if(s.carriageway==='street')assert.ok(s.evidence.qualifying_ways.every(w=>w.tags.highway!=='busway'),s.id);
+ }
+ // Every service that leaves the busway must now have at least one control on its street part.
+ const street=services.routes.filter(r=>r.ready&&r.stops.some(x=>x.kind==='street'));
+ assert.ok(street.length>0);
+ for(const r of street){
+  const matches=matchSignals(new MetricPath(r.points),catalogue);
+  assert.ok(matches.length>0,`${r.code}/${r.id} sin ningún semáforo en su recorrido`);
+ }
+});

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244686 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="263732293" visible="true" version="12" changeset="92200798" timestamp="2020-10-09T02:00:38Z" user="Facalderonm" uid="1759764" lat="4.6381671" lon="-74.0654074">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="5102216219" visible="true" version="5" changeset="92200798" timestamp="2020-10-09T02:00:38Z" user="Facalderonm" uid="1759764" lat="4.6382185" lon="-74.0654934"/>
+ <node id="7990396972" visible="true" version="1" changeset="92200798" timestamp="2020-10-09T02:00:38Z" user="Facalderonm" uid="1759764" lat="4.6382353" lon="-74.0655464"/>
+ <node id="9407357105" visible="true" version="1" changeset="115978550" timestamp="2022-01-10T11:51:31Z" user="ChapmansPeak" uid="10652971" lat="4.6383573" lon="-74.0662361"/>
+ <node id="9912567811" visible="true" version="4" changeset="146925596" timestamp="2024-02-01T00:02:28Z" user="jonfaust" uid="11438835" lat="4.6382021" lon="-74.0654591">
+  <tag k="button_operated" v="yes"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="12034045706" visible="true" version="1" changeset="153561839" timestamp="2024-07-04T19:21:12Z" user="Barto920203" uid="10140282" lat="4.6383929" lon="-74.0664372">
+  <tag k="noexit" v="yes"/>
+ </node>
+ <way id="1299111588" visible="true" version="1" changeset="153561839" timestamp="2024-07-04T19:21:12Z" user="Barto920203" uid="10140282">
+  <nd ref="263732293"/>
+  <nd ref="9912567811"/>
+  <nd ref="5102216219"/>
+  <nd ref="7990396972"/>
+  <nd ref="9407357105"/>
+  <nd ref="12034045706"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Calle 51"/>
+  <tag k="oneway" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

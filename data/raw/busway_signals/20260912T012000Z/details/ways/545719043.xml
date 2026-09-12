@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244708 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="5749978409" visible="true" version="1" changeset="60549482" timestamp="2018-07-09T18:41:17Z" user="Facalderonm" uid="1759764" lat="4.7136184" lon="-74.1154638"/>
+ <node id="5749978410" visible="true" version="3" changeset="88258829" timestamp="2020-07-20T17:17:33Z" user="Facalderonm" uid="1759764" lat="4.7141599" lon="-74.1158329"/>
+ <node id="5749978412" visible="true" version="1" changeset="60549482" timestamp="2018-07-09T18:41:17Z" user="Facalderonm" uid="1759764" lat="4.7142511" lon="-74.1158980"/>
+ <node id="9651886331" visible="true" version="3" changeset="158314720" timestamp="2024-10-24T21:39:53Z" user="Facalderonm" uid="1759764" lat="4.7153430" lon="-74.1166765">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9651886352" visible="true" version="2" changeset="158314720" timestamp="2024-10-24T21:39:53Z" user="Facalderonm" uid="1759764" lat="4.7154632" lon="-74.1167617"/>
+ <node id="11263909764" visible="true" version="2" changeset="144482190" timestamp="2023-11-26T19:00:21Z" user="SleepyAks" uid="17414280" lat="4.7151418" lon="-74.1165333">
+  <tag k="alt_name" v="AC 80 - TV 106"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="name" v="Br. Garcés Navas Oriental"/>
+  <tag k="network" v="SITP"/>
+  <tag k="network:wikidata" v="Q6129638"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="145A04"/>
+ </node>
+ <node id="13252347648" visible="true" version="1" changeset="173679138" timestamp="2025-10-23T14:59:45Z" user="Barto920203" uid="10140282" lat="4.7132187" lon="-74.1151945"/>
+ <node id="13252347655" visible="true" version="1" changeset="173679138" timestamp="2025-10-23T14:59:45Z" user="Barto920203" uid="10140282" lat="4.7133289" lon="-74.1152687">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="545719043" visible="true" version="9" changeset="173679138" timestamp="2025-10-23T14:59:45Z" user="Barto920203" uid="10140282">
+  <nd ref="9651886352"/>
+  <nd ref="9651886331"/>
+  <nd ref="11263909764"/>
+  <nd ref="5749978412"/>
+  <nd ref="5749978410"/>
+  <nd ref="5749978409"/>
+  <nd ref="13252347655"/>
+  <nd ref="13252347648"/>
+  <tag k="alt_name" v="Avenida Medellin"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

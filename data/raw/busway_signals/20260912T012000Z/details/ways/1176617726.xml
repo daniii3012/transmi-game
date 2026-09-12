@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244703 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2045404055" visible="true" version="8" changeset="118882838" timestamp="2022-03-24T21:01:42Z" user="JuanMelo" uid="12906384" lat="4.6587274" lon="-74.0528186">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="2045404058" visible="true" version="5" changeset="59794572" timestamp="2018-06-13T01:33:22Z" user="Facalderonm" uid="1759764" lat="4.6606631" lon="-74.0508558"/>
+ <node id="3196497183" visible="true" version="6" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6590276" lon="-74.0525259"/>
+ <node id="3197009590" visible="true" version="9" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6594000" lon="-74.0521820">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="3899237987" visible="true" version="5" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6591392" lon="-74.0524176">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="El Nogal"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="366A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="3899237994" visible="true" version="6" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6600575" lon="-74.0514795">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Los Rosales"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="BD-031A"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="3899238012" visible="true" version="3" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6588937" lon="-74.0526540"/>
+ <node id="5686400588" visible="true" version="2" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6609495" lon="-74.0505555"/>
+ <node id="7359841130" visible="true" version="8" changeset="156252934" timestamp="2024-09-06T01:34:07Z" user="osm972" uid="122547" lat="4.6611143" lon="-74.0503879">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7359841145" visible="true" version="6" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6593046" lon="-74.0522662">
+  <tag k="crossing" v="marked"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="7610626891" visible="true" version="5" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6595359" lon="-74.0520442"/>
+ <node id="7989874673" visible="true" version="2" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6598182" lon="-74.0517469"/>
+ <node id="7989874686" visible="true" version="3" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6593446" lon="-74.0522328"/>
+ <node id="9362391874" visible="true" version="2" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6600733" lon="-74.0514660"/>
+ <node id="12590565391" visible="true" version="1" changeset="162545967" timestamp="2025-02-15T18:05:58Z" user="The MEP Engineer Residente" uid="22513418" lat="4.6592245" lon="-74.0523319"/>
+ <node id="12590565392" visible="true" version="1" changeset="162545967" timestamp="2025-02-15T18:05:58Z" user="The MEP Engineer Residente" uid="22513418" lat="4.6605701" lon="-74.0509462"/>
+ <way id="1176617726" visible="true" version="3" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547">
+  <nd ref="2045404055"/>
+  <nd ref="3899238012"/>
+  <nd ref="3196497183"/>
+  <nd ref="3899237987"/>
+  <nd ref="12590565391"/>
+  <nd ref="7359841145"/>
+  <nd ref="7989874686"/>
+  <nd ref="3197009590"/>
+  <nd ref="7610626891"/>
+  <nd ref="7989874673"/>
+  <nd ref="3899237994"/>
+  <nd ref="9362391874"/>
+  <nd ref="12590565392"/>
+  <nd ref="2045404058"/>
+  <nd ref="5686400588"/>
+  <nd ref="7359841130"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="busway:right" v="lane"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="sidewalk:left" v="no"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

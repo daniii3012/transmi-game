@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244703 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="260462638" visible="true" version="18" changeset="175134654" timestamp="2025-11-26T02:09:03Z" user="Barto920203" uid="10140282" lat="4.7255806" lon="-74.1243575"/>
+ <node id="591428412" visible="true" version="6" changeset="145114543" timestamp="2023-12-14T14:23:43Z" user="Facalderonm" uid="1759764" lat="4.7232047" lon="-74.1223359">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="1402888844" visible="true" version="3" changeset="60551310" timestamp="2018-07-09T19:55:45Z" user="Facalderonm" uid="1759764" lat="4.7226758" lon="-74.1218860"/>
+ <node id="5750101772" visible="true" version="3" changeset="88258249" timestamp="2020-07-20T16:59:25Z" user="Facalderonm" uid="1759764" lat="4.7220128" lon="-74.1213171"/>
+ <node id="5750101773" visible="true" version="2" changeset="119472570" timestamp="2022-04-08T13:53:24Z" user="Facalderonm" uid="1759764" lat="4.7238501" lon="-74.1228963"/>
+ <node id="9644463826" visible="true" version="2" changeset="119472570" timestamp="2022-04-08T13:53:24Z" user="Facalderonm" uid="1759764" lat="4.7249099" lon="-74.1237950"/>
+ <node id="10806584902" visible="true" version="1" changeset="134843635" timestamp="2023-04-13T04:36:24Z" user="Yobanys" uid="18934793" lat="4.7228030" lon="-74.1219942"/>
+ <node id="11263909755" visible="true" version="2" changeset="144482190" timestamp="2023-11-26T19:00:21Z" user="SleepyAks" uid="17414280" lat="4.7229981" lon="-74.1221602">
+  <tag k="alt_name" v="AC 80 - KR 114"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="name" v="Br. El Cortijo"/>
+  <tag k="network" v="SITP"/>
+  <tag k="network:wikidata" v="Q6129638"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="137A04"/>
+ </node>
+ <way id="1049465090" visible="true" version="8" changeset="159622293" timestamp="2024-11-26T15:34:38Z" user="JuanMelo" uid="12906384">
+  <nd ref="5750101772"/>
+  <nd ref="1402888844"/>
+  <nd ref="10806584902"/>
+  <nd ref="11263909755"/>
+  <nd ref="591428412"/>
+  <nd ref="5750101773"/>
+  <nd ref="9644463826"/>
+  <nd ref="260462638"/>
+  <tag k="alt_name" v="Avenida Medellín"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244683 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="889749413" visible="true" version="10" changeset="123957665" timestamp="2022-07-22T22:23:20Z" user="Facalderonm" uid="1759764" lat="4.6562129" lon="-74.0594274"/>
+ <node id="3861884267" visible="true" version="8" changeset="123957665" timestamp="2022-07-22T22:23:20Z" user="Facalderonm" uid="1759764" lat="4.6564383" lon="-74.0592733">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Clínica de Traumatología y Ortopedia"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="227A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="3861884275" visible="true" version="5" changeset="123957665" timestamp="2022-07-22T22:23:20Z" user="Facalderonm" uid="1759764" lat="4.6560178" lon="-74.0595607">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Quinta Camacho"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="BD-021A"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="7989874565" visible="true" version="4" changeset="123957665" timestamp="2022-07-22T22:23:20Z" user="Facalderonm" uid="1759764" lat="4.6563595" lon="-74.0593272"/>
+ <node id="9646488256" visible="true" version="5" changeset="177661394" timestamp="2026-01-24T21:09:26Z" user="mapeadora" uid="1437169" lat="4.6570739" lon="-74.0588384">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+ </node>
+ <node id="9883291309" visible="true" version="3" changeset="128605838" timestamp="2022-11-07T16:50:26Z" user="Daniel_Felipe_OC" uid="14141531" lat="4.6557003" lon="-74.0597778">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="yes"/>
+ </node>
+ <node id="9905016911" visible="true" version="1" changeset="123957665" timestamp="2022-07-22T22:23:20Z" user="Facalderonm" uid="1759764" lat="4.6563931" lon="-74.0593042"/>
+ <node id="13281957908" visible="true" version="1" changeset="174218568" timestamp="2025-11-05T00:54:25Z" user="Barto920203" uid="10140282" lat="4.6571200" lon="-74.0588072"/>
+ <node id="13805375175" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6556778" lon="-74.0597932"/>
+ <node id="13805375177" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6557385" lon="-74.0597517">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1057643951" visible="true" version="5" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282">
+  <nd ref="13281957908"/>
+  <nd ref="9646488256"/>
+  <nd ref="3861884267"/>
+  <nd ref="9905016911"/>
+  <nd ref="7989874565"/>
+  <nd ref="889749413"/>
+  <nd ref="3861884275"/>
+  <nd ref="13805375177"/>
+  <nd ref="9883291309"/>
+  <nd ref="13805375175"/>
+  <tag k="alt_name" v="Avenida German Arciniegas"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Avenida Carrera 11"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

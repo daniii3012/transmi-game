@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244698 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="315995810" visible="true" version="46" changeset="54352682" timestamp="2017-12-05T04:11:51Z" user="Facalderonm" uid="1759764" lat="4.7501521" lon="-74.1026209"/>
+ <node id="367810252" visible="true" version="21" changeset="139546908" timestamp="2023-08-07T06:52:47Z" user="Facalderonm" uid="1759764" lat="4.7506430" lon="-74.1036106"/>
+ <node id="370248799" visible="true" version="12" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7510741" lon="-74.1044559">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="1917505276" visible="true" version="2" changeset="54352682" timestamp="2017-12-05T04:11:51Z" user="Facalderonm" uid="1759764" lat="4.7507777" lon="-74.1038821"/>
+ <node id="1917505288" visible="true" version="2" changeset="54352682" timestamp="2017-12-05T04:11:52Z" user="Facalderonm" uid="1759764" lat="4.7508908" lon="-74.1041019"/>
+ <node id="5265095577" visible="true" version="4" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7510097" lon="-74.1043331">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9308821242" visible="true" version="1" changeset="114527771" timestamp="2021-12-03T15:40:07Z" user="UncoolGuyJake" uid="7674729" lat="4.7505472" lon="-74.1034174"/>
+ <node id="9308821249" visible="true" version="2" changeset="125319814" timestamp="2022-08-24T14:43:16Z" user="JuanMelo" uid="12906384" lat="4.7502209" lon="-74.1027596">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1553904014" visible="true" version="1" changeset="188311530" timestamp="2026-08-31T15:06:55Z" user="Barto920203" uid="10140282">
+  <nd ref="315995810"/>
+  <nd ref="9308821249"/>
+  <nd ref="9308821242"/>
+  <nd ref="367810252"/>
+  <nd ref="1917505276"/>
+  <nd ref="1917505288"/>
+  <nd ref="5265095577"/>
+  <nd ref="370248799"/>
+  <tag k="alt_name" v="Avenida Suba"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Avenida Calle 145"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="yes"/>
+  <tag k="surface" v="concrete"/>
+  <tag k="wikidata" v="Q4828124"/>
+  <tag k="wikipedia" v="es:Avenida Suba"/>
+ </way>
+</osm>

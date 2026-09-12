@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244706 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="265024857" visible="true" version="17" changeset="92199794" timestamp="2020-10-09T00:37:52Z" user="Facalderonm" uid="1759764" lat="4.6519972" lon="-74.0617744">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="268230525" visible="true" version="19" changeset="89431398" timestamp="2020-08-14T22:02:47Z" user="Facalderonm" uid="1759764" lat="4.6526275" lon="-74.0629836">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="3236651040" visible="true" version="7" changeset="156105851" timestamp="2024-09-02T16:04:16Z" user="Facalderonm" uid="1759764" lat="4.6520217" lon="-74.0618214">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="3896037421" visible="true" version="5" changeset="156105851" timestamp="2024-09-02T16:04:16Z" user="Facalderonm" uid="1759764" lat="4.6522642" lon="-74.0622867">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Sena"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="650A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="9912585286" visible="true" version="2" changeset="156105851" timestamp="2024-09-02T16:04:16Z" user="Facalderonm" uid="1759764" lat="4.6526077" lon="-74.0629457">
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1013374832" visible="true" version="3" changeset="164287329" timestamp="2025-03-30T13:17:58Z" user="niro46" uid="9443543">
+  <nd ref="268230525"/>
+  <nd ref="9912585286"/>
+  <nd ref="3896037421"/>
+  <nd ref="3236651040"/>
+  <nd ref="265024857"/>
+  <tag k="cycleway:left" v="lane"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="1"/>
+  <tag k="name" v="Calle 66"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

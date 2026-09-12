@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244692 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="253848095" visible="true" version="19" changeset="92197546" timestamp="2020-10-08T21:55:54Z" user="Facalderonm" uid="1759764" lat="4.6623969" lon="-74.0493685">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="264718942" visible="true" version="17" changeset="115311924" timestamp="2021-12-23T20:19:31Z" user="JAAS" uid="3321532" lat="4.6639100" lon="-74.0516696">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="265687602" visible="true" version="10" changeset="92197546" timestamp="2020-10-08T21:55:54Z" user="Facalderonm" uid="1759764" lat="4.6632185" lon="-74.0505881"/>
+ <node id="884896421" visible="true" version="5" changeset="92197546" timestamp="2020-10-08T21:55:54Z" user="Facalderonm" uid="1759764" lat="4.6646204" lon="-74.0527546"/>
+ <node id="5686400605" visible="true" version="3" changeset="92197546" timestamp="2020-10-08T21:55:54Z" user="Facalderonm" uid="1759764" lat="4.6625265" lon="-74.0495309"/>
+ <node id="7359841123" visible="true" version="8" changeset="166475967" timestamp="2025-05-19T13:07:58Z" user="osm972" uid="122547" lat="4.6624467" lon="-74.0494242">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7990039813" visible="true" version="1" changeset="92197546" timestamp="2020-10-08T21:55:54Z" user="Facalderonm" uid="1759764" lat="4.6626803" lon="-74.0497605"/>
+ <node id="7990039818" visible="true" version="1" changeset="92197546" timestamp="2020-10-08T21:55:54Z" user="Facalderonm" uid="1759764" lat="4.6625934" lon="-74.0496254"/>
+ <node id="9368025351" visible="true" version="1" changeset="115395388" timestamp="2021-12-26T18:12:41Z" user="JAAS" uid="3321532" lat="4.6646356" lon="-74.0527795"/>
+ <node id="9883301166" visible="true" version="4" changeset="157518041" timestamp="2024-10-05T21:17:42Z" user="osm972" uid="122547" lat="4.6649758" lon="-74.0533359">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="10224156721" visible="true" version="4" changeset="133527171" timestamp="2023-03-10T17:14:13Z" user="osm972" uid="122547" lat="4.6639468" lon="-74.0517258">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="10224156734" visible="true" version="4" changeset="133527171" timestamp="2023-03-10T17:14:12Z" user="osm972" uid="122547" lat="4.6638750" lon="-74.0516148">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="13547006831" visible="true" version="1" changeset="178472462" timestamp="2026-02-12T19:18:33Z" user="SpaceTracer" uid="9368502" lat="4.6631999" lon="-74.0505593">
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13805375158" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6650116" lon="-74.0533945"/>
+ <node id="13805375160" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6649492" lon="-74.0532923">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="856959944" visible="true" version="16" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282">
+  <nd ref="253848095"/>
+  <nd ref="7359841123"/>
+  <nd ref="5686400605"/>
+  <nd ref="7990039818"/>
+  <nd ref="7990039813"/>
+  <nd ref="13547006831"/>
+  <nd ref="265687602"/>
+  <nd ref="10224156734"/>
+  <nd ref="264718942"/>
+  <nd ref="10224156721"/>
+  <nd ref="884896421"/>
+  <nd ref="9368025351"/>
+  <nd ref="13805375160"/>
+  <nd ref="9883301166"/>
+  <nd ref="13805375158"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Calle 81"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

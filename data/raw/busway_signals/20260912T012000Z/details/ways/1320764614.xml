@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942770 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="796497992" visible="true" version="10" changeset="182126778" timestamp="2026-05-02T17:04:04Z" user="JuanMelo" uid="12906384" lat="4.6404242" lon="-74.0661600"/>
+ <node id="2331502230" visible="true" version="12" changeset="130434355" timestamp="2022-12-23T19:31:58Z" user="jonfaust" uid="11438835" lat="4.6418565" lon="-74.0659017">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="3879227374" visible="true" version="9" changeset="182126778" timestamp="2026-05-02T17:04:04Z" user="JuanMelo" uid="12906384" lat="4.6404760" lon="-74.0661506">
+  <tag k="bicycle" v="yes"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="5173162643" visible="true" version="4" changeset="181361063" timestamp="2026-04-15T11:06:01Z" user="Pan_Nug" uid="17280926" lat="4.6409344" lon="-74.0660677"/>
+ <node id="5384636813" visible="true" version="4" changeset="182126778" timestamp="2026-05-02T17:04:04Z" user="JuanMelo" uid="12906384" lat="4.6438934" lon="-74.0655690">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="12483781947" visible="true" version="2" changeset="178993111" timestamp="2026-02-24T14:47:04Z" user="Barto920203" uid="10140282" lat="4.6417873" lon="-74.0659139">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1320764614" visible="true" version="4" changeset="181361063" timestamp="2026-04-15T11:06:01Z" user="Pan_Nug" uid="17280926">
+  <nd ref="796497992"/>
+  <nd ref="3879227374"/>
+  <nd ref="5173162643"/>
+  <nd ref="12483781947"/>
+  <nd ref="2331502230"/>
+  <nd ref="5384636813"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="bus"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

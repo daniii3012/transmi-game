@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244692 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1067789138" visible="true" version="5" changeset="142687342" timestamp="2023-10-16T23:58:36Z" user="Facalderonm" uid="1759764" lat="4.7213786" lon="-74.1211173">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="1887782997" visible="true" version="6" changeset="149454419" timestamp="2024-04-01T21:48:58Z" user="JuanMelo" uid="12906384" lat="4.7211387" lon="-74.1214843"/>
+ <node id="7645379175" visible="true" version="3" changeset="142687342" timestamp="2023-10-16T23:58:36Z" user="Facalderonm" uid="1759764" lat="4.7213390" lon="-74.1211796">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="956970373" visible="true" version="3" changeset="142687342" timestamp="2023-10-16T23:58:36Z" user="Facalderonm" uid="1759764">
+  <nd ref="1887782997"/>
+  <nd ref="7645379175"/>
+  <nd ref="1067789138"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Carrera 114"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

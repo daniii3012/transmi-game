@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862522 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="254530345" visible="true" version="25" changeset="168532420" timestamp="2025-07-05T17:22:27Z" user="Facalderonm" uid="1759764" lat="4.6551706" lon="-74.0551887"/>
+ <node id="2045404052" visible="true" version="7" changeset="123957665" timestamp="2022-07-22T22:23:20Z" user="Facalderonm" uid="1759764" lat="4.6563746" lon="-74.0545093"/>
+ <node id="2045404055" visible="true" version="8" changeset="118882838" timestamp="2022-03-24T21:01:42Z" user="JuanMelo" uid="12906384" lat="4.6587274" lon="-74.0528186">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="2815920124" visible="true" version="7" changeset="168532420" timestamp="2025-07-05T17:22:27Z" user="Facalderonm" uid="1759764" lat="4.6554938" lon="-74.0550542"/>
+ <node id="3196497180" visible="true" version="5" changeset="123957665" timestamp="2022-07-22T22:23:20Z" user="Facalderonm" uid="1759764" lat="4.6570558" lon="-74.0540414"/>
+ <node id="3196497181" visible="true" version="7" changeset="123957665" timestamp="2022-07-22T22:23:20Z" user="Facalderonm" uid="1759764" lat="4.6567419" lon="-74.0542570"/>
+ <node id="3196497182" visible="true" version="4" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6580764" lon="-74.0533405">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="3484211978" visible="true" version="5" changeset="123957665" timestamp="2022-07-22T22:23:20Z" user="Facalderonm" uid="1759764" lat="4.6572763" lon="-74.0538900">
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="name" v="Bellavista"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="368A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="3501874591" visible="true" version="5" changeset="92195630" timestamp="2020-10-08T20:36:41Z" user="Facalderonm" uid="1759764" lat="4.6561269" lon="-74.0546794"/>
+ <node id="3891160832" visible="true" version="6" changeset="168532420" timestamp="2025-07-05T17:22:27Z" user="Facalderonm" uid="1759764" lat="4.6560075" lon="-74.0547605"/>
+ <node id="3899237983" visible="true" version="4" changeset="123957665" timestamp="2022-07-22T22:23:20Z" user="Facalderonm" uid="1759764" lat="4.6564943" lon="-74.0544271">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Bellavista"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="BD-019A"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="3899237996" visible="true" version="5" changeset="168532420" timestamp="2025-07-05T17:22:27Z" user="Facalderonm" uid="1759764" lat="4.6553642" lon="-74.0551136">
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="name" v="Bellavista"/>
+  <tag k="network" v="SITP"/>
+  <tag k="network:wikidata" v="Q6129638"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="049A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="3899238009" visible="true" version="3" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6584876" lon="-74.0530368"/>
+ <node id="3899238011" visible="true" version="4" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6586020" lon="-74.0529358"/>
+ <node id="5686336996" visible="true" version="4" changeset="174309646" timestamp="2025-11-06T22:22:10Z" user="JuanMelo" uid="12906384" lat="4.6550526" lon="-74.0552258"/>
+ <node id="7359846834" visible="true" version="7" changeset="181116219" timestamp="2026-04-09T20:22:35Z" user="osm972" uid="122547" lat="4.6579578" lon="-74.0534220">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+ </node>
+ <node id="7989874586" visible="true" version="2" changeset="168532420" timestamp="2025-07-05T17:22:27Z" user="Facalderonm" uid="1759764" lat="4.6557992" lon="-74.0548904"/>
+ <node id="7996375441" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6582969" lon="-74.0531900"/>
+ <node id="12590565388" visible="true" version="1" changeset="162545967" timestamp="2025-02-15T18:05:58Z" user="The MEP Engineer Residente" uid="22513418" lat="4.6562370" lon="-74.0546038"/>
+ <node id="12590565389" visible="true" version="1" changeset="162545967" timestamp="2025-02-15T18:05:58Z" user="The MEP Engineer Residente" uid="22513418" lat="4.6573833" lon="-74.0538165"/>
+ <node id="12590565390" visible="true" version="1" changeset="162545967" timestamp="2025-02-15T18:05:58Z" user="The MEP Engineer Residente" uid="22513418" lat="4.6585467" lon="-74.0529846"/>
+ <node id="12980370328" visible="true" version="1" changeset="168532420" timestamp="2025-07-05T17:22:27Z" user="Facalderonm" uid="1759764" lat="4.6556260" lon="-74.0549884"/>
+ <node id="12980370329" visible="true" version="1" changeset="168532420" timestamp="2025-07-05T17:22:27Z" user="Facalderonm" uid="1759764" lat="4.6557166" lon="-74.0549394"/>
+ <node id="12980370350" visible="true" version="1" changeset="168532420" timestamp="2025-07-05T17:22:27Z" user="Facalderonm" uid="1759764" lat="4.6552626" lon="-74.0551554"/>
+ <node id="12980370381" visible="true" version="1" changeset="168532420" timestamp="2025-07-05T17:22:27Z" user="Facalderonm" uid="1759764" lat="4.6549220" lon="-74.0552671">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:markings" v="yes"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13281957926" visible="true" version="1" changeset="174218568" timestamp="2025-11-05T00:54:25Z" user="Barto920203" uid="10140282" lat="4.6548585" lon="-74.0552872"/>
+ <way id="341209367" visible="true" version="24" changeset="174218568" timestamp="2025-11-05T00:54:25Z" user="Barto920203" uid="10140282">
+  <nd ref="13281957926"/>
+  <nd ref="12980370381"/>
+  <nd ref="5686336996"/>
+  <nd ref="254530345"/>
+  <nd ref="12980370350"/>
+  <nd ref="3899237996"/>
+  <nd ref="2815920124"/>
+  <nd ref="12980370328"/>
+  <nd ref="12980370329"/>
+  <nd ref="7989874586"/>
+  <nd ref="3891160832"/>
+  <nd ref="3501874591"/>
+  <nd ref="12590565388"/>
+  <nd ref="2045404052"/>
+  <nd ref="3899237983"/>
+  <nd ref="3196497181"/>
+  <nd ref="3196497180"/>
+  <nd ref="3484211978"/>
+  <nd ref="12590565389"/>
+  <nd ref="7359846834"/>
+  <nd ref="3196497182"/>
+  <nd ref="7996375441"/>
+  <nd ref="3899238009"/>
+  <nd ref="12590565390"/>
+  <nd ref="3899238011"/>
+  <nd ref="2045404055"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="busway:right" v="lane"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="sidewalk:left" v="no"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

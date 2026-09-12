@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244709 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="268083089" visible="true" version="10" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282" lat="4.6705726" lon="-74.0564303"/>
+ <node id="268083090" visible="true" version="12" changeset="166317372" timestamp="2025-05-15T17:58:53Z" user="JuanMelo" uid="12906384" lat="4.6706769" lon="-74.0563618"/>
+ <node id="327871421" visible="true" version="10" changeset="120860073" timestamp="2022-05-11T22:03:30Z" user="Raenbow" uid="10782346" lat="4.6698481" lon="-74.0567673"/>
+ <node id="6498468263" visible="true" version="4" changeset="119545894" timestamp="2022-04-10T18:01:09Z" user="osm972" uid="122547" lat="4.6705398" lon="-74.0564518">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9435481073" visible="true" version="2" changeset="120860073" timestamp="2022-05-11T22:03:30Z" user="Raenbow" uid="10782346" lat="4.6699898" lon="-74.0567026"/>
+ <node id="9458994850" visible="true" version="4" changeset="168150979" timestamp="2025-06-26T17:35:19Z" user="osm972" uid="122547" lat="4.6698720" lon="-74.0567570">
+  <tag k="crossing" v="unmarked"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9644328415" visible="true" version="4" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282" lat="4.6704696" lon="-74.0564835">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals:direction" v="backward"/>
+ </node>
+ <node id="9644335918" visible="true" version="3" changeset="132853754" timestamp="2023-02-21T21:12:37Z" user="osm972" uid="122547" lat="4.6705236" lon="-74.0564588">
+  <tag k="crossing" v="unmarked"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="68748982" visible="true" version="15" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282">
+  <nd ref="268083090"/>
+  <nd ref="268083089"/>
+  <nd ref="6498468263"/>
+  <nd ref="9644335918"/>
+  <nd ref="9644328415"/>
+  <nd ref="9435481073"/>
+  <nd ref="9458994850"/>
+  <nd ref="327871421"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Carrera 16A"/>
+  <tag k="sidewalk" v="both"/>
+  <tag k="surface" v="bricks"/>
+ </way>
+</osm>

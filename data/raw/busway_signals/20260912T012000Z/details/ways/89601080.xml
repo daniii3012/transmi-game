@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244704 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="267902562" visible="true" version="13" changeset="92198894" timestamp="2020-10-08T23:09:54Z" user="Facalderonm" uid="1759764" lat="4.6695926" lon="-74.0544300"/>
+ <node id="5131982419" visible="true" version="10" changeset="173336880" timestamp="2025-10-15T20:04:44Z" user="osm972" uid="122547" lat="4.6700107" lon="-74.0551851">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="9462140412" visible="true" version="6" changeset="174262263" timestamp="2025-11-05T22:16:06Z" user="osm972" uid="122547" lat="4.6691885" lon="-74.0537294">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="9696801047" visible="true" version="1" changeset="120242128" timestamp="2022-04-27T06:34:56Z" user="JiangjunMNT" uid="15058556" lat="4.6693910" lon="-74.0540804"/>
+ <node id="9696801054" visible="true" version="1" changeset="120242128" timestamp="2022-04-27T06:34:56Z" user="JiangjunMNT" uid="15058556" lat="4.6693290" lon="-74.0539730"/>
+ <node id="12867037804" visible="true" version="2" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282" lat="4.6699849" lon="-74.0551385">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="13276801890" visible="true" version="1" changeset="174129303" timestamp="2025-11-03T03:20:59Z" user="Barto920203" uid="10140282" lat="4.6691574" lon="-74.0536756"/>
+ <node id="13276801892" visible="true" version="1" changeset="174129303" timestamp="2025-11-03T03:20:59Z" user="Barto920203" uid="10140282" lat="4.6692054" lon="-74.0537588">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="backward"/>
+ </node>
+ <way id="89601080" visible="true" version="40" changeset="174129303" timestamp="2025-11-03T03:20:59Z" user="Barto920203" uid="10140282">
+  <nd ref="13276801890"/>
+  <nd ref="9462140412"/>
+  <nd ref="13276801892"/>
+  <nd ref="9696801054"/>
+  <nd ref="9696801047"/>
+  <nd ref="267902562"/>
+  <nd ref="12867037804"/>
+  <nd ref="5131982419"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Calle 85"/>
+  <tag k="oneway" v="no"/>
+  <tag k="short_name" v="AC 85"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="surface" v="paving_stones"/>
+ </way>
+</osm>

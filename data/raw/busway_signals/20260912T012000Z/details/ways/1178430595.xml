@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244704 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="263776822" visible="true" version="6" changeset="59798030" timestamp="2018-06-13T06:03:03Z" user="Facalderonm" uid="1759764" lat="4.6274665" lon="-74.0680001"/>
+ <node id="263776829" visible="true" version="10" changeset="92201090" timestamp="2020-10-09T02:15:48Z" user="Facalderonm" uid="1759764" lat="4.6271346" lon="-74.0672358">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="264377159" visible="true" version="8" changeset="59798030" timestamp="2018-06-13T06:03:03Z" user="Facalderonm" uid="1759764" lat="4.6273839" lon="-74.0678829"/>
+ <node id="5087463842" visible="true" version="2" changeset="59798030" timestamp="2018-06-13T06:03:03Z" user="Facalderonm" uid="1759764" lat="4.6272809" lon="-74.0677084"/>
+ <node id="5087463844" visible="true" version="2" changeset="59798030" timestamp="2018-06-13T06:03:03Z" user="Facalderonm" uid="1759764" lat="4.6271976" lon="-74.0674981"/>
+ <node id="5087463846" visible="true" version="2" changeset="59798030" timestamp="2018-06-13T06:03:03Z" user="Facalderonm" uid="1759764" lat="4.6276149" lon="-74.0681901"/>
+ <node id="7560528659" visible="true" version="3" changeset="120173977" timestamp="2022-04-25T16:24:27Z" user="JuanMelo" uid="12906384" lat="4.6277654" lon="-74.0683768">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="7997591104" visible="true" version="1" changeset="92308203" timestamp="2020-10-11T17:05:03Z" user="Facalderonm" uid="1759764" lat="4.6276964" lon="-74.0682930"/>
+ <node id="9546177697" visible="true" version="1" changeset="117962777" timestamp="2022-03-01T00:09:05Z" user="Facalderonm" uid="1759764" lat="4.6271469" lon="-74.0673122"/>
+ <node id="9546177698" visible="true" version="1" changeset="117962777" timestamp="2022-03-01T00:09:05Z" user="Facalderonm" uid="1759764" lat="4.6271712" lon="-74.0674127"/>
+ <node id="9692853989" visible="true" version="2" changeset="124151284" timestamp="2022-07-27T17:24:39Z" user="JuanMelo" uid="12906384" lat="4.6271384" lon="-74.0672598">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="10683902288" visible="true" version="1" changeset="132847745" timestamp="2023-02-21T18:15:09Z" user="JuanMelo" uid="12906384" lat="4.6275712" lon="-74.0681341"/>
+ <way id="1178430595" visible="true" version="3" changeset="169617531" timestamp="2025-07-28T14:23:05Z" user="Barto920203" uid="10140282">
+  <nd ref="7560528659"/>
+  <nd ref="7997591104"/>
+  <nd ref="5087463846"/>
+  <nd ref="10683902288"/>
+  <nd ref="263776822"/>
+  <nd ref="264377159"/>
+  <nd ref="5087463842"/>
+  <nd ref="5087463844"/>
+  <nd ref="9546177698"/>
+  <nd ref="9546177697"/>
+  <nd ref="9692853989"/>
+  <nd ref="263776829"/>
+  <tag k="alt_name" v="Avenida Monseñor Josemaria Escriva"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Diagonal 40A"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

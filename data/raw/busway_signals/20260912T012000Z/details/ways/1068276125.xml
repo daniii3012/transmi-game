@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244687 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="6035238876" visible="true" version="4" changeset="123543857" timestamp="2022-07-13T05:12:31Z" user="Facalderonm" uid="1759764" lat="4.6232274" lon="-74.1799173"/>
+ <node id="9884318913" visible="true" version="2" changeset="188895165" timestamp="2026-09-11T23:54:48Z" user="Barto920203" uid="10140282" lat="4.6239131" lon="-74.1791468">
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="name" v="Colegio Colsubsidio Chicalá"/>
+  <tag k="network" v="SITP"/>
+  <tag k="network:wikidata" v="Q6129638"/>
+  <tag k="public_transport" v="platform"/>
+  <tag k="ref" v="019A08"/>
+ </node>
+ <node id="9884318944" visible="true" version="3" changeset="162589698" timestamp="2025-02-16T22:39:09Z" user="Facalderonm" uid="1759764" lat="4.6240725" lon="-74.1789682">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13661633401" visible="true" version="1" changeset="180110948" timestamp="2026-03-19T14:06:14Z" user="Barto920203" uid="10140282" lat="4.6241493" lon="-74.1788819"/>
+ <node id="13661633402" visible="true" version="1" changeset="180110948" timestamp="2026-03-19T14:06:14Z" user="Barto920203" uid="10140282" lat="4.6240330" lon="-74.1790125">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1068276125" visible="true" version="4" changeset="180110948" timestamp="2026-03-19T14:06:14Z" user="Barto920203" uid="10140282">
+  <nd ref="6035238876"/>
+  <nd ref="9884318913"/>
+  <nd ref="13661633402"/>
+  <nd ref="9884318944"/>
+  <nd ref="13661633401"/>
+  <tag k="alt_name" v="Avenida Ciudad de Cali"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Avenida Carrera 86"/>
+  <tag k="official_name" v="AK 86"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="separate"/>
+ </way>
+</osm>

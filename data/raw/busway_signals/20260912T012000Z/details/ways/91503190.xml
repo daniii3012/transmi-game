@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244692 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="591428391" visible="true" version="3" changeset="60550322" timestamp="2018-07-09T19:16:25Z" user="Facalderonm" uid="1759764" lat="4.7166310" lon="-74.1174480"/>
+ <node id="591428394" visible="true" version="3" changeset="60550322" timestamp="2018-07-09T19:16:25Z" user="Facalderonm" uid="1759764" lat="4.7173749" lon="-74.1179910"/>
+ <node id="591428403" visible="true" version="3" changeset="60550322" timestamp="2018-07-09T19:16:25Z" user="Facalderonm" uid="1759764" lat="4.7184288" lon="-74.1187320"/>
+ <node id="591428406" visible="true" version="2" changeset="60550322" timestamp="2018-07-09T19:16:25Z" user="Facalderonm" uid="1759764" lat="4.7189885" lon="-74.1191408"/>
+ <node id="5750039727" visible="true" version="5" changeset="158314720" timestamp="2024-10-24T21:39:53Z" user="Facalderonm" uid="1759764" lat="4.7194532" lon="-74.1194629">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="5750039754" visible="true" version="1" changeset="60550322" timestamp="2018-07-09T19:16:21Z" user="Facalderonm" uid="1759764" lat="4.7179309" lon="-74.1183736"/>
+ <node id="5750039755" visible="true" version="3" changeset="144482190" timestamp="2023-11-26T19:00:21Z" user="SleepyAks" uid="17414280" lat="4.7170238" lon="-74.1177371">
+  <tag k="alt_name" v="AC 80 - KR 109A"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="name" v="Br. Garcés Navas"/>
+  <tag k="network" v="SITP"/>
+  <tag k="network:wikidata" v="Q6129638"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="144A04"/>
+ </node>
+ <node id="5750039756" visible="true" version="1" changeset="60550322" timestamp="2018-07-09T19:16:21Z" user="Facalderonm" uid="1759764" lat="4.7161457" lon="-74.1171068"/>
+ <node id="5750039767" visible="true" version="1" changeset="60550322" timestamp="2018-07-09T19:16:21Z" user="Facalderonm" uid="1759764" lat="4.7205602" lon="-74.1202505"/>
+ <node id="5752018094" visible="true" version="1" changeset="60580800" timestamp="2018-07-10T14:58:05Z" user="Facalderonm" uid="1759764" lat="4.7169354" lon="-74.1176721"/>
+ <node id="9651886351" visible="true" version="3" changeset="180478445" timestamp="2026-03-26T22:39:41Z" user="JuanMelo" uid="12906384" lat="4.7156010" lon="-74.1167241"/>
+ <node id="11263909753" visible="true" version="2" changeset="144482190" timestamp="2023-11-26T19:00:21Z" user="SleepyAks" uid="17414280" lat="4.7193145" lon="-74.1193668">
+  <tag k="alt_name" v="AC 80 - KR 111C"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="name" v="Br. Ciudadela Colsubsidio"/>
+  <tag k="network" v="SITP"/>
+  <tag k="network:wikidata" v="Q6129638"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="140A04"/>
+ </node>
+ <way id="91503190" visible="true" version="26" changeset="158314720" timestamp="2024-10-24T21:39:53Z" user="Facalderonm" uid="1759764">
+  <nd ref="9651886351"/>
+  <nd ref="5750039756"/>
+  <nd ref="591428391"/>
+  <nd ref="5752018094"/>
+  <nd ref="5750039755"/>
+  <nd ref="591428394"/>
+  <nd ref="5750039754"/>
+  <nd ref="591428403"/>
+  <nd ref="591428406"/>
+  <nd ref="11263909753"/>
+  <nd ref="5750039727"/>
+  <nd ref="5750039767"/>
+  <tag k="alt_name" v="Avenida Medellin"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxheight" v="default"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

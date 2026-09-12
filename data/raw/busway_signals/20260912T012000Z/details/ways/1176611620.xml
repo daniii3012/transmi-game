@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244691 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="268230525" visible="true" version="19" changeset="89431398" timestamp="2020-08-14T22:02:47Z" user="Facalderonm" uid="1759764" lat="4.6526275" lon="-74.0629836">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="889749397" visible="true" version="6" changeset="156105851" timestamp="2024-09-02T16:04:16Z" user="Facalderonm" uid="1759764" lat="4.6523985" lon="-74.0630236"/>
+ <node id="2807673245" visible="true" version="6" changeset="156105851" timestamp="2024-09-02T16:04:16Z" user="Facalderonm" uid="1759764" lat="4.6518921" lon="-74.0631120"/>
+ <node id="7995798066" visible="true" version="2" changeset="156105851" timestamp="2024-09-02T16:04:16Z" user="Facalderonm" uid="1759764" lat="4.6516944" lon="-74.0631465"/>
+ <way id="1176611620" visible="true" version="1" changeset="136629816" timestamp="2023-05-27T15:50:41Z" user="Stefania Alvarez" uid="15124923">
+  <nd ref="268230525"/>
+  <nd ref="889749397"/>
+  <nd ref="2807673245"/>
+  <nd ref="7995798066"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Carrera 13"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942790 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="261629827" visible="true" version="14" changeset="143047643" timestamp="2023-10-24T05:52:59Z" user="Facalderonm" uid="1759764" lat="4.5961913" lon="-74.1135795"/>
+ <node id="332015402" visible="true" version="2" changeset="55513263" timestamp="2018-01-17T07:12:53Z" user="Facalderonm" uid="1759764" lat="4.5956738" lon="-74.1150406"/>
+ <node id="5344335336" visible="true" version="2" changeset="57990955" timestamp="2018-04-11T03:57:43Z" user="Facalderonm" uid="1759764" lat="4.5955712" lon="-74.1153652"/>
+ <node id="5544233102" visible="true" version="2" changeset="143047643" timestamp="2023-10-24T05:52:59Z" user="Facalderonm" uid="1759764" lat="4.5961403" lon="-74.1137141"/>
+ <node id="5999516176" visible="true" version="5" changeset="167921975" timestamp="2025-06-21T16:47:44Z" user="Facalderonm" uid="1759764" lat="4.5961521" lon="-74.1136827">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="11285403128" visible="true" version="1" changeset="143047643" timestamp="2023-10-24T05:52:59Z" user="Facalderonm" uid="1759764" lat="4.5960680" lon="-74.1139052"/>
+ <node id="12272266853" visible="true" version="1" changeset="158150754" timestamp="2024-10-21T02:22:28Z" user="Barto920203" uid="10140282" lat="4.5951731" lon="-74.1167154"/>
+ <node id="12272266859" visible="true" version="1" changeset="158150754" timestamp="2024-10-21T02:22:28Z" user="Barto920203" uid="10140282" lat="4.5951877" lon="-74.1166660">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1002790613" visible="true" version="5" changeset="158150754" timestamp="2024-10-21T02:22:28Z" user="Barto920203" uid="10140282">
+  <nd ref="261629827"/>
+  <nd ref="5999516176"/>
+  <nd ref="5544233102"/>
+  <nd ref="11285403128"/>
+  <nd ref="332015402"/>
+  <nd ref="5344335336"/>
+  <nd ref="12272266859"/>
+  <nd ref="12272266853"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

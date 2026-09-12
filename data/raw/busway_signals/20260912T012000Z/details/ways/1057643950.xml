@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862525 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="9883291293" visible="true" version="1" changeset="123522881" timestamp="2022-07-12T13:57:52Z" user="JuanMelo" uid="12906384" lat="4.6551543" lon="-74.0601581">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9883291306" visible="true" version="2" changeset="128605838" timestamp="2022-11-07T16:50:29Z" user="Daniel_Felipe_OC" uid="14141531" lat="4.6556464" lon="-74.0598151">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="yes"/>
+ </node>
+ <node id="13805375175" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6556778" lon="-74.0597932"/>
+ <node id="13805375178" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6551041" lon="-74.0601931"/>
+ <node id="13805375179" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6551998" lon="-74.0601264">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1057643950" visible="true" version="3" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282">
+  <nd ref="13805375175"/>
+  <nd ref="9883291306"/>
+  <nd ref="13805375179"/>
+  <nd ref="9883291293"/>
+  <nd ref="13805375178"/>
+  <tag k="alt_name" v="Avenida German Arciniegas"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Avenida Carrera 11"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

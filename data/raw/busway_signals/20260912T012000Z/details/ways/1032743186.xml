@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244695 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="253762199" visible="true" version="24" changeset="59793499" timestamp="2018-06-12T23:37:06Z" user="Facalderonm" uid="1759764" lat="4.6453213" lon="-74.0613437">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="5105783512" visible="true" version="3" changeset="59793499" timestamp="2018-06-12T23:37:06Z" user="Facalderonm" uid="1759764" lat="4.6452285" lon="-74.0613862"/>
+ <node id="5105783513" visible="true" version="3" changeset="59793499" timestamp="2018-06-12T23:37:06Z" user="Facalderonm" uid="1759764" lat="4.6450673" lon="-74.0614429"/>
+ <node id="7796058730" visible="true" version="1" changeset="89116947" timestamp="2020-08-08T06:27:57Z" user="Facalderonm" uid="1759764" lat="4.6451508" lon="-74.0614160"/>
+ <node id="9515302388" visible="true" version="1" changeset="117543047" timestamp="2022-02-18T01:16:05Z" user="JuanMelo" uid="12906384" lat="4.6448737" lon="-74.0614955"/>
+ <way id="1032743186" visible="true" version="3" changeset="131089059" timestamp="2023-01-10T02:49:15Z" user="osm972" uid="122547">
+  <nd ref="253762199"/>
+  <nd ref="5105783512"/>
+  <nd ref="7796058730"/>
+  <nd ref="5105783513"/>
+  <nd ref="9515302388"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="bicycle:conditional" v="yes @ (Su,PH 07:00-14:00)"/>
+  <tag k="busway:right" v="lane"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="foot:conditional" v="yes @ (Su,PH 07:00-14:00)"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="motor_vehicle:conditional" v="no @ (Su,PH 07:00-14:00)"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle:conditional" v="no @ (Su,PH 07:00-14:00)"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

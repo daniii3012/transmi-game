@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244687 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="4181861066" visible="true" version="6" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6132234" lon="-74.1947591"/>
+ <node id="4777494407" visible="true" version="6" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6158767" lon="-74.1916987"/>
+ <node id="5280394573" visible="true" version="6" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6134346" lon="-74.1945023"/>
+ <node id="5280394577" visible="true" version="9" changeset="187241026" timestamp="2026-08-10T16:04:11Z" user="Facalderonm" uid="1759764" lat="4.6152228" lon="-74.1927932">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="5280394578" visible="true" version="7" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6153937" lon="-74.1925986"/>
+ <node id="5700572793" visible="true" version="7" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6157515" lon="-74.1920240"/>
+ <node id="5700572794" visible="true" version="5" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6155508" lon="-74.1923890"/>
+ <node id="5700572795" visible="true" version="9" changeset="184019381" timestamp="2026-06-12T14:20:53Z" user="Barto920203" uid="10140282" lat="4.6151971" lon="-74.1928190">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="5700604596" visible="true" version="7" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6131467" lon="-74.1948892"/>
+ <node id="6089393517" visible="true" version="8" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6133456" lon="-74.1946007"/>
+ <node id="6418943987" visible="true" version="5" changeset="120441601" timestamp="2022-05-02T03:52:44Z" user="Oscarín Orbitus" uid="1857063" lat="4.6149066" lon="-74.1931110"/>
+ <node id="6447052719" visible="true" version="6" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6156648" lon="-74.1921972"/>
+ <node id="8385652354" visible="true" version="3" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6158349" lon="-74.1918273"/>
+ <node id="9256702773" visible="true" version="4" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6147759" lon="-74.1932346"/>
+ <node id="9884207942" visible="true" version="1" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6132837" lon="-74.1946750"/>
+ <node id="9884207985" visible="true" version="9" changeset="187241026" timestamp="2026-08-10T16:04:11Z" user="Facalderonm" uid="1759764" lat="4.6131969" lon="-74.1948040">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="kerb" v="lowered"/>
+  <tag k="tactile_paving" v="no"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="9884207998" visible="true" version="1" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6153301" lon="-74.1926767"/>
+ <node id="9884207999" visible="true" version="1" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6154743" lon="-74.1924958"/>
+ <node id="9884208000" visible="true" version="1" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6156071" lon="-74.1922992"/>
+ <node id="9884208001" visible="true" version="1" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6157068" lon="-74.1921180"/>
+ <node id="9884208002" visible="true" version="1" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6157952" lon="-74.1919263"/>
+ <node id="12273455990" visible="true" version="1" changeset="158169947" timestamp="2024-10-21T13:20:30Z" user="Barto920203" uid="10140282" lat="4.6131028" lon="-74.1949848"/>
+ <node id="13931409467" visible="true" version="1" changeset="184019381" timestamp="2026-06-12T14:20:53Z" user="Barto920203" uid="10140282" lat="4.6152463" lon="-74.1927696"/>
+ <way id="642968737" visible="true" version="27" changeset="184019381" timestamp="2026-06-12T14:20:53Z" user="Barto920203" uid="10140282">
+  <nd ref="12273455990"/>
+  <nd ref="5700604596"/>
+  <nd ref="9884207985"/>
+  <nd ref="4181861066"/>
+  <nd ref="9884207942"/>
+  <nd ref="6089393517"/>
+  <nd ref="5280394573"/>
+  <nd ref="9256702773"/>
+  <nd ref="6418943987"/>
+  <nd ref="5700572795"/>
+  <nd ref="5280394577"/>
+  <nd ref="13931409467"/>
+  <nd ref="9884207998"/>
+  <nd ref="5280394578"/>
+  <nd ref="9884207999"/>
+  <nd ref="5700572794"/>
+  <nd ref="9884208000"/>
+  <nd ref="6447052719"/>
+  <nd ref="9884208001"/>
+  <nd ref="5700572793"/>
+  <nd ref="9884208002"/>
+  <nd ref="8385652354"/>
+  <nd ref="4777494407"/>
+  <tag k="alt_name" v="Avenida Ciudad de Cali"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Transversal 83"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

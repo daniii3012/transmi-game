@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244702 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="264377503" visible="true" version="9" changeset="144195201" timestamp="2023-11-19T03:05:49Z" user="Facalderonm" uid="1759764" lat="4.6123274" lon="-74.0705096"/>
+ <node id="891229876" visible="true" version="5" changeset="88951985" timestamp="2020-08-05T00:52:53Z" user="Facalderonm" uid="1759764" lat="4.6125335" lon="-74.0703771"/>
+ <node id="891229890" visible="true" version="10" changeset="88951985" timestamp="2020-08-05T00:52:53Z" user="Facalderonm" uid="1759764" lat="4.6134444" lon="-74.0698106"/>
+ <node id="2979676595" visible="true" version="13" changeset="186413452" timestamp="2026-07-26T17:23:56Z" user="Barto920203" uid="10140282" lat="4.6139599" lon="-74.0695336">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="5550520061" visible="true" version="5" changeset="88951985" timestamp="2020-08-05T00:52:53Z" user="Facalderonm" uid="1759764" lat="4.6138386" lon="-74.0695900"/>
+ <node id="5606212317" visible="true" version="1" changeset="58806823" timestamp="2018-05-09T05:16:42Z" user="Facalderonm" uid="1759764" lat="4.6129278" lon="-74.0701336"/>
+ <node id="6397142936" visible="true" version="7" changeset="160356879" timestamp="2024-12-18T15:48:10Z" user="Barto920203" uid="10140282" lat="4.6139128" lon="-74.0695556">
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="kerb" v="no"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="7785880431" visible="true" version="1" changeset="88951985" timestamp="2020-08-05T00:52:53Z" user="Facalderonm" uid="1759764" lat="4.6136602" lon="-74.0696855"/>
+ <node id="9710662444" visible="true" version="1" changeset="120487094" timestamp="2022-05-03T06:17:12Z" user="Facalderonm" uid="1759764" lat="4.6130558" lon="-74.0700536"/>
+ <way id="88903125" visible="true" version="16" changeset="135233801" timestamp="2023-04-22T15:53:39Z" user="Luisa Gutierrez" uid="15415576">
+  <nd ref="264377503"/>
+  <nd ref="891229876"/>
+  <nd ref="5606212317"/>
+  <nd ref="9710662444"/>
+  <nd ref="891229890"/>
+  <nd ref="7785880431"/>
+  <nd ref="5550520061"/>
+  <nd ref="6397142936"/>
+  <nd ref="2979676595"/>
+  <tag k="alt_name" v="Avenida Fernando Mazuera"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Carrera 10"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

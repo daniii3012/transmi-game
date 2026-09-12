@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244703 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="253761969" visible="true" version="22" changeset="114797574" timestamp="2021-12-10T20:06:49Z" user="CostelloMellow" uid="12506916" lat="4.6594405" lon="-74.0522850">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="450845528" visible="true" version="3" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6592751" lon="-74.0517790"/>
+ <node id="7989874682" visible="true" version="2" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6592044" lon="-74.0518553"/>
+ <node id="7989874683" visible="true" version="2" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6591939" lon="-74.0519004"/>
+ <node id="7989874684" visible="true" version="2" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6591965" lon="-74.0519488"/>
+ <node id="7989874685" visible="true" version="2" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6592290" lon="-74.0520545"/>
+ <node id="7989874686" visible="true" version="3" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6593446" lon="-74.0522328"/>
+ <node id="7989874687" visible="true" version="2" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6592065" lon="-74.0519955"/>
+ <node id="7989874688" visible="true" version="1" changeset="92195630" timestamp="2020-10-08T20:36:41Z" user="Facalderonm" uid="1759764" lat="4.6592803" lon="-74.0521485"/>
+ <node id="7989874689" visible="true" version="3" changeset="166453985" timestamp="2025-05-19T02:37:34Z" user="osm972" uid="122547" lat="4.6593153" lon="-74.0521951">
+  <tag k="crossing" v="unmarked"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9328078186" visible="true" version="3" changeset="117889543" timestamp="2022-02-26T19:24:20Z" user="osm972" uid="122547" lat="4.6594017" lon="-74.0522724">
+  <tag k="bicycle" v="yes"/>
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="856959932" visible="true" version="5" changeset="174165841" timestamp="2025-11-03T20:37:39Z" user="osm972" uid="122547">
+  <nd ref="253761969"/>
+  <nd ref="9328078186"/>
+  <nd ref="7989874686"/>
+  <nd ref="7989874689"/>
+  <nd ref="7989874688"/>
+  <nd ref="7989874685"/>
+  <nd ref="7989874687"/>
+  <nd ref="7989874684"/>
+  <nd ref="7989874683"/>
+  <nd ref="7989874682"/>
+  <nd ref="450845528"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="1"/>
+  <tag k="name" v="Calle 77"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:left" v="no"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244705 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2164846995" visible="true" version="9" changeset="177150616" timestamp="2026-01-12T18:47:46Z" user="Facalderonm" uid="1759764" lat="4.6346271" lon="-74.1630052">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="2164846996" visible="true" version="8" changeset="177150616" timestamp="2026-01-12T18:47:46Z" user="Facalderonm" uid="1759764" lat="4.6358199" lon="-74.1639279">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="5421056495" visible="true" version="6" changeset="177150616" timestamp="2026-01-12T18:47:46Z" user="Facalderonm" uid="1759764" lat="4.6347252" lon="-74.1630965"/>
+ <node id="9884628647" visible="true" version="8" changeset="177342948" timestamp="2026-01-17T16:39:57Z" user="Daniel_Felipe_OC" uid="14141531" lat="4.6346759" lon="-74.1630507">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="yes"/>
+ </node>
+ <way id="1106827359" visible="true" version="5" changeset="177150616" timestamp="2026-01-12T18:47:46Z" user="Facalderonm" uid="1759764">
+  <nd ref="2164846995"/>
+  <nd ref="9884628647"/>
+  <nd ref="5421056495"/>
+  <nd ref="2164846996"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Calle 38 Sur"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

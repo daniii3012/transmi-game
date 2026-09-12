@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942783 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="263732468" visible="true" version="16" changeset="161120051" timestamp="2025-01-08T05:37:10Z" user="Barto920203" uid="10140282" lat="4.6344109" lon="-74.0672012">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="2316632141" visible="true" version="11" changeset="181538978" timestamp="2026-04-19T13:41:08Z" user="Barto920203" uid="10140282" lat="4.6326205" lon="-74.0675511">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing_ref" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="3894510364" visible="true" version="6" changeset="181538978" timestamp="2026-04-19T13:41:08Z" user="Barto920203" uid="10140282" lat="4.6325736" lon="-74.0675583"/>
+ <node id="12483781932" visible="true" version="1" changeset="161120051" timestamp="2025-01-08T05:37:10Z" user="Barto920203" uid="10140282" lat="4.6344635" lon="-74.0671911"/>
+ <way id="1299111605" visible="true" version="3" changeset="181538978" timestamp="2026-04-19T13:41:08Z" user="Barto920203" uid="10140282">
+  <nd ref="3894510364"/>
+  <nd ref="2316632141"/>
+  <nd ref="263732468"/>
+  <nd ref="12483781932"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="bus"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

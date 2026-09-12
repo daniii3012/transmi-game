@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244700 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3197009592" visible="true" version="7" changeset="117263945" timestamp="2022-02-10T21:50:50Z" user="Facalderonm" uid="1759764" lat="4.6611821" lon="-74.0503189">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="3510542738" visible="true" version="4" changeset="117263945" timestamp="2022-02-10T21:50:50Z" user="Facalderonm" uid="1759764" lat="4.6599094" lon="-74.0490112"/>
+ <node id="7989874716" visible="true" version="7" changeset="184102332" timestamp="2026-06-14T16:35:16Z" user="osm972" uid="122547" lat="4.6611346" lon="-74.0502701">
+  <tag k="button_operated" v="no"/>
+  <tag k="check_date:traffic_signals:sound" v="2026-06-14"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <way id="277829538" visible="true" version="13" changeset="149336652" timestamp="2024-03-30T03:16:04Z" user="osm972" uid="122547">
+  <nd ref="3510542738"/>
+  <nd ref="7989874716"/>
+  <nd ref="3197009592"/>
+  <tag k="alt_name" v="Calle de los Anticuarios"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Calle 79B"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

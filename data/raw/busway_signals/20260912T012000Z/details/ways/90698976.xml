@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244680 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="261187533" visible="true" version="5" changeset="60256407" timestamp="2018-06-28T17:51:39Z" user="Facalderonm" uid="1759764" lat="4.6857765" lon="-74.0803332"/>
+ <node id="261187536" visible="true" version="6" changeset="60256407" timestamp="2018-06-28T17:51:39Z" user="Facalderonm" uid="1759764" lat="4.6851890" lon="-74.0798879"/>
+ <node id="310104939" visible="true" version="11" changeset="149451474" timestamp="2024-04-01T20:06:57Z" user="JuanMelo" uid="12906384" lat="4.6884341" lon="-74.0824376">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="1055387233" visible="true" version="3" changeset="115439939" timestamp="2021-12-27T18:57:46Z" user="Pegasus21" uid="13510663" lat="4.6871766" lon="-74.0814383"/>
+ <node id="5726354012" visible="true" version="3" changeset="119363193" timestamp="2022-04-05T23:54:46Z" user="JuanMelo" uid="12906384" lat="4.6877046" lon="-74.0818533"/>
+ <node id="5726422691" visible="true" version="6" changeset="186064823" timestamp="2026-07-20T15:01:54Z" user="Ludway" uid="21683536" lat="4.6883557" lon="-74.0823747">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+ </node>
+ <way id="90698976" visible="true" version="15" changeset="149449275" timestamp="2024-04-01T18:58:07Z" user="JuanMelo" uid="12906384">
+  <nd ref="261187536"/>
+  <nd ref="261187533"/>
+  <nd ref="1055387233"/>
+  <nd ref="5726354012"/>
+  <nd ref="5726422691"/>
+  <nd ref="310104939"/>
+  <tag k="alt_name" v="Avenida Medellín"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AC 80"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

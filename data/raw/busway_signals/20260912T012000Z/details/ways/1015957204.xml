@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244705 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="261757505" visible="true" version="28" changeset="188445413" timestamp="2026-09-02T23:31:23Z" user="SoyJosueVerde" uid="20922998" lat="4.6714397" lon="-74.0437008"/>
+ <node id="3200597957" visible="true" version="8" changeset="169862913" timestamp="2025-08-02T13:17:46Z" user="JuanMelo" uid="12906384" lat="4.6710397" lon="-74.0438948"/>
+ <node id="12271043978" visible="true" version="2" changeset="168658807" timestamp="2025-07-08T16:37:14Z" user="Facalderonm" uid="1759764" lat="4.6712529" lon="-74.0437920">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="12988029462" visible="true" version="2" changeset="181688308" timestamp="2026-04-22T19:30:34Z" user="Treninu" uid="24050550" lat="4.6712918" lon="-74.0437732">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:markings" v="zebra"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+ </node>
+ <way id="1015957204" visible="true" version="7" changeset="168658807" timestamp="2025-07-08T16:37:14Z" user="Facalderonm" uid="1759764">
+  <nd ref="3200597957"/>
+  <nd ref="12271043978"/>
+  <nd ref="12988029462"/>
+  <nd ref="261757505"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="busway:right" v="lane"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="parking:both" v="no"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="turn:lanes" v="through|through|through"/>
+ </way>
+</osm>

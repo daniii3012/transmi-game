@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244689 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1873766011" visible="true" version="8" changeset="92197546" timestamp="2020-10-08T21:55:54Z" user="Facalderonm" uid="1759764" lat="4.6631012" lon="-74.0487605">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="7359841109" visible="true" version="2" changeset="92197546" timestamp="2020-10-08T21:55:54Z" user="Facalderonm" uid="1759764" lat="4.6631680" lon="-74.0488222">
+  <tag k="crossing" v="marked"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1074585607" visible="true" version="5" changeset="155976719" timestamp="2024-08-30T14:20:22Z" user="puertagustavo99" uid="5647811">
+  <nd ref="7359841109"/>
+  <nd ref="1873766011"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Calle 84A"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AC 82"/>
+  <tag k="sidewalk" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

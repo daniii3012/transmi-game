@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244692 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="483413842" visible="true" version="4" changeset="122398573" timestamp="2022-06-15T05:51:58Z" user="Facalderonm" uid="1759764" lat="4.6977212" lon="-74.0301975"/>
+ <node id="5113355293" visible="true" version="2" changeset="180653067" timestamp="2026-03-31T02:29:27Z" user="Barto920203" uid="10140282" lat="4.6980246" lon="-74.0302061"/>
+ <node id="5113355294" visible="true" version="5" changeset="122398573" timestamp="2022-06-15T05:51:58Z" user="Facalderonm" uid="1759764" lat="4.6979358" lon="-74.0302302">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="5113355295" visible="true" version="4" changeset="180633957" timestamp="2026-03-30T14:44:53Z" user="Barto920203" uid="10140282" lat="4.6978900" lon="-74.0302375">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="8946211246" visible="true" version="2" changeset="122398573" timestamp="2022-06-15T05:51:58Z" user="Facalderonm" uid="1759764" lat="4.6978393" lon="-74.0302382"/>
+ <node id="9819033518" visible="true" version="1" changeset="122398573" timestamp="2022-06-15T05:51:58Z" user="Facalderonm" uid="1759764" lat="4.6977803" lon="-74.0302252"/>
+ <node id="9819033519" visible="true" version="1" changeset="122398573" timestamp="2022-06-15T05:51:58Z" user="Facalderonm" uid="1759764" lat="4.6979685" lon="-74.0302235"/>
+ <node id="13694356146" visible="true" version="1" changeset="180653067" timestamp="2026-03-31T02:29:27Z" user="Barto920203" uid="10140282" lat="4.6980034" lon="-74.0302144"/>
+ <way id="40151946" visible="true" version="11" changeset="180653067" timestamp="2026-03-31T02:29:27Z" user="Barto920203" uid="10140282">
+  <nd ref="483413842"/>
+  <nd ref="9819033518"/>
+  <nd ref="8946211246"/>
+  <nd ref="5113355295"/>
+  <nd ref="5113355294"/>
+  <nd ref="9819033519"/>
+  <nd ref="13694356146"/>
+  <nd ref="5113355293"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="1"/>
+  <tag k="name" v="Calle 121"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

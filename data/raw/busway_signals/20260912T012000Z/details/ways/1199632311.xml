@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244696 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="582542178" visible="true" version="6" changeset="122784690" timestamp="2022-06-24T05:58:06Z" user="Facalderonm" uid="1759764" lat="4.6371037" lon="-74.1187455"/>
+ <node id="2393113117" visible="true" version="4" changeset="122784690" timestamp="2022-06-24T05:58:06Z" user="Facalderonm" uid="1759764" lat="4.6376645" lon="-74.1181440"/>
+ <node id="13323196770" visible="true" version="1" changeset="174971117" timestamp="2025-11-22T00:56:10Z" user="Facalderonm" uid="1759764" lat="4.6375391" lon="-74.1182785">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="14010831383" visible="true" version="1" changeset="185662178" timestamp="2026-07-13T15:51:02Z" user="Barto920203" uid="10140282" lat="4.6375686" lon="-74.1182469">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1199632311" visible="true" version="10" changeset="185662178" timestamp="2026-07-13T15:51:02Z" user="Barto920203" uid="10140282">
+  <nd ref="2393113117"/>
+  <nd ref="14010831383"/>
+  <nd ref="13323196770"/>
+  <nd ref="582542178"/>
+  <tag k="alt_name" v="Avenida 68"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Carrera 68"/>
+  <tag k="official_name" v="Avenida del Congreso Eucarístico"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 68"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q5713440"/>
+  <tag k="wikipedia" v="es:Avenida del Congreso Eucarístico"/>
+ </way>
+</osm>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862525 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="263369089" visible="true" version="16" changeset="161120051" timestamp="2025-01-08T05:37:10Z" user="Barto920203" uid="10140282" lat="4.6404118" lon="-74.0660646">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="263369091" visible="true" version="12" changeset="59287770" timestamp="2018-05-26T06:32:18Z" user="Facalderonm" uid="1759764" lat="4.6402353" lon="-74.0650680">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="796497992" visible="true" version="10" changeset="182126778" timestamp="2026-05-02T17:04:04Z" user="JuanMelo" uid="12906384" lat="4.6404242" lon="-74.0661600"/>
+ <node id="3879227358" visible="true" version="4" changeset="89116559" timestamp="2020-08-08T06:08:40Z" user="Facalderonm" uid="1759764" lat="4.6403283" lon="-74.0655855">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Estación Marly"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="034A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="7538884194" visible="true" version="6" changeset="182126778" timestamp="2026-05-02T17:04:04Z" user="JuanMelo" uid="12906384" lat="4.6404190" lon="-74.0661203">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="7796037796" visible="true" version="1" changeset="89116559" timestamp="2020-08-08T06:08:40Z" user="Facalderonm" uid="1759764" lat="4.6404055" lon="-74.0660154"/>
+ <node id="9667109294" visible="true" version="7" changeset="131576159" timestamp="2023-01-22T17:57:52Z" user="osm972" uid="122547" lat="4.6402487" lon="-74.0651430">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <way id="89700398" visible="true" version="14" changeset="178993111" timestamp="2026-02-24T14:47:04Z" user="Barto920203" uid="10140282">
+  <nd ref="263369091"/>
+  <nd ref="9667109294"/>
+  <nd ref="3879227358"/>
+  <nd ref="7796037796"/>
+  <nd ref="263369089"/>
+  <nd ref="7538884194"/>
+  <nd ref="796497992"/>
+  <tag k="alt_name" v="Avenida Pablo VI"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 53"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AC 53"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244694 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="260462376" visible="true" version="14" changeset="52083666" timestamp="2017-09-15T23:05:31Z" user="MrKrabs" uid="5633067" lat="4.6662031" lon="-74.0609841"/>
+ <node id="260627330" visible="true" version="7" changeset="60167097" timestamp="2018-06-26T04:21:55Z" user="Facalderonm" uid="1759764" lat="4.6664404" lon="-74.0609351"/>
+ <node id="370255755" visible="true" version="10" changeset="161120051" timestamp="2025-01-08T05:37:10Z" user="Barto920203" uid="10140282" lat="4.6659747" lon="-74.0610213">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="386322935" visible="true" version="7" changeset="52083666" timestamp="2017-09-15T23:05:31Z" user="MrKrabs" uid="5633067" lat="4.6660535" lon="-74.0610092"/>
+ <node id="2862531870" visible="true" version="6" changeset="179353452" timestamp="2026-03-04T14:55:10Z" user="Barto920203" uid="10140282" lat="4.6658443" lon="-74.0610399"/>
+ <node id="5108556117" visible="true" version="4" changeset="152353042" timestamp="2024-06-06T23:52:33Z" user="Facalderonm" uid="1759764" lat="4.6659091" lon="-74.0610317">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="12483781985" visible="true" version="1" changeset="161120051" timestamp="2025-01-08T05:37:10Z" user="Barto920203" uid="10140282" lat="4.6666794" lon="-74.0608801"/>
+ <node id="12483781986" visible="true" version="1" changeset="161120051" timestamp="2025-01-08T05:37:10Z" user="Barto920203" uid="10140282" lat="4.6667719" lon="-74.0608588"/>
+ <way id="815096186" visible="true" version="14" changeset="179353452" timestamp="2026-03-04T14:55:10Z" user="Barto920203" uid="10140282">
+  <nd ref="12483781986"/>
+  <nd ref="12483781985"/>
+  <nd ref="260627330"/>
+  <nd ref="260462376"/>
+  <nd ref="386322935"/>
+  <nd ref="370255755"/>
+  <nd ref="5108556117"/>
+  <nd ref="2862531870"/>
+  <tag k="alt_name" v="Autopista Norte;Avenida Paseo de los Libertadores"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Avenida Carrera 20"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="shoulder" v="no"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862525 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3191652249" visible="true" version="10" changeset="178376674" timestamp="2026-02-10T19:57:42Z" user="JuanMelo" uid="12906384" lat="4.6321821" lon="-74.0664273"/>
+ <node id="5102168946" visible="true" version="6" changeset="159519464" timestamp="2024-11-24T02:34:47Z" user="Facalderonm" uid="1759764" lat="4.6314215" lon="-74.0644062">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="12368905266" visible="true" version="2" changeset="163953574" timestamp="2025-03-22T15:53:39Z" user="Facalderonm" uid="1759764" lat="4.6321557" lon="-74.0663748">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="12368905274" visible="true" version="1" changeset="159519464" timestamp="2024-11-24T02:34:47Z" user="Facalderonm" uid="1759764" lat="4.6321198" lon="-74.0663002"/>
+ <node id="13630060807" visible="true" version="1" changeset="179588188" timestamp="2026-03-09T14:22:57Z" user="Barto920203" uid="10140282" lat="4.6313763" lon="-74.0642683"/>
+ <node id="13630060812" visible="true" version="1" changeset="179588188" timestamp="2026-03-09T14:22:57Z" user="Barto920203" uid="10140282" lat="4.6314345" lon="-74.0644414">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1041518483" visible="true" version="5" changeset="179588188" timestamp="2026-03-09T14:22:57Z" user="Barto920203" uid="10140282">
+  <nd ref="3191652249"/>
+  <nd ref="12368905266"/>
+  <nd ref="12368905274"/>
+  <nd ref="13630060812"/>
+  <nd ref="5102168946"/>
+  <nd ref="13630060807"/>
+  <tag k="alt_name" v="Avenida Francisco Miranda"/>
+  <tag k="cycleway:left" v="no"/>
+  <tag k="cycleway:right" v="separate"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Calle 45"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

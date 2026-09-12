@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244685 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="568919888" visible="true" version="5" changeset="122594456" timestamp="2022-06-19T21:20:30Z" user="Facalderonm" uid="1759764" lat="4.6659225" lon="-74.0606047"/>
+ <node id="568919891" visible="true" version="4" changeset="35780277" timestamp="2015-12-06T05:08:30Z" user="AngocA" uid="89128" lat="4.6661161" lon="-74.0605403"/>
+ <node id="818962266" visible="true" version="7" changeset="172044357" timestamp="2025-09-17T05:32:07Z" user="Barto920203" uid="10140282" lat="4.6657906" lon="-74.0607608">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="830180558" visible="true" version="3" changeset="55542401" timestamp="2018-01-18T08:14:03Z" user="Facalderonm" uid="1759764" lat="4.6657924" lon="-74.0609014"/>
+ <node id="3879238829" visible="true" version="3" changeset="116012636" timestamp="2022-01-11T08:08:57Z" user="PointeDesAlmadies" uid="10334775" lat="4.6665803" lon="-74.0604593"/>
+ <node id="3879238830" visible="true" version="8" changeset="162720202" timestamp="2025-02-19T23:17:24Z" user="Spaghetti Monster🍝" uid="8758904" lat="4.6674810" lon="-74.0601923"/>
+ <node id="4662522189" visible="true" version="4" changeset="182386897" timestamp="2026-05-08T15:00:33Z" user="SoyJosueVerde" uid="20922998" lat="4.6658178" lon="-74.0609781"/>
+ <node id="4662522202" visible="true" version="4" changeset="182386897" timestamp="2026-05-08T15:00:33Z" user="SoyJosueVerde" uid="20922998" lat="4.6657777" lon="-74.0608210"/>
+ <node id="4799407318" visible="true" version="1" changeset="47879789" timestamp="2017-04-17T17:46:17Z" user="carciofo" uid="2533093" lat="4.6660188" lon="-74.0605638"/>
+ <node id="4799407319" visible="true" version="1" changeset="47879789" timestamp="2017-04-17T17:46:17Z" user="carciofo" uid="2533093" lat="4.6658777" lon="-74.0606362"/>
+ <node id="4799407320" visible="true" version="1" changeset="47879789" timestamp="2017-04-17T17:46:17Z" user="carciofo" uid="2533093" lat="4.6658336" lon="-74.0606879"/>
+ <node id="5108574960" visible="true" version="3" changeset="122594456" timestamp="2022-06-19T21:20:30Z" user="Facalderonm" uid="1759764" lat="4.6670588" lon="-74.0603487"/>
+ <node id="5108574961" visible="true" version="2" changeset="116012636" timestamp="2022-01-11T08:08:57Z" user="PointeDesAlmadies" uid="10334775" lat="4.6669078" lon="-74.0603909"/>
+ <node id="5108574962" visible="true" version="2" changeset="116012636" timestamp="2022-01-11T08:08:57Z" user="PointeDesAlmadies" uid="10334775" lat="4.6667394" lon="-74.0604258"/>
+ <node id="5709996739" visible="true" version="2" changeset="116012636" timestamp="2022-01-11T08:08:57Z" user="PointeDesAlmadies" uid="10334775" lat="4.6663771" lon="-74.0604955"/>
+ <node id="9831770468" visible="true" version="3" changeset="162720202" timestamp="2025-02-19T23:17:24Z" user="Spaghetti Monster🍝" uid="8758904" lat="4.6671494" lon="-74.0603188"/>
+ <node id="9831770484" visible="true" version="1" changeset="122594456" timestamp="2022-06-19T21:20:30Z" user="Facalderonm" uid="1759764" lat="4.6657814" lon="-74.0607887"/>
+ <node id="9831770485" visible="true" version="1" changeset="122594456" timestamp="2022-06-19T21:20:30Z" user="Facalderonm" uid="1759764" lat="4.6658093" lon="-74.0607221"/>
+ <node id="9831770486" visible="true" version="1" changeset="122594456" timestamp="2022-06-19T21:20:30Z" user="Facalderonm" uid="1759764" lat="4.6659680" lon="-74.0605802"/>
+ <node id="12483781980" visible="true" version="1" changeset="161120051" timestamp="2025-01-08T05:37:10Z" user="Barto920203" uid="10140282" lat="4.6657851" lon="-74.0608612">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="827211078" visible="true" version="11" changeset="182386897" timestamp="2026-05-08T15:00:33Z" user="SoyJosueVerde" uid="20922998">
+  <nd ref="4662522189"/>
+  <nd ref="830180558"/>
+  <nd ref="12483781980"/>
+  <nd ref="4662522202"/>
+  <nd ref="9831770484"/>
+  <nd ref="818962266"/>
+  <nd ref="9831770485"/>
+  <nd ref="4799407320"/>
+  <nd ref="4799407319"/>
+  <nd ref="568919888"/>
+  <nd ref="9831770486"/>
+  <nd ref="4799407318"/>
+  <nd ref="568919891"/>
+  <nd ref="5709996739"/>
+  <nd ref="3879238829"/>
+  <nd ref="5108574962"/>
+  <nd ref="5108574961"/>
+  <nd ref="5108574960"/>
+  <nd ref="9831770468"/>
+  <nd ref="3879238830"/>
+  <tag k="alt_name" v="Avenida Medellín"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AC 80"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

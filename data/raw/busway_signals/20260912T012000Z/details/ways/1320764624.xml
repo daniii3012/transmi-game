@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942770 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="5384636783" visible="true" version="9" changeset="167919561" timestamp="2025-06-21T15:45:59Z" user="Facalderonm" uid="1759764" lat="4.6495205" lon="-74.0648136">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7805131223" visible="true" version="3" changeset="167919561" timestamp="2025-06-21T15:45:59Z" user="Facalderonm" uid="1759764" lat="4.6495994" lon="-74.0647981"/>
+ <node id="12222604085" visible="true" version="1" changeset="157468062" timestamp="2024-10-04T15:57:58Z" user="Barto920203" uid="10140282" lat="4.6472127" lon="-74.0651997">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="12222604098" visible="true" version="1" changeset="157468062" timestamp="2024-10-04T15:57:58Z" user="Barto920203" uid="10140282" lat="4.6472490" lon="-74.0651937">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="12222606008" visible="true" version="1" changeset="157468062" timestamp="2024-10-04T15:57:58Z" user="Barto920203" uid="10140282" lat="4.6471369" lon="-74.0652123"/>
+ <node id="12590175613" visible="true" version="1" changeset="162537982" timestamp="2025-02-15T14:27:39Z" user="EMA AC NAIVA" uid="22512516" lat="4.6490197" lon="-74.0648995"/>
+ <node id="12590175614" visible="true" version="1" changeset="162537982" timestamp="2025-02-15T14:27:39Z" user="EMA AC NAIVA" uid="22512516" lat="4.6486111" lon="-74.0649674"/>
+ <node id="12590175615" visible="true" version="1" changeset="162537982" timestamp="2025-02-15T14:27:39Z" user="EMA AC NAIVA" uid="22512516" lat="4.6481496" lon="-74.0650441"/>
+ <node id="12943205556" visible="true" version="1" changeset="167919561" timestamp="2025-06-21T15:45:59Z" user="Facalderonm" uid="1759764" lat="4.6494110" lon="-74.0648345"/>
+ <way id="1320764624" visible="true" version="3" changeset="167919561" timestamp="2025-06-21T15:45:59Z" user="Facalderonm" uid="1759764">
+  <nd ref="7805131223"/>
+  <nd ref="5384636783"/>
+  <nd ref="12943205556"/>
+  <nd ref="12590175613"/>
+  <nd ref="12590175614"/>
+  <nd ref="12590175615"/>
+  <nd ref="12222604098"/>
+  <nd ref="12222604085"/>
+  <nd ref="12222606008"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

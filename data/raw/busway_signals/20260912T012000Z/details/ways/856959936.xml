@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244707 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3236651022" visible="true" version="7" changeset="135953956" timestamp="2023-05-10T22:23:48Z" user="osm972" uid="122547" lat="4.6657642" lon="-74.0530432">
+  <tag k="bicycle" v="yes"/>
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="3705876603" visible="true" version="9" changeset="92197546" timestamp="2020-10-08T21:55:54Z" user="Facalderonm" uid="1759764" lat="4.6657095" lon="-74.0529534">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="6366922443" visible="true" version="3" changeset="92195630" timestamp="2020-10-08T20:36:41Z" user="Facalderonm" uid="1759764" lat="4.6663617" lon="-74.0540098"/>
+ <node id="7990039835" visible="true" version="1" changeset="92197546" timestamp="2020-10-08T21:55:54Z" user="Facalderonm" uid="1759764" lat="4.6658481" lon="-74.0531808"/>
+ <node id="9883301171" visible="true" version="3" changeset="153504340" timestamp="2024-07-03T14:12:03Z" user="osm972" uid="122547" lat="4.6657408" lon="-74.0530048">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+  <tag k="traffic_signals:sound" v="no"/>
+ </node>
+ <node id="9972761742" visible="true" version="1" changeset="125279935" timestamp="2022-08-23T16:31:14Z" user="Raenbow" uid="10782346" lat="4.6662509" lon="-74.0538308"/>
+ <node id="13805375157" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6657770" lon="-74.0530643">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="856959936" visible="true" version="12" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282">
+  <nd ref="6366922443"/>
+  <nd ref="9972761742"/>
+  <nd ref="7990039835"/>
+  <nd ref="13805375157"/>
+  <nd ref="3236651022"/>
+  <nd ref="9883301171"/>
+  <nd ref="3705876603"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Calle 82"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="CL 82"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

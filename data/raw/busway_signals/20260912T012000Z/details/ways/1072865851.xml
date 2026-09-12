@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244684 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="333619454" visible="true" version="23" changeset="149352393" timestamp="2024-03-30T13:47:29Z" user="JuanMelo" uid="12906384" lat="4.6323603" lon="-74.1208773"/>
+ <node id="9842954084" visible="true" version="1" changeset="122779313" timestamp="2022-06-24T00:50:24Z" user="Facalderonm" uid="1759764" lat="4.6331997" lon="-74.1205252"/>
+ <node id="9842954110" visible="true" version="1" changeset="122779313" timestamp="2022-06-24T00:50:24Z" user="Facalderonm" uid="1759764" lat="4.6337371" lon="-74.1203080"/>
+ <node id="9842954111" visible="true" version="1" changeset="122779313" timestamp="2022-06-24T00:50:24Z" user="Facalderonm" uid="1759764" lat="4.6338948" lon="-74.1202570"/>
+ <node id="9842954118" visible="true" version="1" changeset="122779313" timestamp="2022-06-24T00:50:24Z" user="Facalderonm" uid="1759764" lat="4.6341247" lon="-74.1201913"/>
+ <node id="9842954119" visible="true" version="1" changeset="122779313" timestamp="2022-06-24T00:50:24Z" user="Facalderonm" uid="1759764" lat="4.6343306" lon="-74.1201189"/>
+ <node id="9842954120" visible="true" version="1" changeset="122779313" timestamp="2022-06-24T00:50:24Z" user="Facalderonm" uid="1759764" lat="4.6351754" lon="-74.1197675"/>
+ <node id="9842954162" visible="true" version="4" changeset="174971117" timestamp="2025-11-22T00:56:10Z" user="Facalderonm" uid="1759764" lat="4.6342340" lon="-74.1201529"/>
+ <node id="9842954166" visible="true" version="2" changeset="162137597" timestamp="2025-02-04T18:33:02Z" user="Josuer" uid="3382594" lat="4.6352402" lon="-74.1197403"/>
+ <node id="9854589567" visible="true" version="2" changeset="181250221" timestamp="2026-04-12T21:41:26Z" user="Barto920203" uid="10140282" lat="4.6335713" lon="-74.1203723">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="9988959794" visible="true" version="1" changeset="125580683" timestamp="2022-08-30T17:31:50Z" user="JuanMelo" uid="12906384" lat="4.6347708" lon="-74.1199358"/>
+ <node id="9988959800" visible="true" version="1" changeset="125580683" timestamp="2022-08-30T17:31:50Z" user="JuanMelo" uid="12906384" lat="4.6346012" lon="-74.1200064"/>
+ <node id="13323196763" visible="true" version="1" changeset="174971117" timestamp="2025-11-22T00:56:10Z" user="Facalderonm" uid="1759764" lat="4.6341506" lon="-74.1201822"/>
+ <node id="13726263848" visible="true" version="1" changeset="181250221" timestamp="2026-04-12T21:41:26Z" user="Barto920203" uid="10140282" lat="4.6336290" lon="-74.1203499"/>
+ <way id="1072865851" visible="true" version="29" changeset="187669332" timestamp="2026-08-19T04:28:18Z" user="RahadRiver" uid="23310597">
+  <nd ref="333619454"/>
+  <nd ref="9842954084"/>
+  <nd ref="9854589567"/>
+  <nd ref="13726263848"/>
+  <nd ref="9842954110"/>
+  <nd ref="9842954111"/>
+  <nd ref="9842954118"/>
+  <nd ref="13323196763"/>
+  <nd ref="9842954162"/>
+  <nd ref="9842954119"/>
+  <nd ref="9988959800"/>
+  <nd ref="9988959794"/>
+  <nd ref="9842954120"/>
+  <nd ref="9842954166"/>
+  <tag k="alt_name" v="Avenida 68"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Carrera 68"/>
+  <tag k="official_name" v="Avenida del Congreso Eucarístico"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 68"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q5713440"/>
+  <tag k="wikipedia" v="es:Avenida del Congreso Eucarístico"/>
+ </way>
+</osm>

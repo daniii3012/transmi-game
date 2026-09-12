@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244685 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="261630672" visible="true" version="14" changeset="116131728" timestamp="2022-01-14T03:25:03Z" user="Oscarín Orbitus" uid="1857063" lat="4.6355848" lon="-74.1536342">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="315"/>
+ </node>
+ <node id="883371321" visible="true" version="9" changeset="116131728" timestamp="2022-01-14T03:25:03Z" user="Oscarín Orbitus" uid="1857063" lat="4.6354471" lon="-74.1537693">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="960113858" visible="true" version="2" changeset="109838442" timestamp="2021-08-17T23:56:54Z" user="JuanMelo" uid="12906384">
+  <nd ref="883371321"/>
+  <nd ref="261630672"/>
+  <tag k="alt_name" v="Avenida Agoberto Mejía"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Transversal 80G"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

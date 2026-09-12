@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244696 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="260462638" visible="true" version="18" changeset="175134654" timestamp="2025-11-26T02:09:03Z" user="Barto920203" uid="10140282" lat="4.7255806" lon="-74.1243575"/>
+ <node id="591428423" visible="true" version="10" changeset="142687260" timestamp="2023-10-16T23:53:00Z" user="Facalderonm" uid="1759764" lat="4.7261741" lon="-74.1248588">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="591428426" visible="true" version="3" changeset="60551310" timestamp="2018-07-09T19:55:47Z" user="Facalderonm" uid="1759764" lat="4.7263490" lon="-74.1249555"/>
+ <node id="591428430" visible="true" version="4" changeset="65309377" timestamp="2018-12-09T08:48:56Z" user="Facalderonm" uid="1759764" lat="4.7271645" lon="-74.1251056"/>
+ <node id="591428432" visible="true" version="4" changeset="60551310" timestamp="2018-07-09T19:55:47Z" user="Facalderonm" uid="1759764" lat="4.7273455" lon="-74.1251924"/>
+ <node id="591428436" visible="true" version="5" changeset="65309377" timestamp="2018-12-09T08:48:56Z" user="Facalderonm" uid="1759764" lat="4.7274561" lon="-74.1256291"/>
+ <node id="591428438" visible="true" version="5" changeset="89047624" timestamp="2020-08-06T15:41:46Z" user="Facalderonm" uid="1759764" lat="4.7272828" lon="-74.1257672"/>
+ <node id="591428440" visible="true" version="3" changeset="65309377" timestamp="2018-12-09T08:48:56Z" user="Facalderonm" uid="1759764" lat="4.7270456" lon="-74.1257432"/>
+ <node id="1402888915" visible="true" version="9" changeset="142687260" timestamp="2023-10-16T23:53:00Z" user="Facalderonm" uid="1759764" lat="4.7260991" lon="-74.1249500">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="4070361338" visible="true" version="2" changeset="60551310" timestamp="2018-07-09T19:55:47Z" user="Facalderonm" uid="1759764" lat="4.7262228" lon="-74.1248912"/>
+ <node id="4070361339" visible="true" version="2" changeset="60551310" timestamp="2018-07-09T19:55:47Z" user="Facalderonm" uid="1759764" lat="4.7265109" lon="-74.1250055"/>
+ <node id="4070361340" visible="true" version="1" changeset="37962870" timestamp="2016-03-20T19:59:27Z" user="Facalderonm" uid="1759764" lat="4.7267054" lon="-74.1250343"/>
+ <node id="4070361341" visible="true" version="2" changeset="60551310" timestamp="2018-07-09T19:55:47Z" user="Facalderonm" uid="1759764" lat="4.7270893" lon="-74.1250901"/>
+ <node id="4070361342" visible="true" version="2" changeset="60551310" timestamp="2018-07-09T19:55:47Z" user="Facalderonm" uid="1759764" lat="4.7272423" lon="-74.1251304"/>
+ <node id="4070361343" visible="true" version="3" changeset="60551310" timestamp="2018-07-09T19:55:47Z" user="Facalderonm" uid="1759764" lat="4.7274213" lon="-74.1252778"/>
+ <node id="4070361344" visible="true" version="4" changeset="65309377" timestamp="2018-12-09T08:48:56Z" user="Facalderonm" uid="1759764" lat="4.7274739" lon="-74.1254116"/>
+ <node id="4070361345" visible="true" version="4" changeset="89047624" timestamp="2020-08-06T15:41:46Z" user="Facalderonm" uid="1759764" lat="4.7273557" lon="-74.1257352"/>
+ <node id="4070361346" visible="true" version="5" changeset="89047624" timestamp="2020-08-06T15:41:46Z" user="Facalderonm" uid="1759764" lat="4.7272162" lon="-74.1257774"/>
+ <node id="4070361367" visible="true" version="4" changeset="65309377" timestamp="2018-12-09T08:48:56Z" user="Facalderonm" uid="1759764" lat="4.7274822" lon="-74.1254903"/>
+ <node id="5750101774" visible="true" version="1" changeset="60551310" timestamp="2018-07-09T19:55:43Z" user="Facalderonm" uid="1759764" lat="4.7264304" lon="-74.1249859"/>
+ <node id="5750101775" visible="true" version="2" changeset="65309377" timestamp="2018-12-09T08:48:56Z" user="Facalderonm" uid="1759764" lat="4.7274586" lon="-74.1253459"/>
+ <node id="5750101776" visible="true" version="2" changeset="65309377" timestamp="2018-12-09T08:48:56Z" user="Facalderonm" uid="1759764" lat="4.7274782" lon="-74.1255684"/>
+ <node id="5750101777" visible="true" version="1" changeset="60551310" timestamp="2018-07-09T19:55:43Z" user="Facalderonm" uid="1759764" lat="4.7274032" lon="-74.1256953"/>
+ <node id="5750101778" visible="true" version="3" changeset="89047624" timestamp="2020-08-06T15:41:46Z" user="Facalderonm" uid="1759764" lat="4.7271626" lon="-74.1257753"/>
+ <node id="6126104161" visible="true" version="1" changeset="65309377" timestamp="2018-12-09T08:48:56Z" user="Facalderonm" uid="1759764" lat="4.7270166" lon="-74.1257228"/>
+ <node id="6126104163" visible="true" version="1" changeset="65309377" timestamp="2018-12-09T08:48:56Z" user="Facalderonm" uid="1759764" lat="4.7274314" lon="-74.1256675"/>
+ <node id="6126104170" visible="true" version="1" changeset="65309377" timestamp="2018-12-09T08:48:56Z" user="Facalderonm" uid="1759764" lat="4.7272939" lon="-74.1251579"/>
+ <node id="7791934409" visible="true" version="1" changeset="89047624" timestamp="2020-08-06T15:41:46Z" user="Facalderonm" uid="1759764" lat="4.7270995" lon="-74.1257639"/>
+ <node id="9651871318" visible="true" version="1" changeset="119472570" timestamp="2022-04-08T13:53:24Z" user="Facalderonm" uid="1759764" lat="4.7264957" lon="-74.1252888"/>
+ <node id="9651871321" visible="true" version="1" changeset="119472570" timestamp="2022-04-08T13:53:24Z" user="Facalderonm" uid="1759764" lat="4.7259285" lon="-74.1246538"/>
+ <node id="11263909757" visible="true" version="2" changeset="144482190" timestamp="2023-11-26T19:00:21Z" user="SleepyAks" uid="17414280" lat="4.7263643" lon="-74.1251765">
+  <tag k="alt_name" v="AC 80 - KR 119"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="name" v="Puente de Guadua"/>
+  <tag k="network" v="SITP"/>
+  <tag k="network:wikidata" v="Q6129638"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="396A04"/>
+ </node>
+ <node id="11927231022" visible="true" version="1" changeset="151701196" timestamp="2024-05-23T01:12:50Z" user="Barto920203" uid="10140282" lat="4.7261352" lon="-74.1249808"/>
+ <node id="13332819470" visible="true" version="1" changeset="175134654" timestamp="2025-11-26T02:09:03Z" user="Barto920203" uid="10140282" lat="4.7261242" lon="-74.1249714">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="13332819471" visible="true" version="1" changeset="175134654" timestamp="2025-11-26T02:09:03Z" user="Barto920203" uid="10140282" lat="4.7261415" lon="-74.1248316">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="91495279" visible="true" version="25" changeset="175134654" timestamp="2025-11-26T02:09:03Z" user="Barto920203" uid="10140282">
+  <nd ref="260462638"/>
+  <nd ref="9651871321"/>
+  <nd ref="13332819471"/>
+  <nd ref="591428423"/>
+  <nd ref="4070361338"/>
+  <nd ref="591428426"/>
+  <nd ref="5750101774"/>
+  <nd ref="4070361339"/>
+  <nd ref="4070361340"/>
+  <nd ref="4070361341"/>
+  <nd ref="591428430"/>
+  <nd ref="4070361342"/>
+  <nd ref="6126104170"/>
+  <nd ref="591428432"/>
+  <nd ref="4070361343"/>
+  <nd ref="5750101775"/>
+  <nd ref="4070361344"/>
+  <nd ref="4070361367"/>
+  <nd ref="5750101776"/>
+  <nd ref="591428436"/>
+  <nd ref="6126104163"/>
+  <nd ref="5750101777"/>
+  <nd ref="4070361345"/>
+  <nd ref="591428438"/>
+  <nd ref="4070361346"/>
+  <nd ref="5750101778"/>
+  <nd ref="7791934409"/>
+  <nd ref="591428440"/>
+  <nd ref="6126104161"/>
+  <nd ref="9651871318"/>
+  <nd ref="11263909757"/>
+  <nd ref="11927231022"/>
+  <nd ref="13332819470"/>
+  <nd ref="1402888915"/>
+  <tag k="alt_name" v="Avenida Medellín"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

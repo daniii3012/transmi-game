@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862525 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="263776605" visible="true" version="10" changeset="92201090" timestamp="2020-10-09T02:15:48Z" user="Facalderonm" uid="1759764" lat="4.6331441" lon="-74.0662489">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="264788912" visible="true" version="12" changeset="159519464" timestamp="2024-11-24T02:34:47Z" user="Facalderonm" uid="1759764" lat="4.6326866" lon="-74.0663338"/>
+ <node id="4004975962" visible="true" version="6" changeset="178376674" timestamp="2026-02-10T19:57:42Z" user="JuanMelo" uid="12906384" lat="4.6323034" lon="-74.0664052"/>
+ <node id="12368905271" visible="true" version="1" changeset="159519464" timestamp="2024-11-24T02:34:47Z" user="Facalderonm" uid="1759764" lat="4.6324725" lon="-74.0663735">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13630060805" visible="true" version="1" changeset="179588188" timestamp="2026-03-09T14:22:57Z" user="Barto920203" uid="10140282" lat="4.6325304" lon="-74.0663628">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1178596614" visible="true" version="3" changeset="179588188" timestamp="2026-03-09T14:22:57Z" user="Barto920203" uid="10140282">
+  <nd ref="263776605"/>
+  <nd ref="264788912"/>
+  <nd ref="13630060805"/>
+  <nd ref="12368905271"/>
+  <nd ref="4004975962"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Carrera 13"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

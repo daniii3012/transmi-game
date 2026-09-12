@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244703 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="262391131" visible="true" version="94" changeset="49508468" timestamp="2017-06-13T18:24:21Z" user="Facalderonm" uid="1759764" lat="4.7382756" lon="-74.0864375">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="3865362650" visible="true" version="3" changeset="57700918" timestamp="2018-03-31T23:04:36Z" user="Facalderonm" uid="1759764" lat="4.7381870" lon="-74.0862928">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <way id="1155266826" visible="true" version="3" changeset="162680168" timestamp="2025-02-18T22:53:06Z" user="Spaghetti Monster🍝" uid="8758904">
+  <nd ref="262391131"/>
+  <nd ref="3865362650"/>
+  <tag k="alt_name" v="Avenida Transversal de Suba"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Avenida Calle 145"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

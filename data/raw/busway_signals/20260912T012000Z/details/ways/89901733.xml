@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244709 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="314145536" visible="true" version="16" changeset="154787887" timestamp="2024-08-03T19:50:07Z" user="Facalderonm" uid="1759764" lat="4.6678782" lon="-74.0622788"/>
+ <node id="775387146" visible="true" version="6" changeset="60255892" timestamp="2018-06-28T17:28:37Z" user="Facalderonm" uid="1759764" lat="4.6685328" lon="-74.0628026"/>
+ <node id="3881280023" visible="true" version="3" changeset="60255892" timestamp="2018-06-28T17:28:37Z" user="Facalderonm" uid="1759764" lat="4.6681575" lon="-74.0625042">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="El Polo Club"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="708A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="7645213959" visible="true" version="3" changeset="119363193" timestamp="2022-04-05T23:54:46Z" user="JuanMelo" uid="12906384" lat="4.6689582" lon="-74.0631574">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="7989981699" visible="true" version="1" changeset="92196830" timestamp="2020-10-08T21:23:32Z" user="Facalderonm" uid="1759764" lat="4.6684506" lon="-74.0627373"/>
+ <node id="13383492233" visible="true" version="1" changeset="176053001" timestamp="2025-12-17T14:16:26Z" user="Barto920203" uid="10140282" lat="4.6691201" lon="-74.0632902"/>
+ <node id="13383492237" visible="true" version="1" changeset="176053001" timestamp="2025-12-17T14:16:26Z" user="Barto920203" uid="10140282" lat="4.6689005" lon="-74.0631093">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="89901733" visible="true" version="16" changeset="176053001" timestamp="2025-12-17T14:16:26Z" user="Barto920203" uid="10140282">
+  <nd ref="314145536"/>
+  <nd ref="3881280023"/>
+  <nd ref="7989981699"/>
+  <nd ref="775387146"/>
+  <nd ref="13383492237"/>
+  <nd ref="7645213959"/>
+  <nd ref="13383492233"/>
+  <tag k="alt_name" v="Avenida Medellín"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AC 80"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

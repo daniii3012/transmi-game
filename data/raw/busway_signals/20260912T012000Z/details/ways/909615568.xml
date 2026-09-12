@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244698 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="254530338" visible="true" version="26" changeset="119255119" timestamp="2022-04-03T07:40:07Z" user="Facalderonm" uid="1759764" lat="4.6479023" lon="-74.0597902">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="449727443" visible="true" version="13" changeset="119255119" timestamp="2022-04-03T07:40:07Z" user="Facalderonm" uid="1759764" lat="4.6482486" lon="-74.0603417"/>
+ <node id="449727447" visible="true" version="7" changeset="89273130" timestamp="2020-08-12T00:28:57Z" user="Facalderonm" uid="1759764" lat="4.6483632" lon="-74.0605241"/>
+ <node id="3897562088" visible="true" version="6" changeset="119255119" timestamp="2022-04-03T07:40:07Z" user="Facalderonm" uid="1759764" lat="4.6482961" lon="-74.0604173">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Carrera 8"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="046A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="6199570135" visible="true" version="7" changeset="130434355" timestamp="2022-12-23T19:29:53Z" user="jonfaust" uid="11438835" lat="4.6479487" lon="-74.0598642">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <way id="909615568" visible="true" version="4" changeset="146053957" timestamp="2024-01-09T07:10:51Z" user="osm972" uid="122547">
+  <nd ref="449727447"/>
+  <nd ref="3897562088"/>
+  <nd ref="449727443"/>
+  <nd ref="6199570135"/>
+  <nd ref="254530338"/>
+  <tag k="alt_name" v="Avenida José Celestino Mutis"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Avenida Calle 63"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

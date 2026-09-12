@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244681 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="264553634" visible="true" version="9" changeset="92195630" timestamp="2020-10-08T20:36:41Z" user="Facalderonm" uid="1759764" lat="4.6573005" lon="-74.0524247">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="3196497182" visible="true" version="4" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6580764" lon="-74.0533405">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="7359846868" visible="true" version="3" changeset="117888827" timestamp="2022-02-26T19:22:55Z" user="osm972" uid="122547" lat="4.6580366" lon="-74.0532922">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="10276341152" visible="true" version="5" changeset="171804359" timestamp="2025-09-11T21:40:56Z" user="osm972" uid="122547" lat="4.6573312" lon="-74.0524609">
+  <tag k="crossing:markings" v="no"/>
+  <tag k="crossing:signals" v="no"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1042453915" visible="true" version="4" changeset="131089059" timestamp="2023-01-10T02:46:31Z" user="osm972" uid="122547">
+  <nd ref="264553634"/>
+  <nd ref="10276341152"/>
+  <nd ref="7359846868"/>
+  <nd ref="3196497182"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="name" v="Calle 75"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="both"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

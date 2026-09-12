@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244709 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2498505034" visible="true" version="9" changeset="89116947" timestamp="2020-08-08T06:27:57Z" user="Facalderonm" uid="1759764" lat="4.6454917" lon="-74.0612508"/>
+ <node id="2806541631" visible="true" version="4" changeset="97405779" timestamp="2021-01-13T03:43:33Z" user="Facalderonm" uid="1759764" lat="4.6455160" lon="-74.0614906"/>
+ <node id="5105783500" visible="true" version="2" changeset="56233834" timestamp="2018-02-10T06:03:42Z" user="Facalderonm" uid="1759764" lat="4.6454964" lon="-74.0614451"/>
+ <node id="5105783501" visible="true" version="2" changeset="56233834" timestamp="2018-02-10T06:03:42Z" user="Facalderonm" uid="1759764" lat="4.6454812" lon="-74.0613082"/>
+ <node id="5105783502" visible="true" version="2" changeset="56233834" timestamp="2018-02-10T06:03:42Z" user="Facalderonm" uid="1759764" lat="4.6454791" lon="-74.0613523"/>
+ <node id="5105783504" visible="true" version="2" changeset="56233834" timestamp="2018-02-10T06:03:42Z" user="Facalderonm" uid="1759764" lat="4.6454846" lon="-74.0613978"/>
+ <node id="7371310031" visible="true" version="2" changeset="121114674" timestamp="2022-05-17T19:14:38Z" user="JuanMelo" uid="12906384" lat="4.6454796" lon="-74.0613424">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <way id="276005838" visible="true" version="11" changeset="89116947" timestamp="2020-08-08T06:27:57Z" user="Facalderonm" uid="1759764">
+  <nd ref="2498505034"/>
+  <nd ref="5105783501"/>
+  <nd ref="7371310031"/>
+  <nd ref="5105783502"/>
+  <nd ref="5105783504"/>
+  <nd ref="5105783500"/>
+  <nd ref="2806541631"/>
+  <tag k="highway" v="primary_link"/>
+  <tag k="lanes" v="1"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

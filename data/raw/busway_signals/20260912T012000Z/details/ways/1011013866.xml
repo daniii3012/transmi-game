@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244697 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="319499715" visible="true" version="41" changeset="52969220" timestamp="2017-10-16T00:14:55Z" user="Facalderonm" uid="1759764" lat="4.7442594" lon="-74.0933227"/>
+ <node id="370249774" visible="true" version="10" changeset="64612458" timestamp="2018-11-18T06:39:15Z" user="Facalderonm" uid="1759764" lat="4.7458099" lon="-74.0955324"/>
+ <node id="506801424" visible="true" version="2" changeset="49508037" timestamp="2017-06-13T18:05:54Z" user="Facalderonm" uid="1759764" lat="4.7451258" lon="-74.0944751"/>
+ <node id="506808824" visible="true" version="5" changeset="134559906" timestamp="2023-04-06T04:00:11Z" user="Facalderonm" uid="1759764" lat="4.7438392" lon="-74.0927520"/>
+ <node id="1364039847" visible="true" version="8" changeset="184189446" timestamp="2026-06-16T16:10:10Z" user="Facalderonm" uid="1759764" lat="4.7445301" lon="-74.0936881">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="4913271157" visible="true" version="3" changeset="58540734" timestamp="2018-04-30T01:39:21Z" user="Facalderonm" uid="1759764" lat="4.7455629" lon="-74.0950760"/>
+ <node id="4913271158" visible="true" version="1" changeset="49506845" timestamp="2017-06-13T17:13:48Z" user="Facalderonm" uid="1759764" lat="4.7456673" lon="-74.0953034"/>
+ <node id="4913271159" visible="true" version="3" changeset="64612458" timestamp="2018-11-18T06:39:15Z" user="Facalderonm" uid="1759764" lat="4.7457517" lon="-74.0954556"/>
+ <node id="5587207881" visible="true" version="1" changeset="58540734" timestamp="2018-04-30T01:39:21Z" user="Facalderonm" uid="1759764" lat="4.7456109" lon="-74.0951717"/>
+ <node id="5587207882" visible="true" version="1" changeset="58540734" timestamp="2018-04-30T01:39:21Z" user="Facalderonm" uid="1759764" lat="4.7455107" lon="-74.0949954"/>
+ <node id="5740160314" visible="true" version="1" changeset="60422710" timestamp="2018-07-05T03:11:13Z" user="Facalderonm" uid="1759764" lat="4.7451566" lon="-74.0945167"/>
+ <node id="5740160318" visible="true" version="1" changeset="60422710" timestamp="2018-07-05T03:11:13Z" user="Facalderonm" uid="1759764" lat="4.7453669" lon="-74.0948009"/>
+ <node id="6069998848" visible="true" version="1" changeset="64612458" timestamp="2018-11-18T06:39:12Z" user="Facalderonm" uid="1759764" lat="4.7457061" lon="-74.0953782"/>
+ <node id="6069998869" visible="true" version="2" changeset="110547197" timestamp="2021-09-01T07:14:56Z" user="Facalderonm" uid="1759764" lat="4.7439478" lon="-74.0928936"/>
+ <node id="6069998871" visible="true" version="1" changeset="64612458" timestamp="2018-11-18T06:39:12Z" user="Facalderonm" uid="1759764" lat="4.7440899" lon="-74.0930891"/>
+ <node id="10789337275" visible="true" version="1" changeset="134559906" timestamp="2023-04-06T04:00:11Z" user="Facalderonm" uid="1759764" lat="4.7439110" lon="-74.0928433"/>
+ <node id="13253226041" visible="true" version="1" changeset="173695989" timestamp="2025-10-24T00:27:11Z" user="Barto920203" uid="10140282" lat="4.7445589" lon="-74.0937262">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1011013866" visible="true" version="6" changeset="173695989" timestamp="2025-10-24T00:27:11Z" user="Barto920203" uid="10140282">
+  <nd ref="370249774"/>
+  <nd ref="4913271159"/>
+  <nd ref="6069998848"/>
+  <nd ref="4913271158"/>
+  <nd ref="5587207881"/>
+  <nd ref="4913271157"/>
+  <nd ref="5587207882"/>
+  <nd ref="5740160318"/>
+  <nd ref="5740160314"/>
+  <nd ref="506801424"/>
+  <nd ref="13253226041"/>
+  <nd ref="1364039847"/>
+  <nd ref="319499715"/>
+  <nd ref="6069998871"/>
+  <nd ref="6069998869"/>
+  <nd ref="10789337275"/>
+  <nd ref="506808824"/>
+  <tag k="alt_name" v="Avenida Transversal de Suba"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Avenida Calle 145"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

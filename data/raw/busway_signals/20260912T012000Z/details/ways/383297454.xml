@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244704 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="262391131" visible="true" version="94" changeset="49508468" timestamp="2017-06-13T18:24:21Z" user="Facalderonm" uid="1759764" lat="4.7382756" lon="-74.0864375">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="3865362649" visible="true" version="3" changeset="57700918" timestamp="2018-03-31T23:04:36Z" user="Facalderonm" uid="1759764" lat="4.7381018" lon="-74.0864619"/>
+ <node id="5519470404" visible="true" version="2" changeset="121595885" timestamp="2022-05-27T22:53:18Z" user="Facalderonm" uid="1759764" lat="4.7381780" lon="-74.0864370"/>
+ <node id="7593801735" visible="true" version="2" changeset="125322581" timestamp="2022-08-24T15:54:56Z" user="JuanMelo" uid="12906384" lat="4.7382218" lon="-74.0864331">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9776062246" visible="true" version="1" changeset="121595885" timestamp="2022-05-27T22:53:18Z" user="Facalderonm" uid="1759764" lat="4.7381409" lon="-74.0864465"/>
+ <way id="383297454" visible="true" version="8" changeset="121595885" timestamp="2022-05-27T22:53:18Z" user="Facalderonm" uid="1759764">
+  <nd ref="262391131"/>
+  <nd ref="7593801735"/>
+  <nd ref="5519470404"/>
+  <nd ref="9776062246"/>
+  <nd ref="3865362649"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="1"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Calle 139"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

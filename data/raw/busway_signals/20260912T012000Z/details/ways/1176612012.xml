@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244695 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="263369144" visible="true" version="10" changeset="89116947" timestamp="2020-08-08T06:27:57Z" user="Facalderonm" uid="1759764" lat="4.6459583" lon="-74.0622339">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="263369147" visible="true" version="10" changeset="124098827" timestamp="2022-07-26T14:13:37Z" user="JuanMelo" uid="12906384" lat="4.6468110" lon="-74.0639594">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="345303064" visible="true" version="7" changeset="89116947" timestamp="2020-08-08T06:27:57Z" user="Facalderonm" uid="1759764" lat="4.6464208" lon="-74.0631323"/>
+ <node id="5102220848" visible="true" version="7" changeset="130434355" timestamp="2022-12-23T19:30:49Z" user="jonfaust" uid="11438835" lat="4.6467948" lon="-74.0639134">
+  <tag k="bicycle" v="yes"/>
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7796058736" visible="true" version="1" changeset="89116947" timestamp="2020-08-08T06:27:57Z" user="Facalderonm" uid="1759764" lat="4.6466958" lon="-74.0636880"/>
+ <node id="7796058737" visible="true" version="1" changeset="89116947" timestamp="2020-08-08T06:27:57Z" user="Facalderonm" uid="1759764" lat="4.6467539" lon="-74.0638181"/>
+ <node id="10250003148" visible="true" version="2" changeset="159031411" timestamp="2024-11-12T00:34:58Z" user="El Rolo Ueeqee" uid="21897253" lat="4.6462922" lon="-74.0628826"/>
+ <node id="12333429712" visible="true" version="1" changeset="159031411" timestamp="2024-11-12T00:34:58Z" user="El Rolo Ueeqee" uid="21897253" lat="4.6460064" lon="-74.0623274"/>
+ <way id="1176612012" visible="true" version="3" changeset="159031411" timestamp="2024-11-12T00:34:58Z" user="El Rolo Ueeqee" uid="21897253">
+  <nd ref="263369144"/>
+  <nd ref="12333429712"/>
+  <nd ref="10250003148"/>
+  <nd ref="345303064"/>
+  <nd ref="7796058736"/>
+  <nd ref="7796058737"/>
+  <nd ref="5102220848"/>
+  <nd ref="263369147"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="mechanical" v="yes"/>
+  <tag k="name" v="Calle 60"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

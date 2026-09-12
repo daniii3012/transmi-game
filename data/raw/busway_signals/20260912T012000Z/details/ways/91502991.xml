@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862522 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="267576136" visible="true" version="4" changeset="60549165" timestamp="2018-07-09T18:28:50Z" user="Facalderonm" uid="1759764" lat="4.7117776" lon="-74.1140725"/>
+ <node id="312495772" visible="true" version="3" changeset="60549165" timestamp="2018-07-09T18:28:50Z" user="Facalderonm" uid="1759764" lat="4.7122198" lon="-74.1144589"/>
+ <node id="5113580995" visible="true" version="1" changeset="52153905" timestamp="2017-09-18T18:47:35Z" user="hellosun" uid="6127501" lat="4.7126182" lon="-74.1147778"/>
+ <node id="5749954784" visible="true" version="1" changeset="60549165" timestamp="2018-07-09T18:28:49Z" user="Facalderonm" uid="1759764" lat="4.7124284" lon="-74.1146292"/>
+ <node id="5749954796" visible="true" version="1" changeset="60549165" timestamp="2018-07-09T18:28:49Z" user="Facalderonm" uid="1759764" lat="4.7119828" lon="-74.1142548"/>
+ <node id="8218054263" visible="true" version="1" changeset="95648168" timestamp="2020-12-11T01:36:29Z" user="Facalderonm" uid="1759764" lat="4.7131847" lon="-74.1151709"/>
+ <node id="13252347640" visible="true" version="1" changeset="173679138" timestamp="2025-10-23T14:59:45Z" user="Barto920203" uid="10140282" lat="4.7112510" lon="-74.1135965"/>
+ <node id="13252347645" visible="true" version="1" changeset="173679138" timestamp="2025-10-23T14:59:45Z" user="Barto920203" uid="10140282" lat="4.7113210" lon="-74.1136598">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="91502991" visible="true" version="15" changeset="173679138" timestamp="2025-10-23T14:59:45Z" user="Barto920203" uid="10140282">
+  <nd ref="8218054263"/>
+  <nd ref="5113580995"/>
+  <nd ref="5749954784"/>
+  <nd ref="312495772"/>
+  <nd ref="5749954796"/>
+  <nd ref="267576136"/>
+  <nd ref="13252347645"/>
+  <nd ref="13252347640"/>
+  <tag k="alt_name" v="Avenida Medellín"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

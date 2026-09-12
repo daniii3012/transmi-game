@@ -24,6 +24,8 @@ from pyproj import Transformer
 from shapely.geometry import LineString, Point
 from shapely.strtree import STRtree
 
+from busway_criteria import busway_reason, street_reason, street_segments
+
 from geo import LOCAL_CRS
 
 API = "https://api.openstreetmap.org/api/0.6/map"
@@ -93,15 +95,6 @@ def cell_bbox(ix: int, iy: int) -> tuple[float, float, float, float]:
     return west, south, east, north
 
 
-def qualifying_way(tags: dict[str, str]) -> bool:
-    if tags.get("highway") == "busway":
-        return True
-    if tags.get("highway") != "service":
-        return False
-    text = " ".join(tags.get(k, "") for k in ("name", "description", "operator", "ref", "route_ref", "destination", "access:description", "note"))
-    return bool(TRANSMI_RE.search(text) or tags.get("vehicle") == "bus" or tags.get("motor_vehicle") == "bus" or (tags.get("bus") == "yes" and tags.get("access") in {"no", "private"}) or any("bus" in tags.get(k, "").lower() for k in ("access:lanes", "vehicle:lanes", "motor_vehicle:lanes")))
-
-
 def main() -> None:
     parser = argparse.ArgumentParser()
     parser.add_argument("--services", default="app/dist/services.json")
@@ -161,17 +154,28 @@ def main() -> None:
     route_lines = [LineString(r["points"]) for r in services["routes"] if len(r.get("points", [])) >= 2]
     route_tree = STRtree(route_lines)
     project = Transformer.from_crs("EPSG:4326", LOCAL_CRS, always_xy=True)
-    near_signal_ids = set()
+    # Street sections of dual services are kept apart from the exclusive carriageway:
+    # a signal on an ordinary road only qualifies where a service actually leaves the
+    # busway, never beside it.
+    street_lines = [LineString(span) for span in street_segments(services)]
+    street_tree = STRtree(street_lines) if street_lines else None
+    near_route, near_street = set(), set()
     for nid in signal_ids:
         node = all_nodes[nid]
-        x, y = project.transform(node["lon"], node["lat"])
-        nearest = route_lines[int(route_tree.nearest(Point(x, y)))]
-        if Point(x, y).distance(nearest) <= 12.0:
-            near_signal_ids.add(nid)
-    selected_pairs = [
-        (nid, wid) for nid in sorted(near_signal_ids) for wid in member_ways.get(nid, [])
-        if qualifying_way(all_ways.get(wid, {}).get("tags", {}))
-    ]
+        point = Point(*project.transform(node["lon"], node["lat"]))
+        if point.distance(route_lines[int(route_tree.nearest(point))]) <= 12.0:
+            near_route.add(nid)
+        if street_tree is not None and point.distance(street_lines[int(street_tree.nearest(point))]) <= 12.0:
+            near_street.add(nid)
+    selected_pairs = []
+    for nid in sorted(near_route | near_street):
+        for wid in member_ways.get(nid, []):
+            tags = all_ways.get(wid, {}).get("tags", {})
+            if nid in near_route and busway_reason(tags):
+                selected_pairs.append((nid, wid))
+            elif nid in near_street and street_reason(tags):
+                selected_pairs.append((nid, wid))
+    near_signal_ids = near_route | near_street
     selected_way_ids = sorted({wid for _, wid in selected_pairs})
     detail_root = output / "details"
     way_root, node_root = detail_root / "ways", detail_root / "nodes"

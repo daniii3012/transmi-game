@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244685 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3879238812" visible="true" version="4" changeset="92198894" timestamp="2020-10-08T23:09:54Z" user="Facalderonm" uid="1759764" lat="4.6680751" lon="-74.0517989">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Centro Comercial La Cabrera"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="281A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="5905248375" visible="true" version="2" changeset="92198894" timestamp="2020-10-08T23:09:54Z" user="Facalderonm" uid="1759764" lat="4.6679963" lon="-74.0516624"/>
+ <node id="5905248376" visible="true" version="4" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6679362" lon="-74.0515706">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals:direction" v="backward"/>
+ </node>
+ <node id="9644328383" visible="true" version="4" changeset="177661394" timestamp="2026-01-24T21:00:12Z" user="mapeadora" uid="1437169" lat="4.6679160" lon="-74.0515398">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+  <tag k="traffic_signals:sound" v="no"/>
+ </node>
+ <node id="13805375143" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6679050" lon="-74.0515205"/>
+ <way id="914672126" visible="true" version="9" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282">
+  <nd ref="13805375143"/>
+  <nd ref="9644328383"/>
+  <nd ref="5905248376"/>
+  <nd ref="5905248375"/>
+  <nd ref="3879238812"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="lanes:backward" v="2"/>
+  <tag k="lanes:forward" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Calle 85"/>
+  <tag k="oneway" v="no"/>
+  <tag k="short_name" v="AC 85"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="surface" v="paving_stones"/>
+ </way>
+</osm>

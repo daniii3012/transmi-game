@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244694 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="263369091" visible="true" version="12" changeset="59287770" timestamp="2018-05-26T06:32:18Z" user="Facalderonm" uid="1759764" lat="4.6402353" lon="-74.0650680">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="264357419" visible="true" version="11" changeset="92200798" timestamp="2020-10-09T02:00:38Z" user="Facalderonm" uid="1759764" lat="4.6408948" lon="-74.0649494"/>
+ <node id="1602429217" visible="true" version="11" changeset="177661394" timestamp="2026-01-24T21:18:16Z" user="mapeadora" uid="1437169" lat="4.6402742" lon="-74.0650610">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="3861884282" visible="true" version="4" changeset="92200798" timestamp="2020-10-09T02:00:38Z" user="Facalderonm" uid="1759764" lat="4.6407801" lon="-74.0649700">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Tecnoparque SENA"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="233A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <way id="1154793489" visible="true" version="1" changeset="133756197" timestamp="2023-03-16T16:16:41Z" user="Leonardo Gutierrez" uid="77400">
+  <nd ref="264357419"/>
+  <nd ref="3861884282"/>
+  <nd ref="1602429217"/>
+  <nd ref="263369091"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Carrera 13"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk:both" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

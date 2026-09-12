@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244703 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="263776829" visible="true" version="10" changeset="92201090" timestamp="2020-10-09T02:15:48Z" user="Facalderonm" uid="1759764" lat="4.6271346" lon="-74.0672358">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="264377139" visible="true" version="10" changeset="92201090" timestamp="2020-10-09T02:15:48Z" user="Facalderonm" uid="1759764" lat="4.6259496" lon="-74.0674315"/>
+ <node id="3861884277" visible="true" version="5" changeset="92287751" timestamp="2020-10-10T21:49:02Z" user="Facalderonm" uid="1759764" lat="4.6266107" lon="-74.0673204">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="RCN Radio"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="237A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="9692853955" visible="true" version="1" changeset="120173977" timestamp="2022-04-25T16:24:27Z" user="JuanMelo" uid="12906384" lat="4.6270972" lon="-74.0672418">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="908678807" visible="true" version="2" changeset="120173977" timestamp="2022-04-25T16:24:27Z" user="JuanMelo" uid="12906384">
+  <nd ref="263776829"/>
+  <nd ref="9692853955"/>
+  <nd ref="3861884277"/>
+  <nd ref="264377139"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Carrera 13"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -174,10 +174,20 @@ La descarga cubre la red en celdas de 0,005° derivadas de los puntos de
 el nodo de cada semáforo, porque la tangente local se calcula con los nodos vecinos
 reales de la vía, no uniendo semáforos lejanos.
 
-Un semáforo se acepta solo si el nodo `highway=traffic_signals` pertenece directamente
-a una vía `highway=busway`, o a una `highway=service` con identificación explícita de
-TransMilenio o acceso exclusivo de buses. **La cercanía no basta** y los rechazados
-quedan en la auditoría del JSON curado. Para activarlo en un recorrido se exige además
+Un semáforo se acepta por uno de dos caminos, que se registran por separado en el campo
+`carriageway` de cada señal:
+
+- **`busway`**: el nodo pertenece directamente a una vía `highway=busway`, o a una
+  `highway=service` con identificación explícita de TransMilenio o acceso exclusivo de
+  buses.
+- **`street`**: el nodo pertenece a una vía ordinaria abierta a buses y cae dentro de la
+  tolerancia de un tramo de calle de un servicio dual. Solo aplica donde el servicio deja
+  la troncal; en un corredor troncal los carriles mixtos van paralelos a pocos metros y
+  aceptarlos sumaría semáforos que no controlan la calzada del bus.
+
+Las reglas están en `tools/busway_criteria.py`, compartido por el descargador y el
+curador para que no se desincronicen. **La cercanía no basta** y los rechazados quedan en
+la auditoría del JSON curado. Para activarlo en un recorrido se exige además
 distancia ≤12 m (`--max-distance-m`), coseno de tangente ≥0,87 en valor absoluto, y
 respeto de `oneway` y `traffic_signals:direction` cuando existen.
 

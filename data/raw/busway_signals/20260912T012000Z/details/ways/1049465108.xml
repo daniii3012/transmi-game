@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244681 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="316855586" visible="true" version="50" changeset="91067754" timestamp="2020-09-17T19:39:39Z" user="Facalderonm" uid="1759764" lat="4.6921103" lon="-74.0857449">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="330862619" visible="true" version="27" changeset="60554876" timestamp="2018-07-09T23:03:34Z" user="Facalderonm" uid="1759764" lat="4.6917278" lon="-74.0861529"/>
+ <node id="5587145329" visible="true" version="6" changeset="119387179" timestamp="2022-04-06T13:15:17Z" user="JuanMelo" uid="12906384" lat="4.6920526" lon="-74.0857992"/>
+ <node id="7918111733" visible="true" version="1" changeset="91067754" timestamp="2020-09-17T19:39:39Z" user="Facalderonm" uid="1759764" lat="4.6919719" lon="-74.0858753"/>
+ <node id="9645685051" visible="true" version="1" changeset="119387179" timestamp="2022-04-06T13:15:17Z" user="JuanMelo" uid="12906384" lat="4.6920076" lon="-74.0858417">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1049465108" visible="true" version="2" changeset="119387179" timestamp="2022-04-06T13:15:17Z" user="JuanMelo" uid="12906384">
+  <nd ref="330862619"/>
+  <nd ref="7918111733"/>
+  <nd ref="9645685051"/>
+  <nd ref="5587145329"/>
+  <nd ref="316855586"/>
+  <tag k="alt_name" v="Avenida de la Constitución"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Carrera 70"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

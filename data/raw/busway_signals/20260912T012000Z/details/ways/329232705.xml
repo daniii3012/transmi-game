@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244697 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="262391109" visible="true" version="74" changeset="87260475" timestamp="2020-06-28T20:24:54Z" user="Facalderonm" uid="1759764" lat="4.7472629" lon="-74.0968971"/>
+ <node id="262391110" visible="true" version="71" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7474524" lon="-74.0972757"/>
+ <node id="262391111" visible="true" version="67" changeset="64122994" timestamp="2018-11-02T18:08:59Z" user="Facalderonm" uid="1759764" lat="4.7478496" lon="-74.0978895"/>
+ <node id="926762690" visible="true" version="4" changeset="54352682" timestamp="2017-12-05T04:11:50Z" user="Facalderonm" uid="1759764" lat="4.7491072" lon="-74.1004821"/>
+ <node id="926763264" visible="true" version="7" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7489372" lon="-74.1001144">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="1353938695" visible="true" version="5" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7481562" lon="-74.0984805">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="1353938739" visible="true" version="5" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7484852" lon="-74.0991818">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="1353938742" visible="true" version="4" changeset="64122994" timestamp="2018-11-02T18:08:59Z" user="Facalderonm" uid="1759764" lat="4.7477655" lon="-74.0977456"/>
+ <node id="4070141480" visible="true" version="2" changeset="52969220" timestamp="2017-10-16T00:14:55Z" user="Facalderonm" uid="1759764" lat="4.7487401" lon="-74.0997024"/>
+ <node id="5113838762" visible="true" version="3" changeset="125673813" timestamp="2022-09-01T21:58:43Z" user="Raenbow" uid="10782346" lat="4.7483857" lon="-74.0989714"/>
+ <node id="5113838766" visible="true" version="2" changeset="52969220" timestamp="2017-10-16T00:14:55Z" user="Facalderonm" uid="1759764" lat="4.7485664" lon="-74.0993538"/>
+ <node id="5170197917" visible="true" version="3" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7476925" lon="-74.0976311">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="5265047501" visible="true" version="2" changeset="64122994" timestamp="2018-11-02T18:08:59Z" user="Facalderonm" uid="1759764" lat="4.7480134" lon="-74.0981909"/>
+ <node id="5731630271" visible="true" version="5" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7475674" lon="-74.0974511"/>
+ <node id="5731630272" visible="true" version="4" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7473559" lon="-74.0970879"/>
+ <node id="5731630273" visible="true" version="3" changeset="87260475" timestamp="2020-06-28T20:24:54Z" user="Facalderonm" uid="1759764" lat="4.7473036" lon="-74.0969683"/>
+ <node id="13921428541" visible="true" version="1" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7475036" lon="-74.0973565"/>
+ <node id="13921428542" visible="true" version="1" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7473996" lon="-74.0971761"/>
+ <node id="13921428543" visible="true" version="1" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7473286" lon="-74.0970178"/>
+ <way id="329232705" visible="true" version="30" changeset="188313603" timestamp="2026-08-31T15:46:43Z" user="Barto920203" uid="10140282">
+  <nd ref="262391109"/>
+  <nd ref="5731630273"/>
+  <nd ref="13921428543"/>
+  <nd ref="5731630272"/>
+  <nd ref="13921428542"/>
+  <nd ref="262391110"/>
+  <nd ref="13921428541"/>
+  <nd ref="5731630271"/>
+  <nd ref="5170197917"/>
+  <nd ref="1353938742"/>
+  <nd ref="262391111"/>
+  <nd ref="5265047501"/>
+  <nd ref="1353938695"/>
+  <nd ref="5113838762"/>
+  <nd ref="1353938739"/>
+  <nd ref="5113838766"/>
+  <nd ref="4070141480"/>
+  <nd ref="926763264"/>
+  <nd ref="926762690"/>
+  <tag k="alt_name" v="Avenida Suba"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Avenida Calle 145"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="yes"/>
+  <tag k="surface" v="concrete"/>
+  <tag k="wikidata" v="Q4828124"/>
+  <tag k="wikipedia" v="es:Avenida Suba"/>
+ </way>
+</osm>

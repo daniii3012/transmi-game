@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244706 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="263544186" visible="true" version="24" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6443280" lon="-74.0616395">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="265491415" visible="true" version="17" changeset="92307135" timestamp="2020-10-11T16:27:00Z" user="Facalderonm" uid="1759764" lat="4.6431967" lon="-74.0619343"/>
+ <node id="7371310063" visible="true" version="10" changeset="130434355" timestamp="2022-12-23T19:32:32Z" user="jonfaust" uid="11438835" lat="4.6442058" lon="-74.0616710">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7996375409" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6434771" lon="-74.0618509"/>
+ <node id="7996375411" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6438398" lon="-74.0617561"/>
+ <node id="7996375412" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6440413" lon="-74.0617120"/>
+ <way id="89700410" visible="true" version="30" changeset="131089059" timestamp="2023-01-10T02:49:11Z" user="osm972" uid="122547">
+  <nd ref="263544186"/>
+  <nd ref="7371310063"/>
+  <nd ref="7996375412"/>
+  <nd ref="7996375411"/>
+  <nd ref="7996375409"/>
+  <nd ref="265491415"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="bicycle:conditional" v="yes @ (Su,PH 07:00-14:00)"/>
+  <tag k="busway:right" v="lane"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="foot:conditional" v="yes @ (Su,PH 07:00-14:00)"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="motor_vehicle:conditional" v="no @ (Su,PH 07:00-14:00)"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle:conditional" v="no @ (Su,PH 07:00-14:00)"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

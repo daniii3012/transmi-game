@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862522 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3197029612" visible="true" version="3" changeset="59794572" timestamp="2018-06-13T01:33:22Z" user="Facalderonm" uid="1759764" lat="4.6620329" lon="-74.0495358"/>
+ <node id="3197029613" visible="true" version="7" changeset="66283614" timestamp="2019-01-13T20:27:38Z" user="chachafish" uid="2237750" lat="4.6629999" lon="-74.0486671">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="3197029614" visible="true" version="2" changeset="36039541" timestamp="2015-12-19T05:03:33Z" user="AngocA" uid="89128" lat="4.6635677" lon="-74.0480866"/>
+ <node id="3197029615" visible="true" version="6" changeset="59794796" timestamp="2018-06-13T01:54:54Z" user="Facalderonm" uid="1759764" lat="4.6642087" lon="-74.0474272"/>
+ <node id="3510543220" visible="true" version="4" changeset="59794572" timestamp="2018-06-13T01:33:22Z" user="Facalderonm" uid="1759764" lat="4.6628892" lon="-74.0487748"/>
+ <node id="3899237993" visible="true" version="2" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6628069" lon="-74.0488536">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Embajada del Perú"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="041A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="3964774885" visible="true" version="3" changeset="144345785" timestamp="2023-11-22T22:52:35Z" user="Facalderonm" uid="1759764" lat="4.6621738" lon="-74.0494130">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Calle 82"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="BD-033A"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="5133274521" visible="true" version="2" changeset="59794572" timestamp="2018-06-13T01:33:22Z" user="Facalderonm" uid="1759764" lat="4.6632451" lon="-74.0484328"/>
+ <node id="7341545857" visible="true" version="1" changeset="82765878" timestamp="2020-03-28T22:35:40Z" user="TB29" uid="10952305" lat="4.6631661" lon="-74.0485083"/>
+ <node id="7341545861" visible="true" version="1" changeset="82765878" timestamp="2020-03-28T22:35:40Z" user="TB29" uid="10952305" lat="4.6633734" lon="-74.0482951"/>
+ <node id="7359841106" visible="true" version="1" changeset="82996199" timestamp="2020-04-02T18:47:17Z" user="Rafael MN" uid="10479560" lat="4.6629561" lon="-74.0487097">
+  <tag k="crossing" v="marked"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="7359841120" visible="true" version="7" changeset="178472462" timestamp="2026-02-12T19:18:33Z" user="SpaceTracer" uid="9368502" lat="4.6624057" lon="-74.0492116">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7996375446" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6626697" lon="-74.0489809"/>
+ <node id="10681697361" visible="true" version="1" changeset="132807813" timestamp="2023-02-20T20:39:02Z" user="JuanMelo" uid="12906384" lat="4.6634943" lon="-74.0481654"/>
+ <node id="10681697368" visible="true" version="1" changeset="132807813" timestamp="2023-02-20T20:39:02Z" user="JuanMelo" uid="12906384" lat="4.6630739" lon="-74.0485964"/>
+ <node id="12590565394" visible="true" version="1" changeset="162545967" timestamp="2025-02-15T18:05:58Z" user="The MEP Engineer Residente" uid="22513418" lat="4.6632855" lon="-74.0483895"/>
+ <way id="914660567" visible="true" version="13" changeset="162545967" timestamp="2025-02-15T18:05:58Z" user="The MEP Engineer Residente" uid="22513418">
+  <nd ref="3197029612"/>
+  <nd ref="3964774885"/>
+  <nd ref="7359841120"/>
+  <nd ref="7996375446"/>
+  <nd ref="3899237993"/>
+  <nd ref="3510543220"/>
+  <nd ref="7359841106"/>
+  <nd ref="3197029613"/>
+  <nd ref="10681697368"/>
+  <nd ref="7341545857"/>
+  <nd ref="5133274521"/>
+  <nd ref="12590565394"/>
+  <nd ref="7341545861"/>
+  <nd ref="10681697361"/>
+  <nd ref="3197029614"/>
+  <nd ref="3197029615"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="busway:right" v="lane"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="sidewalk:left" v="no"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942786 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="4070529226" visible="true" version="2" changeset="74761207" timestamp="2019-09-21T23:53:21Z" user="Facalderonm" uid="1759764" lat="4.5331749" lon="-74.1198973"/>
+ <node id="4070529228" visible="true" version="1" changeset="37964630" timestamp="2016-03-20T21:43:15Z" user="Facalderonm" uid="1759764" lat="4.5330496" lon="-74.1198258"/>
+ <node id="5433725920" visible="true" version="3" changeset="126723376" timestamp="2022-09-28T06:10:51Z" user="Facalderonm" uid="1759764" lat="4.5332968" lon="-74.1199626">
+  <tag k="barrier" v="gate"/>
+  <tag k="entrance" v="yes"/>
+ </node>
+ <node id="9024045994" visible="true" version="6" changeset="136056740" timestamp="2023-05-13T14:51:23Z" user="Daniel Santiago Valderrama Corredor" uid="15124908" lat="4.5335594" lon="-74.1201220">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <way id="1172473505" visible="true" version="3" changeset="160582997" timestamp="2024-12-24T17:07:31Z" user="Barto920203" uid="10140282">
+  <nd ref="9024045994"/>
+  <nd ref="5433725920"/>
+  <nd ref="4070529226"/>
+  <nd ref="4070529228"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244708 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="316855586" visible="true" version="50" changeset="91067754" timestamp="2020-09-17T19:39:39Z" user="Facalderonm" uid="1759764" lat="4.6921103" lon="-74.0857449">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+</osm>

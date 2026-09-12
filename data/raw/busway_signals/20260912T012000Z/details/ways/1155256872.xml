@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942763 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="267576104" visible="true" version="6" changeset="124219983" timestamp="2022-07-29T08:59:26Z" user="Facalderonm" uid="1759764" lat="4.7074213" lon="-74.1096678"/>
+ <node id="448427192" visible="true" version="4" changeset="124219983" timestamp="2022-07-29T08:59:26Z" user="Facalderonm" uid="1759764" lat="4.7070803" lon="-74.1092784"/>
+ <node id="1062540515" visible="true" version="8" changeset="91069431" timestamp="2020-09-17T20:20:15Z" user="Facalderonm" uid="1759764" lat="4.7072811" lon="-74.1095118">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="5749861092" visible="true" version="10" changeset="186064695" timestamp="2026-07-20T14:54:35Z" user="Ludway" uid="21683536" lat="4.7073338" lon="-74.1095698">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13252347628" visible="true" version="1" changeset="173679138" timestamp="2025-10-23T14:59:45Z" user="Barto920203" uid="10140282" lat="4.7083421" lon="-74.1106097"/>
+ <way id="1155256872" visible="true" version="7" changeset="173679138" timestamp="2025-10-23T14:59:45Z" user="Barto920203" uid="10140282">
+  <nd ref="13252347628"/>
+  <nd ref="267576104"/>
+  <nd ref="5749861092"/>
+  <nd ref="1062540515"/>
+  <nd ref="448427192"/>
+  <tag k="access" v="no"/>
+  <tag k="alt_name" v="Troncal Calle 80"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="bus"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

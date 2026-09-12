@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862522 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="5569908547" visible="true" version="6" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6170042" lon="-74.1891718"/>
+ <node id="5700255519" visible="true" version="3" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6173053" lon="-74.1888945"/>
+ <node id="5700278807" visible="true" version="3" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6175553" lon="-74.1886677"/>
+ <node id="5700281470" visible="true" version="4" changeset="120441601" timestamp="2022-05-02T03:52:44Z" user="Oscarín Orbitus" uid="1857063" lat="4.6168455" lon="-74.1893251"/>
+ <node id="5700281472" visible="true" version="5" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6171317" lon="-74.1890505"/>
+ <node id="9884272236" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6169142" lon="-74.1892546"/>
+ <node id="9961898076" visible="true" version="2" changeset="162589698" timestamp="2025-02-16T22:39:09Z" user="Facalderonm" uid="1759764" lat="4.6175401" lon="-74.1886822">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13931266494" visible="true" version="1" changeset="184018937" timestamp="2026-06-12T14:11:00Z" user="Barto920203" uid="10140282" lat="4.6176537" lon="-74.1885725"/>
+ <node id="13931266496" visible="true" version="1" changeset="184018937" timestamp="2026-06-12T14:11:00Z" user="Barto920203" uid="10140282" lat="4.6174997" lon="-74.1887179">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1078100714" visible="true" version="5" changeset="184019381" timestamp="2026-06-12T14:20:53Z" user="Barto920203" uid="10140282">
+  <nd ref="5700281470"/>
+  <nd ref="9884272236"/>
+  <nd ref="5569908547"/>
+  <nd ref="5700281472"/>
+  <nd ref="5700255519"/>
+  <nd ref="13931266496"/>
+  <nd ref="9961898076"/>
+  <nd ref="5700278807"/>
+  <nd ref="13931266494"/>
+  <tag k="alt_name" v="Avenida Ciudad de Cali"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Avenida Carrera 84C"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

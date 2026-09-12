@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244707 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="268230525" visible="true" version="19" changeset="89431398" timestamp="2020-08-14T22:02:47Z" user="Facalderonm" uid="1759764" lat="4.6526275" lon="-74.0629836">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="2807673251" visible="true" version="11" changeset="182013618" timestamp="2026-04-30T02:37:37Z" user="Barto920203" uid="10140282" lat="4.6535411" lon="-74.0628525">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="3861884263" visible="true" version="2" changeset="89431398" timestamp="2020-08-14T22:02:47Z" user="Facalderonm" uid="1759764" lat="4.6530672" lon="-74.0629201">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Chapinero norte"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="BD-022A"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="9411954166" visible="true" version="1" changeset="116052103" timestamp="2022-01-12T06:37:19Z" user="PointeDesAlmadies" uid="10334775" lat="4.6528868" lon="-74.0629450"/>
+ <node id="9912585264" visible="true" version="1" changeset="124098827" timestamp="2022-07-26T14:13:37Z" user="JuanMelo" uid="12906384" lat="4.6526784" lon="-74.0629756">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1164676085" visible="true" version="1" changeset="135231786" timestamp="2023-04-22T14:55:23Z" user="Luisa Gutierrez" uid="15415576">
+  <nd ref="2807673251"/>
+  <nd ref="3861884263"/>
+  <nd ref="9411954166"/>
+  <nd ref="9912585264"/>
+  <nd ref="268230525"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Carrera 13"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

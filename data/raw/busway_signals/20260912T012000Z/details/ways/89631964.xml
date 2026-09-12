@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244702 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="263544186" visible="true" version="24" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6443280" lon="-74.0616395">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="449727350" visible="true" version="7" changeset="92285944" timestamp="2020-10-10T20:10:14Z" user="Facalderonm" uid="1759764" lat="4.6445904" lon="-74.0620257"/>
+ <node id="7371310060" visible="true" version="8" changeset="159031411" timestamp="2024-11-12T00:34:58Z" user="El Rolo Ueeqee" uid="21897253" lat="4.6443758" lon="-74.0617089">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals;marked"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7995787582" visible="true" version="1" changeset="92285944" timestamp="2020-10-10T20:10:14Z" user="Facalderonm" uid="1759764" lat="4.6444748" lon="-74.0618476"/>
+ <way id="89631964" visible="true" version="10" changeset="115111282" timestamp="2021-12-18T22:48:09Z" user="JAAS" uid="3321532">
+  <nd ref="263544186"/>
+  <nd ref="7371310060"/>
+  <nd ref="7995787582"/>
+  <nd ref="449727350"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Calle 59"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

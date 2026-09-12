@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942770 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="9689044694" visible="true" version="3" changeset="123541318" timestamp="2022-07-13T03:05:03Z" user="Facalderonm" uid="1759764" lat="4.6159922" lon="-74.1914185"/>
+ <node id="9884272238" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6162568" lon="-74.1904638"/>
+ <node id="9884272239" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6162991" lon="-74.1903189"/>
+ <node id="9884272240" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6163510" lon="-74.1901804"/>
+ <node id="9884272241" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6164387" lon="-74.1899866"/>
+ <node id="9884272242" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6165117" lon="-74.1898497"/>
+ <node id="9884272243" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6166059" lon="-74.1896966"/>
+ <node id="9884272244" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6167163" lon="-74.1895403"/>
+ <node id="9884272245" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6168446" lon="-74.1893790"/>
+ <node id="9884272246" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6170021" lon="-74.1892226"/>
+ <node id="9884272248" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6177992" lon="-74.1884896"/>
+ <node id="9884272249" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6178577" lon="-74.1884212"/>
+ <node id="9884272250" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6178983" lon="-74.1883610"/>
+ <node id="9884272254" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6178268" lon="-74.1884603"/>
+ <node id="9884276225" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6179820" lon="-74.1882289"/>
+ <node id="9884276226" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6184051" lon="-74.1874143"/>
+ <node id="9884276235" visible="true" version="2" changeset="162589698" timestamp="2025-02-16T22:39:09Z" user="Facalderonm" uid="1759764" lat="4.6177733" lon="-74.1885136">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9884276238" visible="true" version="4" changeset="173511427" timestamp="2025-10-19T21:44:39Z" user="Facalderonm" uid="1759764" lat="4.6183327" lon="-74.1875805">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9884276240" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6185059" lon="-74.1868479"/>
+ <node id="9884276241" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6185834" lon="-74.1863517"/>
+ <node id="9884276299" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6186797" lon="-74.1857294"/>
+ <node id="9884276300" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6188107" lon="-74.1848738"/>
+ <node id="9884276301" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6189203" lon="-74.1841791"/>
+ <node id="9884276302" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6189577" lon="-74.1839430"/>
+ <node id="9884276303" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6190005" lon="-74.1837660"/>
+ <node id="9884276305" visible="true" version="3" changeset="184019381" timestamp="2026-06-12T14:20:53Z" user="Barto920203" uid="10140282" lat="4.6190539" lon="-74.1836158">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="9884276327" visible="true" version="3" changeset="179274283" timestamp="2026-03-02T20:53:08Z" user="JuanMelo" uid="12906384" lat="4.6190900" lon="-74.1835357">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9884276343" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6184226" lon="-74.1873479"/>
+ <node id="9884276344" visible="true" version="1" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6183850" lon="-74.1874675"/>
+ <node id="9884276412" visible="true" version="3" changeset="179273177" timestamp="2026-03-02T20:25:59Z" user="JuanMelo" uid="12906384" lat="4.6185936" lon="-74.1862838"/>
+ <node id="9884276414" visible="true" version="2" changeset="131622277" timestamp="2023-01-23T19:33:01Z" user="Facalderonm" uid="1759764" lat="4.6176921" lon="-74.1885874"/>
+ <node id="9884318841" visible="true" version="2" changeset="179274283" timestamp="2026-03-02T20:53:08Z" user="JuanMelo" uid="12906384" lat="4.6191779" lon="-74.1833480"/>
+ <node id="9961898075" visible="true" version="2" changeset="162589698" timestamp="2025-02-16T22:39:09Z" user="Facalderonm" uid="1759764" lat="4.6175734" lon="-74.1886971">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="12282759159" visible="true" version="1" changeset="158272624" timestamp="2024-10-23T21:52:31Z" user="Barto920203" uid="10140282" lat="4.6184644" lon="-74.1870971"/>
+ <node id="12282759162" visible="true" version="1" changeset="158272624" timestamp="2024-10-23T21:52:31Z" user="Barto920203" uid="10140282" lat="4.6183173" lon="-74.1876085">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="12282759167" visible="true" version="2" changeset="179273177" timestamp="2026-03-02T20:25:59Z" user="JuanMelo" uid="12906384" lat="4.6184942" lon="-74.1869155"/>
+ <node id="12282759182" visible="true" version="3" changeset="173511427" timestamp="2025-10-19T21:44:39Z" user="Facalderonm" uid="1759764" lat="4.6187233" lon="-74.1854444">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="12282759185" visible="true" version="1" changeset="158272624" timestamp="2024-10-23T21:52:31Z" user="Barto920203" uid="10140282" lat="4.6187152" lon="-74.1854976">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="13931266497" visible="true" version="1" changeset="184018937" timestamp="2026-06-12T14:11:00Z" user="Barto920203" uid="10140282" lat="4.6175337" lon="-74.1887324">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="13931409478" visible="true" version="1" changeset="184019381" timestamp="2026-06-12T14:20:53Z" user="Barto920203" uid="10140282" lat="4.6191443" lon="-74.1834117"/>
+ <way id="1078100675" visible="true" version="11" changeset="184019381" timestamp="2026-06-12T14:20:53Z" user="Barto920203" uid="10140282">
+  <nd ref="9689044694"/>
+  <nd ref="9884272238"/>
+  <nd ref="9884272239"/>
+  <nd ref="9884272240"/>
+  <nd ref="9884272241"/>
+  <nd ref="9884272242"/>
+  <nd ref="9884272243"/>
+  <nd ref="9884272244"/>
+  <nd ref="9884272245"/>
+  <nd ref="9884272246"/>
+  <nd ref="13931266497"/>
+  <nd ref="9961898075"/>
+  <nd ref="9884276414"/>
+  <nd ref="9884276235"/>
+  <nd ref="9884272248"/>
+  <nd ref="9884272254"/>
+  <nd ref="9884272249"/>
+  <nd ref="9884272250"/>
+  <nd ref="9884276225"/>
+  <nd ref="12282759162"/>
+  <nd ref="9884276238"/>
+  <nd ref="9884276344"/>
+  <nd ref="9884276226"/>
+  <nd ref="9884276343"/>
+  <nd ref="12282759159"/>
+  <nd ref="12282759167"/>
+  <nd ref="9884276240"/>
+  <nd ref="9884276241"/>
+  <nd ref="9884276412"/>
+  <nd ref="9884276299"/>
+  <nd ref="12282759185"/>
+  <nd ref="12282759182"/>
+  <nd ref="9884276300"/>
+  <nd ref="9884276301"/>
+  <nd ref="9884276302"/>
+  <nd ref="9884276303"/>
+  <nd ref="9884276305"/>
+  <nd ref="9884276327"/>
+  <nd ref="13931409478"/>
+  <nd ref="9884318841"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="check_date" v="2025-01-08"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="bus"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

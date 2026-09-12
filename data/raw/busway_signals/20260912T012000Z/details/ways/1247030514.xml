@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244706 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="976343127" visible="true" version="11" changeset="173472824" timestamp="2025-10-19T02:05:40Z" user="Facalderonm" uid="1759764" lat="4.6285591" lon="-74.1707215">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="9884505001" visible="true" version="2" changeset="123549888" timestamp="2022-07-13T07:49:49Z" user="Facalderonm" uid="1759764" lat="4.6287534" lon="-74.1703202"/>
+ <node id="9884505016" visible="true" version="1" changeset="123549305" timestamp="2022-07-13T07:38:23Z" user="Facalderonm" uid="1759764" lat="4.6288365" lon="-74.1701733"/>
+ <node id="9884515525" visible="true" version="9" changeset="173472824" timestamp="2025-10-19T02:05:40Z" user="Facalderonm" uid="1759764" lat="4.6286020" lon="-74.1706284">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9884515701" visible="true" version="3" changeset="147156120" timestamp="2024-02-07T00:22:50Z" user="Facalderonm" uid="1759764" lat="4.6289276" lon="-74.1700269"/>
+ <node id="11238617526" visible="true" version="2" changeset="153722996" timestamp="2024-07-08T22:23:26Z" user="Facalderonm" uid="1759764" lat="4.6286728" lon="-74.1704749"/>
+ <way id="1247030514" visible="true" version="1" changeset="147156120" timestamp="2024-02-07T00:22:50Z" user="Facalderonm" uid="1759764">
+  <nd ref="9884515701"/>
+  <nd ref="9884505016"/>
+  <nd ref="9884505001"/>
+  <nd ref="11238617526"/>
+  <nd ref="9884515525"/>
+  <nd ref="976343127"/>
+  <tag k="alt_name" v="Avenida Ciudad de Cali"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Carrera 86"/>
+  <tag k="official_name" v="AK 86"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="separate"/>
+ </way>
+</osm>

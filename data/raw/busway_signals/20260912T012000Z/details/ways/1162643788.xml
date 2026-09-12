@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244708 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="260462176" visible="true" version="12" changeset="60546617" timestamp="2018-07-09T16:46:58Z" user="Facalderonm" uid="1759764" lat="4.6998474" lon="-74.0967383"/>
+ <node id="260462453" visible="true" version="12" changeset="60546617" timestamp="2018-07-09T16:46:58Z" user="Facalderonm" uid="1759764" lat="4.6992708" lon="-74.0959229"/>
+ <node id="260462612" visible="true" version="12" changeset="60546617" timestamp="2018-07-09T16:46:58Z" user="Facalderonm" uid="1759764" lat="4.6989717" lon="-74.0954460"/>
+ <node id="260462625" visible="true" version="12" changeset="60546617" timestamp="2018-07-09T16:46:57Z" user="Facalderonm" uid="1759764" lat="4.6986229" lon="-74.0948372"/>
+ <node id="4893307019" visible="true" version="3" changeset="60546617" timestamp="2018-07-09T16:46:57Z" user="Facalderonm" uid="1759764" lat="4.6982905" lon="-74.0942296"/>
+ <node id="4893309025" visible="true" version="2" changeset="60546617" timestamp="2018-07-09T16:46:57Z" user="Facalderonm" uid="1759764" lat="4.6988351" lon="-74.0952153"/>
+ <node id="4894014721" visible="true" version="6" changeset="119363193" timestamp="2022-04-05T23:54:46Z" user="JuanMelo" uid="12906384" lat="4.7001864" lon="-74.0971842">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="5749780112" visible="true" version="1" changeset="60546617" timestamp="2018-07-09T16:46:51Z" user="Facalderonm" uid="1759764" lat="4.6982295" lon="-74.0941167"/>
+ <node id="5749780120" visible="true" version="1" changeset="60546617" timestamp="2018-07-09T16:46:51Z" user="Facalderonm" uid="1759764" lat="4.6995535" lon="-74.0963342"/>
+ <node id="5762688300" visible="true" version="1" changeset="60744531" timestamp="2018-07-16T03:05:40Z" user="Facalderonm" uid="1759764" lat="4.6996181" lon="-74.0964231"/>
+ <node id="6953046629" visible="true" version="1" changeset="76729563" timestamp="2019-11-07T02:56:09Z" user="Priyanka_Kumari" uid="10285114" lat="4.6993267" lon="-74.0960050"/>
+ <node id="9687667141" visible="true" version="1" changeset="120085214" timestamp="2022-04-23T10:41:15Z" user="PoolMalebo" uid="14854465" lat="4.7000227" lon="-74.0969715"/>
+ <node id="9687667147" visible="true" version="1" changeset="120085214" timestamp="2022-04-23T10:41:15Z" user="PoolMalebo" uid="14854465" lat="4.6997835" lon="-74.0966483"/>
+ <node id="9692147334" visible="true" version="1" changeset="120164374" timestamp="2022-04-25T12:26:48Z" user="PoolMalebo" uid="14854465" lat="4.6994560" lon="-74.0962011"/>
+ <node id="13252347603" visible="true" version="1" changeset="173679138" timestamp="2025-10-23T14:59:45Z" user="Barto920203" uid="10140282" lat="4.7003229" lon="-74.0973644"/>
+ <node id="13286078823" visible="true" version="1" changeset="174307343" timestamp="2025-11-06T21:04:51Z" user="JuanMelo" uid="12906384" lat="4.7002499" lon="-74.0972680">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1162643788" visible="true" version="6" changeset="174307343" timestamp="2025-11-06T21:04:51Z" user="JuanMelo" uid="12906384">
+  <nd ref="5749780112"/>
+  <nd ref="4893307019"/>
+  <nd ref="260462625"/>
+  <nd ref="4893309025"/>
+  <nd ref="260462612"/>
+  <nd ref="260462453"/>
+  <nd ref="6953046629"/>
+  <nd ref="9692147334"/>
+  <nd ref="5749780120"/>
+  <nd ref="5762688300"/>
+  <nd ref="9687667147"/>
+  <nd ref="260462176"/>
+  <nd ref="9687667141"/>
+  <nd ref="4894014721"/>
+  <nd ref="13286078823"/>
+  <nd ref="13252347603"/>
+  <tag k="alt_name" v="Avenida Medellín"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AC 80"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

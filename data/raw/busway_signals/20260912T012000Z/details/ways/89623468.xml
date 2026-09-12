@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244680 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="265498788" visible="true" version="13" changeset="42791298" timestamp="2016-10-11T03:32:42Z" user="FranciscoL" uid="4706361" lat="4.6539353" lon="-74.0583621">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="265498789" visible="true" version="8" changeset="92199794" timestamp="2020-10-09T00:37:52Z" user="Facalderonm" uid="1759764" lat="4.6546739" lon="-74.0595886"/>
+ <node id="266891706" visible="true" version="20" changeset="168532420" timestamp="2025-07-05T17:22:27Z" user="Facalderonm" uid="1759764" lat="4.6528156" lon="-74.0565568">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="2807665507" visible="true" version="4" changeset="92199794" timestamp="2020-10-09T00:37:52Z" user="Facalderonm" uid="1759764" lat="4.6535907" lon="-74.0577898"/>
+ <node id="2807665508" visible="true" version="5" changeset="92199794" timestamp="2020-10-09T00:37:52Z" user="Facalderonm" uid="1759764" lat="4.6532646" lon="-74.0572409"/>
+ <node id="7371264468" visible="true" version="6" changeset="168017394" timestamp="2025-06-23T18:55:04Z" user="osm972" uid="122547" lat="4.6528487" lon="-74.0566008">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7996375435" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6529749" lon="-74.0567846"/>
+ <node id="7996375437" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6529160" lon="-74.0566952"/>
+ <node id="9412503578" visible="true" version="1" changeset="116062737" timestamp="2022-01-12T11:31:11Z" user="PointeDesAlmadies" uid="10334775" lat="4.6530459" lon="-74.0568965"/>
+ <node id="9412503580" visible="true" version="1" changeset="116062737" timestamp="2022-01-12T11:31:11Z" user="PointeDesAlmadies" uid="10334775" lat="4.6531109" lon="-74.0569987"/>
+ <node id="9412503582" visible="true" version="1" changeset="116062737" timestamp="2022-01-12T11:31:11Z" user="PointeDesAlmadies" uid="10334775" lat="4.6534569" lon="-74.0575646"/>
+ <node id="9412503584" visible="true" version="1" changeset="116062737" timestamp="2022-01-12T11:31:11Z" user="PointeDesAlmadies" uid="10334775" lat="4.6537869" lon="-74.0581142"/>
+ <node id="9412503587" visible="true" version="1" changeset="116062737" timestamp="2022-01-12T11:31:11Z" user="PointeDesAlmadies" uid="10334775" lat="4.6542804" lon="-74.0589593"/>
+ <node id="9412503589" visible="true" version="1" changeset="116062737" timestamp="2022-01-12T11:31:11Z" user="PointeDesAlmadies" uid="10334775" lat="4.6541146" lon="-74.0586724"/>
+ <node id="9412503591" visible="true" version="1" changeset="116062737" timestamp="2022-01-12T11:31:11Z" user="PointeDesAlmadies" uid="10334775" lat="4.6544620" lon="-74.0592738"/>
+ <node id="10250732677" visible="true" version="1" changeset="129934439" timestamp="2022-12-10T13:55:43Z" user="JuanMelo" uid="12906384" lat="4.6539046" lon="-74.0583109">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="10250732683" visible="true" version="1" changeset="129934439" timestamp="2022-12-10T13:55:43Z" user="JuanMelo" uid="12906384" lat="4.6539664" lon="-74.0584159">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="89623468" visible="true" version="13" changeset="131089059" timestamp="2023-01-10T03:00:41Z" user="osm972" uid="122547">
+  <nd ref="266891706"/>
+  <nd ref="7371264468"/>
+  <nd ref="7996375437"/>
+  <nd ref="7996375435"/>
+  <nd ref="9412503578"/>
+  <nd ref="9412503580"/>
+  <nd ref="2807665508"/>
+  <nd ref="9412503582"/>
+  <nd ref="2807665507"/>
+  <nd ref="9412503584"/>
+  <nd ref="10250732677"/>
+  <nd ref="265498788"/>
+  <nd ref="10250732683"/>
+  <nd ref="9412503589"/>
+  <nd ref="9412503587"/>
+  <nd ref="9412503591"/>
+  <nd ref="265498789"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Calle 70"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

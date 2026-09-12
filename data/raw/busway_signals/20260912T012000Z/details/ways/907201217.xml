@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244702 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3092413266" visible="true" version="9" changeset="119632077" timestamp="2022-04-12T17:37:52Z" user="JuanMelo" uid="12906384" lat="4.6494429" lon="-74.0635191">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="7538507035" visible="true" version="7" changeset="167919561" timestamp="2025-06-21T15:45:59Z" user="Facalderonm" uid="1759764" lat="4.6496261" lon="-74.0644917">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="8424217483" visible="true" version="1" changeset="99278435" timestamp="2021-02-15T04:52:09Z" user="Priya1904" uid="12429716" lat="4.6495659" lon="-74.0641812"/>
+ <node id="9661314513" visible="true" version="5" changeset="130467194" timestamp="2022-12-24T21:14:46Z" user="jonfaust" uid="11438835" lat="4.6494539" lon="-74.0635785">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="12483781954" visible="true" version="1" changeset="161120051" timestamp="2025-01-08T05:37:10Z" user="Barto920203" uid="10140282" lat="4.6496332" lon="-74.0645300"/>
+ <node id="12595901553" visible="true" version="1" changeset="162615386" timestamp="2025-02-17T14:24:53Z" user="Barto920203" uid="10140282" lat="4.6495590" lon="-74.0641440"/>
+ <way id="907201217" visible="true" version="7" changeset="162615386" timestamp="2025-02-17T14:24:53Z" user="Barto920203" uid="10140282">
+  <nd ref="12483781954"/>
+  <nd ref="7538507035"/>
+  <nd ref="8424217483"/>
+  <nd ref="12595901553"/>
+  <nd ref="9661314513"/>
+  <nd ref="3092413266"/>
+  <tag k="alt_name" v="Avenida José Celestino Mutis"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="name" v="Avenida Calle 63"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

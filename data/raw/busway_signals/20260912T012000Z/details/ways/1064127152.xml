@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244683 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="9646488270" visible="true" version="3" changeset="161292434" timestamp="2025-01-13T01:02:28Z" user="Facalderonm" uid="1759764" lat="4.6573111" lon="-74.0586766">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9826463062" visible="true" version="2" changeset="123957665" timestamp="2022-07-22T22:23:20Z" user="Facalderonm" uid="1759764" lat="4.6577001" lon="-74.0584106"/>
+ <node id="10262937729" visible="true" version="1" changeset="130083824" timestamp="2022-12-14T17:11:15Z" user="JuanMelo" uid="12906384" lat="4.6582715" lon="-74.0580198">
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13281957905" visible="true" version="1" changeset="174218568" timestamp="2025-11-05T00:54:25Z" user="Barto920203" uid="10140282" lat="4.6572758" lon="-74.0587007"/>
+ <node id="13281957906" visible="true" version="1" changeset="174218568" timestamp="2025-11-05T00:54:25Z" user="Barto920203" uid="10140282" lat="4.6573451" lon="-74.0586533">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="13805375172" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6583180" lon="-74.0579882"/>
+ <way id="1064127152" visible="true" version="6" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282">
+  <nd ref="13805375172"/>
+  <nd ref="10262937729"/>
+  <nd ref="9826463062"/>
+  <nd ref="13281957906"/>
+  <nd ref="9646488270"/>
+  <nd ref="13281957905"/>
+  <tag k="alt_name" v="Avenida German Arciniegas"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Carrera 11"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

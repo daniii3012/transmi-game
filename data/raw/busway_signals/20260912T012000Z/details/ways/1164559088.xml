@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244709 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="262378153" visible="true" version="24" changeset="153722996" timestamp="2024-07-08T22:23:26Z" user="Facalderonm" uid="1759764" lat="4.6282828" lon="-74.1707394">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="9934133392" visible="true" version="1" changeset="124531541" timestamp="2022-08-05T16:35:55Z" user="VigotheCarpathian" uid="9395917" lat="4.6280630" lon="-74.1712281"/>
+ <node id="9972530288" visible="true" version="8" changeset="173472824" timestamp="2025-10-19T02:05:40Z" user="Facalderonm" uid="1759764" lat="4.6282515" lon="-74.1707997">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1164559088" visible="true" version="3" changeset="153722996" timestamp="2024-07-08T22:23:26Z" user="Facalderonm" uid="1759764">
+  <nd ref="9934133392"/>
+  <nd ref="9972530288"/>
+  <nd ref="262378153"/>
+  <tag k="alt_name" v="Avenida Ciudad de Cali"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Avenida Carrera 86"/>
+  <tag k="official_name" v="AK 86"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="separate"/>
+ </way>
+</osm>

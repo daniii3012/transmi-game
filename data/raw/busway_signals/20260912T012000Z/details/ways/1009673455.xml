@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862525 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="260486987" visible="true" version="23" changeset="60547550" timestamp="2018-07-09T17:22:21Z" user="Facalderonm" uid="1759764" lat="4.7068762" lon="-74.1091860"/>
+ <node id="260486989" visible="true" version="22" changeset="60547550" timestamp="2018-07-09T17:22:21Z" user="Facalderonm" uid="1759764" lat="4.7066886" lon="-74.1089419"/>
+ <node id="260486990" visible="true" version="23" changeset="60547550" timestamp="2018-07-09T17:22:21Z" user="Facalderonm" uid="1759764" lat="4.7065112" lon="-74.1086879"/>
+ <node id="316865807" visible="true" version="27" changeset="60547550" timestamp="2018-07-09T17:22:20Z" user="Facalderonm" uid="1759764" lat="4.7060938" lon="-74.1079880">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="4929523336" visible="true" version="2" changeset="60547550" timestamp="2018-07-09T17:22:21Z" user="Facalderonm" uid="1759764" lat="4.7063202" lon="-74.1083882"/>
+ <node id="9315915458" visible="true" version="1" changeset="114627555" timestamp="2021-12-06T17:29:37Z" user="Pegasus21" uid="13510663" lat="4.7071433" lon="-74.1095028"/>
+ <way id="1009673455" visible="true" version="6" changeset="159336520" timestamp="2024-11-19T18:25:00Z" user="felipeeugenio" uid="337684">
+  <nd ref="9315915458"/>
+  <nd ref="260486987"/>
+  <nd ref="260486989"/>
+  <nd ref="260486990"/>
+  <nd ref="4929523336"/>
+  <nd ref="316865807"/>
+  <tag k="alt_name" v="Avenida Medellín"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AC 80"/>
+  <tag k="shoulder" v="no"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

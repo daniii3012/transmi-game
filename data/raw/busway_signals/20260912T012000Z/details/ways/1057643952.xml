@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244687 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3236651035" visible="true" version="7" changeset="128605838" timestamp="2022-11-07T16:50:22Z" user="Daniel_Felipe_OC" uid="14141531" lat="4.6557166" lon="-74.0598534">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="yes"/>
+ </node>
+ <node id="7596046159" visible="true" version="3" changeset="92306842" timestamp="2020-10-11T16:17:47Z" user="Facalderonm" uid="1759764" lat="4.6563054" lon="-74.0607561"/>
+ <node id="7997498067" visible="true" version="1" changeset="92306842" timestamp="2020-10-11T16:17:47Z" user="Facalderonm" uid="1759764" lat="4.6559641" lon="-74.0602501"/>
+ <node id="13805375175" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6556778" lon="-74.0597932"/>
+ <node id="13805375176" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6557371" lon="-74.0598863">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1057643952" visible="true" version="3" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282">
+  <nd ref="7596046159"/>
+  <nd ref="7997498067"/>
+  <nd ref="13805375176"/>
+  <nd ref="3236651035"/>
+  <nd ref="13805375175"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Calle 70A"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="both"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

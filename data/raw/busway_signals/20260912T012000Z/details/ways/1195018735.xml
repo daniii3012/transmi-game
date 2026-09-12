@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244680 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="323331746" visible="true" version="33" changeset="58632031" timestamp="2018-05-03T00:53:38Z" user="whatmeinfallible" uid="7150022" lat="4.7476085" lon="-74.0978319"/>
+ <node id="370249771" visible="true" version="7" changeset="64612458" timestamp="2018-11-18T06:39:15Z" user="Facalderonm" uid="1759764" lat="4.7473228" lon="-74.0974061"/>
+ <node id="370249772" visible="true" version="10" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7471039" lon="-74.0971887"/>
+ <node id="507135918" visible="true" version="4" changeset="78900704" timestamp="2019-12-26T23:22:10Z" user="Facalderonm" uid="1759764" lat="4.7474481" lon="-74.0975817"/>
+ <node id="507135946" visible="true" version="3" changeset="173695989" timestamp="2025-10-24T00:27:11Z" user="Barto920203" uid="10140282" lat="4.7472239" lon="-74.0973028">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="5731630435" visible="true" version="2" changeset="64612458" timestamp="2018-11-18T06:39:15Z" user="Facalderonm" uid="1759764" lat="4.7472946" lon="-74.0973767"/>
+ <node id="7087085398" visible="true" version="1" changeset="78900704" timestamp="2019-12-26T23:22:10Z" user="Facalderonm" uid="1759764" lat="4.7473811" lon="-74.0974798"/>
+ <node id="13253226052" visible="true" version="1" changeset="173695989" timestamp="2025-10-24T00:27:11Z" user="Barto920203" uid="10140282" lat="4.7470110" lon="-74.0970972"/>
+ <node id="13921428540" visible="true" version="1" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764" lat="4.7475349" lon="-74.0977171">
+  <tag k="crossing" v="unmarked"/>
+  <tag k="crossing:markings" v="no"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1195018735" visible="true" version="2" changeset="183851591" timestamp="2026-06-09T00:13:32Z" user="Facalderonm" uid="1759764">
+  <nd ref="323331746"/>
+  <nd ref="13921428540"/>
+  <nd ref="507135918"/>
+  <nd ref="7087085398"/>
+  <nd ref="370249771"/>
+  <nd ref="5731630435"/>
+  <nd ref="507135946"/>
+  <nd ref="370249772"/>
+  <nd ref="13253226052"/>
+  <tag k="alt_name" v="Avenida Suba;Avenida Transversal de Suba"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Avenida Calle 145"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

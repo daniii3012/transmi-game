@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244709 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="265580307" visible="true" version="17" changeset="92197546" timestamp="2020-10-08T21:55:54Z" user="Facalderonm" uid="1759764" lat="4.6656705" lon="-74.0528903">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="265784089" visible="true" version="16" changeset="115311924" timestamp="2021-12-23T20:19:31Z" user="JAAS" uid="3321532" lat="4.6646177" lon="-74.0511481"/>
+ <node id="312648919" visible="true" version="8" changeset="166475967" timestamp="2025-05-19T13:07:58Z" user="osm972" uid="122547" lat="4.6651844" lon="-74.0520645"/>
+ <node id="9596018315" visible="true" version="1" changeset="118756446" timestamp="2022-03-21T23:36:46Z" user="Raenbow" uid="10782346" lat="4.6656120" lon="-74.0527966"/>
+ <node id="9883301169" visible="true" version="5" changeset="153504340" timestamp="2024-07-03T14:11:35Z" user="osm972" uid="122547" lat="4.6656587" lon="-74.0528714">
+  <tag k="crossing:markings" v="yes"/>
+  <tag k="crossing:signals" v="no"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+ </node>
+ <node id="10224156719" visible="true" version="2" changeset="157129581" timestamp="2024-09-26T13:39:16Z" user="osm972" uid="122547" lat="4.6646442" lon="-74.0511929">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+ </node>
+ <way id="89607759" visible="true" version="18" changeset="130150443" timestamp="2022-12-16T10:51:43Z" user="osm972" uid="122547">
+  <nd ref="265580307"/>
+  <nd ref="9883301169"/>
+  <nd ref="9596018315"/>
+  <nd ref="312648919"/>
+  <nd ref="10224156719"/>
+  <nd ref="265784089"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Calle 82"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="CL 82"/>
+  <tag k="sidewalk" v="both"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

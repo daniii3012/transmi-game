@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244703 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="263776860" visible="true" version="12" changeset="117962777" timestamp="2022-03-01T00:09:05Z" user="Facalderonm" uid="1759764" lat="4.6273227" lon="-74.0672091">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="264153871" visible="true" version="8" changeset="59798211" timestamp="2018-06-13T06:10:44Z" user="Facalderonm" uid="1759764" lat="4.6273726" lon="-74.0674922"/>
+ <node id="5087463868" visible="true" version="3" changeset="86467058" timestamp="2020-06-10T13:39:02Z" user="Cinderblock" uid="9564205" lat="4.6273443" lon="-74.0673822"/>
+ <node id="9496671367" visible="true" version="1" changeset="117264521" timestamp="2022-02-10T22:14:29Z" user="Facalderonm" uid="1759764" lat="4.6273313" lon="-74.0673062"/>
+ <node id="9692853987" visible="true" version="2" changeset="124151284" timestamp="2022-07-27T17:24:39Z" user="JuanMelo" uid="12906384" lat="4.6273255" lon="-74.0672412">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1063723673" visible="true" version="1" changeset="121490944" timestamp="2022-05-25T19:49:57Z" user="JuanMelo" uid="12906384">
+  <nd ref="263776860"/>
+  <nd ref="9692853987"/>
+  <nd ref="9496671367"/>
+  <nd ref="5087463868"/>
+  <nd ref="264153871"/>
+  <tag k="alt_name" v="Avenida Monseñor Josemaria Escriva"/>
+  <tag k="bicycle:conditional" v="yes @ (Su,PH 07:00-14:00)"/>
+  <tag k="check_date" v="2021-10-17"/>
+  <tag k="cycleway:left" v="track"/>
+  <tag k="foot:conditional" v="yes @ (Su,PH 07:00-14:00)"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="motor_vehicle:conditional" v="no @ (Su,PH 07:00-14:00)"/>
+  <tag k="name" v="Diagonal 40A"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="oneway:bicycle:conditional" v="no @ (Su,PH 07:00-14:00)"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244701 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="591428349" visible="true" version="8" changeset="142687342" timestamp="2023-10-16T23:58:36Z" user="Facalderonm" uid="1759764" lat="4.7214369" lon="-74.1210284">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="591428454" visible="true" version="7" changeset="158314720" timestamp="2024-10-24T21:39:53Z" user="Facalderonm" uid="1759764" lat="4.7194354" lon="-74.1195941">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="591428456" visible="true" version="3" changeset="60550322" timestamp="2018-07-09T19:16:25Z" user="Facalderonm" uid="1759764" lat="4.7182782" lon="-74.1187917"/>
+ <node id="591428458" visible="true" version="5" changeset="60550322" timestamp="2018-07-09T19:16:25Z" user="Facalderonm" uid="1759764" lat="4.7164370" lon="-74.1174497"/>
+ <node id="5113580983" visible="true" version="2" changeset="60550322" timestamp="2018-07-09T19:16:25Z" user="Facalderonm" uid="1759764" lat="4.7174814" lon="-74.1182171"/>
+ <node id="5113580984" visible="true" version="2" changeset="60550322" timestamp="2018-07-09T19:16:25Z" user="Facalderonm" uid="1759764" lat="4.7159850" lon="-74.1171314"/>
+ <node id="5750039771" visible="true" version="3" changeset="88258249" timestamp="2020-07-20T16:59:25Z" user="Facalderonm" uid="1759764" lat="4.7209494" lon="-74.1206676"/>
+ <node id="5750039772" visible="true" version="3" changeset="88258249" timestamp="2020-07-20T16:59:25Z" user="Facalderonm" uid="1759764" lat="4.7203674" lon="-74.1202492"/>
+ <node id="5750039773" visible="true" version="3" changeset="88258249" timestamp="2020-07-20T16:59:25Z" user="Facalderonm" uid="1759764" lat="4.7199074" lon="-74.1199278"/>
+ <node id="5750039775" visible="true" version="1" changeset="60550322" timestamp="2018-07-09T19:16:21Z" user="Facalderonm" uid="1759764" lat="4.7187881" lon="-74.1191380"/>
+ <node id="5750039776" visible="true" version="1" changeset="60550322" timestamp="2018-07-09T19:16:21Z" user="Facalderonm" uid="1759764" lat="4.7177921" lon="-74.1184499"/>
+ <node id="5750039777" visible="true" version="3" changeset="144482190" timestamp="2023-11-26T19:00:21Z" user="SleepyAks" uid="17414280" lat="4.7169093" lon="-74.1177828">
+  <tag k="alt_name" v="AC 80 - KR 110"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="name" v="Br. Garcés Navas"/>
+  <tag k="network" v="SITP"/>
+  <tag k="network:wikidata" v="Q6129638"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="143A04"/>
+ </node>
+ <node id="5750039778" visible="true" version="1" changeset="60550322" timestamp="2018-07-09T19:16:21Z" user="Facalderonm" uid="1759764" lat="4.7164821" lon="-74.1174815"/>
+ <node id="5750039823" visible="true" version="1" changeset="60550322" timestamp="2018-07-09T19:16:22Z" user="Facalderonm" uid="1759764" lat="4.7168327" lon="-74.1177287"/>
+ <node id="9651886363" visible="true" version="3" changeset="180478445" timestamp="2026-03-26T22:39:41Z" user="JuanMelo" uid="12906384" lat="4.7155505" lon="-74.1168235"/>
+ <node id="11263909761" visible="true" version="2" changeset="144482190" timestamp="2023-11-26T19:00:21Z" user="SleepyAks" uid="17414280" lat="4.7195999" lon="-74.1197104">
+  <tag k="alt_name" v="AC 80 - KR 112BIS"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="name" v="Villas de Granada"/>
+  <tag k="network" v="SITP"/>
+  <tag k="network:wikidata" v="Q6129638"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="159A04"/>
+ </node>
+ <node id="13683532402" visible="true" version="1" changeset="180478445" timestamp="2026-03-26T22:39:41Z" user="JuanMelo" uid="12906384" lat="4.7156220" lon="-74.1168741">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <way id="91495210" visible="true" version="22" changeset="180478445" timestamp="2026-03-26T22:39:41Z" user="JuanMelo" uid="12906384">
+  <nd ref="591428349"/>
+  <nd ref="5750039771"/>
+  <nd ref="5750039772"/>
+  <nd ref="5750039773"/>
+  <nd ref="11263909761"/>
+  <nd ref="591428454"/>
+  <nd ref="5750039775"/>
+  <nd ref="591428456"/>
+  <nd ref="5750039776"/>
+  <nd ref="5113580983"/>
+  <nd ref="5750039777"/>
+  <nd ref="5750039823"/>
+  <nd ref="5750039778"/>
+  <nd ref="591428458"/>
+  <nd ref="5113580984"/>
+  <nd ref="13683532402"/>
+  <nd ref="9651886363"/>
+  <tag k="alt_name" v="Avenida Medellin"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

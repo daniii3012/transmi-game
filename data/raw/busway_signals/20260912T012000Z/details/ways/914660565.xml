@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244684 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3197029618" visible="true" version="7" changeset="59794845" timestamp="2018-06-13T02:00:18Z" user="Facalderonm" uid="1759764" lat="4.6651816" lon="-74.0467353">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="3515816294" visible="true" version="3" changeset="59794845" timestamp="2018-06-13T02:00:18Z" user="Facalderonm" uid="1759764" lat="4.6660562" lon="-74.0462518"/>
+ <node id="3899237989" visible="true" version="6" changeset="171573493" timestamp="2025-09-07T08:55:00Z" user="Claudius Henrichs" uid="18069" lat="4.6656628" lon="-74.0464668">
+  <tag k="bench" v="no"/>
+  <tag k="bin" v="yes"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="lit" v="no"/>
+  <tag k="name" v="El Refugio"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="BD-035A"/>
+  <tag k="shelter" v="no"/>
+  <tag k="source" v="BogoMap"/>
+  <tag k="tactile_paving" v="no"/>
+ </node>
+ <node id="7359841053" visible="true" version="5" changeset="135199763" timestamp="2023-04-21T15:45:43Z" user="osm972" uid="122547" lat="4.6652404" lon="-74.0467025">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="12590565397" visible="true" version="1" changeset="162545967" timestamp="2025-02-15T18:05:58Z" user="The MEP Engineer Residente" uid="22513418" lat="4.6658572" lon="-74.0463605"/>
+ <way id="914660565" visible="true" version="6" changeset="162545967" timestamp="2025-02-15T18:05:58Z" user="The MEP Engineer Residente" uid="22513418">
+  <nd ref="3197029618"/>
+  <nd ref="7359841053"/>
+  <nd ref="3899237989"/>
+  <nd ref="12590565397"/>
+  <nd ref="3515816294"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="busway:right" v="lane"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="sidewalk:left" v="no"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244704 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="268629564" visible="true" version="26" changeset="180653067" timestamp="2026-03-31T02:29:27Z" user="Barto920203" uid="10140282" lat="4.6979108" lon="-74.0303639"/>
+ <node id="268633821" visible="true" version="20" changeset="180653067" timestamp="2026-03-31T02:29:27Z" user="Barto920203" uid="10140282" lat="4.6978454" lon="-74.0304644">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="4172137314" visible="true" version="6" changeset="180653067" timestamp="2026-03-31T02:29:27Z" user="Barto920203" uid="10140282" lat="4.6976998" lon="-74.0306287"/>
+ <node id="12270762999" visible="true" version="3" changeset="180653067" timestamp="2026-03-31T02:29:27Z" user="Barto920203" uid="10140282" lat="4.6978262" lon="-74.0304889">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="13694356148" visible="true" version="1" changeset="180653067" timestamp="2026-03-31T02:29:27Z" user="Barto920203" uid="10140282" lat="4.6977622" lon="-74.0305625"/>
+ <way id="1326230563" visible="true" version="2" changeset="180653067" timestamp="2026-03-31T02:29:27Z" user="Barto920203" uid="10140282">
+  <nd ref="4172137314"/>
+  <nd ref="13694356148"/>
+  <nd ref="12270762999"/>
+  <nd ref="268633821"/>
+  <nd ref="268629564"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="hov" v="right_lane"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="mechanical" v="yes"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

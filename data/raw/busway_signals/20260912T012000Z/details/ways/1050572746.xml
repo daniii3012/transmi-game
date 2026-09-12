@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244689 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="267197132" visible="true" version="16" changeset="118877896" timestamp="2022-03-24T18:51:18Z" user="JuanMelo" uid="12906384" lat="4.6742366" lon="-74.0420038">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="5113747612" visible="true" version="3" changeset="115443894" timestamp="2021-12-27T21:15:11Z" user="Pegasus21" uid="13510663" lat="4.6746126" lon="-74.0419691"/>
+ <node id="5113749521" visible="true" version="3" changeset="90830906" timestamp="2020-09-13T20:44:29Z" user="Facalderonm" uid="1759764" lat="4.6745299" lon="-74.0419443"/>
+ <node id="7359840977" visible="true" version="1" changeset="82996199" timestamp="2020-04-02T18:47:17Z" user="Rafael MN" uid="10479560" lat="4.6744168" lon="-74.0419491">
+  <tag k="crossing" v="marked"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="7903353890" visible="true" version="1" changeset="90830906" timestamp="2020-09-13T20:44:29Z" user="Facalderonm" uid="1759764" lat="4.6744734" lon="-74.0419420"/>
+ <node id="12271043975" visible="true" version="1" changeset="158129572" timestamp="2024-10-20T13:57:04Z" user="WilliamHarrison" uid="16806535" lat="4.6744598" lon="-74.0419437">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <way id="1050572746" visible="true" version="4" changeset="158261478" timestamp="2024-10-23T16:15:15Z" user="WilliamHarrison" uid="16806535">
+  <nd ref="5113747612"/>
+  <nd ref="5113749521"/>
+  <nd ref="7903353890"/>
+  <nd ref="12271043975"/>
+  <nd ref="7359840977"/>
+  <nd ref="267197132"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Calle 94"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="CL 94"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

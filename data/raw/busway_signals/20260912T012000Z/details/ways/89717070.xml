@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244708 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3188427507" visible="true" version="6" changeset="120848684" timestamp="2022-05-11T16:15:57Z" user="Raenbow" uid="10782346" lat="4.6292955" lon="-74.0648548"/>
+ <node id="3191652246" visible="true" version="5" changeset="120848684" timestamp="2022-05-11T16:15:57Z" user="Raenbow" uid="10782346" lat="4.6290291" lon="-74.0649342"/>
+ <node id="3850912185" visible="true" version="7" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6304158" lon="-74.0644927">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Universidad Javeriana"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="383A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="3850912194" visible="true" version="4" changeset="58598439" timestamp="2018-05-01T23:08:03Z" user="Rasterfarian89" uid="6790700" lat="4.6287067" lon="-74.0650254"/>
+ <node id="4679438460" visible="true" version="9" changeset="159519464" timestamp="2024-11-24T02:34:47Z" user="Facalderonm" uid="1759764" lat="4.6312401" lon="-74.0642100">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="5402944247" visible="true" version="4" changeset="89058807" timestamp="2020-08-06T21:12:22Z" user="Facalderonm" uid="1759764" lat="4.6295794" lon="-74.0647600"/>
+ <node id="7996368379" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6292226" lon="-74.0648806"/>
+ <node id="7996375385" visible="true" version="2" changeset="159519464" timestamp="2024-11-24T02:34:47Z" user="Facalderonm" uid="1759764" lat="4.6311121" lon="-74.0642504"/>
+ <node id="13431144927" visible="true" version="1" changeset="176836097" timestamp="2026-01-04T21:05:53Z" user="Facalderonm" uid="1759764" lat="4.6313453" lon="-74.0641740"/>
+ <node id="13630060810" visible="true" version="1" changeset="179588188" timestamp="2026-03-09T14:22:57Z" user="Barto920203" uid="10140282" lat="4.6312033" lon="-74.0642216">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="89717070" visible="true" version="32" changeset="179588188" timestamp="2026-03-09T14:22:57Z" user="Barto920203" uid="10140282">
+  <nd ref="3850912194"/>
+  <nd ref="3191652246"/>
+  <nd ref="7996368379"/>
+  <nd ref="3188427507"/>
+  <nd ref="5402944247"/>
+  <nd ref="3850912185"/>
+  <nd ref="7996375385"/>
+  <nd ref="13630060810"/>
+  <nd ref="4679438460"/>
+  <nd ref="13431144927"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="busway:right" v="lane"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="sidewalk:left" v="no"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

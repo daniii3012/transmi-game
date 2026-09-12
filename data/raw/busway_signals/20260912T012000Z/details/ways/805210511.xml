@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862525 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="253762044" visible="true" version="15" changeset="56233834" timestamp="2018-02-10T06:03:41Z" user="Facalderonm" uid="1759764" lat="4.6375782" lon="-74.0634271"/>
+ <node id="263732293" visible="true" version="12" changeset="92200798" timestamp="2020-10-09T02:00:38Z" user="Facalderonm" uid="1759764" lat="4.6381671" lon="-74.0654074">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="263732297" visible="true" version="7" changeset="92286179" timestamp="2020-10-10T20:22:46Z" user="Facalderonm" uid="1759764" lat="4.6378153" lon="-74.0641729"/>
+ <node id="5102216214" visible="true" version="8" changeset="146925596" timestamp="2024-02-01T00:02:25Z" user="jonfaust" uid="11438835" lat="4.6381302" lon="-74.0653401">
+  <tag k="button_operated" v="yes"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7371310102" visible="true" version="2" changeset="115106028" timestamp="2021-12-18T18:53:51Z" user="JAAS" uid="3321532" lat="4.6376057" lon="-74.0635106">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="7990348475" visible="true" version="2" changeset="92200798" timestamp="2020-10-09T02:00:38Z" user="Facalderonm" uid="1759764" lat="4.6381116" lon="-74.0652965"/>
+ <node id="7990396973" visible="true" version="1" changeset="92200798" timestamp="2020-10-09T02:00:38Z" user="Facalderonm" uid="1759764" lat="4.6380814" lon="-74.0652198"/>
+ <node id="7995876928" visible="true" version="2" changeset="120768856" timestamp="2022-05-09T23:59:56Z" user="Raenbow" uid="10782346" lat="4.6378371" lon="-74.0642507">
+  <tag k="crossing" v="unmarked"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9411794385" visible="true" version="1" changeset="116049338" timestamp="2022-01-12T04:51:37Z" user="ChapmansPeak" uid="10652971" lat="4.6377102" lon="-74.0638409"/>
+ <way id="805210511" visible="true" version="12" changeset="153561839" timestamp="2024-07-04T19:21:12Z" user="Barto920203" uid="10140282">
+  <nd ref="253762044"/>
+  <nd ref="7371310102"/>
+  <nd ref="9411794385"/>
+  <nd ref="263732297"/>
+  <nd ref="7995876928"/>
+  <nd ref="7990396973"/>
+  <nd ref="7990348475"/>
+  <nd ref="5102216214"/>
+  <nd ref="263732293"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Calle 51"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

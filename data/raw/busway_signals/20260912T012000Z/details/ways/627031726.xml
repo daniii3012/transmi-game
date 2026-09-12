@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244703 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="265580301" visible="true" version="13" changeset="58479643" timestamp="2018-04-27T15:38:41Z" user="Facalderonm" uid="1759764" lat="4.6719330" lon="-74.0593836"/>
+ <node id="389158761" visible="true" version="6" changeset="60060460" timestamp="2018-06-22T02:29:34Z" user="Facalderonm" uid="1759764" lat="4.6700791" lon="-74.0596880"/>
+ <node id="2180186978" visible="true" version="4" changeset="86537743" timestamp="2020-06-12T00:06:42Z" user="Szekha" uid="10236925" lat="4.6686562" lon="-74.0599220"/>
+ <node id="5113324381" visible="true" version="2" changeset="60060460" timestamp="2018-06-22T02:29:33Z" user="Facalderonm" uid="1759764" lat="4.6689574" lon="-74.0598583"/>
+ <node id="5113324383" visible="true" version="2" changeset="60060460" timestamp="2018-06-22T02:29:33Z" user="Facalderonm" uid="1759764" lat="4.6682542" lon="-74.0600374"/>
+ <node id="5113324384" visible="true" version="1" changeset="52149493" timestamp="2017-09-18T15:48:59Z" user="MrKrabs" uid="5633067" lat="4.6687514" lon="-74.0599016"/>
+ <node id="5709996793" visible="true" version="1" changeset="60060460" timestamp="2018-06-22T02:29:32Z" user="Facalderonm" uid="1759764" lat="4.6696568" lon="-74.0597490"/>
+ <node id="5709996796" visible="true" version="1" changeset="60060460" timestamp="2018-06-22T02:29:32Z" user="Facalderonm" uid="1759764" lat="4.6702242" lon="-74.0596670"/>
+ <node id="5709996797" visible="true" version="1" changeset="60060460" timestamp="2018-06-22T02:29:32Z" user="Facalderonm" uid="1759764" lat="4.6709719" lon="-74.0595530"/>
+ <node id="5709996798" visible="true" version="1" changeset="60060460" timestamp="2018-06-22T02:29:32Z" user="Facalderonm" uid="1759764" lat="4.6715452" lon="-74.0594500"/>
+ <node id="6242000051" visible="true" version="3" changeset="92198894" timestamp="2020-10-08T23:09:54Z" user="Facalderonm" uid="1759764" lat="4.6719497" lon="-74.0593806"/>
+ <node id="7990226352" visible="true" version="1" changeset="92198894" timestamp="2020-10-08T23:09:54Z" user="Facalderonm" uid="1759764" lat="4.6719878" lon="-74.0593737"/>
+ <node id="12483781991" visible="true" version="1" changeset="161120051" timestamp="2025-01-08T05:37:10Z" user="Barto920203" uid="10140282" lat="4.6694296" lon="-74.0597758"/>
+ <node id="12483781992" visible="true" version="1" changeset="161120051" timestamp="2025-01-08T05:37:10Z" user="Barto920203" uid="10140282" lat="4.6693553" lon="-74.0597888">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="627031726" visible="true" version="16" changeset="187851877" timestamp="2026-08-22T16:51:57Z" user="Barto920203" uid="10140282">
+  <nd ref="5113324383"/>
+  <nd ref="2180186978"/>
+  <nd ref="5113324384"/>
+  <nd ref="5113324381"/>
+  <nd ref="12483781992"/>
+  <nd ref="12483781991"/>
+  <nd ref="5709996793"/>
+  <nd ref="389158761"/>
+  <nd ref="5709996796"/>
+  <nd ref="5709996797"/>
+  <nd ref="5709996798"/>
+  <nd ref="265580301"/>
+  <nd ref="6242000051"/>
+  <nd ref="7990226352"/>
+  <tag k="alt_name" v="Paralela Oriental;Autopista Norte;Avenida Paseo de los Libertadores"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="local_name" v="Autopista Norte"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="name" v="Avenida Carrera 20"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244692 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="263369091" visible="true" version="12" changeset="59287770" timestamp="2018-05-26T06:32:18Z" user="Facalderonm" uid="1759764" lat="4.6402353" lon="-74.0650680">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="264357425" visible="true" version="10" changeset="89116559" timestamp="2020-08-08T06:08:40Z" user="Facalderonm" uid="1759764" lat="4.6399710" lon="-74.0641734"/>
+ <node id="3891199388" visible="true" version="2" changeset="51989793" timestamp="2017-09-13T00:29:58Z" user="MrKrabs" uid="5633067" lat="4.6401904" lon="-74.0647986"/>
+ <node id="5102216206" visible="true" version="1" changeset="51989793" timestamp="2017-09-13T00:29:52Z" user="MrKrabs" uid="5633067" lat="4.6401324" lon="-74.0645792"/>
+ <node id="5102216207" visible="true" version="2" changeset="89116559" timestamp="2020-08-08T06:08:40Z" user="Facalderonm" uid="1759764" lat="4.6401712" lon="-74.0647094"/>
+ <node id="5902414742" visible="true" version="6" changeset="131576159" timestamp="2023-01-22T17:57:54Z" user="osm972" uid="122547" lat="4.6402247" lon="-74.0650009">
+  <tag k="bicycle" v="yes"/>
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7796037801" visible="true" version="1" changeset="89116559" timestamp="2020-08-08T06:08:40Z" user="Facalderonm" uid="1759764" lat="4.6401518" lon="-74.0646342"/>
+ <way id="805210516" visible="true" version="7" changeset="131576160" timestamp="2023-01-22T17:57:55Z" user="osm972" uid="122547">
+  <nd ref="264357425"/>
+  <nd ref="5102216206"/>
+  <nd ref="7796037801"/>
+  <nd ref="5102216207"/>
+  <nd ref="3891199388"/>
+  <nd ref="5902414742"/>
+  <nd ref="263369091"/>
+  <tag k="alt_name" v="Avenida Pablo VI"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 53"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AC 53"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

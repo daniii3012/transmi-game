@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244707 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2164846995" visible="true" version="9" changeset="177150616" timestamp="2026-01-12T18:47:46Z" user="Facalderonm" uid="1759764" lat="4.6346271" lon="-74.1630052">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="9884628702" visible="true" version="3" changeset="177150616" timestamp="2026-01-12T18:47:46Z" user="Facalderonm" uid="1759764" lat="4.6345966" lon="-74.1629767">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <way id="1199619370" visible="true" version="3" changeset="177150616" timestamp="2026-01-12T18:47:46Z" user="Facalderonm" uid="1759764">
+  <nd ref="9884628702"/>
+  <nd ref="2164846995"/>
+  <tag k="alt_name" v="Avenida de los Muiscas"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Diagonal 38 Sur"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

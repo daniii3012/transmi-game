@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942780 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="13073391663" visible="true" version="1" changeset="170503214" timestamp="2025-08-16T00:28:10Z" user="SoyJosueVerde" uid="20922998" lat="4.6747631" lon="-74.0684565"/>
+ <node id="13073391664" visible="true" version="1" changeset="170503214" timestamp="2025-08-16T00:28:10Z" user="SoyJosueVerde" uid="20922998" lat="4.6750805" lon="-74.0689505"/>
+ <node id="13073391665" visible="true" version="1" changeset="170503214" timestamp="2025-08-16T00:28:10Z" user="SoyJosueVerde" uid="20922998" lat="4.6748978" lon="-74.0686582"/>
+ <node id="13073391666" visible="true" version="1" changeset="170503214" timestamp="2025-08-16T00:28:10Z" user="SoyJosueVerde" uid="20922998" lat="4.6752841" lon="-74.0692796"/>
+ <node id="13383485583" visible="true" version="1" changeset="176052839" timestamp="2025-12-17T14:12:30Z" user="Barto920203" uid="10140282" lat="4.6759341" lon="-74.0703052"/>
+ <node id="13383485586" visible="true" version="1" changeset="176052839" timestamp="2025-12-17T14:12:30Z" user="Barto920203" uid="10140282" lat="4.6759094" lon="-74.0702663">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1422568994" visible="true" version="5" changeset="176052839" timestamp="2025-12-17T14:12:30Z" user="Barto920203" uid="10140282">
+  <nd ref="13073391663"/>
+  <nd ref="13073391665"/>
+  <nd ref="13073391664"/>
+  <nd ref="13073391666"/>
+  <nd ref="13383485586"/>
+  <nd ref="13383485583"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="bus"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

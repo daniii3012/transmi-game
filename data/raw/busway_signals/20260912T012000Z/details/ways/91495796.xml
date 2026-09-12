@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244681 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="260486968" visible="true" version="25" changeset="88258249" timestamp="2020-07-20T16:59:25Z" user="Facalderonm" uid="1759764" lat="4.7197019" lon="-74.1199060"/>
+ <node id="327361813" visible="true" version="9" changeset="177042292" timestamp="2026-01-09T21:35:56Z" user="alexbh" uid="1205733" lat="4.7193786" lon="-74.1196789">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="tactile_paving" v="no"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="1887782998" visible="true" version="5" changeset="149454419" timestamp="2024-04-01T21:48:58Z" user="JuanMelo" uid="12906384" lat="4.7209835" lon="-74.1208347"/>
+ <node id="1919642052" visible="true" version="6" changeset="88258249" timestamp="2020-07-20T16:59:25Z" user="Facalderonm" uid="1759764" lat="4.7191914" lon="-74.1195485"/>
+ <node id="1919642054" visible="true" version="3" changeset="60550322" timestamp="2018-07-09T19:16:25Z" user="Facalderonm" uid="1759764" lat="4.7201966" lon="-74.1202551"/>
+ <node id="1919642065" visible="true" version="3" changeset="60550322" timestamp="2018-07-09T19:16:25Z" user="Facalderonm" uid="1759764" lat="4.7204191" lon="-74.1204122"/>
+ <node id="5116081062" visible="true" version="4" changeset="88258249" timestamp="2020-07-20T16:59:25Z" user="Facalderonm" uid="1759764" lat="4.7195778" lon="-74.1198189"/>
+ <node id="5750039792" visible="true" version="1" changeset="60550322" timestamp="2018-07-09T19:16:21Z" user="Facalderonm" uid="1759764" lat="4.7206816" lon="-74.1205974"/>
+ <node id="5750039793" visible="true" version="2" changeset="116089739" timestamp="2022-01-13T04:26:43Z" user="RossSea" uid="9090230" lat="4.7200762" lon="-74.1201701"/>
+ <node id="5750039800" visible="true" version="3" changeset="88258249" timestamp="2020-07-20T16:59:25Z" user="Facalderonm" uid="1759764" lat="4.7207797" lon="-74.1206667"/>
+ <node id="11378287882" visible="true" version="1" changeset="144482190" timestamp="2023-11-26T19:00:21Z" user="SleepyAks" uid="17414280" lat="4.7201679" lon="-74.1202349"/>
+ <way id="91495796" visible="true" version="23" changeset="159336520" timestamp="2024-11-19T18:25:00Z" user="felipeeugenio" uid="337684">
+  <nd ref="1887782998"/>
+  <nd ref="5750039800"/>
+  <nd ref="5750039792"/>
+  <nd ref="1919642065"/>
+  <nd ref="1919642054"/>
+  <nd ref="11378287882"/>
+  <nd ref="5750039793"/>
+  <nd ref="260486968"/>
+  <nd ref="5116081062"/>
+  <nd ref="327361813"/>
+  <nd ref="1919642052"/>
+  <tag k="alt_name" v="Avenida Medellín"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AC 80"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

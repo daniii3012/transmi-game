@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244683 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="264153926" visible="true" version="9" changeset="92201090" timestamp="2020-10-09T02:15:48Z" user="Facalderonm" uid="1759764" lat="4.6240822" lon="-74.0677591"/>
+ <node id="264153927" visible="true" version="16" changeset="92291598" timestamp="2020-10-11T04:30:53Z" user="Facalderonm" uid="1759764" lat="4.6233557" lon="-74.0664345">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="264377158" visible="true" version="5" changeset="59798211" timestamp="2018-06-13T06:10:45Z" user="Facalderonm" uid="1759764" lat="4.6237049" lon="-74.0670716"/>
+ <node id="5103668412" visible="true" version="6" changeset="152268401" timestamp="2024-06-05T03:49:24Z" user="Paula Alvarez Quintero" uid="15146593" lat="4.6240566" lon="-74.0677063">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="tactile_paving" v="no"/>
+ </node>
+ <node id="7371418342" visible="true" version="7" changeset="146957459" timestamp="2024-02-01T18:26:23Z" user="jonfaust" uid="11438835" lat="4.6233804" lon="-74.0664871">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7439764039" visible="true" version="1" changeset="84025569" timestamp="2020-04-23T22:37:03Z" user="Avocadough!" uid="6967122" lat="4.6236333" lon="-74.0669440"/>
+ <node id="7996368366" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6234094" lon="-74.0665432"/>
+ <node id="9407157305" visible="true" version="1" changeset="115975119" timestamp="2022-01-10T10:22:32Z" user="Svartisen" uid="10892435" lat="4.6235469" lon="-74.0667894"/>
+ <node id="9915217348" visible="true" version="1" changeset="124151284" timestamp="2022-07-27T17:24:39Z" user="JuanMelo" uid="12906384" lat="4.6240596" lon="-74.0677130">
+  <tag k="traffic_calming" v="mini_bumps"/>
+ </node>
+ <way id="70484355" visible="true" version="18" changeset="124151284" timestamp="2022-07-27T17:24:39Z" user="JuanMelo" uid="12906384">
+  <nd ref="264153926"/>
+  <nd ref="9915217348"/>
+  <nd ref="5103668412"/>
+  <nd ref="264377158"/>
+  <nd ref="7439764039"/>
+  <nd ref="9407157305"/>
+  <nd ref="7996368366"/>
+  <nd ref="7371418342"/>
+  <nd ref="264153927"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Calle 36"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

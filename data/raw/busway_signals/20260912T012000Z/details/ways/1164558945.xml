@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244695 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="255470938" visible="true" version="46" changeset="173862245" timestamp="2025-10-28T01:23:43Z" user="Barto920203" uid="10140282" lat="4.6483153" lon="-74.1072865"/>
+ <node id="9313366554" visible="true" version="6" changeset="141533439" timestamp="2023-09-20T22:04:51Z" user="Facalderonm" uid="1759764" lat="4.6467712" lon="-74.1086245"/>
+ <node id="9843260595" visible="true" version="1" changeset="122784690" timestamp="2022-06-24T05:58:06Z" user="Facalderonm" uid="1759764" lat="4.6468236" lon="-74.1085713"/>
+ <node id="9843260596" visible="true" version="1" changeset="122784690" timestamp="2022-06-24T05:58:06Z" user="Facalderonm" uid="1759764" lat="4.6471177" lon="-74.1082923"/>
+ <node id="9843260597" visible="true" version="2" changeset="156332929" timestamp="2024-09-08T00:58:39Z" user="Facalderonm" uid="1759764" lat="4.6473321" lon="-74.1080981"/>
+ <node id="9843260598" visible="true" version="1" changeset="122784690" timestamp="2022-06-24T05:58:06Z" user="Facalderonm" uid="1759764" lat="4.6475508" lon="-74.1079061"/>
+ <node id="9843260618" visible="true" version="1" changeset="122784690" timestamp="2022-06-24T05:58:06Z" user="Facalderonm" uid="1759764" lat="4.6466774" lon="-74.1087196"/>
+ <node id="11090360598" visible="true" version="6" changeset="174971635" timestamp="2025-11-22T01:34:45Z" user="Facalderonm" uid="1759764" lat="4.6470095" lon="-74.1083947">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13197867895" visible="true" version="2" changeset="173862245" timestamp="2025-10-28T01:23:43Z" user="Barto920203" uid="10140282" lat="4.6469813" lon="-74.1084215">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1164558945" visible="true" version="11" changeset="173862245" timestamp="2025-10-28T01:23:43Z" user="Barto920203" uid="10140282">
+  <nd ref="9843260618"/>
+  <nd ref="9313366554"/>
+  <nd ref="9843260595"/>
+  <nd ref="13197867895"/>
+  <nd ref="11090360598"/>
+  <nd ref="9843260596"/>
+  <nd ref="9843260597"/>
+  <nd ref="9843260598"/>
+  <nd ref="255470938"/>
+  <tag k="alt_name" v="Avenida del Congreso Eucarístico"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Carrera 68"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 68"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942763 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="5346740055" visible="true" version="2" changeset="143922610" timestamp="2023-11-12T06:47:41Z" user="Facalderonm" uid="1759764" lat="4.5955671" lon="-74.1858680"/>
+ <node id="5346740056" visible="true" version="2" changeset="143922610" timestamp="2023-11-12T06:47:41Z" user="Facalderonm" uid="1759764" lat="4.5952048" lon="-74.1867345"/>
+ <node id="5346740062" visible="true" version="2" changeset="143922610" timestamp="2023-11-12T06:47:41Z" user="Facalderonm" uid="1759764" lat="4.5948911" lon="-74.1873725"/>
+ <node id="5346740080" visible="true" version="3" changeset="143922610" timestamp="2023-11-12T06:47:41Z" user="Facalderonm" uid="1759764" lat="4.5943031" lon="-74.1885620"/>
+ <node id="5346740081" visible="true" version="2" changeset="143922610" timestamp="2023-11-12T06:47:41Z" user="Facalderonm" uid="1759764" lat="4.5940134" lon="-74.1891761"/>
+ <node id="5346740094" visible="true" version="2" changeset="143922610" timestamp="2023-11-12T06:47:41Z" user="Facalderonm" uid="1759764" lat="4.5937293" lon="-74.1898782"/>
+ <node id="5346740095" visible="true" version="2" changeset="143922610" timestamp="2023-11-12T06:47:41Z" user="Facalderonm" uid="1759764" lat="4.5936475" lon="-74.1900471"/>
+ <node id="5346740096" visible="true" version="2" changeset="143922610" timestamp="2023-11-12T06:47:41Z" user="Facalderonm" uid="1759764" lat="4.5935177" lon="-74.1903139"/>
+ <node id="5346740099" visible="true" version="2" changeset="143923135" timestamp="2023-11-12T07:30:18Z" user="Facalderonm" uid="1759764" lat="4.5928525" lon="-74.1916878"/>
+ <node id="5346740100" visible="true" version="2" changeset="143923135" timestamp="2023-11-12T07:30:18Z" user="Facalderonm" uid="1759764" lat="4.5926451" lon="-74.1921154"/>
+ <node id="5346740114" visible="true" version="2" changeset="143923135" timestamp="2023-11-12T07:30:18Z" user="Facalderonm" uid="1759764" lat="4.5924499" lon="-74.1925216"/>
+ <node id="5346740116" visible="true" version="2" changeset="143923135" timestamp="2023-11-12T07:30:18Z" user="Facalderonm" uid="1759764" lat="4.5918090" lon="-74.1938311"/>
+ <node id="7596025637" visible="true" version="5" changeset="173680439" timestamp="2025-10-23T15:30:28Z" user="Barto920203" uid="10140282" lat="4.5962381" lon="-74.1841609">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="11342867114" visible="true" version="1" changeset="143922610" timestamp="2023-11-12T06:47:41Z" user="Facalderonm" uid="1759764" lat="4.5951066" lon="-74.1869517"/>
+ <node id="11342867115" visible="true" version="1" changeset="143922610" timestamp="2023-11-12T06:47:41Z" user="Facalderonm" uid="1759764" lat="4.5941382" lon="-74.1888889"/>
+ <node id="11342867116" visible="true" version="1" changeset="143922610" timestamp="2023-11-12T06:47:41Z" user="Facalderonm" uid="1759764" lat="4.5940791" lon="-74.1890156"/>
+ <node id="13111123195" visible="true" version="1" changeset="171290627" timestamp="2025-08-31T23:17:52Z" user="SoyJosueVerde" uid="20922998" lat="4.5962036" lon="-74.1842486"/>
+ <way id="252143946" visible="true" version="40" changeset="171290627" timestamp="2025-08-31T23:17:52Z" user="SoyJosueVerde" uid="20922998">
+  <nd ref="5346740116"/>
+  <nd ref="5346740114"/>
+  <nd ref="5346740100"/>
+  <nd ref="5346740099"/>
+  <nd ref="5346740096"/>
+  <nd ref="5346740095"/>
+  <nd ref="5346740094"/>
+  <nd ref="5346740081"/>
+  <nd ref="11342867116"/>
+  <nd ref="11342867115"/>
+  <nd ref="5346740080"/>
+  <nd ref="5346740062"/>
+  <nd ref="11342867114"/>
+  <nd ref="5346740056"/>
+  <nd ref="5346740055"/>
+  <nd ref="13111123195"/>
+  <nd ref="7596025637"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="bus_1" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+ </way>
+</osm>

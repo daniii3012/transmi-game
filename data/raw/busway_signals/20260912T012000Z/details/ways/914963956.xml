@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244701 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="265498548" visible="true" version="29" changeset="174218568" timestamp="2025-11-05T00:54:25Z" user="Barto920203" uid="10140282" lat="4.6559783" lon="-74.0571416">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="7989874572" visible="true" version="1" changeset="92195630" timestamp="2020-10-08T20:36:41Z" user="Facalderonm" uid="1759764" lat="4.6563344" lon="-74.0576605"/>
+ <node id="9646488247" visible="true" version="3" changeset="161292434" timestamp="2025-01-13T01:02:28Z" user="Facalderonm" uid="1759764" lat="4.6559493" lon="-74.0570994">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13281957920" visible="true" version="1" changeset="174218568" timestamp="2025-11-05T00:54:25Z" user="Barto920203" uid="10140282" lat="4.6559088" lon="-74.0570404"/>
+ <way id="914963956" visible="true" version="6" changeset="174218568" timestamp="2025-11-05T00:54:25Z" user="Barto920203" uid="10140282">
+  <nd ref="7989874572"/>
+  <nd ref="265498548"/>
+  <nd ref="9646488247"/>
+  <nd ref="13281957920"/>
+  <tag k="alt_name" v="Avenida Chile"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="name" v="Avenida Calle 72"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AC 72"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244686 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="261138258" visible="true" version="16" changeset="163263378" timestamp="2025-03-05T22:06:21Z" user="Facalderonm" uid="1759764" lat="4.6841308" lon="-74.0359695"/>
+ <node id="3891173087" visible="true" version="9" changeset="163263378" timestamp="2025-03-05T22:06:21Z" user="Facalderonm" uid="1759764" lat="4.6850577" lon="-74.0355425"/>
+ <node id="5686474478" visible="true" version="5" changeset="163263378" timestamp="2025-03-05T22:06:21Z" user="Facalderonm" uid="1759764" lat="4.6849032" lon="-74.0356137">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="12271043959" visible="true" version="3" changeset="183973808" timestamp="2026-06-11T14:16:26Z" user="Barto920203" uid="10140282" lat="4.6848742" lon="-74.0356271">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="89480439" visible="true" version="20" changeset="163735113" timestamp="2025-03-17T14:32:00Z" user="JuanMelo" uid="12906384">
+  <nd ref="261138258"/>
+  <nd ref="12271043959"/>
+  <nd ref="5686474478"/>
+  <nd ref="3891173087"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="maxspeed" v="40"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244695 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="253848095" visible="true" version="19" changeset="92197546" timestamp="2020-10-08T21:55:54Z" user="Facalderonm" uid="1759764" lat="4.6623969" lon="-74.0493685">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="3197029612" visible="true" version="3" changeset="59794572" timestamp="2018-06-13T01:33:22Z" user="Facalderonm" uid="1759764" lat="4.6620329" lon="-74.0495358"/>
+ <node id="9328078187" visible="true" version="2" changeset="144345785" timestamp="2023-11-22T22:52:35Z" user="Facalderonm" uid="1759764" lat="4.6623403" lon="-74.0493524"/>
+ <node id="9328078188" visible="true" version="2" changeset="144345785" timestamp="2023-11-22T22:52:35Z" user="Facalderonm" uid="1759764" lat="4.6622864" lon="-74.0493799"/>
+ <node id="11369656543" visible="true" version="1" changeset="144345785" timestamp="2023-11-22T22:52:35Z" user="Facalderonm" uid="1759764" lat="4.6623778" lon="-74.0493597"/>
+ <node id="11369656544" visible="true" version="1" changeset="144345785" timestamp="2023-11-22T22:52:35Z" user="Facalderonm" uid="1759764" lat="4.6622158" lon="-74.0494418"/>
+ <node id="11369656545" visible="true" version="1" changeset="144345785" timestamp="2023-11-22T22:52:35Z" user="Facalderonm" uid="1759764" lat="4.6623177" lon="-74.0493584"/>
+ <node id="11369656546" visible="true" version="1" changeset="144345785" timestamp="2023-11-22T22:52:35Z" user="Facalderonm" uid="1759764" lat="4.6623551" lon="-74.0493524"/>
+ <node id="11369656547" visible="true" version="1" changeset="144345785" timestamp="2023-11-22T22:52:35Z" user="Facalderonm" uid="1759764" lat="4.6623716" lon="-74.0493606"/>
+ <way id="1011068541" visible="true" version="4" changeset="144345785" timestamp="2023-11-22T22:52:35Z" user="Facalderonm" uid="1759764">
+  <nd ref="3197029612"/>
+  <nd ref="11369656544"/>
+  <nd ref="9328078188"/>
+  <nd ref="11369656545"/>
+  <nd ref="9328078187"/>
+  <nd ref="11369656546"/>
+  <nd ref="11369656547"/>
+  <nd ref="11369656543"/>
+  <nd ref="253848095"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary_link"/>
+  <tag k="lanes" v="1"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="both"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

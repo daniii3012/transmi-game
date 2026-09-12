@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862525 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="591428357" visible="true" version="9" changeset="142687342" timestamp="2023-10-16T23:58:36Z" user="Facalderonm" uid="1759764" lat="4.7217119" lon="-74.1212319">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="591428448" visible="true" version="4" changeset="119472570" timestamp="2022-04-08T13:53:24Z" user="Facalderonm" uid="1759764" lat="4.7243277" lon="-74.1234494"/>
+ <node id="591428450" visible="true" version="2" changeset="60551672" timestamp="2018-07-09T20:12:44Z" user="Facalderonm" uid="1759764" lat="4.7229329" lon="-74.1222464"/>
+ <node id="591428452" visible="true" version="2" changeset="60551672" timestamp="2018-07-09T20:12:44Z" user="Facalderonm" uid="1759764" lat="4.7225110" lon="-74.1218891"/>
+ <node id="1402888915" visible="true" version="9" changeset="142687260" timestamp="2023-10-16T23:53:00Z" user="Facalderonm" uid="1759764" lat="4.7260991" lon="-74.1249500">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="5750124632" visible="true" version="2" changeset="119472570" timestamp="2022-04-08T13:53:24Z" user="Facalderonm" uid="1759764" lat="4.7235604" lon="-74.1227953"/>
+ <node id="5750124633" visible="true" version="4" changeset="145114543" timestamp="2023-12-14T14:23:43Z" user="Facalderonm" uid="1759764" lat="4.7231758" lon="-74.1224554">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="5750124636" visible="true" version="3" changeset="88258249" timestamp="2020-07-20T16:59:25Z" user="Facalderonm" uid="1759764" lat="4.7219960" lon="-74.1214499"/>
+ <node id="7645379182" visible="true" version="4" changeset="142687342" timestamp="2023-10-16T23:58:36Z" user="Facalderonm" uid="1759764" lat="4.7217894" lon="-74.1212913">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9651871319" visible="true" version="1" changeset="119472570" timestamp="2022-04-08T13:53:24Z" user="Facalderonm" uid="1759764" lat="4.7258252" lon="-74.1247158"/>
+ <node id="10806584903" visible="true" version="1" changeset="134843635" timestamp="2023-04-13T04:36:24Z" user="Yobanys" uid="18934793" lat="4.7227415" lon="-74.1220843"/>
+ <node id="11263909759" visible="true" version="2" changeset="144482190" timestamp="2023-11-26T19:00:21Z" user="SleepyAks" uid="17414280" lat="4.7233806" lon="-74.1226364">
+  <tag k="alt_name" v="AC 80 - KR 114"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="bus_stop"/>
+  <tag k="name" v="Br. El Cortijo"/>
+  <tag k="network" v="SITP"/>
+  <tag k="network:wikidata" v="Q6129638"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="138A04"/>
+ </node>
+ <node id="11268159511" visible="true" version="1" changeset="142687260" timestamp="2023-10-16T23:53:00Z" user="Facalderonm" uid="1759764" lat="4.7254935" lon="-74.1244353"/>
+ <node id="11268159512" visible="true" version="1" changeset="142687260" timestamp="2023-10-16T23:53:00Z" user="Facalderonm" uid="1759764" lat="4.7245736" lon="-74.1236574"/>
+ <way id="1049465089" visible="true" version="7" changeset="159622293" timestamp="2024-11-26T15:34:38Z" user="JuanMelo" uid="12906384">
+  <nd ref="1402888915"/>
+  <nd ref="9651871319"/>
+  <nd ref="11268159511"/>
+  <nd ref="11268159512"/>
+  <nd ref="591428448"/>
+  <nd ref="5750124632"/>
+  <nd ref="11263909759"/>
+  <nd ref="5750124633"/>
+  <nd ref="591428450"/>
+  <nd ref="10806584903"/>
+  <nd ref="591428452"/>
+  <nd ref="5750124636"/>
+  <nd ref="7645379182"/>
+  <nd ref="591428357"/>
+  <tag k="alt_name" v="Avenida Medellín"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="shoulder" v="no"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

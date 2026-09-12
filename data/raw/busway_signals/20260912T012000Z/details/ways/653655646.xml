@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244698 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1793165363" visible="true" version="5" changeset="119666076" timestamp="2022-04-13T12:25:05Z" user="Alcatraz05" uid="10529383" lat="4.6210258" lon="-74.1844484"/>
+ <node id="1793165378" visible="true" version="4" changeset="119656299" timestamp="2022-04-13T08:46:58Z" user="Alcatraz05" uid="10529383" lat="4.6207982" lon="-74.1843371"/>
+ <node id="1814490010" visible="true" version="4" changeset="119656299" timestamp="2022-04-13T08:46:58Z" user="Alcatraz05" uid="10529383" lat="4.6205259" lon="-74.1842002"/>
+ <node id="1814490012" visible="true" version="5" changeset="123543857" timestamp="2022-07-13T05:12:31Z" user="Facalderonm" uid="1759764" lat="4.6202437" lon="-74.1840378"/>
+ <node id="1814490014" visible="true" version="6" changeset="123543857" timestamp="2022-07-13T05:12:31Z" user="Facalderonm" uid="1759764" lat="4.6200662" lon="-74.1839357"/>
+ <node id="1895393457" visible="true" version="4" changeset="123543857" timestamp="2022-07-13T05:12:31Z" user="Facalderonm" uid="1759764" lat="4.6198167" lon="-74.1837922"/>
+ <node id="1946843621" visible="true" version="7" changeset="123542830" timestamp="2022-07-13T04:35:45Z" user="Facalderonm" uid="1759764" lat="4.6212704" lon="-74.1845672"/>
+ <node id="2540742624" visible="true" version="4" changeset="166825023" timestamp="2025-05-27T12:45:57Z" user="HurdenShipCanal" uid="21470692" lat="4.6195776" lon="-74.1836565"/>
+ <node id="2540742625" visible="true" version="4" changeset="123543857" timestamp="2022-07-13T05:12:31Z" user="Facalderonm" uid="1759764" lat="4.6197195" lon="-74.1837363"/>
+ <node id="4141814028" visible="true" version="3" changeset="123543857" timestamp="2022-07-13T05:12:31Z" user="Facalderonm" uid="1759764" lat="4.6199752" lon="-74.1838834"/>
+ <node id="6125708225" visible="true" version="3" changeset="123543857" timestamp="2022-07-13T05:12:31Z" user="Facalderonm" uid="1759764" lat="4.6202970" lon="-74.1840685"/>
+ <node id="9884318852" visible="true" version="5" changeset="179274283" timestamp="2026-03-02T20:53:08Z" user="JuanMelo" uid="12906384" lat="4.6193851" lon="-74.1835291">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:island" v="no"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13612945335" visible="true" version="2" changeset="184019381" timestamp="2026-06-12T14:20:53Z" user="Barto920203" uid="10140282" lat="4.6194217" lon="-74.1835553">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="13931409473" visible="true" version="1" changeset="184019381" timestamp="2026-06-12T14:20:53Z" user="Barto920203" uid="10140282" lat="4.6193265" lon="-74.1834861"/>
+ <node id="13931409475" visible="true" version="1" changeset="184019381" timestamp="2026-06-12T14:20:53Z" user="Barto920203" uid="10140282" lat="4.6193633" lon="-74.1835145"/>
+ <way id="653655646" visible="true" version="9" changeset="184019381" timestamp="2026-06-12T14:20:53Z" user="Barto920203" uid="10140282">
+  <nd ref="1946843621"/>
+  <nd ref="1793165363"/>
+  <nd ref="1793165378"/>
+  <nd ref="1814490010"/>
+  <nd ref="6125708225"/>
+  <nd ref="1814490012"/>
+  <nd ref="1814490014"/>
+  <nd ref="4141814028"/>
+  <nd ref="1895393457"/>
+  <nd ref="2540742625"/>
+  <nd ref="2540742624"/>
+  <nd ref="13612945335"/>
+  <nd ref="9884318852"/>
+  <nd ref="13931409475"/>
+  <nd ref="13931409473"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Calle 57B Sur"/>
+ </way>
+</osm>

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942771 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="261630474" visible="true" version="3" changeset="56299620" timestamp="2018-02-12T16:49:54Z" user="Facalderonm" uid="1759764" lat="4.6310595" lon="-74.1419151"/>
+ <node id="261630476" visible="true" version="5" changeset="116131728" timestamp="2022-01-14T03:25:03Z" user="Oscarín Orbitus" uid="1857063" lat="4.6311034" lon="-74.1430357">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="261630477" visible="true" version="5" changeset="152603840" timestamp="2024-06-12T19:55:10Z" user="Facalderonm" uid="1759764" lat="4.6312457" lon="-74.1442247"/>
+ <node id="261784265" visible="true" version="3" changeset="56284359" timestamp="2018-02-12T07:25:06Z" user="Facalderonm" uid="1759764" lat="4.6306750" lon="-74.1387623"/>
+ <node id="13166566676" visible="true" version="1" changeset="172366269" timestamp="2025-09-23T22:10:08Z" user="SoyJosueVerde" uid="20922998" lat="4.6308829" lon="-74.1399831"/>
+ <node id="13166566677" visible="true" version="1" changeset="172366269" timestamp="2025-09-23T22:10:08Z" user="SoyJosueVerde" uid="20922998" lat="4.6315201" lon="-74.1469359"/>
+ <node id="13166566678" visible="true" version="1" changeset="172366269" timestamp="2025-09-23T22:10:08Z" user="SoyJosueVerde" uid="20922998" lat="4.6314249" lon="-74.1459257"/>
+ <node id="13816251632" visible="true" version="1" changeset="182487883" timestamp="2026-05-10T23:32:20Z" user="SoyJosueVerde" uid="20922998" lat="4.6314861" lon="-74.1465750">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Banderas"/>
+  <tag k="network" v="TransMilenio"/>
+  <tag k="operator" v="TransMilenio"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="TM0083"/>
+  <tag k="wikidata" v="Q4854530"/>
+  <tag k="wikipedia" v="es:Banderas (estación)"/>
+ </node>
+ <node id="13816251633" visible="true" version="1" changeset="182487883" timestamp="2026-05-10T23:32:20Z" user="SoyJosueVerde" uid="20922998" lat="4.6314266" lon="-74.1459439">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Banderas"/>
+  <tag k="network" v="TransMilenio"/>
+  <tag k="operator" v="TransMilenio"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="TM0083"/>
+  <tag k="wikidata" v="Q4854530"/>
+  <tag k="wikipedia" v="es:Banderas (estación)"/>
+ </node>
+ <node id="13816251634" visible="true" version="1" changeset="182487883" timestamp="2026-05-10T23:32:20Z" user="SoyJosueVerde" uid="20922998" lat="4.6313553" lon="-74.1452648">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Banderas"/>
+  <tag k="network" v="TransMilenio"/>
+  <tag k="operator" v="TransMilenio"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="TM0083"/>
+  <tag k="wikidata" v="Q4854530"/>
+  <tag k="wikipedia" v="es:Banderas (estación)"/>
+ </node>
+ <node id="13816251635" visible="true" version="1" changeset="182487883" timestamp="2026-05-10T23:32:20Z" user="SoyJosueVerde" uid="20922998" lat="4.6312888" lon="-74.1446336">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Banderas"/>
+  <tag k="network" v="TransMilenio"/>
+  <tag k="operator" v="TransMilenio"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref" v="TM0083"/>
+  <tag k="wikidata" v="Q4854530"/>
+  <tag k="wikipedia" v="es:Banderas (estación)"/>
+ </node>
+ <way id="1432415629" visible="true" version="3" changeset="182487883" timestamp="2026-05-10T23:32:20Z" user="SoyJosueVerde" uid="20922998">
+  <nd ref="261784265"/>
+  <nd ref="13166566676"/>
+  <nd ref="261630474"/>
+  <nd ref="261630476"/>
+  <nd ref="261630477"/>
+  <nd ref="13816251635"/>
+  <nd ref="13816251634"/>
+  <nd ref="13166566678"/>
+  <nd ref="13816251633"/>
+  <nd ref="13816251632"/>
+  <nd ref="13166566677"/>
+  <tag k="access" v="no"/>
+  <tag k="alt_name" v="Avenida de las Américas"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="layer" v="-1"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

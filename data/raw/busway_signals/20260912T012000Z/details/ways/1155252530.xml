@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244692 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3236651039" visible="true" version="8" changeset="179352483" timestamp="2026-03-04T14:31:20Z" user="Barto920203" uid="10140282" lat="4.6527979" lon="-74.0614961">
+  <tag k="bicycle" v="yes"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="5106175940" visible="true" version="4" changeset="179352483" timestamp="2026-03-04T14:31:20Z" user="Barto920203" uid="10140282" lat="4.6535751" lon="-74.0626982">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="9411954157" visible="true" version="3" changeset="156106189" timestamp="2024-09-02T16:11:45Z" user="Facalderonm" uid="1759764" lat="4.6530346" lon="-74.0618620"/>
+ <node id="9411954163" visible="true" version="3" changeset="156106189" timestamp="2024-09-02T16:11:45Z" user="Facalderonm" uid="1759764" lat="4.6533352" lon="-74.0623270"/>
+ <node id="12151877046" visible="true" version="1" changeset="156106189" timestamp="2024-09-02T16:11:45Z" user="Facalderonm" uid="1759764" lat="4.6536109" lon="-74.0627536">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13617956756" visible="true" version="1" changeset="179352483" timestamp="2026-03-04T14:31:20Z" user="Barto920203" uid="10140282" lat="4.6527544" lon="-74.0614286"/>
+ <node id="13617956767" visible="true" version="2" changeset="180313420" timestamp="2026-03-23T16:17:04Z" user="JuanMelo" uid="12906384" lat="4.6536622" lon="-74.0628354"/>
+ <way id="1155252530" visible="true" version="3" changeset="179352483" timestamp="2026-03-04T14:31:20Z" user="Barto920203" uid="10140282">
+  <nd ref="13617956756"/>
+  <nd ref="3236651039"/>
+  <nd ref="9411954157"/>
+  <nd ref="9411954163"/>
+  <nd ref="5106175940"/>
+  <nd ref="12151877046"/>
+  <nd ref="13617956767"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Calle 67"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

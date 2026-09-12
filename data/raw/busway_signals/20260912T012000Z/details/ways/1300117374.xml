@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244696 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="976343127" visible="true" version="11" changeset="173472824" timestamp="2025-10-19T02:05:40Z" user="Facalderonm" uid="1759764" lat="4.6285591" lon="-74.1707215">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="9884515528" visible="true" version="7" changeset="173472824" timestamp="2025-10-19T02:05:40Z" user="Facalderonm" uid="1759764" lat="4.6288962" lon="-74.1708950"/>
+ <node id="9884515638" visible="true" version="10" changeset="173472824" timestamp="2025-10-19T02:05:40Z" user="Facalderonm" uid="1759764" lat="4.6286265" lon="-74.1707561">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="12042541837" visible="true" version="4" changeset="173472824" timestamp="2025-10-19T02:05:40Z" user="Facalderonm" uid="1759764" lat="4.6291234" lon="-74.1710118"/>
+ <way id="1300117374" visible="true" version="3" changeset="167465060" timestamp="2025-06-10T21:44:43Z" user="csimeona22" uid="15166882">
+  <nd ref="12042541837"/>
+  <nd ref="9884515528"/>
+  <nd ref="9884515638"/>
+  <nd ref="976343127"/>
+  <tag k="alt_name" v="Avenida Ciudad de Villavicencio"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 43 Sur"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

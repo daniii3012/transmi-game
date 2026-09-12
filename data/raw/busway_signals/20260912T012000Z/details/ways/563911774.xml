@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942770 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="5433829410" visible="true" version="3" changeset="71749796" timestamp="2019-06-30T07:20:15Z" user="Facalderonm" uid="1759764" lat="4.5671526" lon="-74.1402814">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="5433829431" visible="true" version="2" changeset="71749796" timestamp="2019-06-30T07:20:15Z" user="Facalderonm" uid="1759764" lat="4.5670863" lon="-74.1403187"/>
+ <node id="5433829432" visible="true" version="1" changeset="56641752" timestamp="2018-02-24T17:40:55Z" user="Facalderonm" uid="1759764" lat="4.5671294" lon="-74.1402908"/>
+ <node id="6579540458" visible="true" version="1" changeset="71749796" timestamp="2019-06-30T07:20:15Z" user="Facalderonm" uid="1759764" lat="4.5671042" lon="-74.1403060"/>
+ <node id="9327969500" visible="true" version="1" changeset="114795901" timestamp="2021-12-10T19:03:07Z" user="(Inactive) Buddy-the-Elf" uid="9476874" lat="4.5670009" lon="-74.1403961"/>
+ <way id="563911774" visible="true" version="8" changeset="122298057" timestamp="2022-06-12T21:03:16Z" user="Facalderonm" uid="1759764">
+  <nd ref="9327969500"/>
+  <nd ref="5433829431"/>
+  <nd ref="6579540458"/>
+  <nd ref="5433829432"/>
+  <nd ref="5433829410"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="yes"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (862525 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="262378153" visible="true" version="24" changeset="153722996" timestamp="2024-07-08T22:23:26Z" user="Facalderonm" uid="1759764" lat="4.6282828" lon="-74.1707394">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="9884505006" visible="true" version="9" changeset="173472824" timestamp="2025-10-19T02:05:40Z" user="Facalderonm" uid="1759764" lat="4.6281986" lon="-74.1706858">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9934133386" visible="true" version="1" changeset="124531541" timestamp="2022-08-05T16:35:55Z" user="VigotheCarpathian" uid="9395917" lat="4.6279838" lon="-74.1705488"/>
+ <way id="1164559087" visible="true" version="2" changeset="147781207" timestamp="2024-02-22T16:44:26Z" user="SootCanal" uid="18561395">
+  <nd ref="262378153"/>
+  <nd ref="9884505006"/>
+  <nd ref="9934133386"/>
+  <tag k="alt_name" v="Avenida Ciudad de Villavicencio"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Avenida Calle 43 Sur"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

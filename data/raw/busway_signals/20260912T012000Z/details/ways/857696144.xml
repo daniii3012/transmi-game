@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244686 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="264153930" visible="true" version="4" changeset="51828794" timestamp="2017-09-07T23:42:14Z" user="MrKrabs" uid="5633067" lat="4.6226169" lon="-74.0648561"/>
+ <node id="264377146" visible="true" version="5" changeset="86468318" timestamp="2020-06-10T14:10:29Z" user="Cinderblock" uid="9564205" lat="4.6228887" lon="-74.0655386"/>
+ <node id="3982927538" visible="true" version="9" changeset="92291598" timestamp="2020-10-11T04:30:53Z" user="Facalderonm" uid="1759764" lat="4.6233212" lon="-74.0663436">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="5029856215" visible="true" version="3" changeset="86468318" timestamp="2020-06-10T14:10:29Z" user="Cinderblock" uid="9564205" lat="4.6226841" lon="-74.0649091"/>
+ <node id="5087415296" visible="true" version="2" changeset="86468318" timestamp="2020-06-10T14:10:29Z" user="Cinderblock" uid="9564205" lat="4.6226564" lon="-74.0648762"/>
+ <node id="5087443325" visible="true" version="2" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6230678" lon="-74.0659059"/>
+ <node id="5087443327" visible="true" version="2" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6229546" lon="-74.0656851"/>
+ <node id="7996368367" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6230064" lon="-74.0657931"/>
+ <node id="7996368368" visible="true" version="5" changeset="146957459" timestamp="2024-02-01T18:26:49Z" user="jonfaust" uid="11438835" lat="4.6232624" lon="-74.0662376">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <way id="857696144" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764">
+  <nd ref="3982927538"/>
+  <nd ref="7996368368"/>
+  <nd ref="5087443325"/>
+  <nd ref="7996368367"/>
+  <nd ref="5087443327"/>
+  <nd ref="264377146"/>
+  <nd ref="5029856215"/>
+  <nd ref="5087415296"/>
+  <nd ref="264153930"/>
+  <tag k="highway" v="residential"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Calle 36"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244705 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="268083092" visible="true" version="11" changeset="115443829" timestamp="2021-12-27T21:13:07Z" user="UncoolGuyJake" uid="7674729" lat="4.6715817" lon="-74.0585120"/>
+ <node id="9644335928" visible="true" version="2" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282" lat="4.6716090" lon="-74.0584203">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="9644335932" visible="true" version="2" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282" lat="4.6715153" lon="-74.0580910"/>
+ <node id="13276895139" visible="true" version="1" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282" lat="4.6715529" lon="-74.0582907"/>
+ <node id="13276895140" visible="true" version="1" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282" lat="4.6716113" lon="-74.0584754"/>
+ <node id="13276895141" visible="true" version="1" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282" lat="4.6716169" lon="-74.0584491"/>
+ <node id="13276895142" visible="true" version="1" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282" lat="4.6715965" lon="-74.0584993"/>
+ <node id="13276895143" visible="true" version="1" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282" lat="4.6715341" lon="-74.0581908"/>
+ <node id="13276895144" visible="true" version="1" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282" lat="4.6715302" lon="-74.0581440"/>
+ <node id="13276895145" visible="true" version="1" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282" lat="4.6715410" lon="-74.0582408"/>
+ <way id="1049447128" visible="true" version="4" changeset="174129284" timestamp="2025-11-03T03:19:18Z" user="Barto920203" uid="10140282">
+  <nd ref="9644335932"/>
+  <nd ref="13276895144"/>
+  <nd ref="13276895143"/>
+  <nd ref="13276895145"/>
+  <nd ref="13276895139"/>
+  <nd ref="9644335928"/>
+  <nd ref="13276895141"/>
+  <nd ref="13276895140"/>
+  <nd ref="13276895142"/>
+  <nd ref="268083092"/>
+  <tag k="highway" v="secondary_link"/>
+  <tag k="lane_markings" v="no"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="paving_stones"/>
+ </way>
+</osm>

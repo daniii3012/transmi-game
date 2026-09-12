@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244701 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3188427500" visible="true" version="7" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6213672" lon="-74.0670338">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="5087416451" visible="true" version="3" changeset="115028145" timestamp="2021-12-16T22:50:04Z" user="CostelloMellow" uid="12506916" lat="4.6210396" lon="-74.0662662"/>
+ <node id="5087416452" visible="true" version="3" changeset="117537071" timestamp="2022-02-17T20:33:00Z" user="Facalderonm" uid="1759764" lat="4.6211014" lon="-74.0663185"/>
+ <node id="5087416454" visible="true" version="3" changeset="117537071" timestamp="2022-02-17T20:33:00Z" user="Facalderonm" uid="1759764" lat="4.6211499" lon="-74.0664096"/>
+ <node id="5087416455" visible="true" version="1" changeset="51828794" timestamp="2017-09-07T23:42:14Z" user="MrKrabs" uid="5633067" lat="4.6211779" lon="-74.0664929"/>
+ <node id="5087416465" visible="true" version="1" changeset="51828794" timestamp="2017-09-07T23:42:14Z" user="MrKrabs" uid="5633067" lat="4.6213150" lon="-74.0669167"/>
+ <node id="6397151977" visible="true" version="5" changeset="133963216" timestamp="2023-03-22T04:28:34Z" user="Paula Alvarez Quintero" uid="15146593" lat="4.6213284" lon="-74.0669533">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7792538778" visible="true" version="2" changeset="117537071" timestamp="2022-02-17T20:33:00Z" user="Facalderonm" uid="1759764" lat="4.6211294" lon="-74.0663645"/>
+ <node id="9344935805" visible="true" version="1" changeset="115028145" timestamp="2021-12-16T22:50:04Z" user="CostelloMellow" uid="12506916" lat="4.6212510" lon="-74.0667190"/>
+ <node id="9514892869" visible="true" version="1" changeset="117537071" timestamp="2022-02-17T20:33:00Z" user="Facalderonm" uid="1759764" lat="4.6210765" lon="-74.0662893"/>
+ <way id="89527093" visible="true" version="13" changeset="117537071" timestamp="2022-02-17T20:33:00Z" user="Facalderonm" uid="1759764">
+  <nd ref="3188427500"/>
+  <nd ref="6397151977"/>
+  <nd ref="5087416465"/>
+  <nd ref="9344935805"/>
+  <nd ref="5087416455"/>
+  <nd ref="5087416454"/>
+  <nd ref="7792538778"/>
+  <nd ref="5087416452"/>
+  <nd ref="9514892869"/>
+  <nd ref="5087416451"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Calle 34"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

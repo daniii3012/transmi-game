@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244708 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="263470965" visible="true" version="16" changeset="162372981" timestamp="2025-02-11T01:17:35Z" user="Barto920203" uid="10140282" lat="4.6610389" lon="-74.0561260">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="9883301124" visible="true" version="5" changeset="144220102" timestamp="2023-11-19T19:09:09Z" user="Facalderonm" uid="1759764" lat="4.6609990" lon="-74.0561528">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="yes"/>
+ </node>
+ <node id="12577137968" visible="true" version="1" changeset="162372981" timestamp="2025-02-11T01:17:35Z" user="Barto920203" uid="10140282" lat="4.6609601" lon="-74.0561790"/>
+ <node id="13805375168" visible="true" version="1" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282" lat="4.6616545" lon="-74.0557126"/>
+ <way id="1176617724" visible="true" version="3" changeset="182321686" timestamp="2026-05-07T05:35:29Z" user="Barto920203" uid="10140282">
+  <nd ref="13805375168"/>
+  <nd ref="263470965"/>
+  <nd ref="9883301124"/>
+  <nd ref="12577137968"/>
+  <tag k="alt_name" v="Avenida German Arciniegas"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Carrera 11"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

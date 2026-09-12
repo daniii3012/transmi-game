@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244687 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3938608091" visible="true" version="5" changeset="92307135" timestamp="2020-10-11T16:27:00Z" user="Facalderonm" uid="1759764" lat="4.6425614" lon="-74.0620138"/>
+ <node id="3938608093" visible="true" version="4" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6421702" lon="-74.0621150">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Bosque Calderón"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="387A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="3938608094" visible="true" version="4" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6419772" lon="-74.0621641"/>
+ <node id="3948925063" visible="true" version="8" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6394991" lon="-74.0628120">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="5385065223" visible="true" version="1" changeset="56046018" timestamp="2018-02-04T05:59:34Z" user="Facalderonm" uid="1759764" lat="4.6411479" lon="-74.0623861"/>
+ <node id="5385065224" visible="true" version="3" changeset="59800483" timestamp="2018-06-13T07:33:40Z" user="Facalderonm" uid="1759764" lat="4.6405315" lon="-74.0625599"/>
+ <node id="5385065225" visible="true" version="6" changeset="59800483" timestamp="2018-06-13T07:33:40Z" user="Facalderonm" uid="1759764" lat="4.6404743" lon="-74.0625769"/>
+ <node id="5402944269" visible="true" version="3" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6402139" lon="-74.0626423"/>
+ <node id="7796037807" visible="true" version="2" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6396073" lon="-74.0627805"/>
+ <node id="7796037810" visible="true" version="1" changeset="89116559" timestamp="2020-08-08T06:08:40Z" user="Facalderonm" uid="1759764" lat="4.6397663" lon="-74.0627412"/>
+ <node id="7996375403" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6396860" lon="-74.0627603"/>
+ <node id="7996375405" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6403433" lon="-74.0626130"/>
+ <node id="7997526505" visible="true" version="1" changeset="92307135" timestamp="2020-10-11T16:27:00Z" user="Facalderonm" uid="1759764" lat="4.6424254" lon="-74.0620515"/>
+ <way id="915039725" visible="true" version="5" changeset="136629926" timestamp="2023-05-27T15:53:32Z" user="Luisa Gutierrez" uid="15415576">
+  <nd ref="3948925063"/>
+  <nd ref="7796037807"/>
+  <nd ref="7996375403"/>
+  <nd ref="7796037810"/>
+  <nd ref="5402944269"/>
+  <nd ref="7996375405"/>
+  <nd ref="5385065225"/>
+  <nd ref="5385065224"/>
+  <nd ref="5385065223"/>
+  <nd ref="3938608094"/>
+  <nd ref="3938608093"/>
+  <nd ref="7997526505"/>
+  <nd ref="3938608091"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="busway:right" v="lane"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="50"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="sidewalk:left" v="no"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

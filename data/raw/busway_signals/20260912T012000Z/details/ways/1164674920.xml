@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244683 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3937066544" visible="true" version="8" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6484452" lon="-74.0594179"/>
+ <node id="3938583886" visible="true" version="10" changeset="83132976" timestamp="2020-04-06T08:50:18Z" user="Rafael MN" uid="10479560" lat="4.6492099" lon="-74.0590328"/>
+ <node id="3938608083" visible="true" version="8" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6490324" lon="-74.0591232">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="SITP"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="373A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="5105782060" visible="true" version="4" changeset="118646303" timestamp="2022-03-18T20:02:23Z" user="JuanMelo" uid="12906384" lat="4.6492538" lon="-74.0590085">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <way id="1164674920" visible="true" version="2" changeset="146053957" timestamp="2024-01-09T07:11:08Z" user="osm972" uid="122547">
+  <nd ref="3937066544"/>
+  <nd ref="3938608083"/>
+  <nd ref="3938583886"/>
+  <nd ref="5105782060"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="busway:right" v="lane"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="sidewalk:left" v="no"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

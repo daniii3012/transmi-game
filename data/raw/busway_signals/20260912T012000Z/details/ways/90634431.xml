@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244687 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="339647323" visible="true" version="6" changeset="155950571" timestamp="2024-08-29T23:12:05Z" user="Facalderonm" uid="1759764" lat="4.6443358" lon="-74.1151881"/>
+ <node id="339647551" visible="true" version="5" changeset="155950571" timestamp="2024-08-29T23:12:05Z" user="Facalderonm" uid="1759764" lat="4.6435024" lon="-74.1141317"/>
+ <node id="7034029958" visible="true" version="2" changeset="155950571" timestamp="2024-08-29T23:12:05Z" user="Facalderonm" uid="1759764" lat="4.6437872" lon="-74.1144927"/>
+ <node id="9425151160" visible="true" version="2" changeset="155950571" timestamp="2024-08-29T23:12:05Z" user="Facalderonm" uid="1759764" lat="4.6442685" lon="-74.1151028"/>
+ <node id="9425151163" visible="true" version="2" changeset="155950571" timestamp="2024-08-29T23:12:05Z" user="Facalderonm" uid="1759764" lat="4.6437332" lon="-74.1144242"/>
+ <node id="9425151166" visible="true" version="2" changeset="155950571" timestamp="2024-08-29T23:12:05Z" user="Facalderonm" uid="1759764" lat="4.6439966" lon="-74.1147582"/>
+ <node id="9843260554" visible="true" version="5" changeset="174971117" timestamp="2025-11-22T00:56:10Z" user="Facalderonm" uid="1759764" lat="4.6426871" lon="-74.1130980">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="10011999565" visible="true" version="2" changeset="155950571" timestamp="2024-08-29T23:12:05Z" user="Facalderonm" uid="1759764" lat="4.6457857" lon="-74.1170498">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="12145092990" visible="true" version="1" changeset="155950571" timestamp="2024-08-29T23:12:05Z" user="Facalderonm" uid="1759764" lat="4.6457422" lon="-74.1169769"/>
+ <node id="12145092992" visible="true" version="1" changeset="155950571" timestamp="2024-08-29T23:12:05Z" user="Facalderonm" uid="1759764" lat="4.6456993" lon="-74.1169166"/>
+ <node id="13264121831" visible="true" version="1" changeset="173862245" timestamp="2025-10-28T01:23:43Z" user="Barto920203" uid="10140282" lat="4.6427217" lon="-74.1131419">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="90634431" visible="true" version="24" changeset="173862245" timestamp="2025-10-28T01:23:43Z" user="Barto920203" uid="10140282">
+  <nd ref="10011999565"/>
+  <nd ref="12145092990"/>
+  <nd ref="12145092992"/>
+  <nd ref="339647323"/>
+  <nd ref="9425151160"/>
+  <nd ref="9425151166"/>
+  <nd ref="7034029958"/>
+  <nd ref="9425151163"/>
+  <nd ref="339647551"/>
+  <nd ref="13264121831"/>
+  <nd ref="9843260554"/>
+  <tag k="alt_name" v="Avenida Industrial"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="tertiary"/>
+  <tag k="lanes" v="4"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Calle 19"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244696 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="262391105" visible="true" version="65" changeset="58680739" timestamp="2018-05-04T14:07:51Z" user="Facalderonm" uid="1759764" lat="4.7442225" lon="-74.0929539"/>
+ <node id="887793271" visible="true" version="7" changeset="120294716" timestamp="2022-04-28T09:05:36Z" user="CapitolHill" uid="10461085" lat="4.7436891" lon="-74.0922484"/>
+ <node id="3752448287" visible="true" version="2" changeset="92187370" timestamp="2020-10-08T17:01:56Z" user="Facalderonm" uid="1759764" lat="4.7453229" lon="-74.0944747"/>
+ <node id="3967694976" visible="true" version="4" changeset="173695989" timestamp="2025-10-24T00:27:11Z" user="Barto920203" uid="10140282" lat="4.7445099" lon="-74.0933351">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="4070141483" visible="true" version="1" changeset="37961046" timestamp="2016-03-20T18:21:43Z" user="Facalderonm" uid="1759764" lat="4.7455414" lon="-74.0947577"/>
+ <node id="4913348985" visible="true" version="3" changeset="58540734" timestamp="2018-04-30T01:39:21Z" user="Facalderonm" uid="1759764" lat="4.7451188" lon="-74.0941984"/>
+ <node id="5378381227" visible="true" version="2" changeset="58680739" timestamp="2018-05-04T14:07:51Z" user="Facalderonm" uid="1759764" lat="4.7439434" lon="-74.0925885"/>
+ <node id="5587171232" visible="true" version="1" changeset="58540421" timestamp="2018-04-30T01:07:53Z" user="Facalderonm" uid="1759764" lat="4.7449945" lon="-74.0940242"/>
+ <node id="5587207883" visible="true" version="1" changeset="58540734" timestamp="2018-04-30T01:39:21Z" user="Facalderonm" uid="1759764" lat="4.7456263" lon="-74.0948599"/>
+ <node id="7989088290" visible="true" version="1" changeset="92187370" timestamp="2020-10-08T17:01:56Z" user="Facalderonm" uid="1759764" lat="4.7454461" lon="-74.0946343"/>
+ <node id="7989088291" visible="true" version="1" changeset="92187370" timestamp="2020-10-08T17:01:56Z" user="Facalderonm" uid="1759764" lat="4.7455210" lon="-74.0947313"/>
+ <node id="9851261808" visible="true" version="3" changeset="184189446" timestamp="2026-06-16T16:10:10Z" user="Facalderonm" uid="1759764" lat="4.7447828" lon="-74.0937217">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9851261810" visible="true" version="1" changeset="122923058" timestamp="2022-06-27T18:30:43Z" user="Facalderonm" uid="1759764" lat="4.7444507" lon="-74.0932566"/>
+ <node id="13253226038" visible="true" version="1" changeset="173695989" timestamp="2025-10-24T00:27:11Z" user="Barto920203" uid="10140282" lat="4.7446532" lon="-74.0935385"/>
+ <node id="13253226039" visible="true" version="1" changeset="173695989" timestamp="2025-10-24T00:27:11Z" user="Barto920203" uid="10140282" lat="4.7447268" lon="-74.0936343"/>
+ <way id="91306364" visible="true" version="40" changeset="173695989" timestamp="2025-10-24T00:27:11Z" user="Barto920203" uid="10140282">
+  <nd ref="887793271"/>
+  <nd ref="5378381227"/>
+  <nd ref="262391105"/>
+  <nd ref="9851261810"/>
+  <nd ref="3967694976"/>
+  <nd ref="13253226038"/>
+  <nd ref="13253226039"/>
+  <nd ref="9851261808"/>
+  <nd ref="5587171232"/>
+  <nd ref="4913348985"/>
+  <nd ref="3752448287"/>
+  <nd ref="7989088290"/>
+  <nd ref="7989088291"/>
+  <nd ref="4070141483"/>
+  <nd ref="5587207883"/>
+  <tag k="alt_name" v="Avenida Transversal de Suba"/>
+  <tag k="foot" v="yes"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 145"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

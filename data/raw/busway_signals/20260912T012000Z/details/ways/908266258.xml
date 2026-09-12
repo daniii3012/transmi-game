@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244680 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="5087416469" visible="true" version="7" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6214164" lon="-74.0671286">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="7371418352" visible="true" version="6" changeset="133963216" timestamp="2023-03-22T04:29:12Z" user="Paula Alvarez Quintero" uid="15146593" lat="4.6214538" lon="-74.0671906">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <way id="908266258" visible="true" version="1" changeset="99487691" timestamp="2021-02-18T04:07:05Z" user="Snalla" uid="11641482">
+  <nd ref="7371418352"/>
+  <nd ref="5087416469"/>
+  <tag k="alt_name" v="Avenida Teusaquillo"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 34"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

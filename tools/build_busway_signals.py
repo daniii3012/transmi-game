@@ -18,25 +18,7 @@ from geo import LOCAL_CRS
 
 NODE_URL = "https://api.openstreetmap.org/api/0.6/node/{id}"
 WAY_URL = "https://api.openstreetmap.org/api/0.6/way/{id}/full"
-TEXT_KEYS = ("name", "description", "operator", "ref", "route_ref", "destination", "access:description", "note")
-TRANSMI_RE = re.compile(r"transmi(?:lenio)?", re.I)
-
-
-def explicit_service(tags: dict[str, str]) -> tuple[bool, str | None]:
-    if tags.get("highway") != "service":
-        return False, None
-    if tags.get("highway") != "service":
-        return False, None
-    text = " ".join(tags.get(k, "") for k in TEXT_KEYS)
-    if TRANSMI_RE.search(text):
-        return True, "explicit TransMilenio/Transmi tag text"
-    if tags.get("vehicle") == "bus" or tags.get("motor_vehicle") == "bus":
-        return True, "vehicle=bus or motor_vehicle=bus"
-    if tags.get("bus") == "yes" and tags.get("access") in {"no", "private"}:
-        return True, "bus=yes with restricted access"
-    if any("bus" in tags.get(k, "").lower() for k in ("access:lanes", "vehicle:lanes", "motor_vehicle:lanes")):
-        return True, "lane access explicitly names bus"
-    return False, None
+from busway_criteria import busway_reason, street_reason, street_segments
 
 
 def main() -> None:
@@ -63,12 +45,15 @@ def main() -> None:
 
     route_lines = [LineString(route["points"]) for route in services["routes"] if len(route.get("points", [])) >= 2]
     tree = STRtree(route_lines)
+    street_lines = [LineString(span) for span in street_segments(services)]
+    street_tree = STRtree(street_lines) if street_lines else None
     evidence_records = json.loads((raw_dir / "evidence.json").read_text()).get("records", [])
     evidence_by_pair = {(e.get("node_id"), e.get("way_id")): e for e in evidence_records}
     signal_ids = sorted(nid for nid, node in nodes.items() if node["tags"].get("highway") == "traffic_signals")
     member_map = {int(nid): [int(wid) for wid in wids] for nid, wids in raw.get("signal_member_way_ids", {}).items()}
     signals = []
     rejected = {"outside_route_tolerance": 0, "no_direct_busway_or_explicit_service": 0, "missing_way_geometry": 0, "no_archived_membership_evidence": 0}
+    kinds = {"busway": 0, "street": 0}
     for nid in signal_ids:
         if nid not in coords:
             continue
@@ -76,7 +61,12 @@ def main() -> None:
         nearest_index = tree.nearest(point)
         nearest = route_lines[int(nearest_index)] if nearest_index is not None else None
         distance = float(point.distance(nearest)) if nearest is not None else float("inf")
-        if distance > args.max_distance_m:
+        street_distance = float("inf")
+        if street_tree is not None:
+            street_distance = float(point.distance(street_lines[int(street_tree.nearest(point))]))
+        on_route = distance <= args.max_distance_m
+        on_street = street_distance <= args.max_distance_m
+        if not on_route and not on_street:
             rejected["outside_route_tolerance"] += 1
             continue
         qualifying = []
@@ -86,11 +76,15 @@ def main() -> None:
                 rejected["missing_way_geometry"] += 1
                 continue
             tags = way.get("tags", {})
-            reason = "highway=busway" if tags.get("highway") == "busway" else None
+            # Exclusive carriageway first; the shared-street path applies only where a
+            # dual service actually leaves the busway, never on a lane beside it.
+            reason = busway_reason(tags) if on_route else None
+            kind = "busway" if reason else None
+            if reason is None and on_street:
+                reason = street_reason(tags)
+                kind = "street" if reason else None
             if reason is None:
-                ok, reason = explicit_service(tags)
-                if not ok:
-                    continue
+                continue
             archived = evidence_by_pair.get((nid, wid))
             if not archived or not archived.get("node_sha256") or not archived.get("way_sha256"):
                 rejected["no_archived_membership_evidence"] += 1
@@ -124,6 +118,7 @@ def main() -> None:
                 "way_url": WAY_URL.format(id=wid),
                 "tags": tags,
                 "qualification": reason,
+                "carriageway": kind,
                 "axis_angle_deg": round(angle, 3),
                 "directed_angle_deg": round(directed_angle, 3),
                 "tangent_direction": "way node order (0°=east, 90°=north)",
@@ -133,6 +128,7 @@ def main() -> None:
         if not qualifying:
             rejected["no_direct_busway_or_explicit_service"] += 1
             continue
+        kinds["busway" if any(q["carriageway"] == "busway" for q in qualifying) else "street"] += 1
         node_tags = nodes[nid]["tags"]
         x, y = coords[nid]
         # Keep a node-level direction when OSM supplies one; way oneway and
@@ -154,6 +150,7 @@ def main() -> None:
             "xy": [round(x, 3), round(y, 3)],
             "lon_lat": [nodes[nid]["lon"], nodes[nid]["lat"]],
             "source": "OpenStreetMap highway=traffic_signals node with direct qualifying way membership",
+            "carriageway": "busway" if any(q["carriageway"] == "busway" for q in qualifying) else "street",
             "way_source": source_records,
             "axis": "busway/service way local tangent",
             "angle": qualifying[0]["axis_angle_deg"],
@@ -179,11 +176,12 @@ def main() -> None:
         "criteria": {
             "signal_node": "highway=traffic_signals",
             "direct_way": "highway=busway, or highway=service with explicit TransMilenio/Transmi or bus-only access tags",
+            "street_way": "ordinary road open to buses, accepted only within tolerance of a street section of a dual service",
             "proximity_only_rejected": True,
             "timings": "not supplied; no official phase/cycle data inferred",
         },
         "signals": signals,
-        "audit": {"signal_nodes_seen": len(signal_ids), "accepted": len(signals), "rejected": rejected},
+        "audit": {"signal_nodes_seen": len(signal_ids), "accepted": len(signals), "accepted_by_carriageway": kinds, "rejected": rejected},
         "sources": [
             {"kind": "OSM node", "url_template": NODE_URL},
             {"kind": "OSM way full", "url_template": WAY_URL},

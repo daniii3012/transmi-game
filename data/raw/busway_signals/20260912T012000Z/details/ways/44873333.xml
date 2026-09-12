@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244706 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3938583887" visible="true" version="6" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6502941" lon="-74.0584157">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Calle 67"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="BD-015A"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="5105816175" visible="true" version="2" changeset="56233834" timestamp="2018-02-10T06:03:44Z" user="Facalderonm" uid="1759764" lat="4.6504693" lon="-74.0582903"/>
+ <node id="5105816177" visible="true" version="2" changeset="56233834" timestamp="2018-02-10T06:03:44Z" user="Facalderonm" uid="1759764" lat="4.6501003" lon="-74.0585350"/>
+ <node id="7371309987" visible="true" version="5" changeset="130426152" timestamp="2022-12-23T15:27:01Z" user="jonfaust" uid="11438835" lat="4.6505832" lon="-74.0582036">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7607246729" visible="true" version="1" changeset="86431109" timestamp="2020-06-10T01:25:30Z" user="riskybiznu" uid="10380231" lat="4.6500690" lon="-74.0585521"/>
+ <node id="7996375422" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6505337" lon="-74.0582416"/>
+ <node id="7996375426" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6506220" lon="-74.0581740"/>
+ <node id="7996375430" visible="true" version="1" changeset="92291431" timestamp="2020-10-11T04:11:53Z" user="Facalderonm" uid="1759764" lat="4.6502000" lon="-74.0584754"/>
+ <node id="13617956764" visible="true" version="1" changeset="179352483" timestamp="2026-03-04T14:31:20Z" user="Barto920203" uid="10140282" lat="4.6506676" lon="-74.0581366"/>
+ <node id="13617956765" visible="true" version="1" changeset="179352483" timestamp="2026-03-04T14:31:20Z" user="Barto920203" uid="10140282" lat="4.6505470" lon="-74.0582314">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="44873333" visible="true" version="56" changeset="179352483" timestamp="2026-03-04T14:31:20Z" user="Barto920203" uid="10140282">
+  <nd ref="7607246729"/>
+  <nd ref="5105816177"/>
+  <nd ref="7996375430"/>
+  <nd ref="3938583887"/>
+  <nd ref="5105816175"/>
+  <nd ref="7996375422"/>
+  <nd ref="13617956765"/>
+  <nd ref="7371309987"/>
+  <nd ref="7996375426"/>
+  <nd ref="13617956764"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="busway:right" v="lane"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="sidewalk:left" v="no"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

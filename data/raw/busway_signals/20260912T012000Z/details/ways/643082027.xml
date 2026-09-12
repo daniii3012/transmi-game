@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244708 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="976343127" visible="true" version="11" changeset="173472824" timestamp="2025-10-19T02:05:40Z" user="Facalderonm" uid="1759764" lat="4.6285591" lon="-74.1707215">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="6051810787" visible="true" version="5" changeset="153722996" timestamp="2024-07-08T22:23:26Z" user="Facalderonm" uid="1759764" lat="4.6283500" lon="-74.1706141">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="12042541854" visible="true" version="2" changeset="173472824" timestamp="2025-10-19T02:05:40Z" user="Facalderonm" uid="1759764" lat="4.6283946" lon="-74.1706370"/>
+ <node id="12042541856" visible="true" version="3" changeset="173472824" timestamp="2025-10-19T02:05:40Z" user="Facalderonm" uid="1759764" lat="4.6285032" lon="-74.1706929">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <way id="643082027" visible="true" version="4" changeset="153722996" timestamp="2024-07-08T22:23:26Z" user="Facalderonm" uid="1759764">
+  <nd ref="6051810787"/>
+  <nd ref="12042541854"/>
+  <nd ref="12042541856"/>
+  <nd ref="976343127"/>
+  <tag k="alt_name" v="Avenida Villavicencio"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Avenida Calle 43 Sur"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244696 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="261630280" visible="true" version="17" changeset="123552557" timestamp="2022-07-13T08:49:41Z" user="Facalderonm" uid="1759764" lat="4.6342380" lon="-74.1631548"/>
+ <node id="1291840305" visible="true" version="6" changeset="177150616" timestamp="2026-01-12T18:47:46Z" user="Facalderonm" uid="1759764" lat="4.6344262" lon="-74.1629413"/>
+ <node id="1291840307" visible="true" version="5" changeset="123552557" timestamp="2022-07-13T08:49:41Z" user="Facalderonm" uid="1759764" lat="4.6340046" lon="-74.1634333"/>
+ <node id="9884735873" visible="true" version="5" changeset="173472824" timestamp="2025-10-19T02:05:40Z" user="Facalderonm" uid="1759764" lat="4.6343739" lon="-74.1630006">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13394060701" visible="true" version="1" changeset="176239406" timestamp="2025-12-21T23:50:50Z" user="Barto920203" uid="10140282" lat="4.6343311" lon="-74.1630492">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1195023608" visible="true" version="3" changeset="177150616" timestamp="2026-01-12T18:47:46Z" user="Facalderonm" uid="1759764">
+  <nd ref="1291840307"/>
+  <nd ref="261630280"/>
+  <nd ref="13394060701"/>
+  <nd ref="9884735873"/>
+  <nd ref="1291840305"/>
+  <tag k="alt_name" v="Avenida Ciudad de Cali"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Carrera 86"/>
+  <tag k="official_name" v="AK 86"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="separate"/>
+ </way>
+</osm>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244703 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="455338136" visible="true" version="14" changeset="160071469" timestamp="2024-12-08T21:53:42Z" user="Facalderonm" uid="1759764" lat="4.6161337" lon="-74.0687833"/>
+ <node id="3874219567" visible="true" version="11" changeset="89053261" timestamp="2020-08-06T18:21:58Z" user="Facalderonm" uid="1759764" lat="4.6174037" lon="-74.0686374"/>
+ <node id="5103638229" visible="true" version="6" changeset="160071469" timestamp="2024-12-08T21:53:42Z" user="Facalderonm" uid="1759764" lat="4.6170240" lon="-74.0685807"/>
+ <node id="5103638233" visible="true" version="8" changeset="160071469" timestamp="2024-12-08T21:53:42Z" user="Facalderonm" uid="1759764" lat="4.6171150" lon="-74.0685682"/>
+ <node id="5103638234" visible="true" version="8" changeset="67971948" timestamp="2019-03-09T21:17:49Z" user="ejegg" uid="181232" lat="4.6172403" lon="-74.0685837"/>
+ <node id="5686796029" visible="true" version="3" changeset="89053261" timestamp="2020-08-06T18:21:58Z" user="Facalderonm" uid="1759764" lat="4.6173221" lon="-74.0686089"/>
+ <node id="5686796032" visible="true" version="4" changeset="160071469" timestamp="2024-12-08T21:53:42Z" user="Facalderonm" uid="1759764" lat="4.6165492" lon="-74.0687011"/>
+ <node id="6327919975" visible="true" version="5" changeset="127794170" timestamp="2022-10-19T16:47:29Z" user="Facalderonm" uid="1759764" lat="4.6174978" lon="-74.0686702">
+  <tag k="crossing" v="marked"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="7792246235" visible="true" version="1" changeset="89053261" timestamp="2020-08-06T18:21:58Z" user="Facalderonm" uid="1759764" lat="4.6171915" lon="-74.0685727"/>
+ <node id="8395717619" visible="true" version="2" changeset="160071469" timestamp="2024-12-08T21:53:42Z" user="Facalderonm" uid="1759764" lat="4.6161741" lon="-74.0687753"/>
+ <node id="12431107059" visible="true" version="1" changeset="160356879" timestamp="2024-12-18T15:48:10Z" user="Barto920203" uid="10140282" lat="4.6174822" lon="-74.0686648">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="12431107060" visible="true" version="1" changeset="160356879" timestamp="2024-12-18T15:48:10Z" user="Barto920203" uid="10140282" lat="4.6176176" lon="-74.0687123"/>
+ <way id="294376928" visible="true" version="21" changeset="160356879" timestamp="2024-12-18T15:48:10Z" user="Barto920203" uid="10140282">
+  <nd ref="455338136"/>
+  <nd ref="8395717619"/>
+  <nd ref="5686796032"/>
+  <nd ref="5103638229"/>
+  <nd ref="5103638233"/>
+  <nd ref="7792246235"/>
+  <nd ref="5103638234"/>
+  <nd ref="5686796029"/>
+  <nd ref="3874219567"/>
+  <nd ref="12431107059"/>
+  <nd ref="6327919975"/>
+  <nd ref="12431107060"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

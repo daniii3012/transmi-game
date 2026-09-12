@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244687 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="476344222" visible="true" version="11" changeset="158468706" timestamp="2024-10-28T18:34:51Z" user="Facalderonm" uid="1759764" lat="4.6938338" lon="-74.0335137"/>
+ <node id="3831530595" visible="true" version="10" changeset="180653067" timestamp="2026-03-31T02:29:27Z" user="Barto920203" uid="10140282" lat="4.6941766" lon="-74.0331359"/>
+ <node id="3831530597" visible="true" version="11" changeset="158468706" timestamp="2024-10-28T18:34:51Z" user="Facalderonm" uid="1759764" lat="4.6938812" lon="-74.0333840">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="9819028911" visible="true" version="3" changeset="158468706" timestamp="2024-10-28T18:34:51Z" user="Facalderonm" uid="1759764" lat="4.6939623" lon="-74.0332955"/>
+ <node id="9819028912" visible="true" version="4" changeset="180545730" timestamp="2026-03-28T14:59:22Z" user="Barto920203" uid="10140282" lat="4.6939201" lon="-74.0333370">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="12278941782" visible="true" version="1" changeset="158216773" timestamp="2024-10-22T15:22:10Z" user="WilliamHarrison" uid="16806535" lat="4.6938980" lon="-74.0333617"/>
+ <node id="12294470101" visible="true" version="1" changeset="158468706" timestamp="2024-10-28T18:34:51Z" user="Facalderonm" uid="1759764" lat="4.6938563" lon="-74.0334303"/>
+ <node id="12294470106" visible="true" version="1" changeset="158468706" timestamp="2024-10-28T18:34:51Z" user="Facalderonm" uid="1759764" lat="4.6938423" lon="-74.0334757"/>
+ <way id="39729386" visible="true" version="17" changeset="158468706" timestamp="2024-10-28T18:34:51Z" user="Facalderonm" uid="1759764">
+  <nd ref="3831530595"/>
+  <nd ref="9819028911"/>
+  <nd ref="9819028912"/>
+  <nd ref="12278941782"/>
+  <nd ref="3831530597"/>
+  <nd ref="12294470101"/>
+  <nd ref="12294470106"/>
+  <nd ref="476344222"/>
+  <tag k="highway" v="primary_link"/>
+  <tag k="lanes" v="1"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

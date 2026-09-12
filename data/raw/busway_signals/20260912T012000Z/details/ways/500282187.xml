@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942782 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="448462213" visible="true" version="4" changeset="182387229" timestamp="2026-05-08T15:09:13Z" user="SoyJosueVerde" uid="20922998" lat="4.6760784" lon="-74.0707558"/>
+ <node id="505075672" visible="true" version="4" changeset="58539682" timestamp="2018-04-29T23:33:22Z" user="Facalderonm" uid="1759764" lat="4.6757465" lon="-74.0705882"/>
+ <node id="4913780073" visible="true" version="2" changeset="52082941" timestamp="2017-09-15T22:10:17Z" user="MrKrabs" uid="5633067" lat="4.6759722" lon="-74.0706560"/>
+ <node id="4913780074" visible="true" version="2" changeset="52082941" timestamp="2017-09-15T22:10:17Z" user="MrKrabs" uid="5633067" lat="4.6759030" lon="-74.0706136"/>
+ <node id="4913780075" visible="true" version="3" changeset="110546249" timestamp="2021-09-01T06:54:43Z" user="Facalderonm" uid="1759764" lat="4.6758289" lon="-74.0705947"/>
+ <node id="5108501010" visible="true" version="1" changeset="52082941" timestamp="2017-09-15T22:10:13Z" user="MrKrabs" uid="5633067" lat="4.6760176" lon="-74.0706961"/>
+ <node id="5108501011" visible="true" version="2" changeset="176052839" timestamp="2025-12-17T14:12:30Z" user="Barto920203" uid="10140282" lat="4.6759398" lon="-74.0706321">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="5108501012" visible="true" version="1" changeset="52082941" timestamp="2017-09-15T22:10:13Z" user="MrKrabs" uid="5633067" lat="4.6758646" lon="-74.0706023"/>
+ <way id="500282187" visible="true" version="9" changeset="182387229" timestamp="2026-05-08T15:09:13Z" user="SoyJosueVerde" uid="20922998">
+  <nd ref="448462213"/>
+  <nd ref="5108501010"/>
+  <nd ref="4913780073"/>
+  <nd ref="5108501011"/>
+  <nd ref="4913780074"/>
+  <nd ref="5108501012"/>
+  <nd ref="4913780075"/>
+  <nd ref="505075672"/>
+  <tag k="access" v="no"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="bus"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942769 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="4662522210" visible="true" version="4" changeset="161120051" timestamp="2025-01-08T05:37:10Z" user="Barto920203" uid="10140282" lat="4.6666062" lon="-74.0613708">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="5108556084" visible="true" version="2" changeset="55542401" timestamp="2018-01-18T08:14:03Z" user="Facalderonm" uid="1759764" lat="4.6661893" lon="-74.0610988"/>
+ <node id="5346556316" visible="true" version="1" changeset="55542401" timestamp="2018-01-18T08:14:00Z" user="Facalderonm" uid="1759764" lat="4.6663486" lon="-74.0611999"/>
+ <node id="12483781982" visible="true" version="2" changeset="182386897" timestamp="2026-05-08T15:00:33Z" user="SoyJosueVerde" uid="20922998" lat="4.6667998" lon="-74.0615243"/>
+ <way id="1510573060" visible="true" version="1" changeset="182386897" timestamp="2026-05-08T15:00:33Z" user="SoyJosueVerde" uid="20922998">
+  <nd ref="5108556084"/>
+  <nd ref="5346556316"/>
+  <nd ref="4662522210"/>
+  <nd ref="12483781982"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="bus"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

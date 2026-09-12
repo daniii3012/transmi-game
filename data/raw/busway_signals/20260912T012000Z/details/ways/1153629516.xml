@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244697 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="6052026127" visible="true" version="3" changeset="177118998" timestamp="2026-01-12T01:53:44Z" user="Facalderonm" uid="1759764" lat="4.6384602" lon="-74.1589056"/>
+ <node id="6052026128" visible="true" version="4" changeset="173504501" timestamp="2025-10-19T18:06:57Z" user="Facalderonm" uid="1759764" lat="4.6376247" lon="-74.1598544"/>
+ <node id="9884628657" visible="true" version="1" changeset="123552557" timestamp="2022-07-13T08:49:41Z" user="Facalderonm" uid="1759764" lat="4.6378442" lon="-74.1596086"/>
+ <node id="9884628679" visible="true" version="5" changeset="173472824" timestamp="2025-10-19T02:05:40Z" user="Facalderonm" uid="1759764" lat="4.6391057" lon="-74.1581688"/>
+ <node id="9884628692" visible="true" version="7" changeset="173504501" timestamp="2025-10-19T18:06:57Z" user="Facalderonm" uid="1759764" lat="4.6390693" lon="-74.1582105">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="12849638738" visible="true" version="3" changeset="175890019" timestamp="2025-12-13T16:23:55Z" user="Facalderonm" uid="1759764" lat="4.6376574" lon="-74.1598186">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13243826088" visible="true" version="2" changeset="176239406" timestamp="2025-12-21T23:50:50Z" user="Barto920203" uid="10140282" lat="4.6376896" lon="-74.1597832">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1153629516" visible="true" version="11" changeset="187008490" timestamp="2026-08-06T03:14:27Z" user="Barto920203" uid="10140282">
+  <nd ref="9884628679"/>
+  <nd ref="9884628692"/>
+  <nd ref="6052026127"/>
+  <nd ref="9884628657"/>
+  <nd ref="13243826088"/>
+  <nd ref="12849638738"/>
+  <nd ref="6052026128"/>
+  <tag k="alt_name" v="Avenida Ciudad de Cali"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Carrera 86"/>
+  <tag k="official_name" v="AK 86"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="separate"/>
+ </way>
+</osm>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244686 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="5168315163" visible="true" version="1" changeset="52944666" timestamp="2017-10-15T02:42:22Z" user="Facalderonm" uid="1759764" lat="4.6869110" lon="-74.1279805"/>
+ <node id="5168315204" visible="true" version="2" changeset="60848115" timestamp="2018-07-18T19:53:47Z" user="Facalderonm" uid="1759764" lat="4.6866975" lon="-74.1276390"/>
+ <node id="5168315205" visible="true" version="2" changeset="60848115" timestamp="2018-07-18T19:53:47Z" user="Facalderonm" uid="1759764" lat="4.6864196" lon="-74.1271117"/>
+ <node id="5168315206" visible="true" version="1" changeset="52944666" timestamp="2017-10-15T02:42:23Z" user="Facalderonm" uid="1759764" lat="4.6861859" lon="-74.1267244"/>
+ <node id="5768970834" visible="true" version="1" changeset="60848115" timestamp="2018-07-18T19:53:40Z" user="Facalderonm" uid="1759764" lat="4.6867935" lon="-74.1278087"/>
+ <node id="5768970835" visible="true" version="1" changeset="60848115" timestamp="2018-07-18T19:53:40Z" user="Facalderonm" uid="1759764" lat="4.6865494" lon="-74.1273727"/>
+ <node id="5768970836" visible="true" version="1" changeset="60848115" timestamp="2018-07-18T19:53:40Z" user="Facalderonm" uid="1759764" lat="4.6864722" lon="-74.1272158"/>
+ <node id="5768970837" visible="true" version="1" changeset="60848115" timestamp="2018-07-18T19:53:40Z" user="Facalderonm" uid="1759764" lat="4.6863478" lon="-74.1269805"/>
+ <node id="5768970838" visible="true" version="1" changeset="60848115" timestamp="2018-07-18T19:53:40Z" user="Facalderonm" uid="1759764" lat="4.6862744" lon="-74.1268589"/>
+ <node id="9710117500" visible="true" version="1" changeset="120480556" timestamp="2022-05-02T22:17:00Z" user="JuanMelo" uid="12906384" lat="4.6870655" lon="-74.1281910">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9710117503" visible="true" version="1" changeset="120480556" timestamp="2022-05-02T22:17:00Z" user="JuanMelo" uid="12906384" lat="4.6870341" lon="-74.1281502">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <way id="1067962803" visible="true" version="10" changeset="180173520" timestamp="2026-03-20T18:45:55Z" user="JuanMelo" uid="12906384">
+  <nd ref="9710117500"/>
+  <nd ref="9710117503"/>
+  <nd ref="5168315163"/>
+  <nd ref="5768970834"/>
+  <nd ref="5168315204"/>
+  <nd ref="5768970835"/>
+  <nd ref="5768970836"/>
+  <nd ref="5168315205"/>
+  <nd ref="5768970837"/>
+  <nd ref="5768970838"/>
+  <nd ref="5168315206"/>
+  <tag k="alt_name" v="Avenida el Dorado"/>
+  <tag k="foot" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="2"/>
+  <tag k="maxspeed" v="60"/>
+  <tag k="name" v="Avenida Calle 26"/>
+  <tag k="official_name" v="Avenida Jorge Eliecer Gaitán"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="sidewalk" v="no"/>
+  <tag k="surface" v="asphalt"/>
+  <tag k="wikidata" v="Q8210271"/>
+  <tag k="wikipedia" v="es:Avenida Eldorado (Bogotá)"/>
+ </way>
+</osm>

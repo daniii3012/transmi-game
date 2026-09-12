@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244685 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3861884262" visible="true" version="6" changeset="156105851" timestamp="2024-09-02T16:04:16Z" user="Facalderonm" uid="1759764" lat="4.6514687" lon="-74.0631859">
+  <tag k="bus" v="yes"/>
+  <tag k="name" v="Centro Cosmos 64"/>
+  <tag k="network" v="co:dc:sitp"/>
+  <tag k="operator" v="SITP"/>
+  <tag k="public_transport" v="stop_position"/>
+  <tag k="ref:sitp" v="230A00"/>
+  <tag k="source" v="BogoMap"/>
+ </node>
+ <node id="5171955316" visible="true" version="5" changeset="156105851" timestamp="2024-09-02T16:04:16Z" user="Facalderonm" uid="1759764" lat="4.6513104" lon="-74.0632135"/>
+ <node id="7995798066" visible="true" version="2" changeset="156105851" timestamp="2024-09-02T16:04:16Z" user="Facalderonm" uid="1759764" lat="4.6516944" lon="-74.0631465"/>
+ <node id="9912585257" visible="true" version="2" changeset="156105851" timestamp="2024-09-02T16:04:16Z" user="Facalderonm" uid="1759764" lat="4.6508804" lon="-74.0632885">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13903279695" visible="true" version="1" changeset="183525169" timestamp="2026-06-02T02:56:13Z" user="Barto920203" uid="10140282" lat="4.6507958" lon="-74.0633033"/>
+ <node id="13903279696" visible="true" version="1" changeset="183525169" timestamp="2026-06-02T02:56:13Z" user="Barto920203" uid="10140282" lat="4.6509520" lon="-74.0632760">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="907206842" visible="true" version="8" changeset="183525169" timestamp="2026-06-02T02:56:13Z" user="Barto920203" uid="10140282">
+  <nd ref="7995798066"/>
+  <nd ref="3861884262"/>
+  <nd ref="5171955316"/>
+  <nd ref="13903279696"/>
+  <nd ref="9912585257"/>
+  <nd ref="13903279695"/>
+  <tag k="highway" v="secondary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Carrera 13"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

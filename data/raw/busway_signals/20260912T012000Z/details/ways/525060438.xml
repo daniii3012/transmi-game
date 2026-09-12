@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244680 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3894497960" visible="true" version="4" changeset="161120051" timestamp="2025-01-08T05:37:10Z" user="Barto920203" uid="10140282" lat="4.6666451" lon="-74.0613175">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="5108556092" visible="true" version="3" changeset="60255892" timestamp="2018-06-28T17:28:37Z" user="Facalderonm" uid="1759764" lat="4.6662602" lon="-74.0610660"/>
+ <node id="12483781983" visible="true" version="1" changeset="161120051" timestamp="2025-01-08T05:37:10Z" user="Barto920203" uid="10140282" lat="4.6667146" lon="-74.0613629"/>
+ <way id="525060438" visible="true" version="12" changeset="174690534" timestamp="2025-11-15T14:56:40Z" user="Facalderonm" uid="1759764">
+  <nd ref="5108556092"/>
+  <nd ref="3894497960"/>
+  <nd ref="12483781983"/>
+  <tag k="alt_name" v="Avenida Medellín"/>
+  <tag k="highway" v="trunk"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="Avenida Calle 80"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AC 80"/>
+  <tag k="shoulder" v="no"/>
+  <tag k="sidewalk" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

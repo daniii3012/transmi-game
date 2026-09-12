@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (244708 spike-07.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="3938608084" visible="true" version="7" changeset="119255119" timestamp="2022-04-03T07:40:07Z" user="Facalderonm" uid="1759764" lat="4.6478526" lon="-74.0597111">
+  <tag k="highway" v="traffic_signals"/>
+ </node>
+ <node id="3938608085" visible="true" version="7" changeset="115874950" timestamp="2022-01-07T12:18:59Z" user="ChapmansPeak" uid="10652971" lat="4.6468570" lon="-74.0602249"/>
+ <node id="4030601864" visible="true" version="8" changeset="119255119" timestamp="2022-04-03T07:40:07Z" user="Facalderonm" uid="1759764" lat="4.6469685" lon="-74.0601593"/>
+ <node id="5105783451" visible="true" version="8" changeset="119255119" timestamp="2022-04-03T07:40:07Z" user="Facalderonm" uid="1759764" lat="4.6470814" lon="-74.0600956"/>
+ <node id="5402944275" visible="true" version="11" changeset="130434355" timestamp="2022-12-23T19:29:55Z" user="jonfaust" uid="11438835" lat="4.6477247" lon="-74.0597743">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+ <node id="7996375419" visible="true" version="3" changeset="119255119" timestamp="2022-04-03T07:40:07Z" user="Facalderonm" uid="1759764" lat="4.6471983" lon="-74.0600349"/>
+ <way id="909615566" visible="true" version="5" changeset="146053957" timestamp="2024-01-09T07:11:03Z" user="osm972" uid="122547">
+  <nd ref="3938608085"/>
+  <nd ref="4030601864"/>
+  <nd ref="5105783451"/>
+  <nd ref="7996375419"/>
+  <nd ref="5402944275"/>
+  <nd ref="3938608084"/>
+  <tag k="alt_name" v="Avenida Alberto Lleras Camargo"/>
+  <tag k="busway:right" v="lane"/>
+  <tag k="cycleway:both" v="no"/>
+  <tag k="highway" v="primary"/>
+  <tag k="lanes" v="3"/>
+  <tag k="lit" v="yes"/>
+  <tag k="maxspeed" v="30"/>
+  <tag k="name" v="Avenida Carrera 7"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="short_name" v="AK 7"/>
+  <tag k="sidewalk:left" v="no"/>
+  <tag k="sidewalk:right" v="separate"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

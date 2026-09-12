@@ -66,6 +66,31 @@ test('Every method the application calls on the map exists',async()=>{
  for(const metodo of usados)assert.equal(typeof NetworkMap.prototype[metodo],'function',`falta ${metodo}() en NetworkMap`);
 });
 
+test('In the live tab a real bus wins the station underneath',async()=>{
+ const {NetworkMap}=await import('../dist/map.mjs');
+ // Casi todo bus real se dibuja sobre una estación, así que la más cercana al cursor casi siempre
+ // es la de debajo. Se ejercita pick() sobre un objeto mínimo: construir el mapa pediría WebGL.
+ const elegido=[];
+ const mapa={
+  center:[0,0],mpp:1,w:100,h:100,busSamples:[],
+  data:{stations:[{id:'estacion',xy:[0,0]}]},
+  liveVisual:[{id:'bus-gps',xy:[3,0]}],networkVehicles:[{id:'bus-red',xy:[4,0]}],
+  worldToScreen:NetworkMap.prototype.worldToScreen,pick:NetworkMap.prototype.pick,
+  select(kind,id){elegido.push([kind,id]);},onSelect(){},
+ };
+ const sobreLaEstacion=[50,50];
+ mapa.simulationVisible=false;mapa.pick(sobreLaEstacion);
+ assert.deepEqual(elegido.at(-1),['realbus','bus-gps'],'la lectura GPS va primero');
+ mapa.liveVisual=[];mapa.pick(sobreLaEstacion);
+ assert.deepEqual(elegido.at(-1),['realbus','bus-red'],'sin ella responde la instantánea');
+ mapa.networkVehicles=[];mapa.pick(sobreLaEstacion);
+ assert.deepEqual(elegido.at(-1),['station','estacion'],'sin buses cerca sigue eligiéndose la estación');
+ // Fuera de la pestaña manda la distancia, como siempre.
+ mapa.simulationVisible=true;mapa.liveVisual=[{id:'bus-gps',xy:[3,0]}];
+ mapa.pick(sobreLaEstacion);
+ assert.deepEqual(elegido.at(-1),['station','estacion']);
+});
+
 test('The whole-system snapshot eases between readings instead of jumping',async()=>{
  const {NetworkMap}=await import('../dist/map.mjs');
  // Se ejercita la mecánica de interpolación sola: construir el mapa pediría WebGL.

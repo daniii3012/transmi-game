@@ -91,7 +91,7 @@ try{
   const fragment=document.createDocumentFragment();for(const r of routes){const b=el('button',undefined,'route-row'+(focusedRoute===r.id?' selected':''));b.dataset.routeId=r.id;b.setAttribute('aria-label',`${r.code} a ${r.name}, ${status(r)}`);b.append(badge(r));const text=el('div',undefined,'route-text');text.append(el('strong',r.name),el('small',status(r)));b.append(text,el('span',counts.get(r.id)||'','route-count'));b.onclick=()=>selectRoute(r.id);fragment.append(b);}$('#route-list').replaceChildren(fragment);
  }
  function selectRoute(id,{fit=true}={}){const r=routeById.get(id);if(!r)return;focusedRoute=id;following=false;selection={kind:'route',id};map.selected=null;map.updateMarker();map.setRoute(id);renderRoute(r);if(fit&&r.points.length)map.fitPoints(r.points);renderRoutes();}
- function onSelect(value){following=false;selection=value;$('#inspector').hidden=false;map.select(value.kind,value.id);if(value.kind==='station')requestStation();else{const b=snap.buses.find(b=>b.id===value.id);if(b){selection.routeId=b.routeId;focusedRoute=b.routeId;map.setRoute(b.routeId,{subtle:true});}renderBus();renderRoutes();$('#inspector').scrollTop=0;}}
+ function onSelect(value){following=false;selection=value;$('#inspector').hidden=false;map.select(value.kind,value.id);if(value.kind==='realbus'){renderRealBus();$('#inspector').scrollTop=0;return;}if(value.kind==='station')requestStation();else{const b=snap.buses.find(b=>b.id===value.id);if(b){selection.routeId=b.routeId;focusedRoute=b.routeId;map.setRoute(b.routeId,{subtle:true});}renderBus();renderRoutes();$('#inspector').scrollTop=0;}}
  function renderRoute(r){
   $('#inspector').scrollTop=0;const panel=$('#selection');panel.replaceChildren(badge(r),el('span','  SERVICIO','eyebrow'),el('h2',r.name));$('#inspector').hidden=false;
   row('Recorrido',r.length_m?(r.length_m/1000).toFixed(2)+' km':'Pendiente');row('Paradas',r.stops.length);row('Estado',status(r));
@@ -111,6 +111,49 @@ try{
   const p=$('#selection');p.replaceChildren(badge(b),el('span','  '+b.vehicleId,'eyebrow'),el('h2',b.pattern),el('div',stateNames[b.state]+(b.street?' · calle':''),'bus-state'));$('#inspector').hidden=false;
   row('Velocidad',b.speed_kmh.toFixed(0)+' km/h');row('Tipo de bus',b.busType);$('#selection').append(el('p',b.typeSource,'muted'));row('A bordo',`${b.load} / ${b.capacity}`);const track=el('div',undefined,'load-track'),fill=el('i');fill.style.width=b.load/b.capacity*100+'%';track.append(fill);p.append(track);row(['moving','signal'].includes(b.state)?'Próxima parada':'Parada',b.next_stop);row('Punto de atención',b.street?'Paradero calle':boardingPoint(b));row('Recorrido',(b.s/1000).toFixed(2)+' km');if(b.signalId)row('Luz verde en',Math.ceil(b.signalWait)+' s · est.');row('Atención pendiente',b.delay>0?b.delay.toFixed(0)+' s':'Sin espera');
   const button=el('button',following?'Dejar de seguir':'Seguir este bus','primary full');button.id='follow';button.onclick=()=>{following=!following;if(following){map.mpp=.9;map.center=[...b.xy];map.updateCamera();}renderBus();};p.append(button);const route=el('button','Ver paradas de '+b.code,'full');route.onclick=()=>selectRoute(b.routeId);p.append(route);
+ }
+ // Ficha de un bus real. Son dos fuentes distintas y la ficha lo dice: la lectura GPS trae
+ // ocupación y hora del reporte propias del bus, y la instantánea solo una posición que calcula
+ // el planificador. Lo que no llega no se rellena con una estimación.
+ function renderRealBus(){
+  const bus=map.realBus(selection?.id)||selection?.last;
+  if(!bus){clearSelection();return;}
+  selection.last=bus;
+  const gps=Number.isFinite(bus.reported_age_s);
+  const code=bus.code||bus.line||'';
+  const route=(code&&liveRouteFor(code,bus.destination))||data.routes.find(r=>r.code===code&&r.ready)||null;
+  const p=$('#selection');p.replaceChildren();
+  if(route)p.append(badge(route));
+  // La lectura GPS identifica el vehículo y la instantánea no: sin número, el título es el destino
+  // y no se repite debajo lo que ya dice arriba.
+  p.append(el('span','  BUS REAL','eyebrow'),el('h2',bus.label||bus.destination||code||'Bus'));
+  if(bus.label)p.append(el('div',bus.destination?'Hacia '+bus.destination:'Sin destino publicado','bus-state'));
+  $('#inspector').hidden=false;
+  if(code)row('Servicio',code+(route?'':' · fuera del catálogo'));
+  if(gps){
+   row('Ocupación',occupancyText(bus.occupancy));
+   row('Último reporte',ageText(bus.reported_age_s));
+   if(Number.isFinite(bus.travelled_m))row('Recorrido',(bus.travelled_m/1000).toFixed(1)+' km');
+   if(bus.accessibility)row('Accesibilidad',bus.accessibility);
+  }else{
+   row('Operador',bus.operator||'Sin dato');
+   p.append(el('p','Posición calculada por el planificador, no la lectura GPS del bus: a lo largo del corredor puede diferir hasta un kilómetro. Esta vista no publica ocupación ni hora de reporte.','muted'));
+  }
+  const seguir=el('button',following?'Dejar de seguir':'Seguir este bus','primary full');seguir.id='follow';
+  seguir.onclick=()=>{following=!following;if(following){map.mpp=Math.min(map.mpp,.9);map.center=[...bus.xy];map.updateCamera();}renderRealBus();};
+  p.append(seguir);
+  // Desde la instantánea, el servicio del bus es un salto a su propia vista, que es la que trae
+  // la lectura GPS. Estando ya en ella el botón no tendría a dónde llevar.
+  if(!gps&&route&&colorByCode.has(code)){
+   const ver=el('button','Ver '+code+' en vivo','full');
+   // Las dos fuentes numeran los vehículos de forma distinta, así que este bus no tiene equivalente
+   // en la otra vista: se suelta la selección y el encuadre pasa a ser el del servicio, que es lo
+   // que se pidió ver.
+   ver.onclick=()=>{clearSelection();setLiveScope('route');$('#live-route').value=code;$('#live-route').onchange();};
+   p.append(ver);
+  }
+  if(route){const paradas=el('button','Ver paradas de '+code,'full');paradas.onclick=()=>selectRoute(route.id);p.append(paradas);}
+  if(!map.realBus(selection.id))p.append(el('p','Este bus dejó de aparecer en la última lectura. Lo que se muestra es su último reporte.','muted'));
  }
  function requestStation(){const s=data.stations.find(s=>s.id===selection?.id);if(!s)return;$('#selection').replaceChildren(el('span',s.kind==='street'?'PARADERO EN CALLE':'ESTACIÓN','eyebrow'),el('h2',s.name),el('p','Consultando próximos servicios…','muted'));$('#inspector').hidden=false;if(ready)worker.postMessage({type:'station',generation,id:s.id});}
  function renderStation(info){
@@ -223,11 +266,14 @@ try{
   $$('[data-live-metric]').forEach(d=>d.hidden=!inLive);
   $('#live-stopped-cell').hidden=!inLive||liveScope!=='route';
   $('#live-count-label').textContent=liveScope==='route'?'del servicio':'buses reales';
+  // Sin servicio elegido, el indicador conservaba el conteo de la red rotulado «del servicio».
+  if(inLive&&liveScope==='route'&&!$('#live-route').value){$('#live-count').textContent='—';$('#live-stopped').textContent='—';}
   if(!inLive){$('#live-count').textContent='—';$('#live-stopped').textContent='—';}
   $('#live-network').hidden=liveScope!=='network';
   $('#live-route-block').hidden=liveScope!=='route';
   $$('[data-live-scope]').forEach(b=>b.classList.toggle('active',b.dataset.liveScope===liveScope));
-  if(!inLive){liveFitted=null;map.setLiveBuses([]);map.setNetworkBuses([]);map.setRoute(focusedRoute);}
+  // Fuera de la pestaña no queda ningún bus real dibujado, así que su ficha tampoco se sostiene.
+  if(!inLive){liveFitted=null;if(selection?.kind==='realbus')clearSelection();map.setLiveBuses([]);map.setNetworkBuses([]);map.setRoute(focusedRoute);}
   else if(liveScope!=='route'){map.setLiveBuses([]);map.setRoute(null);}
   map.setNetworkDimmed(liveScope==='route');
  }
@@ -284,7 +330,7 @@ try{
    return;
   }
   if(phase==='loading'){status.textContent='Consultando el servicio…';return;}
-  const buses=payload.buses.map(b=>{const r=liveRouteFor(payload.code,b.destination);return {...b,color:r?.color,routeId:r?.id};});
+  const buses=payload.buses.map(b=>{const r=liveRouteFor(payload.code,b.destination);return {...b,code:payload.code,color:r?.color,routeId:r?.id};});
   map.setLiveBuses(buses);
   $('#live-count').textContent=fmt(buses.length);
   $('#live-stopped').textContent=fmt(buses.filter(atStop).length);
@@ -315,8 +361,8 @@ try{
     const text=el('div',undefined,'route-text');
     text.append(el('strong',bus.label||bus.id),el('small',`${occupancyText(bus.occupancy)} · ${ageText(bus.reported_age_s)}${Number.isFinite(bus.travelled_m)?' · km '+(bus.travelled_m/1000).toFixed(1)+' del recorrido':''}`));
     entry.append(dot,text);
-    entry.onclick=()=>{following=false;map.center=[...bus.xy];map.mpp=Math.min(map.mpp,1.4);map.updateCamera();};
-    entry.setAttribute('aria-label',`Bus ${bus.label||bus.id} hacia ${group.destination}, ${occupancyText(bus.occupancy)}. Centrar en el mapa.`);
+    entry.onclick=()=>{map.center=[...bus.xy];map.mpp=Math.min(map.mpp,1.4);map.updateCamera();onSelect({kind:'realbus',id:bus.id});};
+    entry.setAttribute('aria-label',`Bus ${bus.label||bus.id} hacia ${group.destination}, ${occupancyText(bus.occupancy)}. Ver su ficha y centrarlo en el mapa.`);
     section.append(entry);
    }
    if(route?.ready){const trazado=el('button','Ver el trazado de '+route.code+' → '+route.name,'full');trazado.onclick=()=>{switchPanel('routes');viewMode='route';syncControls();selectRoute(route.id);};section.append(trazado);}
@@ -409,9 +455,9 @@ try{
  setUpLive();
  let last=performance.now();document.addEventListener('visibilitychange',()=>{last=performance.now();syncLive();});
  function frame(now){const dt=(now-last)/1000;last=now;if(!document.hidden){if(ready&&!clock.paused&&!scrubbing&&document.activeElement!==$('#time')){clock.time+=dt*clock.speed;if(clock.time>=2*DAY)jump(clock.time);}if(now-lastSample>=50){sample();lastSample=now;}
-  map.animateBuses(now);map.animateLive(now);map.animateNetwork(now);if(following&&selection?.kind==='bus'){const b=(map.visualBuses||snap.buses).find(b=>b.id===selection.id);if(b){map.follow(b.xy,dt);}}
+  map.animateBuses(now);map.animateLive(now);map.animateNetwork(now);if(following&&selection?.kind==='bus'){const b=(map.visualBuses||snap.buses).find(b=>b.id===selection.id);if(b){map.follow(b.xy,dt);}}if(following&&selection?.kind==='realbus'){const b=map.realBus(selection.id);if(b)map.follow(b.xy,dt);}if(selection?.kind==='realbus')map.updateMarker();
   map.render();if(now-lastUI>200){updateUI();renderNow();lastUI=now;}if(now-lastList>5000){if(activePanel==='routes'&&!$('#route-list').contains(document.activeElement))renderRoutes();if(activePanel==='depots'&&ready)worker.postMessage({type:'depots',generation});lastList=now;}
-  if(now-lastInspect>1000){if(selection?.kind==='bus'){const focus=document.activeElement?.id;renderBus();if(focus==='follow')$('#follow')?.focus({preventScroll:true});}if(selection?.kind==='station'&&ready&&!$('#inspector').contains(document.activeElement))worker.postMessage({type:'station',generation,id:selection.id});lastInspect=now;}}
+  if(now-lastInspect>1000){if(selection?.kind==='bus'||selection?.kind==='realbus'){const focus=document.activeElement?.id;if(selection.kind==='realbus')renderRealBus();else renderBus();if(focus==='follow')$('#follow')?.focus({preventScroll:true});}if(selection?.kind==='station'&&ready&&!$('#inspector').contains(document.activeElement))worker.postMessage({type:'station',generation,id:selection.id});lastInspect=now;}}
  requestAnimationFrame(frame);}
  const dispose=registerSimulationTools(document.modelContext,{read:()=>({...snap.stats,date:config.date,paused:clock.paused,speed:clock.speed,selected:selection}),control:input=>{if('paused'in input)clock.paused=input.paused;if('speed'in input)clock.speed=input.speed;syncControls();}});
  window.addEventListener('pagehide',()=>{worker.terminate();live.stop();liveNetwork.stop();dispose?.();},{once:true});

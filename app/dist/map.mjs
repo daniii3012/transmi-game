@@ -91,7 +91,16 @@ export class NetworkMap {
   positionLabels(){for(const {label,station} of this.labelEntries.values()){const [x,y]=this.worldToScreen(station.xy);label.style.transform=`translate3d(${x+10}px,${y-10}px,0)`;}}
   updateScale(){const approx=this.mpp*100;const power=10**Math.floor(Math.log10(approx));const step=[1,2,5,10].find(n=>n*power>=approx)*power;const el=document.querySelector('#scale');el.textContent=step>=1000?(step/1000)+' km':step+' m';el.style.width=step/this.mpp+'px';}
   select(kind,id){this.selected={kind,id};this.updateMarker();this.updateLabels();}
-  updateMarker(){const item=this.selected?.kind==='station'?this.data.stations.find(s=>s.id===this.selected.id):this.busSamples.find(b=>b.id===this.selected?.id);if(!item){this.marker.visible=false;return;}this.marker.visible=true;this.marker.position.set(...item.xy,4);this.marker.scale.setScalar(Math.max(10,this.mpp*11));}
+  // Un bus real se busca en las dos capas: la lectura GPS de un servicio y la instantánea de la
+  // red. Comparten el identificador de viaje, así que el que esté a la vista responde.
+  realBus(id){return (this.liveVisual||[]).find(b=>b.id===id)||(this.networkVehicles||[]).find(v=>v.id===id)||null;}
+  selectedItem(){
+    const chosen=this.selected;if(!chosen)return null;
+    if(chosen.kind==='station')return this.data.stations.find(s=>s.id===chosen.id)||null;
+    if(chosen.kind==='realbus')return this.realBus(chosen.id);
+    return this.busSamples.find(b=>b.id===chosen.id)||null;
+  }
+  updateMarker(){const item=this.selectedItem();if(!item){this.marker.visible=false;return;}this.marker.visible=true;this.marker.position.set(...item.xy,4);this.marker.scale.setScalar(Math.max(10,this.mpp*11));}
   bind(){
     let drag=null;
     this.host.addEventListener('pointerdown',e=>{if(e.button!==0)return;this.host.focus({preventScroll:true});this.host.setPointerCapture(e.pointerId);drag={id:e.pointerId,start:[e.clientX,e.clientY],center:[...this.center]};});
@@ -101,7 +110,24 @@ export class NetworkMap {
     this.host.addEventListener('wheel',e=>{e.preventDefault();const r=this.host.getBoundingClientRect();this.zoom(Math.exp(Math.max(-1,Math.min(1,e.deltaY*(e.ctrlKey?.018:.004)))),[e.clientX-r.left,e.clientY-r.top]);},{passive:false});
     this.host.addEventListener('keydown',e=>{const offsets={ArrowLeft:[-80,0],ArrowRight:[80,0],ArrowUp:[0,80],ArrowDown:[0,-80]};if(offsets[e.key]){e.preventDefault();this.center[0]+=offsets[e.key][0]*this.mpp;this.center[1]+=offsets[e.key][1]*this.mpp;this.onPan?.();this.updateCamera();}else if(['+','=','-'].includes(e.key)){e.preventDefault();this.zoom(e.key==='-'?1.3:1/1.3);}});
   }
-  pick(point){let nearest=null, distance=12;for(const [kind,items] of [['bus',this.busSamples],['station',this.data.stations]])for(const item of items){const p=this.worldToScreen(item.xy),d=Math.hypot(point[0]-p[0],point[1]-p[1]);if(d<distance){nearest={kind,id:item.id};distance=d;}}if(nearest){this.select(nearest.kind,nearest.id);this.onSelect(nearest);}}
+  pick(point){
+    const distanceTo=item=>{const p=this.worldToScreen(item.xy);return Math.hypot(point[0]-p[0],point[1]-p[1]);};
+    const nearest=items=>{let best=null,limit=12;for(const item of items||[]){const d=distanceTo(item);if(d<limit){best=item;limit=d;}}return best;};
+    let chosen=null;
+    if(this.simulationVisible===false){
+      // Con la simulación oculta —la pestaña En vivo— un bus real gana a la estación que tenga
+      // debajo aunque la estación caiga más cerca del cursor: casi todos van sobre una, está
+      // dibujado encima, y es lo que se ha ido a mirar. La lectura GPS se ofrece antes que la
+      // instantánea, que ahí es contexto.
+      const real=nearest(this.liveVisual)||nearest(this.networkVehicles);
+      if(real)chosen={kind:'realbus',id:real.id};
+      else{const station=nearest(this.data.stations);if(station)chosen={kind:'station',id:station.id};}
+    }else{
+      let limit=12;
+      for(const [kind,items] of [['bus',this.busSamples],['station',this.data.stations]])for(const item of items){const d=distanceTo(item);if(d<limit){chosen={kind,id:item.id};limit=d;}}
+    }
+    if(chosen){this.select(chosen.kind,chosen.id);this.onSelect(chosen);}
+  }
   // Acepta un identificador o varios: los servicios numerados tienen un registro por sentido y se
   // resaltan juntos.
   setRoute(id,{subtle=false}={}){this.journey=null;this.routeId=id;this.subtleRoute=subtle;this.rebuildHighlight();}

@@ -81,10 +81,17 @@ test('In the live tab a real bus wins the station underneath',async()=>{
  const sobreLaEstacion=[50,50];
  mapa.simulationVisible=false;mapa.pick(sobreLaEstacion);
  assert.deepEqual(elegido.at(-1),['realbus','bus-gps'],'la lectura GPS va primero');
+ // La instantánea ancla sus vehículos a la parada, así que ahí no hay margen: manda la distancia.
  mapa.liveVisual=[];mapa.pick(sobreLaEstacion);
- assert.deepEqual(elegido.at(-1),['realbus','bus-red'],'sin ella responde la instantánea');
+ assert.deepEqual(elegido.at(-1),['station','estacion'],'la instantánea no tapa la estación');
+ mapa.data.stations=[{id:'estacion',xy:[9,0]}];mapa.pick(sobreLaEstacion);
+ assert.deepEqual(elegido.at(-1),['realbus','bus-red'],'pero sí gana cuando está más cerca');
+ mapa.data.stations=[{id:'estacion',xy:[0,0]}];
  mapa.networkVehicles=[];mapa.pick(sobreLaEstacion);
  assert.deepEqual(elegido.at(-1),['station','estacion'],'sin buses cerca sigue eligiéndose la estación');
+ // El margen es para apuntar al bus, no para tapar la estación: un bus a 8 px no se la queda.
+ mapa.liveVisual=[{id:'bus-lejos',xy:[8,0]}];mapa.pick(sobreLaEstacion);
+ assert.deepEqual(elegido.at(-1),['station','estacion'],'un bus claramente aparte no gana');
  // Fuera de la pestaña manda la distancia, como siempre.
  mapa.simulationVisible=true;mapa.liveVisual=[{id:'bus-gps',xy:[3,0]}];
  mapa.pick(sobreLaEstacion);

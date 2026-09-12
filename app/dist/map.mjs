@@ -115,13 +115,17 @@ export class NetworkMap {
     const nearest=items=>{let best=null,limit=12;for(const item of items||[]){const d=distanceTo(item);if(d<limit){best=item;limit=d;}}return best;};
     let chosen=null;
     if(this.simulationVisible===false){
-      // Con la simulación oculta —la pestaña En vivo— un bus real gana a la estación que tenga
-      // debajo aunque la estación caiga más cerca del cursor: casi todos van sobre una, está
-      // dibujado encima, y es lo que se ha ido a mirar. La lectura GPS se ofrece antes que la
-      // instantánea, que ahí es contexto.
-      const real=nearest(this.liveVisual)||nearest(this.networkVehicles);
-      if(real)chosen={kind:'realbus',id:real.id};
-      else{const station=nearest(this.data.stations);if(station)chosen={kind:'station',id:station.id};}
+      // Con la simulación oculta —la pestaña En vivo— se eligen los buses reales, pero las dos
+      // capas no se comportan igual frente a una estación. La lectura GPS cae donde está el bus,
+      // casi siempre entre paradas, y se lleva un margen de 4 px por ir dibujada encima. La
+      // instantánea, en cambio, ancla cada vehículo a su parada: ahí el margen dejaría sin abrir
+      // toda estación con un bus encima, que a estas horas son casi todas, así que manda la
+      // distancia y cada cosa se alcanza apuntándole.
+      const station=this.data.stations, gps=nearest(this.liveVisual);
+      const cerca=nearest(station), snapshot=nearest(this.networkVehicles);
+      if(gps&&(!cerca||distanceTo(gps)-4<=distanceTo(cerca)))chosen={kind:'realbus',id:gps.id};
+      else if(snapshot&&(!cerca||distanceTo(snapshot)<distanceTo(cerca)))chosen={kind:'realbus',id:snapshot.id};
+      else if(cerca)chosen={kind:'station',id:cerca.id};
     }else{
       let limit=12;
       for(const [kind,items] of [['bus',this.busSamples],['station',this.data.stations]])for(const item of items){const d=distanceTo(item);if(d<limit){chosen={kind,id:item.id};limit=d;}}

@@ -46,6 +46,9 @@ class LocalHandler(http.server.SimpleHTTPRequestHandler):
             elif url.path == '/api/en-vivo/buses':
                 code = (query.get('ruta') or [''])[0].strip().upper()[:8]
                 state, payload = LIVE.buses(code)
+            elif url.path == '/api/en-vivo/estacion':
+                station = (query.get('id') or [''])[0].strip()[:32]
+                state, payload = LIVE.departures(station)
             else:
                 return self.json(404, {'error': 'unknown_endpoint'})
         except Exception as error:  # Un fallo aquí no puede tumbar el simulador entero.
@@ -54,6 +57,8 @@ class LocalHandler(http.server.SimpleHTTPRequestHandler):
             return self.json(200, payload)
         if state == 'unknown_route':
             return self.json(404, {'error': state, 'detail': 'Esa ruta no está en el catálogo del simulador.'})
+        if state == 'unknown_station':
+            return self.json(404, {'error': state, 'detail': 'Esta estación no tiene tablero publicado.'})
         if state == 'not_configured':
             return self.json(503, {'error': state, 'detail': 'Falta la configuración local del servicio.'})
         return self.json(502, {'error': 'upstream', **payload})

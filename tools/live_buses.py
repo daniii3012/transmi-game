@@ -33,6 +33,11 @@ BOGOTA_BBOX = {'llLat': 4.45, 'llLon': -74.25, 'urLat': 4.85, 'urLon': -73.99}
 MAX_JOURNEYS = 1000
 TRUNK_OPERATORS = ('Transmilenio-Troncal', 'Transmilenio-Dual')
 NETWORK_TTL = 45.0
+# El tablero de una estación cambia minuto a minuto; 25 s lo mantiene fresco sin repetir la
+# consulta cada vez que se vuelve a dibujar la ficha. Doce salidas cubren de sobra lo que cabe
+# en el panel.
+BOARD_TTL = 25.0
+BOARD_JOURNEYS = 12
 TIMEOUT = 12.0  # Rechazar una ruta le toma al servicio hasta diez segundos; cortar antes esconde el motivo.
 
 def aeqd(lon, lat, origin):
@@ -122,8 +127,11 @@ class LiveBuses:
         self.cache = {}
         self.last_call = 0.0
         self._catalogue = None
+        self._stations = None
         self.network_lock = threading.Lock()
         self.network_cache = None
+        self.board_lock = threading.Lock()
+        self.boards = {}
 
     def catalogue(self):
         """Route codes and projection origin, read from the same services.json the page loads."""
@@ -264,6 +272,95 @@ class LiveBuses:
                 'line_id': journey.get('lineId'), 'operator': journey.get('operator'),
                 'destination': str((stops[-1] if stops else {}).get('name') or '').strip(),
                 'xy': [round(x, 2), round(y, 2)], 'lonlat': [lon, lat]}
+
+    def stations(self):
+        """Los identificadores de estación del catálogo, para no consultar por uno inventado."""
+        if self._stations is None:
+            data = json.loads(self.services.read_text())
+            self._stations = {s['id']: s['name'] for s in data['stations'] if s['kind'] == 'station'}
+        return self._stations
+
+    def departures(self, station_id):
+        """(status, payload) with the next departures published for one station.
+
+        This is what the operator plans for the coming minutes, not a GPS reading: the board gives
+        an hour and a boarding point, nothing that was measured on the street. The wait is worked
+        out against Bogota's clock and everything else is passed through as it arrives.
+        """
+        names = self.stations()
+        if station_id not in names:
+            return 'unknown_station', None
+        if not self.configured():
+            return 'not_configured', None
+        cached = self.boards.get(station_id)
+        if cached and time.time() - cached['fetched'] < BOARD_TTL:
+            return 'ok', self.board_payload(station_id, cached)
+        with self.board_lock:
+            cached = self.boards.get(station_id)
+            if cached and time.time() - cached['fetched'] < BOARD_TTL:
+                return 'ok', self.board_payload(station_id, cached)
+            try:
+                raw = self.board_request(station_id)
+            except urllib.error.HTTPError as error:
+                # 400 es la respuesta a un identificador que el tablero no reconoce, no un fallo.
+                if error.code == 400:
+                    return 'unknown_station', None
+                return 'upstream', {'detail': f'El tablero respondió {error.code}.', 'code': error.code}
+            except (urllib.error.URLError, TimeoutError, ValueError, OSError) as error:
+                return 'upstream', {'detail': f'No se pudo leer el tablero: {error}.'}
+            now = datetime.now(BOGOTA)
+            cached = {'fetched': time.time(), 'queried_at': now.isoformat(),
+                      'departures': [d for d in (self.departure(entry, now) for entry in raw) if d]}
+
+            self.boards[station_id] = cached
+        return 'ok', self.board_payload(station_id, cached)
+
+    def departure(self, entry, now):
+        """One board line, or None when it carries no usable hour."""
+        stamp = f"{entry.get('date') or now.date().isoformat()} {(entry.get('time') or '')[:8]}"
+        try:
+            when = datetime.strptime(stamp, '%Y-%m-%d %H:%M:%S').replace(tzinfo=BOGOTA)
+        except ValueError:
+            return None
+        return {'line': str(entry.get('line') or '').strip(),
+                'destination': str(entry.get('destinationMainMastName') or '').strip(),
+                'stop': str(entry.get('stop') or '').strip(),
+                'at': when.isoformat(),
+                'time': when.strftime('%H:%M'),
+                'started': bool(entry.get('hasStarted'))}
+
+    def board_request(self, station_id):
+        settings = self.settings()
+        url = settings.get('planner_board_url')
+        if not url:
+            raise ValueError('Falta la dirección del tablero en la configuración local.')
+        now = datetime.now(BOGOTA)
+        body = {'id': station_id, 'date': now.strftime('%Y-%m-%d'), 'time': now.strftime('%H:%M'),
+                'maxJourneys': BOARD_JOURNEYS, 'duration': 60, 'rtMode': 'SERVER_DEFAULT',
+                'type': 'DEP_STATION'}
+        headers = {'Content-Type': 'application/json', 'Accept': 'application/json'}
+        if settings.get('planner_origin'):
+            headers['Origin'] = settings['planner_origin']
+        request = urllib.request.Request(url, data=json.dumps(body).encode(), method='POST', headers=headers)
+        with urllib.request.urlopen(request, timeout=TIMEOUT) as response:
+            payload = json.loads(response.read(4_000_000))
+        return payload.get('data') or []
+
+    def board_payload(self, station_id, cached):
+        """La espera se calcula al servir y no al leer: el tablero se guarda unos segundos y su
+        hora es de minuto entero, así que se compara minuto contra minuto —una salida del minuto
+        en curso es «ahora», no «hace un minuto»— y no contra el segundo exacto.
+        """
+        minute = datetime.now(BOGOTA).replace(second=0, microsecond=0)
+        departures = []
+        for entry in cached['departures']:
+            wait = round((datetime.fromisoformat(entry['at']) - minute).total_seconds() / 60)
+            if wait < 0:
+                continue
+            departures.append({k: v for k, v in entry.items() if k != 'at'} | {'in_min': wait})
+        return {'station_id': station_id, 'name': self.stations().get(station_id, ''),
+                'queried_at': cached['queried_at'], 'age_s': round(time.time() - cached['fetched'], 1),
+                'departures': departures, 'attribution': ATTRIBUTION}
 
     def network_payload(self, cached):
         return {'queried_at': cached['queried_at'], 'age_s': round(time.time() - cached['fetched'], 1),

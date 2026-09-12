@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942777 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="1108592766" visible="true" version="4" changeset="131510340" timestamp="2023-01-20T14:17:54Z" user="Facalderonm" uid="1759764" lat="4.6279817" lon="-74.1737626">
+  <tag k="entrance" v="yes"/>
+ </node>
+ <node id="5421157503" visible="true" version="3" changeset="153722438" timestamp="2024-07-08T21:56:19Z" user="Facalderonm" uid="1759764" lat="4.6276565" lon="-74.1736593"/>
+ <node id="9884383224" visible="true" version="3" changeset="173862560" timestamp="2025-10-28T01:50:59Z" user="Barto920203" uid="10140282" lat="4.6275850" lon="-74.1736491">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="9884383226" visible="true" version="2" changeset="153722438" timestamp="2024-07-08T21:56:19Z" user="Facalderonm" uid="1759764" lat="4.6274392" lon="-74.1736555"/>
+ <node id="9884383227" visible="true" version="2" changeset="153722438" timestamp="2024-07-08T21:56:19Z" user="Facalderonm" uid="1759764" lat="4.6273551" lon="-74.1736819"/>
+ <node id="9884383228" visible="true" version="4" changeset="179834609" timestamp="2026-03-14T02:41:47Z" user="Facalderonm" uid="1759764" lat="4.6275028" lon="-74.1736414">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="562322329" visible="true" version="10" changeset="153722438" timestamp="2024-07-08T21:56:19Z" user="Facalderonm" uid="1759764">
+  <nd ref="1108592766"/>
+  <nd ref="5421157503"/>
+  <nd ref="9884383224"/>
+  <nd ref="9884383228"/>
+  <nd ref="9884383226"/>
+  <nd ref="9884383227"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+ </way>
+</osm>

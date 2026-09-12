@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942786 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="261630647" visible="true" version="10" changeset="116131728" timestamp="2022-01-14T03:25:03Z" user="Oscarín Orbitus" uid="1857063" lat="4.6357782" lon="-74.1534446">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="135"/>
+ </node>
+ <node id="5421056355" visible="true" version="3" changeset="86926219" timestamp="2020-06-21T05:26:35Z" user="Facalderonm" uid="1759764" lat="4.6355725" lon="-74.1532402"/>
+ <way id="1432415631" visible="true" version="1" changeset="172366269" timestamp="2025-09-23T22:10:08Z" user="SoyJosueVerde" uid="20922998">
+  <nd ref="5421056355"/>
+  <nd ref="261630647"/>
+  <tag k="access" v="no"/>
+  <tag k="alt_name" v="Avenida de las Américas"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

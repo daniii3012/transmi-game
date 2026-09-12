@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942784 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2331502230" visible="true" version="12" changeset="130434355" timestamp="2022-12-23T19:31:58Z" user="jonfaust" uid="11438835" lat="4.6418565" lon="-74.0659017">
+  <tag k="button_operated" v="no"/>
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:sound" v="no"/>
+  <tag k="traffic_signals:vibration" v="no"/>
+ </node>
+</osm>

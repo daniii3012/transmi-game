@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942791 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="261188512" visible="true" version="9" changeset="114978300" timestamp="2021-12-15T20:15:58Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6357331" lon="-74.0919946"/>
+ <node id="261188515" visible="true" version="11" changeset="114978300" timestamp="2021-12-15T20:15:58Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6353004" lon="-74.0915808"/>
+ <node id="261188517" visible="true" version="8" changeset="114978300" timestamp="2021-12-15T20:15:58Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6348360" lon="-74.0909756"/>
+ <node id="261188519" visible="true" version="10" changeset="114978300" timestamp="2021-12-15T20:15:58Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6346093" lon="-74.0906005"/>
+ <node id="261188523" visible="true" version="9" changeset="114978300" timestamp="2021-12-15T20:15:58Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6341320" lon="-74.0893736"/>
+ <node id="1573509617" visible="true" version="3" changeset="114978300" timestamp="2021-12-15T20:15:59Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6317895" lon="-74.0842192"/>
+ <node id="1573509620" visible="true" version="3" changeset="114978300" timestamp="2021-12-15T20:15:59Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6319568" lon="-74.0843533"/>
+ <node id="1573509622" visible="true" version="4" changeset="114978300" timestamp="2021-12-15T20:15:59Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6321000" lon="-74.0844955"/>
+ <node id="1573509634" visible="true" version="4" changeset="114978300" timestamp="2021-12-15T20:15:59Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6325202" lon="-74.0850322"/>
+ <node id="1573509640" visible="true" version="4" changeset="114978300" timestamp="2021-12-15T20:15:59Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6329826" lon="-74.0861761"/>
+ <node id="1573509643" visible="true" version="4" changeset="114978300" timestamp="2021-12-15T20:15:59Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6332993" lon="-74.0871409"/>
+ <node id="1573509658" visible="true" version="3" changeset="114978300" timestamp="2021-12-15T20:15:59Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6308527" lon="-74.0835782"/>
+ <node id="2394685071" visible="true" version="5" changeset="182444421" timestamp="2026-05-09T22:12:00Z" user="SoyJosueVerde" uid="20922998" lat="4.6359713" lon="-74.0921871"/>
+ <node id="5146223096" visible="true" version="3" changeset="114978300" timestamp="2021-12-15T20:16:02Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6331725" lon="-74.0867842"/>
+ <node id="5169349593" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:03Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6355234" lon="-74.0918132"/>
+ <node id="5169349594" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:03Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6350615" lon="-74.0913043"/>
+ <node id="5169349597" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:03Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6344871" lon="-74.0903217"/>
+ <node id="5169349603" visible="true" version="8" changeset="150972632" timestamp="2024-05-06T16:04:11Z" user="Facalderonm" uid="1759764" lat="4.6340803" lon="-74.0892375">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="5169559054" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:04Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6336195" lon="-74.0880386"/>
+ <node id="5169559056" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:04Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6327094" lon="-74.0853928"/>
+ <node id="5169559057" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:04Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6327867" lon="-74.0855946"/>
+ <node id="5169559061" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:04Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6323342" lon="-74.0847665"/>
+ <node id="5169559063" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:04Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6314297" lon="-74.0839667"/>
+ <node id="5169559064" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:04Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6303992" lon="-74.0832738"/>
+ <node id="5169559070" visible="true" version="6" changeset="120365021" timestamp="2022-04-29T21:06:43Z" user="JuanMelo" uid="12906384" lat="4.6301772" lon="-74.0831288">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="6126686801" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:05Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6326148" lon="-74.0852071"/>
+ <node id="9336198389" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:05Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6342981" lon="-74.0898494"/>
+ <node id="9359228525" visible="true" version="4" changeset="150972632" timestamp="2024-05-06T16:04:11Z" user="Facalderonm" uid="1759764" lat="4.6339345" lon="-74.0888567">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9514893161" visible="true" version="1" changeset="117537453" timestamp="2022-02-17T20:43:56Z" user="Facalderonm" uid="1759764" lat="4.6339831" lon="-74.0889831"/>
+ <node id="13253232267" visible="true" version="1" changeset="173696282" timestamp="2025-10-24T00:48:26Z" user="Barto920203" uid="10140282" lat="4.6301073" lon="-74.0830831"/>
+ <node id="13253232276" visible="true" version="1" changeset="173696282" timestamp="2025-10-24T00:48:26Z" user="Barto920203" uid="10140282" lat="4.6302232" lon="-74.0831588">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="13253237503" visible="true" version="1" changeset="173696282" timestamp="2025-10-24T00:48:26Z" user="Barto920203" uid="10140282" lat="4.6339767" lon="-74.0889665"/>
+ <node id="13253237512" visible="true" version="1" changeset="173696282" timestamp="2025-10-24T00:48:26Z" user="Barto920203" uid="10140282" lat="4.6340930" lon="-74.0892709">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1511147891" visible="true" version="1" changeset="182444421" timestamp="2026-05-09T22:12:00Z" user="SoyJosueVerde" uid="20922998">
+  <nd ref="2394685071"/>
+  <nd ref="261188512"/>
+  <nd ref="5169349593"/>
+  <nd ref="261188515"/>
+  <nd ref="5169349594"/>
+  <nd ref="261188517"/>
+  <nd ref="261188519"/>
+  <nd ref="5169349597"/>
+  <nd ref="9336198389"/>
+  <nd ref="261188523"/>
+  <nd ref="13253237512"/>
+  <nd ref="5169349603"/>
+  <nd ref="9514893161"/>
+  <nd ref="13253237503"/>
+  <nd ref="9359228525"/>
+  <nd ref="5169559054"/>
+  <nd ref="1573509643"/>
+  <nd ref="5146223096"/>
+  <nd ref="1573509640"/>
+  <nd ref="5169559057"/>
+  <nd ref="5169559056"/>
+  <nd ref="6126686801"/>
+  <nd ref="1573509634"/>
+  <nd ref="5169559061"/>
+  <nd ref="1573509622"/>
+  <nd ref="1573509620"/>
+  <nd ref="1573509617"/>
+  <nd ref="5169559063"/>
+  <nd ref="1573509658"/>
+  <nd ref="5169559064"/>
+  <nd ref="13253232276"/>
+  <nd ref="5169559070"/>
+  <nd ref="13253232267"/>
+  <tag k="access" v="no"/>
+  <tag k="alt_name" v="Avenida Jorge Eliecer Gaitán"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

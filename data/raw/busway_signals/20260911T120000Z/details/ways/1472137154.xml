@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942781 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="12483781869" visible="true" version="3" changeset="177828818" timestamp="2026-01-29T03:31:35Z" user="Barto920203" uid="10140282" lat="4.6010225" lon="-74.0816094">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="13508125449" visible="true" version="1" changeset="177828818" timestamp="2026-01-29T03:31:35Z" user="Barto920203" uid="10140282" lat="4.5993620" lon="-74.0828002">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:markings" v="yes"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1472137154" visible="true" version="1" changeset="177828818" timestamp="2026-01-29T03:31:35Z" user="Barto920203" uid="10140282">
+  <nd ref="13508125449"/>
+  <nd ref="12483781869"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="bus"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

@@ -189,7 +189,12 @@ def main() -> None:
                 tags = element.get("tags", {})
                 name = tags.get("name", "")
                 is_named_platform = bool(PLATFORM_RE.search(name)) or tags.get("public_transport") == "platform"
-                if member.get("role") == "outer" and is_named_platform:
+                # A platform can be mapped as an inner member of a
+                # multipolygon station (Portal Tunal's Plataforma 2 is one
+                # such case).  The member role describes ring topology, not
+                # the physical use of the way, so retain named platform ways
+                # regardless of outer/inner role.
+                if is_named_platform:
                     role = "platform_feeder" if FEEDER_RE.search(name) else "platform_trunk"
                     platforms[f"way-{element['id']}"] = feature(
                         element, points, name=name, role=role, source_relation=relation["id"]
@@ -299,7 +304,7 @@ def main() -> None:
         "scope": {
             "stations": list(raw_stations),
             "radius_m": raw.get("radius_m", 450),
-            "selection": "Portal Sur, Portal Suba, Portal Américas, Banderas, Ricaurte, Avenida Jiménez",
+            "selection": "Portal Norte, Portal 80, Portal Sur, Portal Suba, Portal Américas, Portal El Dorado, Portal Tunal, Portal Usme, Portal 20 de Julio, Banderas, Ricaurte, Avenida Jiménez",
             "limitations": [
                 "OSM may encode a platform as a node or open line; those features retain closed=false and are not inflated into invented polygons.",
                 "Station/building outlines are in areas and are never emitted as platforms unless OSM names/tags the member as a platform.",

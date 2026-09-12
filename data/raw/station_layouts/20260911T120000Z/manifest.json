@@ -1,0 +1,11 @@
+{
+  "schema_version": 1,
+  "snapshot": "20260911T120000Z",
+  "source_url": "https://api.openstreetmap.org/api/0.6",
+  "queried_at": "2026-09-11T12:00:00Z",
+  "radius_m": 450,
+  "raw_file": "overpass.json",
+  "raw_sha256": "16b2e6bf16d78e4eabf50b1f20cf182e853d14abf34270037d2f5f3003ccf02d",
+  "element_count": 1173,
+  "license": "OpenStreetMap contributors, ODbL 1.0; retrieved through API 0.6"
+}

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942788 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="470791869" visible="true" version="4" changeset="70097844" timestamp="2019-05-10T06:48:52Z" user="Facalderonm" uid="1759764" lat="4.5955911" lon="-74.1518571"/>
+ <node id="470791870" visible="true" version="4" changeset="55513263" timestamp="2018-01-17T07:12:57Z" user="Facalderonm" uid="1759764" lat="4.5950032" lon="-74.1469883"/>
+ <node id="470791871" visible="true" version="3" changeset="5599767" timestamp="2010-08-26T14:53:39Z" user="rcastib" uid="133835" lat="4.5949891" lon="-74.1464585"/>
+ <node id="470791872" visible="true" version="3" changeset="55513263" timestamp="2018-01-17T07:12:57Z" user="Facalderonm" uid="1759764" lat="4.5951278" lon="-74.1456352"/>
+ <node id="470791874" visible="true" version="6" changeset="122605074" timestamp="2022-06-20T06:57:56Z" user="Facalderonm" uid="1759764" lat="4.5954683" lon="-74.1432245"/>
+ <node id="880654933" visible="true" version="3" changeset="171290627" timestamp="2025-08-31T23:17:52Z" user="SoyJosueVerde" uid="20922998" lat="4.5957065" lon="-74.1522462"/>
+ <node id="898499668" visible="true" version="6" changeset="180591151" timestamp="2026-03-29T15:50:10Z" user="Barto920203" uid="10140282" lat="4.5954707" lon="-74.1509022">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="5106087834" visible="true" version="2" changeset="55513263" timestamp="2018-01-17T07:12:57Z" user="Facalderonm" uid="1759764" lat="4.5952727" lon="-74.1447759"/>
+ <node id="5106087835" visible="true" version="2" changeset="52050002" timestamp="2017-09-14T19:53:10Z" user="Kuzcotopia" uid="6413178" lat="4.5954157" lon="-74.1438492"/>
+ <node id="5106087836" visible="true" version="4" changeset="122605074" timestamp="2022-06-20T06:57:56Z" user="Facalderonm" uid="1759764" lat="4.5955469" lon="-74.1423763"/>
+ <node id="5344336006" visible="true" version="1" changeset="55513263" timestamp="2018-01-17T07:12:49Z" user="Facalderonm" uid="1759764" lat="4.5950258" lon="-74.1462049"/>
+ <node id="5344336007" visible="true" version="2" changeset="70097844" timestamp="2019-05-10T06:48:52Z" user="Facalderonm" uid="1759764" lat="4.5949813" lon="-74.1467083"/>
+ <node id="5344336013" visible="true" version="1" changeset="55513263" timestamp="2018-01-17T07:12:49Z" user="Facalderonm" uid="1759764" lat="4.5951239" lon="-74.1479328"/>
+ <node id="5346239190" visible="true" version="1" changeset="55540061" timestamp="2018-01-18T06:03:03Z" user="Facalderonm" uid="1759764" lat="4.5956238" lon="-74.1520014"/>
+ <node id="5346239191" visible="true" version="1" changeset="55540061" timestamp="2018-01-18T06:03:03Z" user="Facalderonm" uid="1759764" lat="4.5955529" lon="-74.1516039"/>
+ <node id="5590921240" visible="true" version="1" changeset="58594016" timestamp="2018-05-01T19:19:37Z" user="geoJenn" uid="6172634" lat="4.5951747" lon="-74.1453484"/>
+ <node id="6463639889" visible="true" version="1" changeset="70097844" timestamp="2019-05-10T06:48:48Z" user="Facalderonm" uid="1759764" lat="4.5956659" lon="-74.1521320"/>
+ <node id="6463639909" visible="true" version="1" changeset="70097844" timestamp="2019-05-10T06:48:48Z" user="Facalderonm" uid="1759764" lat="4.5949821" lon="-74.1465788"/>
+ <node id="9313440995" visible="true" version="1" changeset="114600179" timestamp="2021-12-06T02:34:23Z" user="Facalderonm" uid="1759764" lat="4.5955675" lon="-74.1420989"/>
+ <node id="9313440996" visible="true" version="1" changeset="114600179" timestamp="2021-12-06T02:34:23Z" user="Facalderonm" uid="1759764" lat="4.5955761" lon="-74.1419186"/>
+ <node id="9313440997" visible="true" version="1" changeset="114600179" timestamp="2021-12-06T02:34:23Z" user="Facalderonm" uid="1759764" lat="4.5955761" lon="-74.1417041"/>
+ <node id="9313440998" visible="true" version="1" changeset="114600179" timestamp="2021-12-06T02:34:23Z" user="Facalderonm" uid="1759764" lat="4.5955632" lon="-74.1414809"/>
+ <node id="9313440999" visible="true" version="2" changeset="122605074" timestamp="2022-06-20T06:57:56Z" user="Facalderonm" uid="1759764" lat="4.5955470" lon="-74.1412653"/>
+ <node id="9313441000" visible="true" version="2" changeset="122605074" timestamp="2022-06-20T06:57:56Z" user="Facalderonm" uid="1759764" lat="4.5952156" lon="-74.1392187"/>
+ <node id="9313441001" visible="true" version="2" changeset="122605074" timestamp="2022-06-20T06:57:56Z" user="Facalderonm" uid="1759764" lat="4.5951378" lon="-74.1387856"/>
+ <node id="9313441002" visible="true" version="4" changeset="181963533" timestamp="2026-04-28T23:22:52Z" user="SoyJosueVerde" uid="20922998" lat="4.5950132" lon="-74.1379313"/>
+ <node id="9468443939" visible="true" version="2" changeset="127113811" timestamp="2022-10-06T18:13:42Z" user="cats_pajamas" uid="10935570" lat="4.5951963" lon="-74.1485598">
+  <tag k="barrier" v="height_restrictor"/>
+  <tag k="bus" v="yes"/>
+  <tag k="maxheight" v="4.50"/>
+ </node>
+ <node id="9832364173" visible="true" version="1" changeset="122605074" timestamp="2022-06-20T06:57:56Z" user="Facalderonm" uid="1759764" lat="4.5955257" lon="-74.1411117"/>
+ <node id="9832364174" visible="true" version="1" changeset="122605074" timestamp="2022-06-20T06:57:56Z" user="Facalderonm" uid="1759764" lat="4.5954086" lon="-74.1403938"/>
+ <node id="9832364186" visible="true" version="1" changeset="122605074" timestamp="2022-06-20T06:57:56Z" user="Facalderonm" uid="1759764" lat="4.5951045" lon="-74.1385374"/>
+ <node id="9832364187" visible="true" version="2" changeset="181963812" timestamp="2026-04-28T23:40:43Z" user="SoyJosueVerde" uid="20922998" lat="4.5950642" lon="-74.1382388"/>
+ <node id="9832378972" visible="true" version="1" changeset="122605074" timestamp="2022-06-20T06:57:56Z" user="Facalderonm" uid="1759764" lat="4.5951282" lon="-74.1387215"/>
+ <node id="9832378973" visible="true" version="1" changeset="122605074" timestamp="2022-06-20T06:57:56Z" user="Facalderonm" uid="1759764" lat="4.5951440" lon="-74.1388280"/>
+ <node id="13688883699" visible="true" version="1" changeset="180591151" timestamp="2026-03-29T15:50:10Z" user="Barto920203" uid="10140282" lat="4.5954755" lon="-74.1509433">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="80205596" visible="true" version="24" changeset="180591151" timestamp="2026-03-29T15:50:10Z" user="Barto920203" uid="10140282">
+  <nd ref="880654933"/>
+  <nd ref="6463639889"/>
+  <nd ref="5346239190"/>
+  <nd ref="470791869"/>
+  <nd ref="5346239191"/>
+  <nd ref="13688883699"/>
+  <nd ref="898499668"/>
+  <nd ref="9468443939"/>
+  <nd ref="5344336013"/>
+  <nd ref="470791870"/>
+  <nd ref="5344336007"/>
+  <nd ref="6463639909"/>
+  <nd ref="470791871"/>
+  <nd ref="5344336006"/>
+  <nd ref="470791872"/>
+  <nd ref="5590921240"/>
+  <nd ref="5106087834"/>
+  <nd ref="5106087835"/>
+  <nd ref="470791874"/>
+  <nd ref="5106087836"/>
+  <nd ref="9313440995"/>
+  <nd ref="9313440996"/>
+  <nd ref="9313440997"/>
+  <nd ref="9313440998"/>
+  <nd ref="9313440999"/>
+  <nd ref="9832364173"/>
+  <nd ref="9832364174"/>
+  <nd ref="9313441000"/>
+  <nd ref="9832378973"/>
+  <nd ref="9313441001"/>
+  <nd ref="9832378972"/>
+  <nd ref="9832364186"/>
+  <nd ref="9832364187"/>
+  <nd ref="9313441002"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="designated"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

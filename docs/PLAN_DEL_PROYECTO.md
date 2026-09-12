@@ -1,6 +1,6 @@
 # Plan y alcance vigente
 
-Versión 3 · 11 de septiembre de 2026. El objetivo sigue siendo observar el sistema troncal y dual sobre la geografía real. Zonales, conducción 3D y construcción de líneas quedan fuera del alcance activo.
+Versión 4 · 11 de septiembre de 2026. El objetivo sigue siendo observar el sistema troncal y dual sobre la geografía real. Zonales, conducción 3D y construcción de líneas quedan fuera del alcance activo.
 
 ## Entrega integrada
 
@@ -14,18 +14,20 @@ Versión 3 · 11 de septiembre de 2026. El objetivo sigue siendo observar el sis
 | Vagones y flota en terminales | Integrados como modelo simplificado con supuestos visibles |
 | Contexto urbano, colores oficiales y diseño de paneles | Integrado; OSM y geografía de rutas separadas |
 | Pasajeros y clases de bus | Integrados; entradas históricas, destinos y parte de los tipos estimados |
-| Guardado, pruebas y documentación local | Integrado; evidencia en VALIDACION_20260911.md |
+| Planificador de viajes | Integrado: fecha/hora, servicios, hasta dos transbordos, geometría parcial y tiempos estimados |
+| Semáforos corroborados | Integrados con ciclos estimados y control para desactivarlos |
+| Guardado, pruebas y documentación local | Integrado; evidencia en VALIDACION_FASE2_20260911.md |
 
 El resultado es una versión funcional local con cobertura explícita. No equivale a una réplica validada de toda la operación real. El número 116 describe registros del mapa original; no se usa como certificado de completitud.
 
 ## Mejoras que dependen de nuevos datos
 
 1. **Geometrías y calendarios pendientes.** Resolver E48, H76/J76, K86 completo y variantes Ciclovía ambiguas. Doce de los 23 registros pendientes ya estaban fuera de vigencia para la fecha inicial. Conservarlos como auditoría, no activarlos por rellenar el contador.
-2. **Vagón por servicio.** Obtener planos y asignaciones vigentes con orientación/puertas. Seis estaciones tienen estructuras OSM detalladas; la cantidad de vagones es publicada y la asignación operativa sigue estimada. El resto mantiene representación esquemática. Portales pueden tener más de tres vagones.
+2. **Vagón por servicio.** Obtener planos y asignaciones vigentes con orientación/puertas. Doce estaciones lógicas, incluidos los nueve portales, tienen estructuras o puntos OSM detallados; la cantidad de vagones es publicada y la asignación operativa sigue estimada. El resto mantiene representación esquemática. Portales pueden tener más de tres vagones.
 3. **Calibración de demanda/oferta.** Incorporar varias semanas de validaciones, salidas, tiempos de viaje, frecuencia y matriz OD. El único archivo diario actual sirve de referencia histórica, no valida destinos ni todo septiembre.
 4. **Flota por ruta y patios reales.** Confirmar tipos de cada servicio y vínculos a patios/operadores, inventario y accesos. Actualmente hay regulación abstracta y reutilización compatible; no circulación en vacío ni garajes físicos completos.
 5. **Cruces y obras.** Conservar y contrastar cada enlace con PMT vigente. OSM aporta etiquetas de puentes/túneles para contexto; falta una auditoría exhaustiva de niveles y enlaces de todo el sistema. La futura extensión por Avenida 68 no se trata como inaugurada.
-6. **Semáforos.** Mejora opcional aplazada; requiere fases y coordinación contrastadas.
+6. **Semáforos.** Integrados donde OSM corrobora pertenencia directa a una vía de buses. La asociación exige distancia ≤12 m y sentido compatible. Fases y coordinación reales siguen pendientes; se usa un ciclo estimado visible de 90 s, sin colas microscópicas en los cruces.
 7. **Dispositivos pequeños.** Hay diseño adaptable, pero la QA de esta entrega se concentra en escritorio. Ampliar a móviles, gestos táctiles y equipos de poca memoria antes de presentarlo como producto multiplataforma.
 
 ## Criterios que deben mantenerse

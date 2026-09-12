@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942779 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="260697716" visible="true" version="32" changeset="62803035" timestamp="2018-09-21T16:15:30Z" user="galileo_01" uid="8578202" lat="4.5790091" lon="-74.1068650">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="12518388659" visible="true" version="3" changeset="187668246" timestamp="2026-08-19T03:23:54Z" user="Barto920203" uid="10140282" lat="4.5790270" lon="-74.1069902">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="14013448273" visible="true" version="1" changeset="185685547" timestamp="2026-07-14T00:15:31Z" user="SoyJosueVerde" uid="20922998" lat="4.5790283" lon="-74.1069453"/>
+ <node id="14013448274" visible="true" version="1" changeset="185685547" timestamp="2026-07-14T00:15:31Z" user="SoyJosueVerde" uid="20922998" lat="4.5790217" lon="-74.1069039"/>
+ <node id="14013448278" visible="true" version="1" changeset="185685547" timestamp="2026-07-14T00:15:31Z" user="SoyJosueVerde" uid="20922998" lat="4.5790268" lon="-74.1069359">
+  <tag k="crossing" v="uncontrolled"/>
+  <tag k="crossing:markings" v="yes"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1538909969" visible="true" version="1" changeset="185685547" timestamp="2026-07-14T00:15:31Z" user="SoyJosueVerde" uid="20922998">
+  <nd ref="12518388659"/>
+  <nd ref="14013448273"/>
+  <nd ref="14013448278"/>
+  <nd ref="14013448274"/>
+  <nd ref="260697716"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942788 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2434234049" visible="true" version="9" changeset="183565609" timestamp="2026-06-02T21:43:57Z" user="JuanMelo" uid="12906384" lat="4.5969959" lon="-74.1775674"/>
+ <node id="6202545028" visible="true" version="6" changeset="158017860" timestamp="2024-10-17T16:53:14Z" user="Facalderonm" uid="1759764" lat="4.5969950" lon="-74.1776975">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="7064554231" visible="true" version="6" changeset="183183682" timestamp="2026-05-26T02:44:01Z" user="Barto920203" uid="10140282" lat="4.5969855" lon="-74.1792135">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="11342802804" visible="true" version="1" changeset="143922032" timestamp="2023-11-12T05:53:40Z" user="Facalderonm" uid="1759764" lat="4.5969703" lon="-74.1795834"/>
+ <node id="13653878214" visible="true" version="2" changeset="183565609" timestamp="2026-06-02T21:43:57Z" user="JuanMelo" uid="12906384" lat="4.5969968" lon="-74.1774151"/>
+ <node id="13879596773" visible="true" version="2" changeset="183617567" timestamp="2026-06-04T00:02:04Z" user="JuanMelo" uid="12906384" lat="4.5969797" lon="-74.1793560"/>
+ <way id="1222884223" visible="true" version="3" changeset="183183682" timestamp="2026-05-26T02:44:01Z" user="Barto920203" uid="10140282">
+  <nd ref="13653878214"/>
+  <nd ref="2434234049"/>
+  <nd ref="6202545028"/>
+  <nd ref="7064554231"/>
+  <nd ref="13879596773"/>
+  <nd ref="11342802804"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+ </way>
+</osm>

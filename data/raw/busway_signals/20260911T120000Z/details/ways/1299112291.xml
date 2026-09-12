@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942779 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="11946125784" visible="true" version="4" changeset="184479913" timestamp="2026-06-23T14:38:19Z" user="Barto920203" uid="10140282" lat="4.6201908" lon="-74.0702382">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="11961712893" visible="true" version="4" changeset="184479913" timestamp="2026-06-23T14:38:19Z" user="Barto920203" uid="10140282" lat="4.6201401" lon="-74.0702652">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="11991257047" visible="true" version="1" changeset="152873072" timestamp="2024-06-19T03:58:51Z" user="Barto920203" uid="10140282" lat="4.6174931" lon="-74.0716832"/>
+ <node id="11991257048" visible="true" version="2" changeset="184479913" timestamp="2026-06-23T14:38:19Z" user="Barto920203" uid="10140282" lat="4.6202707" lon="-74.0701870"/>
+ <node id="12887032183" visible="true" version="3" changeset="184479913" timestamp="2026-06-23T14:38:19Z" user="Barto920203" uid="10140282" lat="4.6175979" lon="-74.0716284">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:markings" v="yes"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1299112291" visible="true" version="5" changeset="184479913" timestamp="2026-06-23T14:38:19Z" user="Barto920203" uid="10140282">
+  <nd ref="11991257047"/>
+  <nd ref="12887032183"/>
+  <nd ref="11961712893"/>
+  <nd ref="11946125784"/>
+  <nd ref="11991257048"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="bus"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

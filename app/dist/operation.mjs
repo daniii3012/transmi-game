@@ -1,11 +1,11 @@
-import {DAY,addDays,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.2';
-import {vehicleSpec} from './vehicles.mjs?v=20260911.2';
-import {travelProfile,travelAt} from './travel.mjs?v=20260911.2';
-import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260911.2';
-import {placeVisit} from './station-layouts.mjs?v=20260911.2';
-import {MetricPath} from './simulation.mjs?v=20260911.2';
-export const DEFAULTS=Object.freeze({peakHeadway:240,offpeakHeadway:480,demand:1,mode:'auto',cruiseKmh:60,streetKmh:50,acceleration:.8,braking:1.1,turnaround:240,variableDispatch:true,reinforcements:true});
-export function parameters(input={}){const p={...DEFAULTS,...input};for(const [k,min,max] of [['peakHeadway',120,1200],['offpeakHeadway',180,1800],['demand',.25,3],['cruiseKmh',25,75],['streetKmh',20,60],['acceleration',.4,1.4],['braking',.5,1.8],['turnaround',60,900]])if(!Number.isFinite(p[k])||p[k]<min||p[k]>max)throw new Error('Parámetro fuera de rango: '+k);if(typeof p.variableDispatch!=='boolean'||typeof p.reinforcements!=='boolean')throw new Error('Opciones de despacho inválidas');if(!['auto','peak','offpeak'].includes(p.mode))throw new Error('Demanda inválida');return p;}
+import {DAY,addDays,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.3';
+import {vehicleSpec} from './vehicles.mjs?v=20260911.3';
+import {matchSignals,signalTravel,signalTravelAt} from './signals.mjs?v=20260911.3';
+import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260911.3';
+import {placeVisit} from './station-layouts.mjs?v=20260911.3';
+import {MetricPath} from './simulation.mjs?v=20260911.3';
+export const DEFAULTS=Object.freeze({peakHeadway:240,offpeakHeadway:480,demand:1,mode:'auto',cruiseKmh:60,streetKmh:50,acceleration:.8,braking:1.1,turnaround:240,variableDispatch:true,reinforcements:true,signals:true});
+export function parameters(input={}){const p={...DEFAULTS,...input};for(const [k,min,max] of [['peakHeadway',120,1200],['offpeakHeadway',180,1800],['demand',.25,3],['cruiseKmh',25,75],['streetKmh',20,60],['acceleration',.4,1.4],['braking',.5,1.8],['turnaround',60,900]])if(!Number.isFinite(p[k])||p[k]<min||p[k]>max)throw new Error('Parámetro fuera de rango: '+k);if(typeof p.variableDispatch!=='boolean'||typeof p.reinforcements!=='boolean'||typeof p.signals!=='boolean')throw new Error('Opciones de despacho inválidas');if(!['auto','peak','offpeak'].includes(p.mode))throw new Error('Demanda inválida');return p;}
 export function hash(text){let h=2166136261;for(const c of String(text)){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;}
 export function motion(distance,v,a=.8,b=1.1){const top=Math.min(v,Math.sqrt(2*Math.max(0,distance)/(1/a+1/b))),ta=top/a,tb=top/b,cruise=Math.max(0,(distance-top*top/2/a-top*top/2/b)/Math.max(top,.01));return {distance,top,ta,tb,cruise,duration:ta+cruise+tb,a,b};}
 export function motionAt(m,t){t=Math.max(0,Math.min(t,m.duration));if(t<m.ta)return {s:.5*m.a*t*t,speed:m.a*t};if(t<m.ta+m.cruise)return {s:.5*m.top*m.ta+m.top*(t-m.ta),speed:m.top};const remaining=m.duration-t;return {s:m.distance-.5*m.b*remaining*remaining,speed:m.b*remaining};}
@@ -17,7 +17,7 @@ export class Operation {
   this.vehicle=data.vehicle;this.routes=new Map();this.stations=new Map(data.stations.map(s=>[s.id,s]));this.time=DAY+7*3600;this.buses=[];
   const picked=r=>this.selection.mode==='route'?r.id===this.selection.route:this.selection.mode==='zones'?(this.selection.zones||[]).some(z=>r.served_zones.includes(z)||r.zone===z):true;
   for(const r of data.routes.filter(r=>r.ready&&picked(r)))this.routes.set(r.id,{...r,typeSource:vehicleSpec(r).typeSource,path:new MetricPath(r.points)});
-  this.prepareDirections();this.motionCache=new Map();this.build();this.seek(this.time);
+  this.prepareDirections();for(const r of this.routes.values())r.signals=this.params.signals?matchSignals(r.path,data.busway_signals):[];this.motionCache=new Map();this.build();this.seek(this.time);
  }
  prepareDirections(){
   const allRoutes=this.data.routes.filter(r=>r.ready).map(r=>({...r,path:new MetricPath(r.points)}));const axes=new Map();for(const r of allRoutes)for(const s of r.stops){const angle=r.path.sample(Math.min(r.path.length-.1,Math.max(.1,s.at_m))).angle;const accum=axes.get(s.station_id)||[0,0];accum[0]+=Math.cos(2*angle);accum[1]+=Math.sin(2*angle);axes.set(s.station_id,accum);}
@@ -86,8 +86,8 @@ export class Operation {
    const speedOffset=this.vehicles[trip.vehicle].spec.speedOffset;const v=((isStreet?this.params.streetKmh:this.params.cruiseKmh)+speedOffset)/3.6;
    // Stop-to-stop acceleration/braking is metric; street congestion is a slower estimated cruise profile.
    const profileKey=r.id+'/'+e.index+'/'+period+'/'+speedOffset;
-   let m=this.motionCache.get(profileKey);if(!m){m=travelProfile(r.path,s.at_m,next.at_m,v*(isStreet&&period==='peak'?.82:1),this.params.acceleration,this.params.braking);this.motionCache.set(profileKey,m);}
-   trip.moves.push({profile:m,start:close,end:close+m.duration,from:s.at_m});
+   const m=signalTravel(r.path,s.at_m,next.at_m,v*(isStreet&&period==='peak'?.82:1),this.params.acceleration,this.params.braking,close,r.signals,this.motionCache,profileKey);
+   trip.moves.push({profile:m.profile,holds:m.holds,start:close,end:close+m.duration,from:s.at_m});
    queue.push({type:'stop',time:close+m.duration,trip:e.trip,index:e.index+1,date:e.date});
   }
   for(const [key,events] of this.passengerEvents){const n=upperBound(events,DAY,e=>e.time);if(n>1)this.passengerEvents.set(key,events.slice(n-1));}
@@ -107,23 +107,23 @@ export class Operation {
  sampleTrip(t,time){
   const r=this.routes.get(t.routeId),index=Math.min(t.stops.length-1,upperBound(t.stops,time,s=>s.arrival)-1);
   if(index<0)return null;
-  const stop=t.stops[index];let state,s,speed=0,load=stop.load,nextIndex=index;
+  const stop=t.stops[index];let state,s,speed=0,load=stop.load,nextIndex=index,signalId=null,signalWait=0;
   if(time<stop.open){state='queue';s=stop.at_m;load=index?t.stops[index-1].load:0;}
   else if(time<stop.close){state='dwell';s=stop.at_m;}
-  else {const move=t.moves[index];if(!move)return null;state='moving';const pose=travelAt(move.profile,time-move.start);s=move.from+pose.s;speed=pose.speed;nextIndex=index+1;}
+  else {const move=t.moves[index];if(!move)return null;const pose=signalTravelAt(move,time);signalId=pose.signalId||null;signalWait=pose.signalWait||0;state=signalId?'signal':'moving';s=move.from+pose.s;speed=pose.speed;nextIndex=index+1;}
   const pose=r.path.sample(s),next=r.visits[nextIndex];
-  return {id:t.id,vehicleId:this.vehicles[t.vehicle].id,routeId:r.id,laneId:r.id,code:r.code,pattern:r.name,color:r.color,state,s,speed,speed_kmh:speed*3.6,xy:pose.xy,angle:pose.angle,
+  return {id:t.id,vehicleId:this.vehicles[t.vehicle].id,routeId:r.id,laneId:r.id,code:r.code,pattern:r.name,color:r.color,state,signalId,signalWait,s,speed,speed_kmh:speed*3.6,xy:pose.xy,angle:pose.angle,
     load,capacity:t.capacity,reinforcement:t.reinforcement,busType:this.vehicles[t.vehicle].spec.label,typeSource:r.typeSource,length_m:this.vehicles[t.vehicle].spec.length,next_stop:next?.name||'Fin del servicio',next_station:next?.station_id,stopIndex:index,stopsServed:index+(time>=stop.close?1:0),wagon:next?.wagon||1,slot:stop.slot,
-    delay:Math.max(0,stop.open-stop.arrival),street:state==='moving'?r.stops[index].kind==='street'||next.kind==='street':r.stops[index].kind==='street',
+    delay:Math.max(0,stop.open-stop.arrival),street:['moving','signal'].includes(state)?r.stops[index].kind==='street'||next.kind==='street':r.stops[index].kind==='street',
     tripStart:t.start,tripEnd:t.end,progress:s/r.path.length};
  }
  seek(time){if(!Number.isFinite(time))throw new Error('Hora inválida');this.time=time;const a=upperBound(this.trips,time-this.maxDuration,t=>t.start),b=upperBound(this.trips,time,t=>t.start);this.buses=[];for(let i=a;i<b;i++){const t=this.trips[i];if(t.end>time){const bus=this.sampleTrip(t,time);if(bus)this.buses.push(bus);}}this.byId=new Map(this.buses.map(b=>[b.id,b]));return this.buses;}
  inspect(id){return this.byId.get(id)||null;}
- stats(){const counts={moving:0,dwell:0,queue:0};let load=0;for(const b of this.buses){counts[b.state]++;load+=b.load;}const n=upperBound(this.stopEvents,this.time,e=>e.time),start=upperBound(this.stopEvents,DAY,e=>e.time),events=Math.max(0,n-start);return {time_s:this.time,fleet:this.buses.length,...counts,onboard:load,boarded:this.boardPrefix[n]-this.boardPrefix[Math.min(start,n)],stops:events,averageWait:events?(this.waitPrefix[n]-this.waitPrefix[start])/events:0,boardingDenials:this.leftPrefix[n]-this.leftPrefix[Math.min(start,n)],scheduled:this.trips.filter(t=>t.start>=DAY).length,completed:upperBound(this.ends,this.time,t=>t.end)-upperBound(this.ends,DAY,t=>t.end),routes:this.routes.size,peakActive:this.peakActive};}
+ stats(){const counts={moving:0,dwell:0,queue:0,signal:0};let load=0;for(const b of this.buses){counts[b.state]++;load+=b.load;}const n=upperBound(this.stopEvents,this.time,e=>e.time),start=upperBound(this.stopEvents,DAY,e=>e.time),events=Math.max(0,n-start);return {time_s:this.time,fleet:this.buses.length,...counts,onboard:load,boarded:this.boardPrefix[n]-this.boardPrefix[Math.min(start,n)],stops:events,averageWait:events?(this.waitPrefix[n]-this.waitPrefix[start])/events:0,boardingDenials:this.leftPrefix[n]-this.leftPrefix[Math.min(start,n)],scheduled:this.trips.filter(t=>t.start>=DAY).length,completed:upperBound(this.ends,this.time,t=>t.end)-upperBound(this.ends,DAY,t=>t.end),routes:this.routes.size,peakActive:this.peakActive};}
  depotStats(){const map=new Map();for(const t of this.trips){const r=this.routes.get(t.routeId),origin=r.stops[0].station_id;if(!map.has(origin))map.set(origin,{id:origin,name:this.stations.get(origin)?.name||r.stops[0].name,departures:0,next:Infinity,reserve:0});const d=map.get(origin);if(t.start>=DAY&&t.start<=this.time)d.departures++;if(t.start>this.time)d.next=Math.min(d.next,t.start);}
  for(const e of this.depotEvents){if(e.time>this.time)break;if(!map.has(e.station))map.set(e.station,{id:e.station,name:this.stations.get(e.station)?.name||e.station,departures:0,next:Infinity,reserve:0});map.get(e.station).reserve+=e.delta;}
  return [...map.values()].sort((a,b)=>b.departures-a.departures);
  }
  waitingAt(stationId){let count=0;for(const [key,events] of this.passengerEvents){if(!key.startsWith(stationId+'/'))continue;const index=upperBound(events,this.time,e=>e.time)-1;if(index<0)continue;const e=events[index];count+=e.count*Math.exp(-Math.max(0,this.time-e.time)/1800)+e.share*generatedPassengers(this.stations.get(stationId),e.angle,e.time,this.time,addDays(this.date,-1),this.params);}return Math.round(count);}
- stationStats(id){const buses=this.buses.filter(b=>b.next_station===id&&b.state!=='moving');const routes=[...this.routes.values()].filter(r=>r.stops.some(s=>s.station_id===id));const upcoming=[];for(const t of this.trips){if(t.end<this.time||t.start>this.time+1800)continue;const r=this.routes.get(t.routeId);r.stops.forEach((s,i)=>{const event=t.stops[i];if(s.station_id===id&&event.close>=this.time&&event.arrival<this.time+1800)upcoming.push({code:r.code,routeId:r.id,name:r.name,arrival:event.arrival,wagon:event.wagon,wait:event.open-event.arrival});});}return {waiting:this.waitingAt(id),buses,routes:routes.map(r=>({id:r.id,code:r.code,name:r.name,color:r.color})),upcoming:upcoming.sort((a,b)=>a.arrival-b.arrival).slice(0,8)};}
+ stationStats(id){const buses=this.buses.filter(b=>b.next_station===id&&['dwell','queue'].includes(b.state));const routes=[...this.routes.values()].filter(r=>r.stops.some(s=>s.station_id===id));const upcoming=[];for(const t of this.trips){if(t.end<this.time||t.start>this.time+1800)continue;const r=this.routes.get(t.routeId);r.stops.forEach((s,i)=>{const event=t.stops[i];if(s.station_id===id&&event.close>=this.time&&event.arrival<this.time+1800)upcoming.push({code:r.code,routeId:r.id,name:r.name,arrival:event.arrival,wagon:event.wagon,wait:event.open-event.arrival});});}return {waiting:this.waitingAt(id),buses,routes:routes.map(r=>({id:r.id,code:r.code,name:r.name,color:r.color})),upcoming:upcoming.sort((a,b)=>a.arrival-b.arrival).slice(0,8)};}
 }

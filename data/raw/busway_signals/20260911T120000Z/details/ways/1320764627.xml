@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942774 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="12222604084" visible="true" version="3" changeset="182126778" timestamp="2026-05-02T17:04:04Z" user="JuanMelo" uid="12906384" lat="4.6442923" lon="-74.0657340">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="12222606003" visible="true" version="1" changeset="157468062" timestamp="2024-10-04T15:57:58Z" user="Barto920203" uid="10140282" lat="4.6453640" lon="-74.0655380"/>
+ <node id="12222606008" visible="true" version="1" changeset="157468062" timestamp="2024-10-04T15:57:58Z" user="Barto920203" uid="10140282" lat="4.6471369" lon="-74.0652123"/>
+ <node id="12590175616" visible="true" version="2" changeset="183134341" timestamp="2026-05-25T03:18:36Z" user="Barto920203" uid="10140282" lat="4.6462279" lon="-74.0653793">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="12590175617" visible="true" version="1" changeset="162537982" timestamp="2025-02-15T14:27:39Z" user="EMA AC NAIVA" uid="22512516" lat="4.6447800" lon="-74.0656452"/>
+ <node id="13083631237" visible="true" version="1" changeset="170700133" timestamp="2025-08-20T03:37:42Z" user="Barto920203" uid="10140282" lat="4.6471135" lon="-74.0652166"/>
+ <node id="13874888717" visible="true" version="1" changeset="183134341" timestamp="2026-05-25T03:18:36Z" user="Barto920203" uid="10140282" lat="4.6461218" lon="-74.0653988">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="crossing:markings" v="yes"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <way id="1320764627" visible="true" version="4" changeset="183134341" timestamp="2026-05-25T03:18:36Z" user="Barto920203" uid="10140282">
+  <nd ref="12222606008"/>
+  <nd ref="13083631237"/>
+  <nd ref="12590175616"/>
+  <nd ref="13874888717"/>
+  <nd ref="12222606003"/>
+  <nd ref="12590175617"/>
+  <nd ref="12222604084"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="lanes" v="2"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

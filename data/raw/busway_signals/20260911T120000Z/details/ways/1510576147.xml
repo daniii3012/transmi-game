@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942775 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2394631811" visible="true" version="5" changeset="114978300" timestamp="2021-12-15T20:16:01Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6296149" lon="-74.0826239"/>
+ <node id="3281427569" visible="true" version="5" changeset="117537323" timestamp="2022-02-17T20:40:15Z" user="Facalderonm" uid="1759764" lat="4.6298858" lon="-74.0828000"/>
+ <node id="3281427570" visible="true" version="3" changeset="114978300" timestamp="2021-12-15T20:16:02Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6293184" lon="-74.0824617"/>
+ <node id="3281427571" visible="true" version="4" changeset="114978300" timestamp="2021-12-15T20:16:02Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6289706" lon="-74.0822531"/>
+ <node id="3281427572" visible="true" version="4" changeset="114978300" timestamp="2021-12-15T20:16:02Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6285576" lon="-74.0819862"/>
+ <node id="3281427573" visible="true" version="3" changeset="114978300" timestamp="2021-12-15T20:16:02Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6279705" lon="-74.0815747"/>
+ <node id="3281427580" visible="true" version="3" changeset="114978300" timestamp="2021-12-15T20:16:02Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6256867" lon="-74.0799963"/>
+ <node id="3281427581" visible="true" version="4" changeset="114978300" timestamp="2021-12-15T20:16:02Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6249034" lon="-74.0795068"/>
+ <node id="5169559153" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:04Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6253149" lon="-74.0797611"/>
+ <node id="5169559161" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:04Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6270095" lon="-74.0808953"/>
+ <node id="5169559162" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:05Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6274968" lon="-74.0812367"/>
+ <node id="5762943036" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:05Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6281265" lon="-74.0816881"/>
+ <node id="5774198883" visible="true" version="7" changeset="120365021" timestamp="2022-04-29T21:06:43Z" user="JuanMelo" uid="12906384" lat="4.6299768" lon="-74.0828608">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="6126686802" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:05Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6297701" lon="-74.0827202"/>
+ <node id="9236032477" visible="true" version="2" changeset="114978300" timestamp="2021-12-15T20:16:05Z" user="(Inactive) hairyhaggis_kaart" uid="10541438" lat="4.6292698" lon="-74.0824325"/>
+ <node id="13253232266" visible="true" version="1" changeset="173696282" timestamp="2025-10-24T00:48:26Z" user="Barto920203" uid="10140282" lat="4.6300489" lon="-74.0829090"/>
+ <node id="13253232273" visible="true" version="1" changeset="173696282" timestamp="2025-10-24T00:48:26Z" user="Barto920203" uid="10140282" lat="4.6299520" lon="-74.0828442">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1510576147" visible="true" version="1" changeset="182387537" timestamp="2026-05-08T15:15:07Z" user="SoyJosueVerde" uid="20922998">
+  <nd ref="3281427581"/>
+  <nd ref="5169559153"/>
+  <nd ref="3281427580"/>
+  <nd ref="5169559161"/>
+  <nd ref="5169559162"/>
+  <nd ref="3281427573"/>
+  <nd ref="5762943036"/>
+  <nd ref="3281427572"/>
+  <nd ref="3281427571"/>
+  <nd ref="9236032477"/>
+  <nd ref="3281427570"/>
+  <nd ref="2394631811"/>
+  <nd ref="6126686802"/>
+  <nd ref="3281427569"/>
+  <nd ref="13253232273"/>
+  <nd ref="5774198883"/>
+  <nd ref="13253232266"/>
+  <tag k="access" v="no"/>
+  <tag k="alt_name" v="Avenida Jorge Eliecer Gaitán"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

@@ -63,7 +63,7 @@ Los refuerzos son una hipótesis opcional: en horas pico, para intervalos base d
 
 El mapa permanente usa colores de troncales. Los tramos tipo_tra=2 del mapa (incluida la Séptima exterior) se consideran corredores de calle de contexto, conservando esa clasificación de origen. Para los demás segmentos de calle se resta una franja de 18 m alrededor de los corredores ya dibujados a los trazados duales; el resultado se dibuja gris discontinuo. Las rutas seleccionadas conservan todos sus giros y su geometría exacta. Esta capa de contexto no cambia longitudes ni autoriza conexiones nuevas.
 
-Los 23 registros de datos pendientes se mantienen por petición expresa. Los semáforos quedan pendientes: incorporar ciclos, coordinación y detenciones sin información suficiente añadiría una precisión aparente; el movimiento actual incluye curvas, paradas y congestión de atención, pero no fases semafóricas. También siguen pendientes OD, asignaciones reales de flota/vagones, planos de otras estaciones, patios e inventarios oficiales y recorridos en vacío.
+Los 23 registros de datos pendientes se mantienen por petición expresa. Los semáforos con evidencia directa se incorporan con ciclos expresamente estimados; las fases y coordinación reales permanecen sin corroborar. También siguen pendientes OD, asignaciones reales de flota/vagones, planos de otras estaciones, patios e inventarios oficiales y recorridos en vacío.
 
 ## Reproducir sin volver a descargar
 
@@ -83,3 +83,12 @@ node app/tests/operation-benchmark.mjs --stress --save
 Para regenerar el agregado de pasajeros, descarga el ZIP enlazado a un directorio de trabajo fuera de Git y ejecuta `python3 tools/aggregate_validations.py /ruta/validacionTroncal20260909.zip`. Después ejecuta el importador de perfiles. El agregador solo exporta estación, hora, totales y procedencia; valida formato y fechas antes de escribir. No añadir el ZIP ni el CSV crudo a Git.
 
 Las nuevas descargas se hacen con `fetch_services.py`, `fetch_service_supplement.py` y `fetch_dual_stops.py`. Revisar sus manifests y actualizar el selector de instantánea y las reglas curadas antes de sustituir los datos de una versión. Los scripts de suplemento y perfiles reflejan expresamente esta fecha de entrega; no son un proceso automático de actualización diaria.
+
+
+## Hito de portales, semáforos y planificación — 11 sep. 2026
+
+Esta actualización amplía la revisión anterior: los nueve portales tienen geometría OSM disponible y se conservan Banderas, Ricaurte y Avenida Jiménez. [Inventario, objetos y límites](TODOS_LOS_PORTALES_20260911.md). Hay 191 visitas compatibles de 201 en esas doce estaciones; las otras conservan la referencia del servicio. Los nodos de parada no se inflan en plataformas inventadas.
+
+Se incorporan 450 señales con pertenencia directa a vías de buses OSM; 449 tienen asociación operativa por distancia, eje y sentido. La existencia está documentada; el ciclo de 90 s, con 52 verde / 3 amarillo / 35 rojo, es un parámetro de escenario estimado. No hay coordinación real ni cola longitudinal microscópica en cada cruce. [Evidencia e implementación](SEMAFOROS_20260911.md).
+
+El [planificador](PLANIFICADOR.md) consulta toda la red utilizable para fecha/hora, con hasta dos transbordos y seis horas de horizonte, sin cambiar la simulación. Frecuencias, caminatas y duración son aproximadas; no predice aforo ni fases. Los 23 registros de ruta continúan pendientes y excluidos de la búsqueda.

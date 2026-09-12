@@ -1,9 +1,10 @@
-import {MetricPath} from './simulation.mjs?v=20260911.2';
+import {MetricPath} from './simulation.mjs?v=20260911.3';
+import {signalPhase} from './signals.mjs?v=20260911.3';
 import * as THREE from './vendor/three.module.js';
 
 export class NetworkMap {
   constructor(host, labels, data, onSelect) {
-    this.host=host; this.labels=labels; this.data=data; this.onSelect=onSelect;
+    this.host=host; this.labels=labels;this.labelEntries=new Map(); this.data=data; this.onSelect=onSelect;
     this.routeId=null;this.routeSet=new Set(data.routes.filter(r=>r.ready).map(r=>r.id));this.metricPaths=new Map(data.routes.filter(r=>r.ready).map(r=>[r.id,new MetricPath(r.points)]));this.contextGroup=new THREE.Group();this.center=[0,0]; this.mpp=30; this.selected=null; this.busSamples=[];
     this.renderer=new THREE.WebGLRenderer({antialias:true,alpha:false});
     this.renderer.setPixelRatio(Math.min(devicePixelRatio,2));
@@ -32,6 +33,8 @@ export class NetworkMap {
     this.wagonMesh=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({color:'#f9fafb',depthTest:false}),3000);this.wagonMesh.renderOrder=4;this.wagonMesh.frustumCulled=false;this.scene.add(this.wagonMesh);
     this.axes=new Map();for(const r of data.routes.filter(r=>r.ready)){const path=new MetricPath(r.points);for(const st of r.stops){const angle=path.sample(st.at_m).angle,sum=this.axes.get(st.station_id)||[0,0];sum[0]+=Math.cos(2*angle);sum[1]+=Math.sin(2*angle);this.axes.set(st.station_id,sum);}}
     this.buildStationGeometry();
+    this.signalsEnabled=true;const signalCount=data.busway_signals?.signals.length||0;
+    if(signalCount){this.signalMesh=new THREE.InstancedMesh(new THREE.CircleGeometry(1,12),new THREE.MeshBasicMaterial({depthTest:false}),signalCount);this.signalMesh.frustumCulled=false;this.signalMesh.renderOrder=4.5;this.scene.add(this.signalMesh);}
     this.object=new THREE.Object3D(); this.w=1;this.h=1;
     this.resizeObserver=new ResizeObserver(()=>{this.resize();});this.resizeObserver.observe(host);
     this.resize(); this.fitNetwork(); this.bind();
@@ -66,20 +69,22 @@ export class NetworkMap {
     });
     this.rebuildHighlight();this.updateWagons();this.stopOuter.instanceMatrix.needsUpdate=true;this.stopInner.instanceMatrix.needsUpdate=true;
     }
-    if(labels)this.updateLabels();this.updateMarker();this.updateScale();if(this.stationGroup)this.stationGroup.visible=this.mpp<3;
+    if(labels)this.updateLabels();this.positionLabels();this.updateMarker();this.updateScale();if(this.stationGroup)this.stationGroup.visible=this.mpp<3;
     if(this.infrastructureGroup)this.infrastructureGroup.visible=this.mpp<8;
     if(this.lastSimulation)this.updateBuses(this.lastSimulation,'all',true);
   }
   updateLabels(){
-    this.labels.replaceChildren();const occupied=[];
+    const occupied=[],visible=new Set();
     const priority=s=>s.id===this.selected?.id?0:s.name.startsWith('Portal')?1:s.kind==='street'?3:2;
     for(const s of [...this.data.stations].sort((a,b)=>priority(a)-priority(b))){
       if(this.mpp>20&&priority(s)>1)continue;if(this.mpp>3&&priority(s)>2)continue;
       const [x,y]=this.worldToScreen(s.xy); const width=Math.min(s.name.length*6.3+8,245), r=[x+10,y-10,x+10+width,y+12];
       if(x<0||y<85||r[2]>this.w-55||y>this.h-130||occupied.some(a=>r[0]<a[2]+5&&r[2]>a[0]-5&&r[1]<a[3]+5&&r[3]>a[1]-5))continue;
-      const label=document.createElement('div');label.className='station-label'+(s.kind==='street'?' street':'');label.textContent=s.name;label.style.left=r[0]+'px';label.style.top=r[1]+'px';this.labels.append(label);occupied.push(r);
+      let entry=this.labelEntries.get(s.id);if(!entry){const label=document.createElement('div');label.className='station-label'+(s.kind==='street'?' street':'');label.textContent=s.name;this.labels.append(label);entry={label,station:s};this.labelEntries.set(s.id,entry);}visible.add(s.id);occupied.push(r);
     }
+    for(const [id,entry] of this.labelEntries)if(!visible.has(id)){entry.label.remove();this.labelEntries.delete(id);}this.positionLabels();
   }
+  positionLabels(){for(const {label,station} of this.labelEntries.values()){const [x,y]=this.worldToScreen(station.xy);label.style.transform=`translate3d(${x+10}px,${y-10}px,0)`;}}
   updateScale(){const approx=this.mpp*100;const power=10**Math.floor(Math.log10(approx));const step=[1,2,5,10].find(n=>n*power>=approx)*power;const el=document.querySelector('#scale');el.textContent=step>=1000?(step/1000)+' km':step+' m';el.style.width=step/this.mpp+'px';}
   select(kind,id){this.selected={kind,id};this.updateMarker();this.updateLabels();}
   updateMarker(){const item=this.selected?.kind==='station'?this.data.stations.find(s=>s.id===this.selected.id):this.busSamples.find(b=>b.id===this.selected?.id);if(!item){this.marker.visible=false;return;}this.marker.visible=true;this.marker.position.set(...item.xy,4);this.marker.scale.setScalar(Math.max(10,this.mpp*11));}
@@ -93,12 +98,13 @@ export class NetworkMap {
     this.host.addEventListener('keydown',e=>{const offsets={ArrowLeft:[-80,0],ArrowRight:[80,0],ArrowUp:[0,80],ArrowDown:[0,-80]};if(offsets[e.key]){e.preventDefault();this.center[0]+=offsets[e.key][0]*this.mpp;this.center[1]+=offsets[e.key][1]*this.mpp;this.onPan?.();this.updateCamera();}else if(['+','=','-'].includes(e.key)){e.preventDefault();this.zoom(e.key==='-'?1.3:1/1.3);}});
   }
   pick(point){let nearest=null, distance=12;for(const [kind,items] of [['bus',this.busSamples],['station',this.data.stations]])for(const item of items){const p=this.worldToScreen(item.xy),d=Math.hypot(point[0]-p[0],point[1]-p[1]);if(d<distance){nearest={kind,id:item.id};distance=d;}}if(nearest){this.select(nearest.kind,nearest.id);this.onSelect(nearest);}}
-  setRoute(id,{subtle=false}={}){this.routeId=id;this.subtleRoute=subtle;this.rebuildHighlight();}
+  setRoute(id,{subtle=false}={}){this.journey=null;this.routeId=id;this.subtleRoute=subtle;this.rebuildHighlight();}
+  setJourney(legs){this.routeId=null;this.subtleRoute=false;this.journey=legs;this.rebuildHighlight();}
   rebuildHighlight(){
-    const routes=this.routeId?this.data.routes.filter(r=>r.id===this.routeId&&r.ready):[];
-    const vertices=[],colors=[];for(const r of routes){const color=new THREE.Color(r.color),width=Math.max(4,this.mpp*(this.routeId?5:2.1));for(let i=1;i<r.points.length;i++){const [x,y]=r.points[i-1],[a,b]=r.points[i],len=Math.hypot(a-x,b-y);if(!len)continue;const dx=-(b-y)/len*width/2,dy=(a-x)/len*width/2;vertices.push(x+dx,y+dy,0,x-dx,y-dy,0,a+dx,b+dy,0,a+dx,b+dy,0,x-dx,y-dy,0,a-dx,b-dy,0);for(let j=0;j<6;j++)colors.push(color.r,color.g,color.b);}}
+    const routes=this.journey||(this.routeId?this.data.routes.filter(r=>r.id===this.routeId&&r.ready):[]),focused=!!this.routeId||!!this.journey?.length;
+    const vertices=[],colors=[];for(const r of routes){const color=new THREE.Color(r.color),width=Math.max(4,this.mpp*(focused?5:2.1));for(let i=1;i<r.points.length;i++){const [x,y]=r.points[i-1],[a,b]=r.points[i],len=Math.hypot(a-x,b-y);if(!len)continue;const dx=-(b-y)/len*width/2,dy=(a-x)/len*width/2;vertices.push(x+dx,y+dy,0,x-dx,y-dy,0,a+dx,b+dy,0,a+dx,b+dy,0,x-dx,y-dy,0,a-dx,b-dy,0);for(let j=0;j<6;j++)colors.push(color.r,color.g,color.b);}}
     this.highlight.geometry.dispose();this.highlight.geometry=new THREE.BufferGeometry();this.highlight.geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));this.highlight.geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));this.highlight.material.vertexColors=true;this.highlight.material.color.set('#ffffff');this.highlight.material.needsUpdate=true;
-    this.highlight.material.opacity=this.subtleRoute?.32:.95;for(const {mesh} of this.paths)mesh.material.opacity=this.routeId?(this.subtleRoute?.18:.3):.86;
+    this.highlight.material.opacity=this.subtleRoute?.32:.95;for(const {mesh} of this.paths)mesh.material.opacity=focused?(this.subtleRoute?.18:.3):.86;
   }
   buildStationGeometry(){
     this.stationGroup=new THREE.Group();this.scene.add(this.stationGroup);this.layoutIds=new Set();
@@ -113,6 +119,7 @@ export class NetworkMap {
       for(const line of layout.internal_lines)add(line.points,['#c8d2db','#4d6274'],.6);
       for(const area of layout.areas.filter(a=>a.closed)){add(area.points,['#dbe1e6','#425565'],2.3,true);add(area.points,['#9aaab7','#879cae'],2.4);}
       for(const p of layout.platforms.filter(p=>p.points.length>1)){if(p.closed)add(p.points,['#f8fafb','#607689'],3.5,true);add(p.points,['#879dac','#a5bbce'],3.6);}
+      for(const p of layout.platforms.filter(p=>p.role==='trunk_stop_position'&&p.points.length===1)){const dot=new THREE.Mesh(new THREE.CircleGeometry(2.4,12),new THREE.MeshBasicMaterial({color:'#6c8798',depthTest:false}));dot.position.set(...p.points[0],0);dot.renderOrder=3.7;dot.userData.palette=['#6c8798','#bad0df'];this.stationGroup.add(dot);}
     }
   }
   updateWagons(){
@@ -151,7 +158,7 @@ export class NetworkMap {
     this.updateBuses({...this.targetSimulation,buses:this.visualBuses});this.visualSettled=blend>=1;
   }
   updateBuses(simulation,filter='all',forceClusters=false){
-    this.lastSimulation=simulation;const buses=simulation.buses;
+    this.lastSimulation=simulation;const buses=simulation.buses;this.updateSignals(simulation.time);
     if(!this.busMesh||this.busCapacity<buses.length){
       if(this.busMesh){for(const m of [this.busMesh,this.busNose]){this.scene.remove(m);m.dispose();m.geometry.dispose();m.material.dispose();}}
       this.busCapacity=Math.max(2048,buses.length*2);
@@ -162,7 +169,7 @@ export class NetworkMap {
     this.busSamples=[];let i=0;const color=new THREE.Color(),cells=new Map(),clusters=[];
     for(const b of buses){
       if(filter!=='all'&&filter!==b.routeId)continue;
-      const side=Math.max(b.state==='moving'?7:3,this.mpp*(b.state==='moving'?2.5:1)),xy=[b.xy[0]+Math.sin(b.angle)*side,b.xy[1]-Math.cos(b.angle)*side];
+      const travelling=b.state==='moving'||b.state==='signal',side=Math.max(travelling?7:3,this.mpp*(travelling?2.5:1)),xy=[b.xy[0]+Math.sin(b.angle)*side,b.xy[1]-Math.cos(b.angle)*side];
       if(b.state==='dwell'&&!b.street){const offset=b.slot?14.5:-14.5;xy[0]+=Math.cos(b.angle)*offset;xy[1]+=Math.sin(b.angle)*offset;}
       if(b.state==='queue'){xy[0]-=Math.cos(b.angle)*24;xy[1]-=Math.sin(b.angle)*24;}
       const screen=this.worldToScreen(xy);if(screen[0]<-20||screen[0]>this.w+20||screen[1]<-20||screen[1]>this.h+20)continue;
@@ -176,6 +183,12 @@ export class NetworkMap {
     this.visibleBuses=i;this.busMesh.count=i;this.busNose.count=i;this.busMesh.instanceMatrix.needsUpdate=true;if(this.busMesh.instanceColor)this.busMesh.instanceColor.needsUpdate=true;this.busNose.instanceMatrix.needsUpdate=true;this.updateMarker();
   }
   follow(xy,dt){const blend=1-Math.exp(-Math.min(.1,Math.max(0,dt))*15);this.center[0]+=(xy[0]-this.center[0])*blend;this.center[1]+=(xy[1]-this.center[1])*blend;const now=performance.now();const labels=!this.lastFollowLabels||now-this.lastFollowLabels>150;if(labels)this.lastFollowLabels=now;this.updateCamera({labels});}
+  updateSignals(time){
+    if(!this.signalMesh)return;this.signalMesh.visible=this.signalsEnabled&&this.mpp<4;if(!this.signalMesh.visible)return;
+    const color=new THREE.Color();let i=0;
+    for(const s of this.data.busway_signals.signals){this.object.position.set(...s.xy,0);this.object.rotation.z=0;this.object.scale.setScalar(Math.max(2,this.mpp*3));this.object.updateMatrix();this.signalMesh.setMatrixAt(i,this.object.matrix);color.set({green:'#269765',amber:'#e8a41b',red:'#e8394b'}[signalPhase(s.id,time||0).color]);this.signalMesh.setColorAt(i++,color);}
+    this.signalMesh.instanceMatrix.needsUpdate=true;this.signalMesh.instanceColor.needsUpdate=true;
+  }
   setTheme(theme){this.dark=theme==='dark';this.renderer.setClearColor(this.dark?'#18212b':'#edf1f4');const colors=this.dark?['#233b35','#233d50','#2b3947','#35596c','#607383']:['#d4e3d8','#c5dce8','#ffffff','#b6d5e4','#c1cbd5'];for(const [i,mesh] of (this.contextMeshes||[]).entries())mesh.material.color.set(colors[i]);this.stopInner.material.color.set(this.dark?'#293746':'#ffffff');this.wagonMesh.material.color.set(this.dark?'#637383':'#f9fafb');for(const mesh of this.stationGroup.children)mesh.material.color.set(mesh.userData.palette[this.dark?1:0]);}
   render(){this.renderer.render(this.scene,this.camera);}
 

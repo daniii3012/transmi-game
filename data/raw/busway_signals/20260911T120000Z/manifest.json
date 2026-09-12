@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "snapshot": "20260911T120000Z",
+  "queried_at": "2026-09-11T22:26:47.906932+00:00",
+  "source_dataset": "OpenStreetMap API 0.6 XML",
+  "source_url_template": "https://api.openstreetmap.org/api/0.6/map",
+  "raw_file": "osm_map.json",
+  "raw_sha256": "a9d374384a4fa653456a444ca7f7146af088978a151618b78395849727c64c97",
+  "evidence_file": "evidence.json",
+  "evidence_sha256": "8b3d8ebd12e9bbf373d58d4c48858642b4c574ccc32663f04c4525f7c60e0755",
+  "cell_count": 293,
+  "signal_node_count": 2588,
+  "direct_membership_pairs": 477,
+  "license": "OpenStreetMap contributors, ODbL 1.0; retrieved through api.openstreetmap.org"
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942768 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2582450252" visible="true" version="5" changeset="183569216" timestamp="2026-06-03T01:39:54Z" user="SoyJosueVerde" uid="20922998" lat="4.5966176" lon="-74.1740450"/>
+ <node id="2582450253" visible="true" version="4" changeset="143922032" timestamp="2023-11-12T05:53:40Z" user="Facalderonm" uid="1759764" lat="4.5969533" lon="-74.1765149"/>
+ <node id="2582477238" visible="true" version="1" changeset="19484162" timestamp="2013-12-16T15:44:18Z" user="JeanPaulPG" uid="220028" lat="4.5968420" lon="-74.1756331"/>
+ <node id="5346739054" visible="true" version="1" changeset="55545864" timestamp="2018-01-18T10:28:02Z" user="Facalderonm" uid="1759764" lat="4.5969041" lon="-74.1760629"/>
+ <node id="13653878214" visible="true" version="2" changeset="183565609" timestamp="2026-06-02T21:43:57Z" user="JuanMelo" uid="12906384" lat="4.5969968" lon="-74.1774151"/>
+ <node id="13653878218" visible="true" version="1" changeset="179978645" timestamp="2026-03-17T03:27:27Z" user="Barto920203" uid="10140282" lat="4.5969902" lon="-74.1772782">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1169191996" visible="true" version="4" changeset="183569216" timestamp="2026-06-03T01:39:54Z" user="SoyJosueVerde" uid="20922998">
+  <nd ref="2582450252"/>
+  <nd ref="2582477238"/>
+  <nd ref="5346739054"/>
+  <nd ref="2582450253"/>
+  <nd ref="13653878218"/>
+  <nd ref="13653878214"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+ </way>
+</osm>

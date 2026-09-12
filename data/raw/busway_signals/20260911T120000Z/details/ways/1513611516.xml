@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942792 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="466988576" visible="true" version="5" changeset="71749796" timestamp="2019-06-30T07:20:15Z" user="Facalderonm" uid="1759764" lat="4.5671351" lon="-74.1403561">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="5433829587" visible="true" version="2" changeset="71749796" timestamp="2019-06-30T07:20:15Z" user="Facalderonm" uid="1759764" lat="4.5674332" lon="-74.1403259">
+  <tag k="entrance" v="yes"/>
+ </node>
+ <node id="6579540449" visible="true" version="3" changeset="122298057" timestamp="2022-06-12T21:03:16Z" user="Facalderonm" uid="1759764" lat="4.5672269" lon="-74.1403472">
+  <tag k="crossing" v="marked"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="9319693045" visible="true" version="2" changeset="116850382" timestamp="2022-02-01T06:07:35Z" user="RainbowReef" uid="9447061" lat="4.5672875" lon="-74.1403409">
+  <tag k="access" v="permissive"/>
+  <tag k="barrier" v="gate"/>
+ </node>
+ <way id="1513611516" visible="true" version="1" changeset="182660565" timestamp="2026-05-14T16:52:00Z" user="SoyJosueVerde" uid="20922998">
+  <nd ref="5433829587"/>
+  <nd ref="9319693045"/>
+  <nd ref="6579540449"/>
+  <nd ref="466988576"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="concrete"/>
+ </way>
+</osm>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942781 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="382802274" visible="true" version="10" changeset="58539682" timestamp="2018-04-29T23:33:23Z" user="Facalderonm" uid="1759764" lat="4.6744001" lon="-74.0688608"/>
+ <node id="9052536435" visible="true" version="1" changeset="110546249" timestamp="2021-09-01T06:54:43Z" user="Facalderonm" uid="1759764" lat="4.6757051" lon="-74.0705144"/>
+ <node id="13075036922" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6743956" lon="-74.0690213"/>
+ <node id="13075036923" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6744052" lon="-74.0690758"/>
+ <node id="13075036924" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6744256" lon="-74.0691387"/>
+ <node id="13075036925" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6744581" lon="-74.0692008"/>
+ <node id="13075036926" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6746119" lon="-74.0694264"/>
+ <node id="13075036927" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6747794" lon="-74.0696976"/>
+ <node id="13075036928" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6750540" lon="-74.0702133"/>
+ <node id="13075036929" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6751099" lon="-74.0703005"/>
+ <node id="13075036930" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6751851" lon="-74.0703834"/>
+ <node id="13075036931" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6752916" lon="-74.0704661"/>
+ <node id="13075036932" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6753927" lon="-74.0705132"/>
+ <node id="13075036933" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6754840" lon="-74.0705342"/>
+ <node id="13075036934" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6756514" lon="-74.0705317"/>
+ <node id="13075036935" visible="true" version="1" changeset="170542044" timestamp="2025-08-16T21:16:47Z" user="SoyJosueVerde" uid="20922998" lat="4.6755852" lon="-74.0705396"/>
+ <node id="13383485584" visible="true" version="2" changeset="178368187" timestamp="2026-02-10T16:23:12Z" user="JuanMelo" uid="12906384" lat="4.6756829" lon="-74.0705247">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <way id="1422743844" visible="true" version="5" changeset="176052839" timestamp="2025-12-17T14:12:30Z" user="Barto920203" uid="10140282">
+  <nd ref="382802274"/>
+  <nd ref="13075036922"/>
+  <nd ref="13075036923"/>
+  <nd ref="13075036924"/>
+  <nd ref="13075036925"/>
+  <nd ref="13075036926"/>
+  <nd ref="13075036927"/>
+  <nd ref="13075036928"/>
+  <nd ref="13075036929"/>
+  <nd ref="13075036930"/>
+  <nd ref="13075036931"/>
+  <nd ref="13075036932"/>
+  <nd ref="13075036933"/>
+  <nd ref="13075036935"/>
+  <nd ref="13075036934"/>
+  <nd ref="13383485584"/>
+  <nd ref="9052536435"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="incline" v="up"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="bus"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

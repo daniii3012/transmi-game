@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942792 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="261784685" visible="true" version="6" changeset="50472940" timestamp="2017-07-22T02:41:25Z" user="Facalderonm" uid="1759764" lat="4.6021740" lon="-74.0778190"/>
+ <node id="3799584621" visible="true" version="2" changeset="58317046" timestamp="2018-04-22T18:06:18Z" user="Facalderonm" uid="1759764" lat="4.6021629" lon="-74.0776424"/>
+ <node id="3911100970" visible="true" version="2" changeset="50472940" timestamp="2017-07-22T02:41:25Z" user="Facalderonm" uid="1759764" lat="4.6021607" lon="-74.0776082"/>
+ <node id="3911100974" visible="true" version="2" changeset="50472940" timestamp="2017-07-22T02:41:25Z" user="Facalderonm" uid="1759764" lat="4.6022090" lon="-74.0780093"/>
+ <node id="3911100979" visible="true" version="2" changeset="50472940" timestamp="2017-07-22T02:41:25Z" user="Facalderonm" uid="1759764" lat="4.6022609" lon="-74.0781312"/>
+ <node id="3911100983" visible="true" version="3" changeset="110571484" timestamp="2021-09-01T14:40:22Z" user="Facalderonm" uid="1759764" lat="4.6022850" lon="-74.0781828"/>
+ <node id="5384791588" visible="true" version="2" changeset="153835169" timestamp="2024-07-12T02:38:27Z" user="Facalderonm" uid="1759764" lat="4.6021333" lon="-74.0769809"/>
+ <node id="5384791589" visible="true" version="5" changeset="161583851" timestamp="2025-01-21T02:02:43Z" user="Barto920203" uid="10140282" lat="4.6021346" lon="-74.0769227">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="7371540601" visible="true" version="5" changeset="182487883" timestamp="2026-05-10T23:32:20Z" user="SoyJosueVerde" uid="20922998" lat="4.6021347" lon="-74.0768850">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="8180450674" visible="true" version="1" changeset="95063453" timestamp="2020-11-30T18:46:37Z" user="Goatosm" uid="8578206" lat="4.6021681" lon="-74.0777259"/>
+ <node id="12519565022" visible="true" version="2" changeset="182487883" timestamp="2026-05-10T23:32:20Z" user="SoyJosueVerde" uid="20922998" lat="4.6021377" lon="-74.0767862"/>
+ <way id="1551172896" visible="true" version="1" changeset="187766286" timestamp="2026-08-20T21:04:55Z" user="Barto920203" uid="10140282">
+  <nd ref="3911100983"/>
+  <nd ref="3911100979"/>
+  <nd ref="3911100974"/>
+  <nd ref="261784685"/>
+  <nd ref="8180450674"/>
+  <nd ref="3799584621"/>
+  <nd ref="3911100970"/>
+  <nd ref="5384791588"/>
+  <nd ref="5384791589"/>
+  <nd ref="7371540601"/>
+  <nd ref="12519565022"/>
+  <tag k="access" v="no"/>
+  <tag k="alt_name" v="Avenida de las Américas"/>
+  <tag k="bus" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="maxheight" v="4.5"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942792 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="261784499" visible="true" version="5" changeset="120487342" timestamp="2022-05-03T06:26:40Z" user="Facalderonm" uid="1759764" lat="4.6018006" lon="-74.0738540"/>
+ <node id="261784502" visible="true" version="8" changeset="120487342" timestamp="2022-05-03T06:26:40Z" user="Facalderonm" uid="1759764" lat="4.6010788" lon="-74.0726714"/>
+ <node id="261784505" visible="true" version="7" changeset="120487342" timestamp="2022-05-03T06:26:40Z" user="Facalderonm" uid="1759764" lat="4.6008934" lon="-74.0724176"/>
+ <node id="4986018287" visible="true" version="3" changeset="120487342" timestamp="2022-05-03T06:26:40Z" user="Facalderonm" uid="1759764" lat="4.6010088" lon="-74.0725719"/>
+ <node id="4986018292" visible="true" version="1" changeset="50472940" timestamp="2017-07-22T02:41:19Z" user="Facalderonm" uid="1759764" lat="4.6019584" lon="-74.0741035"/>
+ <node id="4986018294" visible="true" version="4" changeset="120487342" timestamp="2022-05-03T06:26:40Z" user="Facalderonm" uid="1759764" lat="4.6021048" lon="-74.0743598"/>
+ <node id="5592924431" visible="true" version="4" changeset="120487342" timestamp="2022-05-03T06:26:40Z" user="Facalderonm" uid="1759764" lat="4.6014991" lon="-74.0733749"/>
+ <node id="7792538741" visible="true" version="3" changeset="120487342" timestamp="2022-05-03T06:26:40Z" user="Facalderonm" uid="1759764" lat="4.6020672" lon="-74.0742890">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+ </node>
+ <node id="9052634890" visible="true" version="2" changeset="120487342" timestamp="2022-05-03T06:26:40Z" user="Facalderonm" uid="1759764" lat="4.6009401" lon="-74.0724860"/>
+ <node id="9710632879" visible="true" version="2" changeset="121087000" timestamp="2022-05-17T08:32:37Z" user="KunduzRiver" uid="15058575" lat="4.6020098" lon="-74.0741949"/>
+ <node id="9710632884" visible="true" version="1" changeset="120487342" timestamp="2022-05-03T06:26:40Z" user="Facalderonm" uid="1759764" lat="4.6020850" lon="-74.0743225"/>
+ <node id="13436260251" visible="true" version="1" changeset="176918796" timestamp="2026-01-06T20:36:22Z" user="Barto920203" uid="10140282" lat="4.6014741" lon="-74.0733328">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="13436260252" visible="true" version="2" changeset="186413452" timestamp="2026-07-26T17:23:56Z" user="Barto920203" uid="10140282" lat="4.6014023" lon="-74.0732156">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="13950446471" visible="true" version="1" changeset="184279782" timestamp="2026-06-18T16:32:46Z" user="Facalderonm" uid="1759764" lat="4.6014269" lon="-74.0732556">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="14052012949" visible="true" version="1" changeset="186413452" timestamp="2026-07-26T17:23:56Z" user="Barto920203" uid="10140282" lat="4.6014535" lon="-74.0732991"/>
+ <way id="242708699" visible="true" version="21" changeset="186413452" timestamp="2026-07-26T17:23:56Z" user="Barto920203" uid="10140282">
+  <nd ref="261784505"/>
+  <nd ref="9052634890"/>
+  <nd ref="4986018287"/>
+  <nd ref="261784502"/>
+  <nd ref="13436260252"/>
+  <nd ref="13950446471"/>
+  <nd ref="14052012949"/>
+  <nd ref="13436260251"/>
+  <nd ref="5592924431"/>
+  <nd ref="261784499"/>
+  <nd ref="4986018292"/>
+  <nd ref="9710632879"/>
+  <nd ref="7792538741"/>
+  <nd ref="9710632884"/>
+  <nd ref="4986018294"/>
+  <tag k="access" v="no"/>
+  <tag k="alt_name" v="Avenida Jiménez"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+  <tag k="psv" v="bus"/>
+  <tag k="surface" v="asphalt"/>
+ </way>
+</osm>

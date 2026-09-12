@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<osm version="0.6" generator="openstreetmap-cgimap 2.1.0 (2942784 spike-08.openstreetmap.org)" copyright="OpenStreetMap and contributors" attribution="http://www.openstreetmap.org/copyright" license="http://opendatacommons.org/licenses/odbl/1-0/">
+ <node id="2582460272" visible="true" version="11" changeset="183565609" timestamp="2026-06-02T21:43:57Z" user="JuanMelo" uid="12906384" lat="4.5968801" lon="-74.1774260"/>
+ <node id="2582477243" visible="true" version="6" changeset="179978645" timestamp="2026-03-17T03:27:27Z" user="Barto920203" uid="10140282" lat="4.5968825" lon="-74.1777747">
+  <tag k="highway" v="traffic_signals"/>
+  <tag k="traffic_signals" v="signal"/>
+  <tag k="traffic_signals:direction" v="forward"/>
+ </node>
+ <node id="6202545029" visible="true" version="6" changeset="158017860" timestamp="2024-10-17T16:53:14Z" user="Facalderonm" uid="1759764" lat="4.5968819" lon="-74.1776978">
+  <tag k="crossing" v="traffic_signals"/>
+  <tag k="highway" v="crossing"/>
+ </node>
+ <node id="7064554230" visible="true" version="5" changeset="143922032" timestamp="2023-11-12T05:53:40Z" user="Facalderonm" uid="1759764" lat="4.5968681" lon="-74.1791465"/>
+ <node id="13653878216" visible="true" version="2" changeset="183565609" timestamp="2026-06-02T21:43:57Z" user="JuanMelo" uid="12906384" lat="4.5968812" lon="-74.1775762"/>
+ <node id="13879596774" visible="true" version="2" changeset="183617567" timestamp="2026-06-04T00:02:04Z" user="JuanMelo" uid="12906384" lat="4.5968632" lon="-74.1793207"/>
+ <way id="1553049675" visible="true" version="1" changeset="188119377" timestamp="2026-08-27T21:28:15Z" user="Barto920203" uid="10140282">
+  <nd ref="13879596774"/>
+  <nd ref="7064554230"/>
+  <nd ref="2582477243"/>
+  <nd ref="6202545029"/>
+  <nd ref="13653878216"/>
+  <nd ref="2582460272"/>
+  <tag k="access" v="no"/>
+  <tag k="bus" v="yes"/>
+  <tag k="bus_1" v="yes"/>
+  <tag k="highway" v="service"/>
+  <tag k="name" v="TransMilenio"/>
+  <tag k="oneway" v="yes"/>
+ </way>
+</osm>

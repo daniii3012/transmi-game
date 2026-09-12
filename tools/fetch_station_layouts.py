@@ -16,12 +16,18 @@ from datetime import datetime, timezone
 
 OVERPASS_URL = "https://overpass-api.de/api/interpreter"
 STATIONS = {
+    "2000": {"name": "Portal Norte - Unicervantes", "lon_lat": [-74.045886326, 4.755476319]},
+    "4000": {"name": "Portal 80", "lon_lat": [-74.11068572, 4.709665445]},
     "7000": {"name": "Portal Sur - JFK Coop. Financiera", "lon_lat": [-74.169328801, 4.59735103]},
     "3000": {"name": "Portal Suba", "lon_lat": [-74.094252542, 4.746992733]},
     "5000": {"name": "Portal Américas", "lon_lat": [-74.173221244, 4.629568928]},
     "5100": {"name": "Banderas", "lon_lat": [-74.14566342, 4.631326219]},
+    "6000": {"name": "Portal El Dorado – C.C Nuestro Bogotá", "lon_lat": [-74.121692816, 4.682083475]},
     "7111": {"name": "Ricaurte", "lon_lat": [-74.090418561, 4.612931094]},
+    "8000": {"name": "Portal Tunal", "lon_lat": [-74.139574904, 4.570911725]},
+    "90004": {"name": "Portal Usme", "lon_lat": [-74.119447941, 4.5318441]},
     "9110": {"name": "Avenida Jiménez", "lon_lat": [-74.079034263, 4.602964699]},
+    "10000": {"name": "Portal 20 de Julio", "lon_lat": [-74.09712578, 4.565647327]},
 }
 
 
@@ -37,8 +43,8 @@ def query(radius_m: int) -> str:
                 # Name narrowing keeps Metro and unrelated station relations out of
                 # the recursive member fetch while retaining the TransMilenio
                 # relations whose operator spelling varies in OSM.
-                f"rel(around:{radius_m},{lat},{lon})[public_transport=station][name~\"(Portal Sur|Portal Suba|Portal Am[eé]ricas|Banderas|Ricaurte|Avenida Jim[eé]nez)\",i];",
-                f"rel(around:{radius_m},{lat},{lon})[public_transport=stop_area][name~\"(Portal Sur|Portal Suba|Portal Am[eé]ricas|Banderas|Ricaurte|Avenida Jim[eé]nez)\",i];",
+                f"rel(around:{radius_m},{lat},{lon})[public_transport=station][name~\"(Portal Norte|Portal 80|Portal Sur|Portal Suba|Portal Am[eé]ricas|Portal El Dorado|Portal Tunal|Portal Usme|Portal 20 de Julio|Banderas|Ricaurte|Avenida Jim[eé]nez)\",i];",
+                f"rel(around:{radius_m},{lat},{lon})[public_transport=stop_area][name~\"(Portal Norte|Portal 80|Portal Sur|Portal Suba|Portal Am[eé]ricas|Portal El Dorado|Portal Tunal|Portal Usme|Portal 20 de Julio|Banderas|Ricaurte|Avenida Jim[eé]nez)\",i];",
             ]
         )
     return "[out:json][timeout:180];\n(\n" + "".join(clauses) + "\n);\nout body geom;"
@@ -46,7 +52,7 @@ def query(radius_m: int) -> str:
 
 def relation_query(radius_m: int) -> str:
     clauses: list[str] = []
-    name_filter = "(Portal Sur|Portal Suba|Portal Am[eé]ricas|Banderas|Ricaurte|Avenida Jim[eé]nez)"
+    name_filter = "(Portal Norte|Portal 80|Portal Sur|Portal Suba|Portal Am[eé]ricas|Portal El Dorado|Portal Tunal|Portal Usme|Portal 20 de Julio|Banderas|Ricaurte|Avenida Jim[eé]nez)"
     for value in STATIONS.values():
         lon, lat = value["lon_lat"]
         clauses.extend(

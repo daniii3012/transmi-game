@@ -48,7 +48,32 @@ test('Terminal reuse never assigns one bus to simultaneous trips',()=>{const r=r
 test('Selections change the simulated service set',()=>{const s=new Operation(fixture([route('one'),route('two')]),{selection:{mode:'route',route:'two'}});assert.deepEqual([...s.routes.keys()],['two']);});
 test('Invalid operating parameters fail explicitly',()=>{assert.throws(()=>parameters({peakHeadway:0}));assert.throws(()=>parameters({demand:Infinity}));assert.throws(()=>parameters({mode:'random'}));});
 test('Real M85 crops its reverse geometry and retains street stops',()=>{const r=source.routes.find(r=>r.id==='1315');assert.ok(r.ready);assert.ok(r.source_crop_m[0]>9000);assert.ok(r.length_m>11000&&r.length_m<12000);assert.equal(r.stops[0].at_m,0);assert.ok(r.stops.some(s=>s.kind==='street'));});
-test('Missing and inconsistent official shapes are never admitted as playable',()=>{for(const id of ['629','692','12444'])assert.equal(source.routes.find(r=>r.id===id).ready,false);for(const r of source.routes.filter(r=>r.ready)){assert.ok(r.points.length>1);for(let i=1;i<r.stops.length;i++)assert.ok(r.stops[i].at_m>r.stops[i-1].at_m,r.id);}});
+test('Missing and inconsistent official shapes are never admitted as playable',()=>{
+ // The rule is asserted over the whole catalogue rather than over pinned identifiers: a record
+ // that later gains a published shape should stop being pending without editing this test.
+ for(const r of source.routes){
+  const shaped=r.points.length>1&&r.stops.length>1;
+  if(!shaped)assert.equal(r.ready,false,`${r.code}/${r.id} sin trazado utilizable no puede estar activo`);
+  if(r.ready){
+   assert.ok(shaped,`${r.code}/${r.id}`);
+   assert.equal(r.issues.length,0,`${r.code}/${r.id} activo con incidencias`);
+   for(let i=1;i<r.stops.length;i++)assert.ok(r.stops[i].at_m>r.stops[i-1].at_m,r.id);
+  }
+ }
+ // 692 keeps returning neither shape nor stops, so it stays the pinned example of a pending record.
+ assert.equal(source.routes.find(r=>r.id==='692').ready,false);
+ assert.ok(source.routes.filter(r=>!r.ready).length>0);
+});
+test('A refreshed detail records which snapshot it came from',()=>{
+ const refreshed=source.routes.filter(r=>r.detail_snapshot&&r.detail_snapshot.startsWith('refresh_'));
+ for(const r of refreshed){
+  assert.equal(r.ready,true,`${r.code}/${r.id}`);
+  assert.ok(r.points.length>1&&r.stops.length>1);
+  // Validity still comes from the base catalogue, never from the refreshed detail.
+  assert.match(r.valid_until,/^\d{4}-\d{2}-\d{2}$/);
+ }
+ for(const r of source.routes)assert.ok(typeof r.detail_snapshot==='string'&&r.detail_snapshot.length>0,`${r.id} sin procedencia de detalle`);
+});
 
 test('Zonal C15 never replaces trunk C15/H15 on Sundays',()=>{assert.ok(!source.routes.some(r=>r.id==='366'));const c=source.routes.find(r=>r.id==='3915'),h=source.routes.find(r=>r.id==='367');assert.ok(c.ready&&h.ready);assert.ok(c.paired_ids.includes(h.id));assert.ok(serviceWindows(c,'2026-09-13',source.routes).some(([a,b])=>a<=7*3600&&b>7*3600));});
 

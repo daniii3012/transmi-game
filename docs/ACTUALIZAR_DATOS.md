@@ -104,7 +104,26 @@ tramo publicado, o cuando una variante Ciclovía trae calendario ambiguo. Esos c
 **se dejan pendientes**: ver [PENDIENTES_20260911.md](PENDIENTES_20260911.md).
 
 Como los semáforos se asocian a los recorridos, después de cambiar `services.json`
-hay que recurar las señales (ver más abajo) aunque la descarga de OSM no haya cambiado.
+hay que recurar las señales y regenerar su auditoría (ver más abajo) aunque la descarga
+de OSM no haya cambiado.
+
+#### Reimportar unos pocos registros sin rehacer el catálogo
+
+Cuando un registro concreto gana trazado, o llegó recortado, no hace falta —ni
+conviene— volver a bajar el catálogo entero: eso cambiaría todos los demás al mismo
+tiempo.
+
+```sh
+python3 tools/refresh_route_details.py 12444 1213 629 --reason "por qué"
+../../work/venv/bin/python tools/build_services.py
+```
+
+Descarga el detalle publicado solo de esos identificadores a
+`data/raw/services/refresh_<instantánea>/`, con manifiesto y SHA-256 por respuesta, y
+deja el puntero `data/raw/services/refresh_latest.json`. `build_services.py` prefiere
+ese detalle para esos identificadores y **toma el resto de la metadata, vigencia
+incluida, de la instantánea base**. Cada ruta queda con `detail_snapshot`, que dice de
+qué carpeta salió su detalle. Para volver atrás basta borrar el puntero.
 
 ### Cambia la ubicación o la geometría física de una estación o un portal
 
@@ -136,7 +155,19 @@ referencia oficial del servicio: no se desvía la ruta para forzar el ajuste.
 ```sh
 python3 tools/fetch_busway_signals.py --services app/dist/services.json
 ../../work/venv/bin/python tools/build_busway_signals.py --raw data/raw/busway_signals/<instantánea>
+node tools/build_signal_associations.mjs
 ```
+
+El último comando regenera `data/processed/signal_associations.json` reutilizando el
+emparejador del motor, `matchSignals`, para no tener dos definiciones de qué cuenta como
+coincidencia. **Hay que ejecutarlo también cuando cambien las rutas y no los semáforos**,
+porque la asociación depende de las dos cosas. Ese archivo nació sin generador y quedó
+desactualizado en silencio hasta el 11 sep. 2026.
+
+`build_busway_signals.py` acepta `--docs` para emitir un resumen generado, pero por
+defecto **no escribe documentación**: `SEMAFOROS_20260911.md` se mantiene a mano y el
+generador solo produce un esbozo corto que lo reemplazaría entero. Si usas `--docs`,
+apúntalo a un archivo aparte.
 
 La descarga cubre la red en celdas de 0,005° derivadas de los puntos de
 `services.json`, y amplía la evidencia pidiendo el `way/full` de cada vía candidata y

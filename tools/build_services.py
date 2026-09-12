@@ -35,6 +35,12 @@ def build():
     extra=read(supplement/'selected_catalog.json') if (supplement/'selected_catalog.json').exists() else []
     extra_ids={str(r['id']) for r in extra}
     catalog+=extra
+    # A refresh re-downloads the published detail of named records only. Catalogue metadata,
+    # including validity, still comes from the base snapshot, so one record gaining a shape
+    # never silently restates the rest of the catalogue.
+    pointer=ROOT/'data/raw/services/refresh_latest.json'
+    refresh=ROOT/'data/raw/services'/read(pointer)['snapshot'] if pointer.exists() else None
+    refresh_ids={str(i) for i in read(pointer)['ids']} if pointer.exists() else set()
     stations = {}
     zones = {}
     for f in read(folder/'map_stations.geojson')['features']:
@@ -70,7 +76,8 @@ def build():
         if sid in curated['excluded']:
             excluded.append(dict(curated['excluded'][sid],id=sid,name=row['nombre']))
             continue
-        detail_folder=supplement if sid in extra_ids else folder; d=read(detail_folder/'details'/f'{sid}.json'); meta=row.get('metadata') or {}
+        detail_folder=refresh if sid in refresh_ids else supplement if sid in extra_ids else folder
+        d=read(detail_folder/'details'/f'{sid}.json'); meta=row.get('metadata') or {}
         z=(meta.get('troncal') or {}).get('zona')
         issues=[]; warnings=[]; calendar=[]
         for h in d['horario']:
@@ -78,6 +85,7 @@ def build():
             calendar.append({'days':h['tipoDia'],'start':a,'end':b if b>a else b+86400})
         route={'id':sid,'code':row['codigo'],'name':d['nombre'] or row['nombre'],'color':d['color'] or row['color'],
            'source_scope':row['scope_source'],'source_url':f'https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/{sid}/rutaDetalle',
+           'detail_snapshot':detail_folder.name,
            'source_sha256':digest(detail_folder/'details'/f'{sid}.json'), 'valid_from':(meta.get('fechaDesde') or '')[:10],
            'valid_until':(meta.get('fechaHasta') or '')[:10], 'calendar':calendar, 'zone':z,
            'variant':'ciclovia' if 'ciclovia' in normalized(d['nombre'] or '') else 'regular',
@@ -163,7 +171,7 @@ def build():
     return {'schema_version':2,'revision':'services-v2-'+snapshot,'snapshot':snapshot,'scenario_date':'2026-09-10',
        'origin_lon_lat':ORIGIN,'projection':LOCAL_CRS.to_string(),'coordinate_frame':'XY east/north metres; 1:1',
        'bounds':[min(p[0] for p in xy),min(p[1] for p in xy),max(p[0] for p in xy),max(p[1] for p in xy)],
-       'source_hashes':{'catalog':digest(folder/'selected_catalog.json'),'stations':digest(folder/'map_stations.geojson'),'street_stops':digest(street_file),'corridors':digest(folder/'map_corridors.geojson'),'curation':digest(ROOT/'data/curated/services.json'),'supplement_catalog':digest(supplement/'selected_catalog.json')},
+       'source_hashes':{'catalog':digest(folder/'selected_catalog.json'),'stations':digest(folder/'map_stations.geojson'),'street_stops':digest(street_file),'corridors':digest(folder/'map_corridors.geojson'),'curation':digest(ROOT/'data/curated/services.json'),'refresh_manifest':digest(refresh/'manifest.json') if refresh else None,'supplement_catalog':digest(supplement/'selected_catalog.json')},
        'attribution':'TRANSMILENIO S.A. · mapa digital y buscador de rutas; IDECA · paraderos duales',
        'license_notes':'Licencia de API de rutas/mapa no establecida; paraderos según catálogo original. Uso local.',
        'assumptions':{'berth_assignment':'Estimated deterministic service-to-wagon allocation; not a published assignment',

@@ -7,7 +7,7 @@ Versión 4 · 11 de septiembre de 2026. El objetivo sigue siendo observar el sis
 | Hito | Estado |
 |---|---|
 | Reorganización y archivo 3D | Completo |
-| Catálogo oficial ampliado, fuentes, normalización y auditoría | Integrado; 114 variantes utilizables, 23 registros bloqueados por datos |
+| Catálogo oficial ampliado, fuentes, normalización y auditoría | Integrado; 117 variantes utilizables, 20 registros bloqueados por datos |
 | Operación de servicios, distancias métricas, paradas y paso independiente | Integrado |
 | Reloj reversible, fechas, festivos, ventanas y pico/valle | Integrado |
 | Selección por servicio, varias troncales y red | Integrado y probado en navegador |
@@ -22,7 +22,7 @@ El resultado es una versión funcional local con cobertura explícita. No equiva
 
 ## Mejoras que dependen de nuevos datos
 
-1. **Geometrías y calendarios pendientes.** Resolver E48, H76/J76, K86 completo y variantes Ciclovía ambiguas. Doce de los 23 registros pendientes ya estaban fuera de vigencia para la fecha inicial. Conservarlos como auditoría, no activarlos por rellenar el contador.
+1. **Geometrías y calendarios pendientes.** E48, H76 y K86 completo se resolvieron al reimportar su detalle publicado. Quedan J76 y las variantes Ciclovía ambiguas. Doce de los 20 registros pendientes ya estaban fuera de vigencia para la fecha inicial. Conservarlos como auditoría, no activarlos por rellenar el contador.
 2. **Vagón por servicio.** Obtener planos y asignaciones vigentes con orientación/puertas. Doce estaciones lógicas, incluidos los nueve portales, tienen estructuras o puntos OSM detallados; la cantidad de vagones es publicada y la asignación operativa sigue estimada. El resto mantiene representación esquemática. Portales pueden tener más de tres vagones.
 3. **Calibración de demanda/oferta.** Incorporar varias semanas de validaciones, salidas, tiempos de viaje, frecuencia y matriz OD. El único archivo diario actual sirve de referencia histórica, no valida destinos ni todo septiembre.
 4. **Flota por ruta y patios reales.** Confirmar tipos de cada servicio y vínculos a patios/operadores, inventario y accesos. Actualmente hay regulación abstracta y reutilización compatible; no circulación en vacío ni garajes físicos completos.

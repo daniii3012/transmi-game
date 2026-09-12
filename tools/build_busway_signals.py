@@ -45,7 +45,9 @@ def main() -> None:
     parser.add_argument("--services", default="app/dist/services.json")
     parser.add_argument("--output", default="data/curated/busway_signals.json")
     parser.add_argument("--dist-output", default="app/dist/busway_signals.json")
-    parser.add_argument("--docs", default="docs/SEMAFOROS_20260911.md")
+    # Default is off on purpose: docs/SEMAFOROS_20260911.md is hand-maintained and this
+    # generator only emits a short stub, so a plain rebuild must never overwrite it.
+    parser.add_argument("--docs", default=None, help="optional path for a generated summary stub")
     parser.add_argument("--max-distance-m", type=float, default=12.0)
     args = parser.parse_args()
 
@@ -193,9 +195,10 @@ def main() -> None:
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
     pathlib.Path(args.dist_output).write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n")
-    doc = pathlib.Path(args.docs)
-    doc.parent.mkdir(parents=True, exist_ok=True)
-    lines = [
+    if args.docs:
+      doc = pathlib.Path(args.docs)
+      doc.parent.mkdir(parents=True, exist_ok=True)
+      lines = [
         "# Semáforos con evidencia directa en calzada TransMilenio",
         "",
         f"Consulta OSM capturada en `{raw.get('snapshot')}`; cobertura tomada de `app/dist/services.json` y filtrada a {args.max_distance_m:g} m de sus polilíneas. Se evaluaron {len(signal_ids)} nodos `highway=traffic_signals`; se aceptaron {len(signals)} con pertenencia directa a `highway=busway` o a un `highway=service` con identificación explícita de TransMilenio/acceso bus-only.",
@@ -205,8 +208,8 @@ def main() -> None:
         f"- Resultado: [`data/curated/busway_signals.json`](../data/curated/busway_signals.json), {len(signals)} señales aceptadas.",
         f"- Raw y hashes: [`{raw_dir}/manifest.json`](../{raw_dir}/manifest.json), [`{raw_dir}/osm_map.json`](../{raw_dir}/osm_map.json), [`{raw_dir}/evidence.json`](../{raw_dir}/evidence.json).",
         "- Fuente: OpenStreetMap contributors, ODbL 1.0; URLs de nodo y way y sus SHA-256 están en cada `way_source`.",
-    ]
-    doc.write_text("\n".join(lines) + "\n")
+      ]
+      doc.write_text("\n".join(lines) + "\n")
     print(json.dumps({"accepted": len(signals), "seen": len(signal_ids), "rejected": rejected}, ensure_ascii=False))
 
 

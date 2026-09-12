@@ -7,8 +7,8 @@ Se muestran opciones directas o con uno o dos transbordos, con el servicio y sen
 ## Datos y tiempos
 
 - Paradas, orden, sentido, ventanas horarias, días de operación y vigencia proceden del catálogo local.
-- Los 23 registros pendientes están excluidos; planificar no los valida ni los activa.
-- La vigencia publicada de cada servicio se respeta literalmente. En la instantánea del 10 sep. 2026, 12 de los 114 servicios utilizables terminan su vigencia el 11 sep. 2026, entre ellos casi todo el corredor de Portal Usme (B72, B75, C17, D20, H17, H20, H54, H72, H75, H83 y M83). Para fechas posteriores esas estaciones quedan sin alternativas —solo K54 sigue vigente allí— y la búsqueda responde que no encontró viaje. Es una limitación del catálogo descargado, no una falta de conexión física; se resuelve con una instantánea más reciente de servicios.
+- Los registros pendientes están excluidos; planificar no los valida ni los activa.
+- La vigencia publicada de cada servicio se respeta literalmente. En la instantánea del 10 sep. 2026, 12 de los 117 servicios utilizables terminan su vigencia el 11 sep. 2026, entre ellos casi todo el corredor de Portal Usme (B72, B75, C17, D20, H17, H20, H54, H72, H75, H83 y M83). Para fechas posteriores esas estaciones quedan sin alternativas —solo K54 sigue vigente allí— y la búsqueda responde que no encontró viaje. Es una limitación del catálogo descargado, no una falta de conexión física; se resuelve con una instantánea más reciente de servicios.
 - La búsqueda cubre seis horas desde la salida y admite hasta tres buses. Incluye despachos del día anterior para viajes que continúan después de medianoche y del siguiente día cuando corresponde.
 - Las frecuencias usan los parámetros pico/valle del escenario. La tabla nominal no predice los despachos irregulares o refuerzos particulares de la simulación.
 - Los tiempos estiman aceleración, frenado, curvas y distancia real; agregan 15 s en paradero de calle y 30 s en estación. No predicen aforo, colas ni la fase de cada semáforo.

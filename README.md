@@ -15,7 +15,7 @@ Doble clic en **ABRIR_SIMULACION_2D.command**. Mantén abierta su Terminal y abr
 
 Para abrir desde otros dispositivos del mismo Wi-Fi, usa **ABRIR_EN_RED_LOCAL.command** o `python3 tools/serve_network_2d.py --lan --open`. La Terminal muestra la dirección de este computador, con puerto 8767. Cada navegador ejecuta y guarda su propio escenario; mantén abierta la Terminal. No se publica en internet.
 
-El botón **Ahora** usa fecha/hora de Bogotá. El botón de luna/sol cambia el tema y recuerda la preferencia. **Fuentes** y **Datos** enlazan la documentación y los 23 pendientes.
+El botón **Ahora** usa fecha/hora de Bogotá. El botón de luna/sol cambia el tema y recuerda la preferencia. **Fuentes** y **Datos** enlazan la documentación y los registros pendientes.
 
 ## Qué está implementado
 
@@ -34,7 +34,7 @@ El botón **Ahora** usa fecha/hora de Bogotá. El botón de luna/sol cambia el t
 
 ## Cobertura y límites
 
-La descarga del mapa contiene **116 registros y 100 códigos distintos**, no 116 rutas únicas. El catálogo ampliado y depurado tiene **137 servicios/variantes: 114 utilizables y 23 pendientes**. En la fecha inicial, 112 variantes tienen ventanas de salida. F23 conserva únicamente el destino Portal Américas según la corrección de Daniel. C15 Chapinero Ciclovía está excluida por ser zonal; C15/H15 troncales tienen 19 paradas por sentido. F63/Z63 y los duales complementarios están incorporados.
+La descarga del mapa contiene **116 registros y 100 códigos distintos**, no 116 rutas únicas. El catálogo ampliado y depurado tiene **137 servicios/variantes: 117 utilizables y 20 pendientes**. En la fecha inicial, 115 variantes tienen ventanas de salida. F23 conserva únicamente el destino Portal Américas según la corrección de Daniel. C15 Chapinero Ciclovía está excluida por ser zonal; C15/H15 troncales tienen 19 paradas por sentido. F63/Z63 y los duales complementarios están incorporados.
 
 El panel **Datos** explica cada pendiente. Algunos registros están vencidos; otros carecen de geometría o presentan calendarios ambiguos. El K86 completo no se sustituye por su ramal de aeropuerto. Los datos pendientes no se rellenan con líneas rectas.
 

@@ -25,7 +25,7 @@ La licencia de los endpoints de rutas y cartografía del mapa no está estableci
 
 Los paraderos sin coordenada contrastada se interpolan sobre la ruta y se rotulan aproximados. Los trazados ausentes, referencias fuera de rango y calendarios Ciclovía ambiguos no se activan. M85 recorre su tramo real de unos 11,37 km, empezando a unos 9,65 km de su geometría bruta bidireccional. K86/629 tiene referencias hasta unos 44,7 km, incompatibles con un trazado de unos 5,94 km; se mantiene pendiente. El ramal de aeropuerto tiene identidad propia.
 
-Tras excluir la zonal y F23/10082 Banderas (corrección de Daniel, 11 sep.) y añadir el suplemento: 137 registros, 114 utilizables, 103 códigos utilizables distintos, 23 pendientes. Los 114 son elegibles por fecha el 10 de septiembre; 112 tienen ventanas para ese jueves. Doce pendientes estaban vencidos. Las ventanas de una variante Ciclovía explícita reemplazan las coincidentes de su familia regular; las variantes ambiguas no suprimen silenciosamente un servicio regular.
+Tras excluir la zonal y F23/10082 Banderas (corrección de Daniel, 11 sep.) y añadir el suplemento: 137 registros, 117 utilizables, 105 códigos utilizables distintos, 20 pendientes. Los 117 son elegibles por fecha el 10 de septiembre; 115 tienen ventanas para ese jueves. Doce pendientes estaban vencidos. Las ventanas de una variante Ciclovía explícita reemplazan las coincidentes de su familia regular; las variantes ambiguas no suprimen silenciosamente un servicio regular.
 
 ## Hipótesis operativas
 
@@ -63,7 +63,7 @@ Los refuerzos son una hipótesis opcional: en horas pico, para intervalos base d
 
 El mapa permanente usa colores de troncales. Los tramos tipo_tra=2 del mapa (incluida la Séptima exterior) se consideran corredores de calle de contexto, conservando esa clasificación de origen. Para los demás segmentos de calle se resta una franja de 18 m alrededor de los corredores ya dibujados a los trazados duales; el resultado se dibuja gris discontinuo. Las rutas seleccionadas conservan todos sus giros y su geometría exacta. Esta capa de contexto no cambia longitudes ni autoriza conexiones nuevas.
 
-Los 23 registros de datos pendientes se mantienen por petición expresa. Los semáforos con evidencia directa se incorporan con ciclos expresamente estimados; las fases y coordinación reales permanecen sin corroborar. También siguen pendientes OD, asignaciones reales de flota/vagones, planos de otras estaciones, patios e inventarios oficiales y recorridos en vacío.
+Los 20 registros de datos pendientes se mantienen por petición expresa. Los semáforos con evidencia directa se incorporan con ciclos expresamente estimados; las fases y coordinación reales permanecen sin corroborar. También siguen pendientes OD, asignaciones reales de flota/vagones, planos de otras estaciones, patios e inventarios oficiales y recorridos en vacío.
 
 El procedimiento completo para **reemplazar** una fuente cuando el sistema real cambie
 está en [ACTUALIZAR_DATOS.md](ACTUALIZAR_DATOS.md). Lo que sigue solo regenera los
@@ -95,4 +95,4 @@ Esta actualización amplía la revisión anterior: los nueve portales tienen geo
 
 Se incorporan 450 señales con pertenencia directa a vías de buses OSM; 449 tienen asociación operativa por distancia, eje y sentido. La existencia está documentada; el ciclo de 90 s, con 52 verde / 3 amarillo / 35 rojo, es un parámetro de escenario estimado. No hay coordinación real ni cola longitudinal microscópica en cada cruce. [Evidencia e implementación](SEMAFOROS_20260911.md).
 
-El [planificador](PLANIFICADOR.md) consulta toda la red utilizable para fecha/hora, con hasta dos transbordos y seis horas de horizonte, sin cambiar la simulación. Frecuencias, caminatas y duración son aproximadas; no predice aforo ni fases. Los 23 registros de ruta continúan pendientes y excluidos de la búsqueda.
+El [planificador](PLANIFICADOR.md) consulta toda la red utilizable para fecha/hora, con hasta dos transbordos y seis horas de horizonte, sin cambiar la simulación. Frecuencias, caminatas y duración son aproximadas; no predice aforo ni fases. Los registros pendientes continúan excluidos de la búsqueda.

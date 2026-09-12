@@ -12,7 +12,7 @@ No se activan cruces por proximidad: los nodos rechazados por no tener un way ca
 
 La captura inicial de celdas se complementó con **189 respuestas `way/full` y 450 respuestas de nodo**. Se archivan 639 XML con URL y SHA-256 en `details/manifest.json`. Las vías completas incluyen nodos normales, indispensables para calcular la tangente local. No se calcula la orientación uniendo semáforos alejados. `osm_map.json` y `evidence.json` tienen hashes propios en el manifiesto principal. La carpeta `20260911T120000Z` es un identificador; la ampliación se consultó a partir de `2026-09-11T22:26:47Z`.
 
-De 450 señales con evidencia, **449** se asocian por geometría y sentido a **112 variantes utilizables** (3.936 asociaciones señal/recorrido, no señales adicionales). Una queda sin asociación operativa. El inventario no es una auditoría exhaustiva de todos los semáforos ni certifica su estado físico actual.
+De 450 señales con evidencia, **449** se asocian por geometría y sentido a **115 variantes utilizables** (4.010 asociaciones señal/recorrido, no señales adicionales). Una queda sin asociación operativa. El inventario no es una auditoría exhaustiva de todos los semáforos ni certifica su estado físico actual.
 
 Para activar una señal en un recorrido se exige pertenencia nodal a una vía calificada y archivada, distancia ≤12 m, tangente compatible (coseno ≥0,87 en valor absoluto), `oneway` y `traffic_signals:direction` cuando existen. La tolerancia de la asociación a la polilínea oficial es una aproximación documentada, independiente de la evidencia de existencia. Se preservan vueltas distintas de una ruta sin duplicar el mismo cruce en vértices contiguos.
 

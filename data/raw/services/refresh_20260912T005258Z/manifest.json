@@ -1,0 +1,58 @@
+{
+  "retrieved_at": "2026-09-12T00:52:59.523828+00:00",
+  "base_snapshot": "20260910T185326Z",
+  "reason": "E48 y H76 ganaron trazado publicado; K86/629 llegaba recortado a 108 puntos. Revision de pendientes del 11 sep. 2026.",
+  "records": [
+    {
+      "id": "12444",
+      "name": "CAD",
+      "stops": 11,
+      "geometry_type": "LineString",
+      "geometry_coordinates": 297
+    },
+    {
+      "id": "1213",
+      "name": "Portal Usme",
+      "stops": 10,
+      "geometry_type": "LineString",
+      "geometry_coordinates": 710
+    },
+    {
+      "id": "629",
+      "name": "Portal ElDorado",
+      "stops": 26,
+      "geometry_type": "LineString",
+      "geometry_coordinates": 1294
+    }
+  ],
+  "sources": [
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/12444/rutaDetalle",
+      "method": "GET",
+      "body": null,
+      "retrieved_at_utc": "2026-09-12T00:52:58.726603+00:00",
+      "response_sha256": "5434178ebbfe7cb4d506307df2cba00e749d1cc658910a07397ff38baf93f8dc",
+      "response_bytes": 12765,
+      "saved_sha256": "8f5bc39d7dca11a9e63b39caf2246cedf06ce9110a1fa485b631e5b6834013fe"
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/1213/rutaDetalle",
+      "method": "GET",
+      "body": null,
+      "retrieved_at_utc": "2026-09-12T00:52:59.102254+00:00",
+      "response_sha256": "d47507e2f21c1a47b58fc229124ee88d4af9941c69d6ad787985eb6f87f58230",
+      "response_bytes": 27770,
+      "saved_sha256": "c3d288d624bb021c2c6cbb7ef81c748a24d5896340dbc9d5e71fd1b1735ba9b4"
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/629/rutaDetalle",
+      "method": "GET",
+      "body": null,
+      "retrieved_at_utc": "2026-09-12T00:52:59.520341+00:00",
+      "response_sha256": "558dfcb96bc2a4dbe52b9ccbde14f7deebe4348364ae23d7858fcd0c4ccac693",
+      "response_bytes": 51655,
+      "saved_sha256": "de96d75d6d6327cc8f28b6f2ed887e129d1e9431b1fc79718e8ebf58dcb51702"
+    }
+  ],
+  "note": "Detail override for these ids only. Catalogue metadata still comes from the base snapshot."
+}

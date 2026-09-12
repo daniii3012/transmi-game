@@ -9,9 +9,9 @@ El endpoint `rutas/{id}/rutaDetalle` publica únicamente color, nombre, estacion
 trazado y horario. No publica vigencia ni un indicador de ruta activa: esas fechas
 provienen del catálogo de troncales, no de este detalle.
 
-**Resultado: 2 registros pasan a ser verificables, 1 merece reimportarse y 20 siguen
-sin evidencia suficiente.** Nada se activó; activar cualquiera exige una instantánea
-nueva y una decisión explícita de curación.
+**Resultado: 3 registros se reimportaron y quedaron utilizables; 20 siguen sin
+evidencia suficiente.** El catálogo pasó de 114 utilizables y 23 pendientes a **117 y
+20**. El desenlace de cada grupo está al final, en *Qué se hizo después de la revisión*.
 
 ## Sin trazado ni paradas publicadas — siguen pendientes
 
@@ -111,3 +111,44 @@ resulte cierta. L82, M82 y M86 además no tienen trazado.
    vencidos desde agosto y probablemente no vuelvan a publicarse.
 
 La cifra **23** se conserva mientras no se tome esa decisión de curación.
+
+
+## Qué se hizo después de la revisión
+
+Se reimportó el detalle publicado de los tres registros con evidencia nueva, sin tocar
+el resto del catálogo:
+
+```sh
+python3 tools/refresh_route_details.py 12444 1213 629
+../../work/venv/bin/python tools/build_services.py
+```
+
+`refresh_route_details.py` descarga solo los identificadores indicados a
+`data/raw/services/refresh_20260912T005258Z/`, con manifiesto y SHA-256 por respuesta, y deja
+`data/raw/services/refresh_latest.json`. `build_services.py` prefiere ese detalle para
+esos identificadores y conserva **toda la metadata de catálogo, vigencia incluida, de la
+instantánea base**: un registro que gana trazado no rehace en silencio el resto. Cada
+ruta de `services.json` lleva ahora `detail_snapshot` con la procedencia de su detalle.
+
+Los tres construyen sin incidencias y con el orden de paradas monótono:
+
+| código | id | paradas | puntos | longitud | ajuste máx. de parada al trazado | promedio |
+|---|---|---:|---:|---:|---:|---:|
+| E48 | 12444 | 11 | 291 | 15,02 km | 204,5 m | 23,5 m |
+| H76 | 1213 | 10 | 677 | 17,95 km | 123,3 m | 21,8 m |
+| K86 | 629 | 26 | 685 | 23,97 km | 21,4 m | 8,7 m |
+
+**K86 queda confirmado como recorte de captura.** Con las 1.294 coordenadas publicadas,
+sus paradas ajustan a 21,4 m como máximo y 8,7 m de promedio, frente a las referencias a
+44,7 km que producía la geometría de 108 puntos. Su sentido contrario, M86/1185, ya era
+utilizable y ahora forma par completo. No se confunde con el ramal de aeropuerto (5316).
+
+Los otros veinte siguen pendientes por las razones descritas arriba: sin trazado
+publicado, o con la clasificación Ciclovía sin resolver. **J76/1214 sigue pendiente**
+aunque su hermano H76 se haya podido activar: la fuente publica sus diez paradas pero
+ningún trazado.
+
+Como el conjunto de rutas cambió, se recuraron las asociaciones semafóricas: 449 señales
+asociadas pasan de 112 a **115 variantes** y de 3.936 a **4.010** pares señal/recorrido.
+Ese archivo no tenía generador y quedaba desactualizado en silencio; ahora se regenera
+con `node tools/build_signal_associations.mjs`, que reutiliza el emparejador del motor.

@@ -14,13 +14,6 @@ name: Publicar simulador en Pages
 
 on:
   workflow_dispatch:
-  # Activado solo para el primer cargue, a petición de Daniel. Se retira justo después:
-  # guardar trabajo no debe publicar, y app/dist cambia en casi cada commit.
-  push:
-    branches: [main]
-    paths:
-      - 'app/dist/**'
-      - '.github/workflows/pages.yml'
 
 permissions:
   contents: read

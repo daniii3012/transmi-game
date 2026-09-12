@@ -50,4 +50,4 @@ Three.js se mantiene para dibujar el mapa 2D con cámara ortográfica y muchos b
 
 [Arquitectura](docs/ARQUITECTURA.md) · [Actualizar los datos](docs/ACTUALIZAR_DATOS.md) · [Plan y pendientes](docs/PLAN_DEL_PROYECTO.md) · [Registros pendientes](docs/PENDIENTES_20260911.md) · [Validación actual](docs/VALIDACION_FASE2_20260911.md) · [Planificador](docs/PLANIFICADOR.md) · [Continuar](CONTINUAR.md)
 
-Respaldo: [daniii3012/transmi-game](https://github.com/daniii3012/transmi-game). Uso local; no se ha desplegado una versión jugable pública.
+Publicado en **[daniii3012.github.io/transmi-game](https://daniii3012.github.io/transmi-game/)**, desde [daniii3012/transmi-game](https://github.com/daniii3012/transmi-game). Cada visitante ejecuta su propia simulación en su navegador; no hay servidor ni estado compartido. No es un sitio oficial de TransMilenio y no son posiciones en vivo.

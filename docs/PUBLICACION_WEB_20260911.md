@@ -107,20 +107,43 @@ Después de desplegar consulta el `Content-Type` de `app.mjs` y falla si no es J
 que es justo la única incógnita real de Pages. Así el primer despliegue responde la
 pregunta solo, sin que haya que abrir la consola a mano.
 
-## Pasos para el primer cargue
+## Primer cargue: hecho
 
-1. En GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions**. Sin
-   esto el flujo falla al desplegar. Es lo único que no se puede dejar hecho desde el
-   repositorio.
-2. **Actions → Publicar simulador en Pages → Run workflow**, sobre `main`.
-3. La URL queda en el resumen del flujo: `https://daniii3012.github.io/transmi-game/`.
-4. Revisar el último paso del flujo: dice si `.mjs` se sirvió bien.
-5. Abrir la URL y comprobar que la simulación construye y no hay errores de consola.
+Publicado el 11 de septiembre de 2026 en **https://daniii3012.github.io/transmi-game/**.
+
+El flujo solo respondía a disparo manual y este equipo no tiene `gh` ni token: la única
+credencial de GitHub vive en el llavero de macOS, que no es mía para leer. Así que el
+disparador por push se activó para ese commit y se retiró en el siguiente. El flujo vuelve
+a ser manual.
+
+Comprobado sobre el sitio publicado:
+
+- La página responde 200 y la aplicación construye el escenario: viernes 11 de septiembre,
+  21:40, 395 buses y 7.016 pasajeros a bordo, en la hora real de Bogotá.
+- **`.mjs` se sirve como `text/javascript`**, que era la única incógnita real de Pages. Los
+  módulos y el worker cargan.
+- Los JSON salen como `application/json` y comprimidos: `services.json` viaja en 562 KB en
+  vez de 2,0 MB.
+- El resumen «La red ahora» calcula igual que en local: día de semana, media de 13 días,
+  pico a las 06:00, 1.875.996 validaciones.
+
+Un detalle que conviene saber al revisarlo desde una automatización: la aplicación **no
+calcula mientras la pestaña está oculta** (`document.hidden`), así que un panel de navegador
+en segundo plano muestra los bloques vacíos aunque todo esté bien. No es un fallo; es no
+gastar CPU en una pestaña que nadie mira.
+
+## Pasos para volver a publicar
+
+1. **Actions → Publicar simulador en Pages → Run workflow**, sobre `main`. El origen de
+   Pages ya está en GitHub Actions y no hay que volver a tocarlo.
+2. Revisar el último paso del flujo: dice si `.mjs` se sirvió bien.
+3. Abrir la URL y comprobar que la simulación construye y no hay errores de consola.
 
 Si `.mjs` no se sirviera como JavaScript, la salida lo dirá explícitamente y la solución
 es renombrar los módulos a `.js` o añadir un paso de construcción que lo haga.
 
-## Recomendación
+## Si se quisiera publicar en cada push
 
-El trabajo técnico está hecho. Lo que queda es la decisión de publicar y el paso 1, que es
-de la cuenta de Daniel. Cuando valides, se ejecuta.
+El archivo del flujo lleva comentadas las líneas que lo activarían. No está puesto a
+propósito: `app/dist` cambia en casi cada commit, y el proyecto trabaja con la regla de que
+guardar no publica.

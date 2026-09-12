@@ -1,0 +1,139 @@
+{
+  "created_utc": "2026-09-12T05:11:47.006029+00:00",
+  "purpose": "read_only_pending_route_probe",
+  "source": "https://api.buscador-rutas.transmilenio.gov.co",
+  "detail_url_template": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/{id}/rutaDetalle",
+  "catalog_source": "app/dist/services.json",
+  "catalog_revision": "services-v2-20260910T185326Z",
+  "pending_records": 20,
+  "probed": 20,
+  "failures": [],
+  "resolved": [
+    "L81/5280",
+    "M85/4596",
+    "P85/4595"
+  ],
+  "evidence": [
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/692/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:32.603829+00:00",
+      "response_sha256": "81c3c38e94ae317068630c914941fa1bc929e29f865db14df91333b80402169c",
+      "response_bytes": 212
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/1187/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:33.348380+00:00",
+      "response_sha256": "4cdfb9cc721fe6f97e3da65f25f164d954919983b061a119a38026e3237c994a",
+      "response_bytes": 213
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/1188/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:34.088432+00:00",
+      "response_sha256": "259f0889d5e2973d32635d765113a1e380f02e4a5f226517209089bee4e7dc6d",
+      "response_bytes": 209
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/386/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:34.765098+00:00",
+      "response_sha256": "3aff21ab40364ec8c3260955bc78a5d6e85884d2f6b04618d145ddaa0b3adec0",
+      "response_bytes": 214
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/1190/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:35.456284+00:00",
+      "response_sha256": "dbccf386bf2e478dd482cd1ac05504a3d980aee2d69c676877e8f4a7875d2737",
+      "response_bytes": 156
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/776/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:36.154521+00:00",
+      "response_sha256": "d2523ca35ab157175183b36ec1326a6c3a1ff0b2b4488cdcbf45a3891e434295",
+      "response_bytes": 209
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/1175/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:36.915572+00:00",
+      "response_sha256": "450962a3b2f08d1131131d8e56c57109bc424a485397d180392d42218852d5bd",
+      "response_bytes": 279
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/389/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:37.647269+00:00",
+      "response_sha256": "8cdb0be7d67b2298fc6db463d631073b2eff6b1984600736ca96b4cb3ea6a46d",
+      "response_bytes": 213
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/393/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:38.380834+00:00",
+      "response_sha256": "52487bdf6c84e94fa1e6cd4061ad73c96d2ec88a2699b039113a73281b3f5386",
+      "response_bytes": 211
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/387/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:39.129569+00:00",
+      "response_sha256": "e4837854c992db5e73aa4dc2261176674d0c2a148d242e2adc3df260367fb956",
+      "response_bytes": 211
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/12611/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:39.857674+00:00",
+      "response_sha256": "f3d7045609f1d1fdf110d1f0223d75a105b1ed9ad97b267400f6c14885d25201",
+      "response_bytes": 148
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/1214/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:40.555229+00:00",
+      "response_sha256": "47abc5445b3c98cc19a3dc7e9e4c669d6a6f454534d6f53f8df27d5d716e1708",
+      "response_bytes": 1601
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/388/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:41.304332+00:00",
+      "response_sha256": "4044d42cab11049b8c7c4dbf1c1af2f3a0f7617b010d10b55ebd2636aae4732d",
+      "response_bytes": 219
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/1189/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:42.014920+00:00",
+      "response_sha256": "05095a0a6d87f3ad2cdb3fecb8efc74af1e299fbcbe5166405bb161c49ddaf2a",
+      "response_bytes": 4229
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/5280/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:42.839787+00:00",
+      "response_sha256": "00a4a2d49336a69ff12dd40b4fa16ec8cc8dc5f95916c14cda718c62f99bb808",
+      "response_bytes": 29505
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/1242/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:43.557480+00:00",
+      "response_sha256": "5a5ae7cdd92a8e782ef34dbae10f02383f32f283c480f4c580bf2f52a35db975",
+      "response_bytes": 2612
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/12991/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:44.289271+00:00",
+      "response_sha256": "3835da321518886443346e0a7da6581693e23ef6b207df4b96d46bb48e7bd57b",
+      "response_bytes": 2628
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/4596/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:45.082206+00:00",
+      "response_sha256": "8c3ca134f7476b6c753b516beee7b987704a5944bec61cd4356360bd6fb05e80",
+      "response_bytes": 29960
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/5490/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:45.810242+00:00",
+      "response_sha256": "ec1990d97f19c98f68d3830708e832f4409b93a7675670b30411848151c339e0",
+      "response_bytes": 3456
+    },
+    {
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/4595/rutaDetalle",
+      "retrieved_at_utc": "2026-09-12T05:11:46.603793+00:00",
+      "response_sha256": "b51542859d807b3d73f8c17886ee3a4ea7d60d5976a0bba4bd29c4be267a43d7",
+      "response_bytes": 29727
+    }
+  ],
+  "note": "Probe only. Curation still requires an explicit decision in data/curated/services.json."
+}

@@ -111,6 +111,10 @@ pregunta solo, sin que haya que abrir la consola a mano.
 
 Publicado el 11 de septiembre de 2026 en **https://daniii3012.github.io/transmi-game/**.
 
+> El 12 de septiembre el repositorio pasó a llamarse `transmi-sim` y la dirección
+> publicada es **https://daniii3012.github.io/transmi-sim/**. Este informe conserva la
+> URL de su fecha: describe lo que se comprobó el 11, no dónde está el sitio hoy.
+
 El flujo solo respondía a disparo manual y este equipo no tiene `gh` ni token: la única
 credencial de GitHub vive en el llavero de macOS, que no es mía para leer. Así que el
 disparador por push se activó para ese commit y se retiró en el siguiente. El flujo vuelve

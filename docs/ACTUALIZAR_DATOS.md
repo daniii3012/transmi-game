@@ -65,6 +65,7 @@ los `build_*` escriben ambas.
 | Geometría física de estaciones y portales | OpenStreetMap API 0.6 y Overpass | `fetch_station_layouts.py` | `build_station_layouts.py` | `app/dist/station_layouts.json` |
 | Semáforos en calzada de buses | OpenStreetMap API 0.6 | `fetch_busway_signals.py` | `build_busway_signals.py` | `app/dist/busway_signals.json` |
 | Calzada y carriles de TransMilenio | OpenStreetMap / Overpass | `fetch_busway_lanes.py` | `build_busway_lanes.py` | `app/dist/busway_lanes.json` |
+| Punto de atención de cada servicio: vagón y puertas | Tablero de salidas por estación, de un servicio configurado en local | `fetch_station_departures.py` | `build_station_wagons.py` | `app/dist/station_wagons.json` |
 | Demanda de pasajeros | Validaciones diarias SITP, Datos Abiertos Bogotá | descarga manual del ZIP | `aggregate_validations.py` y luego `import_passenger_profiles.py` | `app/dist/demand.json` |
 | Three.js | npm oficial, versión fijada | `vendor_three.py` | — | `app/dist/vendor/` |
 
@@ -124,7 +125,9 @@ Cambia el campo `snapshot` por el nombre de la carpeta nueva. Después revisa la
 curación en `data/curated/services.json`, que es donde viven las decisiones humanas:
 
 - `excluded`: registros que no entran y por qué. Hoy están la C15 zonal (366) y la
-  F23 de Banderas (10082), ambas por indicación expresa de Daniel.
+  F23 de Banderas (10082). El motivo de cada uno se escribe ahí y es lo que la
+  aplicación muestra en el panel Datos, así que se redacta para quien la usa, no como
+  nota interna: nada de nombres propios ni de a quién se le ocurrió.
 - `pairs`: qué identificadores son los dos sentidos de un mismo servicio. Nunca
   copian geometría ni activan registros pendientes.
 
@@ -187,6 +190,55 @@ busway, y `medium` para servicio sin esa etiqueta.
 En la aplicación, `station-layouts.mjs` sitúa cada visita de una ruta sobre la
 geometría disponible. Si una visita no admite una posición compatible, conserva la
 referencia oficial del servicio: no se desvía la ruta para forzar el ajuste.
+
+### Cambia el vagón o la puerta por la que atiende un servicio
+
+```sh
+python3 tools/fetch_station_departures.py
+python3 tools/build_station_wagons.py
+```
+
+Ninguno de los dos necesita el Python geográfico. El primero recorre las estaciones
+troncales de `services.json` —**su identificador es el mismo que usa la fuente**, no hay que
+traducirlo— y guarda el tablero de salidas de cada una en
+`data/raw/station_departures/<instantánea>/`. El segundo deriva el punto de atención y
+escribe `station_wagons.json` en `data/curated/` y en `app/dist/`.
+
+Tres cosas que hay que entender antes de tocar los parámetros:
+
+1. **El tablero devuelve las próximas N salidas, no un muestreo de la ventana.** Con
+   `MAX_JOURNEYS=60` una estación concurrida enseña doce minutos y pierde la mitad de sus
+   servicios. Está en 300, que cubre cerca de una hora. Subirlo no cuesta peticiones, solo
+   respuesta más grande. Las cinco franjas de `WINDOWS` existen para alcanzar los servicios
+   que solo circulan a ciertas horas, no para muestrear más veces la misma.
+2. **El punto va al final del nombre y el nombre de la estación que lo precede no coincide
+   con el que el propio tablero da aparte**: `Portal Sur T2` contra
+   `Portal Sur - JFK Coop. Financiera`. Por eso `parse()` lee la cola con una expresión
+   anclada al final y no recorta prefijos. Las formas conocidas son `A - 2 ó 5`,
+   `B 4 ó 6 II`, `C - 2 ó 5-T`, `T5` y `T6A`. Los terminales se prueban primero: `T5` si no
+   se leería como vagón T, puerta 5. Lo que no encaje queda en `unparsed` y no se asigna;
+   ahí caen las bahías de alimentadores y zonales (`6-1`, `n Molinos 4-1 Bochica`), que no
+   son vagones troncales.
+3. **Los destinos no se concilian por nombre.** El tablero dice `Portal Norte - Unicervantes`
+   y el catálogo `Portal Norte`, `P. Norte` o `P Norte` según el registro. Ambos lados se
+   resuelven a la misma estación y se compara el **terminal del recorrido**, que es un
+   identificador. Si el destino del tablero no es una estación del catálogo, o si más de un
+   servicio con ese código termina ahí, la salida queda en `unmatched` con el motivo escrito.
+
+Un servicio visto en dos puntos distintos de la misma estación, en el mismo sentido, queda
+en `ambiguous` y **conserva la estimación**: no se elige uno de los dos. Lo mismo si el
+índice publicado excede los vagones que el catálogo cuenta para esa estación.
+
+En la aplicación, `operation.mjs` usa el punto publicado cuando existe y el reparto
+determinista de siempre cuando no, y cada parada lleva `wagonSource` para que la interfaz
+pueda rotular cuál es cuál. El panel Datos calcula la cobertura desde el propio archivo.
+
+Las estaciones que la fuente rechaza con HTTP 400 quedan anotadas en el manifiesto.
+Compararlas con el catálogo es una comprobación útil por sí sola: en la instantánea del 12
+de septiembre de 2026 coincidieron con las nueve que `services.json` marca **En obras**, más
+Tibanica - Primavera, Los Laureles e Islandia. Esas tres existen en la fuente con el mismo identificador, pero todavía no publican tablero: son las que
+abrieron el 17 de agosto de 2026 con la extensión de la Av. Ciudad de Cali. Ver
+[verificación del catálogo](RUTAS_VERIFICACION_20260912.md).
 
 ### Cambian las calzadas de TransMilenio o sus semáforos
 

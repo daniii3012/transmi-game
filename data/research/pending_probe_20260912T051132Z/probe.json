@@ -1,0 +1,709 @@
+{
+  "records": [
+    {
+      "id": "692",
+      "code": "6",
+      "name": "Calle 76",
+      "local_issues": [
+        "Sin trazado publicado.",
+        "Sin secuencia suficiente de paradas."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-08-21",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 0,
+      "published_schedule": [
+        {
+          "tipoDia": "D-F",
+          "inicio": "4:30 AM",
+          "fin": "10:00 PM"
+        },
+        {
+          "tipoDia": "L-S",
+          "inicio": "4:30 AM",
+          "fin": "11:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "81c3c38e94ae317068630c914941fa1bc929e29f865db14df91333b80402169c",
+      "resolves_pending": false
+    },
+    {
+      "id": "1187",
+      "code": "A60",
+      "name": "Calle 76",
+      "local_issues": [
+        "Sin trazado publicado.",
+        "Sin secuencia suficiente de paradas."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-08-21",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 0,
+      "published_schedule": [
+        {
+          "tipoDia": "D-F",
+          "inicio": "4:00 AM",
+          "fin": "10:00 PM"
+        },
+        {
+          "tipoDia": "L-S",
+          "inicio": "4:30 AM",
+          "fin": "9:30 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "4cdfb9cc721fe6f97e3da65f25f164d954919983b061a119a38026e3237c994a",
+      "resolves_pending": false
+    },
+    {
+      "id": "1188",
+      "code": "A61",
+      "name": "Polo",
+      "local_issues": [
+        "Sin trazado publicado.",
+        "Sin secuencia suficiente de paradas."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-08-14",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 0,
+      "published_schedule": [
+        {
+          "tipoDia": "S",
+          "inicio": "4:30 AM",
+          "fin": "12:00 PM"
+        },
+        {
+          "tipoDia": "L-V",
+          "inicio": "4:30 AM",
+          "fin": "10:00 AM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "259f0889d5e2973d32635d765113a1e380f02e4a5f226517209089bee4e7dc6d",
+      "resolves_pending": false
+    },
+    {
+      "id": "386",
+      "code": "B46",
+      "name": "Portal Norte",
+      "local_issues": [
+        "Sin trazado publicado.",
+        "Sin secuencia suficiente de paradas."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-08-28",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 0,
+      "published_schedule": [
+        {
+          "tipoDia": "L-S",
+          "inicio": "4:00 AM",
+          "fin": "9:00 AM"
+        },
+        {
+          "tipoDia": "L-S",
+          "inicio": "3:00 PM",
+          "fin": "8:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "3aff21ab40364ec8c3260955bc78a5d6e85884d2f6b04618d145ddaa0b3adec0",
+      "resolves_pending": false
+    },
+    {
+      "id": "1190",
+      "code": "F61",
+      "name": "Portal Américas",
+      "local_issues": [
+        "Sin trazado publicado.",
+        "Sin secuencia suficiente de paradas."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-08-14",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 0,
+      "published_schedule": [
+        {
+          "tipoDia": "L-V",
+          "inicio": "3:00 PM",
+          "fin": "8:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "dbccf386bf2e478dd482cd1ac05504a3d980aee2d69c676877e8f4a7875d2737",
+      "resolves_pending": false
+    },
+    {
+      "id": "776",
+      "code": "G41",
+      "name": "San Mateo",
+      "local_issues": [
+        "Sin trazado publicado.",
+        "Sin secuencia suficiente de paradas."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-08-28",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 0,
+      "published_schedule": [
+        {
+          "tipoDia": "L-V",
+          "inicio": "5:00 AM",
+          "fin": "9:00 PM"
+        },
+        {
+          "tipoDia": "S",
+          "inicio": "5:00 AM",
+          "fin": "9:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "d2523ca35ab157175183b36ec1326a6c3a1ff0b2b4488cdcbf45a3891e434295",
+      "resolves_pending": false
+    },
+    {
+      "id": "1175",
+      "code": "G42",
+      "name": "San Mateo",
+      "local_issues": [
+        "Sin trazado publicado.",
+        "Sin secuencia suficiente de paradas."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-08-28",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 0,
+      "published_schedule": [
+        {
+          "tipoDia": "D-F",
+          "inicio": "5:00 AM",
+          "fin": "10:00 PM"
+        },
+        {
+          "tipoDia": "S",
+          "inicio": "5:00 AM",
+          "fin": "11:00 PM"
+        },
+        {
+          "tipoDia": "L-V",
+          "inicio": "4:30 AM",
+          "fin": "11:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "450962a3b2f08d1131131d8e56c57109bc424a485397d180392d42218852d5bd",
+      "resolves_pending": false
+    },
+    {
+      "id": "389",
+      "code": "G43",
+      "name": "San Mateo",
+      "local_issues": [
+        "Sin trazado publicado.",
+        "Sin secuencia suficiente de paradas."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-08-28",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 0,
+      "published_schedule": [
+        {
+          "tipoDia": "D-F",
+          "inicio": "4:30 AM",
+          "fin": "10:00 PM"
+        },
+        {
+          "tipoDia": "L-S",
+          "inicio": "5:00 AM",
+          "fin": "11:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "8cdb0be7d67b2298fc6db463d631073b2eff6b1984600736ca96b4cb3ea6a46d",
+      "resolves_pending": false
+    },
+    {
+      "id": "393",
+      "code": "G45",
+      "name": "San Mateo",
+      "local_issues": [
+        "Sin trazado publicado.",
+        "Sin secuencia suficiente de paradas."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-08-28",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 0,
+      "published_schedule": [
+        {
+          "tipoDia": "L-S",
+          "inicio": "5:00 PM",
+          "fin": "8:00 PM"
+        },
+        {
+          "tipoDia": "L-S",
+          "inicio": "5:00 AM",
+          "fin": "8:00 AM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "52487bdf6c84e94fa1e6cd4061ad73c96d2ec88a2699b039113a73281b3f5386",
+      "resolves_pending": false
+    },
+    {
+      "id": "387",
+      "code": "G46",
+      "name": "San Mateo",
+      "local_issues": [
+        "Sin trazado publicado.",
+        "Sin secuencia suficiente de paradas."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-08-28",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 0,
+      "published_schedule": [
+        {
+          "tipoDia": "L-S",
+          "inicio": "5:00 AM",
+          "fin": "9:00 AM"
+        },
+        {
+          "tipoDia": "L-S",
+          "inicio": "3:00 PM",
+          "fin": "8:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "e4837854c992db5e73aa4dc2261176674d0c2a148d242e2adc3df260367fb956",
+      "resolves_pending": false
+    },
+    {
+      "id": "12611",
+      "code": "G48",
+      "name": "San Mateo",
+      "local_issues": [
+        "Sin trazado publicado.",
+        "Sin secuencia suficiente de paradas."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-08-28",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 0,
+      "published_schedule": [
+        {
+          "tipoDia": "L-V",
+          "inicio": "4:00 PM",
+          "fin": "9:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "f3d7045609f1d1fdf110d1f0223d75a105b1ed9ad97b267400f6c14885d25201",
+      "resolves_pending": false
+    },
+    {
+      "id": "1214",
+      "code": "J76",
+      "name": "Universidades",
+      "local_issues": [
+        "Sin trazado publicado."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-09-14",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 10,
+      "published_schedule": [
+        {
+          "tipoDia": "L-V",
+          "inicio": "5:00 AM",
+          "fin": "8:30 AM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "47abc5445b3c98cc19a3dc7e9e4c669d6a6f454534d6f53f8df27d5d716e1708",
+      "resolves_pending": false
+    },
+    {
+      "id": "388",
+      "code": "K43",
+      "name": "Portal Eldorado",
+      "local_issues": [
+        "Sin trazado publicado.",
+        "Sin secuencia suficiente de paradas."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-08-28",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 0,
+      "published_schedule": [
+        {
+          "tipoDia": "D-F",
+          "inicio": "4:00 AM",
+          "fin": "10:00 PM"
+        },
+        {
+          "tipoDia": "L-S",
+          "inicio": "4:00 AM",
+          "fin": "11:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "4044d42cab11049b8c7c4dbf1c1af2f3a0f7617b010d10b55ebd2636aae4732d",
+      "resolves_pending": false
+    },
+    {
+      "id": "1189",
+      "code": "K86",
+      "name": "Portal ElDorado Ciclovía",
+      "local_issues": [
+        "Sin trazado publicado."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-09-13",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 27,
+      "published_schedule": [
+        {
+          "tipoDia": "D-F",
+          "inicio": "7:00 AM",
+          "fin": "2:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "05095a0a6d87f3ad2cdb3fecb8efc74af1e299fbcbe5166405bb161c49ddaf2a",
+      "resolves_pending": false
+    },
+    {
+      "id": "5280",
+      "code": "L81",
+      "name": "Portal 20 de Julio Ciclovía",
+      "local_issues": [
+        "Variante Ciclovía con calendario ambiguo; requiere confirmar excepción."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-09-13",
+      "published_geometry": true,
+      "geometry_type": "LineString",
+      "geometry_coordinates": 698,
+      "published_stop_count": 24,
+      "published_schedule": [
+        {
+          "tipoDia": "S",
+          "inicio": "5:00 AM",
+          "fin": "10:30 PM"
+        },
+        {
+          "tipoDia": "D-F",
+          "inicio": "6:00 AM",
+          "fin": "10:00 PM"
+        },
+        {
+          "tipoDia": "L-V",
+          "inicio": "5:00 AM",
+          "fin": "11:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "00a4a2d49336a69ff12dd40b4fa16ec8cc8dc5f95916c14cda718c62f99bb808",
+      "resolves_pending": true
+    },
+    {
+      "id": "1242",
+      "code": "L82",
+      "name": "Portal 20 de Julio Ciclovía",
+      "local_issues": [
+        "Variante Ciclovía con calendario ambiguo; requiere confirmar excepción.",
+        "Sin trazado publicado."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-09-13",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 16,
+      "published_schedule": [
+        {
+          "tipoDia": "S",
+          "inicio": "4:00 AM",
+          "fin": "11:00 PM"
+        },
+        {
+          "tipoDia": "D-F",
+          "inicio": "2:00 PM",
+          "fin": "10:00 PM"
+        },
+        {
+          "tipoDia": "L-V",
+          "inicio": "4:00 AM",
+          "fin": "11:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "5a5ae7cdd92a8e782ef34dbae10f02383f32f283c480f4c580bf2f52a35db975",
+      "resolves_pending": false
+    },
+    {
+      "id": "12991",
+      "code": "M82",
+      "name": "CLL134 - KR 7 Ciclovía",
+      "local_issues": [
+        "Variante Ciclovía con calendario ambiguo; requiere confirmar excepción.",
+        "Sin trazado publicado."
+      ],
+      "valid_from": "2026-07-12",
+      "valid_until": "2026-09-13",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 17,
+      "published_schedule": [
+        {
+          "tipoDia": "L-S",
+          "inicio": "4:00 AM",
+          "fin": "11:00 PM"
+        },
+        {
+          "tipoDia": "D-F",
+          "inicio": "4:30 AM",
+          "fin": "10:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "3835da321518886443346e0a7da6581693e23ef6b207df4b96d46bb48e7bd57b",
+      "resolves_pending": false
+    },
+    {
+      "id": "4596",
+      "code": "M85",
+      "name": "Museo Nacional Ciclovía",
+      "local_issues": [
+        "Variante Ciclovía con calendario ambiguo; requiere confirmar excepción."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-09-13",
+      "published_geometry": true,
+      "geometry_type": "LineString",
+      "geometry_coordinates": 769,
+      "published_stop_count": 10,
+      "published_schedule": [
+        {
+          "tipoDia": "L-D",
+          "inicio": "5:00 AM",
+          "fin": "9:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "8c3ca134f7476b6c753b516beee7b987704a5944bec61cd4356360bd6fb05e80",
+      "resolves_pending": true
+    },
+    {
+      "id": "5490",
+      "code": "M86",
+      "name": "KR 7 - CLL 107A Ciclovía",
+      "local_issues": [
+        "Variante Ciclovía con calendario ambiguo; requiere confirmar excepción.",
+        "Sin trazado publicado."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-09-13",
+      "published_geometry": false,
+      "geometry_type": null,
+      "geometry_coordinates": 0,
+      "published_stop_count": 22,
+      "published_schedule": [
+        {
+          "tipoDia": "L-S",
+          "inicio": "4:00 AM",
+          "fin": "10:00 PM"
+        },
+        {
+          "tipoDia": "D-F",
+          "inicio": "5:00 AM",
+          "fin": "9:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "ec1990d97f19c98f68d3830708e832f4409b93a7675670b30411848151c339e0",
+      "resolves_pending": false
+    },
+    {
+      "id": "4595",
+      "code": "P85",
+      "name": "AV 68 Calle 9 Ciclovía",
+      "local_issues": [
+        "Variante Ciclovía con calendario ambiguo; requiere confirmar excepción."
+      ],
+      "valid_from": "2026-06-28",
+      "valid_until": "2026-09-13",
+      "published_geometry": true,
+      "geometry_type": "LineString",
+      "geometry_coordinates": 769,
+      "published_stop_count": 8,
+      "published_schedule": [
+        {
+          "tipoDia": "D-F",
+          "inicio": "2:00 PM",
+          "fin": "9:00 PM"
+        },
+        {
+          "tipoDia": "L-S",
+          "inicio": "5:00 AM",
+          "fin": "9:00 PM"
+        }
+      ],
+      "published_fields": [
+        "color",
+        "estaciones",
+        "horario",
+        "nombre",
+        "trazado"
+      ],
+      "detail_sha256": "b51542859d807b3d73f8c17886ee3a4ea7d60d5976a0bba4bd29c4be267a43d7",
+      "resolves_pending": true
+    }
+  ]
+}

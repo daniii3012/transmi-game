@@ -1,6 +1,6 @@
 # Transmi 2D — dirección vigente
 
-Leer README.md, CONTINUAR.md y docs/PLAN_DEL_PROYECTO.md. Trabajar en español. Mantener notas de continuidad y guardar hitos comprobados en GitHub; push autorizado a daniii3012/transmi-game. No desplegar ni publicar una versión jugable en internet sin solicitud. Daniel autorizó servir app/dist en su LAN mediante un lanzador separado.
+Leer README.md, CONTINUAR.md y docs/PLAN_DEL_PROYECTO.md. Trabajar en español. Mantener notas de continuidad y guardar hitos comprobados en GitHub; push autorizado a daniii3012/transmi-sim. No desplegar ni publicar una versión jugable en internet sin solicitud. Daniel autorizó servir app/dist en su LAN mediante un lanzador separado.
 
 **Proyecto principal: simulación 2D de todas las rutas troncales y duales de TransMilenio.** Incluye paradas en calle de Carrera Séptima, 68/P85/M85 y obras actuales cuando existan datos vigentes. Daniel confirmó que las zonales quedan para después. La conducción 3D está pausada hasta nuevo aviso en archive/transmi3d; no continuar modelado o física por inercia.
 

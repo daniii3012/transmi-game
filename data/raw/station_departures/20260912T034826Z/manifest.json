@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "snapshot": "20260912T034826Z",
+  "queried_at": "2026-09-12T04:08:48.670349+00:00",
+  "reference_date": "2026-09-10",
+  "windows": [
+    "05:30",
+    "08:00",
+    "12:00",
+    "16:00",
+    "20:00"
+  ],
+  "duration_min": 180,
+  "max_journeys": 300,
+  "stations_requested": 151,
+  "stations_with_board": 139,
+  "responses": 695,
+  "failures": [
+    {
+      "station_id": "9123",
+      "name": "Calle 76",
+      "window": "05:30",
+      "status": 400
+    },
+    {
+      "station_id": "9120",
+      "name": "Calle 63",
+      "window": "05:30",
+      "status": 400
+    },
+    {
+      "station_id": "9117",
+      "name": "Calle 45",
+      "window": "05:30",
+      "status": 400
+    },
+    {
+      "station_id": "9115",
+      "name": "Calle 34",
+      "window": "05:30",
+      "status": 400
+    },
+    {
+      "station_id": "9111",
+      "name": "Calle 19",
+      "window": "05:30",
+      "status": 400
+    },
+    {
+      "station_id": "9109",
+      "name": "Tercer Milenio",
+      "window": "05:30",
+      "status": 400
+    },
+    {
+      "station_id": "5001",
+      "name": "Patio Bonito",
+      "window": "05:30",
+      "status": 400
+    },
+    {
+      "station_id": "7009",
+      "name": "SENA",
+      "window": "05:30",
+      "status": 400
+    },
+    {
+      "station_id": "9108",
+      "name": "Hospital",
+      "window": "05:30",
+      "status": 400
+    },
+    {
+      "station_id": "90009",
+      "name": "Tibanica - Primavera",
+      "window": "05:30",
+      "status": 400
+    },
+    {
+      "station_id": "90010",
+      "name": "Laureles",
+      "window": "05:30",
+      "status": 400
+    },
+    {
+      "station_id": "90011",
+      "name": "Islandia",
+      "window": "05:30",
+      "status": 400
+    }
+  ],
+  "raw_file": "boards.json",
+  "raw_sha256": "433213feaa63c49d6b1c0c349c265a90a58dfbfe35dd3a2a1fe845c967bd6768",
+  "license": "Horarios publicados por el operador. Solo campos de transporte.",
+  "source": "Tablero de salidas de un servicio configurado localmente; la dirección no se versiona."
+}

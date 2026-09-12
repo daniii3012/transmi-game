@@ -1,9 +1,11 @@
-import {DAY,addDays,dateNumber,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.10';
-import {MetricPath} from './simulation.mjs?v=20260911.10';
-import {travelProfile} from './travel.mjs?v=20260911.10';
-import {parameters,hash} from './operation.mjs?v=20260911.10';
-import {placeVisit} from './station-layouts.mjs?v=20260911.10';
+import {DAY,addDays,dateNumber,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.11';
+import {MetricPath} from './simulation.mjs?v=20260911.11';
+import {travelProfile} from './travel.mjs?v=20260911.11';
+import {parameters,hash} from './operation.mjs?v=20260911.11';
+import {placeVisit} from './station-layouts.mjs?v=20260911.11';
 
+// Alternativas distintas que se ofrecen por cada cantidad de transbordos.
+export const ALTERNATIVES=3;
 function lowerBound(a,time){let lo=0,hi=a.length;while(lo<hi){const m=(lo+hi)>>1;if(a[m]<time)lo=m+1;else hi=m;}return lo;}
 class Queue{
  constructor(){this.a=[];}
@@ -72,10 +74,18 @@ export class JourneyPlanner{
     }
    }
   }
-  const byTransfers=new Map();for(const goal of goals.sort((a,b)=>a.time-b.time)){const count=goal.legs.length-1;if(!byTransfers.has(count))byTransfers.set(count,goal);}
-  // Every transfer count that reaches the destination is offered. An option that adds transfers without
-  // arriving earlier is kept but flagged, so a slower alternative stays visible instead of disappearing.
-  const all=[...byTransfers.values()].sort((a,b)=>a.legs.length-b.legs.length);
+  // Every transfer count that reaches the destination is offered, and up to ALTERNATIVES distinct
+  // combinations of services within each: two routes along the same corridor are a real choice for
+  // whoever is waiting, not a duplicate. Distinct means a different sequence of services, never the
+  // same one leaving later. An option that adds transfers without arriving earlier is kept but
+  // flagged, so a slower alternative stays visible instead of disappearing.
+  const byTransfers=new Map();
+  for(const goal of goals.sort((a,b)=>a.time-b.time)){
+   const count=goal.legs.length-1,list=byTransfers.get(count)||[],services=goal.legs.map(l=>l.routeId).join('>');
+   if(list.length>=ALTERNATIVES||list.some(other=>other.legs.map(l=>l.routeId).join('>')===services))continue;
+   list.push(goal);byTransfers.set(count,list);
+  }
+  const all=[...byTransfers.values()].flat().sort((a,b)=>a.legs.length-b.legs.length||a.time-b.time);
   const choices=all.map(g=>({goal:g,dominated:all.some(other=>other.legs.length<g.legs.length&&other.time<=g.time)})).sort((a,b)=>a.goal.legs.length-b.goal.legs.length);
   const byId=new Map(this.routes.map(r=>[r.id,r]));
   return {status:choices.length?'found':'none',origin,destination,date,time,horizonHours:6,maxTransfers,journeys:choices.map(({goal:g,dominated})=>({duration:g.time-time,arrive:g.time,transfers:g.legs.length-1,dominated,legs:g.legs.map(l=>({...l,points:routeSlice(byId.get(l.routeId).path,l.from_m,l.to_m)}))}))};

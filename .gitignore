@@ -11,3 +11,6 @@ __pycache__/
 
 # Scratch work is kept outside the versioned application.
 /work/
+
+# Credencial de un servicio de terceros: se toma de la propia captura, no se publica.
+tools/en_vivo.local.json

@@ -36,3 +36,16 @@ body[data-theme=dark]{--ink:#e0e8f1;--muted:#a2b0bf;--line:#394959;--shadow:0 5p
 
 .station-label{left:0;top:0;will-change:transform}
 #swap-journey{margin:10px 0 0;min-height:30px;padding:5px;font-size:.75rem}#planner-form label{margin-top:14px}.journey-card{border-top:1px solid var(--line);padding:18px 0 4px}.journey-duration{font-size:.85rem;font-weight:600}.journey-leg{border-left:2px solid var(--line);padding:8px 0 8px 12px}.journey-leg>strong{display:block;font-size:.8rem;margin:8px 0}.journey-leg p{font-size:.78rem;margin:6px 0;line-height:1.5}.journey-leg small{font-size:.7rem;color:var(--muted)}.transfer-note{padding:9px 10px;border-radius:6px;background:#f0f4f8;font-size:.75rem}[data-theme=dark] .transfer-note{background:#354758}.journey-alternative>h2,.journey-alternative .journey-duration{color:var(--muted)}.journey-alternative .journey-leg{border-left-style:dashed}
+
+.live-group{border-top:1px solid var(--line);padding-top:14px;margin-top:16px}.live-head{display:flex;align-items:center;gap:9px;margin-bottom:6px}.live-head strong{flex:1;min-width:0;font-size:.8rem;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.live-head .value{font-size:.75rem;color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}.live-bus{display:flex;gap:9px;align-items:center;width:calc(100% + 20px);margin-inline:-10px;border:0;border-radius:8px;text-align:left;min-height:52px;padding:9px 10px;background:none}.live-bus:hover{background:#f8f9fb}.live-dot{width:11px;height:11px;border-radius:50%;flex:none;box-shadow:0 0 0 2px #fff,0 0 0 3px #26344426}.live-label{position:absolute;left:0;top:0;will-change:transform;font-size:.68rem;font-weight:650;font-variant-numeric:tabular-nums;color:#334153;background:#ffffffd9;border-radius:5px;padding:1px 4px;white-space:nowrap}
+[data-theme=dark] .live-bus:hover{background:#304052}[data-theme=dark] .live-dot{box-shadow:0 0 0 2px #24313f,0 0 0 3px #ffffff26}[data-theme=dark] .live-label{color:#dfebf5;background:#18212bd9}
+
+#timeline.readonly{opacity:.55}#timeline.readonly button,#timeline.readonly input{cursor:not-allowed}
+
+/* Los botones de texto de las listas no son cajas. La regla de tema oscuro para `button` va
+   después en la hoja y les ganaba por orden, así que al pasar el cursor aparecía un fondo con
+   relleno de botón y el texto quedaba pegado al borde. */
+.rank button,.depot-row button,.stop-list button,[data-theme=dark] .rank button,[data-theme=dark] .depot-row button,[data-theme=dark] .stop-list button{background:none;padding:0}
+.rank button:hover,.depot-row button:hover,.stop-list button:hover,[data-theme=dark] .rank button:hover,[data-theme=dark] .depot-row button:hover,[data-theme=dark] .stop-list button:hover{background:none;text-decoration:underline}
+/* El código de una ruta en rojo se lee como alerta, no como enlace. */
+#live-network-list button:hover,[data-theme=dark] #live-network-list button:hover{color:inherit}

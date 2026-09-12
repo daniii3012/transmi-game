@@ -44,12 +44,12 @@ jobs:
           set -euo pipefail
           test -f app/dist/index.html
           test -f app/dist/.nojekyll
-          for f in services context demand station_layouts busway_signals busway_lanes network; do
+          for f in services context demand station_layouts busway_signals busway_lanes station_wagons network; do
             test -s "app/dist/$f.json" || { echo "Falta app/dist/$f.json"; exit 1; }
             python3 -c "import json;json.load(open('app/dist/$f.json'))"
           done
           # Los JSON curados y su copia web tienen que ser idénticos byte a byte.
-          for f in station_layouts busway_signals busway_lanes; do
+          for f in station_layouts busway_signals busway_lanes station_wagons; do
             a=$(sha256sum "data/curated/$f.json" | cut -d' ' -f1)
             b=$(sha256sum "app/dist/$f.json" | cut -d' ' -f1)
             [ "$a" = "$b" ] || { echo "$f.json difiere entre data/curated y app/dist"; exit 1; }
@@ -57,7 +57,7 @@ jobs:
           # Una sola versión de caché: servir una mezcla rompe la aplicación.
           versiones=$(grep -oh '?v=[0-9.]*' app/dist/*.mjs app/dist/index.html | sort -u | wc -l)
           [ "$versiones" = "1" ] || { echo "Hay $versiones versiones ?v= distintas"; exit 1; }
-          # Rutas absolutas romperían bajo el subdirectorio /transmi-game/.
+          # Rutas absolutas romperían bajo el subdirectorio /transmi-sim/.
           ! grep -rn "fetch('/\|src=\"/\|href=\"/" app/dist/*.mjs app/dist/index.html
           echo "Comprobaciones superadas"
 

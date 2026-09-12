@@ -88,7 +88,7 @@ Los 103 elementos de `platforms` incluyen nodos y líneas de parada: no equivale
 
 ## Ampliación a 40 estaciones — 11 sep. 2026
 
-A petición de Daniel se amplió la cobertura de doce a **40 estaciones**: las doce
+La cobertura se amplió de doce a **40 estaciones**: las doce
 anteriores más las 28 troncales con más servicios. Ninguna de las doce originales
 perdió geometría; la comprobación compara los conteos antes y después estación por
 estación.

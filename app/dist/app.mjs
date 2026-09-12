@@ -1,18 +1,31 @@
-import {NetworkMap} from './map.mjs?v=20260911.10';
-import {DAY,addDays,dayType,dateNumber,dateEligible,validityState,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.10';
-import {DEFAULTS,parameters} from './operation.mjs?v=20260911.10';
-import {registerSimulationTools} from './webmcp.mjs?v=20260911.10';
+import {NetworkMap} from './map.mjs?v=20260911.11';
+import {DAY,addDays,dayType,dateNumber,dateEligible,validityState,serviceWindows,demandPeriod} from './calendar.mjs?v=20260911.11';
+import {DEFAULTS,parameters} from './operation.mjs?v=20260911.11';
+import {registerSimulationTools} from './webmcp.mjs?v=20260911.11';
+import {LiveFeed,groupByDestination,occupancyText,ageText,sameName} from './live.mjs?v=20260911.11';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const el=(tag,text,cls)=>{const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(cls)node.className=cls;return node;};
 const fmt=n=>Math.round(n).toLocaleString('es-CO');
 const timeText=s=>new Date(Math.floor(((s%DAY)+DAY)%DAY)*1000).toISOString().slice(11,19);
 const stateNames={moving:'En recorrido',dwell:'Puertas abiertas',queue:'Esperando atención',signal:'Esperando luz verde'};
+// La hora de una lectura en vivo, siempre la civil de Bogotá: el equipo puede estar en otro huso.
+function readingClock(iso){
+ try{return new Intl.DateTimeFormat('es-CO',{timeZone:'America/Bogota',hour:'2-digit',minute:'2-digit',second:'2-digit',hourCycle:'h23'}).format(new Date(iso));}
+ catch{return null;}
+}
+// Punto de atención: el que publica el tablero de la estación cuando se conoce, con sus puertas;
+// si no, el reparto determinista del modelo, que se sigue rotulando como estimación.
+function boardingPoint(x){
+ if(x?.wagonSource!=='published')return 'Vagón '+(x?.wagon??1)+' · est.';
+ const donde=/^T\d/.test(x.wagonLabel)?'Plataforma '+x.wagonLabel:'Vagón '+x.wagonLabel;
+ return donde+(x.wagonDoors?.length?' · puertas '+x.wagonDoors.join(' ó '):'')+' · publicado';
+}
 let toastTimer;
 function toast(message){$('#toast').textContent=message;$('#toast').hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('#toast').hidden=true,4500);}
 try{
- const [response,contextResponse,demandResponse,layoutsResponse,signalsResponse,lanesResponse]=await Promise.all([fetch('./services.json',{cache:'no-store'}),fetch('./context.json',{cache:'no-store'}),fetch('./demand.json',{cache:'no-store'}),fetch('./station_layouts.json',{cache:'no-store'}),fetch('./busway_signals.json',{cache:'no-store'}),fetch('./busway_lanes.json',{cache:'no-store'})]);
+ const [response,contextResponse,demandResponse,layoutsResponse,signalsResponse,lanesResponse,wagonsResponse]=await Promise.all([fetch('./services.json',{cache:'no-store'}),fetch('./context.json',{cache:'no-store'}),fetch('./demand.json',{cache:'no-store'}),fetch('./station_layouts.json',{cache:'no-store'}),fetch('./busway_signals.json',{cache:'no-store'}),fetch('./busway_lanes.json',{cache:'no-store'}),fetch('./station_wagons.json',{cache:'no-store'})]);
  if(!response.ok)throw new Error('No se pudieron cargar los servicios locales.');
- const data=await response.json();if(signalsResponse.ok)data.busway_signals=await signalsResponse.json();if(lanesResponse.ok)data.busway_lanes=await lanesResponse.json();if(layoutsResponse.ok)data.station_layouts=await layoutsResponse.json();if(demandResponse.ok){data.demand=await demandResponse.json();const profiles=new Map(data.demand.profiles.map(p=>[p.station_id,p]));for(const s of data.stations){const p=profiles.get(s.id);if(p)s.demand_profile=p;}}const routeById=new Map(data.routes.map(r=>[r.id,r]));
+ const data=await response.json();if(signalsResponse.ok)data.busway_signals=await signalsResponse.json();if(lanesResponse.ok)data.busway_lanes=await lanesResponse.json();if(layoutsResponse.ok)data.station_layouts=await layoutsResponse.json();if(wagonsResponse.ok)data.station_wagons=await wagonsResponse.json();if(demandResponse.ok){data.demand=await demandResponse.json();const profiles=new Map(data.demand.profiles.map(p=>[p.station_id,p]));for(const s of data.stations){const p=profiles.get(s.id);if(p)s.demand_profile=p;}}const routeById=new Map(data.routes.map(r=>[r.id,r]));
  let saved=null;try{const current=localStorage.getItem('transmi-scenario-v3');saved=JSON.parse(current||localStorage.getItem('transmi-scenario-v2'));if(saved&&!current){const p=saved.config.params;if(p.cruiseKmh===48)p.cruiseKmh=60;if(p.streetKmh===30)p.streetKmh=50;delete p.biarticulatedShare;delete p.biarticulatedCapacity;delete p.biShare;delete p.bioShare;delete p.bioCapacity;delete p.capacity;if(saved.config.selection.route==='10082')saved.config.selection.route='396';}if(saved?.revision!==data.revision)saved=null;}catch{}
  // Hora civil de Bogotá, independiente del huso del equipo.
  function bogotaNow(){
@@ -33,11 +46,11 @@ try{
  let theme=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';try{theme=localStorage.getItem('transmi-theme')||theme;}catch{}
  function applyTheme(){document.body.dataset.theme=theme;map.setTheme(theme);$('#theme').textContent=theme==='dark'?'☀':'☾';$('#theme').setAttribute('aria-label',theme==='dark'?'Usar modo claro':'Usar modo oscuro');}applyTheme();
  $('#theme').onclick=()=>{theme=theme==='dark'?'light':'dark';applyTheme();try{localStorage.setItem('transmi-theme',theme);}catch{}};
- let worker=new Worker('./worker.mjs?v=20260911.10',{type:'module'});
+ let worker=new Worker('./worker.mjs?v=20260911.11',{type:'module'});
  function badge(r){const b=el('span',r.code,'route-code');b.style.setProperty('--route',r.color);const rgb=r.color.match(/[0-9a-f]{2}/gi)?.map(s=>parseInt(s,16));if(rgb?.length===3&&rgb[0]*.2126+rgb[1]*.7152+rgb[2]*.0722>155)b.style.setProperty('--route-ink','#24303f');return b;}
  function row(label,value,parent=$('#selection')){const r=el('div',undefined,'metric-row');r.append(el('span',label),el('strong',value));parent.append(r);return r;}
  function rebuild({fit=false,clear=true}={}){
-  planSequence++;$('#plan-journey').disabled=true;$('#journey-results').replaceChildren(el('p','Elige origen, destino y fecha para buscar conexiones.','muted'));generation++;const messageHandler=worker.onmessage,errorHandler=worker.onerror;worker.terminate();worker=new Worker('./worker.mjs?v=20260911.10',{type:'module'});worker.onmessage=messageHandler;worker.onerror=errorHandler;ready=false;pendingSample=false;sampleSequence=0;$('#loading').hidden=false;$('#loading').textContent='Calculando despachos y estaciones…';$('#error').hidden=true;
+  planSequence++;$('#plan-journey').disabled=true;$('#journey-results').replaceChildren(el('p','Elige origen, destino y fecha para buscar conexiones.','muted'));generation++;const messageHandler=worker.onmessage,errorHandler=worker.onerror;worker.terminate();worker=new Worker('./worker.mjs?v=20260911.11',{type:'module'});worker.onmessage=messageHandler;worker.onerror=errorHandler;ready=false;pendingSample=false;sampleSequence=0;$('#loading').hidden=false;$('#loading').textContent='Calculando despachos y estaciones…';$('#error').hidden=true;
   if(clear)clearSelection();
   map.routeSet=new Set(data.routes.filter(r=>r.ready&&(config.selection.mode==='all'||config.selection.mode==='route'&&r.id===config.selection.route||config.selection.mode==='zones'&&config.selection.zones.some(z=>r.served_zones.includes(z)||r.zone===z))).map(r=>r.id));map.rebuildHighlight();map.signalsEnabled=config.params.signals;
   worker.postMessage({type:'init',generation,data,config,time:clock.time});syncControls();renderRoutes();
@@ -96,7 +109,7 @@ try{
  function renderBus(){
   const b=snap.buses.find(b=>b.id===selection?.id);if(!b){const route=selection?.routeId||focusedRoute;if(route)selectRoute(route);else clearSelection();return;}
   const p=$('#selection');p.replaceChildren(badge(b),el('span','  '+b.vehicleId,'eyebrow'),el('h2',b.pattern),el('div',stateNames[b.state]+(b.street?' · calle':''),'bus-state'));$('#inspector').hidden=false;
-  row('Velocidad',b.speed_kmh.toFixed(0)+' km/h');row('Tipo de bus',b.busType);$('#selection').append(el('p',b.typeSource,'muted'));row('A bordo',`${b.load} / ${b.capacity}`);const track=el('div',undefined,'load-track'),fill=el('i');fill.style.width=b.load/b.capacity*100+'%';track.append(fill);p.append(track);row(['moving','signal'].includes(b.state)?'Próxima parada':'Parada',b.next_stop);row('Punto de atención',b.street?'Paradero calle':'Vagón '+b.wagon+' · est.');row('Recorrido',(b.s/1000).toFixed(2)+' km');if(b.signalId)row('Luz verde en',Math.ceil(b.signalWait)+' s · est.');row('Atención pendiente',b.delay>0?b.delay.toFixed(0)+' s':'Sin espera');
+  row('Velocidad',b.speed_kmh.toFixed(0)+' km/h');row('Tipo de bus',b.busType);$('#selection').append(el('p',b.typeSource,'muted'));row('A bordo',`${b.load} / ${b.capacity}`);const track=el('div',undefined,'load-track'),fill=el('i');fill.style.width=b.load/b.capacity*100+'%';track.append(fill);p.append(track);row(['moving','signal'].includes(b.state)?'Próxima parada':'Parada',b.next_stop);row('Punto de atención',b.street?'Paradero calle':boardingPoint(b));row('Recorrido',(b.s/1000).toFixed(2)+' km');if(b.signalId)row('Luz verde en',Math.ceil(b.signalWait)+' s · est.');row('Atención pendiente',b.delay>0?b.delay.toFixed(0)+' s':'Sin espera');
   const button=el('button',following?'Dejar de seguir':'Seguir este bus','primary full');button.id='follow';button.onclick=()=>{following=!following;if(following){map.mpp=.9;map.center=[...b.xy];map.updateCamera();}renderBus();};p.append(button);const route=el('button','Ver paradas de '+b.code,'full');route.onclick=()=>selectRoute(b.routeId);p.append(route);
  }
  function requestStation(){const s=data.stations.find(s=>s.id===selection?.id);if(!s)return;$('#selection').replaceChildren(el('span',s.kind==='street'?'PARADERO EN CALLE':'ESTACIÓN','eyebrow'),el('h2',s.name),el('p','Consultando próximos servicios…','muted'));$('#inspector').hidden=false;if(ready)worker.postMessage({type:'station',generation,id:s.id});}
@@ -107,8 +120,10 @@ try{
   if(s.coordinate_source==='route_linear_reference_estimated')p.append(el('p','Ubicación aproximada sobre el trazado publicado.','muted'));
   row('Pasajeros esperando',fmt(info.waiting)+' · est.');row('Servicios seleccionados',info.routes.length);p.append(el('h2','Próximas llegadas'));
   if(!info.upcoming.length)p.append(el('p','Sin llegadas en los próximos 30 minutos dentro del escenario seleccionado.','muted'));
-  for(const arrival of info.upcoming){const b=el('button',undefined,'route-row');const r=routeById.get(arrival.routeId);b.append(badge(r));const text=el('div',undefined,'route-text');text.append(el('strong',arrival.name),el('small',Math.max(0,Math.ceil((arrival.arrival-clock.time)/60))+' min'+(s.kind==='street'?'':' · Vagón '+arrival.wagon)));b.append(text);b.onclick=()=>selectRoute(r.id);p.append(b);}
-  p.append(el('p','Distribución operativa de vagones estimada. Los expresos usan el carril de paso.','muted'));if(s.demand_profile){p.append(el('h2','Referencia de demanda'));row('Entradas del archivo diario',fmt(s.demand_profile.total));p.append(el('p','Validaciones = entradas registradas por recaudo, no pasajeros presentes ahora. Archivo oficial del 9 sep. 2026; el reparto por sentido se estima.','muted'));}
+  for(const arrival of info.upcoming){const b=el('button',undefined,'route-row');const r=routeById.get(arrival.routeId);b.append(badge(r));const text=el('div',undefined,'route-text');text.append(el('strong',arrival.name),el('small',Math.max(0,Math.ceil((arrival.arrival-clock.time)/60))+' min'+(s.kind==='street'?'':' · '+boardingPoint(arrival))));b.append(text);b.onclick=()=>selectRoute(r.id);p.append(b);}
+  p.append(el('p',info.upcoming.some(a=>a.wagonSource==='published')
+   ? 'El punto de atención es el que publica el tablero de esta estación. Donde no se conoce, el reparto sigue siendo estimado y se rotula. Los expresos usan el carril de paso.'
+   : 'Distribución operativa de vagones estimada. Los expresos usan el carril de paso.','muted'));if(s.demand_profile){p.append(el('h2','Referencia de demanda'));row('Entradas del archivo diario',fmt(s.demand_profile.total));p.append(el('p','Validaciones = entradas registradas por recaudo, no pasajeros presentes ahora. Archivo oficial del 9 sep. 2026; el reparto por sentido se estima.','muted'));}
  }
  // Demanda observada por hora para el tipo de día del escenario. Son medias de los días
  // medidos, no una predicción; la curva solo agrega los perfiles de todas las estaciones.
@@ -177,24 +192,167 @@ try{
  }
  function renderDepots(depots){const p=$('#depot-list');p.replaceChildren();if(!depots.length)p.append(el('p','No hay salidas para esta selección y fecha.','muted'));for(const d of depots){const r=el('div',undefined,'depot-row'),b=el('button',d.name);b.onclick=()=>{const station=data.stations.find(s=>s.id===d.id);if(station){onSelect({kind:'station',id:d.id});map.focusStation(station);}};r.append(b,el('small',`${fmt(d.departures)} salidas hoy · ${fmt(d.reserve)} buses disponibles`),el('small',Number.isFinite(d.next)?'Próxima salida '+timeText(d.next).slice(0,5):'Sin más salidas programadas'));p.append(r);}}
  function updateUI(){const s=snap.stats;$('#active-count').textContent=fmt(s.fleet||0);$('#onboard-count').textContent=fmt(s.onboard||0);$('#dwell-count').textContent=fmt(s.dwell||0);$('#queue-count').textContent=fmt((s.queue||0)+(s.signal||0));$('#queue-count').parentElement.title=`${fmt(s.queue||0)} esperando atención · ${fmt(s.signal||0)} en semáforo`;if(!scrubbing&&document.activeElement!==$('#time'))$('#time').value=timeText(clock.time);if(!scrubbing)$('#scrub').value=Math.floor(clock.time%DAY);$('#day-type').textContent=dayType(config.date)==='holiday'?'Domingo / festivo':new Date(config.date+'T12:00:00Z').toLocaleDateString('es-CO',{weekday:'long'});$('#period').textContent=demandPeriod(clock.time,config.date,config.params.mode)==='peak'?'Hora pico':'Hora valle';}
- function switchPanel(name){if(name==='planner'||activePanel==='planner'&&selection?.kind==='journey')clearSelection();activePanel=name;$$('[data-panel]').forEach(b=>b.classList.toggle('nav-active',b.dataset.panel===name));$$('.panel').forEach(p=>p.hidden=p.id!==name+'-panel');$('#sidebar').scrollTop=0;if(name==='depots'&&ready)worker.postMessage({type:'depots',generation});}
+ function switchPanel(name){if(name==='planner'||activePanel==='planner'&&selection?.kind==='journey')clearSelection();activePanel=name;$$('[data-panel]').forEach(b=>b.classList.toggle('nav-active',b.dataset.panel===name));$$('.panel').forEach(p=>p.hidden=p.id!==name+'-panel');$('#sidebar').scrollTop=0;if(name==='depots'&&ready)worker.postMessage({type:'depots',generation});syncLive();}
+ // Buses reales. Es la única parte que sale a la red y a un tercero: vive en su pestaña, se apaga
+ // al salir de ella o al ocultar la ventana, y no toca el escenario, el reloj ni el planificador.
+ const live=new LiveFeed({onState:renderLive});let liveFitted=null,liveScope='network';
+ const liveNetwork=new LiveFeed({onState:renderLiveNetwork,url:()=>'./api/en-vivo/red'});
+ const colorByCode=new Map(data.routes.filter(r=>r.ready).map(r=>[r.code,r.color]));
+ const stationById=new Map(data.stations.map(s=>[s.id,s]));
+ // El servicio no dice si un bus está detenido, así que se infiere por cercanía a una parada del
+ // propio servicio. Su campo de metros recorridos no sirve: coincide con la referencia del
+ // proyecto en un sentido y está corrida cientos de metros en el otro. 60 m cubre el largo de un
+ // andén sin alcanzar la estación siguiente.
+ const PARADA_M=60;
+ const atStop=bus=>{
+  const route=bus.routeId&&routeById.get(bus.routeId);
+  return !!route&&route.stops.some(s=>{const st=stationById.get(s.station_id);return st&&Math.hypot(st.xy[0]-bus.xy[0],st.xy[1]-bus.xy[1])<=PARADA_M;});
+ };
+ function syncLive(){
+  const inLive=activePanel==='live',awake=inLive&&!document.hidden;
+  // La instantánea de la red acompaña a las dos vistas: en «Por servicio» queda detrás, atenuada.
+  liveNetwork.setCadence(liveScope==='route'?60000:20000);
+  liveNetwork.setActive(awake);
+  live.setActive(awake&&liveScope==='route');
+  map.setSimulationVisible(!inLive);
+  scenarioControls(!inLive);
+  // Los indicadores del escenario no hablan de los buses reales, así que en esta pestaña ceden el
+  // sitio a los de la lectura en vivo. «En parada» solo tiene sentido con un servicio en foco: en
+  // la vista general pasarían por detenidos buses que solo cruzan cerca de una estación sin parar.
+  $$('[data-scenario-metric]').forEach(d=>d.hidden=inLive);
+  $$('[data-live-metric]').forEach(d=>d.hidden=!inLive);
+  $('#live-stopped-cell').hidden=!inLive||liveScope!=='route';
+  $('#live-count-label').textContent=liveScope==='route'?'del servicio':'buses reales';
+  if(!inLive){$('#live-count').textContent='—';$('#live-stopped').textContent='—';}
+  $('#live-network').hidden=liveScope!=='network';
+  $('#live-route-block').hidden=liveScope!=='route';
+  $$('[data-live-scope]').forEach(b=>b.classList.toggle('active',b.dataset.liveScope===liveScope));
+  if(!inLive){liveFitted=null;map.setLiveBuses([]);map.setNetworkBuses([]);map.setRoute(focusedRoute);}
+  else if(liveScope!=='route'){map.setLiveBuses([]);map.setRoute(null);}
+  map.setNetworkBuses(map.networkVehicles||[],{dimmed:liveScope==='route'});
+ }
+ function renderLiveNetwork({phase,payload,message}){
+  const status=$('#live-network-status'),list=$('#live-network-list');
+  if(phase==='error'){status.textContent=message;list.replaceChildren();map.setNetworkBuses([]);return;}
+  if(phase!=='ok')return;
+  const vehicles=payload.vehicles.map(v=>({...v,color:colorByCode.get(v.line)}));
+  map.setNetworkBuses(vehicles,{dimmed:liveScope==='route'});
+  if(liveScope!=='route')$('#live-count').textContent=fmt(vehicles.length);
+  const age=Number(payload.age_s)||0;
+  const reloj=readingClock(payload.queried_at);
+  status.textContent=`${fmt(vehicles.length)} ${vehicles.length===1?'bus troncal o dual':'buses troncales y duales'} · consultado ${reloj?`a las ${reloj}`:ageText(age)}${reloj&&age>=2?` (${ageText(age)})`:''}`
+   +(payload.boxes>1?` · en ${payload.boxes} cuadrantes`:'')
+   +(payload.truncated?` · el servicio cortó en ${fmt(payload.cap)} por cuadrante: faltan buses`:'');
+  const porLinea=new Map();
+  for(const v of vehicles)porLinea.set(v.line,(porLinea.get(v.line)||0)+1);
+  const filas=[...porLinea].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0],'es',{numeric:true}));
+  list.replaceChildren();
+  if(!filas.length){list.append(el('li','El planificador no ubica ningún bus troncal ahora mismo.','muted'));return;}
+  for(const [code,count] of filas.slice(0,14)){
+   const li=el('li'),swatch=el('i',undefined,'swatch');swatch.style.background=colorByCode.get(code)||'#8b98a8';
+   const boton=el('button',code+(colorByCode.has(code)?'':' · fuera del catálogo'));
+   boton.onclick=()=>{if(!colorByCode.has(code))return;setLiveScope('route');$('#live-route').value=code;$('#live-route').onchange();};
+   li.append(swatch,boton,el('span',fmt(count),'value'));list.append(li);
+  }
+  if(filas.length>14)list.append(el('li',`y ${filas.length-14} servicios más`,'muted'));
+ }
+ function setLiveScope(scope){liveScope=scope;liveFitted=null;syncLive();}
+ // En vivo es lectura: el reloj del escenario no manda sobre buses que ya están en la calle, así
+ // que sus controles se apagan en vez de dar la impresión de que mueven algo.
+ function scenarioControls(enabled){
+  for(const control of [$('#date'),$('#now'),$('#back'),$('#pause'),$('#forward'),$('#time'),$('#scrub'),...$$('[data-speed]')])control.disabled=!enabled;
+  $('#timeline').classList.toggle('readonly',!enabled);
+  $('#timeline').title=enabled?'':'Controles en pausa: la pestaña En vivo muestra el momento actual, no el reloj del escenario.';
+ }
+ function liveRouteFor(code,destination){return data.routes.find(r=>r.code===code&&sameName(r.name,destination));}
+ const liveRoutes=code=>data.routes.filter(r=>r.code===code&&r.ready);
+ async function setUpLive(){
+  const status=await live.probe();
+  const usable=!!status.available&&!!status.configured;
+  $('#live-unavailable').hidden=usable;$('#live-controls').hidden=!usable;
+  if(status.available&&!status.configured)$('#live-unavailable-text').textContent='El servidor local está corriendo, pero le falta la configuración del servicio, que va en tools/en_vivo.local.json y no se versiona.';
+  if(!usable)return;
+  for(const code of status.codes){
+   const names=[...new Set(data.routes.filter(r=>r.code===code&&r.ready).map(r=>r.name))];
+   const option=el('option',`${code} · ${names.join(' / ')}`);option.value=code;$('#live-route').append(option);
+  }
+ }
+ function renderLive({phase,payload,message,code}){
+  const status=$('#live-status'),results=$('#live-results');
+  if(phase==='idle'||phase==='error'){
+   status.textContent=phase==='idle'?'Elige un servicio para ver sus buses.':message;results.replaceChildren();map.setLiveBuses([]);
+   return;
+  }
+  if(phase==='loading'){status.textContent='Consultando el servicio…';return;}
+  const buses=payload.buses.map(b=>{const r=liveRouteFor(payload.code,b.destination);return {...b,color:r?.color,routeId:r?.id};});
+  map.setLiveBuses(buses);
+  $('#live-count').textContent=fmt(buses.length);
+  $('#live-stopped').textContent=fmt(buses.filter(atStop).length);
+  // El trazado del servicio queda resaltado como al elegirlo en la simulación, los dos sentidos
+  // si los tiene, y el encuadre es el del corredor completo: los buses se leen sobre su recorrido.
+  const trazados=liveRoutes(payload.code);
+  map.setRoute(trazados.length?trazados.map(r=>r.id):null,{subtle:true});
+  if(liveFitted!==payload.code&&(trazados.length||buses.length)){
+   liveFitted=payload.code;
+   map.fitPoints(trazados.length?trazados.flatMap(r=>r.points):buses.map(b=>b.xy));
+  }
+  const age=Number(payload.age_s)||0;
+  const descartados=payload.discarded?` · ${payload.discarded} sin posición utilizable`:'';
+  const reloj=readingClock(payload.queried_at);
+  status.textContent=buses.length?`${buses.length} ${buses.length===1?'bus reportando':'buses reportando'} · consultado ${reloj?`a las ${reloj}`:ageText(age)}${reloj&&age>=2?` (${ageText(age)})`:''}${descartados}`:'El servicio no reporta buses de esta ruta en este momento.'+descartados;
+  results.replaceChildren();
+  if(!buses.length){results.append(el('p','Fuera del horario de operación, o ningún bus de este servicio está reportando posición ahora.','muted'));return;}
+  for(const group of groupByDestination(buses)){
+   const section=el('section',undefined,'live-group');
+   const route=liveRouteFor(payload.code,group.destination);
+   const head=el('div',undefined,'live-head');
+   if(route)head.append(badge(route));
+   head.append(el('strong','Hacia '+group.destination),el('span',`${group.buses.length} ${group.buses.length===1?'bus':'buses'}`,'value'));
+   section.append(head);
+   for(const bus of group.buses){
+    const entry=el('button',undefined,'live-bus');
+    const dot=el('i',undefined,'live-dot');dot.style.background=bus.color||'#dc253b';
+    const text=el('div',undefined,'route-text');
+    text.append(el('strong',bus.label||bus.id),el('small',`${occupancyText(bus.occupancy)} · ${ageText(bus.reported_age_s)}${Number.isFinite(bus.travelled_m)?' · km '+(bus.travelled_m/1000).toFixed(1)+' del recorrido':''}`));
+    entry.append(dot,text);
+    entry.onclick=()=>{following=false;map.center=[...bus.xy];map.mpp=Math.min(map.mpp,1.4);map.updateCamera();};
+    entry.setAttribute('aria-label',`Bus ${bus.label||bus.id} hacia ${group.destination}, ${occupancyText(bus.occupancy)}. Centrar en el mapa.`);
+    section.append(entry);
+   }
+   if(route?.ready){const trazado=el('button','Ver el trazado de '+route.code+' → '+route.name,'full');trazado.onclick=()=>{switchPanel('routes');viewMode='route';syncControls();selectRoute(route.id);};section.append(trazado);}
+   results.append(section);
+  }
+ }
 
  function showJourney(legs){clearSelection();selection={kind:'journey',id:String(planSequence)};map.setJourney(legs);map.fitPoints(legs.flatMap(l=>l.points));}
  function journeyTime(second,date){return timeText(second).slice(0,5)+(second>=DAY?' · '+addDays(date,Math.floor(second/DAY)):'');}
+ function journeyCard(journey,result){
+  const card=el('section',undefined,'journey-card'+(journey.dominated?' journey-alternative':''));card.append(el('h2',journey.transfers?`${journey.transfers} transbordo${journey.transfers>1?'s':''}`:'Viaje directo'),el('p',`≈ ${Math.ceil(journey.duration/60)} min · llegada ${journeyTime(journey.arrive,result.date)}`,'journey-duration'));
+  if(journey.dominated)card.append(el('p','Alternativa: no llega antes que una opción con menos transbordos.','muted'));
+  const vencidos=[...new Set(journey.legs.filter(l=>validityState(routeById.get(l.routeId)||{},result.date)!=='current').map(l=>l.code))];
+  if(vencidos.length)card.append(el('p',`Horario publicado vencido en ${vencidos.join(', ')}. Se usa su último horario disponible.`,'muted'));
+  for(const [index,leg] of journey.legs.entries()){
+   if(index)card.append(el('p',`Transbordo en ${leg.fromName} · caminata ≈ ${Math.ceil(leg.walk/60)} min`,'transfer-note'));
+   const step=el('div',undefined,'journey-leg');step.append(badge(leg),el('strong','Hacia '+leg.name),el('p',`${journeyTime(leg.depart,result.date)} · Sube en ${leg.fromName}`),el('p',`${journeyTime(leg.arrive,result.date)} · Baja en ${leg.toName}`),el('small',`${leg.toIndex-leg.fromIndex} parada${leg.toIndex-leg.fromIndex===1?'':'s'} · espera ≈ ${Math.max(0,Math.ceil(leg.wait/60))} min`));card.append(step);
+  }
+  const button=el('button','Ver este viaje en el mapa','full');button.onclick=()=>showJourney(journey.legs);card.append(button);
+  return card;
+ }
  function renderJourneys(result){
   const panel=$('#journey-results');panel.replaceChildren();const edit=el('button','Editar viaje','full');edit.onclick=()=>{$('#sidebar').scrollTop=0;$('#journey-origin').focus({preventScroll:true});};panel.append(edit);requestAnimationFrame(()=>{if(activePanel==='planner')$('#sidebar').scrollTop=panel.offsetTop-24;});
   if(result.status==='same'){if(activePanel==='planner')clearSelection();panel.append(el('p','Ya estás en la estación de destino.'));const station=data.stations.find(s=>s.id===result.origin);if(station&&activePanel==='planner')map.focusStation(station);return;}
   if(result.status==='none'){if(activePanel==='planner')clearSelection();panel.append(el('p',`No se encontró un viaje en las próximas seis horas con hasta ${result.maxTransfers} transbordo${result.maxTransfers===1?'':'s'}. Prueba otra hora, otra fecha o permitir más transbordos.`,'muted'),el('p','La búsqueda excluye los servicios con datos pendientes.','muted'));return;}
-  for(const journey of result.journeys){
-   const card=el('section',undefined,'journey-card'+(journey.dominated?' journey-alternative':''));card.append(el('h2',journey.transfers?`${journey.transfers} transbordo${journey.transfers>1?'s':''}`:'Viaje directo'),el('p',`≈ ${Math.ceil(journey.duration/60)} min · llegada ${journeyTime(journey.arrive,result.date)}`,'journey-duration'));
-   if(journey.dominated)card.append(el('p','Alternativa: no llega antes que una opción con menos transbordos.','muted'));
-   const vencidos=[...new Set(journey.legs.filter(l=>validityState(routeById.get(l.routeId)||{},result.date)!=='current').map(l=>l.code))];
-   if(vencidos.length)card.append(el('p',`Horario publicado vencido en ${vencidos.join(', ')}. Se usa su último horario disponible.`,'muted'));
-   for(const [index,leg] of journey.legs.entries()){
-    if(index)card.append(el('p',`Transbordo en ${leg.fromName} · caminata ≈ ${Math.ceil(leg.walk/60)} min`,'transfer-note'));
-    const step=el('div',undefined,'journey-leg');step.append(badge(leg),el('strong','Hacia '+leg.name),el('p',`${journeyTime(leg.depart,result.date)} · Sube en ${leg.fromName}`),el('p',`${journeyTime(leg.arrive,result.date)} · Baja en ${leg.toName}`),el('small',`${leg.toIndex-leg.fromIndex} parada${leg.toIndex-leg.fromIndex===1?'':'s'} · espera ≈ ${Math.max(0,Math.ceil(leg.wait/60))} min`));card.append(step);
-   }
-   const button=el('button','Ver este viaje en el mapa','full');button.onclick=()=>showJourney(journey.legs);card.append(button);panel.append(card);
+  // Una tarjeta por opción, agrupadas por transbordos: la mejor de cada grupo queda a la vista y
+  // las demás se pliegan, para que tres alternativas no sepulten el resto del panel.
+  const grupos=new Map();
+  for(const journey of result.journeys){const lista=grupos.get(journey.transfers)||[];lista.push(journey);grupos.set(journey.transfers,lista);}
+  for(const [transfers,lista] of [...grupos].sort((a,b)=>a[0]-b[0])){
+   panel.append(journeyCard(lista[0],result));
+   if(lista.length<2)continue;
+   const extra=lista.length-1,plegado=el('details');
+   plegado.append(el('summary',`${extra} alternativa${extra===1?'':'s'} más ${transfers?`con ${transfers} transbordo${transfers>1?'s':''}`:'sin transbordos'}`));
+   for(const journey of lista.slice(1))plegado.append(journeyCard(journey,result));
+   panel.append(plegado);
   }
   panel.append(el('p','Horarios y paradas publicados; frecuencias, tiempos de viaje y caminatas estimados, sin predecir aforo ni fases semafóricas. La búsqueda considera toda la red utilizable y no modifica el reloj.','muted'));if(activePanel==='planner')showJourney(result.journeys[0].legs);
  }
@@ -215,13 +373,20 @@ try{
  $('#now').onclick=()=>{const {date,time}=bogotaNow();clock.time=time;following=false;if(date!==config.date){config.date=date;rebuild();}else sample(true);syncControls();updateUI();};
  $('#back').onclick=()=>jump(clock.time-900);$('#forward').onclick=()=>jump(clock.time+900);$('#pause').onclick=()=>{clock.paused=!clock.paused;syncControls();};
  $$('[data-speed]').forEach(b=>b.onclick=()=>{clock.speed=Number(b.dataset.speed);syncControls();});
- $('#zoom-in').onclick=()=>map.zoom(1/1.4);$('#zoom-out').onclick=()=>map.zoom(1.4);$('#fit').onclick=()=>{following=false;fitSelection();};$('#context-toggle').onclick=()=>{map.contextGroup.visible=!map.contextGroup.visible;$('#context-toggle').setAttribute('aria-pressed',map.contextGroup.visible);};$('#lanes-toggle').onclick=()=>{map.carriagewaysEnabled=map.carriagewaysEnabled===false;$('#lanes-toggle').setAttribute('aria-pressed',map.carriagewaysEnabled);if(map.carriagewayGroup)map.carriagewayGroup.visible=map.carriagewaysEnabled&&map.mpp<6;};map.onPan=()=>following=false;
+ $('#zoom-in').onclick=()=>map.zoom(1/1.4);$('#zoom-out').onclick=()=>map.zoom(1.4);$('#fit').onclick=()=>{following=false;fitSelection();};$('#context-toggle').onclick=()=>{map.contextGroup.visible=!map.contextGroup.visible;$('#context-toggle').setAttribute('aria-pressed',map.contextGroup.visible);};$('#lanes-toggle').onclick=()=>{map.carriagewaysEnabled=map.carriagewaysEnabled===false;$('#lanes-toggle').setAttribute('aria-pressed',map.carriagewaysEnabled);if(map.carriagewayGroup)map.carriagewayGroup.visible=map.carriagewaysEnabled&&map.mpp<6;};
+ $('#corridors-toggle').onclick=()=>{const faded=!map.corridorsFaded;map.setCorridorsFaded(faded);$('#corridors-toggle').setAttribute('aria-pressed',faded);$('#corridors-toggle').classList.toggle('active',faded);};map.onPan=()=>following=false;
  $('#close-inspector').onclick=()=>{clearSelection();renderRoutes();};
  $('#save').onclick=()=>{try{localStorage.setItem('transmi-scenario-v3',JSON.stringify({revision:data.revision,config,clock}));toast('Escenario guardado. Se restaurará pausado al abrirlo.');}catch{toast('No se pudo guardar en este dispositivo.');}};
  const coverage=el('div',undefined,'coverage-grid');for(const [value,label] of [[data.counts.map_records,'registros del mapa'],[data.counts.map_codes,'códigos distintos'],[data.counts.ready,'variantes utilizables'],[data.counts.pending,'registros pendientes']]){const box=el('div');box.append(el('strong',value),el('span',label));coverage.append(box);}$('#coverage').append(coverage);// Fechas y cifras derivadas del propio dato: una instantánea nueva las actualiza sola.
  const mes=iso=>new Date(iso+'T12:00:00Z').toLocaleDateString('es-CO',{day:'numeric',month:'long',year:'numeric'});
  const snapshotDate=`${data.snapshot.slice(0,4)}-${data.snapshot.slice(4,6)}-${data.snapshot.slice(6,8)}`;
  $('#snapshot-note').textContent=`Catálogo de servicios: instantánea del ${mes(snapshotDate)}. Las fechas de vigencia se respetan y se rotulan; un registro del catálogo no implica una ruta activa.`;
+ // Punto de atención: la cifra sale del propio curado, no escrita a mano, y desaparece si el dato falta.
+ if(data.station_wagons?.coverage){
+  const c=data.station_wagons.coverage,publicadas=c.visits_with_published_point,total=c.trunk_visits_in_catalogue;
+  $('#wagons-note').hidden=false;
+  $('#wagons-note').textContent=`Punto de atención: ${fmt(publicadas)} de ${fmt(total)} paradas troncales tienen el vagón y las puertas que publica el tablero de su estación, tomado el ${mes(data.station_wagons.reference_date)} en ${data.station_wagons.windows.length} franjas horarias. Las ${fmt(total-publicadas)} restantes conservan el reparto estimado y la interfaz lo rotula. ${fmt(c.stations_in_catalogue-c.stations_with_board)} estaciones no publican tablero.`;
+ }
  if(data.demand){
   const p=data.demand.period,tipos=data.demand.days_by_type||{};
   const detalle=p?`Demanda medida entre el ${mes(p.from)} y el ${mes(p.to)}: ${p.days} días observados (${tipos.weekday?.length||0} de semana, ${tipos.saturday?.length||0} sábados, ${tipos.holiday?.length||0} domingos o festivos). Cada estación tiene un perfil por hora y tipo de día.`
@@ -230,14 +395,26 @@ try{
  }
  for(const r of data.routes.filter(r=>!r.ready)){const d=el('details');d.append(el('summary',r.code+' · '+r.name),el('p',r.issues.join(' ')));$('#pending-list').append(d);}
  for(const r of data.excluded||[]){const p=el('p',r.code+' · '+r.name+': '+r.reason,'muted');$('#pending-list').append(p);}
- let last=performance.now();document.addEventListener('visibilitychange',()=>{last=performance.now();});
+ $('#live-route').onchange=()=>{
+  const code=$('#live-route').value,trazados=code?liveRoutes(code):[];
+  liveFitted=null;live.select(code);
+  // Resaltar y encuadrar en cuanto se elige, sin esperar a que el servicio conteste. Atenuado:
+  // aquí el protagonista es el bus real, no el trazado.
+  map.setRoute(trazados.length?trazados.map(r=>r.id):null,{subtle:true});
+  if(trazados.length){liveFitted=code;map.fitPoints(trazados.flatMap(r=>r.points));}
+ };
+ $('#live-refresh').onclick=()=>live.refresh();
+ $$('[data-live-scope]').forEach(b=>b.onclick=()=>setLiveScope(b.dataset.liveScope));
+ liveNetwork.select('red');
+ setUpLive();
+ let last=performance.now();document.addEventListener('visibilitychange',()=>{last=performance.now();syncLive();});
  function frame(now){const dt=(now-last)/1000;last=now;if(!document.hidden){if(ready&&!clock.paused&&!scrubbing&&document.activeElement!==$('#time')){clock.time+=dt*clock.speed;if(clock.time>=2*DAY)jump(clock.time);}if(now-lastSample>=50){sample();lastSample=now;}
-  map.animateBuses(now);if(following&&selection?.kind==='bus'){const b=(map.visualBuses||snap.buses).find(b=>b.id===selection.id);if(b){map.follow(b.xy,dt);}}
+  map.animateBuses(now);map.animateLive(now);if(following&&selection?.kind==='bus'){const b=(map.visualBuses||snap.buses).find(b=>b.id===selection.id);if(b){map.follow(b.xy,dt);}}
   map.render();if(now-lastUI>200){updateUI();renderNow();lastUI=now;}if(now-lastList>5000){if(activePanel==='routes'&&!$('#route-list').contains(document.activeElement))renderRoutes();if(activePanel==='depots'&&ready)worker.postMessage({type:'depots',generation});lastList=now;}
   if(now-lastInspect>1000){if(selection?.kind==='bus'){const focus=document.activeElement?.id;renderBus();if(focus==='follow')$('#follow')?.focus({preventScroll:true});}if(selection?.kind==='station'&&ready&&!$('#inspector').contains(document.activeElement))worker.postMessage({type:'station',generation,id:selection.id});lastInspect=now;}}
  requestAnimationFrame(frame);}
  const dispose=registerSimulationTools(document.modelContext,{read:()=>({...snap.stats,date:config.date,paused:clock.paused,speed:clock.speed,selected:selection}),control:input=>{if('paused'in input)clock.paused=input.paused;if('speed'in input)clock.speed=input.speed;syncControls();}});
- window.addEventListener('pagehide',()=>{worker.terminate();dispose?.();},{once:true});
- document.addEventListener('keydown',e=>{if(e.code==='Space'&&!['INPUT','SELECT','BUTTON','TEXTAREA'].includes(e.target.tagName)){e.preventDefault();clock.paused=!clock.paused;syncControls();}});
+ window.addEventListener('pagehide',()=>{worker.terminate();live.stop();liveNetwork.stop();dispose?.();},{once:true});
+ document.addEventListener('keydown',e=>{if(e.code==='Space'&&activePanel!=='live'&&!['INPUT','SELECT','BUTTON','TEXTAREA'].includes(e.target.tagName)){e.preventDefault();clock.paused=!clock.paused;syncControls();}});
  rebuild();requestAnimationFrame(frame);
 }catch(error){$('#loading').hidden=true;$('#error').hidden=false;$('#error').textContent='No fue posible abrir el simulador. '+error.message;console.error(error);}

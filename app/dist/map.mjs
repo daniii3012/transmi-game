@@ -1,5 +1,5 @@
-import {MetricPath} from './simulation.mjs?v=20260911.10';
-import {signalPhase} from './signals.mjs?v=20260911.10';
+import {MetricPath} from './simulation.mjs?v=20260911.11';
+import {signalPhase} from './signals.mjs?v=20260911.11';
 import * as THREE from './vendor/three.module.js';
 
 export class NetworkMap {
@@ -74,6 +74,8 @@ export class NetworkMap {
     if(this.infrastructureGroup)this.infrastructureGroup.visible=this.mpp<8;
     if(this.carriagewayGroup)this.carriagewayGroup.visible=this.carriagewaysEnabled!==false&&this.mpp<6;
     if(this.lastSimulation)this.updateBuses(this.lastSimulation,'all',true);
+    if(this.liveVisual?.length)this.updateLive();
+    if(this.networkVehicles?.length)this.updateNetwork();
   }
   updateLabels(){
     const occupied=[],visible=new Set();
@@ -100,14 +102,20 @@ export class NetworkMap {
     this.host.addEventListener('keydown',e=>{const offsets={ArrowLeft:[-80,0],ArrowRight:[80,0],ArrowUp:[0,80],ArrowDown:[0,-80]};if(offsets[e.key]){e.preventDefault();this.center[0]+=offsets[e.key][0]*this.mpp;this.center[1]+=offsets[e.key][1]*this.mpp;this.onPan?.();this.updateCamera();}else if(['+','=','-'].includes(e.key)){e.preventDefault();this.zoom(e.key==='-'?1.3:1/1.3);}});
   }
   pick(point){let nearest=null, distance=12;for(const [kind,items] of [['bus',this.busSamples],['station',this.data.stations]])for(const item of items){const p=this.worldToScreen(item.xy),d=Math.hypot(point[0]-p[0],point[1]-p[1]);if(d<distance){nearest={kind,id:item.id};distance=d;}}if(nearest){this.select(nearest.kind,nearest.id);this.onSelect(nearest);}}
+  // Acepta un identificador o varios: los servicios numerados tienen un registro por sentido y se
+  // resaltan juntos.
   setRoute(id,{subtle=false}={}){this.journey=null;this.routeId=id;this.subtleRoute=subtle;this.rebuildHighlight();}
   setJourney(legs){this.routeId=null;this.subtleRoute=false;this.journey=legs;this.rebuildHighlight();}
   rebuildHighlight(){
-    const routes=this.journey||(this.routeId?this.data.routes.filter(r=>r.id===this.routeId&&r.ready):[]),focused=!!this.routeId||!!this.journey?.length;
+    const ids=this.routeId==null?[]:[this.routeId].flat();
+    const routes=this.journey||this.data.routes.filter(r=>ids.includes(r.id)&&r.ready),focused=!!ids.length||!!this.journey?.length;
     const vertices=[],colors=[];for(const r of routes){const color=new THREE.Color(r.color),width=Math.max(4,this.mpp*(focused?5:2.1));for(let i=1;i<r.points.length;i++){const [x,y]=r.points[i-1],[a,b]=r.points[i],len=Math.hypot(a-x,b-y);if(!len)continue;const dx=-(b-y)/len*width/2,dy=(a-x)/len*width/2;vertices.push(x+dx,y+dy,0,x-dx,y-dy,0,a+dx,b+dy,0,a+dx,b+dy,0,x-dx,y-dy,0,a-dx,b-dy,0);for(let j=0;j<6;j++)colors.push(color.r,color.g,color.b);}}
     this.highlight.geometry.dispose();this.highlight.geometry=new THREE.BufferGeometry();this.highlight.geometry.setAttribute('position',new THREE.Float32BufferAttribute(vertices,3));this.highlight.geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));this.highlight.material.vertexColors=true;this.highlight.material.color.set('#ffffff');this.highlight.material.needsUpdate=true;
-    this.highlight.material.opacity=this.subtleRoute?.62:.98;for(const {mesh} of this.paths)mesh.material.opacity=focused?(this.subtleRoute?.24:.3):.86;
+    this.highlight.material.opacity=this.subtleRoute?.62:.98;for(const {mesh} of this.paths)mesh.material.opacity=this.corridorsFaded?.07:focused?(this.subtleRoute?.24:.3):.86;
+    for(const line of this.streetGroup.children)line.material.opacity=this.corridorsFaded?.08:.65;
   }
+  // Las troncales casi apagadas: sirven de referencia pero dejan ver la ciudad y la estación.
+  setCorridorsFaded(faded){this.corridorsFaded=faded;this.rebuildHighlight();}
   buildCarriageways(){
     // Actual OSM carriageway, drawn as context under the coloured corridors. Width follows the
     // published lanes tag where OSM has one; ways without it get a single lane so nothing is
@@ -191,7 +199,7 @@ export class NetworkMap {
       this.busCapacity=Math.max(2048,buses.length*2);
       this.busMesh=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({depthTest:false}),this.busCapacity);
       this.busNose=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({color:'#ffffff',depthTest:false}),this.busCapacity);
-      this.busMesh.renderOrder=5;this.busNose.renderOrder=6;for(const m of [this.busMesh,this.busNose]){m.frustumCulled=false;m.instanceMatrix.setUsage(THREE.DynamicDrawUsage);this.scene.add(m);}
+      this.busMesh.renderOrder=5;this.busNose.renderOrder=6;for(const m of [this.busMesh,this.busNose]){m.frustumCulled=false;m.instanceMatrix.setUsage(THREE.DynamicDrawUsage);m.visible=this.simulationVisible!==false;this.scene.add(m);}
     }
     this.busSamples=[];let i=0;const color=new THREE.Color(),cells=new Map(),clusters=[];
     for(const b of buses){
@@ -206,8 +214,96 @@ export class NetworkMap {
       this.object.position.set(...xy,3);this.object.rotation.z=b.angle;this.object.scale.set(length,width,1);this.object.updateMatrix();this.busMesh.setMatrixAt(i,this.object.matrix);color.set(b.color);this.busMesh.setColorAt(i,color);
       this.object.position.set(xy[0]+Math.cos(b.angle)*length*.25,xy[1]+Math.sin(b.angle)*length*.25,3.1);this.object.scale.set(length*.16,width*.7,1);this.object.updateMatrix();this.busNose.setMatrixAt(i,this.object.matrix);i++;
     }
-    if(forceClusters||!this.lastClusterTime||performance.now()-this.lastClusterTime>300){this.lastClusterTime=performance.now();this.clusterLayer.replaceChildren();for(const c of clusters.filter(c=>c.count>5).sort((a,b)=>b.count-a.count).slice(0,32)){const el=document.createElement('div');el.className='cluster-label';el.textContent=c.count;el.style.left=c.screen[0]+5+'px';el.style.top=c.screen[1]-16+'px';this.clusterLayer.append(el);}}
+    if(this.simulationVisible!==false&&(forceClusters||!this.lastClusterTime||performance.now()-this.lastClusterTime>300)){this.lastClusterTime=performance.now();this.clusterLayer.replaceChildren();for(const c of clusters.filter(c=>c.count>5).sort((a,b)=>b.count-a.count).slice(0,32)){const el=document.createElement('div');el.className='cluster-label';el.textContent=c.count;el.style.left=c.screen[0]+5+'px';el.style.top=c.screen[1]-16+'px';this.clusterLayer.append(el);}}
     this.visibleBuses=i;this.busMesh.count=i;this.busNose.count=i;this.busMesh.instanceMatrix.needsUpdate=true;if(this.busMesh.instanceColor)this.busMesh.instanceColor.needsUpdate=true;this.busNose.instanceMatrix.needsUpdate=true;this.updateMarker();
+  }
+  // Instantánea de toda la red. Es otra fuente que la capa de un servicio —posición calculada por
+  // el planificador, no la lectura GPS del bus—, así que se dibuja más pequeña y sin número, y se
+  // atenúa cuando hay un servicio en foco para que no compita con él.
+  setNetworkBuses(vehicles,{dimmed=false}={}){this.networkVehicles=vehicles;this.networkDimmed=dimmed;this.updateNetwork();}
+  updateNetwork(){
+    const vehicles=this.networkVehicles||[];
+    if(!vehicles.length&&!this.networkHalo)return;
+    if(!this.networkHalo){
+      // Mismo contorno que la capa de un servicio, sin la flecha de rumbo: el planificador no
+      // publica rumbo, y un punto plano se confunde con el color de la troncal que tiene debajo.
+      this.networkHalo=new THREE.InstancedMesh(new THREE.CircleGeometry(1,14),new THREE.MeshBasicMaterial({depthTest:false,transparent:true}),4096);
+      this.networkDot=new THREE.InstancedMesh(new THREE.CircleGeometry(1,14),new THREE.MeshBasicMaterial({depthTest:false,transparent:true}),4096);
+      for(const [mesh,order] of [[this.networkHalo,7.4],[this.networkDot,7.5]]){mesh.renderOrder=order;mesh.frustumCulled=false;mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);this.scene.add(mesh);}
+    }
+    // Con un servicio en foco la instantánea pierde el contorno y baja de opacidad: el anillo
+    // blanco es la marca de la lectura GPS, y dos contornos iguales compiten por la atención.
+    const opacity=this.networkDimmed?.3:1;
+    this.networkHalo.visible=!this.networkDimmed;
+    this.networkHalo.material.color.set(this.dark?'#e8eef6':'#ffffff');this.networkHalo.material.opacity=opacity;
+    this.networkDot.material.color.set('#ffffff');this.networkDot.material.opacity=opacity;
+    const tint=new THREE.Color();let i=0;
+    for(const vehicle of vehicles){
+      if(i>=4096)break;
+      const screen=this.worldToScreen(vehicle.xy);
+      if(screen[0]<-30||screen[0]>this.w+30||screen[1]<-30||screen[1]>this.h+30)continue;
+      // El radio se fija en píxeles y no en metros: alejado, un punto de 2 px no se ve.
+      const radius=Math.max(this.networkDimmed?5.5:6.5,this.mpp*(this.networkDimmed?3.2:4));
+      this.object.rotation.z=0;this.object.position.set(vehicle.xy[0],vehicle.xy[1],5.4);this.object.scale.setScalar(radius);this.object.updateMatrix();
+      this.networkHalo.setMatrixAt(i,this.object.matrix);
+      this.object.position.set(vehicle.xy[0],vehicle.xy[1],5.5);this.object.scale.setScalar(radius*.58);this.object.updateMatrix();
+      this.networkDot.setMatrixAt(i,this.object.matrix);tint.set(vehicle.color||'#8b98a8');this.networkDot.setColorAt(i,tint);i++;
+    }
+    for(const mesh of [this.networkHalo,this.networkDot]){mesh.count=i;mesh.instanceMatrix.needsUpdate=true;}
+    if(this.networkDot.instanceColor)this.networkDot.instanceColor.needsUpdate=true;
+  }
+  // Buses reales del servicio en vivo. Se dibujan como marca redonda encima del escenario para
+  // que nunca se confundan con los buses del modelo, que son rectángulos. Entre dos lecturas se
+  // interpola 1,2 s por continuidad visual; no se extrapola más allá de la última posición real.
+  // La pestaña En vivo esconde la flota simulada: dos flotas encima de la misma troncal no se
+  // distinguen, y la pregunta ahí es dónde están los buses de verdad.
+  setSimulationVisible(visible){
+    this.simulationVisible=visible;
+    if(this.busMesh)this.busMesh.visible=this.busNose.visible=visible;
+    if(!visible)this.clusterLayer.replaceChildren();
+  }
+  setLiveBuses(buses,color='#dc253b'){
+    const previous=new Map((this.liveVisual||[]).map(b=>[b.id,b.xy]));
+    this.liveColor=color;this.liveTarget=buses;this.liveStart=performance.now();this.liveSettled=!buses.length;
+    this.livePrevious=previous;this.liveVisual=buses.map(b=>({...b,xy:previous.get(b.id)||b.xy}));
+    this.updateLive();
+  }
+  animateLive(now){
+    if(!this.liveTarget||this.liveSettled)return;
+    const blend=Math.min(1,(now-this.liveStart)/1200),ease=blend*(2-blend);
+    this.liveVisual=this.liveTarget.map(b=>{const from=this.livePrevious.get(b.id);return from?{...b,xy:[from[0]+(b.xy[0]-from[0])*ease,from[1]+(b.xy[1]-from[1])*ease]}:b;});
+    this.liveSettled=blend>=1;this.updateLive();
+  }
+  updateLive(){
+    const buses=this.liveVisual||[];
+    if(!buses.length&&!this.liveHalo)return;// Quien nunca abre la pestaña no paga ni una malla.
+    if(!this.liveHalo){
+      this.liveHalo=new THREE.InstancedMesh(new THREE.CircleGeometry(1,20),new THREE.MeshBasicMaterial({depthTest:false}),256);
+      this.liveDot=new THREE.InstancedMesh(new THREE.CircleGeometry(1,20),new THREE.MeshBasicMaterial({depthTest:false}),256);
+      this.liveNose=new THREE.InstancedMesh(new THREE.PlaneGeometry(1,1),new THREE.MeshBasicMaterial({depthTest:false}),256);
+      for(const [mesh,order] of [[this.liveHalo,8],[this.liveNose,8.1],[this.liveDot,8.2]]){mesh.renderOrder=order;mesh.frustumCulled=false;mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);this.scene.add(mesh);}
+    }
+    const halo=this.dark?'#e8eef6':'#ffffff';
+    this.liveHalo.material.color.set(halo);this.liveNose.material.color.set(halo);this.liveDot.material.color.set('#ffffff');
+    const tint=new THREE.Color();let i=0;
+    for(const bus of buses.slice(0,256)){
+      const radius=Math.max(11,this.mpp*6),angle=Math.PI/2-bus.heading*Math.PI/180;
+      this.object.rotation.z=0;this.object.position.set(bus.xy[0],bus.xy[1],6);this.object.scale.setScalar(radius);this.object.updateMatrix();this.liveHalo.setMatrixAt(i,this.object.matrix);
+      this.object.scale.setScalar(radius*.58);this.object.updateMatrix();this.liveDot.setMatrixAt(i,this.object.matrix);tint.set(bus.color||this.liveColor||'#dc253b');this.liveDot.setColorAt(i,tint);
+      this.object.position.set(bus.xy[0]+Math.cos(angle)*radius*1.15,bus.xy[1]+Math.sin(angle)*radius*1.15,6.1);this.object.rotation.z=angle;this.object.scale.set(radius*.9,radius*.5,1);this.object.updateMatrix();this.liveNose.setMatrixAt(i,this.object.matrix);
+      i++;
+    }
+    for(const mesh of [this.liveHalo,this.liveDot,this.liveNose]){mesh.count=i;mesh.instanceMatrix.needsUpdate=true;}
+    if(this.liveDot.instanceColor)this.liveDot.instanceColor.needsUpdate=true;
+    this.liveLabels||=new Map();
+    const withLabels=this.mpp<3?buses:[];
+    for(const bus of withLabels){
+      let label=this.liveLabels.get(bus.id);
+      if(!label){label=document.createElement('div');label.className='live-label';label.textContent=bus.label||bus.id;this.labels.append(label);this.liveLabels.set(bus.id,label);}
+      const [x,y]=this.worldToScreen(bus.xy);label.style.transform=`translate3d(${x+12}px,${y+6}px,0)`;
+    }
+    const keep=new Set(withLabels.map(b=>b.id));
+    for(const [id,label] of this.liveLabels)if(!keep.has(id)){label.remove();this.liveLabels.delete(id);}
   }
   follow(xy,dt){const blend=1-Math.exp(-Math.min(.1,Math.max(0,dt))*15);this.center[0]+=(xy[0]-this.center[0])*blend;this.center[1]+=(xy[1]-this.center[1])*blend;const now=performance.now();const labels=!this.lastFollowLabels||now-this.lastFollowLabels>150;if(labels)this.lastFollowLabels=now;this.updateCamera({labels});}
   updateSignals(time){
@@ -216,7 +312,7 @@ export class NetworkMap {
     for(const s of this.data.busway_signals.signals){this.object.position.set(...s.xy,0);this.object.rotation.z=0;this.object.scale.setScalar(Math.max(2,this.mpp*3));this.object.updateMatrix();this.signalMesh.setMatrixAt(i,this.object.matrix);color.set({green:'#269765',amber:'#e8a41b',red:'#e8394b'}[signalPhase(s.id,time||0).color]);this.signalMesh.setColorAt(i++,color);}
     this.signalMesh.instanceMatrix.needsUpdate=true;this.signalMesh.instanceColor.needsUpdate=true;
   }
-  setTheme(theme){this.dark=theme==='dark';this.renderer.setClearColor(this.dark?'#18212b':'#edf1f4');const colors=this.dark?['#233b35','#233d50','#2b3947','#35596c','#607383']:['#d4e3d8','#c5dce8','#ffffff','#b6d5e4','#c1cbd5'];for(const [i,mesh] of (this.contextMeshes||[]).entries())mesh.material.color.set(colors[i]);this.stopInner.material.color.set(this.dark?'#293746':'#ffffff');this.wagonMesh.material.color.set(this.dark?'#637383':'#f9fafb');for(const mesh of this.stationGroup.children)mesh.material.color.set(mesh.userData.palette[this.dark?1:0]);for(const mesh of (this.carriagewayGroup?.children||[]))mesh.material.color.set(mesh.userData.palette[this.dark?1:0]);}
+  setTheme(theme){this.dark=theme==='dark';this.renderer.setClearColor(this.dark?'#18212b':'#edf1f4');const colors=this.dark?['#233b35','#233d50','#2b3947','#35596c','#607383']:['#d4e3d8','#c5dce8','#ffffff','#b6d5e4','#c1cbd5'];for(const [i,mesh] of (this.contextMeshes||[]).entries())mesh.material.color.set(colors[i]);this.stopInner.material.color.set(this.dark?'#293746':'#ffffff');this.wagonMesh.material.color.set(this.dark?'#637383':'#f9fafb');for(const mesh of this.stationGroup.children)mesh.material.color.set(mesh.userData.palette[this.dark?1:0]);for(const mesh of (this.carriagewayGroup?.children||[]))mesh.material.color.set(mesh.userData.palette[this.dark?1:0]);if(this.liveVisual?.length)this.updateLive();if(this.networkVehicles?.length)this.updateNetwork();}
   render(){this.renderer.render(this.scene,this.camera);}
 
 }

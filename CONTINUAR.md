@@ -176,3 +176,7 @@ ruta (ML82 = M82/L82, MK86 = M86/K86).
   «Volver a los buses de X en tiempo real» y suelta la ficha; con otro servicio hace el salto de
   siempre. Y soltar una ficha dentro de En vivo vuelve a resaltar el trazado del servicio en el
   acto, en vez de dejar las troncales desnudas hasta la próxima lectura.
+- El galón del tirador se dibuja con bordes, no con un carácter: «⌄» y «⌃» no miden lo mismo ni se
+  apoyan a la misma altura en la fuente, así que el botón cambiaba de tamaño entre desplegado y
+  plegado y el dibujo quedaba descentrado. Un cuadrado girado mide igual en los dos sentidos. La ✕
+  y el tirador comparten ahora caja exacta: 32 px en escritorio, 44 en móvil.

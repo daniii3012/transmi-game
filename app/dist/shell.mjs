@@ -12,10 +12,21 @@ export function mountShell(){
  let expanded=true;
  const setExpanded=value=>{expanded=value;body.dataset.sheet=value?'open':'closed';toggle.setAttribute('aria-expanded',String(value));};
  toggle.addEventListener('click',()=>setExpanded(!expanded));
- const inspector=document.querySelector('#inspector');
- new MutationObserver(()=>{body.dataset.inspect=String(!inspector.hidden);}).observe(inspector,{attributes:true,attributeFilter:['hidden']});
+ // El detalle se pliega sin soltar lo que está en foco. Cerrarlo era la única salida y eso quita
+ // la selección: al seguir un bus en el móvil no quedaba forma de ver el mapa sin dejar de seguirlo.
+ const inspector=document.querySelector('#inspector'),selection=document.querySelector('#selection');
+ const detail=document.createElement('button');detail.id='inspector-toggle';detail.type='button';
+ const detailText=document.createElement('span');detail.append(detailText);inspector.prepend(detail);
+ const heading=()=>selection.querySelector('h2')?.textContent?.trim()||'Detalle';
+ let open=true;
+ const setDetail=value=>{open=value;body.dataset.detail=value?'open':'closed';detail.setAttribute('aria-expanded',String(value));detailText.textContent=heading();detail.setAttribute('aria-label',(value?'Ocultar':'Mostrar')+' el detalle de '+heading());};
+ detail.addEventListener('click',()=>setDetail(!open));
+ new MutationObserver(()=>detailText.textContent=heading()).observe(selection,{childList:true});
+ // Una selección nueva se muestra abierta; plegado no se vería nada de lo recién elegido.
+ new MutationObserver(()=>{body.dataset.inspect=String(!inspector.hidden);if(!inspector.hidden&&!open)setDetail(true);}).observe(inspector,{attributes:true,attributeFilter:['hidden']});
+ setDetail(true);
  document.addEventListener('click',e=>{if(!more.contains(e.target))more.open=false;});
- document.addEventListener('keydown',e=>{if(e.key==='Escape'){more.open=false;if(!inspector.hidden)document.querySelector('#close-inspector')?.click();else setExpanded(false);}});
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'){more.open=false;if(!inspector.hidden&&open)setDetail(false);else if(!inspector.hidden)document.querySelector('#close-inspector')?.click();else setExpanded(false);}});
  setExpanded(true);body.dataset.panel='routes';
  return {show(name){body.dataset.panel=name;toggle.textContent=document.querySelector(`button[data-panel="${name}"]`)?.textContent||'Explorar';more.open=false;setExpanded(true);}};
 }

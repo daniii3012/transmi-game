@@ -1,5 +1,5 @@
-import {MetricPath} from './simulation.mjs?v=20260912.15';
-import {signalPhase} from './signals.mjs?v=20260912.15';
+import {MetricPath} from './simulation.mjs?v=20260912.17';
+import {signalPhase} from './signals.mjs?v=20260912.17';
 import * as THREE from './vendor/three.module.js';
 
 export class NetworkMap {
@@ -40,10 +40,33 @@ export class NetworkMap {
     this.resizeObserver=new ResizeObserver(()=>{this.resize();});this.resizeObserver.observe(host);
     this.resize(); this.fitNetwork(); this.bind();
   }
-  fit(bounds){const mobile=this.w<800,left=mobile?18:350,right=!mobile&&this.w>1100&&!document.querySelector('#inspector').hidden?400:60,top=mobile?120:70,panel=document.querySelector(document.body.dataset.inspect==='true'?'#inspector':'#sidebar'),bottom=mobile&&panel?Math.max(40,this.host.getBoundingClientRect().bottom-panel.getBoundingClientRect().top+20):document.body.dataset.panel==='live'?100:235;this.mpp=Math.max((bounds[2]-bounds[0])/Math.max(100,this.w-left-right),(bounds[3]-bounds[1])/Math.max(100,this.h-top-bottom),.3);this.center=[(bounds[0]+bounds[2])/2-(left-right)/2*this.mpp,(bounds[1]+bounds[3])/2+(top-bottom)/2*this.mpp];this.updateCamera();}
+  // Los paneles tapan parte del lienzo, así que el centro útil no es el geométrico. El mismo
+  // cálculo sirve para encuadrar y para centrar o seguir: lo que se mira tiene que caer en el
+  // hueco libre y no debajo de la hoja inferior, que en el móvil se lleva media pantalla.
+  insets(){
+    const mobile=this.w<800,left=mobile?18:350;
+    const right=!mobile&&this.w>1100&&!document.querySelector('#inspector').hidden?400:60;
+    const top=mobile?120:70;
+    const panel=document.querySelector(document.body.dataset.inspect==='true'?'#inspector':'#sidebar');
+    const bottom=mobile&&panel?Math.max(40,this.host.getBoundingClientRect().bottom-panel.getBoundingClientRect().top+20):document.body.dataset.panel==='live'?100:235;
+    return {left,right,top,bottom};
+  }
+  // Cuánto hay que correr el centro para que un punto quede en medio del hueco. Se recuerda unas
+  // décimas porque seguir un bus lo pregunta en cada fotograma y medir los paneles obliga al
+  // navegador a recalcular la página.
+  focusShift({fresh=false}={}){
+    const now=performance.now();
+    if(fresh||!this.shiftCache||now-this.shiftCache.at>200||this.shiftCache.mpp!==this.mpp){
+      const {left,right,top,bottom}=this.insets();
+      this.shiftCache={at:now,mpp:this.mpp,value:[-(left-right)/2*this.mpp,(top-bottom)/2*this.mpp]};
+    }
+    return this.shiftCache.value;
+  }
+  focusOn(xy,mpp){if(mpp!==undefined)this.mpp=mpp;const [dx,dy]=this.focusShift({fresh:true});this.center=[xy[0]+dx,xy[1]+dy];this.updateCamera();}
+  fit(bounds){const {left,right,top,bottom}=this.insets();this.mpp=Math.max((bounds[2]-bounds[0])/Math.max(100,this.w-left-right),(bounds[3]-bounds[1])/Math.max(100,this.h-top-bottom),.3);this.center=[(bounds[0]+bounds[2])/2-(left-right)/2*this.mpp,(bounds[1]+bounds[3])/2+(top-bottom)/2*this.mpp];this.updateCamera();}
   fitNetwork(){this.fit(this.data.bounds);}
   fitPilot(){this.fitNetwork();}
-  focusStation(station){const layout=this.data.station_layouts?.stations.find(s=>s.station_id===station.id);const points=layout?[...layout.platforms,...layout.areas].flatMap(p=>p.points):[];if(points.length){const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);this.fit([Math.min(...xs)-45,Math.min(...ys)-45,Math.max(...xs)+45,Math.max(...ys)+45]);}else{this.center=[...station.xy];this.mpp=.8;this.updateCamera();}}
+  focusStation(station){const layout=this.data.station_layouts?.stations.find(s=>s.station_id===station.id);const points=layout?[...layout.platforms,...layout.areas].flatMap(p=>p.points):[];if(points.length){const xs=points.map(p=>p[0]),ys=points.map(p=>p[1]);this.fit([Math.min(...xs)-45,Math.min(...ys)-45,Math.max(...xs)+45,Math.max(...ys)+45]);}else this.focusOn(station.xy,.8);}
   fitPoints(points){this.fit([Math.min(...points.map(p=>p[0])),Math.min(...points.map(p=>p[1]))-80,Math.max(...points.map(p=>p[0])),Math.max(...points.map(p=>p[1]))+80]);}
   resize(){this.w=this.host.clientWidth;this.h=this.host.clientHeight;if(!this.w||!this.h)return;this.renderer.setSize(this.w,this.h);this.updateCamera();}
   worldToScreen(p){return [(p[0]-this.center[0])/this.mpp+this.w/2, (this.center[1]-p[1])/this.mpp+this.h/2];}
@@ -384,7 +407,7 @@ export class NetworkMap {
     const keep=new Set(withLabels.map(b=>b.id));
     for(const [id,label] of this.liveLabels)if(!keep.has(id)){label.remove();this.liveLabels.delete(id);}
   }
-  follow(xy,dt){const blend=1-Math.exp(-Math.min(.1,Math.max(0,dt))*15);this.center[0]+=(xy[0]-this.center[0])*blend;this.center[1]+=(xy[1]-this.center[1])*blend;const now=performance.now();const labels=!this.lastFollowLabels||now-this.lastFollowLabels>150;if(labels)this.lastFollowLabels=now;this.updateCamera({labels});}
+  follow(xy,dt){const [dx,dy]=this.focusShift(),blend=1-Math.exp(-Math.min(.1,Math.max(0,dt))*15);this.center[0]+=(xy[0]+dx-this.center[0])*blend;this.center[1]+=(xy[1]+dy-this.center[1])*blend;const now=performance.now();const labels=!this.lastFollowLabels||now-this.lastFollowLabels>150;if(labels)this.lastFollowLabels=now;this.updateCamera({labels});}
   // El semáforo es una estimación del modelo, no un dato: se puede apagar para leer el mapa. La
   // pestaña En vivo los esconde por su cuenta, y este interruptor no los devuelve allí.
   setSignals(enabled){this.signalsEnabled=enabled;if(this.signalMesh&&!enabled)this.signalMesh.visible=false;}

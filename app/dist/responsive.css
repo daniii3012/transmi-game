@@ -1,5 +1,9 @@
 /* Map-led layout: generous canvas, one reading surface, compact controls. */
 :root{--surface:#fffffff5;--edge:#253b5219;--nav-height:64px;--safe-bottom:env(safe-area-inset-bottom,0px)}
+/* El doble toque hacía zoom de página, como en un sitio cualquiera: dentro de la aplicación eso
+   es un accidente, no un gesto. `manipulation` lo quita y deja intactos el desplazamiento y el
+   pinch; el lienzo del mapa sigue con `none` porque se maneja sus propios gestos. */
+html,body{touch-action:manipulation}
 body{overscroll-behavior:none}button,summary{-webkit-tap-highlight-color:transparent}
 button:focus-visible,summary:focus-visible{outline:2px solid #2470aa;outline-offset:3px}
 #canvas-host{touch-action:none}header{border-bottom:1px solid var(--edge)}
@@ -24,7 +28,8 @@ body[data-theme=dark] #sidebar,body[data-theme=dark] #inspector,body[data-theme=
  #more-menu summary{min-height:48px;display:grid;place-items:center;padding:8px}.more-options{top:auto;bottom:60px;right:0;min-width:190px}
  main{height:calc(100dvh - 52px - env(safe-area-inset-top,0px) - var(--nav-height) - var(--safe-bottom));min-height:0;overflow:hidden}
  #sidebar,body[data-panel=live] #sidebar{top:auto;left:10px;right:10px;width:auto;height:min(39%,350px);bottom:118px;border-radius:16px;overflow:auto;overscroll-behavior:contain;padding:0}
- body[data-panel=live] #sidebar,body[data-panel=planner] #sidebar{bottom:10px;height:min(45%,440px)}
+ body[data-panel=live] #sidebar{bottom:10px;height:min(45%,440px)}
+ body[data-panel=planner] #sidebar{bottom:10px;height:min(62%,580px)}
  #panel-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:48px;padding:13px 18px;border:0;border-radius:0;position:sticky;top:0;z-index:6;background:var(--surface);font-size:.85rem;text-align:left}
  #panel-toggle:after{content:'⌄';font-size:1.1rem;color:var(--muted)}body[data-sheet=closed] #panel-toggle:after{content:'⌃'}
  body[data-sheet=closed] #sidebar{height:48px!important;overflow:hidden}body[data-sheet=closed] #sidebar>.panel{display:none}
@@ -43,7 +48,7 @@ body[data-theme=dark] #sidebar,body[data-theme=dark] #inspector,body[data-theme=
  body[data-panel=planner] #timeline{display:none}body[data-panel=planner] #metrics{display:none}
  #inspector,body[data-panel=live] #inspector{top:auto;bottom:10px;left:10px;right:10px;width:auto;max-height:48%;padding:24px 20px;border-radius:16px;z-index:8}
  body[data-inspect=true] #sidebar,body[data-inspect=true] #timeline{visibility:hidden}#inspector .close{min-width:44px;min-height:44px}
- #loading{max-width:80%;width:max-content;top:28%;font-size:.8rem}#error{top:18%;font-size:.8rem}
+ #loading{left:12px;top:182px;max-width:calc(100% - 24px);width:auto;font-size:.75rem;padding:8px 12px}#error{top:18%;font-size:.8rem}
  #toast{bottom:120px;max-width:calc(100% - 40px);width:max-content;text-align:center}
 }
 @media(max-width:380px){.speed-controls button{min-width:25px;font-size:.65rem}.time-main>button{min-width:28px}.map-caption span{display:none}}
@@ -57,4 +62,17 @@ body[data-theme=dark] #sidebar,body[data-theme=dark] #inspector,body[data-theme=
  .mobile-date{display:block!important}.time-main{gap:3px}.speed-controls button{min-width:26px;font-size:.65rem}.time-main input[type=time],#time{min-width:92px!important;width:92px!important;font-size:.8rem!important}
  body.time-expanded #timeline{height:155px}body.time-expanded #sidebar{bottom:175px}body.time-expanded .time-main{flex-wrap:wrap}body.time-expanded .date-controls{display:flex;flex-basis:100%;margin:0 0 5px}body.time-expanded .date-controls input{width:145px}
  body[data-panel=live].time-expanded #sidebar,body[data-panel=planner].time-expanded #sidebar{bottom:10px}
+}
+
+/* Los campos de fecha y hora traen un ancho propio que la rejilla respetaba, y el panel entero se
+   desplazaba de lado. Dejarlos encogerse es lo único que hacía falta. */
+.form-pair{gap:10px}.form-pair>*{min-width:0}.form-pair input{width:100%}
+
+/* Con el detalle plegado la hoja deja de tapar el mapa y lo seleccionado sigue en foco. En el
+   escritorio la ficha cuelga de arriba y en el móvil se apoya abajo, así que encoge por lados
+   distintos. */
+body[data-detail=closed] #inspector,body[data-detail=closed][data-panel=live] #inspector{bottom:auto;height:auto;max-height:none;padding:14px 20px}
+@media(max-width:800px){
+ #inspector-toggle{min-height:44px;margin:-8px 0 2px}
+ body[data-detail=closed] #inspector,body[data-detail=closed][data-panel=live] #inspector{top:auto;bottom:10px;height:auto;max-height:none}
 }

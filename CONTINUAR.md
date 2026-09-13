@@ -127,3 +127,35 @@ lecturas del 12 quedaron limpias en el sitio: 513.864 filas, 552 lotes, 5 h, un 
 764 vehículos en catálogo a las 19:00; los ~99 restantes son D81, ML82, MK86, K16, MC84, P85-M85 y
 K86, que el catálogo local no tiene. Daniel precisa que las duales aparecen mapeadas como una sola
 ruta (ML82 = M82/L82, MK86 = M86/K86).
+
+12/09/2026 (noche) — **Revisión de interfaz sobre observaciones de Daniel.** Fuentes en
+`20260912.17`. Cambia lo que se ve, no el modelo ni las fuentes.
+
+- Indicadores: el separador vertical pasa a `border-left`, así el último visible ya no arrastra una
+  raya suelta. `:last-child` miraba el DOM y los indicadores en vivo están ocultos detrás, no
+  ausentes.
+- «Buses reales» pasa a **«buses en tiempo real»** en toda la interfaz: rótulo de la pestaña,
+  etiqueta del indicador y ficha de vehículo. Lo que los distingue es que se leen ahora.
+- El aviso de carga deja de ocupar el centro del mapa: es una pastilla bajo el rótulo de la vista,
+  y bajo los indicadores en el móvil.
+- **En vivo y simulación dejan de mezclarse.** La ficha de un servicio abierta desde En vivo ya no
+  ofrece «Simular solo este servicio» ni «Seguir un bus de esta ruta» —acciones del escenario—, sino
+  «Ver los buses de X en tiempo real». El botón de trazado de un grupo ya no salta a Red y rutas:
+  muestra las paradas sin salir de la pestaña, y desde ahí cada parada abre el tablero publicado.
+  En Red y rutas todo sigue igual.
+- La lista de «Todo el sistema» ya no tiene scroll propio: corre con el panel, y en el móvil el dedo
+  deja de quedarse atrapado en ella. Los vehículos fuera del catálogo se cuentan como buses, que es
+  lo que son.
+- Con un servicio en foco, la instantánea de toda la red pasa de 60 s a **30 s**.
+- **La ficha de detalle se pliega** con un tirador, sin soltar la selección: cerrarla era la única
+  salida y eso quitaba el bus o la ruta en foco. Escape pliega primero y cierra después.
+- **La cámara respeta los paneles.** `insets()` sale de `fit()` y la comparten `focusOn()` y
+  `follow()`: centrar o seguir un bus lo deja en medio del hueco libre, no debajo de la hoja
+  inferior, que en el móvil se lleva media pantalla. El desplazamiento se recuerda 200 ms para no
+  medir la página en cada fotograma.
+- Planear viaje: **una sola opción a la vista** —la que llega antes, y con menos transbordos si
+  empatan— y el resto tras un único pliegue. Agrupar por transbordos abría tres tarjetas que se
+  leían como tres viajes. La hoja pasa a `min(62%,580px)` y los campos de fecha y hora encogen con
+  la rejilla, que era lo que desplazaba el panel de lado.
+- El doble toque ya no hace zoom de página: `touch-action:manipulation` en `html,body`. El lienzo
+  del mapa conserva `none`.

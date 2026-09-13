@@ -180,3 +180,5 @@ ruta (ML82 = M82/L82, MK86 = M86/K86).
   apoyan a la misma altura en la fuente, así que el botón cambiaba de tamaño entre desplegado y
   plegado y el dibujo quedaba descentrado. Un cuadrado girado mide igual en los dos sentidos. La ✕
   y el tirador comparten ahora caja exacta: 32 px en escritorio, 44 en móvil.
+- La cabecera de la hoja llevaba los mismos dos caracteres y con ellos el mismo defecto: cambiaba de
+  tamaño al plegarse y la marca no quedaba a la altura del texto. Ahora usa el galón de bordes.

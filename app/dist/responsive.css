@@ -31,7 +31,11 @@ body[data-theme=dark] #sidebar,body[data-theme=dark] #inspector,body[data-theme=
  body[data-panel=live] #sidebar{bottom:10px;height:min(45%,440px)}
  body[data-panel=planner] #sidebar{bottom:10px;height:min(62%,580px)}
  #panel-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;min-height:48px;padding:13px 18px;border:0;border-radius:0;position:sticky;top:0;z-index:6;background:var(--surface);font-size:.85rem;text-align:left}
- #panel-toggle:after{content:'⌄';font-size:1.1rem;color:var(--muted)}body[data-sheet=closed] #panel-toggle:after{content:'⌃'}
+ /* Mismo galón de bordes que el tirador del detalle, y por lo mismo: los caracteres «⌄» y «⌃» no
+    miden igual ni se apoyan a la misma altura, así que la cabecera cambiaba de tamaño al plegarse
+    y la marca nunca quedaba a la altura del texto. */
+ #panel-toggle:after{content:'';flex:none;width:8px;height:8px;border:solid var(--muted);border-width:0 2px 2px 0;transform:translateY(-2px) rotate(45deg)}
+ body[data-sheet=closed] #panel-toggle:after{transform:translateY(2px) rotate(225deg)}
  body[data-sheet=closed] #sidebar{height:48px!important;overflow:hidden}body[data-sheet=closed] #sidebar>.panel{display:none}
  .panel{padding:0 18px 22px}.panel>.eyebrow,.panel-heading .eyebrow{display:none}.panel>h1,.panel-heading h1{font-size:1.1rem;margin-top:4px}.panel-heading h1{display:none}
  button,input,select{min-height:44px}input,select{font-size:16px!important}.segmented button{font-size:.78rem;min-height:42px}

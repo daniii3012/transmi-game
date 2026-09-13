@@ -198,3 +198,8 @@ ruta (ML82 = M82/L82, MK86 = M86/K86).
   panel. Se les quita esa maqueta con `appearance:none`, que en iOS no cuesta nada porque allí ya se
   dibujan planos. Y la hoja lleva `overflow-x:hidden` en el móvil como tope: un control que insista
   en pedir más ancho del que hay se recorta, en vez de arrastrar el panel entero de lado.
+- **Las filas de la lista de rutas recuperan su margen lateral en el móvil.** Conservaban el ancho
+  desbordado y el margen negativo del escritorio, pero se les quitaba el relleno lateral —resto de
+  cuando la lista iba a dos columnas—, así que la insignia del servicio y el conteo de buses
+  quedaban pegados al borde del recuadro. Con el relleno vuelven a alinearse con el buscador y el
+  resto del panel, y el resalte sigue sobresaliendo diez píxeles como en las demás listas.

@@ -39,7 +39,10 @@ body[data-theme=dark] #sidebar,body[data-theme=dark] #inspector,body[data-theme=
  body[data-sheet=closed] #sidebar{height:48px!important;overflow:hidden}body[data-sheet=closed] #sidebar>.panel{display:none}
  .panel{padding:0 18px 22px}.panel>.eyebrow,.panel-heading .eyebrow{display:none}.panel>h1,.panel-heading h1{font-size:1.1rem;margin-top:4px}.panel-heading h1{display:none}
  button,input,select{min-height:44px}input,select{font-size:16px!important}.segmented button{font-size:.78rem;min-height:42px}
- #route-list{display:block}.route-row{min-height:62px;padding:12px 0}.zone-grid{grid-template-columns:repeat(4,1fr)}
+ /* La fila conserva el ancho desbordado y el margen negativo del escritorio, así que quitarle el
+    relleno lateral —resto de cuando la lista iba a dos columnas— dejaba la insignia y el conteo
+    pegados al borde del recuadro. Con el relleno vuelven a alinearse con el resto del panel. */
+ #route-list{display:block}.route-row{min-height:62px}.zone-grid{grid-template-columns:repeat(4,1fr)}
  .map-caption{top:15px;left:16px;right:74px;max-width:none}.map-caption strong{font-size:.85rem}.map-caption span{font-size:.55rem}
  .map-actions{top:12px;right:12px;gap:6px}.map-actions button{width:40px;min-height:40px}.map-actions .north{display:none}
  #context-toggle,#lanes-toggle,#signals-toggle,#corridors-toggle{display:none}

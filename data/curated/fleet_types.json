@@ -1,0 +1,1272 @@
+{
+ "schema_version": 1,
+ "derived_at": "2026-09-13T00:11:20-05:00",
+ "observed_days": [
+  "2026-09-12"
+ ],
+ "method": "Tipo por servicio a partir de la etiqueta de flota del alimentador GTFS-Realtime; ver docs/TIPOS_DE_BUS_20260912.md",
+ "sources": {
+  "detail": [
+   "rt_detalle_20260912.csv.gz"
+  ],
+  "routes_sha256": "28f87becdea357aa7b921909d58a81344aaab495ca5acb3db127d0aa3e79b8ca",
+  "feed": "https://gtfs.transmilenio.gov.co/positions.pb"
+ },
+ "label_ranges": {
+  "E": {
+   "articulated": [
+    [
+     1,
+     49
+    ],
+    [
+     300,
+     399
+    ]
+   ],
+   "biarticulated": [
+    [
+     50,
+     199
+    ]
+   ],
+   "dual": [
+    [
+     700,
+     799
+    ]
+   ]
+  },
+  "D": {
+   "articulated": [
+    [
+     1,
+     99
+    ]
+   ],
+   "biarticulated": [
+    [
+     100,
+     299
+    ]
+   ],
+   "dual": [
+    [
+     500,
+     599
+    ]
+   ]
+  },
+  "N": {
+   "articulated": [
+    [
+     1,
+     99
+    ]
+   ],
+   "biarticulated": [
+    [
+     100,
+     199
+    ]
+   ],
+   "dual": [
+    [
+     500,
+     699
+    ]
+   ]
+  },
+  "U": {
+   "articulated": [
+    [
+     1000,
+     1299
+    ]
+   ],
+   "biarticulated": [
+    [
+     1400,
+     1699
+    ]
+   ]
+  },
+  "T": {
+   "articulated": [
+    [
+     1000,
+     1299
+    ]
+   ],
+   "biarticulated": [
+    [
+     1400,
+     1699
+    ]
+   ]
+  },
+  "M": {
+   "articulated": [
+    [
+     1000,
+     1299
+    ]
+   ],
+   "biarticulated": [
+    [
+     1400,
+     1699
+    ]
+   ]
+  },
+  "A": {
+   "articulated": [
+    [
+     1000,
+     1299
+    ]
+   ],
+   "biarticulated": [
+    [
+     1400,
+     1699
+    ]
+   ]
+  },
+  "S": {
+   "articulated": [
+    [
+     1000,
+     1299
+    ]
+   ],
+   "biarticulated": [
+    [
+     1400,
+     1699
+    ]
+   ]
+  },
+  "K": {
+   "articulated": [
+    [
+     1000,
+     1299
+    ]
+   ],
+   "biarticulated": [
+    [
+     1400,
+     1699
+    ]
+   ]
+  },
+  "BO": {
+   "dual": [
+    [
+     900,
+     999
+    ]
+   ]
+  },
+  "KE": {
+   "dual": [
+    [
+     900,
+     999
+    ]
+   ]
+  }
+ },
+ "observed_ranges": {
+  "A": {
+   "articulated": [
+    1002,
+    1179,
+    102
+   ],
+   "biarticulated": [
+    1401,
+    1460,
+    32
+   ]
+  },
+  "BO": {
+   "dual": [
+    903,
+    924,
+    14
+   ]
+  },
+  "D": {
+   "articulated": [
+    1,
+    48,
+    23
+   ],
+   "biarticulated": [
+    100,
+    237,
+    85
+   ],
+   "dual": [
+    500,
+    596,
+    44
+   ]
+  },
+  "E": {
+   "articulated": [
+    2,
+    310,
+    15
+   ],
+   "biarticulated": [
+    50,
+    173,
+    77
+   ],
+   "dual": [
+    702,
+    756,
+    30
+   ]
+  },
+  "K": {
+   "biarticulated": [
+    1411,
+    1661,
+    153
+   ]
+  },
+  "KE": {
+   "dual": [
+    900,
+    924,
+    15
+   ]
+  },
+  "M": {
+   "biarticulated": [
+    1401,
+    1514,
+    65
+   ]
+  },
+  "N": {
+   "articulated": [
+    1,
+    36,
+    16
+   ],
+   "biarticulated": [
+    100,
+    191,
+    54
+   ],
+   "dual": [
+    532,
+    634,
+    74
+   ]
+  },
+  "S": {
+   "biarticulated": [
+    1403,
+    1530,
+    76
+   ]
+  },
+  "T": {
+   "articulated": [
+    1001,
+    1200,
+    111
+   ],
+   "biarticulated": [
+    1402,
+    1640,
+    140
+   ]
+  },
+  "U": {
+   "articulated": [
+    1001,
+    1096,
+    47
+   ],
+   "biarticulated": [
+    1401,
+    1562,
+    98
+   ]
+  }
+ },
+ "fleet_seen": {
+  "articulated": 314,
+  "biarticulated": 780,
+  "dual": 177
+ },
+ "label_mismatches": 0,
+ "unclassified": {},
+ "unresolved_services": [],
+ "routes": {
+  "1": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 21,
+   "buses_total": 21,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 21
+   }
+  },
+  "2": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 22,
+   "buses_total": 22,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 22
+   }
+  },
+  "3": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 20,
+   "buses_total": 20,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 20
+   }
+  },
+  "4": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 36,
+   "buses_total": 36,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 36
+   }
+  },
+  "5": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 43,
+   "buses_total": 43,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 43
+   }
+  },
+  "6": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 12,
+   "buses_total": 12,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 12
+   }
+  },
+  "7": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 35,
+   "buses_total": 35,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 35
+   }
+  },
+  "8": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 60,
+   "buses_total": 60,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 60
+   }
+  },
+  "A60": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 42,
+   "buses_total": 42,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 42
+   }
+  },
+  "B10": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 26,
+   "buses_total": 26,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 26
+   }
+  },
+  "B11": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 41,
+   "buses_total": 41,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 41
+   }
+  },
+  "B12": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 50,
+   "buses_total": 50,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 50
+   }
+  },
+  "B13": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 43,
+   "buses_total": 43,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 43
+   }
+  },
+  "B16": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 37,
+   "buses_total": 37,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 37
+   }
+  },
+  "B18": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 41,
+   "buses_total": 41,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 41
+   }
+  },
+  "B23": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 13,
+   "buses_total": 13,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 13
+   }
+  },
+  "B28": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 39,
+   "buses_total": 39,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 39
+   }
+  },
+  "B46": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 23,
+   "buses_total": 23,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 23
+   }
+  },
+  "B72": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 36,
+   "buses_total": 36,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 36
+   }
+  },
+  "B74": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 22,
+   "buses_total": 22,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 22
+   }
+  },
+  "B75": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 56,
+   "buses_total": 56,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 56
+   }
+  },
+  "C15": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 52,
+   "buses_total": 52,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 52
+   }
+  },
+  "C17": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 19,
+   "buses_total": 19,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 19
+   }
+  },
+  "C19": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 38,
+   "buses_total": 38,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 38
+   }
+  },
+  "C25": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 26,
+   "buses_total": 26,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 26
+   }
+  },
+  "C30": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 14,
+   "buses_total": 14,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 14
+   }
+  },
+  "D10": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 28,
+   "buses_total": 28,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 28
+   }
+  },
+  "D20": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 45,
+   "buses_total": 45,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 45
+   }
+  },
+  "D21": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 32,
+   "buses_total": 32,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 32
+   }
+  },
+  "D22": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 25,
+   "buses_total": 25,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 25
+   }
+  },
+  "D24": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 34,
+   "buses_total": 34,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 34
+   }
+  },
+  "D81": {
+   "type": "dual",
+   "capacity": 80,
+   "status": "observed",
+   "buses": 54,
+   "buses_total": 54,
+   "purity": 1.0,
+   "mix": {
+    "dual": 54
+   }
+  },
+  "E32": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 27,
+   "buses_total": 27,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 27
+   }
+  },
+  "E42": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 48,
+   "buses_total": 48,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 48
+   }
+  },
+  "F19": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 34,
+   "buses_total": 34,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 34
+   }
+  },
+  "F23": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 57,
+   "buses_total": 57,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 57
+   }
+  },
+  "F26": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 36,
+   "buses_total": 36,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 36
+   }
+  },
+  "F28": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 47,
+   "buses_total": 47,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 47
+   }
+  },
+  "F32": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 41,
+   "buses_total": 41,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 41
+   }
+  },
+  "F51": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 33,
+   "buses_total": 33,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 33
+   }
+  },
+  "F60": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 50,
+   "buses_total": 50,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 50
+   }
+  },
+  "F63": {
+   "type": "dual",
+   "capacity": 80,
+   "status": "observed",
+   "buses": 29,
+   "buses_total": 29,
+   "purity": 1.0,
+   "mix": {
+    "dual": 29
+   }
+  },
+  "G11": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 38,
+   "buses_total": 38,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 38
+   }
+  },
+  "G12": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 61,
+   "buses_total": 61,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 61
+   }
+  },
+  "G22": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 26,
+   "buses_total": 26,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 26
+   }
+  },
+  "G30": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 13,
+   "buses_total": 13,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 13
+   }
+  },
+  "G47": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 42,
+   "buses_total": 42,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 42
+   }
+  },
+  "G53": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 34,
+   "buses_total": 34,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 34
+   }
+  },
+  "H13": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 55,
+   "buses_total": 55,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 55
+   }
+  },
+  "H15": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 56,
+   "buses_total": 56,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 56
+   }
+  },
+  "H17": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 22,
+   "buses_total": 22,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 22
+   }
+  },
+  "H20": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 60,
+   "buses_total": 60,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 60
+   }
+  },
+  "H21": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 33,
+   "buses_total": 33,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 33
+   }
+  },
+  "H54": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 38,
+   "buses_total": 38,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 38
+   }
+  },
+  "H72": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 42,
+   "buses_total": 42,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 42
+   }
+  },
+  "H75": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 63,
+   "buses_total": 63,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 63
+   }
+  },
+  "H83": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 20,
+   "buses_total": 20,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 20
+   }
+  },
+  "J23": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 41,
+   "buses_total": 41,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 41
+   }
+  },
+  "J24": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 30,
+   "buses_total": 30,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 30
+   }
+  },
+  "J74": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 23,
+   "buses_total": 23,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 23
+   }
+  },
+  "K10": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 25,
+   "buses_total": 25,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 25
+   }
+  },
+  "K16": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 35,
+   "buses_total": 35,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 35
+   }
+  },
+  "K23": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 17,
+   "buses_total": 17,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 17
+   }
+  },
+  "K43": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 50,
+   "buses_total": 50,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 50
+   }
+  },
+  "K54": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 33,
+   "buses_total": 33,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 33
+   }
+  },
+  "K86": {
+   "type": "dual",
+   "capacity": 80,
+   "status": "observed",
+   "buses": 5,
+   "buses_total": 5,
+   "purity": 1.0,
+   "mix": {
+    "dual": 5
+   }
+  },
+  "L10": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 32,
+   "buses_total": 32,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 32
+   }
+  },
+  "L18": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 45,
+   "buses_total": 45,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 45
+   }
+  },
+  "L25": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 31,
+   "buses_total": 31,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 31
+   }
+  },
+  "L41": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 33,
+   "buses_total": 33,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 33
+   }
+  },
+  "L81": {
+   "type": "dual",
+   "capacity": 80,
+   "status": "observed",
+   "buses": 52,
+   "buses_total": 52,
+   "purity": 1.0,
+   "mix": {
+    "dual": 52
+   }
+  },
+  "M47": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 29,
+   "buses_total": 29,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 29
+   }
+  },
+  "M51": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 30,
+   "buses_total": 30,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 30
+   }
+  },
+  "M82": {
+   "type": "dual",
+   "capacity": 80,
+   "status": "observed",
+   "buses": 6,
+   "buses_total": 6,
+   "purity": 1.0,
+   "mix": {
+    "dual": 6
+   }
+  },
+  "M83": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 20,
+   "buses_total": 20,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 20
+   }
+  },
+  "M86": {
+   "type": "dual",
+   "capacity": 80,
+   "status": "observed",
+   "buses": 6,
+   "buses_total": 6,
+   "purity": 1.0,
+   "mix": {
+    "dual": 6
+   }
+  },
+  "MC84": {
+   "type": "dual",
+   "capacity": 80,
+   "status": "observed",
+   "buses": 18,
+   "buses_total": 18,
+   "purity": 1.0,
+   "mix": {
+    "dual": 18
+   }
+  },
+  "MK86": {
+   "type": "dual",
+   "capacity": 80,
+   "status": "observed",
+   "buses": 38,
+   "buses_total": 38,
+   "purity": 1.0,
+   "mix": {
+    "dual": 38
+   }
+  },
+  "ML82": {
+   "type": "dual",
+   "capacity": 80,
+   "status": "observed",
+   "buses": 40,
+   "buses_total": 40,
+   "purity": 1.0,
+   "mix": {
+    "dual": 40
+   }
+  },
+  "P85-M85": {
+   "type": "dual",
+   "capacity": 80,
+   "status": "observed",
+   "buses": 12,
+   "buses_total": 12,
+   "purity": 1.0,
+   "mix": {
+    "dual": 12
+   }
+  },
+  "S41": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 48,
+   "buses_total": 48,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 48
+   }
+  },
+  "S42": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 72,
+   "buses_total": 72,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 72
+   }
+  },
+  "S43": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 73,
+   "buses_total": 73,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 73
+   }
+  },
+  "S46": {
+   "type": "biarticulated",
+   "capacity": 240,
+   "status": "observed",
+   "buses": 40,
+   "buses_total": 40,
+   "purity": 1.0,
+   "mix": {
+    "biarticulated": 40
+   }
+  },
+  "S48": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 30,
+   "buses_total": 30,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 30
+   }
+  },
+  "Z61": {
+   "type": "articulated",
+   "capacity": 160,
+   "status": "observed",
+   "buses": 42,
+   "buses_total": 42,
+   "purity": 1.0,
+   "mix": {
+    "articulated": 42
+   }
+  },
+  "Z63": {
+   "type": "dual",
+   "capacity": 80,
+   "status": "observed",
+   "buses": 29,
+   "buses_total": 29,
+   "purity": 1.0,
+   "mix": {
+    "dual": 29
+   }
+  }
+ }
+}

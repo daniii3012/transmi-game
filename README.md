@@ -1,56 +1,185 @@
-# Transmi · Bogotá en movimiento
+<div align="center">
 
-Simulador 2D local de TransMilenio, sobre Bogotá a **escala geográfica 1:1**. Permite explorar servicios troncales y duales, seguir buses, consultar paradas, cambiar fecha y hora y ajustar oferta y demanda. La interfaz toma como referencia la claridad de Mini Metro y los paneles flotantes de Subway Builder. No incluye construcción de líneas. La simulación no usa GPS en vivo: los buses reales se consultan aparte, en la pestaña **En vivo**, que solo funciona con el servidor local y no alimenta el escenario.
+# 🚍 Transmi · Bogotá en movimiento
 
-## Abrir y usar
+**Simulador 2D de TransMilenio sobre la ciudad real, a escala geográfica 1:1.**
 
-Doble clic en **ABRIR_SIMULACION_2D.command**. Mantén abierta su Terminal y abre [el simulador local](http://127.0.0.1:8766/). No requiere instalar paquetes JavaScript ni descargar mapas al jugar. También puedes ejecutar `python3 tools/serve_network_2d.py --open` desde esta carpeta.
+Recorridos, horarios, flota y pasajeros salen de datos abiertos oficiales.
+Cada cifra del modelo dice de dónde viene y si está medida o estimada.
 
-1. En **Red y rutas → Ruta**, busca C15, H15, F63, una estación o un destino. Elegir una fila destaca el recorrido; «Simular solo este servicio» cambia la operación. La pestaña Ruta solo cambia la exploración; elegir otra fila tampoco reconstruye el escenario.
-2. **La red ahora** resume el instante del reloj: demanda por hora del tipo de día, reparto de la flota, estaciones con más espera y buses por troncal. La curva salta a esa hora al hacer clic y las estaciones se abren en el mapa.
-3. **Troncal** permite combinar letras y aplicar la selección. Incluye servicios que atienden estaciones de esas zonas o terminan en ellas. **Toda la red** restaura el conjunto disponible.
-4. Usa el reloj para pausar, avanzar o retroceder 15 minutos, elegir fecha/hora, deslizar el día y acelerar a 1×, 8×, 32× o 120×. La velocidad del reloj no cambia los kilómetros ni los km/h de los buses.
-5. Abre una parada para ver vagones, pasajeros esperando y próximas llegadas. Sigue un bus para consultar velocidad, capacidad y próxima parada. **Terminales** muestra regulación y disponibilidad de flota; **Operación** ajusta frecuencias, velocidades y pasajeros.
-6. **Planear viaje** busca servicios directos o con hasta tres transbordos para un origen, destino, fecha y hora, sin cambiar la simulación. De cada cantidad de transbordos muestra la mejor opción y hasta dos alternativas más con servicios distintos, plegadas; incluye las que no llegan antes. Muestra las estaciones de subida/bajada y el recorrido de cada tramo.
-7. **En vivo** tiene dos vistas. **Todo el sistema** ubica los buses troncales y duales de la red, con el conteo por servicio. **Por servicio** sigue una ruta y deja la instantánea atenuada por detrás. Las dos lecturas tienen precisión distinta y la pestaña lo rotula. Nada de esto entra en la simulación: el escenario no cambia y sus controles quedan en modo lectura. Funciona solo con el servidor local y con la configuración que va en `tools/en_vivo.local.json`, que no se versiona; sin ella la pestaña no consulta nada.
-8. **Guardar** conserva fecha, hora, selección y parámetros en este navegador. Al volver a abrir se restaura pausado. No se guarda una partida en la nube.
+[![escala](https://img.shields.io/badge/escala-1%3A1%20geogr%C3%A1fica-0a7d3f)](docs/OPERACION_Y_DATOS.md)
+[![servicios](https://img.shields.io/badge/servicios-117%20utilizables%20%C2%B7%2020%20pendientes-1f6feb)](docs/PENDIENTES_20260911.md)
+[![datos](https://img.shields.io/badge/datos-12%20sep%202026-8957e5)](docs/ACTUALIZAR_DATOS.md)
+[![sin npm](https://img.shields.io/badge/sin%20npm-JS%20est%C3%A1ndar%20%2B%20Python-6e7681)](docs/ARQUITECTURA.md)
+[![pruebas](https://img.shields.io/badge/pruebas-79%20Node%20%C2%B7%2058%20Python-2da44e)](#desarrollo)
 
-Para abrir desde otros dispositivos del mismo Wi-Fi, usa **ABRIR_EN_RED_LOCAL.command** o `python3 tools/serve_network_2d.py --lan --open`. La Terminal muestra la dirección de este computador, con puerto 8767. Cada navegador ejecuta y guarda su propio escenario; mantén abierta la Terminal. No se publica en internet.
+[**Abrir el simulador publicado**](https://daniii3012.github.io/transmi-sim/) ·
+[Cómo se simula](docs/COMO_SE_SIMULA.md) ·
+[Operación y datos](docs/OPERACION_Y_DATOS.md) ·
+[Arquitectura](docs/ARQUITECTURA.md)
 
-El botón **Ahora** usa fecha/hora de Bogotá. El botón de luna/sol cambia el tema y recuerda la preferencia. **Fuentes** y **Datos** enlazan la documentación y los registros pendientes.
+</div>
 
-## Qué está implementado
+---
 
-- Recorridos oficiales proyectados en metros, paradas ordenadas, aceleración, frenado y menor velocidad en curvas y tramos de calle.
-- Calendarios publicados, ventanas partidas, servicios nocturnos, fines de semana, festivos colombianos y control de vigencia.
-- Cruceros iniciales de 60 km/h en troncal y 50 en calle, variación fija de ±5 por bus y tipos fijos por ruta.
-- Despachos estimados pico/valle con variación de ±12% y refuerzos limitados por presión de demanda; carril de paso independiente y reservas locales de atención. Vagones y colas pequeñas en la operación de referencia.
-- Pasajeros agregados: perfiles de entrada por estación/hora, abordaje, descenso, capacidad, espera y orientación matutina/vespertina estimada.
-- Articulados de 160, biarticulados de 240, duales convencionales estimados de 80 y F63/Z63 eléctricos articulados de 160 publicados.
-- Flota reutilizable en terminales, cálculo en un trabajador separado y agrupación visual al alejarse, conservando los buses del modelo.
-- Geometría física OSM para 40 estaciones: los nueve portales, Banderas, Ricaurte, Avenida Jiménez y las 28 troncales con más servicios. Las cubiertas, plataformas, puntos de parada y vías internas se representan según la evidencia disponible; otras estaciones mantienen andenes esquemáticos.
-- Troncales coloreadas permanentemente y corredores de calle grises punteados; el recorrido exacto se destaca al seleccionar una ruta o bus.
-- Calzada real de TransMilenio según OpenStreetMap, con el número de carriles publicado donde existe. Aparece al acercarse y se apaga desde el mapa.
-- Semáforos corroborados por pertenencia directa a vías de buses en OSM, con frenado y espera ante rojo/amarillo. Ciclo estimado de 90 s, desactivable en Operación.
-- Planificador con calendarios publicados y tiempos aproximados; resalta únicamente los tramos que se toman.
-- Colores publicados, calles/parques/agua de OpenStreetMap y marcas de puentes/túneles con etiquetas explícitas. Los cruces de líneas no crean giros o conexiones.
-- Posición real de los buses, proyectada al mismo marco métrico del simulador: lectura por servicio e instantánea calculada de la red troncal y dual. Local, opcional y separada del modelo; lo publicado no trae datos en esa pestaña.
-- Punto de atención publicado: el vagón y las puertas que el tablero de cada estación anuncia para cada servicio y sentido, en 1.305 de las 1.557 paradas troncales. Lo que falta conserva el reparto estimado y la interfaz distingue uno de otro. Método y límites en [actualizar los datos](docs/ACTUALIZAR_DATOS.md); contraste del catálogo contra la operación publicada en [verificación de rutas](docs/RUTAS_VERIFICACION_20260912.md).
+Explora los servicios troncales y duales, sigue un bus, abre una estación, mueve el reloj y ajusta
+oferta y demanda. La interfaz busca la claridad de Mini Metro y los paneles flotantes de Subway
+Builder. No se construyen líneas: la red es la que existe. La simulación **no** usa posiciones GPS;
+los buses reales se consultan aparte, en la pestaña **En vivo**, que no alimenta el escenario.
+
+## Empezar
+
+```bash
+python3 tools/serve_network_2d.py --open      # o doble clic en ABRIR_SIMULACION_2D.command
+```
+
+Abre <http://127.0.0.1:8766/>. No instala nada: ni paquetes JavaScript ni descargas de mapa al
+jugar. Para verlo desde otro dispositivo del mismo Wi-Fi, `--lan --open` o
+**ABRIR_EN_RED_LOCAL.command**, que imprime la dirección de este computador en el puerto 8767. Cada
+navegador corre y guarda su propio escenario.
+
+<details>
+<summary><b>Las ocho cosas que se pueden hacer dentro</b></summary>
+
+1. **Red y rutas → Ruta.** Busca C15, H15, F63, una estación o un destino. Elegir una fila destaca
+   el recorrido; «Simular solo este servicio» cambia la operación. Explorar no reconstruye el
+   escenario.
+2. **La red ahora.** Resume el instante del reloj: demanda por hora del tipo de día, reparto de la
+   flota, estaciones con más espera y buses por troncal. La curva salta a esa hora al hacer clic.
+3. **Troncal.** Combina letras de zona y aplica la selección; incluye los servicios que atienden o
+   terminan en ellas. **Toda la red** restaura el conjunto.
+4. **Reloj.** Pausa, avanza o retrocede 15 minutos, elige fecha y hora, desliza el día y acelera a
+   1×, 8×, 32× o 120×. La velocidad del reloj no cambia los km/h de los buses.
+5. **Paradas y buses.** Una parada muestra vagones, pasajeros esperando y próximas llegadas. Un bus,
+   su velocidad, tipo, capacidad y próxima parada. **Terminales** muestra regulación y flota
+   disponible; **Operación** ajusta frecuencias, velocidades y pasajeros.
+6. **Planear viaje.** Servicios directos o con hasta tres transbordos para un origen, destino, fecha
+   y hora, sin tocar la simulación. Por cada número de transbordos, la mejor opción y hasta dos
+   alternativas plegadas, incluidas las que no llegan antes.
+7. **En vivo.** **Todo el sistema** ubica los buses troncales y duales con su conteo por servicio;
+   **Por servicio** sigue una ruta. Las dos lecturas tienen precisión distinta y la pestaña lo
+   rotula. Requiere el servidor local y `tools/en_vivo.local.json`, que no se versiona.
+8. **Guardar.** Conserva fecha, hora, selección y parámetros en este navegador; al volver, se
+   restaura en pausa. No hay partida en la nube.
+
+El botón **Ahora** usa la hora de Bogotá y el de luna/sol recuerda el tema.
+
+</details>
+
+## De dónde sale cada dato
+
+| Dato | Fuente oficial | Qué aporta |
+|---|---|---|
+| Recorridos, paradas, horarios, colores | [Mapa digital](https://mapadigital.transmilenio.gov.co/) y API del buscador de rutas | 137 registros del catálogo ampliado, con vigencia, trazado y estaciones |
+| Salidas y tiempos entre paradas | [GTFS de TRANSMILENIO](https://gtfs.transmilenio.gov.co/GTFS.zip) | 104 de los 117 servicios utilizables despachan a las horas publicadas |
+| **Tipo de bus por servicio** | [GTFS-Realtime oficial](https://gtfs.transmilenio.gov.co/positions.pb) | La etiqueta de flota de cada vehículo: 87 servicios resueltos, sin mezcla |
+| Demanda de pasajeros | [Validaciones diarias SITP](https://datosabiertos.bogota.gov.co/dataset/validaciones-diarias-sitp) | 28.014.777 validaciones en 17 días; perfil por hora, estación y tipo de día |
+| Calzada, semáforos, estaciones | [OpenStreetMap](https://www.openstreetmap.org/copyright) · Overpass | Carriles publicados, 723 semáforos con evidencia y 40 estaciones con geometría |
+| Andenes, separadores, construcciones | [Datos Abiertos Bogotá](https://datosabiertos.bogota.gov.co/) · IDECA | Contexto urbano fechado y con licencia por ficha |
+| Festivos | [Ley 51 de 1983](https://www.funcionpublica.gov.co/eva/gestornormativo/norma.php?i=4954) | Calendario colombiano con traslados al lunes y Pascua |
+
+Cada descarga guarda endpoint, fecha y SHA-256 en `data/raw`. La aplicación no consulta ninguna API
+mientras se juega. Detalle y modo de actualizar en [actualizar los datos](docs/ACTUALIZAR_DATOS.md);
+direcciones muertas que siguen circulando por ahí, en [endpoints de legado](docs/ENDPOINTS_LEGADO_20260912.md).
+
+## Análisis que sostienen el modelo
+
+Cada pieza del simulador tuvo que demostrarse antes de entrar. Lo que se midió y lo que se descartó:
+
+| Análisis | Hallazgo |
+|---|---|
+| [Tipo de bus por servicio](docs/TIPOS_DE_BUS_20260912.md) | La etiqueta de flota del alimentador separa articulados, biarticulados y duales; los 87 servicios con lecturas usan una sola familia. Retira el criterio de longitud, que erraba en 25 de 76 |
+| [Horario publicado](docs/HORARIO_GTFS_20260912.md) | Sustituye la regla inventada de 4 y 8 minutos por las salidas del GTFS, y el crucero único por la velocidad que se despeja de cada tramo |
+| [Velocidad y detenciones](docs/VELOCIDAD_Y_DETENCIONES_20260912.md) | Por qué un bus simulado iba a 23 km/h frente al real, contrastado con cinco horas de captura |
+| [Demanda sobre 17 días](docs/DEMANDA_MULTIDIA_20260911.md) | Sábado 0,654 y domingo 0,302 del día de semana: el domingo estimado estaba sobreestimado un 80 % |
+| [¿Es agosto–septiembre representativo?](docs/DEMANDA_COMPARACION_MARZO_20260911.md) | Contraste con 15 días de marzo: factores por tipo de día estables y nivel 7,3 % más bajo, uniforme |
+| [Semáforos con evidencia](docs/SEMAFOROS_20260911.md) | De 2.588 nodos evaluados se aceptan 723, por pertenencia directa a la vía del bus; el resto no entra |
+| [Calzadas reales](docs/CALZADAS_20260911.md) | Se dibuja la calzada de OSM con los carriles publicados, en vez de suponerlos |
+| [Geometría de estaciones](docs/ESTACIONES_OSM_20260911.md) · [portales](docs/TODOS_LOS_PORTALES_20260911.md) | 40 estaciones con plataformas, cubiertas y vías internas documentadas objeto por objeto |
+| [Verificación del catálogo](docs/RUTAS_VERIFICACION_20260912.md) | Los tableros de salida separan un servicio sin geometría de uno que dejó de existir |
+| [Registros pendientes](docs/PENDIENTES_20260911.md) | Por qué 20 registros siguen fuera y no se rellenan con líneas rectas |
+| [Colas y espacio](docs/COLAS_Y_ESPACIO_20260911.md) · [captura en vivo](docs/CAPTURA_RT_20260912.md) | Qué se puede medir del alimentador oficial y qué no: su reloj está congelado y sus velocidades son ruido |
+
+## Medido y estimado
+
+El simulador nunca presenta una estimación como un dato. En la interfaz, cada ficha dice su origen.
+
+**Medido, con fuente y fecha**
+
+- Recorridos, paradas, colores, calendarios y vigencias publicados.
+- Salidas y tiempos entre paradas del GTFS, por tipo de día.
+- Tipo de bus de 87 servicios, leído de la flota que los atiende.
+- Demanda por hora, estación y tipo de día sobre 28.014.777 validaciones.
+- Punto de atención publicado —vagón y puertas— en 1.305 de 1.557 paradas troncales.
+- Carriles, semáforos y geometría de estación donde OSM los publica.
+
+**Estimado, y marcado como tal**
+
+- Capacidades 80 / 160 / 240 y longitudes 12 / 18,5 / 27,2 m: decisión de modelo, no ficha por marca.
+- Los 34 servicios sin lecturas de flota usan el articulado de referencia.
+- Frecuencias fuera del horario publicado, refuerzos en pico y reparto por sentido.
+- Descenso de pasajeros, abandono de espera (media 30 min) y orientación al centro de empleo: no hay
+  matriz origen-destino real.
+- Ciclo semafórico de 90 s y asignación de servicios a puestos físicos de estación.
+- Dos carriles por sentido —atención y paso— como abstracción declarada.
+- Patios y regulación en terminal, en forma abstracta.
+
+**Conclusiones aún sin corroborar**
+
+- Que la familia alta de la numeración de flota sea el biarticulado se apoya en la operación
+  observada, no en un padrón publicado, que no existe. La separación entre familias sí está probada.
+- El 71 % de vehículos troncales en esa familia un sábado conviene contrastarlo con un conteo
+  oficial de flota.
+- El tipo de bus se leyó de una sola jornada; la captura sigue corriendo para confirmarlo.
+- Un festivo entre semana queda 16,5 % por debajo de un domingo: falta medir más festivos.
 
 ## Cobertura y límites
 
-La descarga del mapa contiene **116 registros y 100 códigos distintos**, no 116 rutas únicas. El catálogo ampliado y depurado tiene **137 servicios/variantes: 117 utilizables y 20 pendientes**. En la fecha inicial, 115 variantes tienen ventanas de salida. F23 conserva únicamente el destino Portal Américas. C15 Chapinero Ciclovía está excluida por ser zonal; C15/H15 troncales tienen 19 paradas por sentido. F63/Z63 y los duales complementarios están incorporados.
+La descarga del mapa trae **116 registros y 100 códigos distintos**, que no son 116 rutas únicas. El
+catálogo depurado tiene **137 servicios y variantes: 117 utilizables y 20 pendientes**, y en la fecha
+inicial 115 variantes tienen ventanas de salida. Los pendientes están vencidos, sin geometría o con
+calendario ambiguo, y el panel **Datos** explica cada uno; no se rellenan con líneas rectas ni se
+sustituye el K86 completo por su ramal de aeropuerto. F23 conserva un único destino publicado,
+Portal Américas, y la variante duplicada de Banderas queda excluida con su motivo en
+`data/curated/services.json`. C15 Chapinero Ciclovía es zonal y también se excluye; C15 y H15
+troncales tienen 19 paradas por sentido.
 
-El panel **Datos** explica cada pendiente. Algunos registros están vencidos; otros carecen de geometría o presentan calendarios ambiguos. El K86 completo no se sustituye por su ramal de aeropuerto. Los datos pendientes no se rellenan con líneas rectas.
+No hay matriz origen-destino real ni tráfico mixto microscópico. Three.js dibuja el mapa 2D con
+cámara ortográfica para mover muchos buses en pocos envíos a la GPU; la simulación es de módulos
+propios y no depende de un motor 3D. El proyecto de conducción anterior queda pausado en
+`archive/transmi3d`.
 
-La referencia ajustable 1× aplica un factor de 2,25 a las entradas del modelo anterior; es calibración de escenario, no un nuevo conteo oficial. La demanda se mide sobre **17 días, del 24 de agosto al 9 de septiembre de 2026, con 28.014.777 validaciones**: hay un perfil horario por estación y tipo de día, así que sábado y domingo ya no son una reducción estimada del día de semana. Se conserva únicamente el agregado. Frecuencias, reparto por sentido, destinos, tipos no publicados, asignación de vagón y patios son estimaciones explícitas. Las dimensiones siguen la geometría OSM disponible en 40 estaciones lógicas, incluidos los nueve portales. Portal Norte dispone de puntos de parada y área; no se fabricó un contorno de plataforma. Los ciclos semafóricos y la asignación de servicios a puntos físicos siguen estimados. No hay una matriz real origen-destino ni tráfico mixto microscópico. Ver [modelo y fuentes](docs/OPERACION_Y_DATOS.md).
+## Desarrollo
 
-Three.js se mantiene para dibujar el mapa 2D con cámara ortográfica y muchos buses en pocos envíos a la GPU. La simulación funciona en módulos independientes; no depende de un motor de física 3D. El proyecto de conducción anterior permanece en `archive/transmi3d`, pausado.
+```bash
+node --test app/tests/*.test.mjs                 # 79 pruebas
+python3 -m unittest discover -s tests            # 58, con el Python geográfico de CONTINUAR.md
+python3 tools/classify_fleet.py                  # vuelve a deducir el tipo de bus de las capturas
+```
 
-## Desarrollo y continuidad
+| Carpeta | Qué hay |
+|---|---|
+| `app/dist` | Fuentes estáticas editables y dependencias vendorizadas, con sus licencias |
+| `tools` | Descarga, normalización y análisis de datos abiertos |
+| `data` | `raw` instantáneas con hash · `curated` decisiones revisables · `processed` auditorías |
+| `docs` | Documentación activa y los análisis enlazados arriba |
+| `tests`, `app/tests` | Pruebas Python y Node |
 
-`app/dist/` contiene fuentes editables y dependencias vendorizadas; `tools/`, los importadores; `data/`, instantáneas, curación y auditorías. Pruebas: `node --test app/tests/*.test.mjs` y `python3 -m unittest discover -s tests` usando el Python geográfico indicado en [continuidad](CONTINUAR.md). `tests/test_live_buses.py` no necesita bibliotecas geográficas ni red y corre también con el Python del sistema.
+`tests/test_live_buses.py` corre con el Python del sistema y no toca la red. `web/transmi2d` es solo
+un enlace de compatibilidad con la primera prueba.
 
-[Arquitectura](docs/ARQUITECTURA.md) · [Actualizar los datos](docs/ACTUALIZAR_DATOS.md) · [Plan y pendientes](docs/PLAN_DEL_PROYECTO.md) · [Registros pendientes](docs/PENDIENTES_20260911.md) · [Validación actual](docs/VALIDACION_FASE2_20260911.md) · [Planificador](docs/PLANIFICADOR.md) · [Continuar](CONTINUAR.md)
+[Arquitectura](docs/ARQUITECTURA.md) · [Actualizar los datos](docs/ACTUALIZAR_DATOS.md) ·
+[Plan y alcance](docs/PLAN_DEL_PROYECTO.md) · [Planificador](docs/PLANIFICADOR.md) ·
+[Validación](docs/VALIDACION_FASE2_20260911.md) · [Continuar](CONTINUAR.md)
 
-Publicado en **[daniii3012.github.io/transmi-sim](https://daniii3012.github.io/transmi-sim/)**, desde [daniii3012/transmi-sim](https://github.com/daniii3012/transmi-sim). Cada visitante ejecuta su propia simulación en su navegador; no hay servidor ni estado compartido. No es un sitio oficial de TransMilenio y no son posiciones en vivo.
+---
+
+<div align="center">
+
+Publicado en **[daniii3012.github.io/transmi-sim](https://daniii3012.github.io/transmi-sim/)** ·
+código en [daniii3012/transmi-sim](https://github.com/daniii3012/transmi-sim)
+
+Cada visitante ejecuta su propia simulación en su navegador: no hay servidor ni estado compartido.
+**No es un sitio oficial de TransMilenio y no muestra posiciones en vivo.**
+
+</div>

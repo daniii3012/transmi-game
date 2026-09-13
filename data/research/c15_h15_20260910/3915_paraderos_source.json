@@ -1,5 +1,5 @@
 {
-  "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/3915/C15/paraderos",
+  "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/3915/C15/paraderos",
   "method": "GET",
   "body": null,
   "retrieved_at_utc": "2026-09-11T00:53:17.328604+00:00",

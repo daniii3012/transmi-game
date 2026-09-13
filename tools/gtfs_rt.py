@@ -13,6 +13,12 @@ Dos cosas del alimentador publicado que se resuelven aquí, no en quien lo use:
     posición conocida, así que dos lotes seguidos pueden mostrar un bus quieto y luego dar un salto
     que es ponerse al día y no velocidad. Quien derive velocidades de aquí se equivocará; los
     cambios de parada, no.
+
+El `VehicleDescriptor` trae tres campos y aquí se leen los tres. El segundo, `label`, es el número
+de flota que el vehículo lleva pintado —`E0067`, `K10657`— y de él sale el tipo de carrocería: ver
+`tools/classify_fleet.py` y docs/TIPOS_DE_BUS_20260912.md. Se leyó tarde: las capturas anteriores a
+esa fecha solo guardaron identificador y placa, y para ellas la etiqueta se reconstruye a partir del
+identificador.
 """
 import struct
 
@@ -86,7 +92,8 @@ def posiciones(raw):
         descriptor = mensaje(vehicle[8]) if 8 in vehicle else {}
         stamp = vehicle.get(5) or stamp
         out.append({
-            'bus': texto(descriptor.get(1)), 'placa': texto(descriptor.get(3)),
+            'bus': texto(descriptor.get(1)), 'etiqueta': texto(descriptor.get(2)),
+            'placa': texto(descriptor.get(3)),
             'viaje': texto(trip.get(1)), 'ruta': texto(trip.get(5)),
             'lat': position.get(1), 'lon': position.get(2),
             'parada': texto(vehicle.get(7)), 'secuencia': vehicle.get(3),

@@ -16,7 +16,7 @@
       "response_bytes": 7748
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/buscar?page=0&size=50&sort=idCodigo,asc",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/buscar?page=0&size=50&sort=idCodigo,asc",
       "method": "POST",
       "body": {
         "activa": true,
@@ -27,7 +27,7 @@
       "response_bytes": 28672
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/buscar?page=1&size=50&sort=idCodigo,asc",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/buscar?page=1&size=50&sort=idCodigo,asc",
       "method": "POST",
       "body": {
         "activa": true,
@@ -38,7 +38,7 @@
       "response_bytes": 27230
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/buscar?page=2&size=50&sort=idCodigo,asc",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/buscar?page=2&size=50&sort=idCodigo,asc",
       "method": "POST",
       "body": {
         "activa": true,
@@ -49,7 +49,7 @@
       "response_bytes": 27924
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/buscar?page=3&size=50&sort=idCodigo,asc",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/buscar?page=3&size=50&sort=idCodigo,asc",
       "method": "POST",
       "body": {
         "activa": true,
@@ -60,7 +60,7 @@
       "response_bytes": 28197
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/buscar?page=4&size=50&sort=idCodigo,asc",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/buscar?page=4&size=50&sort=idCodigo,asc",
       "method": "POST",
       "body": {
         "activa": true,
@@ -71,7 +71,7 @@
       "response_bytes": 29474
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/buscar?page=5&size=50&sort=idCodigo,asc",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/buscar?page=5&size=50&sort=idCodigo,asc",
       "method": "POST",
       "body": {
         "activa": true,
@@ -82,7 +82,7 @@
       "response_bytes": 3751
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/692/6/",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/692/6/",
       "method": "GET",
       "body": null,
       "retrieved_at_utc": "2026-09-10T18:53:28.755838+00:00",
@@ -90,7 +90,7 @@
       "response_bytes": 689
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/1187/A60/",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/1187/A60/",
       "method": "GET",
       "body": null,
       "retrieved_at_utc": "2026-09-10T18:53:28.962462+00:00",
@@ -98,7 +98,7 @@
       "response_bytes": 687
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/1188/A61/",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/1188/A61/",
       "method": "GET",
       "body": null,
       "retrieved_at_utc": "2026-09-10T18:53:29.164409+00:00",
@@ -106,7 +106,7 @@
       "response_bytes": 677
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/386/B46/",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/386/B46/",
       "method": "GET",
       "body": null,
       "retrieved_at_utc": "2026-09-10T18:53:29.349824+00:00",
@@ -114,7 +114,7 @@
       "response_bytes": 512
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/1190/F61/",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/1190/F61/",
       "method": "GET",
       "body": null,
       "retrieved_at_utc": "2026-09-10T18:53:29.533820+00:00",
@@ -122,7 +122,7 @@
       "response_bytes": 579
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/776/G41/",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/776/G41/",
       "method": "GET",
       "body": null,
       "retrieved_at_utc": "2026-09-10T18:53:29.710971+00:00",
@@ -130,7 +130,7 @@
       "response_bytes": 505
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/1175/G42/",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/1175/G42/",
       "method": "GET",
       "body": null,
       "retrieved_at_utc": "2026-09-10T18:53:29.932626+00:00",
@@ -138,7 +138,7 @@
       "response_bytes": 576
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/389/G43/",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/389/G43/",
       "method": "GET",
       "body": null,
       "retrieved_at_utc": "2026-09-10T18:53:30.124763+00:00",
@@ -146,7 +146,7 @@
       "response_bytes": 509
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/393/G45/",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/393/G45/",
       "method": "GET",
       "body": null,
       "retrieved_at_utc": "2026-09-10T18:53:30.311604+00:00",
@@ -154,7 +154,7 @@
       "response_bytes": 507
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/387/G46/",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/387/G46/",
       "method": "GET",
       "body": null,
       "retrieved_at_utc": "2026-09-10T18:53:30.517606+00:00",
@@ -162,7 +162,7 @@
       "response_bytes": 686
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/12611/G48/",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/12611/G48/",
       "method": "GET",
       "body": null,
       "retrieved_at_utc": "2026-09-10T18:53:30.698071+00:00",
@@ -170,7 +170,7 @@
       "response_bytes": 623
     },
     {
-      "url": "https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/388/K43/",
+      "url": "https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/388/K43/",
       "method": "GET",
       "body": null,
       "retrieved_at_utc": "2026-09-10T18:53:30.882897+00:00",

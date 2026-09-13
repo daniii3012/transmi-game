@@ -72,6 +72,9 @@ def build():
            'components':[[[round(x,2),round(y,2)] for x,y in l.coords] for l in lines]})
         zones.setdefault(p['le_troncal'], {'id':p['le_troncal'],'name':p['nom_tronc'],'color':p['color']})
     curated=read(ROOT/'data/curated/services.json')
+    # Tipo de carrocería por servicio, deducido de la flota que lo atiende; lo escribe classify_fleet.py.
+    # Un servicio sin lecturas no recibe perfil y el simulador lo declara estimado.
+    fleet=read(ROOT/'data/curated/fleet_types.json')
     excluded=[]
     routes=[]
     for row in catalog:
@@ -147,8 +150,15 @@ def build():
         route['zone']=z or (route['code'][0] if route['code'][0].isalpha() else '?')
         zones.setdefault(route['zone'], {'id':route['zone'],'name':(meta.get('troncal') or {}).get('nombre') or ('Avenida 68' if route['zone']=='P' else 'Otros destinos'),'color':route['color']})
         route['dual']=any(s['kind']=='street' for s in raw_stops)
+        # El tipo publicado manda sobre la observación: de F63/Z63 se conoce el modelo, no solo la familia.
         if route['code'] in ('F63','Z63'):
             route['vehicle_profile']={'type':'dual_articulated_electric','capacity':160,'status':'published','source_url':'https://bogota.gov.co/mi-ciudad/movilidad/bogota-pone-rodar-50-buses-duales-articulados-electricos-en-2026'}
+        elif route['code'] in fleet['routes'] and fleet['routes'][route['code']]['status']!='unresolved':
+            observed=fleet['routes'][route['code']]
+            route['vehicle_profile']={'type':observed['type'],'capacity':observed['capacity'],'status':observed['status'],
+                'buses':observed['buses'],'snapshot':(fleet['observed_days'] or [fleet['derived_at'][:10]])[-1],
+                'observed_days':len(fleet['observed_days']),'source':'gtfs_rt_fleet_labels',
+                'source_url':fleet['sources']['feed']}
         route['served_zones']=sorted({stations[s['station_id']]['zone'] for s in raw_stops if s['station_id'] in stations and stations[s['station_id']]['zone']})
         route['issues']=list(dict.fromkeys(issues));route['warnings']=list(dict.fromkeys(warnings))
         route['ready']=bool(route['points']) and not route['issues']
@@ -174,17 +184,19 @@ def build():
     return {'schema_version':2,'revision':'services-v2-'+snapshot,'snapshot':snapshot,'scenario_date':'2026-09-10',
        'origin_lon_lat':ORIGIN,'projection':LOCAL_CRS.to_string(),'coordinate_frame':'XY east/north metres; 1:1',
        'bounds':[min(p[0] for p in xy),min(p[1] for p in xy),max(p[0] for p in xy),max(p[1] for p in xy)],
-       'source_hashes':{'catalog':digest(folder/'selected_catalog.json'),'stations':digest(folder/'map_stations.geojson'),'street_stops':digest(street_file),'corridors':digest(folder/'map_corridors.geojson'),'curation':digest(ROOT/'data/curated/services.json'),'refresh_manifest':digest(refresh/'manifest.json') if refresh else None,'supplement_catalog':digest(supplement/'selected_catalog.json')},
+       'source_hashes':{'catalog':digest(folder/'selected_catalog.json'),'stations':digest(folder/'map_stations.geojson'),'street_stops':digest(street_file),'corridors':digest(folder/'map_corridors.geojson'),'curation':digest(ROOT/'data/curated/services.json'),'fleet_types':digest(ROOT/'data/curated/fleet_types.json'),'refresh_manifest':digest(refresh/'manifest.json') if refresh else None,'supplement_catalog':digest(supplement/'selected_catalog.json')},
        'attribution':'TRANSMILENIO S.A. · mapa digital y buscador de rutas; IDECA · paraderos duales',
        'license_notes':'Licencia de API de rutas/mapa no establecida; paraderos según catálogo original. Uso local.',
        'assumptions':{'berth_assignment':'Estimated deterministic service-to-wagon allocation; not a published assignment',
           'lanes':'One stopping lane and one independent passing lane per direction, user-selected abstraction',
           'frequency':'Configurable estimate, not official headways','demand':'Configurable synthetic boarding/alighting, no passenger OD survey',
           'linear_reference':'Local projection within 650m of published chainage; unlocated street stops interpolate official shape',
-          'depot':'Abstract vehicle staging at journey origin; no invented yard access geometry'},
+          'depot':'Abstract vehicle staging at journey origin; no invented yard access geometry',
+          'vehicle_type':'Body type per service read from the fleet labels of the official realtime feed; services without readings fall back to the articulated reference, marked as an estimate'},
        'counts':{'map_records':len(map_catalog),'map_codes':len({r['codigo'] for r in map_catalog}),'records':len(routes),'excluded':len(excluded),'ready':sum(r['ready'] for r in routes),'pending':sum(not r['ready'] for r in routes)},
        'street_context':street_context,'excluded':excluded,'corridors':corridors,'stations':list(stations.values()),'routes':routes,'zones':sorted(zones.values(),key=lambda z:z['id']),
-       'vehicle':{'length_m':18.5,'width_m':2.5,'capacity':160,'label':'Articulado de referencia; mezcla y perfiles en vehicles.mjs'}}
+       'vehicle':{'length_m':18.5,'width_m':2.5,'capacity':160,'label':'Articulado de referencia; perfiles por servicio en vehicles.mjs'},
+       'fleet_types':{k:fleet[k] for k in ('derived_at','method','fleet_seen','observed_ranges','sources')}}
 
 if __name__=='__main__':
     data=build();write(ROOT/'app/dist/services.json',data)

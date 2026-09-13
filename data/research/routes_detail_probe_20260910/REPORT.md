@@ -4,7 +4,7 @@ Consulta HTTP de solo lectura al buscador oficial de TransMilenio. La evidencia 
 
 ## Contrato verificado
 
-- Enumeración observada en el auditor previo: `POST https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/buscar?page=N&size=50&sort=idCodigo,asc`, cuerpo `{ "activa": true, "tipo": "TransMilenio" }`. La auditoría previa registró 256 filas e IDs distintos en seis páginas. La muestra actual usa ese catálogo ya capturado.
+- Enumeración observada en el auditor previo: `POST https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/buscar?page=N&size=50&sort=idCodigo,asc`, cuerpo `{ "activa": true, "tipo": "TransMilenio" }`. La auditoría previa registró 256 filas e IDs distintos en seis páginas. La muestra actual usa ese catálogo ya capturado.
 - El frontend actual también consulta `POST https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/troncales` con cuerpo `{}`. La respuesta del 2026-09-10 tuvo **116 registros** y solo los campos `id`, `codigo`, `nombre`, `color` (hash en `manifest.json`). Esto contrasta la cifra 116 con el mapa digital: es un conteo de objetos devueltos por ese endpoint, no una prueba de 116 corredores físicos, rutas jugables o duales.
 - Detalle por ID: `GET https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/{id}/rutaDetalle`.
 - Respuesta de detalle: claves `color`, `nombre`, `estaciones`, `horario`, `trazado`.

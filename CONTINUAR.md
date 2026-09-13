@@ -1,6 +1,6 @@
 # Continuidad — Transmi 2D
 
-Actualizado: 11 septiembre de 2026. Leer README.md, docs/OPERACION_Y_DATOS.md y docs/VALIDACION_FASE2_20260911.md. El checkpoint de la primera revisión es `f6fa207e3830ef75979640caf8ab9af4c64feac8`, verificado y subido antes de esta segunda revisión. La segunda revisión integra todos los portales, semáforos corroborados, planificador y etiquetas fluidas. No reiniciar la arquitectura.
+Actualizado: 13 septiembre de 2026. Leer README.md, docs/OPERACION_Y_DATOS.md y docs/VALIDACION_FASE2_20260911.md. El checkpoint de la primera revisión es `f6fa207e3830ef75979640caf8ab9af4c64feac8`, verificado y subido antes de esta segunda revisión. La segunda revisión integra todos los portales, semáforos corroborados, planificador y etiquetas fluidas. No reiniciar la arquitectura.
 
 ## Proyecto y autorizaciones
 
@@ -22,7 +22,19 @@ Estimaciones ajustables y QA de navegador autorizadas; dos carriles por sentido 
 137 registros: 117 utilizables de 105 códigos, 20 pendientes. El jueves inicial 10 sep. hay 115 variantes con ventanas. El mapa bruto tiene 116 registros/100 códigos, no 116 rutas únicas. C15 zonal/366 excluida; C15/3915 y H15/367 troncales tienen 19 paradas. F23/10082 Banderas excluida por indicación de Daniel; se conserva F23/396 Portal Américas. **Los 20 pendientes deben permanecer pendientes por ahora.** E48/12444, H76/1213 y K86 completo/629 salieron de esa lista el 11 sep. al reimportar su detalle publicado; los demás siguen sin trazado o con calendario Ciclovía ambiguo. No confundirlo con aeropuerto/5316.
 
 - Reloj, calendarios/festivos colombianos, medianoche, demanda pico/valle, geometría métrica, curvas, aceleración y frenado integrados. Motor por eventos en worker; recorridos y reservas reproducibles al retroceder.
-- Capacidad fija 80/160/240 y tamaño fijo por ruta. Fáciles 1–8 articuladas, M51/F51 biarticuladas por usuario; F63/Z63 dual articulado eléctrico publicado. Otros duales padrón; otros servicios ≥18 km biarticulados y menores articulados, hipótesis documentada, no verificación de flota.
+- **Tipo de bus leído de la flota** (12/09/2026): el alimentador publica la etiqueta que cada bus lleva pintada
+  (`VehicleDescriptor` campo 2, que la captura descartaba). Esa etiqueta separa articulados, biarticulados y duales,
+  y en la jornada del 12 sep. los 87 servicios con lecturas salen de una sola familia, sin mezcla: 21 de articulado,
+  55 de biarticulado, 11 duales. Se retira el criterio de 18 km, que erraba en 25 de 76. `tools/classify_fleet.py`
+  escribe `data/curated/fleet_types.json` y `build_services.py` lo adjunta como `vehicle_profile`. Capacidad fija
+  80/160/240 por decisión de modelo; los 34 servicios sin lecturas usan articulado y lo declaran estimación;
+  F63/Z63 conservan su perfil publicado de 160. Evidencia, rangos por serie y pendientes en
+  docs/TIPOS_DE_BUS_20260912.md. La captura sigue corriendo (`--days 8`, ventana 4:00–23:30) y desde el 13 sep.
+  escribe ya la columna `etiqueta`; `classify_fleet.py` compara etiqueta publicada contra reconstruida y lista
+  discrepancias, series nuevas y servicios mezclados en cada corrida. **Pendiente:** confirmar con la semana
+  completa, contrastar la proporción (780 de 1.094 troncales en la familia biarticulada) contra un conteo
+  publicado de flota, y decidir si vale la pena una captura `--scope todo` para clasificar las series
+  alimentadoras y zonales, que hoy quedan fuera.
 - Cruceros 60 troncal/50 calle, variación por vehículo −5/−2/0/+2/+5. Los buses frenan en curvas/paradas; calle en pico factor 0,82.
 - Nuevo 1× de demanda = 2,25 del modelo previo. Demanda medida sobre 17 días (24 ago.–9 sep. 2026, 28.014.777 validaciones): perfil horario por tipo de día en `hourly_by_day_type`, 13 días de semana, 2 sábados y 2 domingos. Factores medidos sábado 0,654 y domingo 0,302, frente a los 0,70/0,55 estimados que reemplazan; el domingo estaba sobreestimado ~80%. Entre días de semana la variación es 2,0%. OD, descensos, direcciones y abandono medio 30 min siguen estimados. Denegaciones son oportunidades repetidas, no personas únicas. Detalle en docs/DEMANDA_MULTIDIA_20260911.md. Contraste estacional con 15 días de marzo (21.156.110 validaciones) en docs/DEMANDA_COMPARACION_MARZO_20260911.md: factores por tipo de día estables (sábado 0,654 vs 0,642; domingo 0,302 vs 0,289), nivel de marzo −7,3 % uniforme, reparto horario casi idéntico. Dos hallazgos: un festivo entre semana queda 16,5 % por debajo de un domingo —mejora pendiente, falta medir más festivos— y la red cambió entre marzo y septiembre (Calle 76 y Calle 45 desaparecen, Calle 72 - Areandina aparece), lo que corrobora la retirada de los pendientes 6/692 y A60/1187. La calibración sigue siendo la de agosto–septiembre por ser contemporánea del catálogo.
 - **Salidas del horario publicado** (12/09/2026): 104 de los 117 servicios utilizables despachan a las horas

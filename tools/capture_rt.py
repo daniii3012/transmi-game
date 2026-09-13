@@ -10,7 +10,9 @@ Two things come out of it:
                                the distribution of observed speed against the previous build.
   rt_detalle_AAAAMMDD.csv.gz   one row per vehicle per build, so the running times, the dwell at
                                stations and the bunching can be recomputed later from the raw
-                               readings instead of being trusted from the summary.
+                               readings instead of being trusted from the summary. Incluye la
+                               etiqueta de flota que el bus lleva pintada, de la que sale el tipo
+                               de carrocería (docs/TIPOS_DE_BUS_20260912.md).
   rt_detalle_AAAAMMDD.json     which published package that day's readings belong to, so a capture
                                is never compared against a timetable it did not run under.
 
@@ -201,7 +203,31 @@ def resumen(actual, anterior, rutas):
 
 # --- Escritura ------------------------------------------------------------------------------------
 
-COLUMNAS = ('build', 'bus', 'placa', 'viaje', 'ruta', 'lat', 'lon', 'parada', 'secuencia')
+COLUMNAS = ('build', 'bus', 'etiqueta', 'placa', 'viaje', 'ruta', 'lat', 'lon', 'parada', 'secuencia')
+
+def cabecera(destino):
+    """Columnas del archivo que ya existe; None si no existe o está vacío."""
+    if not destino.exists() or destino.stat().st_size == 0:
+        return None
+    with gzip.open(destino, 'rt', encoding='utf-8', newline='') as archivo:
+        primera = archivo.readline()
+    return tuple(next(csv.reader([primera]))) if primera else None
+
+def apartar(destino, columnas):
+    """Mueve a un lado un día que venía escribiéndose con otras columnas.
+
+    Mezclar dos esquemas en el mismo archivo deja filas que nadie puede leer sin adivinar cuál es
+    cuál. El día que arranca con una captura vieja y sigue con una nueva —al añadirse la etiqueta
+    de flota, por ejemplo— se parte en dos archivos, cada uno con su cabecera intacta. Los
+    lectores recorren `rt_detalle_*.csv.gz` y siguen encontrando los dos.
+    """
+    base = destino.name[:-len('.csv.gz')]
+    for intento in range(1, 100):
+        aparte = destino.with_name(f'{base}_esquema{len(columnas)}' + ('' if intento == 1 else f'_{intento}') + '.csv.gz')
+        if not aparte.exists():
+            destino.rename(aparte)
+            return aparte
+    raise SystemExit(f'Demasiados archivos apartados junto a {destino}')
 
 def escribir_detalle(destino, sello, presentes, rutas, alcance):
     """One gzip member per build. Appending keeps the file readable if the process is killed."""
@@ -209,13 +235,17 @@ def escribir_detalle(destino, sello, presentes, rutas, alcance):
              if alcance == 'todo' or rutas.get(v['ruta'], ('?', ''))[0] in TRUNK]
     if not filas:
         return 0
-    nuevo = not destino.exists() or destino.stat().st_size == 0
+    previa = cabecera(destino)
+    if previa is not None and previa != COLUMNAS:
+        aparte = apartar(destino, previa)
+        print(f'Detalle con columnas {",".join(previa)} apartado en {aparte.name}; el día sigue con las nuevas.')
+        previa = None
     with gzip.open(destino, 'at', encoding='utf-8', newline='') as archivo:
         escritor = csv.writer(archivo)
-        if nuevo:
+        if previa is None:
             escritor.writerow(COLUMNAS)
         for v in filas:
-            escritor.writerow([sello, v['bus'], v['placa'], v['viaje'], v['ruta'],
+            escritor.writerow([sello, v['bus'], v['etiqueta'], v['placa'], v['viaje'], v['ruta'],
                                f"{v['lat']:.5f}" if v['lat'] is not None else '',
                                f"{v['lon']:.5f}" if v['lon'] is not None else '',
                                v['parada'], v['secuencia'] if v['secuencia'] is not None else ''])

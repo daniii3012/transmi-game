@@ -12,8 +12,8 @@ import urllib.parse
 import urllib.request
 
 ROOT=Path(__file__).resolve().parents[1]
-API='https://api.buscador-rutas.transmilenio.gov.co'
-SEARCH='https://ms-transmiapp-rm2xahnybq-uk.a.run.app'
+# Dominio oficial del buscador de rutas. Búsqueda paginada, detalle y capas del mapa salen del mismo.
+API=SEARCH='https://api.buscador-rutas.transmilenio.gov.co'
 DUAL_CODES={'M80','L80','H81','M81','L82','M82','D83','L83','M83','C84','M84','M85','P85','L85','K86','M86','F63','Z63','D81','L81','H83'}
 FIELDS=['id','codigo','nombre','tipo','color','fechaDesde','fechaHasta','troncal','horarios','activa']
 

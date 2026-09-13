@@ -10,7 +10,7 @@ from pathlib import Path
 import urllib.request
 
 ROOT = Path(__file__).resolve().parents[1]
-HOST = 'https://ms-transmiapp-rm2xahnybq-uk.a.run.app'
+HOST = 'https://api.buscador-rutas.transmilenio.gov.co'
 BODY = {'activa': True, 'tipo': 'TransMilenio'}
 FIELDS = ['id', 'codigo', 'nombre', 'tipo', 'color', 'fechaDesde', 'fechaHasta', 'troncal', 'horarios']
 

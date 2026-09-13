@@ -41,7 +41,7 @@ En `data/raw/rt_capture/` deja:
 | Archivo | Qué es |
 |---|---|
 | `rt.jsonl` | Una línea por reconstrucción del feed: conteo por agencia y por línea troncal |
-| `rt_detalle_AAAAMMDD.csv.gz` | Una fila por vehículo y lote: `build, bus, placa, viaje, ruta, lat, lon, parada, secuencia` |
+| `rt_detalle_AAAAMMDD.csv.gz` | Una fila por vehículo y lote: `build, bus, etiqueta, placa, viaje, ruta, lat, lon, parada, secuencia` |
 | `rt_detalle_AAAAMMDD.json` | A qué paquete publicado pertenece ese día de lecturas |
 | `routes.txt` | El catálogo, bajado una vez al día por Range del paquete: 13 kB en vez de 121 MB |
 
@@ -193,3 +193,12 @@ dos fuentes de nuevo, el camino corto es la vista «Por servicio», que sigue ah
 Una precisión que salió de las pruebas: el alimentador codifica latitud y longitud en coma flotante
 de 32 bits, así que las posiciones traen del orden de **un metro de cuantización**. Un bus queda
 donde el feed puede decir que está, no más fino que eso.
+
+## La etiqueta de flota
+
+El `VehicleDescriptor` trae tres campos y la captura guarda los tres desde el 12 de septiembre de
+2026. El segundo es la etiqueta que el bus lleva pintada —`E0067`, `K10657`— y de ella sale el tipo
+de carrocería de cada servicio: ver [tipo de bus por servicio](TIPOS_DE_BUS_20260912.md). Un día que
+empezó a escribirse sin esa columna no se mezcla con las nuevas: la captura aparta lo ya escrito en
+`rt_detalle_AAAAMMDD_esquema9.csv.gz`, con su cabecera intacta, y sigue en un archivo nuevo. Los
+lectores recorren `rt_detalle_*.csv.gz` y encuentran los dos.

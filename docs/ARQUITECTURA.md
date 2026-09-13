@@ -32,7 +32,7 @@ Una cola de prioridad prepara salidas, atención y liberación de vehículos en 
 
 La clave estación/sentido/puesto físico (o vagón de respaldo) reserva dos posiciones de atención, o una en calle. La asignación servicio→vagón es determinista y estimada. No bloquea expresos que pasan. Buses que completan un servicio quedan disponibles tras 240 s de regulación en la terminal de destino y pueden reutilizarse en salidas compatibles. No se dibujan accesos de patio inventados, no hay inventario oficial de flota ni desplazamientos en vacío modelados.
 
-El tipo de cada vehículo permanece fijo; los depósitos separan tipos. F63/Z63 tienen perfil publicado propio. Las demás rutas tienen una asignación estable publicada, indicada por el usuario o estimada; no se mezcla tipo dentro de una ruta. Los cruceros varían hasta ±5 km/h por vehículo, sin variar capacidad.
+El tipo de cada vehículo permanece fijo; los depósitos separan tipos. F63/Z63 tienen perfil publicado propio. Las demás rutas llevan el tipo que se lee de la flota que las atiende en el alimentador oficial —`data/curated/fleet_types.json`, adjunto como `vehicle_profile`— y las que no tienen lecturas usan el articulado de referencia, declarado estimación; no se mezcla tipo dentro de una ruta. Los cruceros varían hasta ±5 km/h por vehículo, sin variar capacidad.
 
 ## Pasajeros
 

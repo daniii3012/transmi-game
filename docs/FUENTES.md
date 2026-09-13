@@ -55,4 +55,6 @@ No se ha encontrado y comprobado un modelo completo de Bogotá listo para import
 
 ## Registro de derechos y procedencia
 
+La API de rutas se registra por su dominio oficial, `api.buscador-rutas.transmilenio.gov.co`. El cliente público del buscador se apoya en un host interno de despliegue; el 12 de septiembre de 2026 se normalizaron los registros al dominio oficial, después de comprobar que responde el mismo contenido en los dos endpoints que usa el proyecto, la búsqueda paginada y el detalle por ID. Los hashes guardados son del contenido y no cambian con esa normalización.
+
 Las licencias indicadas son las que declaran las fichas concretas consultadas. Hay conjuntos antiguos con nombres parecidos y licencias diferentes: no generalizar la licencia de un portal a todos sus recursos. Conservar atribución y descripción de transformaciones. Las fotografías y renders externos se mantienen como referencias enlazadas; no se incorporaron como texturas ni modelos del juego.

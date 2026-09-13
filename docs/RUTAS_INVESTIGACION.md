@@ -1,6 +1,6 @@
 # Buscador de rutas: primer examen técnico
 
-Consulta del 9 de septiembre de 2026. Fuente: [buscador oficial](https://buscador-rutas.transmilenio.gov.co/rutas). El cliente público observado utiliza `https://ms-transmiapp-rm2xahnybq-uk.a.run.app` para tipos de servicio, troncales, estaciones y búsqueda paginada de rutas. `tools/audit_routes.py` reproduce la consulta y guarda únicamente campos de transporte; omite metadatos administrativos.
+Consulta del 9 de septiembre de 2026. Fuente: [buscador oficial](https://buscador-rutas.transmilenio.gov.co/rutas). La API pública del buscador, en `api.buscador-rutas.transmilenio.gov.co`, sirve tipos de servicio, troncales, estaciones y búsqueda paginada de rutas. `tools/audit_routes.py` reproduce la consulta y guarda únicamente campos de transporte; omite metadatos administrativos.
 
 La búsqueda con `activa: true, tipo: TransMilenio`, orden `idCodigo,asc`, devolvió **256 registros con IDs distintos** en seis páginas. No equivalen a 256 rutas troncales jugables ni a 256 códigos diferentes. El filtro ofrece también códigos con guion como `10-1` y el registro numérico `16` sin troncal asignada. Los códigos 1–8 aparecen, pero una clasificación de “rutas fáciles” requiere comprobar sus recorridos; no se ha deducido la categoría de todos los códigos numéricos.
 

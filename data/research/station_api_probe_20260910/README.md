@@ -8,7 +8,7 @@ Consulta acotada para la simulación 2D de troncales y buses duales en Bogotá. 
 
 - `https://tramites.transmilenio.gov.co/station-maps/api/map` respondió HTTP 200 y JSON de 48.842 bytes. El esquema observado tiene `base_image`, `markers` y `sizes`; contiene 156 marcadores y 13 líneas. Cada marcador trae `id`, `code`, `name`, `type`, `x_pct`, `y_pct`, `line{id,name,color}` e `image_url`.
 - La muestra de líneas incluye `Carrera 7` (`id=12`, `#00949C`), `Carrera 10` (`id=11`, `#00949C`), `Américas` (`id=6`, `#BB0615`) y otras troncales. No aparece una línea llamada Avenida 68 en este visor de planos.
-- La API de rutas del buscador oficial (`ms-transmiapp-rm2xahnybq-uk.a.run.app`) publicó P85 (`id=1316`) y M85 (`id=4596`) con fechas de vigencia, horarios y paraderos. Los JSON sanitizados están en `p85.json`, `p85_paraderos.json`, `m85.json` y `m85_paraderos.json`.
+- La API de rutas del buscador oficial (`api.buscador-rutas.transmilenio.gov.co`) publicó P85 (`id=1316`) y M85 (`id=4596`) con fechas de vigencia, horarios y paraderos. Los JSON sanitizados están en `p85.json`, `p85_paraderos.json`, `m85.json` y `m85_paraderos.json`.
 
 ### P85/M85 y Avenida 68
 
@@ -32,8 +32,8 @@ La fuente oficial de rutas publica para M85 el troncal `Carrera 7`; la página o
 - Plano oficial: https://tramites.transmilenio.gov.co/plano-estaciones-portales-transmilenio
 - API del plano: https://tramites.transmilenio.gov.co/station-maps/api/map
 - Buscador oficial: https://buscador-rutas.transmilenio.gov.co/rutas/1316/P85/TransMilenio/AK%2068%20-%20CL%209
-- API P85: https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/1316/P85/ y `/paraderos`
-- API M85: https://ms-transmiapp-rm2xahnybq-uk.a.run.app/api/v1/rutas/4596/M85/ y `/paraderos`
+- API P85: https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/1316/P85/ y `/paraderos`
+- API M85: https://api.buscador-rutas.transmilenio.gov.co/api/v1/rutas/4596/M85/ y `/paraderos`
 - Comunicado oficial sobre MP85: https://portalold.transmilenio.gov.co/publicaciones/154848/bogota-estrena-la-ruta-mp85-primer-servicio-de-la-troncal-avenida-68/index.html
 - Esquema oficial KR7: https://www.transmilenio.gov.co/files/1605e912-531c-4aa4-9e32-70c3d7141725/b31624d5-4bd5-4a9f-ba61-9ba458d670b2/esquema_de_servicios_troncales_kr7.pdf
 - Paraderos duales Carrera 7 (2018): https://www.transmilenio.gov.co/comunicaciones/publicaciones/2018/la-carrera-septima-tendra-mas-paraderos

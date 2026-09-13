@@ -182,3 +182,10 @@ ruta (ML82 = M82/L82, MK86 = M86/K86).
   y el tirador comparten ahora caja exacta: 32 px en escritorio, 44 en móvil.
 - La cabecera de la hoja llevaba los mismos dos caracteres y con ellos el mismo defecto: cambiaba de
   tamaño al plegarse y la marca no quedaba a la altura del texto. Ahora usa el galón de bordes.
+- **La pestaña En vivo publicada ya no manda a correr nada en local.** Decía que hacía falta el
+  servidor de esta carpeta y nombraba `ABRIR_SIMULACION_2D.command`, instrucciones que no llevan a
+  ninguna parte desde el sitio: lo que las haría funcionar no está en este repositorio. Ahora dice
+  lo que es —un simulador que reconstruye la operación desde los horarios publicados y no observa
+  dónde está cada bus— y que esta versión no trae vista en tiempo real. Solo cambia el aviso que se
+  ve cuando la lectura no está disponible, que es exactamente el caso de Pages; corriendo en local
+  la pestaña sigue igual.

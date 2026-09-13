@@ -203,3 +203,35 @@ ruta (ML82 = M82/L82, MK86 = M86/K86).
   cuando la lista iba a dos columnas—, así que la insignia del servicio y el conteo de buses
   quedaban pegados al borde del recuadro. Con el relleno vuelven a alinearse con el buscador y el
   resto del panel, y el resalte sigue sobresaliendo diez píxeles como en las demás listas.
+
+12/09/2026 (noche, tercera vuelta) — Planificador, En vivo y el reloj.
+
+- **El filtro de estaciones pasa a la web.** Estaba en `explorer.mjs`, que solo existe en el árbol
+  privado, así que la versión publicada obligaba a recorrer mil paradas en un desplegable. El código
+  vive ahora en `app.mjs` —compartido— y el explorador recibe `restoreOptions` para seguir fijando
+  origen y destino desde la ficha de una estación. Intercambiar rehace las listas completas antes de
+  cruzar los valores, que con un filtro puesto dejaría fuera la estación que entra.
+- **Una alternativa, un pliegue.** Estaban todas dentro de un solo desplegable, que abría un muro;
+  ahora cada una ocupa una línea hasta que se abra, y el resumen ya dice cuánto tarda, a qué hora
+  llega y por qué servicios va. Dentro del pliegue la tarjeta no repite ese encabezado.
+- **Se retiran las opciones que no son alternativas.** Un viaje es mejor si llega antes, tiene menos
+  transbordos o sale más tarde —esto último cuenta, son minutos que uno no espera—. El buscador
+  ofrecía «3 transbordos, llega 00:05» junto a «2 transbordos, llega 00:05»: la misma peor. Se queda
+  la frontera de lo elegible, calculada al presentar, sin tocar el motor. Comprobado que conserva el
+  caso que el diseño quería conservar: Banderas→Ricaurte sigue ofreciendo C19, J23 y M51, que salen
+  a horas distintas por el mismo corredor.
+- **Revisión de optimalidad.** El motor es una búsqueda por etiquetas sobre (transbordos, estación,
+  servicio, parada) que minimiza la hora de llegada, y guarda cada meta alcanzada. El viaje que
+  llega primero siempre entra en el conjunto ofrecido —su cubo está vacío cuando se le mira—, así
+  que la tarjeta abierta es de verdad la mejor por hora de llegada, con menos transbordos al empatar.
+- La fecha y la hora vuelven a compartir fila en el móvil: lo que las hacía desbordar era la maqueta
+  nativa, no la rejilla, y eso ya está resuelto.
+- **El indicador de En vivo se repinta al cambiar de alcance.** Conservaba el número del alcance
+  anterior bajo la etiqueta nueva —los buses de todo el sistema rotulados «del servicio», o los de un
+  servicio rotulados como el sistema entero— hasta la siguiente lectura. Ahora se borra y se repinta
+  con lo último que ya se tiene, lo que además devuelve al mapa los buses que la otra vista escondía.
+- **El reloj ya no se esconde al seleccionar algo.** En el móvil, una estación o un bus en foco
+  ocultaba el control del tiempo, justo el que da sentido a lo que se está mirando, y obligaba a
+  soltar la selección para mover la hora. La hoja sigue cediendo el sitio; el reloj no. La ficha se
+  apoya donde acabe el reloj mediante `--sheet-bottom`, y donde la pestaña no lo muestra llega hasta
+  abajo del todo.

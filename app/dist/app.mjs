@@ -312,7 +312,10 @@ try{
  function switchPanel(name){if(name==='planner'||activePanel==='planner'&&selection?.kind==='journey')clearSelection();activePanel=name;shell.show(name);$$('button[data-panel]').forEach(b=>b.classList.toggle('nav-active',b.dataset.panel===name));$$('.panel').forEach(p=>p.hidden=p.id!==name+'-panel');$('#sidebar').scrollTop=0;if(name==='depots'&&ready)worker.postMessage({type:'depots',generation});syncLive();}
  // Buses en tiempo real. Es la única parte que sale a la red y a un tercero: vive en su pestaña, se apaga
  // al salir de ella o al ocultar la ventana, y no toca el escenario, el reloj ni el planificador.
- const live=new LiveFeed({onState:renderLive});let liveFitted=null,liveScope='network',liveUsable=false,livePerService=false;
+ // La última lectura de cada alcance se guarda para poder repintar al cambiar de vista sin esperar
+ // a que llegue otra.
+ const live=new LiveFeed({onState:state=>{if(state.phase==='ok')ultimoServicio=state;renderLive(state);}});
+ let liveFitted=null,liveScope='network',liveUsable=false,livePerService=false,ultimoServicio=null;
  const liveNetwork=new LiveFeed({onState:state=>{ultimaRed=state;renderLiveNetwork(state);},url:()=>'./api/en-vivo/red'});
  // Identificadores que la vista por servicio ya dibuja, y el último estado de la red, para poder
  // repintarla sin volver a pedirla cuando cambia lo que está en foco.
@@ -395,7 +398,17 @@ try{
   }
   if(filas.length>14)list.append(el('li',`y ${filas.length-14} servicios más`,'muted'));
  }
- function setLiveScope(scope){liveScope=scope;liveFitted=null;syncLive();}
+ function setLiveScope(scope){
+  liveScope=scope;liveFitted=null;
+  // El indicador cambia de significado con el alcance: dejar debajo de la etiqueta nueva el número
+  // del alcance anterior —los buses del sistema rotulados «del servicio», o al revés— era decir algo
+  // falso hasta la siguiente lectura. Se borra y se repinta en el acto con lo último que ya se tiene,
+  // que además devuelve al mapa los buses que la otra vista escondía.
+  $('#live-count').textContent='—';$('#live-stopped').textContent='—';
+  syncLive();
+  if(scope==='route'){if(ultimoServicio?.payload?.code===$('#live-route').value)renderLive(ultimoServicio);}
+  else if(ultimaRed)renderLiveNetwork(ultimaRed);
+ }
  // El trazado del servicio en foco no depende de qué ficha esté abierta: al soltar una, tiene que
  // seguir resaltado y no esperar a la próxima lectura para volver a aparecer.
  function restoreLiveRoute(){
@@ -483,8 +496,11 @@ try{
 
  function showJourney(legs){clearSelection();selection={kind:'journey',id:String(planSequence)};map.setJourney(legs);map.fitPoints(legs.flatMap(l=>l.points));}
  function journeyTime(second,date){return timeText(second).slice(0,5)+(second>=DAY?' · '+addDays(date,Math.floor(second/DAY)):'');}
- function journeyCard(journey,result){
-  const card=el('section',undefined,'journey-card'+(journey.dominated?' journey-alternative':''));card.append(el('h2',journey.transfers?`${journey.transfers} transbordo${journey.transfers>1?'s':''}`:'Viaje directo'),el('p',`≈ ${Math.ceil(journey.duration/60)} min · llegada ${journeyTime(journey.arrive,result.date)}`,'journey-duration'));
+ const journeyLabel=journey=>journey.transfers?`${journey.transfers} transbordo${journey.transfers>1?'s':''}`:'Viaje directo';
+ // Dentro de un pliegue el encabezado sobra: el resumen del pliegue ya lo dice.
+ function journeyCard(journey,result,{header=true}={}){
+  const card=el('section',undefined,'journey-card'+(journey.dominated?' journey-alternative':''));
+  if(header)card.append(el('h2',journeyLabel(journey)),el('p',`≈ ${Math.ceil(journey.duration/60)} min · llegada ${journeyTime(journey.arrive,result.date)}`,'journey-duration'));
   if(journey.dominated)card.append(el('p','Alternativa: no llega antes que una opción con menos transbordos.','muted'));
   const vencidos=[...new Set(journey.legs.filter(l=>validityState(routeById.get(l.routeId)||{},result.date)!=='current').map(l=>l.code))];
   if(vencidos.length)card.append(el('p',`Horario publicado vencido en ${vencidos.join(', ')}. Se usa su último horario disponible.`,'muted'));
@@ -502,12 +518,25 @@ try{
   // Una sola opción a la vista —la que llega antes, y con menos transbordos si empatan— y todas
   // las demás detrás de un mismo pliegue. Agrupar por transbordos dejaba tres tarjetas abiertas
   // que se leían como tres viajes distintos y hundían el resto del panel.
-  const opciones=[...result.journeys].sort((a,b)=>a.arrive-b.arrive||a.transfers-b.transfers);
+  // Tres cosas hacen mejor a un viaje: llegar antes, tener menos transbordos y salir más tarde —esto
+  // último vale, porque son minutos que uno no pasa esperando—. Una opción que no gana en ninguna de
+  // las tres frente a otra no es una alternativa, es la misma peor, y con un pliegue por opción solo
+  // estorbaría: el buscador ofrecía «3 transbordos, llega 00:05» al lado de «2 transbordos, llega
+  // 00:05». Se queda la frontera de lo que de verdad se puede elegir.
+  const salida=j=>j.legs[0]?.depart??0;
+  const superaA=(b,a)=>b.arrive<=a.arrive&&b.transfers<=a.transfers&&salida(b)>=salida(a)
+   &&(b.arrive<a.arrive||b.transfers<a.transfers||salida(b)>salida(a));
+  const opciones=result.journeys.filter(a=>!result.journeys.some(b=>b!==a&&superaA(b,a)))
+   .sort((a,b)=>a.arrive-b.arrive||a.transfers-b.transfers||salida(b)-salida(a));
   panel.append(journeyCard(opciones[0],result));
-  if(opciones.length>1){
-   const extra=opciones.length-1,plegado=el('details');
-   plegado.append(el('summary',`${extra} ${extra===1?'opción':'opciones'} más`));
-   for(const journey of opciones.slice(1))plegado.append(journeyCard(journey,result));
+  // Cada alternativa en su propio pliegue, y no todas dentro de uno: así una lista larga cabe de un
+  // vistazo y el resumen dice lo que hace falta para elegir —cuánto tarda, a qué hora llega y por
+  // qué servicios va— sin abrir ninguna.
+  for(const journey of opciones.slice(1)){
+   const plegado=el('details',undefined,'journey-option'),resumen=el('summary');
+   resumen.append(el('span',`${journeyLabel(journey)} · ≈ ${Math.ceil(journey.duration/60)} min · llega ${journeyTime(journey.arrive,result.date)}`),
+    el('small',[...new Set(journey.legs.map(l=>l.code))].join(' · ')));
+   plegado.append(resumen,journeyCard(journey,result,{header:false}));
    panel.append(plegado);
   }
   panel.append(el('p','Horarios y paradas publicados; frecuencias, tiempos de viaje y caminatas estimados, sin predecir aforo ni fases semafóricas. La búsqueda considera toda la red utilizable y no modifica el reloj.','muted'));if(activePanel==='planner')showJourney(opciones[0].legs);
@@ -515,7 +544,31 @@ try{
  const usedStations=new Set(data.routes.filter(r=>r.ready).flatMap(r=>r.stops.map(s=>s.station_id)));
  for(const station of data.stations.filter(s=>usedStations.has(s.id)).sort((a,b)=>a.name.localeCompare(b.name,'es'))){for(const selector of ['#journey-origin','#journey-destination']){const option=el('option',station.name+(station.kind==='street'?' · calle':''));option.value=station.id;$(selector).append(option);}}
  $('#journey-date').value=config.date;$('#journey-time').value=timeText(clock.time).slice(0,5);
- $('#swap-journey').onclick=()=>{const a=$('#journey-origin'),b=$('#journey-destination');[a.value,b.value]=[b.value,a.value];};
+ // Un filtro encima de cada desplegable: con más de mil paradas, escribir el nombre llega antes que
+ // recorrer la lista. El desplegable conserva su valor y su validación, así que el formulario sigue
+ // siendo el mismo; solo se le esconden las opciones que no coinciden.
+ const journeySearch=value=>String(value||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim();
+ const pickerOptions={};
+ function restoreOptions(kind){const select=$('#journey-'+kind),value=select.value;select.replaceChildren();for(const o of pickerOptions[kind]){const option=el('option',o.text);option.value=o.value;select.append(option);}select.value=value;}
+ for(const kind of ['origin','destination']){
+  const select=$('#journey-'+kind);pickerOptions[kind]=[...select.options].map(o=>({value:o.value,text:o.text}));
+  const input=el('input');input.type='search';input.id='journey-'+kind+'-search';input.placeholder='Filtrar estaciones…';
+  input.setAttribute('aria-label','Buscar estación de '+(kind==='origin'?'origen':'destino'));select.before(input);
+  input.oninput=()=>{
+   const q=journeySearch(input.value),previous=select.value;select.replaceChildren();
+   for(const o of pickerOptions[kind].filter(o=>!o.value||journeySearch(o.text).includes(q))){const option=el('option',o.text);option.value=o.value;select.append(option);}
+   select.value=[...select.options].some(o=>o.value===previous)?previous:'';
+  };
+  select.addEventListener('change',()=>{input.value=select.selectedOptions[0]?.text||'';});
+ }
+ // Intercambiar con un filtro puesto dejaría fuera la estación que entra, así que las listas vuelven
+ // a estar completas antes de cruzar los valores.
+ $('#swap-journey').onclick=()=>{
+  const a=$('#journey-origin').value,b=$('#journey-destination').value;
+  restoreOptions('origin');restoreOptions('destination');
+  $('#journey-origin').value=b;$('#journey-destination').value=a;
+  for(const kind of ['origin','destination'])$('#journey-'+kind+'-search').value=$('#journey-'+kind).selectedOptions[0]?.text||'';
+ };
  $('#planner-form').onsubmit=e=>{e.preventDefault();if(!ready)return;const time=$('#journey-time').value.split(':').map(Number),query={origin:$('#journey-origin').value,destination:$('#journey-destination').value,date:$('#journey-date').value,time:time[0]*3600+time[1]*60,maxTransfers:Number($('#journey-transfers').value)};$('#plan-journey').disabled=true;$('#journey-results').replaceChildren(el('p','Buscando conexiones…','muted'));worker.postMessage({type:'plan',generation,requestId:++planSequence,query});};
  $$('button[data-panel]').forEach(b=>b.onclick=()=>switchPanel(b.dataset.panel));
  $$('[data-mode]').forEach(b=>b.onclick=()=>{viewMode=b.dataset.mode;clearSelection();if(viewMode==='all'&&config.selection.mode!=='all'){config.selection={mode:'all'};rebuild({fit:true});}else{syncControls();renderRoutes();if(viewMode==='all'){map.fitNetwork();requestOverview();}}});

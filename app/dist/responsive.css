@@ -53,8 +53,17 @@ body[data-theme=dark] #sidebar,body[data-theme=dark] #inspector,body[data-theme=
  .time-main{gap:5px;flex-wrap:nowrap}.date-controls{display:none}.time-main>button{min-width:34px;min-height:36px;padding:4px}.time-main input[type=time],#time{min-width:102px!important;width:102px!important;font-size:.9rem!important;min-height:36px}
  .speed-controls{gap:0;margin-left:auto;order:0}.speed-controls button{min-width:30px;padding:4px;font-size:.7rem;min-height:36px}.period{display:none}.scrub-row{margin-top:6px}.scrub-row input{min-height:28px}
  body[data-panel=planner] #timeline{display:none}body[data-panel=planner] #metrics{display:none}
- #inspector,body[data-panel=live] #inspector{top:auto;bottom:10px;left:10px;right:10px;width:auto;max-height:48%;padding:24px 20px;border-radius:16px;z-index:8}
- body[data-inspect=true] #sidebar,body[data-inspect=true] #timeline{visibility:hidden}#inspector .close,#inspector #inspector-toggle{width:44px;min-width:44px;height:44px;min-height:44px}#inspector #inspector-toggle{right:60px}
+ /* La ficha se apoya donde acabe el reloj: si está a la vista le deja su franja, y si la pestaña
+    no lo muestra llega hasta abajo del todo. */
+ body{--sheet-bottom:10px}
+ body[data-inspect=true]{--sheet-bottom:116px}
+ body[data-inspect=true].time-expanded{--sheet-bottom:173px}
+ body[data-inspect=true][data-panel=live],body[data-inspect=true][data-panel=planner]{--sheet-bottom:10px}
+ #inspector,body[data-panel=live] #inspector{top:auto;bottom:var(--sheet-bottom,10px);left:10px;right:10px;width:auto;max-height:48%;padding:24px 20px;border-radius:16px;z-index:8}
+ /* La hoja sí cede el sitio a la ficha, pero el reloj no: con una estación o un bus en foco es el
+    control que da sentido a lo que se está mirando, y esconderlo obligaba a soltar la selección
+    para volver a mover la hora. */
+ body[data-inspect=true] #sidebar{visibility:hidden}#inspector .close,#inspector #inspector-toggle{width:44px;min-width:44px;height:44px;min-height:44px}#inspector #inspector-toggle{right:60px}
  #loading{left:12px;top:182px;max-width:calc(100% - 24px);width:auto;font-size:.75rem;padding:8px 12px}#error{top:18%;font-size:.8rem}
  #toast{bottom:120px;max-width:calc(100% - 40px);width:max-content;text-align:center}
 }
@@ -75,12 +84,12 @@ body[data-theme=dark] #sidebar,body[data-theme=dark] #inspector,body[data-theme=
    controles se dimensionan solos —el ancho que piden no lo fija `width`, sino la maqueta nativa que
    llevan dentro—, y por eso en la emulación del escritorio cabían y en el iPhone no. Se les quita
    esa maqueta con `appearance:none`, que en iOS no cuesta nada porque allí se dibujan planos de
-   todos modos, y se les fija el ancho del hueco. En un móvil van además uno debajo del otro. */
+   todos modos, y con eso pasan a medir exactamente el hueco que se les da: la pareja vuelve a caber
+   en una fila también en el teléfono. */
 .form-pair{gap:10px}.form-pair>*{min-width:0}
 .form-pair input{width:100%;max-width:100%;min-width:0}
 .form-pair input[type=date],.form-pair input[type=time]{-webkit-appearance:none;appearance:none}
 .form-pair input::-webkit-date-and-time-value{width:100%;margin:0;text-align:left}
-@media(max-width:800px){.form-pair{grid-template-columns:1fr;gap:4px}}
 
 /* Y un tope, porque una hoja que se desplaza de lado nunca es lo que se quiere: cualquier control
    que insista en pedir más ancho del que hay se recorta en vez de arrastrar el panel entero. */
@@ -91,5 +100,5 @@ body[data-theme=dark] #sidebar,body[data-theme=dark] #inspector,body[data-theme=
    distintos. */
 body[data-detail=closed] #inspector,body[data-detail=closed][data-panel=live] #inspector{bottom:auto;height:auto;max-height:none;padding:14px 20px}
 @media(max-width:800px){
- body[data-detail=closed] #inspector,body[data-detail=closed][data-panel=live] #inspector{top:auto;bottom:10px;height:auto;max-height:none;min-height:64px;padding:20px 112px 20px 20px}
+ body[data-detail=closed] #inspector,body[data-detail=closed][data-panel=live] #inspector{top:auto;bottom:var(--sheet-bottom,10px);height:auto;max-height:none;min-height:64px;padding:20px 112px 20px 20px}
 }

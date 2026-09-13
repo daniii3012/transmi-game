@@ -68,9 +68,12 @@ body[data-theme=dark] #sidebar,body[data-theme=dark] #inspector,body[data-theme=
  body[data-panel=live].time-expanded #sidebar,body[data-panel=planner].time-expanded #sidebar{bottom:10px}
 }
 
-/* Los campos de fecha y hora traen un ancho propio que la rejilla respetaba, y el panel entero se
-   desplazaba de lado. Dejarlos encogerse es lo único que hacía falta. */
-.form-pair{gap:10px}.form-pair>*{min-width:0}.form-pair input{width:100%}
+/* Los campos de fecha y hora traen un ancho propio y el panel entero se desplazaba de lado. Dejar
+   que encojan no basta: el control nativo de iOS no baja de su tamaño intrínseco por mucho que se
+   le pida el 100% del hueco, así que en la emulación cabía y en el teléfono no. En un móvil van uno
+   debajo del otro, que además se tocan mejor; a lo ancho la pareja se conserva. */
+.form-pair{gap:10px}.form-pair>*{min-width:0}.form-pair input{width:100%;max-width:100%}
+@media(max-width:800px){.form-pair{grid-template-columns:1fr;gap:4px}}
 
 /* Con el detalle plegado la hoja deja de tapar el mapa y lo seleccionado sigue en foco. En el
    escritorio la ficha cuelga de arriba y en el móvil se apoya abajo, así que encoge por lados

@@ -189,3 +189,7 @@ ruta (ML82 = M82/L82, MK86 = M86/K86).
   dónde está cada bus— y que esta versión no trae vista en tiempo real. Solo cambia el aviso que se
   ve cuando la lectura no está disponible, que es exactamente el caso de Pages; corriendo en local
   la pestaña sigue igual.
+- **La fecha y la hora del planificador se apilan en el móvil.** `min-width:0` no bastaba: el
+  control nativo de iOS no baja de su tamaño intrínseco por mucho que se le pida el 100% del hueco,
+  así que en la emulación del escritorio cabía y en el iPhone la pareja sobresalía ~15 px y
+  desplazaba la hoja entera de lado. A lo ancho la pareja se conserva.

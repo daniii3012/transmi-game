@@ -1,0 +1,93 @@
+"""Lo que el campo de velocidad afirma, sobre un corredor recto inventado.
+
+Necesita el Python geográfico, porque el módulo proyecta coordenadas. No toca la red ni las
+capturas: lo que se fija aquí es el enganche al eje, el reparto entre cubetas y la regla que separa
+la atención de la propia parada del tiempo que detiene a cualquiera que pase.
+"""
+import sys
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'tools'))
+
+from build_speed_field import (ATENCION_M, COLA_M, CUBETA, ENGANCHE, corredores, enganchar,
+                               indice, medir, rellenar, repartir)
+
+EJE = {'corridors': [{'id': 'T1', 'kind': 'trunk', 'name': 'Recta', 'zone': 'B',
+                      'components': [[[0, 0], [2000, 0]]]}]}
+
+
+class Enganche(unittest.TestCase):
+    def setUp(self):
+        self.ejes = corredores(EJE)
+        self.malla = indice(self.ejes)
+
+    def test_un_punto_sobre_el_eje_da_su_abscisa(self):
+        eje, abscisa = enganchar(self.malla, 750, 0)
+        self.assertEqual(eje, 'T1:0')
+        self.assertAlmostEqual(abscisa, 750, places=6)
+
+    def test_un_punto_apartado_del_eje_no_engancha(self):
+        """Un bus en la calle paralela no es un bus en la troncal."""
+        self.assertIsNone(enganchar(self.malla, 750, ENGANCHE + 5))
+        self.assertIsNotNone(enganchar(self.malla, 750, ENGANCHE - 5))
+
+    def test_el_eje_conserva_su_largo(self):
+        self.assertAlmostEqual(self.ejes[0]['length'], 2000, places=6)
+
+
+class Reparto(unittest.TestCase):
+    def test_lo_que_pasa_dentro_de_una_cubeta_se_queda_en_ella(self):
+        self.assertEqual(repartir(120, 180, 60, 12), [(1, 60, 12)])
+
+    def test_atravesar_varias_cubetas_reparte_a_prorrata(self):
+        partes = repartir(50, 250, 200, 20)
+        self.assertEqual([p[0] for p in partes], [0, 1, 2])
+        self.assertAlmostEqual(sum(p[1] for p in partes), 200)
+        self.assertAlmostEqual(sum(p[2] for p in partes), 20)
+        self.assertAlmostEqual(partes[1][2], 10)   # la cubeta central es la mitad del recorrido
+
+    def test_ir_hacia_atras_reparte_igual(self):
+        self.assertEqual([p[0] for p in repartir(250, 50, 200, 20)], [0, 1, 2])
+
+
+class Atencion(unittest.TestCase):
+    """Un bus quieto en su propia parada no detiene al expreso que pasa de largo."""
+
+    def medir_uno(self, x_parada):
+        ejes = corredores(EJE)
+        malla = indice(ejes)
+        lecturas = {'b1': [(0, 500.0, 0.0, 'P'), (20, 500.0, 0.0, 'P')]}
+        campo, usadas, _ = medir(lecturas, malla, {'P': (x_parada, 0.0)})
+        self.assertEqual(usadas, 1)
+        return next(iter(campo.values()))
+
+    def test_quieto_en_su_parada_cuenta_como_atencion(self):
+        celda = self.medir_uno(500 + ATENCION_M - 10)
+        self.assertEqual(celda['stop_t'], 0)
+        self.assertEqual(celda['dwell_t'], 20)
+
+    def test_quieto_en_la_cola_de_su_propio_anden_no_es_del_corredor(self):
+        celda = self.medir_uno(500 + COLA_M - 10)
+        self.assertEqual(celda['stop_t'], 0)
+        self.assertEqual(celda['queue_t'], 20)
+
+    def test_quieto_lejos_de_su_parada_si_detiene_a_cualquiera(self):
+        celda = self.medir_uno(500 + COLA_M + 200)
+        self.assertEqual(celda['stop_t'], 20)
+        self.assertEqual(celda['dwell_t'], 0)
+
+
+class Relleno(unittest.TestCase):
+    def test_una_cubeta_sin_datos_se_declara_y_no_se_inventa(self):
+        """Sin lecturas no hay medición: la cubeta hereda la mediana del corredor y lo dice."""
+        cubetas, conteo, _, _ = rellenar({}, corredores(EJE))
+        self.assertEqual(len(cubetas), 2 * (2000 // CUBETA + 1))
+        self.assertEqual(conteo['observed'], 0)
+        self.assertTrue(all(v['source'] == 'corridor_default' for v in cubetas.values()))
+        self.assertTrue(all(v['hours'] == 0 for v in cubetas.values()))
+
+
+if __name__ == '__main__':
+    unittest.main()

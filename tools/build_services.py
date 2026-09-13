@@ -13,6 +13,7 @@ from pathlib import Path
 from shapely.geometry import LineString, Point, shape
 from shapely.ops import transform, substring, unary_union
 from geo import PROJECT, ORIGIN, LOCAL_CRS
+from build_speed_field import CUBETA, corredores, enganchar, indice
 
 ROOT = Path(__file__).resolve().parents[1]
 def read(p): return json.loads(p.read_text())
@@ -26,6 +27,44 @@ def clock(s):
     h, minute = int(m[1]), int(m[2])
     if not 1 <= h <= 12 or minute > 59: raise ValueError(s)
     return ((h % 12)+(12 if m[3]=='PM' else 0))*3600+minute*60
+
+# Cada 50 m se pregunta al campo por dónde va la ruta. Más fino no aporta: las cubetas son de 100 m.
+PASO_PERFIL=50
+
+def speed_profiles(routes,corridors,field):
+    """Resuelve el campo medido a lo largo de cada ruta: [abscisa, velocidad, parte detenida].
+
+    El campo está indexado por corredor y sentido, así que lo comparten todos los servicios que pasan
+    por el mismo trecho, que es justo lo que hace que dos buses en el mismo sitio se muevan igual. Un
+    punto que no engancha a ningún eje troncal —calle, dual, patio— no recibe nada y el motor cae a su
+    modelo continuo; la parte enganchada de cada ruta va en `coverage`.
+    """
+    ejes=corredores({'corridors':corridors});malla=indice(ejes)
+    largos={e['id']:e['length'] for e in ejes};salida={}
+    for r in routes:
+        if not r['ready'] or not r.get('points'):continue
+        puntos=r['points'];acumulado=[0.0]
+        for (x1,y1),(x2,y2) in zip(puntos,puntos[1:]):acumulado.append(acumulado[-1]+math.hypot(x2-x1,y2-y1))
+        total=acumulado[-1];perfil=[];enganchadas=muestras=0;previo=None;sentido=1;ultimo=None;i=0
+        for paso in range(int(total//PASO_PERFIL)+1):
+            at=paso*PASO_PERFIL
+            while i+1<len(acumulado)-1 and acumulado[i+1]<at:i+=1
+            tramo=acumulado[i+1]-acumulado[i]
+            t=0 if tramo<=0 else min(1,max(0,(at-acumulado[i])/tramo))
+            x=puntos[i][0]+(puntos[i+1][0]-puntos[i][0])*t;y=puntos[i][1]+(puntos[i+1][1]-puntos[i][1])*t
+            muestras+=1;enganche=enganchar(malla,x,y)
+            if not enganche:
+                previo=None;continue
+            eje,abscisa=enganche
+            if previo and previo[0]==eje:sentido=1 if abscisa>=previo[1] else -1
+            previo=(eje,abscisa);enganchadas+=1
+            cubeta=min(int(abscisa//CUBETA),int(largos[eje]//CUBETA))
+            celda=field['buckets'].get(f'{eje}|{sentido}|{cubeta}')
+            if not celda:continue
+            valor=(round(celda['v_roll_kmh']*10),round(celda['stop_share']*100))
+            if valor!=ultimo:perfil.append([round(at),valor[0],valor[1]]);ultimo=valor
+        if perfil:salida[r['id']]={'coverage':round(enganchadas/max(1,muestras),3),'profile':perfil}
+    return salida
 
 def build():
     snapshot = read(ROOT/'data/raw/services/latest.json')['snapshot']
@@ -72,6 +111,8 @@ def build():
            'components':[[[round(x,2),round(y,2)] for x,y in l.coords] for l in lines]})
         zones.setdefault(p['le_troncal'], {'id':p['le_troncal'],'name':p['nom_tronc'],'color':p['color']})
     curated=read(ROOT/'data/curated/services.json')
+    # Velocidad de marcha y tiempo detenido medidos por trecho de corredor; lo escribe build_speed_field.py.
+    field=read(ROOT/'data/curated/speed_field.json')
     # Tipo de carrocería por servicio, deducido de la flota que lo atiende; lo escribe classify_fleet.py.
     # Un servicio sin lecturas no recibe perfil y el simulador lo declara estimado.
     fleet=read(ROOT/'data/curated/fleet_types.json')
@@ -184,7 +225,7 @@ def build():
     return {'schema_version':2,'revision':'services-v2-'+snapshot,'snapshot':snapshot,'scenario_date':'2026-09-10',
        'origin_lon_lat':ORIGIN,'projection':LOCAL_CRS.to_string(),'coordinate_frame':'XY east/north metres; 1:1',
        'bounds':[min(p[0] for p in xy),min(p[1] for p in xy),max(p[0] for p in xy),max(p[1] for p in xy)],
-       'source_hashes':{'catalog':digest(folder/'selected_catalog.json'),'stations':digest(folder/'map_stations.geojson'),'street_stops':digest(street_file),'corridors':digest(folder/'map_corridors.geojson'),'curation':digest(ROOT/'data/curated/services.json'),'fleet_types':digest(ROOT/'data/curated/fleet_types.json'),'refresh_manifest':digest(refresh/'manifest.json') if refresh else None,'supplement_catalog':digest(supplement/'selected_catalog.json')},
+       'source_hashes':{'catalog':digest(folder/'selected_catalog.json'),'stations':digest(folder/'map_stations.geojson'),'street_stops':digest(street_file),'corridors':digest(folder/'map_corridors.geojson'),'curation':digest(ROOT/'data/curated/services.json'),'fleet_types':digest(ROOT/'data/curated/fleet_types.json'),'speed_field':digest(ROOT/'data/curated/speed_field.json'),'refresh_manifest':digest(refresh/'manifest.json') if refresh else None,'supplement_catalog':digest(supplement/'selected_catalog.json')},
        'attribution':'TRANSMILENIO S.A. · mapa digital y buscador de rutas; IDECA · paraderos duales',
        'license_notes':'Licencia de API de rutas/mapa no establecida; paraderos según catálogo original. Uso local.',
        'assumptions':{'berth_assignment':'Estimated deterministic service-to-wagon allocation; not a published assignment',
@@ -192,6 +233,7 @@ def build():
           'frequency':'Configurable estimate, not official headways','demand':'Configurable synthetic boarding/alighting, no passenger OD survey',
           'linear_reference':'Local projection within 650m of published chainage; unlocated street stops interpolate official shape',
           'depot':'Abstract vehicle staging at journey origin; no invented yard access geometry',
+          'speed_profile':'Rolling speed and stopped share per 100 m of corridor, measured from the official realtime feed on the days listed in speed_field.json; the published stretch time still sets the total',
           'vehicle_type':'Body type per service read from the fleet labels of the official realtime feed; services without readings fall back to the articulated reference, marked as an estimate'},
        'counts':{'map_records':len(map_catalog),'map_codes':len({r['codigo'] for r in map_catalog}),'records':len(routes),'excluded':len(excluded),'ready':sum(r['ready'] for r in routes),'pending':sum(not r['ready'] for r in routes)},
        'street_context':street_context,'excluded':excluded,'corridors':corridors,'stations':list(stations.values()),'routes':routes,'zones':sorted(zones.values(),key=lambda z:z['id']),
@@ -200,6 +242,13 @@ def build():
 
 if __name__=='__main__':
     data=build();write(ROOT/'app/dist/services.json',data)
+    field=read(ROOT/'data/curated/speed_field.json')
+    profiles=speed_profiles(data['routes'],data['corridors'],field)
+    write(ROOT/'app/dist/speed_profiles.json',{'schema_version':1,'step_m':PASO_PERFIL,
+       'field':{k:field[k] for k in ('derived_at','observed_days','assumptions','parameters','coverage','fallback')},
+       'routes':profiles})
+    cubierto=[p['coverage'] for p in profiles.values()]
+    print(json.dumps({'speed_profiles':len(profiles),'coverage_median':round(sorted(cubierto)[len(cubierto)//2],3) if cubierto else None}))
     audit={'counts':data['counts'],'snapshot':data['snapshot'],'routes':[{k:r[k] for k in ['id','code','name','ready','valid_from','valid_until','issues','warnings']} for r in data['routes']]}
     write(ROOT/'data/processed/services_audit.json',audit)
     print(json.dumps(data['counts']))

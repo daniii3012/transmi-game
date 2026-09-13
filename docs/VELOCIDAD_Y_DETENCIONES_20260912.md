@@ -1,5 +1,11 @@
 # Velocidad de crucero y detenciones: por qué el bus iba a 23 km/h
 
+> **Actualización del 13 de septiembre de 2026.** La regla que este documento introdujo —rodar al
+> crucero en calzada segregada y gastar el sobrante en detenciones de la aproximación— queda
+> sustituida por la velocidad medida de cada trecho de corredor: ver
+> [la velocidad la pone el lugar](VELOCIDAD_POR_LUGAR_20260913.md). Dejaba media flota parada. Lo que
+> sigue es el registro de por qué se llegó hasta aquí y no describe el motor vigente.
+
 12 de septiembre de 2026. Sale de dos seguimientos que hizo Daniel con el simulador al lado del
 sistema real, y de las cinco horas de captura del alimentador de ese mismo día.
 

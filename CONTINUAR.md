@@ -35,6 +35,16 @@ Estimaciones ajustables y QA de navegador autorizadas; dos carriles por sentido 
   completa, contrastar la proporción (780 de 1.094 troncales en la familia biarticulada) contra un conteo
   publicado de flota, y decidir si vale la pena una captura `--scope todo` para clasificar las series
   alimentadoras y zonales, que hoy quedan fuera.
+- **Velocidad por trecho medido** (13/09/2026): se retira el crucero plano de 60 en calzada segregada y la regla de
+  gastar el sobrante parado en la aproximación, que dejaba media flota quieta contra el 28 % real. `build_speed_field.py`
+  escribe `data/curated/speed_field.json` —corredor, sentido y cubeta de 100 m, con velocidad de marcha y parte del
+  tiempo detenido— y `build_services.py` lo resuelve a `app/dist/speed_profiles.json`. El motor rueda a lo medido,
+  reparte la espera donde la captura dice, la resuelve junto con los semáforos y ajusta un factor por tramo para
+  cumplir el tiempo publicado. Detenidos en tráfico 33 % → 12 %; flota quieta 51 % → 30 %; espera máxima por tramo
+  1.883 s → 933 s; espera individual mediana 11 s. Banco: preparación 13,6 s, muestreo 0,80 ms, heap 787 MB, techo de
+  estrés 3.303 → 4.517 buses. Evidencia, suposiciones y pendientes en docs/VELOCIDAD_POR_LUGAR_20260913.md.
+  **Pendiente:** rehacer solo el campo con la semana capturada, añadir hora y tipo de día, y decidir el término de
+  densidad, que hoy no se implementa porque controlando por lugar vale solo un 5–8 %.
 - Cruceros 60 troncal/50 calle, variación por vehículo −5/−2/0/+2/+5. Los buses frenan en curvas/paradas; calle en pico factor 0,82.
 - Nuevo 1× de demanda = 2,25 del modelo previo. Demanda medida sobre 17 días (24 ago.–9 sep. 2026, 28.014.777 validaciones): perfil horario por tipo de día en `hourly_by_day_type`, 13 días de semana, 2 sábados y 2 domingos. Factores medidos sábado 0,654 y domingo 0,302, frente a los 0,70/0,55 estimados que reemplazan; el domingo estaba sobreestimado ~80%. Entre días de semana la variación es 2,0%. OD, descensos, direcciones y abandono medio 30 min siguen estimados. Denegaciones son oportunidades repetidas, no personas únicas. Detalle en docs/DEMANDA_MULTIDIA_20260911.md. Contraste estacional con 15 días de marzo (21.156.110 validaciones) en docs/DEMANDA_COMPARACION_MARZO_20260911.md: factores por tipo de día estables (sábado 0,654 vs 0,642; domingo 0,302 vs 0,289), nivel de marzo −7,3 % uniforme, reparto horario casi idéntico. Dos hallazgos: un festivo entre semana queda 16,5 % por debajo de un domingo —mejora pendiente, falta medir más festivos— y la red cambió entre marzo y septiembre (Calle 76 y Calle 45 desaparecen, Calle 72 - Areandina aparece), lo que corrobora la retirada de los pendientes 6/692 y A60/1187. La calibración sigue siendo la de agosto–septiembre por ser contemporánea del catálogo.
 - **Salidas del horario publicado** (12/09/2026): 104 de los 117 servicios utilizables despachan a las horas

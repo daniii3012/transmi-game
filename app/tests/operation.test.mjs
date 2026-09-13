@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
-import {Operation,DEFAULTS,parameters,motion,motionAt,programmedSpeed,TRAFFIC} from '../dist/operation.mjs';
+import {Operation,DEFAULTS,parameters,motion,motionAt,programmedSpeed,TRAFFIC,FIELD,routeField,fieldLimit,fieldHolds,fieldStanding} from '../dist/operation.mjs';
 import {vehicleSpec} from '../dist/vehicles.mjs';
 import {MetricPath} from '../dist/simulation.mjs';
 import {travelProfile,travelAt} from '../dist/travel.mjs';
@@ -84,6 +84,42 @@ test('Overnight departures and previous-day journeys remain visible after midnig
 test('Bus size comes from the observed fleet profile and stays fixed for the service',()=>{const observado=(type,buses)=>({type,capacity:type==='biarticulated'?240:160,status:'observed',buses,snapshot:'2026-09-12'});const specs=Array.from({length:20},(_,i)=>vehicleSpec({code:'J23',vehicle_profile:observado('biarticulated',41)},DEFAULTS,i));assert.equal(new Set(specs.map(v=>v.kind)).size,1);assert.equal(specs[0].capacity,240);assert.match(specs[0].typeSource,/observada/);assert.equal(vehicleSpec({code:'8',vehicle_profile:observado('articulated',60)},DEFAULTS,3).capacity,160);assert.equal(vehicleSpec({code:'M85',dual:true},DEFAULTS,1).capacity,80);});
 test('Route length no longer decides the body type and an unobserved service says so',()=>{const largo=vehicleSpec({code:'H27',length_m:31000},DEFAULTS,1);assert.equal(largo.capacity,160);assert.match(largo.typeSource,/estimada/);const corto=vehicleSpec({code:'J23',length_m:14362,vehicle_profile:{type:'biarticulated',capacity:240,status:'observed',buses:41,snapshot:'2026-09-12'}},DEFAULTS,1);assert.equal(corto.capacity,240);});
 test('The catalogue carries the fleet reading for the services it was observed on',()=>{const perfiles=source.routes.filter(r=>r.vehicle_profile?.source==='gtfs_rt_fleet_labels');assert.ok(perfiles.length>80);for(const code of ['J23','F23','M51','F51','2'])assert.equal(source.routes.find(r=>r.code===code).vehicle_profile.type,'biarticulated');for(const code of ['1','3','8','K23','B13'])assert.equal(source.routes.find(r=>r.code===code).vehicle_profile.type,'articulated');for(const r of perfiles){assert.ok(r.vehicle_profile.buses>=3);assert.equal(r.vehicle_profile.source_url,'https://gtfs.transmilenio.gov.co/positions.pb');}});
+test('The measured field sets the speed of each stretch and the schedule still sets the total',()=>{
+ // 3 km en dos trechos: el primero lento y con espera, el segundo rápido y despejado.
+ const campo={routes:{r:{coverage:1,profile:[[0,150,40],[1500,450,2]]}}};
+ const d={...fixture([{...route(),stops:[{station_id:'a',name:'a',kind:'station',wagons:2,at_m:0},{station_id:'c',name:'c',kind:'station',wagons:2,at_m:3000}],points:[[0,0],[3000,0]]}]),speed_profiles:campo};
+ const s=new Operation(d,{});
+ const move=s.trips[0].moves[0];
+ assert.ok(move,'el tramo existe');
+ const lento=move.profile.v[Math.floor(move.profile.v.length*.2)]*3.6,rapido=move.profile.v[Math.floor(move.profile.v.length*.8)]*3.6;
+ assert.ok(lento<20,`el trecho medido lento rueda a ${lento.toFixed(1)} km/h`);
+ assert.ok(rapido>30,`el trecho medido rápido rueda a ${rapido.toFixed(1)} km/h`);
+ // Las esperas caen en el trecho donde el campo dice que se para, no en la aproximación final.
+ const esperas=move.holds.filter(h=>h.congestion);
+ assert.ok(esperas.length);
+ assert.ok(esperas.every(h=>h.at_m<1500),'la espera va donde el campo la midió');
+ assert.ok(esperas.every(h=>h.end-h.start<=FIELD.maxHold+1e-6),'ninguna espera pasa del tope');
+});
+test('Two services sharing a stretch receive the same measured speed',()=>{
+ const campo={routes:{r:{coverage:1,profile:[[0,250,10]]},otra:{coverage:1,profile:[[0,250,10]]}}};
+ const uno=new Operation({...fixture(),speed_profiles:campo},{});
+ const dos=new Operation({...fixture([{...route('otra')}]),speed_profiles:campo},{});
+ assert.equal(Math.round(uno.trips[0].moves[0].profile.v[3]*100),Math.round(dos.trips[0].moves[0].profile.v[3]*100));
+});
+test('Field holds add up to the asked seconds, stay ordered and split when too long',()=>{
+ const field=routeField({coverage:1,profile:[[0,200,50],[500,200,10]]});
+ const perfil={distance:1000,duration:200,s:Float64Array.from([0,500,1000]),v:Float64Array.from([10,10,10]),times:Float64Array.from([0,100,200])};
+ const holds=fieldHolds(field,perfil,0,1000,600);
+ const total=holds.reduce((a,h)=>a+h.seconds,0);
+ assert.ok(Math.abs(total-600)<1e-6,`suman ${total}`);
+ assert.deepEqual(holds.map(h=>h.at_m),[...holds.map(h=>h.at_m)].sort((a,b)=>a-b));
+ assert.ok(holds.every(h=>h.seconds<=FIELD.maxHold+1e-6));
+ assert.ok(fieldStanding(field,perfil,0,1000)>0);
+ assert.equal(fieldHolds(field,perfil,0,1000,0).length,0);
+ assert.equal(routeField(null),null);
+ assert.equal(Math.round(fieldLimit(field,1)(10)*3.6),20);
+ assert.equal(Math.round(fieldLimit(field,.5)(600)*3.6),10);
+});
 test('Vehicle cruise variation is stable and bounded by ±5 km/h',()=>{const values=Array.from({length:50},(_,i)=>vehicleSpec({code:'1'},DEFAULTS,i).speedOffset);assert.ok(new Set(values).size>1);assert.ok(values.every(v=>v>=-5&&v<=5));assert.equal(DEFAULTS.cruiseKmh,60);assert.equal(DEFAULTS.streetKmh,50);});
 test('Irregular departures and bounded peak reinforcements are deterministic',()=>{const d=fixture();d.stations=d.stations.map(s=>({...s,demand_profile:{hourly:Array(24).fill(100000)}}));const a=new Operation(d),b=new Operation(d),plain=new Operation(d,{params:{reinforcements:false}});assert.deepEqual(a.trips.map(t=>t.id),b.trips.map(t=>t.id));assert.ok(a.trips.some(t=>t.reinforcement));assert.ok(a.trips.length>plain.trips.length);assert.ok(a.trips.length<plain.trips.length*1.25);});
 test('F23 has one published playable destination after user correction',()=>{const routes=source.routes.filter(r=>r.code==='F23');assert.equal(routes.length,1);assert.equal(routes[0].id,'396');assert.ok(source.excluded.some(r=>r.id==='10082'));});

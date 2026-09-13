@@ -1,10 +1,10 @@
-import {DAY,addDays,serviceWindows,demandPeriod,dayType,gtfsServices,programmedDepartures} from './calendar.mjs?v=20260912.18';
-import {vehicleSpec} from './vehicles.mjs?v=20260912.18';
-import {matchSignals,signalTravel,signalTravelAt,SIGNAL_EXPECTED} from './signals.mjs?v=20260912.18';
-import {travelTimeAtDistance} from './travel.mjs?v=20260912.18';
-import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260912.18';
-import {placeVisit} from './station-layouts.mjs?v=20260912.18';
-import {MetricPath} from './simulation.mjs?v=20260912.18';
+import {DAY,addDays,serviceWindows,demandPeriod,dayType,gtfsServices,programmedDepartures} from './calendar.mjs?v=20260913.1';
+import {vehicleSpec} from './vehicles.mjs?v=20260913.1';
+import {matchSignals,signalTravel,signalTravelAt,SIGNAL_EXPECTED} from './signals.mjs?v=20260913.1';
+import {travelTimeAtDistance} from './travel.mjs?v=20260913.1';
+import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260913.1';
+import {placeVisit} from './station-layouts.mjs?v=20260913.1';
+import {MetricPath} from './simulation.mjs?v=20260913.1';
 export const DEFAULTS=Object.freeze({peakHeadway:240,offpeakHeadway:480,demand:1,mode:'auto',cruiseKmh:60,streetKmh:50,acceleration:.8,braking:1.1,turnaround:240,variableDispatch:true,reinforcements:true,signals:true,beyondValidity:true,programmedDispatch:true,programmedRunning:true});
 export function parameters(input={}){const p={...DEFAULTS,...input};for(const [k,min,max] of [['peakHeadway',120,1200],['offpeakHeadway',180,1800],['demand',.25,3],['cruiseKmh',25,75],['streetKmh',20,60],['acceleration',.4,1.4],['braking',.5,1.8],['turnaround',60,900]])if(!Number.isFinite(p[k])||p[k]<min||p[k]>max)throw new Error('Parámetro fuera de rango: '+k);if(typeof p.variableDispatch!=='boolean'||typeof p.reinforcements!=='boolean'||typeof p.signals!=='boolean'||typeof p.beyondValidity!=='boolean'||typeof p.programmedDispatch!=='boolean'||typeof p.programmedRunning!=='boolean')throw new Error('Opciones de despacho inválidas');if(!['auto','peak','offpeak'].includes(p.mode))throw new Error('Demanda inválida');return p;}
 export function hash(text){let h=2166136261;for(const c of String(text)){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;}
@@ -45,6 +45,80 @@ export function congestionHolds(profile,from,to,departure,signals,signalDelay,su
  return holds;
 }
 
+// --- Campo medido por trecho de corredor -----------------------------------------------------
+//
+// `speed_profiles.json` trae, cada 100 m de cada ruta, a qué velocidad se rueda ahí y qué parte del
+// tiempo se está quieto ahí, medido sobre el alimentador oficial. El campo da la FORMA del
+// movimiento y el horario publicado sigue dando el TOTAL: por eso un único factor por tramo estira
+// o encoge la forma hasta que el tramo dura exactamente lo publicado, y ninguna llegada se mueve.
+//
+// Lo importante de que el campo sea del lugar y no del vehículo: dos servicios distintos que pasan
+// por el mismo trecho reciben la misma velocidad y las mismas detenciones. Antes cada bus calculaba
+// su sobrante y se detenía por su cuenta, así que en el mismo punto uno se paraba y otro pasaba.
+export const FIELD=Object.freeze({minFactor:.6,maxFactor:1.6,step:.05,maxHolds:6,minHold:4,maxHold:120,spacing:60,tail:15});
+
+/** Perfil de una ruta, de [abscisa, km/h×10, % detenido] a arreglos en metros y m/s. */
+export function routeField(entry){
+ if(!entry?.profile?.length)return null;
+ const n=entry.profile.length,at=new Float64Array(n),v=new Float64Array(n),stop=new Float64Array(n);
+ for(let i=0;i<n;i++){at[i]=entry.profile[i][0];v[i]=entry.profile[i][1]/10/3.6;stop[i]=entry.profile[i][2]/100;}
+ return {at,v,stop,coverage:entry.coverage};
+}
+
+/** Techo de velocidad en cada posición de la ruta, con el campo escalado por `factor`. */
+export function fieldLimit(field,factor){
+ if(!field)return null;
+ return at=>{
+  const i=upperBound(field.at,at,x=>x)-1;
+  return (i<0?field.v[0]:field.v[i])*factor;
+ };
+}
+
+/** Una espera larga es una cola, y una cola avanza a trozos: se parte hacia atrás desde su sitio. */
+function partir(hold,from){
+ const trozos=Math.min(12,Math.ceil(hold.seconds/FIELD.maxHold));
+ if(trozos<=1)return [hold];
+ const cada=hold.seconds/trozos,salida=[];
+ for(let i=0;i<trozos;i++)salida.push({at_m:Math.max(from,hold.at_m-(trozos-1-i)*FIELD.spacing),seconds:cada});
+ return salida;
+}
+
+/** Detenciones repartidas donde el campo dice que se para, sumando `total` segundos. */
+export function fieldHolds(field,profile,from,to,total){
+ if(!(total>0))return [];
+ const parts=[];let sum=0;
+ const first=Math.max(0,upperBound(field.at,from,x=>x)-1);
+ for(let i=first;i<field.at.length&&field.at[i]<to;i++){
+  const a=Math.max(from,field.at[i]),b=Math.min(to,i+1<field.at.length?field.at[i+1]:to);
+  if(b<=a)continue;
+  const span=travelTimeAtDistance(profile,b-from)-travelTimeAtDistance(profile,a-from);
+  const share=Math.min(.95,field.stop[i]),w=span*share/Math.max(.05,1-share);
+  if(w>0){parts.push({at:(a+b)/2,w});sum+=w;}
+ }
+ // Sin campo utilizable en el tramo, la espera se forma en la aproximación, como antes.
+ if(!(sum>0))return partir({at_m:Math.max(from,to-FIELD.tail),seconds:total},from);
+ parts.sort((x,y)=>y.w-x.w);
+ const kept=parts.slice(0,FIELD.maxHolds);
+ let keptSum=kept.reduce((acc,p)=>acc+p.w,0);
+ const holds=kept.map(p=>({at_m:p.at,seconds:total*p.w/keptSum})).filter(h=>h.seconds>=FIELD.minHold);
+ if(!holds.length)return partir({at_m:Math.max(from,to-FIELD.tail),seconds:total},from);
+ const escala=total/holds.reduce((acc,h)=>acc+h.seconds,0);
+ for(const h of holds)h.seconds*=escala;
+ return holds.flatMap(h=>partir(h,from)).sort((x,y)=>x.at_m-y.at_m);
+}
+
+/** Segundos que el campo dice que ese tramo pasa detenido, a la velocidad de ese perfil. */
+export function fieldStanding(field,profile,from,to){
+ return fieldHolds(field,profile,from,to,1).length?
+  (()=>{let total=0;const first=Math.max(0,upperBound(field.at,from,x=>x)-1);
+   for(let i=first;i<field.at.length&&field.at[i]<to;i++){
+    const a=Math.max(from,field.at[i]),b=Math.min(to,i+1<field.at.length?field.at[i+1]:to);
+    if(b<=a)continue;
+    const span=travelTimeAtDistance(profile,b-from)-travelTimeAtDistance(profile,a-from);
+    const share=Math.min(.95,field.stop[i]);total+=span*share/Math.max(.05,1-share);}
+   return total;})():0;
+}
+
 // Velocidad de crucero que hace durar un tramo lo que dura en el horario publicado.
 //
 // El tiempo publicado de un tramo lleva dentro la atención en estación y los rojos, porque el feed
@@ -78,7 +152,8 @@ export class Operation {
   this.data=data;this.params=parameters(config.params);this.date=config.date||data.scenario_date;this.selection=config.selection||{mode:'all'};
   this.vehicle=data.vehicle;this.routes=new Map();this.stations=new Map(data.stations.map(s=>[s.id,s]));this.time=DAY+7*3600;this.buses=[];
   const picked=r=>this.selection.mode==='route'?r.id===this.selection.route:this.selection.mode==='zones'?(this.selection.zones||[]).some(z=>r.served_zones.includes(z)||r.zone===z):true;
-  for(const r of data.routes.filter(r=>r.ready&&picked(r)))this.routes.set(r.id,{...r,typeSource:vehicleSpec(r).typeSource,path:new MetricPath(r.points)});
+  const fields=data.speed_profiles?.routes||{};
+  for(const r of data.routes.filter(r=>r.ready&&picked(r)))this.routes.set(r.id,{...r,typeSource:vehicleSpec(r).typeSource,path:new MetricPath(r.points),field:routeField(fields[r.id])});
   this.prepareDirections();for(const r of this.routes.values())r.signals=this.params.signals?matchSignals(r.path,data.busway_signals):[];this.motionCache=new Map();this.build();this.seek(this.time);
  }
  prepareDirections(){
@@ -188,19 +263,59 @@ export class Operation {
     if(isStreet)v=Math.round(programmedSpeed(budget,distance,cap,this.params.acceleration,this.params.braking,crossings)*10)/10;
     if(e.time>=DAY){if(v<cap-1e-9)this.programmedMoves++;else this.programmedCapped++;}
    }
-   const profileKey=r.id+'/'+e.index+'/'+period+'/'+speedOffset+'/'+v;
-   const m=signalTravel(r.path,s.at_m,next.at_m,v,this.params.acceleration,this.params.braking,close,r.signals,this.motionCache,profileKey);
-   // Lo que el horario da de más sobre la marcha a esa velocidad se gasta detenido en la
-   // aproximación, no diluido en el velocímetro. La llegada a la parada siguiente no se mueve.
-   let holds=m.holds,duration=m.duration;
-   const surplus=budget>0?budget-duration:0;
-   if(surplus>=TRAFFIC.minimum){
-    const signalDelay=m.holds.reduce((sum,h)=>sum+(h.end-h.start),0);
-    holds=[...m.holds,...congestionHolds(m.profile,s.at_m,next.at_m,close,r.signals,signalDelay,surplus)];
-    duration=budget;
-    if(e.time>=DAY){this.trafficHolds++;this.trafficSeconds+=surplus;}
+   const field=isStreet?null:r.field;
+   let holds,duration,standing=0,moveProfile=null;
+   if(field){
+    // El campo medido manda la forma. Primera pasada a su velocidad tal cual, para saber cuánto se
+    // rueda y cuánto dice ese trecho que se está quieto.
+    // La variación de ±5 km/h por bus se pliega dentro del factor en vez de ir en el techo: así el
+    // perfil de un tramo depende de un solo número y la caché no guarda cinco copias casi iguales.
+    // El factor se cuantiza en pasos de 0,05 por lo mismo; el ajuste fino lo hace la última espera.
+    const paso=f=>Math.round(Math.min(FIELD.maxFactor,Math.max(FIELD.minFactor,f))/FIELD.step)*FIELD.step;
+    const viaje=(f,congestion)=>signalTravel(r.path,s.at_m,next.at_m,cap,this.params.acceleration,this.params.braking,
+      close,r.signals,this.motionCache,r.id+'/'+e.index+'/'+f.toFixed(2),congestion,fieldLimit(field,f));
+    const m1=viaje(1,[]),demora1=m1.holds.reduce((a,h)=>a+(h.end-h.start),0);
+    const quieto=fieldStanding(field,m1.profile,s.at_m,next.at_m);
+    // Un solo factor por tramo estira o encoge esa forma hasta llenar el presupuesto publicado.
+    // Fuera de sus topes no se fuerza: el resto queda como espera repartida por el propio campo.
+    const crudo=(budget>0?(m1.profile.duration+quieto)/Math.max(1,budget-demora1):1)*(1+speedOffset/60);
+    const factor=paso(crudo);
+    const m=Math.abs(factor-1)<1e-9?m1:viaje(factor,[]);
+    const demora=m.holds.reduce((a,h)=>a+(h.end-h.start),0);
+    const objetivo=budget>0?budget:m.profile.duration+demora+quieto;
+    standing=Math.max(0,objetivo-m.profile.duration-demora);
+    const previstas=fieldHolds(field,m.profile,s.at_m,next.at_m,standing);
+    // Las detenciones se resuelven junto con los semáforos: pararse antes de uno cambia su fase.
+    const resuelto=previstas.length?viaje(factor,previstas):m;
+    holds=resuelto.holds;duration=resuelto.duration;moveProfile=resuelto.profile;
+    // Los rojos pueden salir distintos al intercalar las esperas; el resto se ajusta en la última
+    // detención, que no tiene nada detrás y por tanto no mueve ninguna fase.
+    if(budget>0){
+     const resto=budget-duration,ultima=holds.length?holds[holds.length-1]:null;
+     if(resto>.5){
+      if(ultima?.congestion)ultima.end+=resto;
+      else holds=[...holds,{at_m:Math.max(s.at_m,next.at_m-FIELD.tail),start:close+duration,end:close+duration+resto,congestion:true}];
+      standing+=resto;duration=budget;
+     }else if(resto<-.5&&ultima?.congestion){
+      const recorte=Math.min(-resto,ultima.end-ultima.start);ultima.end-=recorte;duration-=recorte;standing-=recorte;
+     }
+    }
+    if(e.time>=DAY&&standing>0){this.trafficHolds++;this.trafficSeconds+=standing;}
+   }else{
+    const profileKey=r.id+'/'+e.index+'/'+period+'/'+speedOffset+'/'+v;
+    const m=signalTravel(r.path,s.at_m,next.at_m,v,this.params.acceleration,this.params.braking,close,r.signals,this.motionCache,profileKey);
+    // Sin campo —calle, dual o corredor sin cobertura— sigue el reparto anterior: lo que el horario
+    // da de más se gasta detenido en la aproximación a la estación siguiente.
+    holds=m.holds;duration=m.duration;moveProfile=m.profile;
+    const surplus=budget>0?budget-duration:0;
+    if(surplus>=TRAFFIC.minimum){
+     const signalDelay=m.holds.reduce((sum,h)=>sum+(h.end-h.start),0);
+     holds=[...m.holds,...congestionHolds(m.profile,s.at_m,next.at_m,close,r.signals,signalDelay,surplus)];
+     duration=budget;
+     if(e.time>=DAY){this.trafficHolds++;this.trafficSeconds+=surplus;}
+    }
    }
-   trip.moves.push({profile:m.profile,holds,start:close,end:close+duration,from:s.at_m});
+   trip.moves.push({profile:moveProfile,holds,start:close,end:close+duration,from:s.at_m});
    queue.push({type:'stop',time:close+duration,trip:e.trip,index:e.index+1,date:e.date});
   }
   for(const [key,events] of this.passengerEvents){const n=upperBound(events,DAY,e=>e.time);if(n>1)this.passengerEvents.set(key,events.slice(n-1));}

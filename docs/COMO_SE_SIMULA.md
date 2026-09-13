@@ -51,7 +51,7 @@ de la estación, calculado sobre todas las rutas que la tocan. El vagón es el p
 tablero de la estación lo dice, y un reparto determinista donde no; la ficha siempre rotula cuál de
 los dos es.
 
-**3. Se generan las salidas.** Donde el GTFS publica horario —104 de los 117 servicios utilizables—
+**3. Se generan las salidas.** Donde el GTFS publica horario —115 de los 117 servicios utilizables—
 se despacha a las horas publicadas, resolviendo sobre la fecha real qué calendarios del paquete están
 activos, festivos incluidos. Los demás conservan una regla de intervalo fijo, declarada como tal.
 Se construyen el día elegido **y el anterior**, para que los viajes que cruzan medianoche existan.

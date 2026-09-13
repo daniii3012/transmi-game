@@ -1,5 +1,5 @@
 {
-  "generated_at_utc": "2026-09-13T00:57:22.108216+00:00",
+  "generated_at_utc": "2026-09-13T07:04:45.254015+00:00",
   "source": {
     "folder": "20260912T192133Z",
     "sha256": "43c0c82de709e8bd1e3c6a170084ee696e5283553bb38b1235fe59551586a14d",
@@ -15,8 +15,8 @@
     },
     "url": "https://gtfs.transmilenio.gov.co/GTFS.zip"
   },
-  "matched": 113,
-  "pending": 4,
+  "matched": 115,
+  "pending": 2,
   "combined_records": [
     {
       "route_id": "11488",
@@ -125,6 +125,7 @@
       "short": "ML82",
       "long": "M82 CLL134 KR 7 || L82  Portal 20 de Julio",
       "segments": 33,
+      "loop_closing_seconds": null,
       "turn_segment": 16,
       "turn_seconds": 74,
       "trips": 560,
@@ -154,6 +155,7 @@
       "short": "M82",
       "long": "CLL134 KR 7 || L82 Portal 20 de Julio",
       "segments": 33,
+      "loop_closing_seconds": null,
       "turn_segment": 16,
       "turn_seconds": 60,
       "trips": 71,
@@ -183,6 +185,7 @@
       "short": "P85-M85",
       "long": "P85 AV 68 Calle 9 || M85 Museo Nacional",
       "segments": 17,
+      "loop_closing_seconds": null,
       "turn_segment": 7,
       "turn_seconds": 68,
       "trips": 244,
@@ -212,6 +215,7 @@
       "short": "P85-M85",
       "long": "P85 AV 68 Calle 9 || M85 Museo Nacional",
       "segments": 17,
+      "loop_closing_seconds": null,
       "turn_segment": 7,
       "turn_seconds": 52,
       "trips": 59,
@@ -241,6 +245,7 @@
       "short": "MC84",
       "long": "M84 KR 7 CLL 73 || C84 Av. Suba K114 D",
       "segments": 15,
+      "loop_closing_seconds": null,
       "turn_segment": 8,
       "turn_seconds": 125,
       "trips": 453,
@@ -262,6 +267,96 @@
           "segments": 6,
           "metres": 14296,
           "share_of_trip": 0.4796
+        }
+      ]
+    },
+    {
+      "route_id": "13179",
+      "short": "MK86",
+      "long": "M86 KR 7 CLL 107A || K86 Portal ElDorado",
+      "segments": 47,
+      "loop_closing_seconds": 326,
+      "turn_segment": 21,
+      "turn_seconds": 120,
+      "trips": 497,
+      "halves": [
+        {
+          "route_id": "13179#a",
+          "local_id": "1185",
+          "code": "M86",
+          "name": "KR 7 - CLL 107A",
+          "segments": 21,
+          "metres": 0,
+          "share_of_trip": 0.4407
+        },
+        {
+          "route_id": "13179#b",
+          "local_id": "629",
+          "code": "K86",
+          "name": "Portal ElDorado",
+          "segments": 25,
+          "metres": 20634,
+          "share_of_trip": 0.5454
+        }
+      ]
+    },
+    {
+      "route_id": "13182",
+      "short": "M86",
+      "long": "KR 7 CLL 107A || K86 Portal ElDorado",
+      "segments": 47,
+      "loop_closing_seconds": 281,
+      "turn_segment": 21,
+      "turn_seconds": 103,
+      "trips": 59,
+      "halves": [
+        {
+          "route_id": "13182#a",
+          "local_id": "1185",
+          "code": "M86",
+          "name": "KR 7 - CLL 107A",
+          "segments": 21,
+          "metres": 0,
+          "share_of_trip": 0.4406
+        },
+        {
+          "route_id": "13182#b",
+          "local_id": "629",
+          "code": "K86",
+          "name": "Portal ElDorado",
+          "segments": 25,
+          "metres": 20634,
+          "share_of_trip": 0.5454
+        }
+      ]
+    },
+    {
+      "route_id": "13226",
+      "short": "FZ63",
+      "long": "F63 Pradera || Z63 Tibanica",
+      "segments": 13,
+      "loop_closing_seconds": 115,
+      "turn_segment": 6,
+      "turn_seconds": 257,
+      "trips": 347,
+      "halves": [
+        {
+          "route_id": "13226#a",
+          "local_id": "5450",
+          "code": "F63",
+          "name": "Pradera",
+          "segments": 6,
+          "metres": 0,
+          "share_of_trip": 0.4672
+        },
+        {
+          "route_id": "13226#b",
+          "local_id": "5451",
+          "code": "Z63",
+          "name": "Tibanica",
+          "segments": 6,
+          "metres": 11647,
+          "share_of_trip": 0.4852
         }
       ]
     }
@@ -317,31 +412,17 @@
       "trips": 18
     },
     {
-      "route_id": "13179",
-      "short": "MK86",
-      "long": "M86 KR 7 CLL 107A || K86 Portal ElDorado",
-      "reason": "el catálogo local cuenta 21 + giro + 25 tramos y el paquete 48",
-      "trips": 497
-    },
-    {
       "route_id": "13180",
       "short": "MK86",
       "long": "M86 KR 7 CLL 107A || K86  Portal ElDorado",
-      "reason": "el catálogo local cuenta 21 + giro + 25 tramos y el paquete 41",
+      "reason": "el catálogo local cuenta 21 + giro + 25 tramos y el paquete 40 más el cierre del bucle",
       "trips": 15
-    },
-    {
-      "route_id": "13182",
-      "short": "M86",
-      "long": "KR 7 CLL 107A || K86 Portal ElDorado",
-      "reason": "el catálogo local cuenta 21 + giro + 25 tramos y el paquete 48",
-      "trips": 59
     },
     {
       "route_id": "13183",
       "short": "MK86",
       "long": "M86 KR 7 CLL 107A || K86 Portal ElDorado",
-      "reason": "el catálogo local cuenta 21 + giro + 25 tramos y el paquete 41",
+      "reason": "el catálogo local cuenta 21 + giro + 25 tramos y el paquete 40 más el cierre del bucle",
       "trips": 6
     },
     {
@@ -364,13 +445,6 @@
       "long": "KR 7 CLL 107A || K86 Portal ElDorado Ciclovía",
       "reason": "sin servicio local utilizable para: K86 Portal ElDorado Ciclovía",
       "trips": 5
-    },
-    {
-      "route_id": "13226",
-      "short": "FZ63",
-      "long": "F63 Pradera || Z63 Tibanica",
-      "reason": "el catálogo local cuenta 6 + giro + 6 tramos y el paquete 14",
-      "trips": 347
     }
   ],
   "routes": [
@@ -2823,20 +2897,26 @@
           "agency_id": "6",
           "short": "F63",
           "long": "Pradera"
+        },
+        {
+          "route_id": "13226#a",
+          "agency_id": "6",
+          "short": "F63",
+          "long": "Pradera"
         }
       ],
-      "trips": 446,
+      "trips": 793,
       "by_service": {
-        "1": 16,
+        "1": 363,
         "2": 239,
         "4": 191
       },
       "duration_min": {
         "1": {
-          "p10": 41.0,
-          "p50": 41.0,
-          "p90": 41.0,
-          "n": 16
+          "p10": 39.2,
+          "p50": 42.0,
+          "p90": 43.0,
+          "n": 363
         },
         "2": {
           "p10": 37.0,
@@ -2854,7 +2934,7 @@
       "metres_median": 11732,
       "local_length_m": 12855.692,
       "segments": 6,
-      "segments_total_s": 2400
+      "segments_total_s": 2462
     },
     {
       "id": "347",
@@ -4112,6 +4192,56 @@
       "segments_total_s": 3990
     },
     {
+      "id": "629",
+      "code": "K86",
+      "name": "Portal ElDorado",
+      "dual": true,
+      "gtfs": [
+        {
+          "route_id": "13179#b",
+          "agency_id": "6",
+          "short": "K86",
+          "long": "Portal ElDorado"
+        },
+        {
+          "route_id": "13182#b",
+          "agency_id": "6",
+          "short": "K86",
+          "long": "Portal ElDorado"
+        }
+      ],
+      "trips": 556,
+      "by_service": {
+        "1": 276,
+        "2": 221,
+        "4": 59
+      },
+      "duration_min": {
+        "1": {
+          "p10": 22.6,
+          "p50": 76.6,
+          "p90": 87.5,
+          "n": 276
+        },
+        "2": {
+          "p10": 60.6,
+          "p50": 66.2,
+          "p90": 73.0,
+          "n": 221
+        },
+        "4": {
+          "p10": 58.7,
+          "p50": 62.4,
+          "p90": 65.5,
+          "n": 59
+        }
+      },
+      "metres_median": 20634,
+      "local_length_m": 23974.346,
+      "segments": 25,
+      "segments_total_s": 4044
+    },
+    {
       "id": "315",
       "code": "L10",
       "name": "P. 20 DE JULIO",
@@ -4667,6 +4797,62 @@
       "segments_total_s": 2015
     },
     {
+      "id": "1185",
+      "code": "M86",
+      "name": "KR 7 - CLL 107A",
+      "dual": true,
+      "gtfs": [
+        {
+          "route_id": "13181",
+          "agency_id": "6",
+          "short": "M86",
+          "long": "KR 7 CLL 107A"
+        },
+        {
+          "route_id": "13179#a",
+          "agency_id": "6",
+          "short": "M86",
+          "long": "KR 7 CLL 107A"
+        },
+        {
+          "route_id": "13182#a",
+          "agency_id": "6",
+          "short": "M86",
+          "long": "KR 7 CLL 107A"
+        }
+      ],
+      "trips": 568,
+      "by_service": {
+        "1": 282,
+        "2": 227,
+        "4": 59
+      },
+      "duration_min": {
+        "1": {
+          "p10": 19.6,
+          "p50": 66.4,
+          "p90": 75.7,
+          "n": 282
+        },
+        "2": {
+          "p10": 52.2,
+          "p50": 57.5,
+          "p90": 63.5,
+          "n": 227
+        },
+        "4": {
+          "p10": 51.0,
+          "p50": 54.2,
+          "p90": 56.8,
+          "n": 59
+        }
+      },
+      "metres_median": 19685,
+      "local_length_m": 19685.0,
+      "segments": 21,
+      "segments_total_s": 3253
+    },
+    {
       "id": "1316",
       "code": "P85",
       "name": "AV 68 Calle 9",
@@ -5018,20 +5204,26 @@
           "agency_id": "6",
           "short": "Z63",
           "long": "Tibanica"
+        },
+        {
+          "route_id": "13226#b",
+          "agency_id": "6",
+          "short": "Z63",
+          "long": "Tibanica"
         }
       ],
-      "trips": 447,
+      "trips": 794,
       "by_service": {
-        "1": 15,
+        "1": 362,
         "2": 248,
         "4": 184
       },
       "duration_min": {
         "1": {
-          "p10": 43.0,
-          "p50": 43.0,
-          "p90": 43.0,
-          "n": 15
+          "p10": 39.0,
+          "p50": 42.2,
+          "p90": 42.7,
+          "n": 362
         },
         "2": {
           "p10": 38.0,
@@ -5049,7 +5241,7 @@
       "metres_median": 11647,
       "local_length_m": 11636.646,
       "segments": 6,
-      "segments_total_s": 2460
+      "segments_total_s": 2482
     }
   ],
   "still_pending": [
@@ -5073,28 +5265,6 @@
       "reason": "sin destino equivalente en el paquete",
       "gtfs_same_code": [
         "Aeropuerto ||  Portal ElDorado"
-      ]
-    },
-    {
-      "id": "629",
-      "code": "K86",
-      "name": "Portal ElDorado",
-      "dual": true,
-      "variant": "regular",
-      "reason": "sin destino equivalente en el paquete",
-      "gtfs_same_code": [
-        "Aeropuerto ||  Portal ElDorado"
-      ]
-    },
-    {
-      "id": "1185",
-      "code": "M86",
-      "name": "KR 7 - CLL 107A",
-      "dual": true,
-      "variant": "regular",
-      "reason": "633 de sus viajes publicados están en vueltas completas que no se pudieron cortar y solo 12 quedan a la vista: se usa la regla sintética antes que un horario a medias",
-      "gtfs_same_code": [
-        "13181"
       ]
     }
   ],

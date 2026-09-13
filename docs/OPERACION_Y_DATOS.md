@@ -42,7 +42,7 @@ Tras excluir la zonal y F23/10082 Banderas (corrección de catálogo, 11 sep.) y
 | Carriles y posiciones | Atención y paso independientes por sentido; 2 posiciones por vagón y 1 en calle |
 | Flota | Sin un contador fijo de buses activos: resultado de salidas y duración; reutilización compatible por terminal/tipo |
 
-Desde el 12 de septiembre de 2026 las salidas salen del **horario publicado**: 104 de los 117 servicios
+Desde el 12 de septiembre de 2026 las salidas salen del **horario publicado**: 115 de los 117 servicios
 utilizables despachan a las horas del GTFS de TRANSMILENIO, no a un intervalo fijo. Los 13 restantes
 conservan la regla de 4/8 min y constan uno a uno, con su motivo, en `app/dist/schedule.json`; casi todos
 son duales cuyo registro publicado es una vuelta completa que cubre dos códigos locales, y atarlos a ambos

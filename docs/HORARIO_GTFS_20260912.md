@@ -315,3 +315,36 @@ falta de `shapely`, igual que antes de este cambio.
 
 Cómo funciona el simulador en conjunto, y de qué datos abiertos sale cada pieza, está en
 [Cómo se simula](COMO_SE_SIMULA.md).
+
+## Corrección del 13 de septiembre: las vueltas que cierran el bucle
+
+Un registro publicado de vuelta completa puede regresar al andén desde el que salió, y entonces trae
+un tramo más de los que suman los dos servicios locales. El corte exigía que la cuenta fuera exacta
+—los tramos del primero, uno de giro y los del segundo— y por ese tramo sobrante descartaba el
+registro entero.
+
+Lo pagaba sobre todo **FZ63**, «F63 Pradera || Z63 Tibanica», con **347 viajes de día laborable**.
+Sin ellos, F63 se quedaba con 16 salidas y Z63 con 15, todas antes de las 4:11 o después de las 21:00:
+en la simulación el servicio no tenía **un solo bus entre las cinco de la mañana y las nueve de la
+noche**, aunque la operación real corra cada pocos minutos. Los tableros de salida de un jueves lo
+confirman desde otra fuente: F63 y Z63 no aparecen, y sí aparece FZ63.
+
+Ahora ese tramo se aparta antes de contar, y solo cuando la cuenta no cuadra sin hacerlo: en unos
+registros el último tramo es parte del recorrido y en otros es el cierre, y la única forma de
+distinguirlos es la cuenta local. Los cinco cortes que ya funcionaban no cambian.
+
+| | Antes | Ahora |
+|---|---|---|
+| Registros de vuelta completa cortados | 5 | **8** |
+| Servicios con salidas publicadas | 109 | **115** de 117 utilizables |
+| Servicios con tiempos por tramo | 108 | **114** |
+| Salidas publicadas | 44.402 | **47.190** |
+
+Los tres registros recuperados son FZ63 (347 viajes, F63 y Z63) y MK86 y M86 (556 viajes entre los
+dos, para M86 y K86).
+
+**Lo que queda.** Los únicos servicios utilizables que un jueves no ponen ningún bus son K86/1186 y
+D81/5279, las dos variantes de Ciclovía, cuyo propio calendario publicado es de domingo y festivo.
+Y la variante G12/1210 «G. Santander» tiene nueve salidas entre semana y ninguna el fin de semana:
+es un registro menor del catálogo —el G12 de verdad es la variante a Portal Sur, que opera con
+normalidad— y su contradicción con el calendario local se cuenta, no se rellena.

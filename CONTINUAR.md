@@ -51,9 +51,16 @@ Estimaciones ajustables y QA de navegador autorizadas; dos carriles por sentido 
   controlando por lugar vale solo un 5–8 %.
 - Cruceros 60 troncal/50 calle, variación por vehículo −5/−2/0/+2/+5. Los buses frenan en curvas/paradas; calle en pico factor 0,82.
 - Nuevo 1× de demanda = 2,25 del modelo previo. Demanda medida sobre 17 días (24 ago.–9 sep. 2026, 28.014.777 validaciones): perfil horario por tipo de día en `hourly_by_day_type`, 13 días de semana, 2 sábados y 2 domingos. Factores medidos sábado 0,654 y domingo 0,302, frente a los 0,70/0,55 estimados que reemplazan; el domingo estaba sobreestimado ~80%. Entre días de semana la variación es 2,0%. OD, descensos, direcciones y abandono medio 30 min siguen estimados. Denegaciones son oportunidades repetidas, no personas únicas. Detalle en docs/DEMANDA_MULTIDIA_20260911.md. Contraste estacional con 15 días de marzo (21.156.110 validaciones) en docs/DEMANDA_COMPARACION_MARZO_20260911.md: factores por tipo de día estables (sábado 0,654 vs 0,642; domingo 0,302 vs 0,289), nivel de marzo −7,3 % uniforme, reparto horario casi idéntico. Dos hallazgos: un festivo entre semana queda 16,5 % por debajo de un domingo —mejora pendiente, falta medir más festivos— y la red cambió entre marzo y septiembre (Calle 76 y Calle 45 desaparecen, Calle 72 - Areandina aparece), lo que corrobora la retirada de los pendientes 6/692 y A60/1187. La calibración sigue siendo la de agosto–septiembre por ser contemporánea del catálogo.
-- **Salidas del horario publicado** (12/09/2026): 104 de los 117 servicios utilizables despachan a las horas
-  del GTFS de TRANSMILENIO; los 13 restantes, casi todos duales cuyo registro publicado es una vuelta completa,
+- **Salidas del horario publicado** (12/09/2026, ampliado el 13): 115 de los 117 servicios utilizables despachan a las horas
+  del GTFS de TRANSMILENIO; los 2 restantes, casi todos duales cuyo registro publicado es una vuelta completa,
   conservan la regla y constan con motivo en `app/dist/schedule.json`. Interruptor «Salidas del horario publicado».
+- **Vueltas completas que cierran el bucle** (13/09/2026): un registro publicado que regresa al andén desde el que salió
+  trae un tramo de más, el que cierra el bucle, y la cuenta local salía por uno: el registro se descartaba entero.
+  Afectaba a FZ63 —los 347 viajes de día laborable de F63 y Z63, que dejaban ese servicio sin un bus entre las 5 y las
+  21 h— y a MK86/M86, 556 viajes más. `build_schedule.py` aparta ese tramo, pero solo cuando la cuenta no cuadra sin
+  hacerlo, para no tocar los cinco registros que ya encajaban. Cortes 5 → 8, salidas 44.402 → 47.190, servicios con
+  tiempos por tramo 108 → 114. Los únicos servicios utilizables sin buses un jueves son las dos variantes de Ciclovía
+  (K86/1186 y D81/5279), que su propio calendario declara de domingo y festivo.
   Sábado a las 12:30: 477 activos con la regla, 634 con el horario, 975 viajes GTFS en curso. La diferencia que
   queda es duración, no frecuencia: los 91 servicios comparables terminan antes de lo programado, razón mediana
   0,67. **Corregido el mismo día**: la velocidad de cada tramo se despeja del tiempo publicado tras descontar

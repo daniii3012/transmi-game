@@ -21,8 +21,10 @@ Three decisions, all of them visible in the audit file:
     half departs at the trip's own departure plus the share of the trip that the first half and the
     turn take. One bus does the outward leg and then becomes the return one, which is what the
     record describes. The cut is only made when the arithmetic is exact: published stretches must be
-    the first service's, plus one for the turn, plus the second service's. Anything else stays
-    aside, with the reason written down.
+    the first service's, plus one for the turn, plus the second service's. A loop that returns to the
+    platform it left from carries one more stretch, the one that closes it; it belongs to neither
+    service and is set apart before counting. Anything else stays aside, with the reason written
+    down.
 
 Calendars are not collapsed into the project's three day types. What travels to the browser is the
 GTFS calendar as published —weekday flags plus added and removed dates— so that which services run
@@ -175,6 +177,7 @@ def partir(aside, catalogue, segments, by_route):
         if not lados:
             rechazar('el destino publicado no separa dos servicios')
             continue
+
         locales = [por_clave.get((clave(c), clave(d))) for c, d in lados]
         if not all(locales):
             falta = ', '.join(f'{c} {d}' for (c, d), s in zip(lados, locales) if not s)
@@ -184,9 +187,21 @@ def partir(aside, catalogue, segments, by_route):
             rechazar('las dos mitades apuntan al mismo servicio local')
             continue
         cuenta = [len(s.get('stops') or []) - 1 for s in locales]
-        if min(cuenta) < 1 or cuenta[0] + 1 + cuenta[1] != len(filas):
+        # Algunas vueltas regresan al andén desde el que salieron y traen un tramo de más: el que
+        # cierra el bucle, que no pertenece a ninguno de los dos servicios porque el local termina en
+        # su última parada y no en el andén contrario de la misma estación. Solo se aparta si la
+        # cuenta no cuadra sin hacerlo, para no tocar los registros que ya encajaban: en unos el
+        # último tramo es parte del recorrido y en otros es el cierre, y la cuenta local es la que
+        # distingue uno de otro. Sin esto se descartaba FZ63 entero —los 347 viajes de día laborable
+        # de F63 y Z63— y el servicio se quedaba sin un bus entre las cinco de la mañana y las nueve
+        # de la noche.
+        cierre, utiles = [], filas
+        if (cuenta[0] + 1 + cuenta[1] != len(filas) and len(filas) > 1
+                and filas[-1]['to_stop'] == filas[0]['from_stop']):
+            cierre, utiles = filas[-1:], filas[:-1]
+        if min(cuenta) < 1 or cuenta[0] + 1 + cuenta[1] != len(utiles):
             rechazar(f'el catálogo local cuenta {cuenta[0]} + giro + {cuenta[1]} tramos '
-                     f'y el paquete {len(filas)}')
+                     f'y el paquete {len(utiles)}' + (' más el cierre del bucle' if cierre else ''))
             continue
         # El reparto del viaje se hace sobre su propia duración publicada, no sobre la mediana de
         # los tramos: un viaje de la punta tarda más que uno de la noche y el punto donde da la
@@ -196,9 +211,13 @@ def partir(aside, catalogue, segments, by_route):
         if total <= 0:
             rechazar('algún tramo publicado dura cero segundos')
             continue
+        # Las proporciones se miden sobre la vuelta entera, cierre incluido, porque la duración
+        # publicada del viaje también lo incluye; pero la segunda mitad termina en su última parada
+        # y no en el andén de salida, así que su llegada se corta antes del cierre.
         parte_ida = sum(totales[:cuenta[0]]) / total
         parte_giro = sum(totales[:cuenta[0] + 1]) / total
-        tramos = [filas[:cuenta[0]], filas[cuenta[0] + 1:]]
+        parte_vuelta = sum(totales[:len(utiles)]) / total
+        tramos = [utiles[:cuenta[0]], utiles[cuenta[0] + 1:]]
         metros = [sum(float(x['metres']) for x in bloque) for bloque in tramos]
         registros = []
         for lado in (0, 1):
@@ -211,7 +230,8 @@ def partir(aside, catalogue, segments, by_route):
                 if lado == 0:
                     desde, hasta = salida, salida + round(duracion * parte_ida)
                 else:
-                    desde, hasta = salida + round(duracion * parte_giro), llegada
+                    desde = salida + round(duracion * parte_giro)
+                    hasta = llegada if not cierre else salida + round(duracion * parte_vuelta)
                 viajes.append({**trip, 'route_id': rid, 'departure_s': str(desde),
                                'arrival_s': str(hasta), 'metres': str(metros[lado])})
             by_route[rid] = viajes
@@ -221,9 +241,10 @@ def partir(aside, catalogue, segments, by_route):
             extra[locales[lado]['id']].append(registro)
         cortes.append({
             'route_id': route['route_id'], 'short': route['route_short_name'],
-            'long': route['route_long_name'], 'segments': len(filas),
-            'turn_segment': int(filas[cuenta[0]]['index']),
-            'turn_seconds': round(float(filas[cuenta[0]]['seconds'])),
+            'long': route['route_long_name'], 'segments': len(utiles),
+            'loop_closing_seconds': round(sum(float(x['seconds']) for x in cierre)) if cierre else None,
+            'turn_segment': int(utiles[cuenta[0]]['index']),
+            'turn_seconds': round(float(utiles[cuenta[0]]['seconds'])),
             'trips': len(by_route.get(route['route_id']) or []),
             'halves': [{'route_id': r['route_id'], 'local_id': locales[i]['id'],
                         'code': locales[i]['code'], 'name': locales[i]['name'],

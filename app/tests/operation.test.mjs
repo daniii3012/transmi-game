@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
-import {Operation,DEFAULTS,parameters,motion,motionAt,programmedSpeed,TRAFFIC,FIELD,routeField,fieldLimit,fieldHolds,fieldStanding} from '../dist/operation.mjs';
+import {Operation,DEFAULTS,parameters,motion,motionAt,programmedSpeed,TRAFFIC,FIELD,routeField,fieldLimit,berthQueue} from '../dist/operation.mjs';
 import {vehicleSpec} from '../dist/vehicles.mjs';
 import {MetricPath} from '../dist/simulation.mjs';
 import {travelProfile,travelAt} from '../dist/travel.mjs';
@@ -84,41 +84,54 @@ test('Overnight departures and previous-day journeys remain visible after midnig
 test('Bus size comes from the observed fleet profile and stays fixed for the service',()=>{const observado=(type,buses)=>({type,capacity:type==='biarticulated'?240:160,status:'observed',buses,snapshot:'2026-09-12'});const specs=Array.from({length:20},(_,i)=>vehicleSpec({code:'J23',vehicle_profile:observado('biarticulated',41)},DEFAULTS,i));assert.equal(new Set(specs.map(v=>v.kind)).size,1);assert.equal(specs[0].capacity,240);assert.match(specs[0].typeSource,/observada/);assert.equal(vehicleSpec({code:'8',vehicle_profile:observado('articulated',60)},DEFAULTS,3).capacity,160);assert.equal(vehicleSpec({code:'M85',dual:true},DEFAULTS,1).capacity,80);});
 test('Route length no longer decides the body type and an unobserved service says so',()=>{const largo=vehicleSpec({code:'H27',length_m:31000},DEFAULTS,1);assert.equal(largo.capacity,160);assert.match(largo.typeSource,/estimada/);const corto=vehicleSpec({code:'J23',length_m:14362,vehicle_profile:{type:'biarticulated',capacity:240,status:'observed',buses:41,snapshot:'2026-09-12'}},DEFAULTS,1);assert.equal(corto.capacity,240);});
 test('The catalogue carries the fleet reading for the services it was observed on',()=>{const perfiles=source.routes.filter(r=>r.vehicle_profile?.source==='gtfs_rt_fleet_labels');assert.ok(perfiles.length>80);for(const code of ['J23','F23','M51','F51','2'])assert.equal(source.routes.find(r=>r.code===code).vehicle_profile.type,'biarticulated');for(const code of ['1','3','8','K23','B13'])assert.equal(source.routes.find(r=>r.code===code).vehicle_profile.type,'articulated');for(const r of perfiles){assert.ok(r.vehicle_profile.buses>=3);assert.equal(r.vehicle_profile.source_url,'https://gtfs.transmilenio.gov.co/positions.pb');}});
-test('The measured field sets the speed of each stretch and the schedule still sets the total',()=>{
- // 3 km en dos trechos: el primero lento y con espera, el segundo rápido y despejado.
+test('The measured speed of each stretch sets the pace and the schedule still sets the total',()=>{
+ // 3 km en dos trechos: el primero medido lento, el segundo medido rápido.
  const campo={routes:{r:{coverage:1,profile:[[0,150,40],[1500,450,2]]}}};
  const d={...fixture([{...route(),stops:[{station_id:'a',name:'a',kind:'station',wagons:2,at_m:0},{station_id:'c',name:'c',kind:'station',wagons:2,at_m:3000}],points:[[0,0],[3000,0]]}]),speed_profiles:campo};
  const s=new Operation(d,{});
  const move=s.trips[0].moves[0];
  assert.ok(move,'el tramo existe');
  const lento=move.profile.v[Math.floor(move.profile.v.length*.2)]*3.6,rapido=move.profile.v[Math.floor(move.profile.v.length*.8)]*3.6;
- assert.ok(lento<20,`el trecho medido lento rueda a ${lento.toFixed(1)} km/h`);
- assert.ok(rapido>30,`el trecho medido rápido rueda a ${rapido.toFixed(1)} km/h`);
- // Las esperas caen en el trecho donde el campo dice que se para, no en la aproximación final.
- const esperas=move.holds.filter(h=>h.congestion);
- assert.ok(esperas.length);
- assert.ok(esperas.every(h=>h.at_m<1500),'la espera va donde el campo la midió');
- assert.ok(esperas.every(h=>h.end-h.start<=FIELD.maxHold+1e-6),'ninguna espera pasa del tope');
+ assert.ok(lento<rapido-10,`el trecho medido lento (${lento.toFixed(1)}) va por debajo del rápido (${rapido.toFixed(1)})`);
+ assert.ok(move.profile.v.some(v=>v>0),'el bus se mueve');
 });
-test('Two services sharing a stretch receive the same measured speed',()=>{
- const campo={routes:{r:{coverage:1,profile:[[0,250,10]]},otra:{coverage:1,profile:[[0,250,10]]}}};
- const uno=new Operation({...fixture(),speed_profiles:campo},{});
- const dos=new Operation({...fixture([{...route('otra')}]),speed_profiles:campo},{});
- assert.equal(Math.round(uno.trips[0].moves[0].profile.v[3]*100),Math.round(dos.trips[0].moves[0].profile.v[3]*100));
+test('A trunk bus only stands still at its station queue or at a red, never mid-corridor',()=>{
+ // Sobre el catálogo real y su horario: ninguna espera puede quedar lejos de la estación siguiente,
+ // salvo que la empuje hasta ahí el último semáforo del tramo.
+ const perfiles=JSON.parse(fs.readFileSync(new URL('../dist/speed_profiles.json',import.meta.url)));
+ const activos=gtfsServices(horario,'2026-09-12');
+ const ids=Object.keys(horario.routes).filter(k=>horario.routes[k].segments&&perfiles.routes[k]&&programmedDepartures(horario,k,activos).length>20).slice(0,4);
+ assert.ok(ids.length,'hay servicios con horario y con campo medido');
+ const s=new Operation({...source,routes:source.routes.filter(r=>ids.includes(r.id)),schedule:horario,speed_profiles:perfiles},{date:'2026-09-12'});
+ const alcance=TRAFFIC.margin+11*TRAFFIC.spacing;
+ let esperas=0;
+ for(const t of s.trips){
+  const ruta=s.routes.get(t.routeId);
+  t.moves.forEach((m,i)=>{
+   const fin=ruta.visits[i+1]?.at_m;if(fin===undefined)return;
+   const ultimo=ruta.signals.filter(g=>g.at_m>m.from+.1&&g.at_m<fin-.1).reduce((a,g)=>Math.max(a,g.at_m),0);
+   for(const h of m.holds.filter(h=>h.congestion)){
+    esperas++;
+    assert.ok(h.at_m>=fin-alcance-.5||h.at_m>=ultimo-.5,
+     `espera a ${(fin-h.at_m).toFixed(0)} m de la parada, con el último semáforo en ${ultimo.toFixed(0)}`);
+   }
+  });
+ }
+ assert.ok(esperas>0,'alguna cola de andén se forma');
 });
-test('Field holds add up to the asked seconds, stay ordered and split when too long',()=>{
- const field=routeField({coverage:1,profile:[[0,200,50],[500,200,10]]});
- const perfil={distance:1000,duration:200,s:Float64Array.from([0,500,1000]),v:Float64Array.from([10,10,10]),times:Float64Array.from([0,100,200])};
- const holds=fieldHolds(field,perfil,0,1000,600);
- const total=holds.reduce((a,h)=>a+h.seconds,0);
- assert.ok(Math.abs(total-600)<1e-6,`suman ${total}`);
- assert.deepEqual(holds.map(h=>h.at_m),[...holds.map(h=>h.at_m)].sort((a,b)=>a-b));
- assert.ok(holds.every(h=>h.seconds<=FIELD.maxHold+1e-6));
- assert.ok(fieldStanding(field,perfil,0,1000)>0);
- assert.equal(fieldHolds(field,perfil,0,1000,0).length,0);
- assert.equal(routeField(null),null);
+test('The station queue forms in the approach, never ahead of the last red of the stretch',()=>{
+ const sinSemaforo=berthQueue(0,1000,[],120);
+ assert.ok(sinSemaforo.length>1,'una espera larga avanza a trozos');
+ assert.ok(Math.abs(sinSemaforo.reduce((a,h)=>a+h.seconds,0)-120)<1e-9);
+ assert.ok(sinSemaforo.every(h=>h.at_m<=1000-TRAFFIC.margin+1e-9));
+ assert.deepEqual(sinSemaforo.map(h=>h.at_m),[...sinSemaforo.map(h=>h.at_m)].sort((a,b)=>a-b));
+ const conSemaforo=berthQueue(0,1000,[{at_m:980}],120);
+ assert.ok(conSemaforo.every(h=>h.at_m>=980),'la cola se forma en el semáforo si no queda aproximación');
+ assert.equal(berthQueue(0,1000,[],0).length,0);
+ const field=routeField({coverage:1,profile:[[0,200,50],[500,400,10]]});
  assert.equal(Math.round(fieldLimit(field,1)(10)*3.6),20);
- assert.equal(Math.round(fieldLimit(field,.5)(600)*3.6),10);
+ assert.equal(Math.round(fieldLimit(field,.5)(600)*3.6),20);
+ assert.equal(routeField(null),null);
 });
 test('Vehicle cruise variation is stable and bounded by ±5 km/h',()=>{const values=Array.from({length:50},(_,i)=>vehicleSpec({code:'1'},DEFAULTS,i).speedOffset);assert.ok(new Set(values).size>1);assert.ok(values.every(v=>v>=-5&&v<=5));assert.equal(DEFAULTS.cruiseKmh,60);assert.equal(DEFAULTS.streetKmh,50);});
 test('Irregular departures and bounded peak reinforcements are deterministic',()=>{const d=fixture();d.stations=d.stations.map(s=>({...s,demand_profile:{hourly:Array(24).fill(100000)}}));const a=new Operation(d),b=new Operation(d),plain=new Operation(d,{params:{reinforcements:false}});assert.deepEqual(a.trips.map(t=>t.id),b.trips.map(t=>t.id));assert.ok(a.trips.some(t=>t.reinforcement));assert.ok(a.trips.length>plain.trips.length);assert.ok(a.trips.length<plain.trips.length*1.25);});

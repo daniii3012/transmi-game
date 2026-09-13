@@ -11,8 +11,8 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
 
-from build_speed_field import (ATENCION_M, COLA_M, CUBETA, ENGANCHE, corredores, enganchar,
-                               indice, medir, rellenar, repartir)
+from build_speed_field import (ATENCION_M, CUBETA, ENGANCHE, ESTACION_M, SEMAFORO_M, corredores,
+                               enganchar, indice, medir, rellenar, repartir)
 
 EJE = {'corridors': [{'id': 'T1', 'kind': 'trunk', 'name': 'Recta', 'zone': 'B',
                       'components': [[[0, 0], [2000, 0]]]}]}
@@ -52,14 +52,13 @@ class Reparto(unittest.TestCase):
         self.assertEqual([p[0] for p in repartir(250, 50, 200, 20)], [0, 1, 2])
 
 
-class Atencion(unittest.TestCase):
-    """Un bus quieto en su propia parada no detiene al expreso que pasa de largo."""
+class Andenes(unittest.TestCase):
+    """El campo mide lo que consigue un bus que pasa de largo, no lo que hacen los que paran."""
 
-    def medir_uno(self, x_parada):
-        ejes = corredores(EJE)
-        malla = indice(ejes)
+    def medir_uno(self, x_parada, andenes=(), luces=()):
+        malla = indice(corredores(EJE))
         lecturas = {'b1': [(0, 500.0, 0.0, 'P'), (20, 500.0, 0.0, 'P')]}
-        campo, usadas, _ = medir(lecturas, malla, {'P': (x_parada, 0.0)})
+        campo, usadas, _ = medir(lecturas, malla, {'P': (x_parada, 0.0)}, luces, andenes)
         self.assertEqual(usadas, 1)
         return next(iter(campo.values()))
 
@@ -68,13 +67,20 @@ class Atencion(unittest.TestCase):
         self.assertEqual(celda['stop_t'], 0)
         self.assertEqual(celda['dwell_t'], 20)
 
-    def test_quieto_en_la_cola_de_su_propio_anden_no_es_del_corredor(self):
-        celda = self.medir_uno(500 + COLA_M - 10)
+    def test_quieto_en_cualquier_anden_no_habla_del_corredor(self):
+        """Aunque no sea su estación: el motor modela la atención y la cola por el vagón aparte."""
+        celda = self.medir_uno(5000, andenes=[(500 + ESTACION_M - 10, 0.0)])
         self.assertEqual(celda['stop_t'], 0)
         self.assertEqual(celda['queue_t'], 20)
 
-    def test_quieto_lejos_de_su_parada_si_detiene_a_cualquiera(self):
-        celda = self.medir_uno(500 + COLA_M + 200)
+    def test_quieto_en_un_semaforo_es_del_semaforo(self):
+        """El motor ya resuelve las fases: contarlas aquí las cobraría dos veces."""
+        celda = self.medir_uno(5000, luces=[(500 + SEMAFORO_M - 10, 0.0)])
+        self.assertEqual(celda['stop_t'], 0)
+        self.assertEqual(celda['signal_t'], 20)
+
+    def test_quieto_lejos_de_todo_si_es_del_corredor(self):
+        celda = self.medir_uno(5000, andenes=[(2000.0, 0.0)], luces=[(2000.0, 0.0)])
         self.assertEqual(celda['stop_t'], 20)
         self.assertEqual(celda['dwell_t'], 0)
 

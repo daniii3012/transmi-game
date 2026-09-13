@@ -11,7 +11,7 @@ Cada cifra del modelo dice de dónde viene y si está medida o estimada.
 [![servicios](https://img.shields.io/badge/servicios-117%20utilizables%20%C2%B7%2020%20pendientes-1f6feb)](docs/PENDIENTES_20260911.md)
 [![datos](https://img.shields.io/badge/datos-12%20sep%202026-8957e5)](docs/ACTUALIZAR_DATOS.md)
 [![sin npm](https://img.shields.io/badge/sin%20npm-JS%20est%C3%A1ndar%20%2B%20Python-6e7681)](docs/ARQUITECTURA.md)
-[![pruebas](https://img.shields.io/badge/pruebas-82%20Node%20%C2%B7%2071%20Python-2da44e)](#desarrollo)
+[![pruebas](https://img.shields.io/badge/pruebas-82%20Node%20%C2%B7%2072%20Python-2da44e)](#desarrollo)
 
 [**Abrir el simulador publicado**](https://daniii3012.github.io/transmi-sim/) ·
 [Cómo se simula](docs/COMO_SE_SIMULA.md) ·
@@ -90,7 +90,7 @@ Cada pieza del simulador tuvo que demostrarse antes de entrar. Lo que se midió 
 |---|---|
 | [Tipo de bus por servicio](docs/TIPOS_DE_BUS_20260912.md) | La etiqueta de flota del alimentador separa articulados, biarticulados y duales; los 87 servicios con lecturas usan una sola familia. Retira el criterio de longitud, que erraba en 25 de 76 |
 | [Horario publicado](docs/HORARIO_GTFS_20260912.md) | Sustituye la regla inventada de 4 y 8 minutos por las salidas del GTFS, y el crucero único por la velocidad que se despeja de cada tramo |
-| [La velocidad la pone el lugar](docs/VELOCIDAD_POR_LUGAR_20260913.md) | Cada trecho de corredor tiene su velocidad y su parte de tiempo detenido, medidas: de 10 a 44 km/h según dónde. El apiñamiento, aislado del lugar, solo vale un 5–8 % |
+| [La velocidad la pone el lugar](docs/VELOCIDAD_POR_LUGAR_20260913.md) | Cada trecho de corredor tiene su velocidad medida, de 10 a 44 km/h según dónde. Un bus solo se detiene por cola de andén o por rojo; lo demás se gasta rodando despacio. El apiñamiento, aislado del lugar, vale un 5–8 % |
 | [Velocidad y detenciones](docs/VELOCIDAD_Y_DETENCIONES_20260912.md) | Por qué un bus simulado iba a 23 km/h frente al real, contrastado con cinco horas de captura |
 | [Demanda sobre 17 días](docs/DEMANDA_MULTIDIA_20260911.md) | Sábado 0,654 y domingo 0,302 del día de semana: el domingo estimado estaba sobreestimado un 80 % |
 | [¿Es agosto–septiembre representativo?](docs/DEMANDA_COMPARACION_MARZO_20260911.md) | Contraste con 15 días de marzo: factores por tipo de día estables y nivel 7,3 % más bajo, uniforme |
@@ -110,7 +110,7 @@ El simulador nunca presenta una estimación como un dato. En la interfaz, cada f
 - Recorridos, paradas, colores, calendarios y vigencias publicados.
 - Salidas y tiempos entre paradas del GTFS, por tipo de día.
 - Tipo de bus de 87 servicios, leído de la flota que los atiende.
-- Velocidad de marcha y tiempo detenido de cada trecho de corredor, en el 95 % de sus cubetas.
+- Velocidad de cada trecho de corredor, en el 95 % de sus cubetas de 100 m.
 - Demanda por hora, estación y tipo de día sobre 28.014.777 validaciones.
 - Punto de atención publicado —vagón y puertas— en 1.305 de 1.557 paradas troncales.
 - Carriles, semáforos y geometría de estación donde OSM los publica.
@@ -121,6 +121,8 @@ El simulador nunca presenta una estimación como un dato. En la interfaz, cada f
 - Los 34 servicios sin lecturas de flota usan el articulado de referencia.
 - Frecuencias fuera del horario publicado, refuerzos en pico y reparto por sentido.
 - La velocidad medida es de un sábado por la tarde y se aplica a todas las horas y tipos de día.
+- El viaje completo dura 2,1 min más que el horario publicado, en tramos cuyo tiempo no se alcanza
+  ni rodando al crucero.
 - Descenso de pasajeros, abandono de espera (media 30 min) y orientación al centro de empleo: no hay
   matriz origen-destino real.
 - Ciclo semafórico de 90 s y asignación de servicios a puestos físicos de estación.
@@ -157,7 +159,7 @@ propios y no depende de un motor 3D. El proyecto de conducción anterior queda p
 
 ```bash
 node --test app/tests/*.test.mjs                 # 82 pruebas
-python3 -m unittest discover -s tests            # 71, con el Python geográfico de CONTINUAR.md
+python3 -m unittest discover -s tests            # 72, con el Python geográfico de CONTINUAR.md
 python3 tools/classify_fleet.py                  # vuelve a deducir el tipo de bus de las capturas
 python3 tools/build_speed_field.py               # vuelve a medir la velocidad de cada trecho
 ```

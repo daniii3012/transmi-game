@@ -1,10 +1,10 @@
-import {DAY,addDays,serviceWindows,demandPeriod,dayType,gtfsServices,programmedDepartures} from './calendar.mjs?v=20260913.1';
-import {vehicleSpec} from './vehicles.mjs?v=20260913.1';
-import {matchSignals,signalTravel,signalTravelAt,SIGNAL_EXPECTED} from './signals.mjs?v=20260913.1';
-import {travelTimeAtDistance} from './travel.mjs?v=20260913.1';
-import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260913.1';
-import {placeVisit} from './station-layouts.mjs?v=20260913.1';
-import {MetricPath} from './simulation.mjs?v=20260913.1';
+import {DAY,addDays,serviceWindows,demandPeriod,dayType,gtfsServices,programmedDepartures} from './calendar.mjs?v=20260913.2';
+import {vehicleSpec} from './vehicles.mjs?v=20260913.2';
+import {matchSignals,signalTravel,signalTravelAt,SIGNAL_EXPECTED} from './signals.mjs?v=20260913.2';
+import {travelTimeAtDistance} from './travel.mjs?v=20260913.2';
+import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260913.2';
+import {placeVisit} from './station-layouts.mjs?v=20260913.2';
+import {MetricPath} from './simulation.mjs?v=20260913.2';
 export const DEFAULTS=Object.freeze({peakHeadway:240,offpeakHeadway:480,demand:1,mode:'auto',cruiseKmh:60,streetKmh:50,acceleration:.8,braking:1.1,turnaround:240,variableDispatch:true,reinforcements:true,signals:true,beyondValidity:true,programmedDispatch:true,programmedRunning:true});
 export function parameters(input={}){const p={...DEFAULTS,...input};for(const [k,min,max] of [['peakHeadway',120,1200],['offpeakHeadway',180,1800],['demand',.25,3],['cruiseKmh',25,75],['streetKmh',20,60],['acceleration',.4,1.4],['braking',.5,1.8],['turnaround',60,900]])if(!Number.isFinite(p[k])||p[k]<min||p[k]>max)throw new Error('Parámetro fuera de rango: '+k);if(typeof p.variableDispatch!=='boolean'||typeof p.reinforcements!=='boolean'||typeof p.signals!=='boolean'||typeof p.beyondValidity!=='boolean'||typeof p.programmedDispatch!=='boolean'||typeof p.programmedRunning!=='boolean')throw new Error('Opciones de despacho inválidas');if(!['auto','peak','offpeak'].includes(p.mode))throw new Error('Demanda inválida');return p;}
 export function hash(text){let h=2166136261;for(const c of String(text)){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;}
@@ -47,15 +47,21 @@ export function congestionHolds(profile,from,to,departure,signals,signalDelay,su
 
 // --- Campo medido por trecho de corredor -----------------------------------------------------
 //
-// `speed_profiles.json` trae, cada 100 m de cada ruta, a qué velocidad se rueda ahí y qué parte del
-// tiempo se está quieto ahí, medido sobre el alimentador oficial. El campo da la FORMA del
-// movimiento y el horario publicado sigue dando el TOTAL: por eso un único factor por tramo estira
-// o encoge la forma hasta que el tramo dura exactamente lo publicado, y ninguna llegada se mueve.
+// `speed_profiles.json` trae, cada 100 m de cada ruta, lo que ese trecho le cuesta a un bus que
+// pasa: la velocidad de travesía medida sobre el alimentador oficial, ya descontadas la atención y
+// la cola del propio servicio. El campo da la VELOCIDAD y el horario publicado sigue dando el
+// TOTAL, así que un único factor por tramo ajusta la primera al segundo y ninguna llegada se mueve.
 //
-// Lo importante de que el campo sea del lugar y no del vehículo: dos servicios distintos que pasan
-// por el mismo trecho reciben la misma velocidad y las mismas detenciones. Antes cada bus calculaba
-// su sobrante y se detenía por su cuenta, así que en el mismo punto uno se paraba y otro pasaba.
-export const FIELD=Object.freeze({minFactor:.6,maxFactor:1.6,step:.05,maxHolds:6,minHold:4,maxHold:120,spacing:60,tail:15});
+// Un trecho congestionado se representa como bus lento, no como bus plantado. En calzada segregada
+// un bus solo se detiene por dos razones que se ven desde la calle: el andén de su estación está
+// ocupado y hay cola para entrar, o tiene un semáforo en rojo. Quedarse quieto en mitad del
+// corredor no le pasa, y por eso el sobrante que no cabe bajando la velocidad va entero a la
+// aproximación a la estación siguiente, que es donde se forma la cola de verdad.
+//
+// Lo importante de que la velocidad sea del lugar y no del vehículo: dos servicios distintos que
+// pasan por el mismo trecho van igual de rápido. Antes cada bus calculaba su sobrante y se detenía
+// por su cuenta, así que en el mismo punto uno se paraba y otro le pasaba al lado.
+export const FIELD=Object.freeze({minFactor:.45,maxFactor:3,step:.05});
 
 /** Perfil de una ruta, de [abscisa, km/h×10, % detenido] a arreglos en metros y m/s. */
 export function routeField(entry){
@@ -74,49 +80,19 @@ export function fieldLimit(field,factor){
  };
 }
 
-/** Una espera larga es una cola, y una cola avanza a trozos: se parte hacia atrás desde su sitio. */
-function partir(hold,from){
- const trozos=Math.min(12,Math.ceil(hold.seconds/FIELD.maxHold));
- if(trozos<=1)return [hold];
- const cada=hold.seconds/trozos,salida=[];
- for(let i=0;i<trozos;i++)salida.push({at_m:Math.max(from,hold.at_m-(trozos-1-i)*FIELD.spacing),seconds:cada});
- return salida;
-}
-
-/** Detenciones repartidas donde el campo dice que se para, sumando `total` segundos. */
-export function fieldHolds(field,profile,from,to,total){
+/** La espera que no cabe bajando la velocidad, formada en la cola de entrada a la estación.
+ *
+ * Nunca por delante del último semáforo del tramo: si no queda aproximación libre, la cola se forma
+ * en el propio semáforo, que es donde se forma de verdad. Trozos de TRAFFIC.chunk como mucho, que
+ * es lo que una cola avanza antes de dar un paso.
+ */
+export function berthQueue(from,to,signals,total){
  if(!(total>0))return [];
- const parts=[];let sum=0;
- const first=Math.max(0,upperBound(field.at,from,x=>x)-1);
- for(let i=first;i<field.at.length&&field.at[i]<to;i++){
-  const a=Math.max(from,field.at[i]),b=Math.min(to,i+1<field.at.length?field.at[i+1]:to);
-  if(b<=a)continue;
-  const span=travelTimeAtDistance(profile,b-from)-travelTimeAtDistance(profile,a-from);
-  const share=Math.min(.95,field.stop[i]),w=span*share/Math.max(.05,1-share);
-  if(w>0){parts.push({at:(a+b)/2,w});sum+=w;}
- }
- // Sin campo utilizable en el tramo, la espera se forma en la aproximación, como antes.
- if(!(sum>0))return partir({at_m:Math.max(from,to-FIELD.tail),seconds:total},from);
- parts.sort((x,y)=>y.w-x.w);
- const kept=parts.slice(0,FIELD.maxHolds);
- let keptSum=kept.reduce((acc,p)=>acc+p.w,0);
- const holds=kept.map(p=>({at_m:p.at,seconds:total*p.w/keptSum})).filter(h=>h.seconds>=FIELD.minHold);
- if(!holds.length)return partir({at_m:Math.max(from,to-FIELD.tail),seconds:total},from);
- const escala=total/holds.reduce((acc,h)=>acc+h.seconds,0);
- for(const h of holds)h.seconds*=escala;
- return holds.flatMap(h=>partir(h,from)).sort((x,y)=>x.at_m-y.at_m);
-}
-
-/** Segundos que el campo dice que ese tramo pasa detenido, a la velocidad de ese perfil. */
-export function fieldStanding(field,profile,from,to){
- return fieldHolds(field,profile,from,to,1).length?
-  (()=>{let total=0;const first=Math.max(0,upperBound(field.at,from,x=>x)-1);
-   for(let i=first;i<field.at.length&&field.at[i]<to;i++){
-    const a=Math.max(from,field.at[i]),b=Math.min(to,i+1<field.at.length?field.at[i+1]:to);
-    if(b<=a)continue;
-    const span=travelTimeAtDistance(profile,b-from)-travelTimeAtDistance(profile,a-from);
-    const share=Math.min(.95,field.stop[i]);total+=span*share/Math.max(.05,1-share);}
-   return total;})():0;
+ let last=0;for(const s of signals)if(s.at_m>from+.1&&s.at_m<to-.1)last=Math.max(last,s.at_m-from);
+ const distance=to-from,count=Math.max(1,Math.min(12,Math.ceil(total/TRAFFIC.chunk))),each=total/count;
+ const far=Math.max(last,distance-TRAFFIC.margin),near=Math.max(last,far-(count-1)*TRAFFIC.spacing);
+ const step=count>1?(far-near)/(count-1):0;
+ return Array.from({length:count},(_,i)=>({at_m:from+near+step*i,seconds:each}));
 }
 
 // Velocidad de crucero que hace durar un tramo lo que dura en el horario publicado.
@@ -271,20 +247,31 @@ export class Operation {
     // La variación de ±5 km/h por bus se pliega dentro del factor en vez de ir en el techo: así el
     // perfil de un tramo depende de un solo número y la caché no guarda cinco copias casi iguales.
     // El factor se cuantiza en pasos de 0,05 por lo mismo; el ajuste fino lo hace la última espera.
-    const paso=f=>Math.round(Math.min(FIELD.maxFactor,Math.max(FIELD.minFactor,f))/FIELD.step)*FIELD.step;
+    // Hacia arriba y no al más cercano: así el tramo nunca sale largo por el redondeo. Lo que sobre
+    // se convierte en cola de andén, que es una espera que sí ocurre.
+    const paso=f=>Math.min(FIELD.maxFactor,Math.max(FIELD.minFactor,Math.ceil(f/FIELD.step)*FIELD.step));
     const viaje=(f,congestion)=>signalTravel(r.path,s.at_m,next.at_m,cap,this.params.acceleration,this.params.braking,
       close,r.signals,this.motionCache,r.id+'/'+e.index+'/'+f.toFixed(2),congestion,fieldLimit(field,f));
     const m1=viaje(1,[]),demora1=m1.holds.reduce((a,h)=>a+(h.end-h.start),0);
-    const quieto=fieldStanding(field,m1.profile,s.at_m,next.at_m);
-    // Un solo factor por tramo estira o encoge esa forma hasta llenar el presupuesto publicado.
-    // Fuera de sus topes no se fuerza: el resto queda como espera repartida por el propio campo.
-    const crudo=(budget>0?(m1.profile.duration+quieto)/Math.max(1,budget-demora1):1)*(1+speedOffset/60);
-    const factor=paso(crudo);
-    const m=Math.abs(factor-1)<1e-9?m1:viaje(factor,[]);
+    // Un solo factor por tramo ajusta la velocidad medida al tiempo publicado. Todo el sobrante se
+    // gasta rodando más despacio mientras el factor tenga recorrido; solo lo que no quepa ahí se
+    // convierte en espera, y esa espera va a la cola de la estación siguiente.
+    const crudo=(budget>0?m1.profile.duration/Math.max(1,budget-demora1):1)*(1+speedOffset/60);
+    let factor=paso(crudo),m=Math.abs(factor-1)<1e-9?m1:viaje(factor,[]);
+    // Arrancar y frenar no escalan con la velocidad, y el rojo que toca cambia al cambiarla, así que
+    // rodar al factor no cuesta exactamente lo previsto. Se corrige con el tiempo ya medido hasta
+    // que el tramo cabe en su presupuesto; dos pasadas bastan casi siempre y cada escalón repetido
+    // sale de la caché.
+    for(let intento=0;budget>0&&intento<3;intento++){
+     const demoraActual=m.holds.reduce((a,h)=>a+(h.end-h.start),0),margen=Math.max(1,budget-demoraActual);
+     if(m.profile.duration<=margen+.5)break;
+     const corregido=paso(factor*m.profile.duration/margen);
+     if(Math.abs(corregido-factor)<1e-9)break;
+     factor=corregido;m=viaje(factor,[]);
+    }
     const demora=m.holds.reduce((a,h)=>a+(h.end-h.start),0);
-    const objetivo=budget>0?budget:m.profile.duration+demora+quieto;
-    standing=Math.max(0,objetivo-m.profile.duration-demora);
-    const previstas=fieldHolds(field,m.profile,s.at_m,next.at_m,standing);
+    standing=budget>0?Math.max(0,budget-m.profile.duration-demora):0;
+    const previstas=berthQueue(s.at_m,next.at_m,r.signals,standing);
     // Las detenciones se resuelven junto con los semáforos: pararse antes de uno cambia su fase.
     const resuelto=previstas.length?viaje(factor,previstas):m;
     holds=resuelto.holds;duration=resuelto.duration;moveProfile=resuelto.profile;
@@ -294,7 +281,7 @@ export class Operation {
      const resto=budget-duration,ultima=holds.length?holds[holds.length-1]:null;
      if(resto>.5){
       if(ultima?.congestion)ultima.end+=resto;
-      else holds=[...holds,{at_m:Math.max(s.at_m,next.at_m-FIELD.tail),start:close+duration,end:close+duration+resto,congestion:true}];
+      else holds=[...holds,{at_m:Math.max(s.at_m,next.at_m-TRAFFIC.margin),start:close+duration,end:close+duration+resto,congestion:true}];
       standing+=resto;duration=budget;
      }else if(resto<-.5&&ultima?.congestion){
       const recorte=Math.min(-resto,ultima.end-ultima.start);ultima.end-=recorte;duration-=recorte;standing-=recorte;

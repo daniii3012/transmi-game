@@ -32,7 +32,12 @@ def clock(s):
 PASO_PERFIL=50
 
 def speed_profiles(routes,corridors,field):
-    """Resuelve el campo medido a lo largo de cada ruta: [abscisa, velocidad, parte detenida].
+    """Resuelve el campo medido a lo largo de cada ruta: [abscisa, velocidad de travesía, parte detenida].
+
+    La velocidad es la de travesía —lo que el trecho le cuesta a un bus que pasa, sin la atención ni
+    la cola de su propio servicio—, porque en calzada segregada un trecho congestionado se ve como
+    bus lento y no como bus plantado. La parte detenida viaja al lado como evidencia; el motor no la
+    usa para fabricar esperas.
 
     El campo está indexado por corredor y sentido, así que lo comparten todos los servicios que pasan
     por el mismo trecho, que es justo lo que hace que dos buses en el mismo sitio se muevan igual. Un
@@ -61,7 +66,7 @@ def speed_profiles(routes,corridors,field):
             cubeta=min(int(abscisa//CUBETA),int(largos[eje]//CUBETA))
             celda=field['buckets'].get(f'{eje}|{sentido}|{cubeta}')
             if not celda:continue
-            valor=(round(celda['v_roll_kmh']*10),round(celda['stop_share']*100))
+            valor=(round(celda['v_kmh']*10),round(celda['stop_share']*100))
             if valor!=ultimo:perfil.append([round(at),valor[0],valor[1]]);ultimo=valor
         if perfil:salida[r['id']]={'coverage':round(enganchadas/max(1,muestras),3),'profile':perfil}
     return salida

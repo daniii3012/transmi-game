@@ -61,8 +61,9 @@ REJILLA = 250         # celda del índice espacial
 PASO_MAX = 60         # segundos entre dos lecturas del mismo bus
 SALTO_MAX = 1500      # metros entre dos lecturas; por encima es error de posición
 QUIETO_KMH = 2        # por debajo de esto la lectura cuenta como detenido
-ATENCION_M = 60       # quieto a menos de esto de su parada destino es atención, no tráfico
-COLA_M = 250          # y hasta aquí, cola por el andén de su propio servicio
+ATENCION_M = 60       # quieto a menos de esto de su parada destino es atención
+ESTACION_M = 120      # quieto a esta distancia de cualquier estación es andén, no corredor
+SEMAFORO_M = 45       # quieto a esta distancia de un semáforo corroborado es el rojo, no el corredor
 MINIMO_OBSERVADO = 300    # segundos medidos para usar una cubeta tal cual
 MINIMO_SUAVIZADO = 60     # segundos para promediarla con sus vecinas
 VECINAS = 2               # cubetas a cada lado al suavizar
@@ -164,10 +165,27 @@ def lecturas(carpeta, rutas):
     return por_bus, archivos
 
 
-def medir(por_bus, malla, paradas):
+def semaforos(ruta):
+    """[(x, y)] de los semáforos corroborados, en el mismo marco métrico."""
+    if not ruta or not ruta.exists():
+        return []
+    return [tuple(s['xy']) for s in json.loads(ruta.read_text()).get('signals', []) if s.get('xy')]
+
+
+def cerca_de(puntos, x, y, radio):
+    return any(abs(px - x) <= radio and abs(py - y) <= radio and math.hypot(px - x, py - y) <= radio
+               for px, py in puntos)
+
+
+def estaciones(servicios):
+    """[(x, y)] de las estaciones troncales, en el marco métrico del simulador."""
+    return [tuple(s['xy']) for s in servicios['stations'] if s.get('kind') == 'station' and s.get('xy')]
+
+
+def medir(por_bus, malla, paradas, luces=(), andenes=()):
     """Acumula por (eje, sentido, cubeta) lo rodado, lo detenido en tráfico y la atención."""
     campo = defaultdict(lambda: {'t': 0.0, 'd': 0.0, 'stop_t': 0.0, 'dwell_t': 0.0, 'queue_t': 0.0,
-                                 'move_t': 0.0, 'move_d': 0.0, 'buses': set()})
+                                 'signal_t': 0.0, 'move_t': 0.0, 'move_d': 0.0, 'buses': set()})
     usadas = descartadas = 0
     for bus, v in por_bus.items():
         for (t1, x1, y1, parada), (t2, x2, y2, _) in zip(v, v[1:]):
@@ -187,7 +205,13 @@ def medir(por_bus, malla, paradas):
             destino = paradas.get(parada)
             propia = math.hypot(x1 - destino[0], y1 - destino[1]) if quieto and destino else None
             atendiendo = propia is not None and propia <= ATENCION_M
-            encolado = propia is not None and ATENCION_M < propia <= COLA_M
+            # El motor modela los semáforos aparte: si su rojo se quedara aquí dentro, se contaría
+            # dos veces y el viaje saldría tarde.
+            # Un bus quieto en un andén no dice nada del corredor: puede ser el suyo o el de otro
+            # servicio, y las dos cosas las modela el motor aparte —atención y cola por el vagón—.
+            # Lo que queda en `v_kmh` es lo que consigue quien pasa de largo.
+            en_anden = quieto and not atendiendo and cerca_de(andenes, x1, y1, ESTACION_M)
+            en_rojo = quieto and not atendiendo and not en_anden and cerca_de(luces, x1, y1, SEMAFORO_M)
             for cubeta, parte_d, parte_t in repartir(a[1], b[1], distancia, dt):
                 celda = campo[(eje, sentido, cubeta)]
                 celda['t'] += parte_t
@@ -195,8 +219,10 @@ def medir(por_bus, malla, paradas):
                 celda['buses'].add(bus)
                 if atendiendo:
                     celda['dwell_t'] += parte_t
-                elif encolado:
+                elif en_anden:
                     celda['queue_t'] += parte_t
+                elif en_rojo:
+                    celda['signal_t'] += parte_t
                 elif quieto:
                     celda['stop_t'] += parte_t
                 else:
@@ -210,13 +236,15 @@ def rellenar(campo, ejes):
     crudo = {k: v for k, v in campo.items()}
     por_eje = defaultdict(list)
     for (eje, sentido, _), v in crudo.items():
-        util = v['t'] - v['dwell_t'] - v['queue_t']
+        util = v['t'] - v['dwell_t'] - v['queue_t'] - v['signal_t']
         if v['t'] >= MINIMO_OBSERVADO and v['move_t'] > 0 and util > 0:
-            por_eje[(eje, sentido)].append((v['move_d'] / v['move_t'] * 3.6, v['stop_t'] / util))
+            por_eje[(eje, sentido)].append((v['move_d'] / v['move_t'] * 3.6, v['stop_t'] / util,
+                                            v['d'] / util * 3.6))
     def mediana(valores):
         s = sorted(valores)
         return s[len(s) // 2] if s else None
-    respaldo = {k: (mediana([x[0] for x in v]), mediana([x[1] for x in v])) for k, v in por_eje.items()}
+    respaldo = {k: (mediana([x[0] for x in v]), mediana([x[1] for x in v]), mediana([x[2] for x in v]))
+                for k, v in por_eje.items()}
     global_v = mediana([v[0] for v in respaldo.values() if v[0]]) or 25.0
     global_s = mediana([v[1] for v in respaldo.values() if v[1] is not None]) or 0.15
     salida, conteo = {}, defaultdict(int)
@@ -225,28 +253,32 @@ def rellenar(campo, ejes):
             for cubeta in range(int(eje['length'] // CUBETA) + 1):
                 clave = (eje['id'], sentido, cubeta)
                 v = crudo.get(clave)
-                propio = v['dwell_t'] + v['queue_t'] if v else 0
+                propio = v['dwell_t'] + v['queue_t'] + v['signal_t'] if v else 0
                 if v and v['t'] >= MINIMO_OBSERVADO and v['move_t'] > 0 and v['t'] > propio:
                     origen, vel = 'observed', v['move_d'] / v['move_t'] * 3.6
                     quieto = v['stop_t'] / (v['t'] - propio)
+                    travesia = v['d'] / (v['t'] - propio) * 3.6
                     horas, buses = v['t'] / 3600, len(v['buses'])
                 else:
                     vecinas = [crudo.get((eje['id'], sentido, cubeta + p))
                                for p in range(-VECINAS, VECINAS + 1)]
                     vecinas = [n for n in vecinas if n and n['move_t'] > 0]
-                    tiempo = sum(n['t'] - n['dwell_t'] - n['queue_t'] for n in vecinas)
+                    tiempo = sum(n['t'] - n['dwell_t'] - n['queue_t'] - n['signal_t'] for n in vecinas)
                     if tiempo >= MINIMO_SUAVIZADO:
                         origen = 'smoothed'
                         vel = sum(n['move_d'] for n in vecinas) / sum(n['move_t'] for n in vecinas) * 3.6
                         quieto = sum(n['stop_t'] for n in vecinas) / tiempo
+                        travesia = sum(n['d'] for n in vecinas) / tiempo * 3.6
                         horas, buses = (v['t'] / 3600 if v else 0.0), (len(v['buses']) if v else 0)
                     else:
                         origen = 'corridor_default'
-                        base = respaldo.get((eje['id'], sentido)) or (None, None)
+                        base = respaldo.get((eje['id'], sentido)) or (None, None, None)
                         vel, quieto = base[0] or global_v, base[1] if base[1] is not None else global_s
+                        travesia = (base[2] if len(base) > 2 and base[2] else None) or vel * (1 - quieto)
                         horas, buses = (v['t'] / 3600 if v else 0.0), (len(v['buses']) if v else 0)
                 conteo[origen] += 1
                 salida[f'{eje["id"]}|{sentido}|{cubeta}'] = {
+                    'v_kmh': round(max(3.0, travesia), 1),
                     'v_roll_kmh': round(vel, 1), 'stop_share': round(min(0.95, quieto), 3),
                     'hours': round(horas, 2), 'buses': buses, 'source': origen}
     return salida, conteo, round(global_v, 1), round(global_s, 3)
@@ -260,7 +292,8 @@ def construir(carpeta, servicios):
     por_bus, archivos = lecturas(carpeta, rutas)
     gtfs = sorted((ROOT / 'data/raw/gtfs').glob('*/stops.txt'))
     paradas = paraderos(gtfs[-1] if gtfs else None)
-    campo, usadas, descartadas = medir(por_bus, malla, paradas)
+    luces = semaforos(ROOT / 'app/dist/busway_signals.json')
+    campo, usadas, descartadas = medir(por_bus, malla, paradas, luces, estaciones(servicios))
     cubetas, conteo, global_v, global_s = rellenar(campo, ejes)
     dias = sorted({m.group(1) for m in (re.search(r'(\d{8})', n) for n in archivos) if m})
     return {
@@ -271,6 +304,12 @@ def construir(carpeta, servicios):
             'applies_to': 'todas las horas y tipos de día',
             'measured_window': 'la ventana que cubran las capturas listadas, no el día entero',
             'agency': 'solo troncal; duales y calle conservan el modelo continuo',
+            'v_kmh': ('velocidad de travesía: distancia sobre el tiempo que el trecho consume a un bus '
+                      'que pasa, sin contar la atención ni la cola de su propio servicio. Es la que usa '
+                      'el motor, y tampoco cuenta la espera en los semáforos corroborados, que el '
+                      'motor añade por su cuenta. Un trecho congestionado se ve como bus lento y no como bus '
+                      'plantado: en calzada segregada un bus solo se detiene por andén ocupado o por '
+                      'semáforo'),
             'stop_share': ('tiempo detenido que no es de su propio servicio: se descuenta la atención '
                            'en la parada destino y la cola por su andén, que el motor ya modela aparte. '
                            'Queda lo que detiene a cualquiera que pase por ahí, que es lo que un '
@@ -278,7 +317,7 @@ def construir(carpeta, servicios):
             'known_bias': ('el vehículo que no refresca su posición repite la anterior y parece '
                            'detenido: infla stop_share y la cola alta de v_roll_kmh'),
             'review': 'rehacer con la semana capturada y añadir hora y tipo de día'},
-        'parameters': {'dwell_radius_m': ATENCION_M, 'own_queue_radius_m': COLA_M, 'bucket_m': CUBETA, 'snap_m': ENGANCHE, 'max_step_s': PASO_MAX,
+        'parameters': {'dwell_radius_m': ATENCION_M, 'station_radius_m': ESTACION_M, 'signal_radius_m': SEMAFORO_M, 'bucket_m': CUBETA, 'snap_m': ENGANCHE, 'max_step_s': PASO_MAX,
                        'max_jump_m': SALTO_MAX, 'stopped_below_kmh': QUIETO_KMH,
                        'observed_min_s': MINIMO_OBSERVADO, 'smoothed_min_s': MINIMO_SUAVIZADO},
         'sources': {'detail': archivos,
@@ -290,7 +329,9 @@ def construir(carpeta, servicios):
                      'trunk_km': round(sum(e['length'] for e in ejes) / 1000, 1),
                      'gtfs_stops': len(paradas),
                      'dwell_hours': round(sum(v['dwell_t'] for v in campo.values()) / 3600, 1),
-                     'own_queue_hours': round(sum(v['queue_t'] for v in campo.values()) / 3600, 1),
+                     'platform_hours': round(sum(v['queue_t'] for v in campo.values()) / 3600, 1),
+                     'signal_hours': round(sum(v['signal_t'] for v in campo.values()) / 3600, 1),
+                     'signals': len(luces),
                      'traffic_stop_hours': round(sum(v['stop_t'] for v in campo.values()) / 3600, 1),
                      'moving_hours': round(sum(v['move_t'] for v in campo.values()) / 3600, 1)},
         'fallback': {'v_roll_kmh': global_v, 'stop_share': global_s},
@@ -315,6 +356,9 @@ def main():
     print(f"  pares usados {c['pairs_used']} · fuera del eje {c['pairs_off_corridor']}")
     observadas = [v for v in datos['buckets'].values() if v['source'] == 'observed']
     if observadas:
+        trav = sorted(v['v_kmh'] for v in observadas)
+        q0 = lambda a, x: a[min(len(a) - 1, int(len(a) * x))]
+        print(f"  travesía p10 {q0(trav, .1)} · mediana {q0(trav, .5)} · p90 {q0(trav, .9)} km/h")
         vel = sorted(v['v_roll_kmh'] for v in observadas)
         quieto = sorted(v['stop_share'] for v in observadas)
         q = lambda a, x: a[min(len(a) - 1, int(len(a) * x))]

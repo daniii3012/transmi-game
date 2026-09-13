@@ -1,12 +1,12 @@
 {
   "mode": "stress",
-  "build_ms": 17396.69775,
-  "sample_ms": 3.977109860833334,
+  "build_ms": 18234.365584,
+  "sample_ms": 4.378781700833333,
   "maxFleet": 3231,
   "maxQueue": 1365,
   "maxSignals": 229,
   "profileCache": 73496,
-  "heap_MB": 1147.784152,
+  "heap_MB": 1151.680624,
   "stats": {
     "time_s": 111600,
     "fleet": 2450,

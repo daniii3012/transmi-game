@@ -12,7 +12,7 @@ Para entender el simulador completo y de qué datos abiertos sale cada pieza, ve
 
 Antes, los 137 servicios del catálogo despachaban con la misma regla: 240 s en hora pico entre
 semana, 480 s el resto y todo el fin de semana, con una variación opcional de ±12 % y refuerzos
-ocasionales. Ahora 104 de los 117 servicios utilizables despachan a las horas publicadas, que no
+ocasionales. Ahora 113 de los 117 servicios utilizables despachan a las horas publicadas, que no
 son regulares: en un sábado cualquiera un servicio pasa de 3,75 a 8 minutos según el momento.
 
 El interruptor «Salidas del horario publicado», activo por omisión, devuelve la regla a todos los
@@ -43,30 +43,80 @@ viajes troncales y duales.
 ## Las tres decisiones del emparejamiento
 
 **Exacto, nunca aproximado.** La correspondencia se hace sobre código y destino, normalizados NFC
-porque los dos catálogos escriben los acentos descompuestos —lo mismo que ya documenta `live.mjs`—.
-Sin normalizar, 13 servicios parecían no existir. No hay emparejamiento difuso: un servicio que no
-casa queda pendiente y conserva la regla sintética, rotulado, en vez de adivinarse.
+porque los dos catálogos escriben los acentos descompuestos —lo mismo que ya documenta `live.mjs`—,
+y sin espacios ni guiones, porque los dos escriben el mismo destino como «AV CL80 - KR114» y «AV
+CL80 KR114», o «P ElDorado» y «PElDorado». Sigue sin haber emparejamiento difuso: es igualdad sobre
+una clave que normaliza un separador más. Se comprobó sobre el catálogo entero que no se pierde ni
+cambia ningún emparejamiento y que ni el paquete ni el catálogo local producen dos destinos distintos
+bajo la misma clave. Un servicio que aun así no casa queda pendiente y conserva la regla sintética,
+rotulado, en vez de adivinarse.
 
 **Varios registros publicados pueden ser un servicio.** 19 servicios locales apuntan a más de un
 `route_id`; son cortes por calendario o por patrón del mismo servicio —uno para días laborables,
 otro para el sábado— y sus salidas se suman. Se comprobó que no se solapan en el mismo día.
 
-**Las vueltas completas se apartan.** 20 registros del paquete llevan `||` en el nombre o unen dos
+**Las vueltas completas se cortan.** 20 registros del paquete llevan `||` en el nombre o unen dos
 códigos en uno (`M82 CLL134 KR 7 || L82 Portal 20 de Julio`, `MK86`, `P85-M85`). Un viaje de esos es
-**un** bus que cubre dos servicios locales; atarlo a ambos inventaría un segundo. Nunca se emparejan
-y se listan aparte en la auditoría.
+**un** bus que cubre dos servicios locales, así que colgar su lista de salidas de los dos códigos
+inventaría un segundo: las dos mitades saldrían a la vez. Lo que se hace es partirlo, y está
+explicado abajo.
 
-## Los 13 pendientes
+## Cómo se parte una vuelta completa
+
+Un registro de vuelta completa describe un viaje: el bus hace la ida, da la vuelta y hace el regreso.
+`MC84` son 15 tramos publicados, y dentro están los 8 de M84, **el tramo del giro**, y los 6 de C84.
+La regla es esa:
+
+> tramos publicados = los del primer servicio + 1 del giro + los del segundo
+
+El corte hace tres cosas. Reparte los tramos entre los dos servicios y **descarta el del giro**,
+porque el motor ya lo modela como regulación en extremo. Da a la primera mitad la hora de salida del
+viaje. Y **desfasa la segunda**: no sale a esa hora, sino cuando el bus llega al otro extremo, que es
+la salida más la parte del viaje que se llevan la ida y el giro. El reparto se hace sobre la duración
+publicada de *ese* viaje, no sobre la mediana de los tramos, para que un viaje de la punta corra el
+punto de giro con él. Así las dos mitades nunca coinciden en el tiempo y donde hay un bus sigue
+habiendo uno.
+
+**Solo se corta cuando la aritmética es exacta.** Si el catálogo local y el paquete no cuentan las
+mismas paradas, el corte caería en un sitio distinto y emparejaría trechos de vía que no son el
+mismo: el registro se queda apartado y el motivo se escribe en la auditoría. De los 20 registros, 5
+se cortan y 15 se apartan: 9 porque una de las mitades es una variante de ciclovía que el catálogo
+local no tiene utilizable, y 6 porque las paradas no cuadran.
+
+Un servicio puede recibir a la vez sus registros propios y la mitad que le toca de una vuelta
+completa; sus salidas son la suma. M82 es el caso: 6 salidas el sábado de su registro suelto —los
+últimos viajes de la noche, de 22:20 a 23:00, que suben y se quedan— más 246 de su mitad de `ML82`.
+
+**Y una cautela que salió de esto.** Un emparejamiento que solo alcanza una esquina del servicio es
+peor que no tenerlo, porque el motor usa la lista de salidas como si fuera completa. M86 casa con un
+registro suelto de 12 viajes, todos entre las 22:10 y las 23:00, mientras 633 de sus viajes viven en
+vueltas completas que no se pudieron cortar: emparejarlo apagaría la ruta el resto del día. Cuando
+los viajes fuera de alcance superan a los propios, se prefiere la regla sintética y se dice en la
+lista de pendientes.
+
+## Los 4 pendientes
 
 | Servicio | Motivo |
 |---|---|
-| K16 P ElDorado | el paquete escribe el destino `PElDorado`, sin espacio |
-| C84, L82, M84, M85, P85 | el código no aparece solo: únicamente dentro de una vuelta completa |
-| K86 (×3), M82, M86, D81 (×2), L81 | existe el código, pero su destino publicado no equivale al local |
+| K86 (×3) | el catálogo local y el paquete cortan el servicio de forma distinta (ver abajo) |
+| M86 KR 7 - CLL 107A | 633 viajes dentro de vueltas sin cortar contra 12 a la vista |
 
-Doce son duales. Mientras no se resuelvan, esos servicios siguen con la regla de minutos y la
-interfaz lo dice. Resolverlos exige decidir cómo se reparte una vuelta completa entre dos códigos,
-que es un problema de modelo, no de emparejamiento.
+Los cuatro son duales y los cuatro son el mismo nudo. El paquete publica el K86 como una vuelta de
+la Séptima que, al llegar al portal, **sigue derecho al aeropuerto** —`MK86`, 48 tramos, de 04:30 a
+21:03— más un bucle suelto que sale del portal y solo va al aeropuerto —`K86`, 7 tramos, 125 viajes
+entre semana—. A partir de las 21:05 los últimos viajes se quedan en el portal, y eso es otro
+registro. El catálogo local, que viene del planificador, parte el mismo servicio por otro sitio: un
+fragmento de 4 paradas llamado «Aeropuerto» que es medio bucle, y un «Portal ElDorado» de 26 paradas
+que **no incluye la parada intermedia en el portal** que el paquete sí publica. De ahí el descuadre
+de exactamente un tramo que impide cortar `MK86`.
+
+Resolverlo es una corrección de catálogo, no de emparejamiento, y toca una fuente curada: hay que
+decidir si K86 se representa como lo publica el GTFS o como lo publica el planificador. Queda
+anotado sin tocar.
+
+El paquete además trae viajes y trazado para **A61, J76 y L81**, que el catálogo local conserva como
+pendientes por falta de geometría publicada. No se activaron aquí: activarlos es revisar el trazado
+contra el catálogo, no solo comprobar que existe una fila.
 
 El paquete además trae viajes y trazado para **A61, J76 y L81**, que el catálogo local conserva como
 pendientes por falta de geometría publicada. No se activaron aquí: activarlos es revisar el trazado
@@ -243,13 +293,24 @@ antes de dar por buena una actualización.
 
 ## Verificación
 
-74 pruebas Node y 10 Python del proxy en vivo pasan. Seis son nuevas y cubren: que el calendario
-GTFS se resuelva sobre la fecha real incluida una excepción de festivo; que un servicio despache
-exactamente a las horas publicadas y que esos intervalos no sean constantes; que apagar el
-interruptor y no tener archivo produzcan la misma operación de reserva; y que ninguna ruta apunte a
-un registro de vuelta completa; que la velocidad despejada reproduzca exactamente el tiempo objetivo
-del tramo y nunca supere el crucero; y que con tiempos publicados el recorrido dure lo programado
-mientras que a crucero fijo se queda corto. `tests/test_network_2d.py` no corre en este equipo por
+77 pruebas Node y 46 Python pasan. Cubren, sobre este capítulo: que el calendario GTFS se resuelva
+sobre la fecha real incluida una excepción de festivo; que un servicio despache exactamente a las
+horas publicadas y que esos intervalos no sean constantes; que apagar el interruptor y no tener
+archivo produzcan la misma operación de reserva; que la velocidad despejada reproduzca exactamente el
+tiempo objetivo del tramo y nunca supere el crucero; y que con tiempos publicados el recorrido dure
+lo programado mientras que a crucero fijo se queda corto.
+
+Del corte, 13 pruebas Python en `tests/test_build_schedule.py` sobre registros hechos a mano: que
+relajar el separador no junte dos destinos distintos; que cada lado de una vuelta completa se lea con
+su código, con el del registro cuando el lado va mudo y repartido cuando el registro une dos; que una
+vuelta cuya aritmética no cuadra se aparte con el motivo escrito en vez de cortarse por donde sea;
+que los viajes que quedan fuera de alcance se cuenten contra cada mitad; y **que la vuelta salga
+cuando la ida ya llegó**, que es lo que impide que un bus se vea como dos.
+
+Y en Node, sobre el horario ya construido: que ninguna ruta apunte a un registro de vuelta completa
+entero, que toda mitad citada conste como corte, que las dos mitades de un corte sean servicios
+locales distintos, que los tramos de las dos más el giro sumen los publicados, y que salida a salida
+la vuelta sea siempre posterior a la ida. `tests/test_network_2d.py` no corre en este equipo por
 falta de `shapely`, igual que antes de este cambio.
 
 Cómo funciona el simulador en conjunto, y de qué datos abiertos sale cada pieza, está en

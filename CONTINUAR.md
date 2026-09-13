@@ -99,6 +99,25 @@ docs/VELOCIDAD_Y_DETENCIONES_20260912.md. **El desfase contra la realidad sigue 
 propósito**: calibrar el presupuesto necesita laborables y punta, no un sábado. Fuentes con versión
 20260912.15.
 
+12/09/2026 (noche) — **Horario publicado para 113 de los 117 servicios** (antes 104). Dos cambios en
+`build_schedule.py`: la clave de emparejamiento ignora espacios y guiones —los dos catálogos escriben
+«AV CL80 - KR114» y «AV CL80 KR114»— y las vueltas completas ya no se apartan, se **cortan** en sus
+dos mitades, descartando el tramo del giro y desfasando la salida de la vuelta por la parte del viaje
+que se llevan la ida y el giro, para que un bus no se vea como dos. Se corta solo si la aritmética es
+exacta: 5 registros cortados, 15 apartados con el motivo escrito. La flota simulada pasa de 0,88-0,92
+a **0,96-0,99** de la observada en todas las horas de la captura; ML82 de 11 a 30 buses contra 29
+observados, MC84 de 7 a 14 contra 14, D81 de 8 a 19 contra 16, K16 de 4 a 6 contra 6. Cautela nueva:
+un emparejamiento que solo alcanza una esquina del servicio se descarta —M86 casaba con 12 viajes de
+22:10 a 23:00 mientras 633 viven en vueltas sin cortar—, porque el motor usa la lista de salidas como
+si fuera completa. Ver docs/HORARIO_GTFS_20260912.md.
+
+**Los 4 pendientes que quedan son el mismo nudo: K86.** El paquete publica la vuelta de la Séptima
+siguiendo derecho al aeropuerto (`MK86`, 48 tramos, 04:30-21:03) más un bucle suelto al aeropuerto
+(7 tramos, 125 viajes L-V), y a partir de las 21:05 los últimos viajes se quedan en el portal. El
+catálogo local corta por otro sitio: «Aeropuerto» son 4 paradas —medio bucle— y «Portal ElDorado» de
+26 paradas **no trae la parada intermedia en el portal**, que es el tramo que falta para que `MK86`
+cuadre. Corregirlo toca una fuente curada contra su origen publicado: queda anotado, sin tocar.
+
 12/09/2026 (noche) — Captura: `capture_rt.py` toma un cerrojo `captura.lock` en su carpeta y se
 niega a arrancar si otra captura ya escribe ahí. Dos procesos solapados el 12 dejaron una cabecera en
 medio del `.csv.gz` y un lote duplicado, y `analyse_capture.py` reventaba al leerlo; ahora depura

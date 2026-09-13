@@ -165,9 +165,38 @@ test('El horario cubre la mayoría del catálogo y lo que falta queda declarado,
   assert.ok(pendientes.has(r.id),`${r.code} ${r.name} sin horario y sin constar como pendiente`);
   assert.ok(pendientes.get(r.id).reason);
  }
- // Ninguna ruta apunta a un registro de vuelta completa: contaría un bus dos veces.
- const combinadas=new Set(JSON.parse(fs.readFileSync(new URL('../../data/processed/schedule_audit.json',import.meta.url))).combined_records.map(c=>c.route_id));
- for(const entrada of Object.values(horario.routes))for(const g of entrada.gtfs)assert.ok(!combinadas.has(g));
+ // Ninguna ruta apunta a un registro de vuelta completa entero: contaría un bus dos veces. Sí
+ // puede apuntar a una de sus dos mitades, que es el corte.
+ const auditoria=JSON.parse(fs.readFileSync(new URL('../../data/processed/schedule_audit.json',import.meta.url)));
+ const combinadas=new Set(auditoria.combined_records.map(c=>c.route_id));
+ for(const entrada of Object.values(horario.routes))for(const g of entrada.gtfs)assert.ok(!combinadas.has(g),`${g} es una vuelta completa sin cortar`);
+ // Cada mitad citada por un servicio existe como corte, y las dos mitades de un corte son dos
+ // servicios locales distintos: si fueran el mismo, el bus saldría dos veces de la misma cabecera.
+ const mitades=new Map();
+ for(const c of auditoria.split_records){
+  assert.ok(combinadas.has(c.route_id),'un corte sale de un registro de vuelta completa');
+  assert.equal(c.halves.length,2);
+  assert.notEqual(c.halves[0].local_id,c.halves[1].local_id);
+  // tramos = los de la primera mitad + el giro + los de la segunda.
+  assert.equal(c.halves[0].segments+1+c.halves[1].segments,c.segments);
+  for(const h of c.halves)mitades.set(h.route_id,h);
+ }
+ for(const entrada of Object.values(horario.routes))for(const g of entrada.gtfs)
+  if(g.includes('#'))assert.ok(mitades.has(g),`${g} cita una mitad que no consta como corte`);
+ // Y la comprobación que de verdad importa: la segunda mitad nunca sale antes que la primera. Se
+ // hace sobre los pares cuyas salidas vienen solo del corte, donde las dos listas son comparables.
+ let comprobados=0;
+ for(const c of auditoria.split_records){
+  const [a,b]=c.halves.map(h=>horario.routes[h.local_id]);
+  if(!a||!b||[...a.gtfs,...b.gtfs].some(g=>!g.includes('#')))continue;
+  for(const servicio of Object.keys(a.departures)){
+   const ida=a.departures[servicio],vuelta=b.departures[servicio];
+   assert.ok(vuelta,'las dos mitades corren el mismo calendario');
+   assert.equal(ida.length,vuelta.length,'un viaje publicado da una salida a cada mitad');
+   for(let i=0;i<ida.length;i++){assert.ok(vuelta[i]>ida[i],'la vuelta empieza cuando la ida ya salió');comprobados++;}
+  }
+ }
+ assert.ok(comprobados>100,`${comprobados} salidas de vuelta comprobadas`);
 });
 
 // --- Duración del recorrido publicada ---------------------------------------------------------

@@ -1,9 +1,9 @@
 {
-  "generated_at_utc": "2026-09-12T19:13:51.804715+00:00",
+  "generated_at_utc": "2026-09-13T00:57:22.108216+00:00",
   "source": {
-    "folder": "20260912T190110Z",
+    "folder": "20260912T192133Z",
     "sha256": "43c0c82de709e8bd1e3c6a170084ee696e5283553bb38b1235fe59551586a14d",
-    "retrieved_at_utc": "2026-09-12T19:01:10.709558+00:00",
+    "retrieved_at_utc": "2026-09-12T19:21:33.083257+00:00",
     "feed_info": {
       "feed_publisher_name": "Transmilenio S.A.",
       "feed_start_date": "20260101",
@@ -15,8 +15,8 @@
     },
     "url": "https://gtfs.transmilenio.gov.co/GTFS.zip"
   },
-  "matched": 104,
-  "pending": 13,
+  "matched": 113,
+  "pending": 4,
   "combined_records": [
     {
       "route_id": "11488",
@@ -117,6 +117,260 @@
       "route_id": "13226",
       "short": "FZ63",
       "long": "F63 Pradera || Z63 Tibanica"
+    }
+  ],
+  "split_records": [
+    {
+      "route_id": "12297",
+      "short": "ML82",
+      "long": "M82 CLL134 KR 7 || L82  Portal 20 de Julio",
+      "segments": 33,
+      "turn_segment": 16,
+      "turn_seconds": 74,
+      "trips": 560,
+      "halves": [
+        {
+          "route_id": "12297#a",
+          "local_id": "12297",
+          "code": "M82",
+          "name": "CLL134 - KR 7",
+          "segments": 16,
+          "metres": 0,
+          "share_of_trip": 0.4922
+        },
+        {
+          "route_id": "12297#b",
+          "local_id": "622",
+          "code": "L82",
+          "name": "Portal 20 de Julio",
+          "segments": 16,
+          "metres": 17796,
+          "share_of_trip": 0.4993
+        }
+      ]
+    },
+    {
+      "route_id": "12299",
+      "short": "M82",
+      "long": "CLL134 KR 7 || L82 Portal 20 de Julio",
+      "segments": 33,
+      "turn_segment": 16,
+      "turn_seconds": 60,
+      "trips": 71,
+      "halves": [
+        {
+          "route_id": "12299#a",
+          "local_id": "12297",
+          "code": "M82",
+          "name": "CLL134 - KR 7",
+          "segments": 16,
+          "metres": 0,
+          "share_of_trip": 0.4922
+        },
+        {
+          "route_id": "12299#b",
+          "local_id": "622",
+          "code": "L82",
+          "name": "Portal 20 de Julio",
+          "segments": 16,
+          "metres": 17796,
+          "share_of_trip": 0.4993
+        }
+      ]
+    },
+    {
+      "route_id": "12771",
+      "short": "P85-M85",
+      "long": "P85 AV 68 Calle 9 || M85 Museo Nacional",
+      "segments": 17,
+      "turn_segment": 7,
+      "turn_seconds": 68,
+      "trips": 244,
+      "halves": [
+        {
+          "route_id": "12771#a",
+          "local_id": "1316",
+          "code": "P85",
+          "name": "AV 68 Calle 9",
+          "segments": 7,
+          "metres": 0,
+          "share_of_trip": 0.4417
+        },
+        {
+          "route_id": "12771#b",
+          "local_id": "1315",
+          "code": "M85",
+          "name": "Museo Nacional",
+          "segments": 9,
+          "metres": 8705,
+          "share_of_trip": 0.5423
+        }
+      ]
+    },
+    {
+      "route_id": "12773",
+      "short": "P85-M85",
+      "long": "P85 AV 68 Calle 9 || M85 Museo Nacional",
+      "segments": 17,
+      "turn_segment": 7,
+      "turn_seconds": 52,
+      "trips": 59,
+      "halves": [
+        {
+          "route_id": "12773#a",
+          "local_id": "1316",
+          "code": "P85",
+          "name": "AV 68 Calle 9",
+          "segments": 7,
+          "metres": 0,
+          "share_of_trip": 0.4415
+        },
+        {
+          "route_id": "12773#b",
+          "local_id": "1315",
+          "code": "M85",
+          "name": "Museo Nacional",
+          "segments": 9,
+          "metres": 8705,
+          "share_of_trip": 0.5422
+        }
+      ]
+    },
+    {
+      "route_id": "12984",
+      "short": "MC84",
+      "long": "M84 KR 7 CLL 73 || C84 Av. Suba K114 D",
+      "segments": 15,
+      "turn_segment": 8,
+      "turn_seconds": 125,
+      "trips": 453,
+      "halves": [
+        {
+          "route_id": "12984#a",
+          "local_id": "624",
+          "code": "M84",
+          "name": "KR 7 - CLL 73",
+          "segments": 8,
+          "metres": 0,
+          "share_of_trip": 0.4999
+        },
+        {
+          "route_id": "12984#b",
+          "local_id": "623",
+          "code": "C84",
+          "name": "Av. Suba - K114 D",
+          "segments": 6,
+          "metres": 14296,
+          "share_of_trip": 0.4796
+        }
+      ]
+    }
+  ],
+  "split_refused": [
+    {
+      "route_id": "11488",
+      "short": "M86-K86",
+      "long": "K86 Aeropuerto El Dorado || K86 Portal Eldorado Ciclovía",
+      "reason": "sin servicio local utilizable para: K86 Aeropuerto El Dorado, K86 Portal Eldorado Ciclovía",
+      "trips": 44
+    },
+    {
+      "route_id": "12466",
+      "short": "M82",
+      "long": "CLL134 KR 7 || L82 Portal 20 de Julio Ciclovía",
+      "reason": "sin servicio local utilizable para: L82 Portal 20 de Julio Ciclovía",
+      "trips": 8
+    },
+    {
+      "route_id": "12772",
+      "short": "P85-M85",
+      "long": "P85 AV 68 Calle 9 || M85 Museo Nacional Ciclovía",
+      "reason": "sin servicio local utilizable para: M85 Museo Nacional Ciclovía",
+      "trips": 41
+    },
+    {
+      "route_id": "12991",
+      "short": "M82",
+      "long": "CLL134 KR 7 || L82 Portal 20 de Julio Ciclovía",
+      "reason": "sin servicio local utilizable para: L82 Portal 20 de Julio Ciclovía",
+      "trips": 5
+    },
+    {
+      "route_id": "12992",
+      "short": "M82-L82",
+      "long": "M82 CLL134 KR 7 || L82 Portal 20 de Julio Ciclovía",
+      "reason": "sin servicio local utilizable para: L82 Portal 20 de Julio Ciclovía",
+      "trips": 52
+    },
+    {
+      "route_id": "13027",
+      "short": "K86",
+      "long": "Aeropuerto ||  Portal ElDorado",
+      "reason": "el catálogo local cuenta 3 + giro + 25 tramos y el paquete 7",
+      "trips": 195
+    },
+    {
+      "route_id": "13040",
+      "short": "K86",
+      "long": "Aeropuerto ||  Portal ElDorado",
+      "reason": "el catálogo local cuenta 3 + giro + 25 tramos y el paquete 7",
+      "trips": 18
+    },
+    {
+      "route_id": "13179",
+      "short": "MK86",
+      "long": "M86 KR 7 CLL 107A || K86 Portal ElDorado",
+      "reason": "el catálogo local cuenta 21 + giro + 25 tramos y el paquete 48",
+      "trips": 497
+    },
+    {
+      "route_id": "13180",
+      "short": "MK86",
+      "long": "M86 KR 7 CLL 107A || K86  Portal ElDorado",
+      "reason": "el catálogo local cuenta 21 + giro + 25 tramos y el paquete 41",
+      "trips": 15
+    },
+    {
+      "route_id": "13182",
+      "short": "M86",
+      "long": "KR 7 CLL 107A || K86 Portal ElDorado",
+      "reason": "el catálogo local cuenta 21 + giro + 25 tramos y el paquete 48",
+      "trips": 59
+    },
+    {
+      "route_id": "13183",
+      "short": "MK86",
+      "long": "M86 KR 7 CLL 107A || K86 Portal ElDorado",
+      "reason": "el catálogo local cuenta 21 + giro + 25 tramos y el paquete 41",
+      "trips": 6
+    },
+    {
+      "route_id": "13184",
+      "short": "M86",
+      "long": "KR 7 CLL 107A || K86 Portal ElDorado Ciclovía",
+      "reason": "sin servicio local utilizable para: K86 Portal ElDorado Ciclovía",
+      "trips": 8
+    },
+    {
+      "route_id": "13185",
+      "short": "M86",
+      "long": "KR 7 CLL 107A || K86 Portal ElDorado Ciclovía",
+      "reason": "sin servicio local utilizable para: K86 Portal ElDorado Ciclovía",
+      "trips": 43
+    },
+    {
+      "route_id": "13186",
+      "short": "M86",
+      "long": "KR 7 CLL 107A || K86 Portal ElDorado Ciclovía",
+      "reason": "sin servicio local utilizable para: K86 Portal ElDorado Ciclovía",
+      "trips": 5
+    },
+    {
+      "route_id": "13226",
+      "short": "FZ63",
+      "long": "F63 Pradera || Z63 Tibanica",
+      "reason": "el catálogo local cuenta 6 + giro + 6 tramos y el paquete 14",
+      "trips": 347
     }
   ],
   "routes": [
@@ -1788,6 +2042,50 @@
       "segments_total_s": 0
     },
     {
+      "id": "623",
+      "code": "C84",
+      "name": "Av. Suba - K114 D",
+      "dual": true,
+      "gtfs": [
+        {
+          "route_id": "12984#b",
+          "agency_id": "6",
+          "short": "C84",
+          "long": "Av. Suba K114 D"
+        }
+      ],
+      "trips": 453,
+      "by_service": {
+        "1": 209,
+        "2": 151,
+        "4": 93
+      },
+      "duration_min": {
+        "1": {
+          "p10": 43.3,
+          "p50": 52.5,
+          "p90": 60.9,
+          "n": 209
+        },
+        "2": {
+          "p10": 41.9,
+          "p50": 47.2,
+          "p90": 51.7,
+          "n": 151
+        },
+        "4": {
+          "p10": 38.1,
+          "p50": 41.9,
+          "p90": 44.7,
+          "n": 93
+        }
+      },
+      "metres_median": 14296,
+      "local_length_m": 14901.035,
+      "segments": 6,
+      "segments_total_s": 2932
+    },
+    {
       "id": "335",
       "code": "D10",
       "name": "Portal 80",
@@ -2028,6 +2326,86 @@
       "local_length_m": 19037.136,
       "segments": 15,
       "segments_total_s": 3045
+    },
+    {
+      "id": "619",
+      "code": "D81",
+      "name": "AV CL80 - KR114",
+      "dual": true,
+      "gtfs": [
+        {
+          "route_id": "12980",
+          "agency_id": "6",
+          "short": "D81",
+          "long": "AV CL80 KR114"
+        },
+        {
+          "route_id": "12987",
+          "agency_id": "6",
+          "short": "D81",
+          "long": "AV CL80 KR114"
+        }
+      ],
+      "trips": 606,
+      "by_service": {
+        "1": 299,
+        "2": 238,
+        "4": 69
+      },
+      "duration_min": {
+        "1": {
+          "p10": 62.8,
+          "p50": 86.0,
+          "p90": 102.2,
+          "n": 299
+        },
+        "2": {
+          "p10": 69.0,
+          "p50": 78.5,
+          "p90": 82.8,
+          "n": 238
+        },
+        "4": {
+          "p10": 62.0,
+          "p50": 71.0,
+          "p90": 74.5,
+          "n": 69
+        }
+      },
+      "metres_median": 23593,
+      "local_length_m": 23519.916,
+      "segments": 24,
+      "segments_total_s": 4535
+    },
+    {
+      "id": "5279",
+      "code": "D81",
+      "name": "AV CL80 - KR114 Ciclovía",
+      "dual": true,
+      "gtfs": [
+        {
+          "route_id": "12985",
+          "agency_id": "6",
+          "short": "D81",
+          "long": "AV CL80 KR114 Ciclovía"
+        }
+      ],
+      "trips": 61,
+      "by_service": {
+        "4": 61
+      },
+      "duration_min": {
+        "4": {
+          "p10": 70.2,
+          "p50": 76.5,
+          "p90": 80.8,
+          "n": 61
+        }
+      },
+      "metres_median": 25088,
+      "local_length_m": 25010.534,
+      "segments": 21,
+      "segments_total_s": 4589
     },
     {
       "id": "353",
@@ -3523,6 +3901,43 @@
       "segments_total_s": 2715
     },
     {
+      "id": "356",
+      "code": "K16",
+      "name": "P ElDorado",
+      "dual": false,
+      "gtfs": [
+        {
+          "route_id": "13272",
+          "agency_id": "1",
+          "short": "K16",
+          "long": "PElDorado"
+        }
+      ],
+      "trips": 326,
+      "by_service": {
+        "1": 218,
+        "2": 108
+      },
+      "duration_min": {
+        "1": {
+          "p10": 49.5,
+          "p50": 55.5,
+          "p90": 62.2,
+          "n": 218
+        },
+        "2": {
+          "p10": 53.0,
+          "p50": 56.0,
+          "p90": 57.2,
+          "n": 108
+        }
+      },
+      "metres_median": 25800,
+      "local_length_m": 25689.348,
+      "segments": 15,
+      "segments_total_s": 3345
+    },
+    {
       "id": "321",
       "code": "K23",
       "name": "Portal Eldorado",
@@ -3915,6 +4330,56 @@
       "segments_total_s": 5367
     },
     {
+      "id": "622",
+      "code": "L82",
+      "name": "Portal 20 de Julio",
+      "dual": true,
+      "gtfs": [
+        {
+          "route_id": "12297#b",
+          "agency_id": "6",
+          "short": "L82",
+          "long": "Portal 20 de Julio"
+        },
+        {
+          "route_id": "12299#b",
+          "agency_id": "6",
+          "short": "L82",
+          "long": "Portal 20 de Julio"
+        }
+      ],
+      "trips": 631,
+      "by_service": {
+        "1": 314,
+        "2": 246,
+        "4": 71
+      },
+      "duration_min": {
+        "1": {
+          "p10": 29.0,
+          "p50": 82.3,
+          "p90": 94.1,
+          "n": 314
+        },
+        "2": {
+          "p10": 55.9,
+          "p50": 65.2,
+          "p90": 76.4,
+          "n": 246
+        },
+        "4": {
+          "p10": 51.8,
+          "p50": 58.4,
+          "p90": 61.4,
+          "n": 71
+        }
+      },
+      "metres_median": 17796,
+      "local_length_m": 19187.852,
+      "segments": 16,
+      "segments_total_s": 3925
+    },
+    {
       "id": "384",
       "code": "M47",
       "name": "Museo Nacional",
@@ -3996,6 +4461,68 @@
       "segments_total_s": 3001
     },
     {
+      "id": "12297",
+      "code": "M82",
+      "name": "CLL134 - KR 7",
+      "dual": true,
+      "gtfs": [
+        {
+          "route_id": "12298",
+          "agency_id": "6",
+          "short": "M82",
+          "long": "CLL134 KR 7"
+        },
+        {
+          "route_id": "12300",
+          "agency_id": "6",
+          "short": "M82",
+          "long": "CLL134 KR 7"
+        },
+        {
+          "route_id": "12297#a",
+          "agency_id": "6",
+          "short": "M82",
+          "long": "CLL134 KR 7"
+        },
+        {
+          "route_id": "12299#a",
+          "agency_id": "6",
+          "short": "M82",
+          "long": "CLL134 KR 7"
+        }
+      ],
+      "trips": 645,
+      "by_service": {
+        "1": 319,
+        "2": 252,
+        "4": 74
+      },
+      "duration_min": {
+        "1": {
+          "p10": 28.6,
+          "p50": 81.0,
+          "p90": 92.8,
+          "n": 319
+        },
+        "2": {
+          "p10": 53.6,
+          "p50": 64.2,
+          "p90": 75.3,
+          "n": 252
+        },
+        "4": {
+          "p10": 51.1,
+          "p50": 57.6,
+          "p90": 60.5,
+          "n": 74
+        }
+      },
+      "metres_median": 18986,
+      "local_length_m": 18915.025,
+      "segments": 16,
+      "segments_total_s": 3542
+    },
+    {
       "id": "646",
       "code": "M83",
       "name": "Museo Nacional",
@@ -4044,6 +4571,150 @@
       "local_length_m": 13926.386,
       "segments": 9,
       "segments_total_s": 2752
+    },
+    {
+      "id": "624",
+      "code": "M84",
+      "name": "KR 7 - CLL 73",
+      "dual": true,
+      "gtfs": [
+        {
+          "route_id": "12984#a",
+          "agency_id": "6",
+          "short": "M84",
+          "long": "KR 7 CLL 73"
+        }
+      ],
+      "trips": 453,
+      "by_service": {
+        "1": 209,
+        "2": 151,
+        "4": 93
+      },
+      "duration_min": {
+        "1": {
+          "p10": 45.1,
+          "p50": 54.7,
+          "p90": 63.5,
+          "n": 209
+        },
+        "2": {
+          "p10": 43.6,
+          "p50": 49.2,
+          "p90": 53.9,
+          "n": 151
+        },
+        "4": {
+          "p10": 39.8,
+          "p50": 43.6,
+          "p90": 46.6,
+          "n": 93
+        }
+      },
+      "metres_median": null,
+      "local_length_m": 15540.915,
+      "segments": 8,
+      "segments_total_s": 3056
+    },
+    {
+      "id": "1315",
+      "code": "M85",
+      "name": "Museo Nacional",
+      "dual": true,
+      "gtfs": [
+        {
+          "route_id": "12771#b",
+          "agency_id": "6",
+          "short": "M85",
+          "long": "Museo Nacional"
+        },
+        {
+          "route_id": "12773#b",
+          "agency_id": "6",
+          "short": "M85",
+          "long": "Museo Nacional"
+        }
+      ],
+      "trips": 303,
+      "by_service": {
+        "1": 113,
+        "2": 131,
+        "4": 59
+      },
+      "duration_min": {
+        "1": {
+          "p10": 31.4,
+          "p50": 40.5,
+          "p90": 46.6,
+          "n": 113
+        },
+        "2": {
+          "p10": 29.7,
+          "p50": 35.4,
+          "p90": 41.1,
+          "n": 131
+        },
+        "4": {
+          "p10": 24.7,
+          "p50": 28.7,
+          "p90": 38.6,
+          "n": 59
+        }
+      },
+      "metres_median": 8705,
+      "local_length_m": 11366.255,
+      "segments": 9,
+      "segments_total_s": 2015
+    },
+    {
+      "id": "1316",
+      "code": "P85",
+      "name": "AV 68 Calle 9",
+      "dual": true,
+      "gtfs": [
+        {
+          "route_id": "12771#a",
+          "agency_id": "6",
+          "short": "P85",
+          "long": "AV 68 Calle 9"
+        },
+        {
+          "route_id": "12773#a",
+          "agency_id": "6",
+          "short": "P85",
+          "long": "AV 68 Calle 9"
+        }
+      ],
+      "trips": 303,
+      "by_service": {
+        "1": 113,
+        "2": 131,
+        "4": 59
+      },
+      "duration_min": {
+        "1": {
+          "p10": 25.6,
+          "p50": 33.0,
+          "p90": 38.0,
+          "n": 113
+        },
+        "2": {
+          "p10": 24.2,
+          "p50": 28.8,
+          "p90": 33.5,
+          "n": 131
+        },
+        "4": {
+          "p10": 20.1,
+          "p50": 23.4,
+          "p90": 31.4,
+          "n": 59
+        }
+      },
+      "metres_median": null,
+      "local_length_m": 9265.423,
+      "segments": 7,
+      "segments_total_s": 1641
     },
     {
       "id": "5591",
@@ -4383,50 +5054,6 @@
   ],
   "still_pending": [
     {
-      "id": "623",
-      "code": "C84",
-      "name": "Av. Suba - K114 D",
-      "dual": true,
-      "variant": "regular",
-      "reason": "el código no está en el paquete",
-      "gtfs_same_code": []
-    },
-    {
-      "id": "619",
-      "code": "D81",
-      "name": "AV CL80 - KR114",
-      "dual": true,
-      "variant": "regular",
-      "reason": "sin destino equivalente en el paquete",
-      "gtfs_same_code": [
-        "AV CL80 KR114",
-        "AV CL80 KR114 Ciclovía"
-      ]
-    },
-    {
-      "id": "5279",
-      "code": "D81",
-      "name": "AV CL80 - KR114 Ciclovía",
-      "dual": true,
-      "variant": "ciclovia",
-      "reason": "sin destino equivalente en el paquete",
-      "gtfs_same_code": [
-        "AV CL80 KR114",
-        "AV CL80 KR114 Ciclovía"
-      ]
-    },
-    {
-      "id": "356",
-      "code": "K16",
-      "name": "P ElDorado",
-      "dual": false,
-      "variant": "regular",
-      "reason": "sin destino equivalente en el paquete",
-      "gtfs_same_code": [
-        "PElDorado"
-      ]
-    },
-    {
       "id": "5316",
       "code": "K86",
       "name": "Aeropuerto",
@@ -4460,66 +5087,15 @@
       ]
     },
     {
-      "id": "622",
-      "code": "L82",
-      "name": "Portal 20 de Julio",
-      "dual": true,
-      "variant": "regular",
-      "reason": "el código no está en el paquete",
-      "gtfs_same_code": []
-    },
-    {
-      "id": "12297",
-      "code": "M82",
-      "name": "CLL134 - KR 7",
-      "dual": true,
-      "variant": "regular",
-      "reason": "sin destino equivalente en el paquete",
-      "gtfs_same_code": [
-        "CLL134 KR 7",
-        "CLL134 KR 7 || L82 Portal 20 de Julio",
-        "CLL134 KR 7 || L82 Portal 20 de Julio Ciclovía"
-      ]
-    },
-    {
-      "id": "624",
-      "code": "M84",
-      "name": "KR 7 - CLL 73",
-      "dual": true,
-      "variant": "regular",
-      "reason": "el código no está en el paquete",
-      "gtfs_same_code": []
-    },
-    {
-      "id": "1315",
-      "code": "M85",
-      "name": "Museo Nacional",
-      "dual": true,
-      "variant": "regular",
-      "reason": "el código no está en el paquete",
-      "gtfs_same_code": []
-    },
-    {
       "id": "1185",
       "code": "M86",
       "name": "KR 7 - CLL 107A",
       "dual": true,
       "variant": "regular",
-      "reason": "sin destino equivalente en el paquete",
+      "reason": "633 de sus viajes publicados están en vueltas completas que no se pudieron cortar y solo 12 quedan a la vista: se usa la regla sintética antes que un horario a medias",
       "gtfs_same_code": [
-        "KR 7 CLL 107A",
-        "KR 7 CLL 107A || K86 Portal ElDorado",
-        "KR 7 CLL 107A || K86 Portal ElDorado Ciclovía"
+        "13181"
       ]
-    },
-    {
-      "id": "1316",
-      "code": "P85",
-      "name": "AV 68 Calle 9",
-      "dual": true,
-      "variant": "regular",
-      "reason": "el código no está en el paquete",
-      "gtfs_same_code": []
     }
   ],
   "without_segments": [

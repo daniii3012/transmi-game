@@ -8,13 +8,21 @@ of departures per GTFS service_id.
 Three decisions, all of them visible in the audit file:
 
   * Correspondence is exact on code and destination, normalised NFC because the two catalogues come
-    from the same family of data and write accents decomposed. No fuzzy matching: a service that
-    does not match stays pending and keeps the synthetic rule, flagged, instead of being guessed.
+    from the same family of data and write accents decomposed. Spaces and hyphens are dropped from
+    the key as well: the two catalogues write the same destination as «AV CL80 - KR114» and
+    «AV CL80 KR114», or «P ElDorado» and «PElDorado». Still not fuzzy matching —it is equality on a
+    key that normalises one more separator—, and a service that does not match stays pending and
+    keeps the synthetic rule, flagged, instead of being guessed.
   * A local service can map to several GTFS route records. They are calendar or pattern splits of
     the same service —one record for weekdays, another for Saturday— and their departures add up.
   * A GTFS record whose name carries `||`, or whose code joins two codes, is a full round trip
-    covering two local services. Those are never matched: one such trip is one bus, and attaching
-    it to both codes would invent a second one. They are listed apart.
+    covering two local services. It is cut in two instead of being discarded. Hanging its departure
+    list on both codes would invent a second bus —both halves would leave at once—, so the second
+    half departs at the trip's own departure plus the share of the trip that the first half and the
+    turn take. One bus does the outward leg and then becomes the return one, which is what the
+    record describes. The cut is only made when the arithmetic is exact: published stretches must be
+    the first service's, plus one for the turn, plus the second service's. Anything else stays
+    aside, with the reason written down.
 
 Calendars are not collapsed into the project's three day types. What travels to the browser is the
 GTFS calendar as published —weekday flags plus added and removed dates— so that which services run
@@ -22,6 +30,7 @@ on a date is decided once, by GTFS rules, over the real date.
 """
 import csv
 import json
+import re
 import statistics
 from statistics import median
 import sys
@@ -41,6 +50,18 @@ DAYS = ('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sun
 def norm(text):
     """NFC, upper, single spaces. Los dos catálogos escriben los acentos descompuestos."""
     return ' '.join(unicodedata.normalize('NFC', (text or '')).upper().split())
+
+
+def clave(text):
+    """La clave de emparejamiento: como norm, y además sin espacios ni guiones.
+
+    Los dos catálogos separan igual pero escriben distinto: «AV CL80 - KR114» contra «AV CL80
+    KR114», «P ElDorado» contra «PElDorado». Quitar el separador no empareja nada que no fuera ya
+    el mismo destino —se comprobó sobre el catálogo entero: ningún emparejamiento se pierde ni
+    cambia de registro, y ni el paquete ni el catálogo local producen dos destinos distintos bajo
+    la misma clave—, así que sigue siendo igualdad exacta y no un parecido.
+    """
+    return re.sub(r'[\s-]', '', unicodedata.normalize('NFC', (text or '')).upper())
 
 
 def combined(route):
@@ -70,16 +91,16 @@ def correspondence(routes, catalogue):
         if combined(route):
             aside.append(route)
             continue
-        index[(norm(route['route_short_name']), norm(route['route_long_name']))].append(route)
+        index[(clave(route['route_short_name']), clave(route['route_long_name']))].append(route)
     matches, pending = {}, []
     for service in catalogue:
         if not service.get('ready'):
             continue
-        key = (norm(service['code']), norm(service['name']))
+        key = (clave(service['code']), clave(service['name']))
         found = index.get(key)
         if not found:
             candidates = sorted({r['route_long_name'] for r in routes
-                                 if norm(r['route_short_name']) == key[0] and r['agency_id'] in SCOPE})
+                                 if clave(r['route_short_name']) == key[0] and r['agency_id'] in SCOPE})
             pending.append({'id': service['id'], 'code': service['code'], 'name': service['name'],
                             'dual': bool(service.get('dual')), 'variant': service.get('variant'),
                             'reason': 'sin destino equivalente en el paquete' if candidates else 'el código no está en el paquete',
@@ -87,6 +108,130 @@ def correspondence(routes, catalogue):
             continue
         matches[service['id']] = found
     return matches, pending, aside
+
+
+def mitades(route, codigos):
+    """(código, destino) de cada lado de un registro de vuelta completa, o None si no se deja leer.
+
+    El destino publicado de una vuelta completa es «M84 KR 7 CLL 73 || C84 Av. Suba K114 D»: cada
+    lado empieza por el código del servicio que cubre. Cuando no lo lleva —«CLL134 KR 7 || L82
+    Portal 20 de Julio»— el código del lado que falta es el del propio registro, y si el registro
+    une dos códigos con guion —«P85-M85»— cada mitad se queda con el suyo, en orden.
+    """
+    partes = [p.strip() for p in route['route_long_name'].split('||')]
+    if len(partes) != 2 or not all(partes):
+        return None
+    cortos = [p.strip() for p in route['route_short_name'].split('-')]
+    salida = []
+    for lado, parte in enumerate(partes):
+        primero, _, resto = parte.partition(' ')
+        if clave(primero) in codigos and resto.strip():
+            salida.append((primero, resto.strip()))
+        elif len(cortos) == 2:
+            salida.append((cortos[lado], parte))
+        else:
+            salida.append((route['route_short_name'], parte))
+    return salida
+
+
+def partir(aside, catalogue, segments, by_route):
+    """Cut every round-trip record into its two halves. (extra matches, cuts made, refusals).
+
+    Un registro de vuelta completa es un viaje: un bus que hace la ida, da la vuelta y hace el
+    regreso. El catálogo local lo ve como dos servicios. Cortarlo es repartir sus tramos entre los
+    dos —descartando el que une el final de uno con el principio del otro, que el motor ya modela
+    como regulación en extremo— y desfasar las salidas de la segunda mitad, que no sale a la hora
+    del viaje sino cuando el bus llega al otro extremo. Sin ese desfase las dos mitades saldrían a
+    la vez y donde hay un bus aparecerían dos.
+
+    Solo se corta cuando la aritmética es exacta: tramos publicados = los del primer servicio + 1
+    + los del segundo. Si no cuadra, el registro se queda apartado con el motivo escrito, porque un
+    corte en el sitio equivocado emparejaría trechos de vía que no son los mismos.
+    """
+    por_clave = {}
+    for service in catalogue:
+        if service.get('ready'):
+            por_clave.setdefault((clave(service['code']), clave(service['name'])), service)
+    codigos = {clave(s['code']) for s in catalogue}
+    extra, cortes, rechazos, fuera = defaultdict(list), [], [], defaultdict(int)
+    for route in sorted(aside, key=lambda r: r['route_id']):
+        filas = sorted(segments.get(route['route_id']) or [], key=lambda x: int(x['index']))
+        lados = mitades(route, codigos)
+
+        def rechazar(motivo):
+            # Los viajes de un registro que no se pudo cortar no desaparecen: son servicio publicado
+            # que queda fuera de alcance. Se anotan contra cada mitad que sí se pudo identificar,
+            # para que después se vea si lo que sí se emparejó es el servicio o una esquina de él.
+            for lado in (lados or []):
+                servicio = por_clave.get((clave(lado[0]), clave(lado[1])))
+                if servicio:
+                    fuera[servicio['id']] += len(by_route.get(route['route_id']) or [])
+            rechazos.append({'route_id': route['route_id'], 'short': route['route_short_name'],
+                             'long': route['route_long_name'], 'reason': motivo,
+                             'trips': len(by_route.get(route['route_id']) or [])})
+        if not filas:
+            rechazar('el registro no trae tramos publicados')
+            continue
+        if not lados:
+            rechazar('el destino publicado no separa dos servicios')
+            continue
+        locales = [por_clave.get((clave(c), clave(d))) for c, d in lados]
+        if not all(locales):
+            falta = ', '.join(f'{c} {d}' for (c, d), s in zip(lados, locales) if not s)
+            rechazar(f'sin servicio local utilizable para: {falta}')
+            continue
+        if locales[0]['id'] == locales[1]['id']:
+            rechazar('las dos mitades apuntan al mismo servicio local')
+            continue
+        cuenta = [len(s.get('stops') or []) - 1 for s in locales]
+        if min(cuenta) < 1 or cuenta[0] + 1 + cuenta[1] != len(filas):
+            rechazar(f'el catálogo local cuenta {cuenta[0]} + giro + {cuenta[1]} tramos '
+                     f'y el paquete {len(filas)}')
+            continue
+        # El reparto del viaje se hace sobre su propia duración publicada, no sobre la mediana de
+        # los tramos: un viaje de la punta tarda más que uno de la noche y el punto donde da la
+        # vuelta se corre con él.
+        totales = [float(x['seconds']) for x in filas]
+        total = sum(totales)
+        if total <= 0:
+            rechazar('algún tramo publicado dura cero segundos')
+            continue
+        parte_ida = sum(totales[:cuenta[0]]) / total
+        parte_giro = sum(totales[:cuenta[0] + 1]) / total
+        tramos = [filas[:cuenta[0]], filas[cuenta[0] + 1:]]
+        metros = [sum(float(x['metres']) for x in bloque) for bloque in tramos]
+        registros = []
+        for lado in (0, 1):
+            rid = f"{route['route_id']}#{'ab'[lado]}"
+            segments[rid] = [{**fila, 'index': str(i)} for i, fila in enumerate(tramos[lado])]
+            viajes = []
+            for trip in by_route.get(route['route_id'], []):
+                salida, llegada = int(trip['departure_s']), int(trip['arrival_s'])
+                duracion = llegada - salida if llegada > salida else total
+                if lado == 0:
+                    desde, hasta = salida, salida + round(duracion * parte_ida)
+                else:
+                    desde, hasta = salida + round(duracion * parte_giro), llegada
+                viajes.append({**trip, 'route_id': rid, 'departure_s': str(desde),
+                               'arrival_s': str(hasta), 'metres': str(metros[lado])})
+            by_route[rid] = viajes
+            registro = {**route, 'route_id': rid, 'route_short_name': lados[lado][0],
+                        'route_long_name': lados[lado][1], 'split_from': route['route_id']}
+            registros.append(registro)
+            extra[locales[lado]['id']].append(registro)
+        cortes.append({
+            'route_id': route['route_id'], 'short': route['route_short_name'],
+            'long': route['route_long_name'], 'segments': len(filas),
+            'turn_segment': int(filas[cuenta[0]]['index']),
+            'turn_seconds': round(float(filas[cuenta[0]]['seconds'])),
+            'trips': len(by_route.get(route['route_id']) or []),
+            'halves': [{'route_id': r['route_id'], 'local_id': locales[i]['id'],
+                        'code': locales[i]['code'], 'name': locales[i]['name'],
+                        'segments': cuenta[i], 'metres': round(metros[i]),
+                        'share_of_trip': round([parte_ida, 1 - parte_giro][i], 4)}
+                       for i, r in enumerate(registros)],
+        })
+    return extra, cortes, rechazos, fuera
 
 
 BUCKETS = ('peak', 'weekday', 'saturday', 'holiday')
@@ -148,7 +293,6 @@ def main():
     catalogue = json.loads(CATALOGUE.read_text(encoding='utf-8'))['routes']
 
     matches, pending, aside = correspondence(routes, catalogue)
-    print(f'{len(matches)} servicios emparejados, {len(pending)} pendientes, {len(aside)} registros de vuelta completa apartados')
 
     by_route = defaultdict(list)
     for trip in trips:
@@ -157,6 +301,32 @@ def main():
     segments = defaultdict(list)
     for row in tramos_crudos:
         segments[row['route_id']].append(row)
+
+    # Las vueltas completas se cortan en sus dos mitades antes de repartir salidas: un servicio
+    # puede recibir a la vez sus registros propios y la mitad que le toca de una vuelta completa, y
+    # entonces sus salidas son la suma de las dos, que es el servicio entero.
+    extra, cortes, rechazos, fuera = partir(aside, catalogue, segments, by_route)
+    for local_id, registros in sorted(extra.items()):
+        matches[local_id] = list(matches.get(local_id) or []) + registros
+    pending = [p for p in pending if p['id'] not in extra]
+    # Un emparejamiento que solo alcanza una esquina del servicio es peor que no tenerlo: el motor
+    # usa la lista de salidas como si fuera completa, así que despacharía M86 únicamente entre las
+    # 22:10 y las 23:00, que es el último viaje del día, y apagaría el resto. Cuando la mayoría de
+    # los viajes publicados del servicio está dentro de una vuelta completa que no se pudo cortar,
+    # se prefiere la regla sintética, dicho en la lista de pendientes.
+    for local_id in sorted(set(matches) & set(fuera)):
+        propios = sum(len(by_route.get(r['route_id']) or []) for r in matches[local_id])
+        if fuera[local_id] > propios:
+            service = next(s for s in catalogue if s['id'] == local_id)
+            pending.append({'id': local_id, 'code': service['code'], 'name': service['name'],
+                            'dual': bool(service.get('dual')), 'variant': service.get('variant'),
+                            'reason': f'{fuera[local_id]} de sus viajes publicados están en vueltas '
+                                      f'completas que no se pudieron cortar y solo {propios} quedan '
+                                      f'a la vista: se usa la regla sintética antes que un horario a medias',
+                            'gtfs_same_code': [r['route_id'] for r in matches[local_id]]})
+            del matches[local_id]
+    print(f'{len(matches)} servicios emparejados, {len(pending)} pendientes, '
+          f'{len(aside)} registros de vuelta completa: {len(cortes)} cortados, {len(rechazos)} apartados')
 
     salidas, auditoria, sin_tramos = {}, [], []
     for local_id, found in sorted(matches.items()):
@@ -227,11 +397,19 @@ def main():
         'matched': len(salidas), 'pending': len(app['pending']),
         'combined_records': [{'route_id': r['route_id'], 'short': r['route_short_name'],
                               'long': r['route_long_name']} for r in aside],
+        'split_records': cortes,
+        'split_refused': sorted(rechazos, key=lambda r: r['route_id']),
         'routes': sorted(auditoria, key=lambda a: (a['code'], a['name'])),
         'still_pending': app['pending'],
         'without_segments': app['without_segments'],
     }, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
 
+    for corte in cortes:
+        mitades_txt = ' + '.join(f"{h['code']} {h['name']} ({h['segments']} tramos)" for h in corte['halves'])
+        print(f"  corte {corte['route_id']} «{corte['long'][:46]}»: {mitades_txt}, "
+              f"{corte['trips']} viajes a cada mitad")
+    for r in rechazos:
+        print(f"  apartado {r['route_id']} «{r['long'][:46]}»: {r['reason']}")
     con = sum(1 for r in salidas.values() if r.get('segments'))
     print(f'{con} servicios con tiempos por tramo, {len(sin_tramos)} sin ellos')
     total = sum(len(v) for r in salidas.values() for v in r['departures'].values())

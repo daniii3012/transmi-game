@@ -1,4 +1,4 @@
-import {travelProfile,travelTimeAtDistance,travelAt} from './travel.mjs?v=20260912.14';
+import {travelProfile,travelTimeAtDistance,travelAt} from './travel.mjs?v=20260912.15';
 
 // Existence is sourced from OSM. These phases are explicitly scenario estimates.
 export const SIGNAL_CYCLE=Object.freeze({cycle:90,green:52,amber:3});
@@ -61,7 +61,7 @@ export function signalTravelAt(move,time){
  let delay=0;
  for(const hold of move.holds||[]){
   if(time<hold.start)break;
-  if(time<hold.end)return {s:hold.at_m-move.from,speed:0,signalId:hold.signalId,signalWait:hold.end-time};
+  if(time<hold.end)return {s:hold.at_m-move.from,speed:0,signalId:hold.signalId||null,signalWait:hold.end-time,congestion:!!hold.congestion};
   delay+=hold.end-hold.start;
  }
  return travelAt(move.profile,time-move.start-delay);

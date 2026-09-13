@@ -26,14 +26,19 @@ Two traps in the feed, both worked around here:
     percentiles carry that noise; the stop-to-stop times recomputed from the detail do not.
 
 Standard library only, so it runs on Windows with a plain Python install and on macOS with the
-system one. Append-only: stopping it and starting it again loses nothing and repeats nothing.
+system one. Append-only: stopping it and starting it again loses nothing and repeats nothing. Dos
+capturas a la vez sobre la misma carpeta sí se estorban —se vio el 12 de septiembre: uno de los dos
+recreó el csv.gz, la cabecera quedó en medio del archivo y un lote entero salió duplicado—, así que
+la segunda se niega a arrancar en vez de mezclarse con la primera.
 """
 import argparse
+import atexit
 import csv
 import gzip
 import io
 import json
 import math
+import os
 import socket
 import struct
 import sys
@@ -204,7 +209,7 @@ def escribir_detalle(destino, sello, presentes, rutas, alcance):
              if alcance == 'todo' or rutas.get(v['ruta'], ('?', ''))[0] in TRUNK]
     if not filas:
         return 0
-    nuevo = not destino.exists()
+    nuevo = not destino.exists() or destino.stat().st_size == 0
     with gzip.open(destino, 'at', encoding='utf-8', newline='') as archivo:
         escritor = csv.writer(archivo)
         if nuevo:
@@ -215,6 +220,22 @@ def escribir_detalle(destino, sello, presentes, rutas, alcance):
                                f"{v['lon']:.5f}" if v['lon'] is not None else '',
                                v['parada'], v['secuencia'] if v['secuencia'] is not None else ''])
     return len(filas)
+
+def tomar_turno(carpeta):
+    """Un solo proceso escribiendo en la carpeta. Dos mezclan sus lotes y rompen el detalle."""
+    carpeta.mkdir(parents=True, exist_ok=True)
+    cerrojo = carpeta / 'captura.lock'
+    try:
+        descriptor = os.open(cerrojo, os.O_CREAT | os.O_EXCL | os.O_WRONLY)
+    except FileExistsError:
+        anterior = cerrojo.read_text(encoding='utf-8').strip()
+        raise SystemExit(
+            f'Ya hay una captura escribiendo en {carpeta} (proceso {anterior}).\n'
+            f'Si estás seguro de que no queda ninguna corriendo, borra {cerrojo} y vuelve a lanzarla.')
+    with os.fdopen(descriptor, 'w', encoding='utf-8') as archivo:
+        archivo.write(f'{os.getpid()} desde {datetime.now(BOGOTA).isoformat(timespec="seconds")}\n')
+    atexit.register(lambda: cerrojo.exists() and cerrojo.unlink())
+
 
 def anotar(destino, registro):
     destino.parent.mkdir(parents=True, exist_ok=True)
@@ -241,6 +262,7 @@ def main():
 
     salida = Path(args.out)
     salida.parent.mkdir(parents=True, exist_ok=True)
+    tomar_turno(salida.parent)
     rutas = catalogo(salida.parent / 'routes.txt')
     print(f'{len(rutas)} rutas en el catálogo.', flush=True)
 

@@ -1,5 +1,5 @@
 import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';
-import {Operation,DEFAULTS,parameters,motion,motionAt,programmedSpeed} from '../dist/operation.mjs';
+import {Operation,DEFAULTS,parameters,motion,motionAt,programmedSpeed,TRAFFIC} from '../dist/operation.mjs';
 import {vehicleSpec} from '../dist/vehicles.mjs';
 import {MetricPath} from '../dist/simulation.mjs';
 import {travelProfile,travelAt} from '../dist/travel.mjs';
@@ -205,6 +205,55 @@ test('Con tiempos publicados el recorrido dura lo programado; sin ellos se queda
  assert.ok(con>sin,'los tiempos publicados solo pueden alargar el recorrido, nunca acortarlo');
  assert.ok(parameters({}).programmedRunning);
  assert.throws(()=>parameters({programmedRunning:1}));
+});
+
+test('En calzada segregada el bus rueda a su crucero y el sobrante del horario se gasta detenido',()=>{
+ // El tiempo publicado de un tramo se cumple igual, pero se reparte como es: rodando a lo que rueda
+ // un bus troncal y parado el resto. Antes se repartía bajando el crucero a la velocidad media del
+ // tramo, y el velocímetro marcaba 23 km/h en un viaducto donde el bus real va a 50.
+ const activos=gtfsServices(horario,'2026-09-12');
+ const id=Object.keys(horario.routes).find(k=>horario.routes[k].segments&&programmedDepartures(horario,k,activos).length>20);
+ const ruta=source.routes.find(r=>r.id===id);
+ const op=new Operation({...source,routes:[ruta],schedule:horario},{date:'2026-09-12'});
+ let maxima=0,detenidos=0,rodando=0;
+ for(let t=DAY+8*3600;t<DAY+8*3600+1800;t+=15)for(const bus of op.seek(t)){
+  if(bus.state==='traffic'){detenidos++;assert.equal(bus.speed,0,'una detención es velocidad cero, no un crucero lento');}
+  if(bus.state==='moving'){rodando++;maxima=Math.max(maxima,bus.speed);}
+ }
+ assert.ok(rodando>0&&detenidos>0,'tiene que haber buses rodando y buses detenidos');
+ assert.ok(maxima>DEFAULTS.cruiseKmh/3.6*.9,`el bus tiene que alcanzar su crucero: ${(maxima*3.6).toFixed(1)} km/h`);
+ // Y lo mismo visto al revés: sin tiempos publicados nadie se detiene por tráfico, porque no hay
+ // sobrante que gastar.
+ const libre=new Operation({...source,routes:[ruta],schedule:horario},{date:'2026-09-12',params:{programmedRunning:false}});
+ libre.seek(DAY+8*3600);
+ assert.equal(libre.stats().traffic,0,'sin horario publicado no hay sobrante y no se inventan detenciones');
+});
+test('Las detenciones por tráfico se ordenan en el tiempo y nunca preceden al semáforo del tramo',()=>{
+ // El muestreo recorre las detenciones en el orden del array acumulando demora: una detención fuera
+ // de orden devolvería un bus que retrocede. Y una cola por delante del semáforo que la causa sería
+ // una cola inventada en otro sitio.
+ const activos=gtfsServices(horario,'2026-09-12');
+ const id=Object.keys(horario.routes).find(k=>horario.routes[k].segments&&programmedDepartures(horario,k,activos).length>20);
+ const ruta=source.routes.find(r=>r.id===id);
+ const op=new Operation({...source,routes:[ruta],schedule:horario},{date:'2026-09-12'});
+ let conDetencion=0;
+ for(const viaje of op.trips.slice(0,60))for(const move of viaje.moves){
+  let previo=-Infinity,ultimoSemaforo=-Infinity;
+  for(const hold of move.holds){
+   assert.ok(hold.start>=previo-1e-9,'las detenciones tienen que ir en orden de tiempo');
+   assert.ok(hold.end>=hold.start,'una detención no puede acabar antes de empezar');
+   assert.ok(hold.at_m>=move.from-1e-6&&hold.at_m<=move.from+move.profile.distance+1e-6,'la detención cae dentro del tramo');
+   if(hold.congestion){assert.ok(hold.at_m>=ultimoSemaforo-1e-6,'la cola no se forma por delante del semáforo que la causa');conDetencion++;}
+   else ultimoSemaforo=hold.at_m;
+   previo=hold.start;
+  }
+ }
+ assert.ok(conDetencion>0,'la ruta de prueba tiene que traer detenciones por tráfico');
+ assert.ok(TRAFFIC.chunk>0&&TRAFFIC.minimum>0);
+ // Ir y volver devuelve exactamente lo mismo, con detenciones y todo.
+ const antes=structuredClone(op.seek(DAY+8*3600+1234));
+ op.seek(DAY+12*3600);
+ assert.deepEqual(op.seek(DAY+8*3600+1234),antes);
 });
 
 // --- La ficha de un bus no puede depender de qué función gane un nombre repetido ---------------

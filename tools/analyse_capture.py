@@ -41,6 +41,31 @@ def read_csv(path):
         return list(csv.DictReader(handle))
 
 
+def depurar(detail):
+    """Quita lo que deja una captura reanudada o dos capturas solapadas sobre la misma carpeta.
+
+    El detalle se escribe añadiendo al final, así que si el archivo se recrea aparece una segunda
+    cabecera en medio —y `int('build')` revienta la lectura—, y si dos procesos coinciden un lote
+    entero puede quedar escrito dos veces. Ninguna de las dos cosas es dato nuevo: se descartan
+    diciéndolo, en vez de dejar que un lote repetido cuente doble en los intervalos.
+    """
+    filas, vistos, cabeceras, repetidas = [], set(), 0, 0
+    for row in detail:
+        if row.get('build') == 'build':
+            cabeceras += 1
+            continue
+        clave = (row.get('build'), row.get('bus'))
+        if clave in vistos:
+            repetidas += 1
+            continue
+        vistos.add(clave)
+        filas.append(row)
+    if cabeceras or repetidas:
+        print(f'detalle depurado: {cabeceras} cabecera(s) intrusa(s) y {repetidas:,} fila(s) '
+              f'repetida(s) descartadas', file=sys.stderr)
+    return filas, {'cabeceras_intrusas': cabeceras, 'filas_repetidas': repetidas}
+
+
 def newest_gtfs():
     latest = ROOT / 'data/raw/gtfs/latest.json'
     if not latest.exists():
@@ -216,6 +241,7 @@ def main():
         if sidecar.exists():
             provenance.append({'file': path.name, **json.loads(sidecar.read_text(encoding='utf-8'))})
 
+    detail, depurado = depurar(detail)
     print(f'{len(summary):,} lecturas de resumen, {len(detail):,} filas de detalle en {len(days)} día(s)')
     report = {
         'generated_at': datetime.now().isoformat(timespec='seconds'),
@@ -223,6 +249,7 @@ def main():
         'gtfs_used': {'folder': source.name,
                       'sha256': json.loads((source / 'manifest.json').read_text(encoding='utf-8'))['sources'][0]['sha256']},
         'provenance': provenance,
+        'descartado_al_leer': depurado,
         'cobertura': cobertura(summary),
         'flota_por_hora': flota(summary),
         'tramos': tramos(detail, published, args.min_observations) if detail else None,

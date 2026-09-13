@@ -86,4 +86,25 @@ Colas de buses en semáforos: analizado y **no implementado** por decisión de D
 
 Antes de terminar cada hito, verificar diff, commit/push y coincidencia HEAD local/remoto. Los informes del 10 sep. se conservan como evidencia histórica, no resultados actuales.
 
-12/09/2026 — Interfaz adaptable refinada en `responsive.css` y `shell.mjs`: navegación inferior móvil, panel plegable, Más para controles secundarios, zoom con dos dedos y reloj contextual. Ver docs/INTERFAZ_MOVIL_20260912.md. Fuentes con versión 20260912.14. Cambios de iOS y transporte nativo solo en el repositorio privado.
+12/09/2026 — Interfaz adaptable refinada en `responsive.css` y `shell.mjs`: navegación inferior móvil, panel plegable, Más para controles secundarios, zoom con dos dedos y reloj contextual. Ver docs/INTERFAZ_MOVIL_20260912.md. Cambios de iOS y transporte nativo solo en el repositorio privado.
+
+12/09/2026 (noche) — **El tiempo publicado de un tramo se reparte, ya no se aplana.** En calzada
+segregada el bus rueda a su crucero y el sobrante se gasta en detenciones explícitas en la
+aproximación a la estación, en trozos de 45 s; en calzada mixta sigue el crucero rebajado continuo.
+Estado nuevo en la interfaz, «Detenido en tráfico», distinto de «Esperando atención». La llegada a
+cada parada no se mueve. Salió de dos seguimientos de Daniel contra el sistema real y de 5 h de
+captura del sábado: el horario publicado lleva un 11 % de holgura por viaje completo y la reparte
+mal, con un desvío absoluto mediano de 0,24 tramo a tramo. Ver
+docs/VELOCIDAD_Y_DETENCIONES_20260912.md. **El desfase contra la realidad sigue sin corregirse a
+propósito**: calibrar el presupuesto necesita laborables y punta, no un sábado. Fuentes con versión
+20260912.15.
+
+12/09/2026 (noche) — Captura: `capture_rt.py` toma un cerrojo `captura.lock` en su carpeta y se
+niega a arrancar si otra captura ya escribe ahí. Dos procesos solapados el 12 dejaron una cabecera en
+medio del `.csv.gz` y un lote duplicado, y `analyse_capture.py` reventaba al leerlo; ahora depura
+cabeceras intrusas y filas repetidas diciéndolo, y el informe lo anota en `descartado_al_leer`. Las
+lecturas del 12 quedaron limpias en el sitio: 513.864 filas, 552 lotes, 5 h, un hueco de 18 min a las
+16:59. La flota simulada coincide con la observada una vez se compara con lo comparable: 777 contra
+764 vehículos en catálogo a las 19:00; los ~99 restantes son D81, ML82, MK86, K16, MC84, P85-M85 y
+K86, que el catálogo local no tiene. Daniel precisa que las duales aparecen mapeadas como una sola
+ruta (ML82 = M82/L82, MK86 = M86/K86).

@@ -1,5 +1,5 @@
-import {MetricPath} from './simulation.mjs?v=20260912.14';
-import {signalPhase} from './signals.mjs?v=20260912.14';
+import {MetricPath} from './simulation.mjs?v=20260912.15';
+import {signalPhase} from './signals.mjs?v=20260912.15';
 import * as THREE from './vendor/three.module.js';
 
 export class NetworkMap {
@@ -260,7 +260,7 @@ export class NetworkMap {
     this.busSamples=[];let i=0;const color=new THREE.Color(),cells=new Map(),clusters=[];
     for(const b of buses){
       if(filter!=='all'&&filter!==b.routeId)continue;
-      const travelling=b.state==='moving'||b.state==='signal',side=Math.max(travelling?7:3,this.mpp*(travelling?2.5:1)),xy=[b.xy[0]+Math.sin(b.angle)*side,b.xy[1]-Math.cos(b.angle)*side];
+      const travelling=b.state==='moving'||b.state==='signal'||b.state==='traffic',side=Math.max(travelling?7:3,this.mpp*(travelling?2.5:1)),xy=[b.xy[0]+Math.sin(b.angle)*side,b.xy[1]-Math.cos(b.angle)*side];
       if(b.state==='dwell'&&!b.street){const offset=b.slot?14.5:-14.5;xy[0]+=Math.cos(b.angle)*offset;xy[1]+=Math.sin(b.angle)*offset;}
       if(b.state==='queue'){xy[0]-=Math.cos(b.angle)*24;xy[1]-=Math.sin(b.angle)*24;}
       const screen=this.worldToScreen(xy);if(screen[0]<-20||screen[0]>this.w+20||screen[1]<-20||screen[1]>this.h+20)continue;

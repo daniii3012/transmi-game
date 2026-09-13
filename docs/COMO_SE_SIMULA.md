@@ -74,11 +74,19 @@ escenario y lo que permite el radio de la curva. Después se pasa dos veces sobr
 es una curva posición/velocidad que se consulta analíticamente, así que ir a 120× no hace que los
 buses vayan a 120 veces los km/h.
 
-La velocidad de crucero de cada tramo ya no es un número único para toda la red. **Se despeja del
-tiempo que el horario publicado le da a ese tramo**, después de descontar la atención en estación y
-el coste esperado de sus semáforos, para no contarlos dos veces. El crucero del escenario sigue
-siendo el techo: esto nunca acelera un bus, solo lo frena hasta lo que el horario dice. En
-[Horario publicado](HORARIO_GTFS_20260912.md) está la ecuación y lo que se comprobó con ella.
+El tiempo que el horario publicado le da a un tramo se cumple, pero **se reparte según por dónde va
+el bus**. En calzada segregada el bus rueda a su crucero —los 60 km/h del escenario, ±5 por vehículo—
+y lo que el horario da de más se gasta **detenido**, en la aproximación a la estación siguiente y en
+trozos de 45 s como mucho. En calzada mixta —Séptima, Av. 68, los tramos de calle— sí se rebaja el
+crucero de forma continua, porque ahí el bus va dentro del tráfico y no delante de él; esa velocidad
+se despeja del tiempo publicado descontando antes la atención en estación y el coste esperado de los
+semáforos, para no contarlos dos veces. La ecuación está en
+[Horario publicado](HORARIO_GTFS_20260912.md), y por qué el reparto cambió, en
+[Velocidad y detenciones](VELOCIDAD_Y_DETENCIONES_20260912.md).
+
+La hora de llegada a cada parada no se mueve por esto: sigue siendo la publicada. Lo que cambia es
+que la demora queda donde se puede ver y medir —un bus parado— en vez de disuelta en un velocímetro
+que marcaba 23 km/h en un viaducto.
 
 **Semáforos.** Solo los que tienen evidencia directa en OpenStreetMap sobre calzada de buses, con la
 vía y el sentido correctos. Su ciclo es un supuesto explícito de 90 s —52 verde, 3 amarillo, 35

@@ -1,12 +1,50 @@
-import {DAY,addDays,serviceWindows,demandPeriod,dayType,gtfsServices,programmedDepartures} from './calendar.mjs?v=20260912.14';
-import {vehicleSpec} from './vehicles.mjs?v=20260912.14';
-import {matchSignals,signalTravel,signalTravelAt,SIGNAL_EXPECTED} from './signals.mjs?v=20260912.14';
-import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260912.14';
-import {placeVisit} from './station-layouts.mjs?v=20260912.14';
-import {MetricPath} from './simulation.mjs?v=20260912.14';
+import {DAY,addDays,serviceWindows,demandPeriod,dayType,gtfsServices,programmedDepartures} from './calendar.mjs?v=20260912.15';
+import {vehicleSpec} from './vehicles.mjs?v=20260912.15';
+import {matchSignals,signalTravel,signalTravelAt,SIGNAL_EXPECTED} from './signals.mjs?v=20260912.15';
+import {travelTimeAtDistance} from './travel.mjs?v=20260912.15';
+import {generatedPassengers,alightFraction,DEMAND_BASELINE} from './passengers.mjs?v=20260912.15';
+import {placeVisit} from './station-layouts.mjs?v=20260912.15';
+import {MetricPath} from './simulation.mjs?v=20260912.15';
 export const DEFAULTS=Object.freeze({peakHeadway:240,offpeakHeadway:480,demand:1,mode:'auto',cruiseKmh:60,streetKmh:50,acceleration:.8,braking:1.1,turnaround:240,variableDispatch:true,reinforcements:true,signals:true,beyondValidity:true,programmedDispatch:true,programmedRunning:true});
 export function parameters(input={}){const p={...DEFAULTS,...input};for(const [k,min,max] of [['peakHeadway',120,1200],['offpeakHeadway',180,1800],['demand',.25,3],['cruiseKmh',25,75],['streetKmh',20,60],['acceleration',.4,1.4],['braking',.5,1.8],['turnaround',60,900]])if(!Number.isFinite(p[k])||p[k]<min||p[k]>max)throw new Error('Parámetro fuera de rango: '+k);if(typeof p.variableDispatch!=='boolean'||typeof p.reinforcements!=='boolean'||typeof p.signals!=='boolean'||typeof p.beyondValidity!=='boolean'||typeof p.programmedDispatch!=='boolean'||typeof p.programmedRunning!=='boolean')throw new Error('Opciones de despacho inválidas');if(!['auto','peak','offpeak'].includes(p.mode))throw new Error('Demanda inválida');return p;}
 export function hash(text){let h=2166136261;for(const c of String(text)){h^=c.charCodeAt(0);h=Math.imul(h,16777619);}return h>>>0;}
+// Cómo se gasta el tiempo que el horario publicado le da a un tramo.
+//
+// Hasta ahora el sobrante se repartía bajando la velocidad de forma uniforme: el bus recorría los
+// 2 km entre Marsella y Distrito Grafiti a 23 km/h clavados. Eso cuadra el reloj y falsea el
+// movimiento. Un bus troncal no circula a 23 km/h: circula a 50-60 y pierde el tiempo parado —en
+// el rojo, en la cola de entrada a la estación, detrás de otro bus—. La captura del feed lo
+// respalda en la forma, aunque sus percentiles instantáneos arrastren ruido de refresco de GPS:
+// lo que se ve es «rápido o quieto», no un crucero plano a un cuarto de la velocidad.
+//
+// Así que el tiempo publicado se gasta en dos partes:
+//
+//   1. En calzada segregada el bus rueda a su crucero, sin rebajarlo. En calzada mixta —Séptima,
+//      Av. 68, los tramos de calle— sí se rebaja de forma continua, porque ahí el bus va dentro
+//      del tráfico y no delante de él.
+//   2. Lo que quede se gasta en detenciones explícitas en la aproximación a la estación siguiente,
+//      después del último semáforo del tramo —para no alterar la fase que ya se resolvió— y en
+//      trozos de TRAFFIC.chunk como mucho, que es lo que dura una cola razonable antes de avanzar.
+//
+// La hora de llegada a cada parada no cambia ni un segundo: sigue siendo la publicada. Lo que
+// cambia es que la demora queda donde se puede ver y medir, en vez de disuelta en el velocímetro.
+export const TRAFFIC=Object.freeze({chunk:45,spacing:40,margin:15,minimum:4});
+export function congestionHolds(profile,from,to,departure,signals,signalDelay,surplus){
+ const distance=to-from;
+ let last=0;for(const s of signals)if(s.at_m>from+.1&&s.at_m<to-.1)last=Math.max(last,s.at_m-from);
+ const count=Math.max(1,Math.min(12,Math.ceil(surplus/TRAFFIC.chunk))),each=surplus/count;
+ // Nunca por delante del último semáforo del tramo: si no queda aproximación libre, la cola se
+ // forma en el propio semáforo, que es donde se forma de verdad.
+ const far=Math.max(last,distance-TRAFFIC.margin),near=Math.max(last,far-(count-1)*TRAFFIC.spacing);
+ const step=count>1?(far-near)/(count-1):0;
+ const holds=[];let delay=signalDelay;
+ for(let i=0;i<count;i++){
+  const at=near+step*i,arrival=departure+travelTimeAtDistance(profile,at)+delay;
+  holds.push({at_m:from+at,start:arrival,end:arrival+each,congestion:true});delay+=each;
+ }
+ return holds;
+}
+
 // Velocidad de crucero que hace durar un tramo lo que dura en el horario publicado.
 //
 // El tiempo publicado de un tramo lleva dentro la atención en estación y los rojos, porque el feed
@@ -57,7 +95,7 @@ export class Operation {
   for(const r of this.routes.values())for(let i=0;i<r.visits.length;i++){const s=r.visits[i];if(s.kind==='street')continue;const layout=layouts.get(s.station_id),placed=placeVisit(r,i,layout,hash(r.family));if(placed){Object.assign(s,placed);continue;}if(layout||i===0||i===r.visits.length-1)continue;const shift=(s.wagon-(s.wagons+1)/2)*64*(s.direction===0?1:-1),bound=Math.min((r.stops[i].at_m-r.stops[i-1].at_m)/4,(r.stops[i+1].at_m-r.stops[i].at_m)/4);s.at_m+=Math.max(-bound,Math.min(bound,shift));}
  }
  build(){
-  const queue=new Heap(),berths=new Map(),parked=new Map(),waiting=new Map();this.passengerEvents=new Map();this.trips=[];this.vehicles=[];this.depotEvents=[];this.routeWindows={};this.programmedRoutes=new Set();this.programmedIdle=new Set();this.programmedMoves=0;this.programmedCapped=0;
+  const queue=new Heap(),berths=new Map(),parked=new Map(),waiting=new Map();this.passengerEvents=new Map();this.trips=[];this.vehicles=[];this.depotEvents=[];this.routeWindows={};this.programmedRoutes=new Set();this.programmedIdle=new Set();this.programmedMoves=0;this.programmedCapped=0;this.trafficHolds=0;this.trafficSeconds=0;
   for(let day=-1;day<=0;day++){
    const date=addDays(this.date,day),offset=(day+1)*DAY;
    const active=this.params.programmedDispatch?gtfsServices(this.data.schedule,date):null;
@@ -144,13 +182,26 @@ export class Operation {
     const crossings=r.signals.reduce((n,sg)=>n+(sg.at_m>s.at_m+.1&&sg.at_m<next.at_m-.1?1:0),0);
     // Redondear antes de usarla: el presupuesto lleva dentro la atención, que cambia en cada viaje
     // con la demanda, y sin redondeo cada bus pediría su propio perfil y la caché no serviría de nada.
-    v=Math.round(programmedSpeed(budget,distance,cap,this.params.acceleration,this.params.braking,crossings)*10)/10;
+    // En calzada mixta el bus sí rueda más despacio de forma continua —va en el tráfico—, y ahí el
+    // crucero se ajusta al tiempo publicado como hasta ahora. En calzada segregada no: rueda a lo
+    // suyo y pierde el tiempo detenido. Ese sobrante se gasta abajo, en detenciones visibles.
+    if(isStreet)v=Math.round(programmedSpeed(budget,distance,cap,this.params.acceleration,this.params.braking,crossings)*10)/10;
     if(e.time>=DAY){if(v<cap-1e-9)this.programmedMoves++;else this.programmedCapped++;}
    }
    const profileKey=r.id+'/'+e.index+'/'+period+'/'+speedOffset+'/'+v;
    const m=signalTravel(r.path,s.at_m,next.at_m,v,this.params.acceleration,this.params.braking,close,r.signals,this.motionCache,profileKey);
-   trip.moves.push({profile:m.profile,holds:m.holds,start:close,end:close+m.duration,from:s.at_m});
-   queue.push({type:'stop',time:close+m.duration,trip:e.trip,index:e.index+1,date:e.date});
+   // Lo que el horario da de más sobre la marcha a esa velocidad se gasta detenido en la
+   // aproximación, no diluido en el velocímetro. La llegada a la parada siguiente no se mueve.
+   let holds=m.holds,duration=m.duration;
+   const surplus=budget>0?budget-duration:0;
+   if(surplus>=TRAFFIC.minimum){
+    const signalDelay=m.holds.reduce((sum,h)=>sum+(h.end-h.start),0);
+    holds=[...m.holds,...congestionHolds(m.profile,s.at_m,next.at_m,close,r.signals,signalDelay,surplus)];
+    duration=budget;
+    if(e.time>=DAY){this.trafficHolds++;this.trafficSeconds+=surplus;}
+   }
+   trip.moves.push({profile:m.profile,holds,start:close,end:close+duration,from:s.at_m});
+   queue.push({type:'stop',time:close+duration,trip:e.trip,index:e.index+1,date:e.date});
   }
   for(const [key,events] of this.passengerEvents){const n=upperBound(events,DAY,e=>e.time);if(n>1)this.passengerEvents.set(key,events.slice(n-1));}
   this.peakActive=peak;
@@ -172,7 +223,7 @@ export class Operation {
   const stop=t.stops[index];let state,s,speed=0,load=stop.load,nextIndex=index,signalId=null,signalWait=0;
   if(time<stop.open){state='queue';s=stop.at_m;load=index?t.stops[index-1].load:0;}
   else if(time<stop.close){state='dwell';s=stop.at_m;}
-  else {const move=t.moves[index];if(!move)return null;const pose=signalTravelAt(move,time);signalId=pose.signalId||null;signalWait=pose.signalWait||0;state=signalId?'signal':'moving';s=move.from+pose.s;speed=pose.speed;nextIndex=index+1;}
+  else {const move=t.moves[index];if(!move)return null;const pose=signalTravelAt(move,time);signalId=pose.signalId||null;signalWait=pose.signalWait||0;state=signalId?'signal':pose.congestion?'traffic':'moving';s=move.from+pose.s;speed=pose.speed;nextIndex=index+1;}
   const pose=r.path.sample(s),next=r.visits[nextIndex];
   return {id:t.id,vehicleId:this.vehicles[t.vehicle].id,routeId:r.id,laneId:r.id,code:r.code,pattern:r.name,color:r.color,state,signalId,signalWait,s,speed,speed_kmh:speed*3.6,xy:pose.xy,angle:pose.angle,
     load,capacity:t.capacity,reinforcement:t.reinforcement,busType:this.vehicles[t.vehicle].spec.label,typeSource:r.typeSource,length_m:this.vehicles[t.vehicle].spec.length,next_stop:next?.name||'Fin del servicio',next_station:next?.station_id,stopIndex:index,stopsServed:index+(time>=stop.close?1:0),wagon:next?.wagon||1,wagonLabel:next?.wagonLabel||null,wagonDoors:next?.wagonDoors||null,wagonSource:next?.wagonSource||'estimated',slot:stop.slot,
@@ -181,7 +232,7 @@ export class Operation {
  }
  seek(time){if(!Number.isFinite(time))throw new Error('Hora inválida');this.time=time;const a=upperBound(this.trips,time-this.maxDuration,t=>t.start),b=upperBound(this.trips,time,t=>t.start);this.buses=[];for(let i=a;i<b;i++){const t=this.trips[i];if(t.end>time){const bus=this.sampleTrip(t,time);if(bus)this.buses.push(bus);}}this.byId=new Map(this.buses.map(b=>[b.id,b]));return this.buses;}
  inspect(id){return this.byId.get(id)||null;}
- stats(){const counts={moving:0,dwell:0,queue:0,signal:0};let load=0;for(const b of this.buses){counts[b.state]++;load+=b.load;}const n=upperBound(this.stopEvents,this.time,e=>e.time),start=upperBound(this.stopEvents,DAY,e=>e.time),events=Math.max(0,n-start);return {time_s:this.time,fleet:this.buses.length,...counts,onboard:load,boarded:this.boardPrefix[n]-this.boardPrefix[Math.min(start,n)],stops:events,averageWait:events?(this.waitPrefix[n]-this.waitPrefix[start])/events:0,boardingDenials:this.leftPrefix[n]-this.leftPrefix[Math.min(start,n)],scheduled:this.trips.filter(t=>t.start>=DAY).length,completed:upperBound(this.ends,this.time,t=>t.end)-upperBound(this.ends,DAY,t=>t.end),routes:this.routes.size,peakActive:this.peakActive,programmedRoutes:this.programmedRoutes.size,programmedIdle:this.programmedIdle.size,programmedMoves:this.programmedMoves,programmedCapped:this.programmedCapped};}
+ stats(){const counts={moving:0,dwell:0,queue:0,signal:0,traffic:0};let load=0;for(const b of this.buses){counts[b.state]++;load+=b.load;}const n=upperBound(this.stopEvents,this.time,e=>e.time),start=upperBound(this.stopEvents,DAY,e=>e.time),events=Math.max(0,n-start);return {time_s:this.time,fleet:this.buses.length,...counts,onboard:load,boarded:this.boardPrefix[n]-this.boardPrefix[Math.min(start,n)],stops:events,averageWait:events?(this.waitPrefix[n]-this.waitPrefix[start])/events:0,boardingDenials:this.leftPrefix[n]-this.leftPrefix[Math.min(start,n)],scheduled:this.trips.filter(t=>t.start>=DAY).length,completed:upperBound(this.ends,this.time,t=>t.end)-upperBound(this.ends,DAY,t=>t.end),routes:this.routes.size,peakActive:this.peakActive,programmedRoutes:this.programmedRoutes.size,programmedIdle:this.programmedIdle.size,programmedMoves:this.programmedMoves,programmedCapped:this.programmedCapped,trafficHolds:this.trafficHolds,trafficSeconds:Math.round(this.trafficSeconds)};}
  depotStats(){const map=new Map();for(const t of this.trips){const r=this.routes.get(t.routeId),origin=r.stops[0].station_id;if(!map.has(origin))map.set(origin,{id:origin,name:this.stations.get(origin)?.name||r.stops[0].name,departures:0,next:Infinity,reserve:0});const d=map.get(origin);if(t.start>=DAY&&t.start<=this.time)d.departures++;if(t.start>this.time)d.next=Math.min(d.next,t.start);}
  for(const e of this.depotEvents){if(e.time>this.time)break;if(!map.has(e.station))map.set(e.station,{id:e.station,name:this.stations.get(e.station)?.name||e.station,departures:0,next:Infinity,reserve:0});map.get(e.station).reserve+=e.delta;}
  return [...map.values()].sort((a,b)=>b.departures-a.departures);

@@ -10,7 +10,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'tools'))
 
-from analyse_capture import cobertura, flota, intervalos, percentiles, tramos, transiciones
+from analyse_capture import cobertura, depurar, flota, intervalos, percentiles, tramos, transiciones
 
 
 def reading(build, bus, trip, stop, sequence, route='R1'):
@@ -118,6 +118,24 @@ class Coverage(unittest.TestCase):
                    {'build': 2, 'hour': 6.9, 'trunk': 30, 'by_agency': {'Troncal': 30}},
                    {'build': 3, 'hour': 6.5, 'trunk': 20, 'by_agency': {'Troncal': 20}}]
         self.assertEqual(flota(summary)['6']['Troncal'], 20)
+
+    def test_a_resumed_capture_does_not_break_the_reading(self):
+        """Recrear el archivo deja una cabecera en medio: se descarta, no revienta la lectura."""
+        rows = [reading(100, '1', 'T', 'A', 1),
+                {k: k for k in reading(0, '', '', '', 0)},
+                reading(140, '1', 'T', 'B', 2)]
+        clean, counted = depurar(rows)
+        self.assertEqual(counted['cabeceras_intrusas'], 1)
+        self.assertEqual([r['parada'] for r in clean], ['A', 'B'])
+        self.assertEqual([m[1] for m in transiciones(clean)[('1', 'T')]], ['A', 'B'])
+
+    def test_a_batch_written_twice_counts_once(self):
+        """Dos capturas solapadas repiten un lote entero; contarlo doble inventaría un intervalo de 0 s."""
+        rows = [reading(100, '1', 'T', 'A', 1), reading(100, '1', 'T', 'A', 1),
+                reading(140, '1', 'T', 'B', 2)]
+        clean, counted = depurar(rows)
+        self.assertEqual(counted['filas_repetidas'], 1)
+        self.assertEqual(len(clean), 2)
 
     def test_percentiles_never_index_past_the_end(self):
         self.assertEqual(percentiles([5])['p90'], 5)

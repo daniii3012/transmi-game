@@ -45,10 +45,16 @@ export class NetworkMap {
   // hueco libre y no debajo de la hoja inferior, que en el móvil se lleva media pantalla.
   insets(){
     const mobile=this.w<800,left=mobile?18:350;
-    const right=!mobile&&this.w>1100&&!document.querySelector('#inspector').hidden?400:60;
+    const inspector=document.querySelector('#inspector');
+    const right=!mobile&&this.w>1100&&!inspector.hidden?400:60;
     const top=mobile?120:70;
-    const panel=document.querySelector(document.body.dataset.inspect==='true'?'#inspector':'#sidebar');
-    const bottom=mobile&&panel?Math.max(40,this.host.getBoundingClientRect().bottom-panel.getBoundingClientRect().top+20):document.body.dataset.panel==='live'?100:235;
+    // Qué panel tapa abajo se decide por lo que se ve ahora mismo, no por la marca del cuerpo: esa
+    // la pone un observador y llega un instante tarde. Al saltar de una estación a su servicio en
+    // vivo la ficha ya estaba oculta y la marca todavía decía que no, así que se medía un
+    // rectángulo de altura cero y el encuadre salía disparado hacia arriba.
+    const panel=inspector.hidden?document.querySelector('#sidebar'):inspector;
+    const rect=panel?.getBoundingClientRect();
+    const bottom=mobile&&rect?.height?Math.max(40,this.host.getBoundingClientRect().bottom-rect.top+20):document.body.dataset.panel==='live'?100:235;
     return {left,right,top,bottom};
   }
   // Cuánto hay que correr el centro para que un punto quede en medio del hueco. Se recuerda unas

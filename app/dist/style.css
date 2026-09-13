@@ -51,14 +51,13 @@ body[data-theme=dark]{--ink:#e0e8f1;--muted:#a2b0bf;--line:#394959;--shadow:0 5p
 /* El código de una ruta en rojo se lee como alerta, no como enlace. */
 #live-network-list button:hover,[data-theme=dark] #live-network-list button:hover{color:inherit}
 
-#inspector-toggle{display:flex;align-items:center;width:100%;min-height:26px;margin:-14px 0 2px;padding:0 46px 0 0;border:0;border-radius:0;background:none;font-size:.85rem;font-weight:650;text-align:left;line-height:1.3}
-/* Desplegado, el título ya está en la ficha: el botón es solo el tirador. Plegado, es lo único
-   que queda para saber qué sigue en foco. */
-#inspector-toggle>span{display:none;flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-#inspector-toggle:before{content:'\2304';font-size:1.15rem;color:var(--muted)}
-body[data-detail=closed] #inspector-toggle{min-height:40px;margin:-8px 0 0;gap:9px}
-body[data-detail=closed] #inspector-toggle>span{display:block}
+/* El tirador del detalle recibe el mismo trato que la ✕: mismo recuadro, misma altura y a su lado.
+   Suelto sobre el texto se leía como parte del contenido y no como un control. */
+#inspector-toggle{position:absolute;right:46px;top:10px;display:grid;place-items:center;width:auto;min-width:30px;min-height:30px;padding:0 9px;border:0;font-size:1.3rem;line-height:1;color:var(--muted)}
+#inspector-toggle>span{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+#inspector-toggle:before{content:'\2304'}
 body[data-detail=closed] #inspector-toggle:before{content:'\2303'}
-#inspector-toggle:hover,[data-theme=dark] #inspector-toggle,[data-theme=dark] #inspector-toggle:hover{background:none}
-body[data-detail=closed] #inspector{bottom:auto;max-height:none;padding-bottom:14px}
-body[data-detail=closed] #selection{display:none}
+/* Plegado queda el rótulo de lo que sigue en foco, no una ficha en blanco. */
+body[data-detail=closed] #inspector{bottom:auto;max-height:none;min-height:50px;padding:14px 92px 16px 24px}
+body[data-detail=closed] #selection>*{display:none}
+body[data-detail=closed] #selection>h2:first-of-type{display:block;margin:0;font-size:1rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}

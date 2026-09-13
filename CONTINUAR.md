@@ -159,3 +159,14 @@ ruta (ML82 = M82/L82, MK86 = M86/K86).
   la rejilla, que era lo que desplazaba el panel de lado.
 - El doble toque ya no hace zoom de página: `touch-action:manipulation` en `html,body`. El lienzo
   del mapa conserva `none`.
+
+12/09/2026 (noche, segunda vuelta) — Tres retoques más sobre la misma revisión.
+
+- **El encuadre salía disparado al saltar de una estación a su servicio en vivo.** `insets()`
+  preguntaba por `body.dataset.inspect`, que la pone un observador y llega un fotograma tarde: la
+  ficha ya estaba oculta y la marca seguía diciendo que no, así que se medía un rectángulo de altura
+  cero y el borde inferior salía mayor que la pantalla. El trazado quedaba muy por encima de la vista.
+  Ahora el panel de abajo se elige por `#inspector.hidden` y se exige que el rectángulo tenga altura.
+- El tirador del detalle recibe **el mismo trato que la ✕**: recuadro, altura y posición iguales, a
+  su lado. Suelto sobre el texto se leía como parte del contenido. Plegado queda el rótulo de lo que
+  sigue en foco.

@@ -170,3 +170,9 @@ ruta (ML82 = M82/L82, MK86 = M86/K86).
 - El tirador del detalle recibe **el mismo trato que la ✕**: recuadro, altura y posición iguales, a
   su lado. Suelto sobre el texto se leía como parte del contenido. Plegado queda el rótulo de lo que
   sigue en foco.
+- **Volver a los buses sin pasar por la ✕.** Desde la ficha de un servicio abierta en En vivo, el
+  botón repetía la misma consulta y `LiveFeed.select` sale temprano si el código no cambia, así que
+  no pasaba nada y la única salida era cerrar. Ahora, con ese servicio ya en foco, el botón dice
+  «Volver a los buses de X en tiempo real» y suelta la ficha; con otro servicio hace el salto de
+  siempre. Y soltar una ficha dentro de En vivo vuelve a resaltar el trazado del servicio en el
+  acto, en vez de dejar las troncales desnudas hasta la próxima lectura.

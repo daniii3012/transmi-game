@@ -104,7 +104,15 @@ try{
   if(state!=='current')panel.append(el('p',state==='expired'?`El horario mostrado es el último publicado, vigente hasta el ${r.valid_until}. Se sigue operando para que la fecha elegida funcione; no es un horario confirmado para ${config.date}.`:`El horario mostrado empieza a regir el ${r.valid_from}. Se aplica a esta fecha anterior como aproximación.`,'muted'));
   const enVivo=activePanel==='live';
   if(r.ready&&!enVivo){const b=el('button','Simular solo este servicio','primary full');b.onclick=()=>{config.selection={mode:'route',route:r.id};viewMode='route';rebuild({clear:false});selection={kind:'route',id:r.id};renderRoute(r);};panel.append(b);const f=el('button','Seguir un bus de esta ruta','full');f.onclick=()=>followBus(r.id);panel.append(f);}
-  if(r.ready&&enVivo&&livePerService&&[...$('#live-route').options].some(o=>o.value===r.code)){const v=el('button','Ver los buses de '+r.code+' en tiempo real','primary full');v.onclick=()=>{switchPanel('live');setLiveScope('route');$('#live-route').value=r.code;$('#live-route').onchange();};panel.append(v);}
+  if(r.ready&&enVivo&&livePerService&&[...$('#live-route').options].some(o=>o.value===r.code)){
+   // Con el servicio ya en foco, «ver sus buses» es volver a la lista: soltar la ficha basta, y
+   // pedir la misma ruta otra vez no hacía nada porque la lectura sale temprano si no cambia el
+   // código, así que la única salida era la ✕.
+   const enFoco=()=>activePanel==='live'&&liveScope==='route'&&$('#live-route').value===r.code;
+   const v=el('button',(enFoco()?'Volver a los buses de ':'Ver los buses de ')+r.code+' en tiempo real','primary full');
+   v.onclick=()=>{const volver=enFoco();clearSelection();if(volver)restoreLiveRoute();else{switchPanel('live');setLiveScope('route');$('#live-route').value=r.code;$('#live-route').onchange();}};
+   panel.append(v);
+  }
   for(const issue of r.issues)panel.append(el('p',issue,'muted'));
   const list=el('ol',undefined,'stop-list');for(const s of r.stops){const li=el('li',undefined,s.kind==='street'?'street':'');const b=el('button',s.name);b.onclick=()=>{const st=data.stations.find(st=>st.id===s.station_id);if(st){onSelect({kind:'station',id:st.id});map.focusStation(st);}};li.append(b,el('small',`${s.kind==='street'?'Paradero en calle':'Estación'}${s.coordinate_source==='route_linear_reference_estimated'?' · ubicación aproximada':''}`));list.append(li);}panel.append(list);
   panel.append(el('p','Horarios publicados; frecuencias, ocupación y asignación a vagones estimadas.','muted'));const source=el('a','Detalle de la fuente ↗');source.href=r.source_url;source.target='_blank';source.rel='noreferrer';panel.append(source);
@@ -355,6 +363,7 @@ try{
   if(selection?.kind==='station'){liveStationId=null;if(inLive)requestLiveStation({force:true});else requestStation();}
   if(!inLive){liveFitted=null;if(selection?.kind==='realbus')clearSelection();map.setLiveBuses([]);map.setNetworkBuses([]);map.setRoute(focusedRoute);}
   else if(liveScope!=='route'){map.setLiveBuses([]);map.setRoute(null);}
+  else restoreLiveRoute();
   map.setNetworkDimmed(liveScope==='route');
  }
  function renderLiveNetwork({phase,payload,message}){
@@ -387,6 +396,13 @@ try{
   if(filas.length>14)list.append(el('li',`y ${filas.length-14} servicios más`,'muted'));
  }
  function setLiveScope(scope){liveScope=scope;liveFitted=null;syncLive();}
+ // El trazado del servicio en foco no depende de qué ficha esté abierta: al soltar una, tiene que
+ // seguir resaltado y no esperar a la próxima lectura para volver a aparecer.
+ function restoreLiveRoute(){
+  if(!(activePanel==='live')||liveScope!=='route')return;
+  const code=$('#live-route').value,trazados=code?liveRoutes(code):[];
+  map.setRoute(trazados.length?trazados.map(r=>r.id):null,{subtle:true});
+ }
  // En vivo es lectura: el reloj del escenario no manda sobre buses que ya están en la calle, así
  // que sus controles se apagan en vez de dar la impresión de que mueven algo.
  function scenarioControls(enabled){
@@ -516,7 +532,7 @@ try{
  $('#zoom-in').onclick=()=>map.zoom(1/1.4);$('#zoom-out').onclick=()=>map.zoom(1.4);$('#fit').onclick=()=>{following=false;fitSelection();};$('#context-toggle').onclick=()=>{map.contextGroup.visible=!map.contextGroup.visible;$('#context-toggle').setAttribute('aria-pressed',map.contextGroup.visible);};$('#lanes-toggle').onclick=()=>{map.carriagewaysEnabled=map.carriagewaysEnabled===false;$('#lanes-toggle').setAttribute('aria-pressed',map.carriagewaysEnabled);if(map.carriagewayGroup)map.carriagewayGroup.visible=map.carriagewaysEnabled&&map.mpp<6;};
  $('#signals-toggle').onclick=()=>{const oculto=map.signalsEnabled;map.setSignals(!oculto);$('#signals-toggle').setAttribute('aria-pressed',oculto);$('#signals-toggle').classList.toggle('active',oculto);};
  $('#corridors-toggle').onclick=()=>{const faded=!map.corridorsFaded;map.setCorridorsFaded(faded);$('#corridors-toggle').setAttribute('aria-pressed',faded);$('#corridors-toggle').classList.toggle('active',faded);};map.onPan=()=>following=false;
- $('#close-inspector').onclick=()=>{clearSelection();renderRoutes();};
+ $('#close-inspector').onclick=()=>{clearSelection();renderRoutes();restoreLiveRoute();};
  $('#save').onclick=()=>{try{localStorage.setItem('transmi-scenario-v3',JSON.stringify({revision:data.revision,config,clock}));toast('Escenario guardado. Se restaurará pausado al abrirlo.');}catch{toast('No se pudo guardar en este dispositivo.');}};
  const coverage=el('div',undefined,'coverage-grid');for(const [value,label] of [[data.counts.map_records,'registros del mapa'],[data.counts.map_codes,'códigos distintos'],[data.counts.ready,'variantes utilizables'],[data.counts.pending,'registros pendientes']]){const box=el('div');box.append(el('strong',value),el('span',label));coverage.append(box);}$('#coverage').append(coverage);// Fechas y cifras derivadas del propio dato: una instantánea nueva las actualiza sola.
  const mes=iso=>new Date(iso+'T12:00:00Z').toLocaleDateString('es-CO',{day:'numeric',month:'long',year:'numeric'});

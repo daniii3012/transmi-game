@@ -193,3 +193,8 @@ ruta (ML82 = M82/L82, MK86 = M86/K86).
   control nativo de iOS no baja de su tamaño intrínseco por mucho que se le pida el 100% del hueco,
   así que en la emulación del escritorio cabía y en el iPhone la pareja sobresalía ~15 px y
   desplazaba la hoja entera de lado. A lo ancho la pareja se conserva.
+- Apilar los campos no bastó: en WebKit la fecha y la hora **se dimensionan solas** —el ancho que
+  piden no lo fija `width`, sino la maqueta nativa que llevan dentro—, y seguían sobresaliendo del
+  panel. Se les quita esa maqueta con `appearance:none`, que en iOS no cuesta nada porque allí ya se
+  dibujan planos. Y la hoja lleva `overflow-x:hidden` en el móvil como tope: un control que insista
+  en pedir más ancho del que hay se recorta, en vez de arrastrar el panel entero de lado.

@@ -68,12 +68,20 @@ body[data-theme=dark] #sidebar,body[data-theme=dark] #inspector,body[data-theme=
  body[data-panel=live].time-expanded #sidebar,body[data-panel=planner].time-expanded #sidebar{bottom:10px}
 }
 
-/* Los campos de fecha y hora traen un ancho propio y el panel entero se desplazaba de lado. Dejar
-   que encojan no basta: el control nativo de iOS no baja de su tamaño intrínseco por mucho que se
-   le pida el 100% del hueco, así que en la emulación cabía y en el teléfono no. En un móvil van uno
-   debajo del otro, que además se tocan mejor; a lo ancho la pareja se conserva. */
-.form-pair{gap:10px}.form-pair>*{min-width:0}.form-pair input{width:100%;max-width:100%}
+/* La fecha y la hora se salían del panel y desplazaban la hoja entera de lado. En WebKit estos dos
+   controles se dimensionan solos —el ancho que piden no lo fija `width`, sino la maqueta nativa que
+   llevan dentro—, y por eso en la emulación del escritorio cabían y en el iPhone no. Se les quita
+   esa maqueta con `appearance:none`, que en iOS no cuesta nada porque allí se dibujan planos de
+   todos modos, y se les fija el ancho del hueco. En un móvil van además uno debajo del otro. */
+.form-pair{gap:10px}.form-pair>*{min-width:0}
+.form-pair input{width:100%;max-width:100%;min-width:0}
+.form-pair input[type=date],.form-pair input[type=time]{-webkit-appearance:none;appearance:none}
+.form-pair input::-webkit-date-and-time-value{width:100%;margin:0;text-align:left}
 @media(max-width:800px){.form-pair{grid-template-columns:1fr;gap:4px}}
+
+/* Y un tope, porque una hoja que se desplaza de lado nunca es lo que se quiere: cualquier control
+   que insista en pedir más ancho del que hay se recorta en vez de arrastrar el panel entero. */
+@media(max-width:800px){#sidebar{overflow-x:hidden}}
 
 /* Con el detalle plegado la hoja deja de tapar el mapa y lo seleccionado sigue en foco. En el
    escritorio la ficha cuelga de arriba y en el móvil se apoya abajo, así que encoge por lados
